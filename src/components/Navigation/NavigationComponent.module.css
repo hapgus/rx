@@ -24,7 +24,7 @@
 .mobileIconsWrapper{
     display: flex;
     flex-direction: row;
-    gap: 1rem;
+    gap: 2.5rem;
 }
 .mobileIconsWrapper svg {
     height: 2.4rem;
