@@ -13,21 +13,19 @@ const MobileNavComponent = () => {
     return (
         <div className={styles.mobileNavComponentContainer}>
 
-            <GridSystem >
-                <div className={styles.mobileNavContentWrapper}>
-                    <div className={styles.mobileLogoWrapper}>
-                        <img src='/hapg/assets/image/logos/lg-logo.webp' alt='lg red face logo' />
-                    </div>
-                    <div className={styles.mobileIconsWrapper}>
-                        
-                        <IconComponent iconType='searchInput' />
-                        <IconComponent iconType='userAccount' />
-                        <IconComponent iconType='productList' />
-                        <IconComponent iconType='mobileNavMenu' />
-                    </div>
+          
+                <div className={styles.mobileLogoWrapper}>
+                    <img src='/hapg/assets/image/logos/lg-logo.webp' alt='lg red face logo' />
                 </div>
-                {/* <button onClick={handleClick}>Search Mobile</button> */}
-            </GridSystem>
+                <div className={styles.mobileIconsWrapper}>
+
+                    <IconComponent iconType='searchInput' />
+                    <IconComponent iconType='userAccount' />
+                    <IconComponent iconType='productList' />
+                    <IconComponent iconType='mobileNavMenu' />
+                </div>
+         
+            {/* <button onClick={handleClick}>Search Mobile</button> */}
         </div>
     );
 }
@@ -58,7 +56,9 @@ export const MainNavigationComponent = () => {
             </div>
 
             <div className={styles.mobileNavWrapper}>
-                <MobileNavComponent />
+                {/* <GridSystem > */}
+                    <MobileNavComponent />
+                {/* </GridSystem> */}
             </div>
         </nav>
     )

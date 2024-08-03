@@ -3,17 +3,19 @@
 /* --------------------------------------------------------------------------------------- */
 .mainNavComponentContainer {
     background-color: var(--color-gray-06);
-    padding: 1rem 0;
+    padding: 1rem;
+    /* display: flex; */
+}
+.mobileNavWrapper {
+    /* display: flex; */
 }
 
 /* --------------------------------------------------------------------------------------- */
 /* MOBILE NAV */
 /* --------------------------------------------------------------------------------------- */
 
-.mobileNavWrapper {
-    display: block;
-}
-.mobileNavContentWrapper{
+
+.mobileNavComponentContainer{
     display: flex;
     flex-direction: row;
     align-items: center;
