@@ -6,6 +6,7 @@ import Homepage from './pages/Main/Home/Homepage';
 
 const App = () => {
 
+  const baseUrl = '/hapg'
   const renderMainRoutes = () => (
     <>
      <Route index element={<Homepage />} />
@@ -14,7 +15,7 @@ const App = () => {
 
   return(
     <Routes>
-      <Route path='/' element={<MainLayout />}>
+      <Route path={baseUrl} element={<MainLayout />}>
       {renderMainRoutes()}
       </Route>
     </Routes>

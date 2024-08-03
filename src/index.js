@@ -5,14 +5,19 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { SearchProvider } from './context/SearchContext';
+import { RetailerProvider } from './context/RetailerContext';
+
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <BrowserRouter> 
-
- 
-    <App />
-
-
+  <BrowserRouter>
+    <RetailerProvider>
+      <SearchProvider>
+        <App />
+      </SearchProvider>
+    </RetailerProvider>
   </BrowserRouter>
 );
 

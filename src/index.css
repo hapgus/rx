@@ -1,3 +1,57 @@
+:root{
+
+  --color-red-01: #A50034;
+  --color-red-02: #EA1917;
+  --color-red-03: #ED0602;
+  --color-gray-01: #262626;
+  --color-gray-02: #4A4946;
+  --color-gray-03: #716F6A;
+  --color-gray-04: #D0CBC1;
+  --color-gray-05: #E6E1D6;
+  --color-gray-06: #F0ECE4;
+  --color-gray-07: #F6F3EB;
+
+  --headline-light: "LG EI Headline Light";
+  --headline-regular: "LG EI Headline Regular";
+  --headline-semibold: "LG EI Headline SemiBold";
+  --text-regular: "LG EI Text Regular";
+  --text-bold: "LG EI Text Bold";
+  --text-semibold: "LG EI Text SemiBold";
+}
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  background-color: var(--color-red-01);
+  font-family: var(--text-regular);
+  box-sizing: border-box;
+  /* line-height: 1.6; */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+section,
+form {
+  margin: 0;
+  padding: 0;
+  font-weight: inherit;
+}
+
 @font-face {
   font-family: "LG EI Headline Light";
   font-style: normal;
@@ -45,3 +99,16 @@
   src: url("/public/fonts/LG_EI_Text_SemiBold.ttf") format('truetype');
   src: url("/public/fonts/LG_EI_Text_SemiBold.ttf") format('woff');
 }
+
+/* --------------------------------------------------------------------------------------- */
+/* MEDIA QUERY REFERENCE */
+/* --------------------------------------------------------------------------------------- */
+/* 
+@media (min-width: 430px) {}
+@media (min-width: 768px) {}
+@media (min-width: 834px) {}
+@media (min-width: 1024px) {} - MOBILE / DESKTOP Breakpoint
+@media (min-width: 1280px) {}
+@media (min-width: 1440px) {}
+@media (min-width: 1920px) {} 
+*/
