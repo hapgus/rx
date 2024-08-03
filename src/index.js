@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 
 import { SearchProvider } from './context/SearchContext';
 import { RetailerProvider } from './context/RetailerContext';
+import { RoutingProvider } from './context/RoutingContext';
 
 
 
@@ -14,9 +15,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <RetailerProvider>
-      <SearchProvider>
-        <App />
-      </SearchProvider>
+      <RoutingProvider>
+        <SearchProvider>
+          <App />
+        </SearchProvider>
+      </RoutingProvider>
     </RetailerProvider>
   </BrowserRouter>
 );

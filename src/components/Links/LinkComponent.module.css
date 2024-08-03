@@ -1,0 +1,32 @@
+a {
+  text-decoration: none;
+}
+
+.footerMenuListText {
+  font-family: var(--lg-ei-text-regular);
+  font-size: var(--font-size-0);
+  color: var(--color-gray-03);
+}
+
+/* .footerHeaderText {
+  font-family: var(--footer-font-family);
+  font-size: var(--footer-list-header-font-size);
+  color: black;
+} */
+
+
+
+.navHeaderText {
+  font-family: var(--footer-font-family);
+  font-size: var(--footer-list-header-font-size);
+  color: black;
+}
+.navMenuListText {
+  font-family: var(--footer-font-family);
+  font-size: var(--footer-list-item-font-size);
+  color: var(--color-gray-01);
+}
+.active {
+  border-bottom: 2px solid var(--color-red-03);
+}
+

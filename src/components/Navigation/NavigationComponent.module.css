@@ -21,25 +21,45 @@
     align-items: center;
     justify-content: space-between;
 }
+.mobileLogoWrapper{
+    height: 3.2rem;
+    width: auto;
+}.mobileLogoWrapper img{
+  object-fit: contain;
+  height: 100%;
+  width: auto;
+}
+
 .mobileIconsWrapper{
     display: flex;
     flex-direction: row;
     gap: 2.5rem;
-}
-.mobileIconsWrapper svg {
+}.mobileIconsWrapper svg {
     height: 2.4rem;
     width: 2.4rem;
     display: flex;
 }
-.mobileLogoWrapper{
-    height: 3.2rem;
-    width: auto;
+.mobileMenuBackIconWrapper{
+    padding: 0 0 1rem 0 ;
 }
 
-.mobileLogoWrapper img{
-  object-fit: contain;
-  height: 100%;
-  width: auto;
+.mobileMenuHeader{
+    display: flex;
+    flex-direction: row;
+    align-items: center;   
+    justify-content: space-between;
+}.mobileMenuHeader svg{
+    height: 1.8rem;
+    width: 1.8rem;
+    display: flex;
+    align-items: center;
+}
+.mobileNavOptionsList a{
+    color: black;
+    font-size: 1.8rem;
+}
+.mobileNavOptionsList li{
+  list-style: none;
 }
 
 /* --------------------------------------------------------------------------------------- */
