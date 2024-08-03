@@ -3,6 +3,7 @@
 /* --------------------------------------------------------------------------------------- */
 .mainNavComponentContainer {
     background-color: var(--color-gray-06);
+    padding: 1rem 0;
 }
 
 /* --------------------------------------------------------------------------------------- */
@@ -12,8 +13,22 @@
 .mobileNavWrapper {
     display: block;
 }
-
-
+.mobileNavContentWrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.mobileIconsWrapper{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+.mobileIconsWrapper svg {
+    height: 2.4rem;
+    width: 2.4rem;
+    display: flex;
+}
 .mobileLogoWrapper{
     height: 3.2rem;
     width: auto;
