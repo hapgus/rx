@@ -1,0 +1,96 @@
+/* --------------------------------------------------------------------------------------- */
+/* SEARCH INPUT */
+/* --------------------------------------------------------------------------------------- */
+/* .searchInputContainer{
+    position: relative;
+} */
+/* .searchInputWrapper {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    width: 100%;
+    padding: 1rem 2rem;
+    border-top: 1px solid var(--color-gray-04);
+    border-bottom: 1px solid var(--color-gray-04);
+} */
+
+.searchPreviewWithResults {
+    position: relative;
+    /* height: 100rem; */
+    height: 100vh;
+    overflow-y: scroll;
+}
+
+.searchIconWrapper svg {
+    height: 1.6rem;
+    width: 1.6rem;
+    object-fit: contain;
+
+}
+
+.input {
+    width: 100%;
+    border: none;
+    font-size: 1.6rem;
+    background-color: white;
+    color: var(--color-gray-02);
+}
+
+.input:focus {
+    outline: none;
+}
+
+/* --------------------------------------------------------------------------------------- */
+/* SEARCH PREVIEW */
+/* --------------------------------------------------------------------------------------- */
+.searchPreviewDesktopMainContainer{
+    background-color: var(--color-gray-06);
+    padding: 0 1rem;
+    position: absolute;
+     border-bottom-left-radius: 2.6rem;
+    border-bottom-right-radius: 2.6rem;
+}
+.desktopSearchPreviewWithResultsWrapper{
+position: relative;
+
+width: 38rem;
+height: 42rem;
+
+}
+
+.desktopSearchPreviewWithResultsInnerDiv{
+    /* position: absolute; */
+    height: 40.5rem;
+    overflow-y: scroll;
+    background-color: var(--color-gray-06);
+   
+    
+}
+/* For WebKit-based browsers */
+.desktopSearchPreviewWithResultsInnerDiv::-webkit-scrollbar {
+    width: 1rem;
+  }
+  
+  .desktopSearchPreviewWithResultsInnerDiv::-webkit-scrollbar-track {
+    background: var(--color-gray-06);
+  }
+  
+  .desktopSearchPreviewWithResultsInnerDiv::-webkit-scrollbar-thumb {
+    background-color: var(--color-gray-04);
+    border-radius: 10px;
+    border: 3px solid var(--color-gray-05);
+  }
+  
+  .desktopSearchPreviewWithResultsInnerDiv::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-red-02);
+  }
+.desktopSearchPreviewWithResultsInnerDiv:last-child{
+    padding-bottom: .5rem;
+}
+/* .desktopSearchPreviewSpacer{
+    background-color: aquamarine;
+    padding: 2rem;
+    position: relative;
+    height: auto;
+} */

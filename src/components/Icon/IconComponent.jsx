@@ -51,6 +51,14 @@ const LeftChevron = () => (
     </svg>
 );
 
+
+const LeftArrow = () => (
+    <svg  xmlns="http://www.w3.org/2000/svg" width="2126" height="2050" viewBox="0 0 2126 2050" fill="none">
+        <path d="M2011.77 1024.93H114M114 1024.93L1024.93 114M114 1024.93L1024.93 1935.86" stroke="black" strokeWidth="227.732" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+)
+
+
 const icons = {
  
     mobileNavMenu: MobileNavMenu,
@@ -61,6 +69,7 @@ const icons = {
     leftChevron: LeftChevron,
     upChevron: UpChevron,
     downChevron: DownChevron,
+    leftArrow: LeftArrow,
 
 }
 

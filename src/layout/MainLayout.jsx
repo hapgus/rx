@@ -12,8 +12,9 @@ export default function Layout() {
     return (
         <>
 
+
             {
-                isMobileSearchState.isSearchActive &&
+                isMobileSearchState.isMobileSearch &&
                 <SearchComponent type='mobile' />
             }
             <div className={styles.mainLayouContainer}>

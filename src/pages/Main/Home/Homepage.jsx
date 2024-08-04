@@ -1,8 +1,37 @@
-import styles from './Homepage.module.css'
+import styles from './Homepage.module.css';
+import { useEffect } from 'react';
+
+import { SearchComponent } from '../../../components/Search/SearchComponent';
+import { useSearchHook } from '../../../hooks/search-hook';
 const Homepage = () => {
-    return(
+
+    const { setIsHomepageSearchState, isHomepageSearchState, setIsMobileSearchState } = useSearchHook();
+    const handleHomepageSearchClick = () => {
+        setIsHomepageSearchState(prevState => ({ ...prevState, isHomepageSearch: true }))
+        // setIsDesktopSearchState(prevState => ({ ...prevState, isDesktopSearch: false }))
+    }
+    useEffect(() => {
+        console.log('home search state', isHomepageSearchState);
+    }, [isHomepageSearchState]);
+    const handleHomepageMobileSearchClick = () => {
+        setIsMobileSearchState(prevState => ({ ...prevState, isMobileSearch: true }))
+        // setIsDesktopSearchState(prevState => ({ ...prevState, isDesktopSearch: false }))
+    }
+    return (
         <div className={styles.pageContainer}>
-            <h1>Homepage</h1>
+
+            <div className={styles.desktopHomeSearchWrapper}>
+                <div onClick={handleHomepageSearchClick} className={styles.desktopHomeSearchInputWrapper}>
+                    <SearchComponent type='homepage' />
+                </div>
+            </div>
+            <div className={styles.mobileHomeSearchWrapper}>
+                <div onClick={ handleHomepageMobileSearchClick} className={styles.mobileHomeSearchInputWrapper}>
+                    <SearchComponent type='homepage' />
+                </div>
+            </div>
+
+
         </div>
     )
 }

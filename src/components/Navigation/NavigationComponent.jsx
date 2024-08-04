@@ -1,5 +1,5 @@
 import styles from './NavigationComponent.module.css';
-// import { useSearchHook } from '../../hooks/search-hook';
+import { useSearchHook } from '../../hooks/search-hook';
 import { useRoutingHook } from '../../hooks/routing-hook';
 import { IconComponent } from '../Icon/IconComponent';
 import { GridSystem } from '../GridSystem/GridSystem';
@@ -7,8 +7,13 @@ import Overlay from '../Overlay/Overlay';
 import { RouteLinks, navCategoryLinks, navSecondaryCategoryLinks, resourceLinks } from '../../utils/link-helper';
 import { PageText } from '../Text/Text';
 import { LinkComponent } from '../Links/LinkComponent';
+import { SearchComponent } from '../Search/SearchComponent';
+
+
 const MobileNavComponent = () => {
+
     const { setIsRoutingState, isRoutingState } = useRoutingHook();
+    const { setIsMobileSearchState } = useSearchHook();
 
     const handleToggleMainMobileMenu = () => {
         setIsRoutingState(prevState => ({ ...prevState, isMobileNavOpen: !prevState.isMobileNavOpen }))
@@ -23,12 +28,13 @@ const MobileNavComponent = () => {
         setIsRoutingState(prevState => ({ ...prevState, isMobileExclusiveMenuOpen: !prevState.isMobileExclusiveMenuOpen }))
     }
 
-    // const { setIsMobileSearchState } = useSearchHook();
 
-    // const handleClick = () => {
-    //     setIsMobileSearchState(prevState => ({ ...prevState, isSearchActive: !prevState.isSearchActive }))
-    // }
-    console.log(isRoutingState)
+
+    const handleMobileSearchIconClick = () => {
+        setIsMobileSearchState(prevState =>
+            ({ ...prevState, isMobileSearch: true }))
+    }
+
     return (
         <div className={styles.mobileNavComponentContainer}>
 
@@ -37,7 +43,7 @@ const MobileNavComponent = () => {
                 <img src='/hapg/assets/image/logos/lg-logo.webp' alt='lg red face logo' />
             </div>
             <div className={styles.mobileIconsWrapper}>
-                <IconComponent iconType='searchInput' />
+                <IconComponent onClick={handleMobileSearchIconClick} iconType='searchInput' />
                 <IconComponent iconType='userAccount' />
                 <IconComponent iconType='productList' />
                 <IconComponent onClick={handleToggleMainMobileMenu} iconType='mobileNavMenu' />
@@ -99,9 +105,9 @@ const MobileNavComponent = () => {
                 <Overlay containerMarginTop='5rem'>
                     <GridSystem >
                         <div className={styles.mobileMenuBackIconWrapper}>
-                        <IconComponent onClick={handleToggleMobileExclusiveMenu} iconType='leftChevron' />
+                            <IconComponent onClick={handleToggleMobileExclusiveMenu} iconType='leftChevron' />
                         </div>
-                        
+
                         <div className={styles.mobileDropdownContent}>
                             <ul className={styles.mobileNavOptionsList}>
                                 <li>
@@ -127,9 +133,42 @@ const MobileNavComponent = () => {
 const DesktopNavComponent = () => {
     return (
         <div className={styles.desktopNavComponentContainer}>
-            <GridSystem containerBackgroundColor='purple'>
-                <div className={styles.desktopLogoWrapper}>
-                    <img src='/hapg/assets/image/logos/lg-logo.webp' alt='lg red face logo' />
+            <GridSystem>
+                <div className={styles.desktopNavContainer}>
+                    <div className={styles.desktopNavLogoWrapper}>
+                        <img src='/hapg/assets/image/logos/lg-logo.webp' alt='lg red face logo' />
+                    </div>
+                    <section className={styles.desktopNavMenuWrapper}>
+                        <div className={styles.desktopNavMenuHeader} >
+                            <PageText
+                                type='navTitleText'
+                            >Home Appliances</PageText>
+                        </div>
+                        <div className={styles.desktopNavMenuHeader} >
+                            <PageText
+                                type='navTitleText'
+                            >Resources</PageText>
+                        </div>
+                        <div className={styles.desktopNavMenuHeader} >
+                            <PageText
+                                type='navTitleText'
+                            >Product Guide Exclusives</PageText>
+                        </div>
+                    </section>
+
+                    <section className={styles.desktopNavSearchWrapper}>
+                        <SearchComponent type='desktop' />
+
+
+
+                    </section>
+                    <section className={styles.desktopNavMenuWrapper}>
+                        <div className={styles.desktopNavIconsWrapper}>
+                            <IconComponent iconType='productList' />
+                            <IconComponent iconType='userAccount' />
+                        </div>
+                    </section>
+
                 </div>
             </GridSystem>
 

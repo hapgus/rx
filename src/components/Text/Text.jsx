@@ -12,6 +12,8 @@ export const PageText = ({ children, eventHandlers = {}, type = 'default' }) => 
 
         navTitleText: styles.navTitleText,
 
+        titleSearch:styles.titleSearch,
+
 
 
         default: styles.defaultPageText,
