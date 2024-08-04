@@ -74,44 +74,44 @@ export const SearchPreview = () => {
             </div>
         );
     }
-    if (isHomepageSearchState.isHomepageSearch === true) {
-        return (
-            isHomepageSearchState.isSearchResults.length > 0 ? (
-                <div className={styles.searchPreviewWithResults}>
-                    <div className={styles.searchPreviewWithResultsInnerDiv}>
-                        <p>{mobileSearchResultsCount} Results</p>
-                        <SearchPreviewCard products={isHomepageSearchState.isSearchResults && isHomepageSearchState.isSearchResults} />
-                    </div>
-                </div>
-            ) : (
-                <div className={styles.searchPreview}>
+    // if (isHomepageSearchState.isHomepageSearch === true) {
+    //     return (
+    //         isHomepageSearchState.isSearchResults.length > 0 ? (
+    //             <div className={styles.searchPreviewWithResults}>
+    //                 <div className={styles.searchPreviewWithResultsInnerDiv}>
+    //                     <p>{mobileSearchResultsCount} Results</p>
+    //                     <SearchPreviewCard products={isHomepageSearchState.isSearchResults && isHomepageSearchState.isSearchResults} />
+    //                 </div>
+    //             </div>
+    //         ) : (
+    //             <div className={styles.searchPreview}>
 
-                    <div className={styles.previewSectionBody}>
-                        {/* <div className={styles.previewBodyTitle1}>
-                <ProductText type='searchSectionTitle'>Search LG home appliances</ProductText>
-                </div>
-                <div className={styles.previewBodyTitle2}>
-                <ProductText type='searchSectionSubtitle'>Explore by category</ProductText>
-                </div> */}
-                        <div className={styles.searchOptionButtonWrapper}>
-                            <p>Buttons</p>
-                            {/*                     
-                    <Button buttonStyleType='secondary'>Cooking</Button>
-                    <Button buttonStyleType='secondary'>Refrigeration</Button>
-                    <Button buttonStyleType='secondary'>Air Care</Button>
-                    <Button buttonStyleType='secondary'>Laundry</Button>
+    //                 <div className={styles.previewSectionBody}>
+    //                     {/* <div className={styles.previewBodyTitle1}>
+    //             <ProductText type='searchSectionTitle'>Search LG home appliances</ProductText>
+    //             </div>
+    //             <div className={styles.previewBodyTitle2}>
+    //             <ProductText type='searchSectionSubtitle'>Explore by category</ProductText>
+    //             </div> */}
+    //                     <div className={styles.searchOptionButtonWrapper}>
+    //                         <p>Buttons</p>
+    //                         {/*                     
+    //                 <Button buttonStyleType='secondary'>Cooking</Button>
+    //                 <Button buttonStyleType='secondary'>Refrigeration</Button>
+    //                 <Button buttonStyleType='secondary'>Air Care</Button>
+    //                 <Button buttonStyleType='secondary'>Laundry</Button>
 
-                    <Button buttonStyleType='secondary'>Signature</Button>
-                    <Button buttonStyleType='secondary'>Studio</Button>
-                    <Button buttonStyleType='secondary'>Vacuums</Button>
-                    <Button buttonStyleType='secondary'>Dishwashers</Button> */}
-                        </div>
-                    </div>
+    //                 <Button buttonStyleType='secondary'>Signature</Button>
+    //                 <Button buttonStyleType='secondary'>Studio</Button>
+    //                 <Button buttonStyleType='secondary'>Vacuums</Button>
+    //                 <Button buttonStyleType='secondary'>Dishwashers</Button> */}
+    //                     </div>
+    //                 </div>
 
-                </div>
-            )
+    //             </div>
+    //         )
 
-        );
-    }
+    //     );
+    // }
 
 };

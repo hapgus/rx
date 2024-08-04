@@ -46,6 +46,12 @@ export const SearchInput = () => {
                 isMobileSearch: false,
                 isSearchResults:[]
              }))
+             setIsHomepageSearchState(prevState => ({ 
+                ...prevState, 
+                // isHomepageSearch: false,
+                isSearchResults:[]
+             }))
+
         }
         return (
             <div className={styles.searchInputContainer}>
