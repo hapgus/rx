@@ -1,8 +1,8 @@
 import styles from './HomepageSearchInput.module.css';
-import { useProductsHook } from '../../hooks/product-hook';
-import { useSearchHook } from '../../hooks/search-hook';
-import { IconComponent } from '../Icon/IconComponent';
-import { useResponsiveStateHook } from '../../hooks/responsive-hook';
+import { useProductsHook } from '../../../hooks/product-hook';
+import { useSearchHook } from '../../../hooks/search-hook';
+import { IconComponent } from '../../Icon/IconComponent';
+import { useResponsiveStateHook } from '../../../hooks/responsive-hook';
 
 export const HomepageSearchInput = () => {
 

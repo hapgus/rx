@@ -1,10 +1,12 @@
 import styles from './SearchPreview.module.css';
-import { useProductsHook } from '../../hooks/product-hook';
-import { useSearchHook } from '../../hooks/search-hook';
-import { IconComponent } from '../Icon/IconComponent';
-import { SearchPreviewCard } from '../ProductCards/SearchPreview/SearchPreviewCard';
-import { PageText } from '../Text/Text';
-import { Button } from '../Button/Button';
+
+import { useProductsHook } from '../../../hooks/product-hook';
+import { useSearchHook } from '../../../hooks/search-hook';
+
+import { SearchPreviewCard } from '../../ProductCards/SearchPreview/SearchPreviewCard';
+import { PageText } from '../../Text/Text';
+import { Button } from '../../Button/Button';
+import { NavSearchPreviewCard } from '../../ProductCards/NavSearchPreviewCard/NavSearchPreviewCard';
 
 export const SearchPreview = () => {
 
@@ -71,7 +73,8 @@ export const SearchPreview = () => {
                         <div className={styles.desktopSearchPreviewWithResultsWrapper}>
                             <div className={styles.desktopSearchPreviewWithResultsInnerDiv}>
                                 {/* <p>{desktopSearchResultsCount} Results</p> */}
-                                <SearchPreviewCard products={isDesktopSearchState.isSearchResults && isDesktopSearchState.isSearchResults} />
+                                <NavSearchPreviewCard products={isDesktopSearchState.isSearchResults && isDesktopSearchState.isSearchResults}/>
+                                {/* <SearchPreviewCard products={isDesktopSearchState.isSearchResults && isDesktopSearchState.isSearchResults} /> */}
                             </div>
 
                         </div>

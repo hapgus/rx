@@ -1,7 +1,11 @@
 .navTitleText{
-    font-size: 2.4rem;
+    font-size: 2rem;
+    font-family: var(--text-semibold);
 }
 
+.mobileNavTileText{
+    font-size: 2.4rem;
+}
 .searchTitle{
     font-size: 2.4rem;
     font-family: var(--text-semibold);
@@ -19,6 +23,15 @@
 }
 
 .productSearchSubtitle{
-    font-size: 2rem;
-    font-family: var(--text-semibold);
+    font-size: 1.6rem;
+    /* font-family: var(--text-semibold); */
+}
+
+.productSearchNavTitle{
+    font-size: 1.4rem;
+}
+
+.productSearchNavSubtitle{
+    font-size: 1.4rem;
+    /* font-family: var(--text-semibold); */
 }

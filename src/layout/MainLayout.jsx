@@ -2,7 +2,7 @@ import { MainNavigationComponent } from '../components/Navigation/NavigationComp
 import styles from './Layout.module.css'
 import { Outlet } from 'react-router';
 import { useSearchHook } from '../hooks/search-hook';
-import { SearchComponent } from '../components/Search/SearchComponent';
+import { SearchComponent } from '../components/Search/SearchComponent/SearchComponent';
 
 
 export default function Layout() {

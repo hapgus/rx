@@ -1,7 +1,8 @@
 import styles from './Homepage.module.css';
 import { useEffect } from 'react';
 
-import { SearchComponent } from '../../../components/Search/SearchComponent';
+
+import { SearchComponent } from '../../../components/Search/SearchComponent/SearchComponent';
 import { useSearchHook } from '../../../hooks/search-hook';
 const Homepage = () => {
 

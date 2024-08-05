@@ -31,7 +31,7 @@ html {
 }
 
 body {
-  background-color: var(--color-red-01);
+  background-color: var(--color-gray-07);
   font-family: var(--text-regular);
   box-sizing: border-box;
   /* line-height: 1.6; */

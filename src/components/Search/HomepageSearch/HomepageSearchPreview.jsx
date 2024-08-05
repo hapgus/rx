@@ -1,9 +1,10 @@
 import styles from './HomepageSearchPreview.module.css';
-import { useProductsHook } from '../../hooks/product-hook';
-import { useSearchHook } from '../../hooks/search-hook';
-import { useResponsiveStateHook } from '../../hooks/responsive-hook';
-import { IconComponent } from '../Icon/IconComponent';
-import { SearchPreviewCard } from '../ProductCards/SearchPreview/SearchPreviewCard';
+import { useProductsHook } from '../../../hooks/product-hook';
+import { useSearchHook } from '../../../hooks/search-hook';
+import { useResponsiveStateHook } from '../../../hooks/responsive-hook';
+import { IconComponent } from '../../Icon/IconComponent';
+import { SearchPreviewCard } from '../../ProductCards/SearchPreview/SearchPreviewCard';
+import { HomepageSearchPreviewCard } from '../../ProductCards/HomepageSearchPreviewCard/HomepageSearchPreviewCard';
 
 export const HomepageSearchPreview = () => {
 
@@ -25,7 +26,8 @@ export const HomepageSearchPreview = () => {
                     isHomepageSearchState.isSearchResults.length > 0 ? (
                         <div className={styles.searchPreviewWithResultsWrapper}>
                             <div className={styles.searchPreviewWithResultsInnerDiv}>
-                                <SearchPreviewCard products={isHomepageSearchState.isSearchResults && isHomepageSearchState.isSearchResults} />
+                                <HomepageSearchPreviewCard  products={isHomepageSearchState.isSearchResults && isHomepageSearchState.isSearchResults}  />
+                                {/* <SearchPreviewCard products={isHomepageSearchState.isSearchResults && isHomepageSearchState.isSearchResults} /> */}
                             </div>
                         </div>
                     ) : null

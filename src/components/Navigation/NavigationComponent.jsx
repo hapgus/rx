@@ -7,7 +7,7 @@ import Overlay from '../Overlay/Overlay';
 import { RouteLinks, navCategoryLinks, navSecondaryCategoryLinks, resourceLinks } from '../../utils/link-helper';
 import { PageText } from '../Text/Text';
 import { LinkComponent } from '../Links/LinkComponent';
-import { SearchComponent } from '../Search/SearchComponent';
+import { SearchComponent } from '../Search/SearchComponent/SearchComponent';
 
 
 const MobileNavComponent = () => {
@@ -147,12 +147,12 @@ const DesktopNavComponent = () => {
                         <div className={styles.desktopNavMenuHeader} >
                             <PageText
                                 type='navTitleText'
-                            >Resources</PageText>
+                            >Product Resources</PageText>
                         </div>
                         <div className={styles.desktopNavMenuHeader} >
                             <PageText
                                 type='navTitleText'
-                            >Product Guide Exclusives</PageText>
+                            >Exclusive Offers</PageText>
                         </div>
                     </section>
 

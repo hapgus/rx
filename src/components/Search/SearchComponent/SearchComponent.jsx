@@ -1,11 +1,11 @@
-import React, { useEffect, useContext } from 'react';
-import Overlay from "../Overlay/Overlay";
-import { SearchInput } from "./SearchInput";
-import { SearchPreview } from "./SearchPreview";
-import { useResponsiveStateHook } from '../../hooks/responsive-hook';
-import { SearchContext } from '../../context/SearchContext';
-import { HomepageSearchInput } from './HomepageSearchInput';
-import { HomepageSearchPreview } from './HomepageSearchPreview';
+import React, { useContext } from 'react';
+import Overlay from "../../Overlay/Overlay";
+import { SearchInput } from "../MainSearch/SearchInput";
+import { SearchPreview } from "../MainSearch/SearchPreview";
+import { useResponsiveStateHook } from '../../../hooks/responsive-hook';
+import { SearchContext } from '../../../context/SearchContext';
+import { HomepageSearchInput } from '../HomepageSearch/HomepageSearchInput';
+import { HomepageSearchPreview } from '../HomepageSearch/HomepageSearchPreview';
 
 const MobileSearchComponent = () => (
     <Overlay>
