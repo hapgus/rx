@@ -18,6 +18,7 @@ import { PageText } from '../../Text/Text';
 
 
 export const SearchPreviewCard = ({ products }) => {
+    const publicUrl = process.env.PUBLIC_URL;
 
     const { productsInList } = useBuilderHook();
     const { isMobileSearchState, setIsMobileSearchState, isDesktopSearchState } = useSearchHook();
@@ -33,7 +34,12 @@ export const SearchPreviewCard = ({ products }) => {
                     <div key={idx} className={styles.searchPreviewCardContainerM}>
                         <div className={styles.searchPreviewCardWrapperM}>
                             <div className={styles.searchPreviewCardImageWrapperM}>
-                                <img className={styles.searchPreviewCardImageM} src={`/public/assets/image/products/${image}`} alt={`product ${title}`} />
+                                <img 
+                                className={styles.searchPreviewCardImageM} 
+                                src={`${publicUrl}/assets/image/products/${image}`}
+                                alt={`product ${title}`} 
+                                
+                                />
                             </div>
 
                             <div className={styles.searchPreviewCardTextWrapperM}>

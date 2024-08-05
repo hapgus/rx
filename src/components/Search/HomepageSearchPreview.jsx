@@ -1,6 +1,7 @@
 import styles from './HomepageSearchPreview.module.css';
 import { useProductsHook } from '../../hooks/product-hook';
 import { useSearchHook } from '../../hooks/search-hook';
+import { useResponsiveStateHook } from '../../hooks/responsive-hook';
 import { IconComponent } from '../Icon/IconComponent';
 import { SearchPreviewCard } from '../ProductCards/SearchPreview/SearchPreviewCard';
 
@@ -8,6 +9,7 @@ export const HomepageSearchPreview = () => {
 
 
     const { publicProducts } = useProductsHook();
+   const {isMobile} = useResponsiveStateHook();
     const { isMobileSearchState, isHomepageSearchState, isDesktopSearchState } = useSearchHook();
     const productDataSearch = publicProducts;
     const mobileSearchResultsCount = isMobileSearchState.isSearchResults.length > 0 ? isMobileSearchState.isSearchResults.length : 0
@@ -16,7 +18,7 @@ export const HomepageSearchPreview = () => {
     // console.log(isMobileSearchState)
     // if(isMobileSearchState === true){}
 
-    if (isHomepageSearchState.isHomepageSearch === true) {
+    if (isHomepageSearchState.isHomepageSearch === true && isMobile !== true) {
         return (
             <div className={styles.searchPreviewMainContainer}>
                 {
