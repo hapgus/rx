@@ -2,10 +2,12 @@ import styles from './HomepageSearchInput.module.css';
 import { useProductsHook } from '../../hooks/product-hook';
 import { useSearchHook } from '../../hooks/search-hook';
 import { IconComponent } from '../Icon/IconComponent';
+import { useResponsiveStateHook } from '../../hooks/responsive-hook';
 
 export const HomepageSearchInput = () => {
 
     const { publicProducts } = useProductsHook();
+    const { isMobile, isDesktop } = useResponsiveStateHook();
     const productDataSearch = publicProducts;
 
     const {
@@ -16,7 +18,7 @@ export const HomepageSearchInput = () => {
 
 
 
-    if (isHomepageSearchState.isHomepageSearch === true) {
+    if (isHomepageSearchState.isHomepageSearch === true && isDesktop === true) {
 
         const handleHomepageSearchChange = (event) => {
 
@@ -59,6 +61,28 @@ export const HomepageSearchInput = () => {
                         onFocus={handleHomepageSearchFocus}
                         aria-label="Search home appliances"
                         className={`${styles.input} ${isHomepageSearchState.isSearchActive ? styles.active : ''}`}
+                    />
+                </div>
+            </div>
+        );
+    }
+    if (isHomepageSearchState.isHomepageSearch === true && isMobile === true) {
+
+        return (
+            <div className={styles.searchInputContainer}>
+                <div
+                    className={styles.searchInputWrapper}
+                >
+                    <div className={styles.desktopSearchIconWrapper}>
+                        <IconComponent iconType='searchInput' />
+                    </div>
+
+                    <input
+                        type="search"
+                        placeholder='Search home mobile appliances'
+
+                        aria-label="Search home appliances"
+                        className={styles.input}
                     />
                 </div>
             </div>
