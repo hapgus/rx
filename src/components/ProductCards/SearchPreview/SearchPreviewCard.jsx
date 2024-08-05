@@ -33,7 +33,7 @@ export const SearchPreviewCard = ({ products }) => {
                     <div key={idx} className={styles.searchPreviewCardContainerM}>
                         <div className={styles.searchPreviewCardWrapperM}>
                             <div className={styles.searchPreviewCardImageWrapperM}>
-                                <img className={styles.searchPreviewCardImageM} src={`hapg/assets/image/products/${image}`} alt={`product ${title}`} />
+                                <img className={styles.searchPreviewCardImageM} src={`/public/assets/image/products/${image}`} alt={`product ${title}`} />
                             </div>
 
                             <div className={styles.searchPreviewCardTextWrapperM}>

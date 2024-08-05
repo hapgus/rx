@@ -77,13 +77,14 @@ export const HomepageSearchInput = () => {
                         <IconComponent iconType='searchInput' />
                     </div>
 
-                    <input
+
+                    {/* <input
                         type="search"
                         placeholder='Search home mobile appliances'
 
                         aria-label="Search home appliances"
                         className={styles.input}
-                    />
+                    /> */}
                 </div>
             </div>
         );
