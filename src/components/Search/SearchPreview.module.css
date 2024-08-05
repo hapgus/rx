@@ -44,50 +44,79 @@
 /* --------------------------------------------------------------------------------------- */
 /* SEARCH PREVIEW */
 /* --------------------------------------------------------------------------------------- */
-.searchPreviewDesktopMainContainer{
+.searchPreviewDesktopMainContainer {
     background-color: var(--color-gray-06);
     padding: 0 1rem;
     position: absolute;
-     border-bottom-left-radius: 2.6rem;
+    border-bottom-left-radius: 2.6rem;
     border-bottom-right-radius: 2.6rem;
 }
-.desktopSearchPreviewWithResultsWrapper{
-position: relative;
 
-width: 38rem;
-height: 42rem;
+.desktopSearchPreviewWithResultsWrapper {
+    position: relative;
+
+    width: 38rem;
+    height: 42rem;
 
 }
 
-.desktopSearchPreviewWithResultsInnerDiv{
+.desktopSearchPreviewWithResultsInnerDiv {
     /* position: absolute; */
     height: 40.5rem;
     overflow-y: scroll;
     background-color: var(--color-gray-06);
-   
-    
+
+
 }
+
 /* For WebKit-based browsers */
 .desktopSearchPreviewWithResultsInnerDiv::-webkit-scrollbar {
     width: 1rem;
-  }
-  
-  .desktopSearchPreviewWithResultsInnerDiv::-webkit-scrollbar-track {
+}
+
+.desktopSearchPreviewWithResultsInnerDiv::-webkit-scrollbar-track {
     background: var(--color-gray-06);
-  }
-  
-  .desktopSearchPreviewWithResultsInnerDiv::-webkit-scrollbar-thumb {
+}
+
+.desktopSearchPreviewWithResultsInnerDiv::-webkit-scrollbar-thumb {
     background-color: var(--color-gray-04);
     border-radius: 10px;
     border: 3px solid var(--color-gray-05);
-  }
-  
-  .desktopSearchPreviewWithResultsInnerDiv::-webkit-scrollbar-thumb:hover {
+}
+
+.desktopSearchPreviewWithResultsInnerDiv::-webkit-scrollbar-thumb:hover {
     background-color: var(--color-red-02);
-  }
-.desktopSearchPreviewWithResultsInnerDiv:last-child{
+}
+
+.desktopSearchPreviewWithResultsInnerDiv:last-child {
     padding-bottom: .5rem;
 }
+
+.searchPreview {
+    padding: 0 2rem;
+}
+
+.searchOptionButtonWrapper {
+    /* background-color: aqua; */
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: .5rem;
+
+}
+
+.searchOptionButtonWrapper button {
+    width: max-content;
+}
+
+.searchPreviewSectionTitleWraper {
+    border-top: 1px solid var(--color-gray-03);
+    margin-top: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    color: var(--color-gray-02);
+}
+
 /* .desktopSearchPreviewSpacer{
     background-color: aquamarine;
     padding: 2rem;

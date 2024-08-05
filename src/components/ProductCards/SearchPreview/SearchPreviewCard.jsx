@@ -33,7 +33,7 @@ export const SearchPreviewCard = ({ products }) => {
                     <div key={idx} className={styles.searchPreviewCardContainerM}>
                         <div className={styles.searchPreviewCardWrapperM}>
                             <div className={styles.searchPreviewCardImageWrapperM}>
-                                <img className={styles.searchPreviewCardImageM} src={`hapg/public/assets/image/products/${image}`} alt={`product ${title}`} />
+                                <img className={styles.searchPreviewCardImageM} src={`hapg/assets/image/products/${image}`} alt={`product ${title}`} />
                             </div>
 
                             <div className={styles.searchPreviewCardTextWrapperM}>
@@ -41,17 +41,15 @@ export const SearchPreviewCard = ({ products }) => {
                                     <NavLink to={productURL}>
 
                                         <div className={styles.searchPreviewCardTextM}>
-                                            <PageText color='lightGrayText' type='titleSearch' >{title}</PageText>
-                                            {/* <ProductText color='lightGrayText' type='productSearchTitle' >{title}</ProductText> */}
-                                            {/* <IconComponent iconStyleType='rightChevron' iconType='rightChevron' /> */}
+                                            <div className={styles.searchPreviewTitle}>
+                                                <PageText type='productSearchTitle' >{title}</PageText>
+                                            </div>
+                                            <div className={styles.searchPreviewSubtitle}>
+                                                <PageText color='lightGrayText' type='productSearchSubtitle' >
+                                                    <span className={styles.searchPreviewClampedSubtitleM}>{subtitle}</span>
+                                                </PageText>
+                                            </div>
                                         </div>
-                                        <PageText color='lightGrayText' type='titleSearch' >
-                                            <span className={styles.searchPreviewClampedSubtitleM}>{subtitle}</span>
-                                        </PageText>
-                                        {/* <ProductText type='productSearchSubtitle' >
-                                <span className={styles.searchPreviewClampedSubtitleM}>{subtitle}</span>
-                            </ProductText> */}
-
                                     </NavLink>
                                 </div>
 

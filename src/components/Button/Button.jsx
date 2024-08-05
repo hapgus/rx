@@ -5,10 +5,7 @@ import styles from './Button.module.css';
 export const Button = ({
   children,
   onClick,
-
-  buttonTextType = 'default',
   buttonStyleType = 'default',
-
   disabled = false,
   icon,
   iconType,
@@ -23,38 +20,41 @@ export const Button = ({
     secondary: styles.secondary,
     tertiaryBlack: styles.tertiaryBlack,
     tertiaryWhite: styles.tertiaryWhite,
-    tertiaryGray:styles.tertiaryGray,
-    printBanner:styles.printBanner,
-    printDefault:styles.printDefault,
+    tertiaryGray: styles.tertiaryGray,
+    printBanner: styles.printBanner,
+    printDefault: styles.printDefault,
     default: styles.default,
 
 
-    circleButton:styles.circleButton,
+    circleButton: styles.circleButton,
   }
 
   const buttonStyle = buttonStyles[buttonStyleType] || buttonStyles.default;
 
   return (
-    <button
-      onClick={onClick}
-      className={buttonStyle}
-      disabled={disabled}
-    >
-      {icon && iconPosition === 'left' && (
-        <span className={`${styles.icon} ${animatedIcon ? styles.animated : ''}`}>
-          <IconComponent iconStyleType={iconStyleType} iconType={iconType}>{icon}</IconComponent>
-        </span>
-      )}
-      <span>{children}</span>
+ 
+      <button
+        onClick={onClick}
+        className={buttonStyle}
+        disabled={disabled}
+      >
+        
+        {icon && iconPosition === 'left' && (
+          <span className={`${styles.icon} ${animatedIcon ? styles.animated : ''}`}>
+            <IconComponent iconStyleType={iconStyleType} iconType={iconType}>{icon}</IconComponent>
+          </span>
+        )}
 
-      {/* <ButtonText type={buttonTextType}>{children}</ButtonText> */}
+        <span>{children}</span>
 
-      {icon && iconPosition === 'right' && (
-        <span className={`${styles.icon} ${styles['icon-right']} ${animatedIcon ? styles.animated : ''}`}> 
-        <IconComponent  iconStyleType={iconStyleType} iconType={iconType}>{icon}</IconComponent>
-        </span>
-      )}
-    </button>
+
+        {icon && iconPosition === 'right' && (
+          <span className={`${styles.icon} ${styles['icon-right']} ${animatedIcon ? styles.animated : ''}`}>
+            <IconComponent iconStyleType={iconStyleType} iconType={iconType}>{icon}</IconComponent>
+          </span>
+        )}
+      </button>
+
   );
 };
 

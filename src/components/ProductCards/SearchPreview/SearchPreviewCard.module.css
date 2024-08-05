@@ -44,10 +44,16 @@
 
 .searchPreviewCardTextM {
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column;
     gap: .5rem;
 }
+.searchPreviewTitle{
+    color: var(--color-gray-03);
+}
+.searchPreviewSubtitle{
+    color: var(--color-gray-01);
+}
+
 
 .searchPreviewCardTextM svg {
     height: 1rem;

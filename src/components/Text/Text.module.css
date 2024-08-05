@@ -1,3 +1,24 @@
 .navTitleText{
     font-size: 2.4rem;
 }
+
+.searchTitle{
+    font-size: 2.4rem;
+    font-family: var(--text-semibold);
+}
+.searchTertiaryTitle{
+    font-size: 1.6rem;
+}
+.searchSubtitle{
+    font-size: 2rem;
+    /* font-family: var(--text-semibold); */
+}
+
+.productSearchTitle{
+    font-size: 1.6rem;
+}
+
+.productSearchSubtitle{
+    font-size: 2rem;
+    font-family: var(--text-semibold);
+}

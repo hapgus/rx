@@ -9,7 +9,7 @@ export const HomepageSearchInput = () => {
     const productDataSearch = publicProducts;
 
     const {
-       
+
         isHomepageSearchState,
         setIsHomepageSearchState,
     } = useSearchHook();
@@ -17,9 +17,9 @@ export const HomepageSearchInput = () => {
 
 
     if (isHomepageSearchState.isHomepageSearch === true) {
-      
+
         const handleHomepageSearchChange = (event) => {
-            
+
             const query = event.target.value.toLowerCase();
 
             setIsHomepageSearchState(prevState => ({ ...prevState, isSearchInputValue: query }));
@@ -40,12 +40,12 @@ export const HomepageSearchInput = () => {
         const handleHomepageSearchFocus = () => {
             setIsHomepageSearchState(prevState => ({ ...prevState, isSearchFocused: true }));
             console.log(' home focus')
-    
+
         }
         return (
             <div className={styles.searchInputContainer}>
-                <div 
-className={`${styles.searchInputWrapper} ${isHomepageSearchState.isSearchActive ? styles.active : ''} ${isHomepageSearchState.isSearchResults.length > 0 ? styles.withResults : ''}`}
+                <div
+                    className={`${styles.searchInputWrapper} ${isHomepageSearchState.isSearchActive ? styles.active : ''} ${isHomepageSearchState.isSearchResults.length > 0 ? styles.withResults : ''}`}
                 >
                     <div className={styles.desktopSearchIconWrapper}>
                         <IconComponent iconType='searchInput' />

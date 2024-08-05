@@ -12,10 +12,14 @@ export const PageText = ({ children, eventHandlers = {}, type = 'default' }) => 
 
         navTitleText: styles.navTitleText,
 
-        titleSearch:styles.titleSearch,
+        searchTitle:styles.searchTitle,
+        searchSubtitle:styles.searchSubtitle,
+        searchTertiaryTitle:styles.searchTertiaryTitle,
 
 
-
+        productSearchTitle:styles.productSearchTitle,
+        productSearchSubtitle:styles.productSearchSubtitle,
+        
         default: styles.defaultPageText,
     };
 

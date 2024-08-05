@@ -3,6 +3,8 @@ import { useProductsHook } from '../../hooks/product-hook';
 import { useSearchHook } from '../../hooks/search-hook';
 import { IconComponent } from '../Icon/IconComponent';
 import { SearchPreviewCard } from '../ProductCards/SearchPreview/SearchPreviewCard';
+import { PageText } from '../Text/Text';
+import { Button } from '../Button/Button';
 
 export const SearchPreview = () => {
 
@@ -21,7 +23,7 @@ export const SearchPreview = () => {
             isMobileSearchState.isSearchResults.length > 0 ? (
                 <div className={styles.searchPreviewWithResults}>
                     <div className={styles.searchPreviewWithResultsInnerDiv}>
-                        <p>{mobileSearchResultsCount} Results</p>
+                       
                         <SearchPreviewCard products={isMobileSearchState.isSearchResults && isMobileSearchState.isSearchResults} />
                     </div>
                 </div>
@@ -35,18 +37,22 @@ export const SearchPreview = () => {
                 <div className={styles.previewBodyTitle2}>
                 <ProductText type='searchSectionSubtitle'>Explore by category</ProductText>
                 </div> */}
-                        <div className={styles.searchOptionButtonWrapper}>
-                            <p>Buttons</p>
-                            {/*                     
-                    <Button buttonStyleType='secondary'>Cooking</Button>
-                    <Button buttonStyleType='secondary'>Refrigeration</Button>
-                    <Button buttonStyleType='secondary'>Air Care</Button>
-                    <Button buttonStyleType='secondary'>Laundry</Button>
+                        <div className={styles.searchPreviewSectionTitleWraper}>
+                            <PageText type='searchSubtitle'>Explore by category</PageText>
+                        </div>
 
-                    <Button buttonStyleType='secondary'>Signature</Button>
-                    <Button buttonStyleType='secondary'>Studio</Button>
-                    <Button buttonStyleType='secondary'>Vacuums</Button>
-                    <Button buttonStyleType='secondary'>Dishwashers</Button> */}
+                        <div className={styles.searchOptionButtonWrapper}>
+
+
+                            <Button buttonStyleType='secondary'>Cooking</Button>
+                            <Button buttonStyleType='secondary'>Refrigeration</Button>
+                            <Button buttonStyleType='secondary'>Air Care</Button>
+                            <Button buttonStyleType='secondary'>Laundry</Button>
+
+                            <Button buttonStyleType='secondary'>Signature</Button>
+                            <Button buttonStyleType='secondary'>Studio</Button>
+                            <Button buttonStyleType='secondary'>Vacuums</Button>
+                            <Button buttonStyleType='secondary'>Dishwashers</Button>
                         </div>
                     </div>
 
