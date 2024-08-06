@@ -16,11 +16,13 @@ export const PageText = ({ children, eventHandlers = {}, type = 'default' }) => 
         pageSubtitle: styles.pageSubtitle,
         pageTertiaryTitle:styles.pageTertiaryTitle,
         /* --------------------------------------------------------------------------------------- */
-        /* NAVIGATION */
+        /* NAVIGATION + FOOTER */
         /* --------------------------------------------------------------------------------------- */
         navTitleText: styles.navTitleText,
         mobileNavTitleText: styles.mobileNavTitleText,
 
+        footerTitle: styles.footerTitle,
+        footerMenuItem: styles.footerMenuItem,
         /* --------------------------------------------------------------------------------------- */
         /* SEARCH */
         /* --------------------------------------------------------------------------------------- */

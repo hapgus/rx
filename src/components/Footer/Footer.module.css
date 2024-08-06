@@ -39,7 +39,7 @@
     flex-direction: row;
     /* flex-wrap: wrap; */
     align-items: center;
-
+color: var(--color-gray-03);
 }
 
 .columnList {
@@ -47,10 +47,16 @@
     flex-direction: column;
     gap: .5rem;
 }
-
+.columnList li{
+    list-style: none;
+}
+.columnList li a{
+    color: var(--color-gray-03);
+}
 .columnList li:first-child {
     padding-top: .5rem;
 }
+
 
 @media (min-width: 390px) {
 

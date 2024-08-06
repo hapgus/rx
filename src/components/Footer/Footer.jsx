@@ -10,17 +10,22 @@ import { PageText } from '../Text/Text';
 export function footerColumn(title, data = []) {
     return (
         <div className={styles.column}>
-            <PageText type='footerHeaderText'>{title}</PageText>
+            <div >
+                <PageText type='footerTitle'>{title}</PageText>
+            </div>
             {/* <p className={styles.columnTitle}>{title}</p> */}
             <ul className={styles.columnList}>
                 {data.length > 0 ? data.map(link => (
                     <li key={link.href}>
-                        <LinkComponent
+                        <NavLink to={link.href}>
+                            <PageText type='footerMenuItem' className={styles.columnListMenuItem}>{link.text}</PageText>
+                        </NavLink>
+                        {/* <LinkComponent
                             childElement='footer'
                             type='footerMenuListText'
                             href={link.href}
                             linkText={link.text}
-                        />
+                        /> */}
                     </li>
                 )) : <li>No links available</li>}
             </ul>
@@ -31,13 +36,13 @@ export function footerColumn(title, data = []) {
 export function footerExternalLinks(title, data = []) {
     return (
         <div className={styles.column}>
-            <PageText type='footerHeaderText'>{title}</PageText>
+            <PageText type='footerTitle'>{title}</PageText>
             <ul className={styles.columnList}>
                 {data.length > 0 ? data.map(link => (
                     <li key={link.href}>
 
                         <ExternalLink href={link.href} >
-                            <PageText type='footerMenuListText' >{link.text}</PageText>
+                            <PageText type='footerMenuItem' >{link.text}</PageText>
                         </ExternalLink>
                     </li>
                 )) : <li>No external links available</li>}
@@ -49,10 +54,10 @@ export function footerExternalLinks(title, data = []) {
 export function footerEmailLinks(title) {
     return (
         <div className={styles.column}>
-            <PageText type='footerHeaderText'>{title}</PageText>
+            <PageText type='footerTitle'>{title}</PageText>
             <ul className={styles.columnList}>
                 <li >
-                    <PageText type='footerMenuListText' > <EmailLink linkText='Email' href={'mailto:productguide@teamlg.ca'} /></PageText>
+                    <PageText type='footerMenuItem' > <EmailLink linkText='Email' href={'mailto:productguide@teamlg.ca'} /></PageText>
                 </li>
             </ul>
         </div>
@@ -83,7 +88,7 @@ const Footer = () => {
             </div>
             <div className={styles.wrapper3}>
                 <div className={styles.section3}>
-                    <PageText type='footerMenuListText' > All rights reserved LG Home Appliances 2024</PageText>
+                    <PageText type='footerMenuItem' > All rights reserved LG Home Appliances 2024</PageText>
                     {/* <p className={styles.footerRightsText}></p> */}
                 </div>
             </div>
