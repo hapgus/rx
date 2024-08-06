@@ -6,6 +6,7 @@ import { useRoutingHook } from '../hooks/routing-hook';
 import { SearchComponent } from '../components/Search/SearchComponent/SearchComponent';
 import { ProductListDropdown } from '../components/ProductList/ProductListDropdown';
 import { useEffect } from 'react';
+import Footer from '../components/Footer/Footer';
 
 
 export default function Layout() {
@@ -60,7 +61,8 @@ export default function Layout() {
                     <Outlet />
                 </div>
                 <div className={styles.mainLayoutFooterWrapper}>
-                    <h1>footer</h1>
+                    <Footer/>
+                  
                 </div>
 
             </div>

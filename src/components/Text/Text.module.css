@@ -1,37 +1,84 @@
-.navTitleText{
+/* --------------------------------------------------------------------------------------- */
+/* PAGE HERO */
+/* --------------------------------------------------------------------------------------- */
+.pageTitle{
+    font-family: var(--headline-regular);
+    font-weight: 600;
+    font-size: 2.8rem;
+}
+
+.pageSubtitle{
+    font-family: var(--headline-regular);
+    font-size: 2.4rem;
+}
+.pageTertiaryTitle{
+    font-family: var(--headline-regular);
+    font-size: 2rem;
+}
+/* --------------------------------------------------------------------------------------- */
+/* NAVIGATION */
+/* --------------------------------------------------------------------------------------- */
+
+.navTitleText {
     font-size: 2rem;
     font-family: var(--text-semibold);
 }
 
-.mobileNavTileText{
+.mobileNavTileText {
     font-size: 2.4rem;
 }
-.searchTitle{
+
+/* --------------------------------------------------------------------------------------- */
+/* SEARCH */
+/* --------------------------------------------------------------------------------------- */
+
+.searchTitle {
     font-size: 2.4rem;
     font-family: var(--text-semibold);
 }
-.searchTertiaryTitle{
+
+.searchTertiaryTitle {
     font-size: 1.6rem;
 }
-.searchSubtitle{
+
+.searchSubtitle {
     font-size: 2rem;
     /* font-family: var(--text-semibold); */
 }
 
-.productSearchTitle{
+.productSearchTitle {
     font-size: 1.6rem;
 }
 
-.productSearchSubtitle{
+.productSearchSubtitle {
     font-size: 1.6rem;
     /* font-family: var(--text-semibold); */
 }
 
-.productSearchNavTitle{
+.productSearchNavTitle {
     font-size: 1.4rem;
 }
 
-.productSearchNavSubtitle{
+.productSearchNavSubtitle {
     font-size: 1.4rem;
     /* font-family: var(--text-semibold); */
+}
+
+
+/* --------------------------------------------------------------------------------------- */
+/* BUILDER PRODUCT CARD*/
+/* --------------------------------------------------------------------------------------- */
+
+.productCardTitle{
+    font-size: 1.6rem;
+}
+.productCardSubtitle{
+    font-size: 2rem;
+    
+}
+.productCardTertiaryTitle{
+    font-size: 1.4rem;
+}
+.productCardListText{
+    font-size: 1.2rem;
 }

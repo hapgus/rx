@@ -104,7 +104,7 @@ export const RemoveFromListButton = ({ product, plainTextButton = false }) => {
         onClick={handleRemoveProductFromList}
     >
 
-    Remove
+        Remove
     </Button>
 
     const iconButton = <IconComponent iconType='xClose'></IconComponent>
@@ -210,6 +210,11 @@ export const PrintProductsButton = () => {
 
     };
 
-    return <Button buttonStyleType="printDefault" onClick={handlePrint}>Print my list</Button>;
+    return <Button
+        // icon
+        // iconType='print'
+        buttonStyleType="printDefault"
+        onClick={handlePrint}
+    >Print my list</Button>;
 
 }

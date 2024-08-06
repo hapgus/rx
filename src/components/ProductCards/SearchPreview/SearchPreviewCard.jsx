@@ -11,7 +11,7 @@ export const SearchPreviewCard = ({ products }) => {
     const publicUrl = process.env.PUBLIC_URL;
     const { productsInList } = useBuilderHook();
     const { isMobileSearchState, isDesktopSearchState } = useSearchHook();
- console.log('from search prv', productsInList)
+
     if (isMobileSearchState.isMobileSearch === true) {
         return (
             products && products.map((product, idx) => {

@@ -1,0 +1,29 @@
+.logoContainer{
+    height: auto;
+     display: flex;
+}
+.logo{
+    height: 3.2rem;
+    width: auto;
+    object-fit: contain;
+}
+
+.verticalLogo{
+     width: auto;
+    height: 8rem;
+}
+@media (min-width: 834px) {
+     .logo{
+        height: 4.4rem;
+     
+    }
+}
+@media (min-width:1920px) {
+   
+    
+    /* .logo{
+        width: auto;
+        height: 8rem;
+    
+    } */
+}

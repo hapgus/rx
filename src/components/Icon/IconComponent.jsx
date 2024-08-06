@@ -53,14 +53,26 @@ const LeftChevron = () => (
 
 
 const LeftArrow = () => (
-    <svg  xmlns="http://www.w3.org/2000/svg" width="2126" height="2050" viewBox="0 0 2126 2050" fill="none">
+    <svg xmlns="http://www.w3.org/2000/svg" width="2126" height="2050" viewBox="0 0 2126 2050" fill="none">
         <path d="M2011.77 1024.93H114M114 1024.93L1024.93 114M114 1024.93L1024.93 1935.86" stroke="black" strokeWidth="227.732" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
-)
+);
 
 
+const Expand = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="13" viewBox="0 0 12 13" fill="none">
+        <path d="M7.71652 0.203125V1.06027H10.5391L6.85938 4.73829L7.46538 5.34601L11.1451 1.66628V4.48886H12.0023V0.203125H7.71652Z" fill="black" />
+        <path d="M5.14288 7.66936L4.53945 7.0625L0.857147 10.7422V7.91965H0V12.2054H4.28574V11.3482H1.46315L5.14288 7.66936Z" fill="black" />
+    </svg>
+);
+
+const Print = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="none">
+        <path d="M1.47411 2.49208H2.40864V0.934531C2.40864 0.419293 2.82794 0 3.34318 0H10.1964C10.7116 0 11.1309 0.419293 11.1309 0.934531V2.49208H12.0655C12.5807 2.49208 13 2.91138 13 3.42662V9.0338C13 9.54904 12.5807 9.96834 12.0655 9.96834H11.1309V11.5259C11.1309 12.0411 10.7116 12.4604 10.1964 12.4604H3.34318C2.82794 12.4604 2.40864 12.0411 2.40864 11.5259V9.96834H1.47411C0.958874 9.96834 0.539581 9.54904 0.539581 9.0338V3.42662C0.539581 2.91138 0.958874 2.49208 1.47411 2.49208ZM10.5079 0.934531C10.5079 0.762578 10.3684 0.623021 10.1964 0.623021H3.34318C3.17122 0.623021 3.03166 0.762578 3.03166 0.934531V2.49208H10.5079V0.934531ZM3.34318 11.8374H10.1964C10.3684 11.8374 10.5079 11.6978 10.5079 11.5259V7.47625H3.03166V11.5259C3.03166 11.6978 3.17122 11.8374 3.34318 11.8374ZM1.1626 9.0338C1.1626 9.20576 1.30216 9.34531 1.47411 9.34531H2.40864V7.47625H2.09713C1.92518 7.47625 1.78562 7.33669 1.78562 7.16474C1.78562 6.99279 1.92518 6.85323 2.09713 6.85323H11.4424C11.6144 6.85323 11.754 6.99279 11.754 7.16474C11.754 7.33669 11.6144 7.47625 11.4424 7.47625H11.1309V9.34531H12.0655C12.2374 9.34531 12.377 9.20576 12.377 9.0338V3.42662C12.377 3.25466 12.2374 3.1151 12.0655 3.1151H1.47411C1.30216 3.1151 1.1626 3.25466 1.1626 3.42662V9.0338Z" fill="black" />
+    </svg>
+);
 const icons = {
- 
+
     mobileNavMenu: MobileNavMenu,
     searchInput: SearchInput,
     userAccount: UserAccount,
@@ -70,6 +82,8 @@ const icons = {
     upChevron: UpChevron,
     downChevron: DownChevron,
     leftArrow: LeftArrow,
+    expand: Expand,
+    print:Print,
 
 }
 
@@ -82,12 +96,12 @@ const IconContainer = ({ onClick, children }) => (
 
 export const IconComponent = ({ iconType, onClick }) => {
     const IconComponent = icons[iconType];
-  
+
     return IconComponent
         ? <IconContainer
             onClick={onClick}
         >
-            <IconComponent  />
+            <IconComponent />
         </IconContainer>
         : null;
 };

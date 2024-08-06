@@ -2,7 +2,7 @@ import styles from './HomepageSearchPreviewCard.module.css';
 import { useBuilderHook } from '../../../hooks/builder-hook';
 
 
-import { CapitalizeFirstLetter } from '../../../utils/text-help';
+import { capitalizeFirstLetterEachWord } from '../../../utils/text-help';
 import { PageText } from '../../Text/Text';
 import { GenerateProductURL } from '../../../utils/link-helper';
 
@@ -14,10 +14,7 @@ import { NavLink } from 'react-router-dom';
 
 export const HomepageSearchPreviewCard = ({ products }) => {
     const publicUrl = process.env.PUBLIC_URL;
-
     const { productsInList } = useBuilderHook();
-    console.log('from home search prv', productsInList)
-
 
     return (
         products && products.map((product, idx) => {
@@ -39,7 +36,7 @@ export const HomepageSearchPreviewCard = ({ products }) => {
                             <NavLink to={productURL}>
                                 {/* <NavigationLink href={productURL}> */}
                                 <div className={styles.searchResultsPreviewCardText}>
-                                    <PageText type='productSearchTitle' >{CapitalizeFirstLetter(category)}</PageText>
+                                    <PageText type='productSearchTitle' >{capitalizeFirstLetterEachWord(category)}</PageText>
                                     <PageText type='productSearchTitle'>| {title}</PageText>
                                     {/* <NakedIcon iconType='rightChevron' /> */}
                                 </div>

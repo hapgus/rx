@@ -12,7 +12,7 @@ export const NavSearchPreviewCard = ({ products }) => {
     const publicUrl = process.env.PUBLIC_URL;
 
     const { productsInList } = useBuilderHook();
-console.log('from nav search prv', productsInList)
+
     return (
         products && products.map((product, idx) => {
             const { title, subtitle, image, category } = product;

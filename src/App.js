@@ -2,6 +2,7 @@
 import { Route, Routes } from "react-router";
 import MainLayout from './layout/MainLayout';
 import Homepage from './pages/Main/Home/Homepage';
+import ProductListBuilderPage from "./pages/Main/ProductList/ProductListBuilderPage";
 
 
 const App = () => {
@@ -10,6 +11,7 @@ const App = () => {
   const renderMainRoutes = () => (
     <>
      <Route index element={<Homepage />} />
+     <Route path='product-list-builder' element={<ProductListBuilderPage />} />
     </>
   );
 

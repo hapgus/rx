@@ -1,7 +1,8 @@
 // import { Button } from "../components/ButtonComponent/Button";
-
-
 import { LinkComponent } from "../components/Links/LinkComponent";
+
+const publicUrl = process.env.PUBLIC_URL;
+
 export function ExternalLink({ children, href }) {
     const handleOnClick = (e) => {
         e.preventDefault();
@@ -16,29 +17,6 @@ export function ExternalLink({ children, href }) {
     return <a href={href} onClick={handleOnClick}>{children}</a>;
 }
 
-// export function ExternalLinkButton({ linkText, href }) {
-//     const handleOnClick = (e) => {
-//         e.preventDefault();
-//         const width = 600;
-//         const height = 400;
-//         const left = (window.innerWidth / 2) - (width / 2);
-//         const top = (window.innerHeight / 2) - (height / 2);
-
-//         window.open(href, 'TermsWindow', `toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, copyhistory=no, width=${width}, height=${height}, top=${top}, left=${left}`);
-//     };
-//     return <Button
-//         icon
-//         iconStyleType='externalLink'
-//         iconType='externalLink'
-//         iconPosition="right"
-//         buttonStyleType="tertiaryGray"
-//         buttonTextType="action"
-//         onClick={handleOnClick}
-//     >
-//         <a href={href} >{linkText}
-//         </a>
-//     </Button>;
-// }
 export function EmailLink({ linkText, href }) {
     return <a href={href}>{linkText}</a>;
 }
@@ -68,12 +46,6 @@ export function NormalizeSlugs(str) {
         .replace(/[^\w-]+/g, '');  // Remove all non-word characters
 }
 
-// // Encoding function
-// export const EncodeTitleForURL = (title) => encodeURIComponent(title);
-
-// // Decoding function
-// export const DecodeTitleFromURL = (title) => decodeURIComponent(title);
-
 export const GenerateProductURL = (category, productTitle) => {
     const encodedTitle = encodeURIComponent(productTitle);
     return `/appliances/${category}/${encodedTitle}`;
@@ -102,7 +74,7 @@ export const categoryLinks = [
     { href: '/appliances/vacuums', text: 'Vacuums' },
     { href: '/appliances/signature', text: 'LG Signature' },
     { href: '/appliances/studio', text: 'LG Studio' },
-    { href: '/appliances/', text: 'Explore' }
+    { href: '/appliances/', text: 'All Home Appliances' }
 ];
 export const navCategoryLinks = [
     { href: '/appliances/air-care', text: 'Air Care' },
@@ -119,7 +91,7 @@ export const navSecondaryCategoryLinks = [
 ];
 
 export const exclusiveLinks = [
-    { href: '/product-list-builder', text: 'List Builder' },
+    { href: `${publicUrl}/product-list-builder`, text: 'Product List Builder' },
 ];
 
 export const externalLinks = [
