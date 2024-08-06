@@ -8,6 +8,7 @@ import { RouteLinks, navCategoryLinks, navSecondaryCategoryLinks, resourceLinks 
 import { PageText } from '../Text/Text';
 import { LinkComponent } from '../Links/LinkComponent';
 import { SearchComponent } from '../Search/SearchComponent/SearchComponent';
+import { ProductListDropdown } from '../ProductList/ProductListDropdown';
 
 
 const MobileNavComponent = () => {
@@ -35,6 +36,11 @@ const MobileNavComponent = () => {
             ({ ...prevState, isMobileSearch: true }))
     }
 
+    const handleMobileProductListIconClick = () => {
+        setIsRoutingState(prevState =>
+            ({ ...prevState, isProductListDropdownOpen: !prevState.isProductListDropdownOpen }))
+            console.log('clicked')
+    }
     return (
         <div className={styles.mobileNavComponentContainer}>
 
@@ -45,7 +51,7 @@ const MobileNavComponent = () => {
             <div className={styles.mobileIconsWrapper}>
                 <IconComponent onClick={handleMobileSearchIconClick} iconType='searchInput' />
                 <IconComponent iconType='userAccount' />
-                <IconComponent iconType='productList' />
+                <IconComponent  onClick={handleMobileProductListIconClick} iconType='productList' />
                 <IconComponent onClick={handleToggleMainMobileMenu} iconType='mobileNavMenu' />
             </div>
             {isRoutingState.isMobileNavOpen &&
@@ -131,6 +137,14 @@ const MobileNavComponent = () => {
 
 
 const DesktopNavComponent = () => {
+    const { setIsRoutingState } = useRoutingHook();
+    const { setIsDesktopSearchState } = useSearchHook();
+
+    const handleDesktopProductListIconClick = () => {
+        setIsRoutingState(prevState =>
+            ({ ...prevState, isProductListDropdownOpen: !prevState.isProductListDropdownOpen }))
+            
+    }
     return (
         <div className={styles.desktopNavComponentContainer}>
             <GridSystem>
@@ -140,37 +154,34 @@ const DesktopNavComponent = () => {
                     </div>
                     <section className={styles.desktopNavMenuWrapper}>
                         <div className={styles.desktopNavMenuHeader} >
-                            <PageText
-                                type='navTitleText'
-                            >Home Appliances</PageText>
+                            <PageText type='navTitleText'>Home Appliances</PageText>
                         </div>
                         <div className={styles.desktopNavMenuHeader} >
                             <PageText
                                 type='navTitleText'
-                            >Product Resources</PageText>
+                            >Resources</PageText>
                         </div>
                         <div className={styles.desktopNavMenuHeader} >
                             <PageText
                                 type='navTitleText'
-                            >Exclusive Offers</PageText>
+                            >Offers</PageText>
                         </div>
                     </section>
 
                     <section className={styles.desktopNavSearchWrapper}>
                         <SearchComponent type='desktop' />
-
-
-
                     </section>
                     <section className={styles.desktopNavMenuWrapper}>
                         <div className={styles.desktopNavIconsWrapper}>
-                            <IconComponent iconType='productList' />
+                        <IconComponent  onClick={handleDesktopProductListIconClick} iconType='productList' />
                             <IconComponent iconType='userAccount' />
                         </div>
                     </section>
+                    
 
                 </div>
             </GridSystem>
+           
 
         </div>
     );
@@ -179,7 +190,7 @@ const DesktopNavComponent = () => {
 
 
 export const MainNavigationComponent = () => {
-
+    const { isRoutingState } = useRoutingHook();
     return (
         <nav className={styles.mainNavComponentContainer}>
             <div className={styles.desktopNavWrapper}>
@@ -191,6 +202,7 @@ export const MainNavigationComponent = () => {
                 <MobileNavComponent />
                 {/* </GridSystem> */}
             </div>
+            {isRoutingState.isProductListDropdownOpen && <ProductListDropdown />}
         </nav>
     )
 }

@@ -1,0 +1,60 @@
+.clampedSubtitle {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.clampedSubtitleLong {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.productBuilderListCardContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+
+    margin: 2rem;
+    background-color: white;
+    border: 1px solid var(--color-gray-04);
+    border-radius: 4rem;
+}
+.productBuilderListCardImageWrapper{
+height: 20rem;
+width: auto;
+}
+
+.productBuilderListCardImageWrapper img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    }
+/* .productBuilderDropdownCardImage {
+    max-width: 50%;
+    height: 22rem;
+   
+    object-fit: contain;
+    align-self: center;
+} */
+
+.productBuilderListCardDiv2 button {
+    width: 100%;
+}
+
+@media (min-width: 430px) {}
+
+@media (min-width: 768px) {}
+
+@media (min-width: 834px) {}
+
+@media (min-width: 1024px) {}
+
+@media (min-width: 1280px) {}
+
+@media (min-width: 1440px) {}
+
+@media (min-width: 1920px) {}

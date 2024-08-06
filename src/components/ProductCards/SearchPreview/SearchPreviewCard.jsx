@@ -1,28 +1,17 @@
-import styles from './SearchPreviewCard.module.css';
-
-import { useBuilderHook } from '../../../hooks/builder-hook';
-
-
-import { Button } from '../../Button/Button';
-
-import { GenerateProductURL } from '../../../utils/link-helper';
-
-
-import { AddToListButton, RemoveFromListButton } from '../../Button/ProductButtons'
-import { useSearchHook } from '../../../hooks/search-hook';
-
 import { NavLink } from 'react-router-dom';
 import { PageText } from '../../Text/Text';
-
-
-
+import { Button } from '../../Button/Button';
+import styles from './SearchPreviewCard.module.css';
+import { useSearchHook } from '../../../hooks/search-hook';
+import { useBuilderHook } from '../../../hooks/builder-hook';
+import { GenerateProductURL } from '../../../utils/link-helper';
+import { AddToListButton, RemoveFromListButton } from '../../Button/ProductButtons'
 
 export const SearchPreviewCard = ({ products }) => {
     const publicUrl = process.env.PUBLIC_URL;
-
     const { productsInList } = useBuilderHook();
     const { isMobileSearchState, isDesktopSearchState } = useSearchHook();
-
+ console.log('from search prv', productsInList)
     if (isMobileSearchState.isMobileSearch === true) {
         return (
             products && products.map((product, idx) => {
@@ -63,9 +52,9 @@ export const SearchPreviewCard = ({ products }) => {
                             <div className={styles.searchPreviewButtonWrapperM}>
                                 <div>
                                     {isProductInList ? (
-                                        <RemoveFromListButton product={products} />
+                                        <RemoveFromListButton product={product} />
                                     ) : (
-                                        <AddToListButton product={products} />
+                                        <AddToListButton product={product} />
                                     )}
                                 </div>
                                 <NavLink to={productURL}>

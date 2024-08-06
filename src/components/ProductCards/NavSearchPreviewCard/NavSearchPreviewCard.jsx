@@ -1,19 +1,18 @@
+
+import { NavLink } from 'react-router-dom';
+import { PageText } from '../../Text/Text';
 import styles from './NavSearchPreviewCard.module.css';
 import { useBuilderHook } from '../../../hooks/builder-hook';
 import { GenerateProductURL } from '../../../utils/link-helper';
 import { AddToListButton, RemoveFromListButton } from '../../Button/ProductButtons'
 
 
-import { NavLink } from 'react-router-dom';
-import { PageText } from '../../Text/Text';
-
 
 export const NavSearchPreviewCard = ({ products }) => {
     const publicUrl = process.env.PUBLIC_URL;
 
     const { productsInList } = useBuilderHook();
-
-
+console.log('from nav search prv', productsInList)
     return (
         products && products.map((product, idx) => {
             const { title, subtitle, image, category } = product;

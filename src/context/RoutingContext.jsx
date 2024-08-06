@@ -7,6 +7,8 @@ export const RoutingContext = createContext({
     isRoutingState: {
         isNavLinkClicked: false,
         
+        isProductListDropdownOpen:false,
+        
         isMobileNavOpen: false,   
         isMobileCategoriesMenuOpen: false,
         isMobileResourcesMenuOpen: false,
@@ -32,6 +34,7 @@ export const RoutingProvider = ({ children }) => {
 
     const initialRoutingState = {
         isNavLinkClicked: false,
+        isProductListDropdownOpen:false,
         
         isMobileNavOpen: false,   
         isMobileCategoriesMenuOpen: false,

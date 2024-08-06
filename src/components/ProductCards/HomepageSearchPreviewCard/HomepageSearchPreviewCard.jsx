@@ -15,8 +15,8 @@ import { NavLink } from 'react-router-dom';
 export const HomepageSearchPreviewCard = ({ products }) => {
     const publicUrl = process.env.PUBLIC_URL;
 
-
     const { productsInList } = useBuilderHook();
+    console.log('from home search prv', productsInList)
 
 
     return (

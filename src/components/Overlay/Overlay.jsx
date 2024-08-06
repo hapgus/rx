@@ -1,7 +1,10 @@
 import styles from './Overlay.module.css';
 import ReactDOM from "react-dom";
 
+
 const OverlayContent = ({ containerBackgroundColor, containerMarginTop, children }) => {
+
+
     const content = (
         <div style={{
             backgroundColor: `${containerBackgroundColor ? containerBackgroundColor : undefined}`,
