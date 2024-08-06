@@ -1,3 +1,60 @@
+const publicUrl = process.env.PUBLIC_URL;
+
+export const STEP_UP_CHART_CATEGORIES = {
+ cooking:{
+    ctaText:'To see more range specs, Built-In Cooking, Microwaves, and more, view',
+    ctaUrl:'https://lg.widen.net/s/hkptkrhzff/2024_line_logic_guide_lg_cooking_may',
+    charts:[
+        `${publicUrl}/assets/image/step-up-charts/lg-line-logic-cooking-01.webp`,
+        `${publicUrl}/assets/image/step-up-charts/lg-line-logic-cooking-03.webp`,
+        `${publicUrl}/assets/image/step-up-charts/lg-line-logic-cooking-05.webp`,
+        `${publicUrl}/assets/image/step-up-charts/lg-line-logic-cooking-07.webp`,
+        `${publicUrl}/assets/image/step-up-charts/lg-line-logic-cooking-09.webp`,
+    ]
+ },  
+ refrigeration:{
+    ctaText:'To see more refrigerators view',
+    ctaUrl:'https://lg.widen.net/s/dtjzjzrjvl/2024_line_logic_guide_lg_refrigeration_june',
+    charts:[
+        `${publicUrl}/assets/image/step-up-charts/lg-line-logic-fridge-01.webp`,
+        `${publicUrl}/assets/image/step-up-charts/lg-line-logic-fridge-02.webp`,
+        `${publicUrl}/assets/image/step-up-charts/lg-line-logic-fridge-03.webp`,
+        `${publicUrl}/assets/image/step-up-charts/lg-line-logic-fridge-04.webp`,
+        `${publicUrl}/assets/image/step-up-charts/lg-line-logic-fridge-05.webp`,
+        `${publicUrl}/assets/image/step-up-charts/lg-line-logic-fridge-06.webp`,
+    ]
+ },
+ dishwashers:{
+     ctaText:'To see more products view',
+    ctaUrl:'https://lg.widen.net/s/vbgb57xncs/2024_line_logic_guide_lg_dishwasher_march',
+    charts:[
+        `${publicUrl}/assets/image/step-up-charts/lg-line-logic-dish-01.webp`,
+        `${publicUrl}/assets/image/step-up-charts/lg-line-logic-dish-02.webp`,
+    ]
+ },
+ laundry:{
+    ctaText:'To see more laundry, including WashTowers, Stylers, Pairs, and more, view',
+   ctaUrl:'https://lg.widen.net/s/tjbz2w8dlp/2024_line_logic_guide_lg_laundry_june',
+   charts:[
+    `${publicUrl}/assets/image/step-up-charts/lg-line-logic-laundry-04.webp`,
+    `${publicUrl}/assets/image/step-up-charts/lg-line-logic-laundry-05.webp`,
+    `${publicUrl}/assets/image/step-up-charts/lg-line-logic-laundry-07.webp`,
+    `${publicUrl}/assets/image/step-up-charts/lg-line-logic-laundry-08.webp`,
+   ]
+},
+vacuums:{
+    ctaText:'To see more products view',
+   ctaUrl:'https://lg.widen.net/s/wj2j7mcjlh/2024_line_logic_guide_lg_floor_care_june',
+   charts:[
+    `${publicUrl}/assets/image/step-up-charts/lg-line-logic-floor-01.webp`,
+   ]
+},
+
+}
+
+
+
+
 export const WARRANTY_DATA = [
     {
         "warranty_category": "Washers",

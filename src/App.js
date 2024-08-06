@@ -5,6 +5,7 @@ import Homepage from './pages/Main/Home/Homepage';
 import ProductListBuilderPage from "./pages/Main/Product-List/product-list-builder-page";
 import FeatureDefinitionsPage from "./pages/Main/Feature-Definitions/feature-definitions-page";
 import WarrantiesPage from "./pages/Main/Warranties/warranties";
+import StepUpChartPage from "./pages/Main/Step-Up-Charts/step-up-chart-pages";
 
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
      <Route path='product-list-builder' element={<ProductListBuilderPage />} />
      <Route path='feature-definitions' element={<FeatureDefinitionsPage />} />
      <Route path='warranties' element={<WarrantiesPage />} />
+     <Route path='step-up-chart/:categoryId' element={<StepUpChartPage />} />
     </>
   );
 

@@ -60,10 +60,11 @@ export const resourceLinks = [
 ];
 
 export const stepUpChartLinks = [
-    { href: '/compare/cooking', text: 'Cooking' },
-    { href: '/compare/dishwashers', text: 'Dishwashers' },
-    { href: '/compare/laundry', text: 'Laundry' },
-    { href: '/compare/refrigeration', text: 'Refrigeration' }
+    { href: `${publicUrl}/step-up-chart/cooking`, text: 'Cooking' },
+    { href: `${publicUrl}/step-up-chart/dishwashers`, text: 'Dishwashers' },
+    { href: `${publicUrl}/step-up-chart/laundry`, text: 'Laundry' },
+    { href: `${publicUrl}/step-up-chart/refrigeration`, text: 'Refrigeration' },
+    { href: `${publicUrl}/step-up-chart/vacuums`, text: 'Vacuums' }
 ];
 export const categoryLinks = [
     { href: '/appliances/air-care', text: 'Air Care' },
