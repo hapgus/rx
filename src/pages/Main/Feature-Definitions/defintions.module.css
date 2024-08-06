@@ -1,7 +1,9 @@
 .featureDefinitionsPageContainer{}
+
 .pageHeaderContainer{
     padding: 1rem 0;
 }
+
 .categoryTitleWrapper{
     font-family: var(--headline-regular);
     color: var(--color-gray-01);
