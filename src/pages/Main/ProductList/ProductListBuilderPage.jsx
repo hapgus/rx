@@ -72,11 +72,16 @@ const PopulatedListScreen = () => {
                     </div>
                 </div>
             </GridSystem>
+            <div className={styles.listActionButtonsWrapper}>
+                <GridSystem>
+                    <div className={styles.listActionButtons}>
+                        <PrintProductsButton productsInList={listCount} />
+                        {/* <RemoveAllFromListButton /> */}
+                    </div>
+                </GridSystem>
+            </div>
             <GridSystem>
-                <div className={styles.listActionButtonsWrapper}>
-                    <PrintProductsButton productsInList={listCount} />
-                    <RemoveAllFromListButton />
-                </div>
+
                 {
 
                     productsInList && productsInList.map((product, idx) =>
@@ -87,6 +92,7 @@ const PopulatedListScreen = () => {
                     ))
 
                 }
+                <RemoveAllFromListButton />
             </GridSystem>
         </>
     );

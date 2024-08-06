@@ -53,9 +53,9 @@ const PopulatedListScreen = () => {
                 <div className={styles.populatedListBackIconWrapper}>
                     <IconComponent onClick={handleProductListDropdownIconClick} iconType='rightChevron' />
                 </div>
-                
+
                 <PageText type="searchTitle">Product List Builder</PageText>
-                
+
                 <div className={styles.productCountWrapper}>
                     <PageText type="searchSubtitle">Your Products</PageText>
                     <CountBubble itemCount={listCount} />
@@ -63,7 +63,11 @@ const PopulatedListScreen = () => {
             </div>
             <div className={styles.populatedProductsList}>
                 <div className={styles.scrollProductList}>
-                    {productsInList && productsInList.map((product, idx) => (<div><ProductListDropdownCard product={product} /></div>))}
+                    {productsInList && productsInList.map((product, idx) => (
+                        <div key={idx}>
+                            <ProductListDropdownCard product={product} />
+                        </div>
+                    ))}
                 </div>
             </div>
         </div>
