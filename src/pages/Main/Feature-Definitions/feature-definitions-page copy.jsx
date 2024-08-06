@@ -48,10 +48,6 @@ const FeatureDefinitionsPage = () => {
                                     <PageText type="pageResourceItemTitle">{item.feature}</PageText>
                                     <PageText type="pageResourceItemDescription">{item.definition}</PageText>
                                     <PageText type="pageDescription"></PageText>
-
-
-                                    
-
                                 </div>
                             ))}
                         </div>     </div>

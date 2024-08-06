@@ -1,11 +1,12 @@
 .featureDefinitionsPageContainer{}
+.pageHeaderContainer{
+    padding: 1rem 0;
+}
 .categoryTitleWrapper{
-    
     font-family: var(--headline-regular);
     color: var(--color-gray-01);
      padding-top: 2rem;
 }
-
 
 .featureTitleWrapper{
     /* font-family: var(--text-semibold); */
@@ -21,20 +22,13 @@
     padding: 1rem 0;
 }
 .definitionWrapper:last-child{
-    padding-bottom: 4rem;
+    /* padding-bottom: 4rem; */
+    padding-bottom: 1rem;
 }
 .stickyNavContainer{
     position: sticky;
     position: -webkit-sticky;
     top: 0;
+    border-bottom: 1px solid var(--color-gray-04);
+    border-top: 1px solid var(--color-gray-04);
 }
-/* .stickyNavContainer{
-    position: fixed;
-
-}
-.stickyNavWrapper{
-    position: relative;
-}
-.stickyNav{
-    position: absolute;
-} */
