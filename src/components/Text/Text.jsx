@@ -13,16 +13,24 @@ export const PageText = ({ children, eventHandlers = {}, type = 'default' }) => 
         /* MODALS + ALERTS */
         /* --------------------------------------------------------------------------------------- */
         alertTitle: styles.alertTitle,
-        
-        modalTitle:styles.modalTitle,
-        modalSubtitle:styles.modalSubtitle,
-        modalTertiaryTitle:styles.modalTertiaryTitle,
+
+        modalTitle: styles.modalTitle,
+        modalSubtitle: styles.modalSubtitle,
+        modalTertiaryTitle: styles.modalTertiaryTitle,
         /* --------------------------------------------------------------------------------------- */
         /* PAGE HERO */
         /* --------------------------------------------------------------------------------------- */
         pageTitle: styles.pageTitle,
         pageSubtitle: styles.pageSubtitle,
         pageTertiaryTitle: styles.pageTertiaryTitle,
+
+        /* --------------------------------------------------------------------------------------- */
+        /* PAGE BODY */
+        /* --------------------------------------------------------------------------------------- */
+        bodySubtitle: styles.bodySubtitle,
+        bodyTertiaryTitle: styles.bodyTertiaryTitle,
+        bodyDescription: styles.bodyDescription,
+
         /* --------------------------------------------------------------------------------------- */
         /* NAVIGATION + FOOTER */
         /* --------------------------------------------------------------------------------------- */

@@ -1,0 +1,40 @@
+.featureDefinitionsPageContainer{}
+.categoryTitleWrapper{
+    
+    font-family: var(--headline-regular);
+    color: var(--color-gray-01);
+     padding-top: 2rem;
+}
+
+
+.featureTitleWrapper{
+    /* font-family: var(--text-semibold); */
+    color: var(--color-gray-01);
+    padding-bottom: 1rem;
+}
+.featureDescriptionWrapper{
+    color: var(--color-gray-02);
+}
+
+.definitionWrapper:not(:last-child){
+    border-bottom: 1px solid var(--color-gray-04);
+    padding: 1rem 0;
+}
+.definitionWrapper:last-child{
+    padding-bottom: 4rem;
+}
+.stickyNavContainer{
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+}
+/* .stickyNavContainer{
+    position: fixed;
+
+}
+.stickyNavWrapper{
+    position: relative;
+}
+.stickyNav{
+    position: absolute;
+} */

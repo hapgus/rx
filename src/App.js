@@ -2,7 +2,8 @@
 import { Route, Routes } from "react-router";
 import MainLayout from './layout/MainLayout';
 import Homepage from './pages/Main/Home/Homepage';
-import ProductListBuilderPage from "./pages/Main/ProductList/ProductListBuilderPage";
+import ProductListBuilderPage from "./pages/Main/Product-List/product-list-builder-page";
+import FeatureDefinitionsPage from "./pages/Main/Feature-Definitions/feature-definitions-page";
 
 
 const App = () => {
@@ -12,6 +13,7 @@ const App = () => {
     <>
      <Route index element={<Homepage />} />
      <Route path='product-list-builder' element={<ProductListBuilderPage />} />
+     <Route path='feature-definitions' element={<FeatureDefinitionsPage />} />
     </>
   );
 
