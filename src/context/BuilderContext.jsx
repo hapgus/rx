@@ -79,7 +79,7 @@ export const BuilderProvider = ({ children }) => {
         setIsAlert({
             type: 'productAdded',
             show: true,
-            message: `Nice! ${productToAdd.title} was added to your list.`,
+            message: `Model ${productToAdd.title} added to your list!`,
             onDismiss: () => setIsAlert({ show: false })
         });
         setProductsInList(addingProductToList(productsInList, productToAdd));
@@ -88,7 +88,7 @@ export const BuilderProvider = ({ children }) => {
         setIsAlert({
             type: 'productRemoved',
             show: true,
-            message: `${productToRemove.title} removed from your list!`,
+            message: `Model ${productToRemove.title} removed from your list`,
             onDismiss: () => setIsAlert({ show: false })
         });
         setProductsInList(removingOneProductFromList(productsInList, productToRemove));

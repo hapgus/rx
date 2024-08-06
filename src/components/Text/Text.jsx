@@ -10,11 +10,19 @@ export const PageText = ({ children, eventHandlers = {}, type = 'default' }) => 
     const textStyles = {
 
         /* --------------------------------------------------------------------------------------- */
+        /* MODALS + ALERTS */
+        /* --------------------------------------------------------------------------------------- */
+        alertTitle: styles.alertTitle,
+        
+        modalTitle:styles.modalTitle,
+        modalSubtitle:styles.modalSubtitle,
+        modalTertiaryTitle:styles.modalTertiaryTitle,
+        /* --------------------------------------------------------------------------------------- */
         /* PAGE HERO */
         /* --------------------------------------------------------------------------------------- */
         pageTitle: styles.pageTitle,
         pageSubtitle: styles.pageSubtitle,
-        pageTertiaryTitle:styles.pageTertiaryTitle,
+        pageTertiaryTitle: styles.pageTertiaryTitle,
         /* --------------------------------------------------------------------------------------- */
         /* NAVIGATION + FOOTER */
         /* --------------------------------------------------------------------------------------- */

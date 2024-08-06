@@ -8,8 +8,9 @@ export const LGComponent = ({ type }) => {
     const typeUrlMap = {
         // hands:`${publicUrl}/assets/image/character/characters.png`,
         boyTop: `${publicUrl}/assets/image/characters/boy-top.webp`,
-        // boyHand:{`${publicUrl}/`} "/assets/image/character/boy-hand.png",
+        boyHands:`${publicUrl}/assets/image/characters/boy-hands.webp`,
         girlFull: `${publicUrl}/assets/image/characters/girl-full.webp`,
+        girlHand: `${publicUrl}/assets/image/characters/girl-hand.webp`,
         boyFull: `${publicUrl}/assets/image/characters/boy-full.webp`,
  
     }
