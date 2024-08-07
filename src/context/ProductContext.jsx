@@ -58,7 +58,7 @@ export const ProductProvider = ({ children }) => {
 
         // STATIC DATA CONFIG
         setPublicProducts(PRODUCT_DATA);
-        console.log(publicProducts)
+        // console.log(publicProducts)
     }, []);
 
     const value = {

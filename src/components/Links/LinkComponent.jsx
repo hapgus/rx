@@ -3,16 +3,23 @@ import styles from "./LinkComponent.module.css";
 import { useActiveLink } from "../../hooks/active-link-hook";
 import { useRoutingHook } from "../../hooks/routing-hook";
 
-export const LinkComponent = ({ linkText, href, children, type = 'default' }) => {
-    const { setIsRoutingState } = useRoutingHook();
+export const LinkComponent = ({ 
+    type = 'default',
+    linkText, 
+    href, 
+    children, 
+    
+}) => {
+    const { setIsRoutingState, isRoutingState } = useRoutingHook();
 
     const handleLinkClick = () => {
         setIsRoutingState(prevState => ({
             ...prevState,
             isNavLinkClicked: true,
         }));
+    
     }
-
+ 
     const isActive = useActiveLink(href);
 
     const linkTypes = {

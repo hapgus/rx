@@ -5,7 +5,7 @@ import { PageText } from '../../Text/Text';
 
 export const TechnologyLogo = ({ logos }) => {
     const publicUrl = process.env.PUBLIC_URL;
-    // console.log('logo', logos)
+
     return (
 
         logos &&

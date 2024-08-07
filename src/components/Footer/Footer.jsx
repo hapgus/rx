@@ -17,9 +17,14 @@ export function footerColumn(title, data = []) {
             <ul className={styles.columnList}>
                 {data.length > 0 ? data.map(link => (
                     <li key={link.href}>
-                        <NavLink to={link.href}>
-                            <PageText type='footerMenuItem' className={styles.columnListMenuItem}>{link.text}</PageText>
-                        </NavLink>
+                        <LinkComponent 
+                        href={link.href}
+                        type='trackedLinks'
+                        >
+                            {/* <NavLink to={link.href}> */}
+                                <PageText type='footerMenuItem' className={styles.columnListMenuItem}>{link.text}</PageText>
+                            {/* </NavLink> */}
+                        </LinkComponent>
                         {/* <LinkComponent
                             childElement='footer'
                             type='footerMenuListText'

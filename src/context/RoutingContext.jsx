@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 
 
 
+
 export const RoutingContext = createContext({
 
     isRoutingState: {
@@ -26,11 +27,10 @@ export const RoutingContext = createContext({
     },
     setIsRoutingState: () => { },
 
-  
-
 });
 
 export const RoutingProvider = ({ children }) => {
+
 
     const initialRoutingState = {
         isNavLinkClicked: false,
@@ -69,9 +69,9 @@ useEffect(()=> {
             isResourcesMenuOpen: false,
             isAccountMenuOpen: false,
             isBuilderDropdownOpen: false,
-        
-
         }))
+
+      
     }
 },[isRoutingState.isNavLinkClicked])
     useEffect(() => {

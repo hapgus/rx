@@ -15,8 +15,6 @@ import { GridSystem } from "../../../components/GridSystem/GridSystem";
 const FeatureDefinitionsPage = () => {
 
     const groupedData = GroupDataByCategory(FEATURE_DEFINITIONS_DATA);
-
-    console.log(groupedData)
     return (
         <div className={styles.featureDefinitionsPageContainer}>
             <div className={styles.pageHeaderContainer}>

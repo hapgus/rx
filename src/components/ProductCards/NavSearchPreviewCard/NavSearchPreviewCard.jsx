@@ -5,6 +5,7 @@ import styles from './NavSearchPreviewCard.module.css';
 import { useBuilderHook } from '../../../hooks/builder-hook';
 import { GenerateProductURL } from '../../../utils/link-helper';
 import { AddToListButton, RemoveFromListButton } from '../../Button/ProductButtons'
+import { LinkComponent } from '../../Links/LinkComponent';
 
 
 
@@ -30,14 +31,15 @@ export const NavSearchPreviewCard = ({ products }) => {
                     </div>
                     <div className={styles.searchResultsPreviewCardTextWrapper}>
                         <div >
-
-                            <NavLink to={productURL} >
-                                <div className={styles.searchResultsPreviewCardText}>
-
-                                    <PageText type='productSearchNavTitle' >{title}</PageText>
-
-                                </div>
-                            </NavLink>
+                            <LinkComponent 
+                            href={productURL}
+                            >
+                                {/* <NavLink to={productURL} > */}
+                                    <div className={styles.searchResultsPreviewCardText}>
+                                        <PageText type='productSearchNavTitle' >{title}</PageText>
+                                    </div>
+                                {/* </NavLink> */}
+                            </LinkComponent>
 
                         </div>
                         <PageText type='productSearchNavSubtitle' >

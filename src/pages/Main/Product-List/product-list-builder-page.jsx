@@ -25,9 +25,11 @@ const EmptyListScreen = () => {
             <div className={styles.buttonsWrapper}>
                 {categoryLinks.map(link =>
                     // <NavigationLink href={link.href}>
-                    <NavLink>
-                        <Button buttonStyleType="primary">{link.text}</Button>
-                    </NavLink>
+                    <div key={link.href}>
+                        <NavLink>
+                            <Button buttonStyleType="primary">{link.text}</Button>
+                        </NavLink>
+                    </div>
                     // </NavigationLink>
                 )};
             </div>
@@ -101,15 +103,15 @@ const PopulatedListScreen = () => {
 const Productlistpage = () => {
     const { productsInList, isPrintScreen } = useBuilderHook();
 
-   
+
 
 
     if (productsInList.length !== 0) {
         return (
             // <GridSystem>
             <>
-            {/* <PrintScreen /> */}
-            <PopulatedListScreen />
+                {/* <PrintScreen /> */}
+                <PopulatedListScreen />
             </>
             // </GridSystem>
         );

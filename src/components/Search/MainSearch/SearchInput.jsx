@@ -25,12 +25,34 @@ export const SearchInput = () => {
 
             if (isMobileSearchState.isMobileSearch === true) {
                 setIsMobileSearchState(prevState => ({ ...prevState, isNavSearchInputValue: query }));
-
                 if (query) {
-                    const filteredResults = productDataSearch.filter((product) =>
-                        // product.title.toLowerCase().includes(query)
-                        product.title.toLowerCase().includes(query) || product.subtitle.toLowerCase().includes(query)
-                    );
+                    const filteredResults = productDataSearch.filter((product) => {
+                        // Check title, subtitle, and category
+                        const matchesBasicFields = product.title.toLowerCase().includes(query)
+                            || product.subtitle.toLowerCase().includes(query)
+                            || product.category.toLowerCase().includes(query);
+                        // Check specification lists
+                        const matchesSpecList = (list) => list.some(spec => spec.toLowerCase().includes(query));
+                        const matchesSpecs = matchesSpecList(product.specList1)
+                            || matchesSpecList(product.specList2)
+                            || matchesSpecList(product.specList3)
+                            || matchesSpecList(product.specList4);
+    
+                        // Check colors
+                        const matchesColors = product.colors.some(color => color.includes(query));
+    
+                        // Check logos
+                        const matchesLogos = product.logos.some(logo => logo.includes(query));
+    
+                        return matchesBasicFields || matchesSpecs || matchesColors || matchesLogos ;
+                    });
+                // if (query) {
+                //     const filteredResults = productDataSearch.filter((product) =>
+                //         // product.title.toLowerCase().includes(query)
+                //         product.title.toLowerCase().includes(query)
+                //         || product.subtitle.toLowerCase().includes(query)
+                //         || product.category.toLowerCase().includes(query)
+                //     );
                     // setSearchResults(filteredResults);
                     setIsMobileSearchState(prevState => ({ ...prevState, isSearchResults: filteredResults }));
                 } else {
@@ -76,7 +98,7 @@ export const SearchInput = () => {
                 </div>
                 <div className={styles.searchInputFooterText}>
                     <PageText type='searchTertiaryTitle'> {`(`}{isMobileSearchState.isSearchResults.length}{`)`} Results</PageText>
-                   
+
                 </div>
 
             </div>
@@ -90,13 +112,34 @@ export const SearchInput = () => {
             const query = event.target.value.toLowerCase();
 
             setIsDesktopSearchState(prevState => ({ ...prevState, isSearchInputValue: query }));
-
             if (query) {
-                const filteredResults = productDataSearch.filter((product) =>
+                const filteredResults = productDataSearch.filter((product) => {
+                    // Check title, subtitle, and category
+                    const matchesBasicFields = product.title.toLowerCase().includes(query)
+                        || product.subtitle.toLowerCase().includes(query)
+                        || product.category.toLowerCase().includes(query);
+                    // Check specification lists
+                    const matchesSpecList = (list) => list.some(spec => spec.toLowerCase().includes(query));
+                    const matchesSpecs = matchesSpecList(product.specList1)
+                        || matchesSpecList(product.specList2)
+                        || matchesSpecList(product.specList3)
+                        || matchesSpecList(product.specList4);
 
-                    product.title.toLowerCase().includes(query)
-                    || product.subtitle.toLowerCase().includes(query)
-                );
+                    // Check colors
+                    const matchesColors = product.colors.some(color => color.includes(query));
+
+                    // Check logos
+                    const matchesLogos = product.logos.some(logo => logo.includes(query));
+
+                    return matchesBasicFields || matchesSpecs || matchesColors || matchesLogos ;
+                });
+            // if (query) {
+            //     const filteredResults = productDataSearch.filter((product) =>
+            //         product.title.toLowerCase().includes(query)
+            //         || product.subtitle.toLowerCase().includes(query)
+            //         || product.category.toLowerCase().includes(query)
+
+            //     );
                 setIsDesktopSearchState(prevState => ({ ...prevState, isSearchResults: filteredResults }));
             } else {
                 setIsDesktopSearchState(prevState => ({ ...prevState, isSearchResults: [] }));
@@ -125,7 +168,8 @@ export const SearchInput = () => {
                         value={isDesktopSearchState.isSearchInputValue}
                         onFocus={handleDesktopSearchFocus}
                         aria-label="Search home appliances"
-                        className={`${styles.input} ${isDesktopSearchState.isSearchActive ? styles.active : ''}`}
+                        // className={`${styles.input} ${isDesktopSearchState.isSearchActive ? styles.active : ''}`}
+                        className={`${styles.input} ${isDesktopSearchState.isSearchActive ? styles.active : ''} ${isDesktopSearchState.isSearchResults.length > 0 ? styles.withResults : ''}`}
 
                     />
                 </div>

@@ -11,7 +11,6 @@ export const HomepageSearchInput = () => {
     const productDataSearch = publicProducts;
 
     const {
-
         isHomepageSearchState,
         setIsHomepageSearchState,
     } = useSearchHook();
@@ -26,23 +25,37 @@ export const HomepageSearchInput = () => {
 
             setIsHomepageSearchState(prevState => ({ ...prevState, isSearchInputValue: query }));
 
+           
             if (query) {
-                const filteredResults = productDataSearch.filter((product) =>
+                const filteredResults = productDataSearch.filter((product) => {
+                    // Check title, subtitle, and category
+                    const matchesBasicFields = product.title.toLowerCase().includes(query)
+                        || product.subtitle.toLowerCase().includes(query)
+                        || product.category.toLowerCase().includes(query);
+                    // Check specification lists
+                    const matchesSpecList = (list) => list.some(spec => spec.toLowerCase().includes(query));
+                    const matchesSpecs = matchesSpecList(product.specList1)
+                        || matchesSpecList(product.specList2)
+                        || matchesSpecList(product.specList3)
+                        || matchesSpecList(product.specList4);
 
-                    product.title.toLowerCase().includes(query)
-                    || product.subtitle.toLowerCase().includes(query)
-                );
+                    // Check colors
+                    const matchesColors = product.colors.some(color => color.includes(query));
+
+                    // Check logos
+                    const matchesLogos = product.logos.some(logo => logo.includes(query));
+
+                    return matchesBasicFields || matchesSpecs || matchesColors || matchesLogos ;
+                });
+
                 setIsHomepageSearchState(prevState => ({ ...prevState, isSearchResults: filteredResults }));
             } else {
                 setIsHomepageSearchState(prevState => ({ ...prevState, isSearchResults: [] }));
             }
-
         }
-
         const handleHomepageSearchFocus = () => {
             setIsHomepageSearchState(prevState => ({ ...prevState, isSearchFocused: true }));
-            console.log(' home focus')
-
+            console.log('home focus', isHomepageSearchState)
         }
         return (
             <div className={styles.searchInputContainer}>
@@ -60,12 +73,14 @@ export const HomepageSearchInput = () => {
                         value={isHomepageSearchState.isSearchInputValue}
                         onFocus={handleHomepageSearchFocus}
                         aria-label="Search home appliances"
-                        className={`${styles.input} ${isHomepageSearchState.isSearchActive ? styles.active : ''}`}
+                        // className={`${styles.input} ${isHomepageSearchState.isSearchActive ? styles.active : ''}`}
+                        className={`${styles.input} ${isHomepageSearchState.isSearchActive ? styles.active : ''}${isHomepageSearchState.isSearchResults.length > 0 ? styles.withResults : ''}`}
                     />
                 </div>
             </div>
         );
     }
+
     if (isHomepageSearchState.isHomepageSearch === true && isMobile === true) {
 
         return (

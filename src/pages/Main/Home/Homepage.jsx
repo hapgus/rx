@@ -11,9 +11,9 @@ const Homepage = () => {
         setIsHomepageSearchState(prevState => ({ ...prevState, isHomepageSearch: true }))
         // setIsDesktopSearchState(prevState => ({ ...prevState, isDesktopSearch: false }))
     }
-    useEffect(() => {
-        console.log('home search state', isHomepageSearchState);
-    }, [isHomepageSearchState]);
+    // useEffect(() => {
+    //     console.log('home search state', isHomepageSearchState);
+    // }, [isHomepageSearchState]);
     const handleHomepageMobileSearchClick = () => {
         setIsMobileSearchState(prevState => ({ ...prevState, isMobileSearch: true }))
         // setIsDesktopSearchState(prevState => ({ ...prevState, isDesktopSearch: false }))

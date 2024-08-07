@@ -17,7 +17,7 @@ import { PrintScreen } from '../components/Print/PrintScreen';
 export default function Layout() {
 
     const { isAlert, setIsAlert, isModal } = useNotificationHook();
-    const { isMobileSearchState } = useSearchHook();
+    const { isMobileSearchState, isDesktopSearchState, isHomepageSearchState } = useSearchHook();
     const { isRoutingState } = useRoutingHook();
 
     useEffect(() => {
@@ -56,9 +56,8 @@ export default function Layout() {
         if (isAlert.show) {
             timeout = setTimeout(() => {
                 setIsAlert({ ...isAlert, show: false });
-            }, 2000000);
+            }, 1000);
         }
-        console.log('useEffect')
         return () => clearTimeout(timeout);
 
     }, [isAlert, setIsAlert]);

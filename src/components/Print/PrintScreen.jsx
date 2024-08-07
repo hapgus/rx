@@ -7,7 +7,7 @@ import { TechnologyLogo } from "../ProductDetails/Technology/TechnologyLogo";
 export const PrintScreen = () => {
     const publicUrl = process.env.PUBLIC_URL;
     const { productsInList } = useBuilderHook();
-    console.log(productsInList)
+ 
     if (productsInList) {
         return (
             <div className={styles.printScreenPage} >

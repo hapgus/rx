@@ -1,19 +1,3 @@
-/* --------------------------------------------------------------------------------------- */
-/* SEARCH INPUT */
-/* --------------------------------------------------------------------------------------- */
-/* .searchInputContainer{
-    position: relative;
-} */
-/* .searchInputWrapper {
-    background-color: white;
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    width: 100%;
-    padding: 1rem 2rem;
-    border-top: 1px solid var(--color-gray-04);
-    border-bottom: 1px solid var(--color-gray-04);
-} */
 
 .searchPreviewWithResults {
     position: relative;
@@ -46,10 +30,13 @@
 /* --------------------------------------------------------------------------------------- */
 .searchPreviewDesktopMainContainer {
     background-color: var(--color-gray-06);
-    padding: 0 1rem;
+    padding: 0 .85rem 0 1rem;
     position: absolute;
     border-bottom-left-radius: 2.6rem;
     border-bottom-right-radius: 2.6rem;
+    border-left: 1px solid var(--color-gray-04);
+    border-right: 1px solid var(--color-gray-04);
+    /* border-bottom: 1px solid var(--color-gray-04); */
 }
 
 .desktopSearchPreviewWithResultsWrapper {
@@ -81,7 +68,7 @@
 .desktopSearchPreviewWithResultsInnerDiv::-webkit-scrollbar-thumb {
     background-color: var(--color-gray-04);
     border-radius: 10px;
-    border: 3px solid var(--color-gray-05);
+    border: 1px solid var(--color-gray-05);
 }
 
 .desktopSearchPreviewWithResultsInnerDiv::-webkit-scrollbar-thumb:hover {

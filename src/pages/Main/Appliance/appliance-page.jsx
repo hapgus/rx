@@ -35,8 +35,6 @@ const MobileAppliancePage = () => {
     text = text.toLowerCase();
     return text.charAt(0).toUpperCase() + text.slice(1);
   }
-
-  console.log(productDetails)
   return (
     <div className={styles.mobileAppliancePageContainer}>
       {
@@ -176,8 +174,6 @@ const DesktopAppliancePage = () => {
     return text.charAt(0).toUpperCase() + text.slice(1);
   }
 
-
-  console.log(productDetails)
 
 
   return (

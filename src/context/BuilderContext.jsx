@@ -1,6 +1,8 @@
 import { createContext, useState, useEffect } from "react";
 import { NotificationContext } from "./NotificationContext";
 import { useContext } from "react";
+
+
 // Helper functions
 const addingProductToList = (productList, product) => {
     const productAlreadyInList = productList.find((item) => item.title === product.title);
@@ -94,22 +96,17 @@ export const BuilderProvider = ({ children }) => {
         setProductsInList(removingOneProductFromList(productsInList, productToRemove));
     }
     const removeAllProducts = (productsToRemove) => {
-        console.log('remove all', productsToRemove)
         setProductsInList([]);
-        // setProductsInList(removingAllProductsFromList(productsInList, productsToRemove));
     }
     const addProductToSaved = (productToAdd) => {
-        console.log('add saved', productToAdd)
         setProductsInListSaved(addingProductToList(productsInListSaved, productToAdd));
     };
     const removeProductSaved = (productToRemove) => {
-        console.log('removed from saved', productToRemove)
         setProductsInListSaved(removingOneProductFromList(productsInListSaved, productToRemove));
     }
     const removeAllProductsSaved = (productsToRemove) => {
-        console.log('remove all from saved', productsToRemove)
         setProductsInListSaved([])
-        // setProductsInListSaved(removingAllProductsFromList(productsInListSaved, productsToRemove));
+       
     }
 
     useEffect(() => {

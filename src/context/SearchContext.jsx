@@ -1,12 +1,13 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+import { useRoutingHook } from "../hooks/routing-hook";
 
 
 
 export const SearchContext = createContext({
 
     isMobileSearchState: {
-        isMobileSearch:false,
-        isSearchOverlayOpen:false,
+        isMobileSearch: false,
+        isSearchOverlayOpen: false,
         isSearchResults: [],
         isSearchInputValue: '',
         isSearchFocused: false,
@@ -14,9 +15,9 @@ export const SearchContext = createContext({
         isSearchSubmitting: false,
     },
     setIsMobileSearchState: () => { },
-    
+
     isDesktopSearchState: {
-        isDesktopSearch:true,
+        isDesktopSearch: true,
         isSearchResults: [],
         isSearchInputValue: '',
         isSearchFocused: false,
@@ -26,8 +27,8 @@ export const SearchContext = createContext({
     setIsDesktopSearchState: () => { },
 
     isHomepageSearchState: {
-        isHomepageSearch:true,
-        isSearchOverlayOpen:false,
+        isHomepageSearch: true,
+        isSearchOverlayOpen: false,
         isSearchResults: [],
         isSearchInputValue: '',
         isSearchFocused: false,
@@ -40,9 +41,31 @@ export const SearchContext = createContext({
 
 export const SearchProvider = ({ children }) => {
 
+    const { isRoutingState} = useRoutingHook();
+
+    useEffect(() => {
+        if (isRoutingState.isNavLinkClicked)
+
+            setIsDesktopSearchState(prevState=>({
+                ...prevState,
+                isSearchResults: [],
+                isSearchInputValue:[],
+            }))
+            setIsMobileSearchState(prevState=>({
+                ...prevState,
+                isSearchResults: [],
+                isSearchInputValue:[],
+            }))
+            setIsHomepageSearchState(prevState=>({
+                ...prevState,
+                isSearchResults: [],
+                isSearchInputValue:[],
+            }))
+    }, [isRoutingState.isNavLinkClicked])
+
     const initialMobileSearchState = {
-        isMobileSearch:false,
-        isSearchOverlayOpen:false,
+        isMobileSearch: false,
+        isSearchOverlayOpen: false,
         isSearchResults: [],
         isSearchInputValue: '',
         isSearchFocused: false,
@@ -52,7 +75,7 @@ export const SearchProvider = ({ children }) => {
     const [isMobileSearchState, setIsMobileSearchState] = useState(initialMobileSearchState);
 
     const initialDesktopSearchState = {
-        isDesktopSearch:true,
+        isDesktopSearch: true,
         isSearchResults: [],
         isSearchInputValue: '',
         isSearchFocused: false,
@@ -62,8 +85,8 @@ export const SearchProvider = ({ children }) => {
     const [isDesktopSearchState, setIsDesktopSearchState] = useState(initialDesktopSearchState);
 
     const initialHomepageSearchState = {
-        isHomepageSearch:true,
-        isSearchOverlayOpen:false,
+        isHomepageSearch: true,
+        isSearchOverlayOpen: false,
         isSearchResults: [],
         isSearchInputValue: '',
         isSearchFocused: false,
@@ -72,8 +95,7 @@ export const SearchProvider = ({ children }) => {
     }
     const [isHomepageSearchState, setIsHomepageSearchState] = useState(initialHomepageSearchState);
 
-console.log(isDesktopSearchState)
-console.log(isHomepageSearchState)
+
     return (
         <SearchContext.Provider
             value={{

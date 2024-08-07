@@ -16,8 +16,7 @@ export const HomepageSearchPreview = () => {
     const mobileSearchResultsCount = isMobileSearchState.isSearchResults.length > 0 ? isMobileSearchState.isSearchResults.length : 0
     const desktopSearchResultsCount = isDesktopSearchState.isSearchResults.length > 0 ? isDesktopSearchState.isSearchResults.length : 0
 
-    // console.log(isMobileSearchState)
-    // if(isMobileSearchState === true){}
+ 
 
     if (isHomepageSearchState.isHomepageSearch === true && isMobile !== true) {
         return (

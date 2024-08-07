@@ -39,19 +39,21 @@ const MobileNavComponent = () => {
     const handleMobileProductListIconClick = () => {
         setIsRoutingState(prevState =>
             ({ ...prevState, isProductListDropdownOpen: !prevState.isProductListDropdownOpen }))
-            console.log('clicked')
+
     }
     return (
         <div className={styles.mobileNavComponentContainer}>
 
 
             <div className={styles.mobileLogoWrapper}>
-                <img src='/hapg/assets/image/logos/lg-logo.webp' alt='lg red face logo' />
+                <LinkComponent href='/hapg'>
+                    <img src='/hapg/assets/image/logos/lg-logo.webp' alt='lg red face logo' />
+                </LinkComponent>
             </div>
             <div className={styles.mobileIconsWrapper}>
                 <IconComponent onClick={handleMobileSearchIconClick} iconType='searchInput' />
                 <IconComponent iconType='userAccount' />
-                <IconComponent  onClick={handleMobileProductListIconClick} iconType='productList' />
+                <IconComponent onClick={handleMobileProductListIconClick} iconType='productList' />
                 <IconComponent onClick={handleToggleMainMobileMenu} iconType='mobileNavMenu' />
             </div>
             {isRoutingState.isMobileNavOpen &&
@@ -143,14 +145,16 @@ const DesktopNavComponent = () => {
     const handleDesktopProductListIconClick = () => {
         setIsRoutingState(prevState =>
             ({ ...prevState, isProductListDropdownOpen: !prevState.isProductListDropdownOpen }))
-            
+
     }
     return (
         <div className={styles.desktopNavComponentContainer}>
             <GridSystem>
                 <div className={styles.desktopNavContainer}>
                     <div className={styles.desktopNavLogoWrapper}>
-                        <img src='/hapg/assets/image/logos/lg-logo.webp' alt='lg red face logo' />
+                        <LinkComponent href='/hapg'>
+                            <img src='/hapg/assets/image/logos/lg-logo.webp' alt='lg red face logo' />
+                        </LinkComponent>
                     </div>
                     <section className={styles.desktopNavMenuWrapper}>
                         <div className={styles.desktopNavMenuHeader} >
@@ -173,15 +177,15 @@ const DesktopNavComponent = () => {
                     </section>
                     <section className={styles.desktopNavMenuWrapper}>
                         <div className={styles.desktopNavIconsWrapper}>
-                        <IconComponent  onClick={handleDesktopProductListIconClick} iconType='productList' />
+                            <IconComponent onClick={handleDesktopProductListIconClick} iconType='productList' />
                             <IconComponent iconType='userAccount' />
                         </div>
                     </section>
-                    
+
 
                 </div>
             </GridSystem>
-           
+
 
         </div>
     );

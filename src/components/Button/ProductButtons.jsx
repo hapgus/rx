@@ -44,7 +44,7 @@ export const AddToListButtonIcon = ({ product, iconSizeType, iconColor }) => {
 
     const handleAddProductToList = () => {
         addProduct(product);
-        console.log('add')
+     
     }
     const iconStyleType = iconSizeMap[iconSizeType];
     const svgColor = iconSvgColorMap[iconColor];
