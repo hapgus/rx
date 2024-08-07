@@ -1,13 +1,21 @@
-.printScreenCoverContainer{
+.printScreenPage{
+    display: none;
+}
+/* .printScreenCoverContainer{
     display: none;
 }
 
 .printScreenBodyContainer {
     display: none;
-}
+} */
 
 
 @media print {
+    .printScreenPage{
+        display: block;
+        width: 100%;
+        margin: 0;
+    }
     .printScreenBodyContainer {
         display: block;
         width: 100%;

@@ -10,7 +10,7 @@ export const PrintScreen = () => {
     console.log(productsInList)
     if (productsInList) {
         return (
-            <>
+            <div className={styles.printScreenPage} >
                 <div className={styles.printScreenCoverContainer}>
                     <div className={styles.printScreenCoverWrapper}>
                         <div className={styles.header}>
@@ -70,7 +70,8 @@ export const PrintScreen = () => {
                     ))}
 
                 </div>
-            </>
+            </div>
+           
 
         );
     }
