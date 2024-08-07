@@ -8,6 +8,13 @@ import styles from './Text.module.css';
 export const PageText = ({ children, eventHandlers = {}, type = 'default' }) => {
 
     const textStyles = {
+        /* --------------------------------------------------------------------------------------- */
+        /* PRINT MODE */
+        /* --------------------------------------------------------------------------------------- */
+
+        coverTitle:styles.coverTitle,
+        coverSubtitle:styles.coverSubtitle,
+        coverTertiaryTitle:styles.coverTertiaryTitle,
 
         /* --------------------------------------------------------------------------------------- */
         /* MODALS + ALERTS */

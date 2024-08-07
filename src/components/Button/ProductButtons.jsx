@@ -169,35 +169,37 @@ export const PrintProductsButton = () => {
 
     const handlePrint = () => {
         if (productsInList.length === 0) {
-            return setIsModal({
-                show: true,
-                title: 'You have no products in your list.',
-                message: 'Use search or explore home appliances to find products for your list so you can print!',
+            alert('no products to print')
+            // return setIsModal({
+            //     show: true,
+            //     title: 'You have no products in your list.',
+            //     message: 'Use search or explore home appliances to find products for your list so you can print!',
 
-                onCancel: () => {
-                    setIsModal({ ...isModal, show: false });
-                },
-                cancelText: 'Go back',
-            });
+            //     onCancel: () => {
+            //         setIsModal({ ...isModal, show: false });
+            //     },
+            //     cancelText: 'Go back',
+            // });
         }
         if (productsInList.length !== 0) {
-            setIsModal({
-                show: true,
-                title: "Time to print your list! ",
-                message: 'What do you want to do with your list after we print it?',
-                onConfirm: () => {
-                    window.print();
-                    removeAllProducts();
-                    setIsModal({ ...isModal, show: false });
-                },
-                onCancel: () => {
+            window.print();
+            // setIsModal({
+            //     show: true,
+            //     title: "Time to print your list! ",
+            //     message: 'What do you want to do with your list after we print it?',
+            //     onConfirm: () => {
+            //         window.print();
+            //         removeAllProducts();
+            //         setIsModal({ ...isModal, show: false });
+            //     },
+            //     onCancel: () => {
 
-                    window.print();
-                    setIsModal({ ...isModal, show: false });
-                },
-                cancelText: 'Keep my list',
-                confirmText: 'Clear my list'
-            });
+            //         window.print();
+            //         setIsModal({ ...isModal, show: false });
+            //     },
+            //     cancelText: 'Keep my list',
+            //     confirmText: 'Clear my list'
+            // });
         }
 
         // setIsPrintScreen(true);

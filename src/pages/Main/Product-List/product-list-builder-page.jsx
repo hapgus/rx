@@ -9,6 +9,7 @@ import { RemoveAllFromListButton, PrintProductsButton } from '../../../component
 import { CountBubble } from '../../../components/CountBubble/CountBubble';
 import { NavLink } from 'react-router-dom';
 import { ProductBuilderPageCard } from '../../../components/ProductCards/ProductBuilderPageCard/ProductBuilderPageCard';
+import { PrintScreen } from '../../../components/Print/PrintScreen';
 
 const EmptyListScreen = () => {
     return (
@@ -98,12 +99,18 @@ const PopulatedListScreen = () => {
     );
 };
 const Productlistpage = () => {
-    const { productsInList } = useBuilderHook();
+    const { productsInList, isPrintScreen } = useBuilderHook();
+
+   
+
 
     if (productsInList.length !== 0) {
         return (
             // <GridSystem>
+            <>
+            {/* <PrintScreen /> */}
             <PopulatedListScreen />
+            </>
             // </GridSystem>
         );
     }

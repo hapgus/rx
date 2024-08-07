@@ -1,0 +1,126 @@
+.printScreenCoverContainer{
+    display: none;
+}
+
+.printScreenBodyContainer {
+    display: none;
+}
+
+@media print {
+    .printScreenBodyContainer {
+        display: block;
+    }
+
+    .printScreenCoverContainer{
+        display: block;
+    }
+    
+    .printScreenCoverWrapper{
+        background-image: url('/public/assets/image/backgrounds/main/studio-kitchen-01.webp');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        page-break-after: always;
+    }
+    .header, .footer {
+        position: absolute;
+        width: 100%;
+        /* text-align: center; */
+    }
+    .header {
+        top: 5%;
+        padding: 1cm;
+        /* width: 80%; */
+    }
+
+    .footer {
+       
+        bottom: 0;
+        padding: 0 1cm;
+    }
+    .footerContent{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .legalText{
+        font-size: 1rem;
+    }
+    .legalTextWrapper{
+     
+        padding-bottom: 1cm;
+    }
+    .logoWrapper {
+        height: 4cm;
+        width: 4cm;
+        /* margin: 0 auto; */
+    }
+
+    .logoWrapper img {
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+    }
+
+    body {
+        background-color: var(--color-gray-06);
+    }
+
+    .productPage {
+        page-break-before: always;
+        height: 100%;
+        padding: 2rem;
+    }
+
+    .productHeaderText {
+        padding: 2rem;
+        /* border-top: 1px solid var(--color-gray-03); */
+        border-bottom: 1px solid var(--color-gray-04);
+    }
+
+    .productImage {
+        padding: 2rem;
+        height: 20rem;
+        width: 20rem;
+        display: flex;
+    }
+
+    .productImage img {
+
+        height: 100%;
+        width: auto;
+        object-fit: contain;
+    }
+
+    .productSpecs {
+        padding: 2rem;
+        border-top: 1px solid var(--color-gray-04);
+    }
+
+    .productTechLogos {
+        border-top: 1px solid var(--color-gray-04);
+        padding: 0 2rem;
+    }
+
+    .productQrcodes {
+        border-top: 1px solid var(--color-gray-04);
+        border-bottom: 1px solid var(--color-gray-04);
+    }
+
+}
+@page :first {
+    size: A4;
+    margin: 0;
+}
+
+@page {
+    size: A4;
+    margin: 0;
+    padding: 0cm;
+
+}

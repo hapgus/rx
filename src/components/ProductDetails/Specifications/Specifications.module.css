@@ -1,0 +1,24 @@
+.specificationComponentContainer {
+    /* grid-column: 2/12; */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    justify-items: flex-start;
+    gap: 4rem;
+}
+
+.specListWrapper {
+
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.specListWrapper {
+    padding-top: 1rem;
+}
+
+.speclistWrapper ul,
+li {
+    list-style: none;
+
+}

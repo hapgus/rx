@@ -1,0 +1,25 @@
+.techLogosContainer{
+    /* background-color: aqua; */
+}
+.logosList{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 1rem;
+    padding-top: 2rem;
+}
+.logoImageWrapper{
+    width: 10rem; 
+    height: 10rem;
+    background-color: var(--color-gray-04);
+ 
+    border-radius: 1rem;
+    padding: 1rem;
+}
+.logoImage{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}

@@ -10,6 +10,7 @@ import Modal from '../components/Modal/Modal';
 
 import { useEffect } from 'react';
 import Footer from '../components/Footer/Footer';
+import { PrintScreen } from '../components/Print/PrintScreen';
 
 
 
@@ -32,17 +33,17 @@ export default function Layout() {
 
     useEffect(() => {
         if (isRoutingState.isProductListDropdownOpen) {
-            
+
             document.body.style.overflow = 'hidden';
         }
-      
+
         return () => {
             document.body.style.overflow = 'unset';
         };
     }, [isRoutingState.isProductListDropdownOpen]);
 
     useEffect(() => {
-        if (isRoutingState.isMobileNavOpen) {   
+        if (isRoutingState.isMobileNavOpen) {
             document.body.style.overflow = 'hidden';
         }
         return () => {
@@ -65,7 +66,8 @@ export default function Layout() {
 
     return (
         <>
-            {/* {isRoutingState.isProductListDropdownOpen && <ProductListDropdown />} */}
+            <PrintScreen />
+
             {isAlert.show && (
                 <ProductGuideAlerts
                     onClick={() => setIsAlert({ ...isAlert, show: false })}
@@ -74,7 +76,7 @@ export default function Layout() {
                     type={isAlert.type}
                 />
             )}
-             {isModal.show &&
+            {isModal.show &&
                 <Modal
                     show={isModal.show}
                     title={isModal.title}
@@ -89,7 +91,7 @@ export default function Layout() {
                 isMobileSearchState.isMobileSearch &&
                 <SearchComponent type='mobile' />
             }
-            <div className={styles.mainLayouContainer}>
+            <div id={styles.main} className={styles.mainLayouContainer}>
                 <div className={styles.mainLayoutNavWrapper}>
                     <MainNavigationComponent />
                 </div>
@@ -97,8 +99,8 @@ export default function Layout() {
                     <Outlet />
                 </div>
                 <div className={styles.mainLayoutFooterWrapper}>
-                    <Footer/>
-                  
+                    <Footer />
+
                 </div>
 
             </div>
