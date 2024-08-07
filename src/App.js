@@ -6,6 +6,7 @@ import ProductListBuilderPage from "./pages/Main/Product-List/product-list-build
 import FeatureDefinitionsPage from "./pages/Main/Feature-Definitions/feature-definitions-page";
 import WarrantiesPage from "./pages/Main/Warranties/warranties";
 import StepUpChartPage from "./pages/Main/Step-Up-Charts/step-up-chart-pages";
+import AppliancePage from "./pages/Main/Appliance/appliance-page";
 
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
      <Route path='product-list-builder' element={<ProductListBuilderPage />} />
      <Route path='feature-definitions' element={<FeatureDefinitionsPage />} />
      <Route path='warranties' element={<WarrantiesPage />} />
+     <Route path='appliances/:categoryId/:productId' element={<AppliancePage />} />
      <Route path='step-up-chart/:categoryId' element={<StepUpChartPage />} />
     </>
   );

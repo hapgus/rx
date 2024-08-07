@@ -36,7 +36,8 @@ const MobileProductBuilderPageCard = ({ product }) => {
         specTitle3,
         specTitle4
     } = product;
-    const productURL = GenerateProductURL(category, title);
+    const configuredProductURL = GenerateProductURL(category, title);
+    const productURL = `${publicUrl}${configuredProductURL}`;
     const [showSpecs, setShowSpecs] = useState({
         specList1: false,
         specList2: false,

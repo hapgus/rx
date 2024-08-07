@@ -1,5 +1,6 @@
 // import { Button } from "../components/ButtonComponent/Button";
 import { LinkComponent } from "../components/Links/LinkComponent";
+import { Button } from "../components/Button/Button";
 
 const publicUrl = process.env.PUBLIC_URL;
 
@@ -15,6 +16,30 @@ export function ExternalLink({ children, href }) {
     };
 
     return <a href={href} onClick={handleOnClick}>{children}</a>;
+}
+
+export function ExternalLinkButton({ linkText, href }) {
+    const handleOnClick = (e) => {
+        e.preventDefault();
+        const width = 600;
+        const height = 400;
+        const left = (window.innerWidth / 2) - (width / 2);
+        const top = (window.innerHeight / 2) - (height / 2);
+
+        window.open(href, 'TermsWindow', `toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, copyhistory=no, width=${width}, height=${height}, top=${top}, left=${left}`);
+    };
+    return <Button
+        icon
+        iconStyleType='externalLink'
+        iconType='externalLink'
+        iconPosition="right"
+        buttonStyleType="tertiaryGray"
+        buttonTextType="action"
+        onClick={handleOnClick}
+    >
+        <a href={href} >{linkText}
+        </a>
+    </Button>;
 }
 
 export function EmailLink({ linkText, href }) {

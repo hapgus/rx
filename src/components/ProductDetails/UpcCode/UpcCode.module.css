@@ -1,0 +1,8 @@
+.upcListWrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.upcListItem {
+    list-style: none;
+}

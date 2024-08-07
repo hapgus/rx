@@ -16,7 +16,8 @@ export const ProductListDropdownCard = ({ product }) => {
     const publicUrl = process.env.PUBLIC_URL;
     const { title, category, subtitle, image } = product;
     const { isRoutingState, setIsRoutingState } = useRoutingHook();
-    const productURL = GenerateProductURL(category, title);
+    const configuredProductURL = GenerateProductURL(category, title);
+    const productURL = `${publicUrl}${configuredProductURL}`;
 
     const handleLinkClick = () => {
         setIsRoutingState(prevState => ({ ...prevState, isNavLinkClicked: true }));

@@ -18,7 +18,8 @@ export const SearchPreviewCard = ({ products }) => {
                 const { title, subtitle, image, category } = product;
 
                 const isProductInList = productsInList.some(p => p.title === product.title);
-                const productURL = GenerateProductURL(category, title);
+                const configuredProductURL = GenerateProductURL(category, title);
+                const productURL = `${publicUrl}${configuredProductURL}`;
                 return (
                     <div key={idx} className={styles.searchPreviewCardContainerM}>
                         <div className={styles.searchPreviewCardWrapperM}>
