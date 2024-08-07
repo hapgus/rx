@@ -43,8 +43,6 @@ const MobileNavComponent = () => {
     }
     return (
         <div className={styles.mobileNavComponentContainer}>
-
-
             <div className={styles.mobileLogoWrapper}>
                 <LinkComponent href='/hapg'>
                     <img src='/hapg/assets/image/logos/lg-logo.webp' alt='lg red face logo' />

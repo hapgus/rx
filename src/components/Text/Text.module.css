@@ -1,62 +1,72 @@
 /* --------------------------------------------------------------------------------------- */
 /* PRINT MODE */
 /* --------------------------------------------------------------------------------------- */
-.coverTitle{
+.coverTitle {
     font-size: 6rem;
     font-family: var(--headline-regular);
     font-weight: 600;
 }
-.coverSubtitle{
+
+.coverSubtitle {
     font-size: 3.5rem;
 }
 
 /* --------------------------------------------------------------------------------------- */
 /* MODALS + ALERTS */
 /* --------------------------------------------------------------------------------------- */
-.alertTitle{
+.alertTitle {
     font-size: 1.6rem;
     font-family: var(--text-semibold);
 }
 
-.modalTitle{
+.modalTitle {
     font-size: 3rem;
     font-family: var(--headline-regular);
 }
-.modalSubtitle{}
-.modalTertiaryTitle{
+
+.modalSubtitle {}
+
+.modalTertiaryTitle {
     font-size: 1.8rem;
 }
+
 /* --------------------------------------------------------------------------------------- */
 /* PAGE HERO */
 /* --------------------------------------------------------------------------------------- */
-.pageTitle{
+.pageTitle {
     font-family: var(--headline-regular);
     font-weight: 600;
     font-size: 2.8rem;
 }
 
-.pageSubtitle{
+.pageSubtitle {
     font-family: var(--headline-regular);
     font-size: 2.4rem;
 }
-.pageTertiaryTitle{
+
+.pageTertiaryTitle {
     font-family: var(--headline-regular);
     font-size: 2rem;
 }
+
 /* --------------------------------------------------------------------------------------- */
 /* PAGE BODY */
 /* --------------------------------------------------------------------------------------- */
 
-.bodyTitle{}
-.bodySubtitle{
+.bodyTitle {}
+
+.bodySubtitle {
     font-size: 2.2rem;
 }
-.bodyTertiaryTitle{
+
+.bodyTertiaryTitle {
     font-size: 1.8rem;
 }
-.bodyDescription{
+
+.bodyDescription {
     font-size: 1.4rem;
 }
+
 /* --------------------------------------------------------------------------------------- */
 /* NAVIGATION + FOOTER */
 /* --------------------------------------------------------------------------------------- */
@@ -70,14 +80,16 @@
     font-size: 2.4rem;
 }
 
-.footerTitle{
+.footerTitle {
     font-size: 1.8rem;
     font-family: var(--text-semibold);
 
 }
-.footerMenuItem{
+
+.footerMenuItem {
     font-size: 1.6rem;
 }
+
 /* --------------------------------------------------------------------------------------- */
 /* SEARCH */
 /* --------------------------------------------------------------------------------------- */
@@ -119,18 +131,96 @@
 /* BUILDER PRODUCT CARD*/
 /* --------------------------------------------------------------------------------------- */
 
-.productCardTitle{
+.productCardTitle {
     font-size: 1.6rem;
 }
-.productCardSubtitle{
+
+.productCardSubtitle {
     font-size: 2rem;
-    
+
 }
-.productCardTertiaryTitle{
+
+.productCardTertiaryTitle {
     font-size: 1.4rem;
 }
-.productCardListText{
+
+.productCardListText {
     font-size: 1.2rem;
 }
 
 
+
+@media (min-width: 430px) {
+
+    /* --------------------------------------------------------------------------------------- */
+    /* PAGE HERO */
+    /* --------------------------------------------------------------------------------------- */
+    .pageTitle {
+        font-size: 3.6rem;
+    }
+
+    .pageSubtitle {
+        font-size: 2.8rem;
+    }
+
+    .pageTertiaryTitle {
+        font-size: 2.2rem;
+    }
+    
+}
+@media (min-width: 768px) {
+    /* --------------------------------------------------------------------------------------- */
+  /* PAGE HERO */
+  /* --------------------------------------------------------------------------------------- */
+  .pageTitle {
+      font-size: 4.4rem;
+  }
+
+  .pageSubtitle {
+      font-size: 3.2rem;
+  }
+
+  .pageTertiaryTitle {
+      font-size: 2.4rem;
+  }
+  
+}
+@media (min-width: 834px) {
+    /* --------------------------------------------------------------------------------------- */
+  /* PAGE HERO */
+  /* --------------------------------------------------------------------------------------- */
+  .pageTitle {
+      font-size: 5.2rem;
+  }
+  
+}
+@media (min-width: 1024px) {
+
+    /* --------------------------------------------------------------------------------------- */
+    /* PAGE HERO */
+    /* --------------------------------------------------------------------------------------- */
+    .pageTitle {
+        font-size: 7rem;
+    }
+
+    .pageSubtitle {
+        font-size: 3.6rem;
+    }
+
+    .pageTertiaryTitle {
+        font-size: 3rem;
+    }
+}
+
+/* --------------------------------------------------------------------------------------- */
+/* MEDIA QUERY REFERENCE */
+/* --------------------------------------------------------------------------------------- */
+/* 
+@media (min-width: 430px) {}
+@media (min-width: 768px) {}
+@media (min-width: 834px) {}
+@media (min-width: 1024px) {} - MOBILE / DESKTOP Breakpoint
+@media (min-width: 1280px) {}
+@media (min-width: 1440px) {}
+@media (min-width: 1920px) {} 
+*/
