@@ -8,6 +8,7 @@ import { GenerateProductURL } from '../../../utils/link-helper';
 
 import { useRoutingHook } from '../../../hooks/routing-hook';
 import { NavLink } from 'react-router-dom';
+import { LinkComponent } from '../../Links/LinkComponent';
 
 
 
@@ -34,7 +35,7 @@ export const ProductListDropdownCard = ({ product }) => {
                 <div className={styles.productBuilderListCardImageWrapper}>
                     {/* <ImageComponent> */}
                     <img
-                    loading='lazy'
+                        loading='lazy'
                         className={styles.productBuilderDropdownCardImage}
                         src={`${publicUrl}/assets/image/products/${image}`}
                         alt={`product ${title}`}
@@ -51,14 +52,16 @@ export const ProductListDropdownCard = ({ product }) => {
             <div className={styles.productBuilderListCardDiv2}>
 
                 {/* <NavigationLink > */}
-                <NavLink to={productURL}>
+                <LinkComponent href={productURL}>
+
                     <Button
                         onClick={handleLinkClick}
                         buttonStyleType="primary"
                     >
                         See details
                     </Button>
-                </NavLink>
+
+                </LinkComponent>
                 {/* </NavigationLink> */}
             </div>
 

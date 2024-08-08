@@ -23,8 +23,8 @@ export const SearchInput = () => {
         const handleMobileSearchChange = (event) => {
             const query = event.target.value.toLowerCase();
 
-            if (isMobileSearchState.isMobileSearch === true) {
-                setIsMobileSearchState(prevState => ({ ...prevState, isNavSearchInputValue: query }));
+            // if (isMobileSearchState.isMobileSearch === true) {
+                setIsMobileSearchState(prevState => ({ ...prevState, isSearchInputValue: query }));
 
 
                 if (query) {
@@ -63,7 +63,7 @@ export const SearchInput = () => {
                     // setSearchResults([]);
                 }
 
-            }
+            // }
         }
 
         const handleCloseMobileSearchOverlay = () => {

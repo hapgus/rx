@@ -8,6 +8,7 @@ import { GenerateProductURL } from '../../../utils/link-helper';
 
 import { AddToListButton, RemoveFromListButton } from '../../Button/ProductButtons';
 import { NavLink } from 'react-router-dom';
+import { LinkComponent } from '../../Links/LinkComponent';
 
 
 
@@ -35,7 +36,8 @@ export const HomepageSearchPreviewCard = ({ products }) => {
                     </div>
                     <div className={styles.searchResultsPreviewCardTextWrapper}>
                         <div >
-                            <NavLink to={productURL}>
+                            <LinkComponent href={productURL}>
+                            
                                 {/* <NavigationLink href={productURL}> */}
                                 <div className={styles.searchResultsPreviewCardText}>
                                     <PageText type='productSearchTitle' >{capitalizeFirstLetterEachWord(category)}</PageText>
@@ -43,7 +45,8 @@ export const HomepageSearchPreviewCard = ({ products }) => {
                                     {/* <NakedIcon iconType='rightChevron' /> */}
                                 </div>
                                 {/* </NavigationLink> */}
-                            </NavLink>
+                          
+                            </LinkComponent>
                         </div>
                         <PageText type='productSearchSubtitle' >
                             <span className={styles.clampedSubtitle}>{subtitle}</span>

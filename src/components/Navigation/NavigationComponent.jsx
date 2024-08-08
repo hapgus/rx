@@ -52,7 +52,10 @@ const MobileNavComponent = () => {
                 <IconComponent onClick={handleMobileSearchIconClick} iconType='searchInput' />
                 <IconComponent iconType='userAccount' />
                 <IconComponent onClick={handleMobileProductListIconClick} iconType='productList' />
-                <IconComponent onClick={handleToggleMainMobileMenu} iconType='mobileNavMenu' />
+                {
+
+                }
+                <IconComponent onClick={handleToggleMainMobileMenu} iconType={isRoutingState.isMobileNavOpen === true ?'xClose':'mobileNavMenu'} />
             </div>
             {isRoutingState.isMobileNavOpen &&
                 <Overlay containerMarginTop='5rem'>

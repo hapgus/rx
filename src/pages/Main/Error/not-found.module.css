@@ -1,0 +1,28 @@
+.notFoundPageContainer {
+    background-color: var(--color-red-01);
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 1fr;
+    height: 100%;
+}
+
+.notFoundPageWrapper {
+    grid-column: 1/-1;
+    grid-row: 1;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+}
+
+.notFoundPage {
+    grid-column: 2/12;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.gifLogo {
+    max-width: 100%;
+    height: 70rem;
+    object-fit: contain;
+}

@@ -10,10 +10,18 @@ import { categoryLinks } from "../../utils/link-helper";
 import { CountBubble } from "../CountBubble/CountBubble";
 import { ProductListDropdownCard } from "../ProductCards/ProductLisDropdownCard/ProductListDropdownCard";
 import { IconComponent } from "../Icon/IconComponent";
+
+
 const EmptyListScreen = () => {
+    const {isRoutingState, setIsRoutingState}=useRoutingHook();
+
+    const handleCloseListClick = () => setIsRoutingState(prevState=>({...prevState, isProductListDropdownOpen: false}))
     return (
 
         <div className={styles.emptyProductListBodyMobile}>
+            <div onClick={handleCloseListClick} className={styles.mobileCloseIcon}>
+                <IconComponent iconType='xClose' />
+            </div>
             <div className={styles.mobileEmptyListHeaderText}>
                 <PageText type="searchTitle">You forgot to add products!</PageText>
                 <PageText type="searchSubtitle">Use search or explore appliance pages to find and add products to your list.</PageText>
@@ -84,7 +92,7 @@ export const ProductListDropdown = () => {
         </Overlay>;
     }
     if (productsInList.length === 0) {
-        return <Overlay containerMarginTop='5rem'><EmptyListScreen /></Overlay>;
+        return <Overlay containerMarginTop='6rem'><EmptyListScreen /></Overlay>;
     }
 
 }

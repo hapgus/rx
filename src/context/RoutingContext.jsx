@@ -60,7 +60,7 @@ export const RoutingProvider = ({ children }) => {
 
 
 useEffect(()=> {
-    if(isRoutingState.isNavLinkClicked === true){
+    if(isRoutingState.isNavLinkClicked){
         setIsRoutingState(prevState=>({
             ...prevState, 
             isMobileNavOpen: false,
@@ -75,7 +75,13 @@ useEffect(()=> {
             isBuilderDropdownOpen: false,
         }))
 
-      
+       // Reset isNavLinkClicked to allow subsequent clicks
+       setTimeout(() => {
+        setIsRoutingState(prevState => ({
+            ...prevState,
+            isNavLinkClicked: false
+        }));
+    }, 100); // Adjust the delay as needed
     }
 },[isRoutingState.isNavLinkClicked])
     useEffect(() => {

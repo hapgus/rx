@@ -15,6 +15,7 @@ import { AddToListButton, RemoveFromListButton } from '../../Button/ProductButto
 
 
 import { NavLink } from 'react-router-dom';
+import { LinkComponent } from '../../Links/LinkComponent';
 
 
 
@@ -29,11 +30,12 @@ export const RelatedProductCard = ({ product }) => {
 
     return (
         <div className={styles.relatedProductContainer}>
-            <NavLink to={productURL}>
+            <LinkComponent href={productURL}>
+
                 <div className={styles.realtedProductImageWrapper}>
-                    <img 
-                    loading='lazy'
-                    className={styles.relatedProductImage} src={`/assets/image/products/${image}`} alt={`product ${title}`} />
+                    <img
+                        loading='lazy'
+                        className={styles.relatedProductImage} src={`/assets/image/products/${image}`} alt={`product ${title}`} />
                 </div>
                 <div className={styles.realtedProductTextWrapper}>
                     {/* <ProductText type='relatedProductAvailability'>{CapitalizeFirstLetter(availability)}</ProductText> */}
@@ -46,7 +48,8 @@ export const RelatedProductCard = ({ product }) => {
                         {TruncateText(subtitle)}
                     </PageText>
                 </div>
-            </NavLink>
+
+            </LinkComponent>
             <div className={styles.buttonWrapper}>
                 <div>
                     {isProductInList ? (
@@ -55,11 +58,12 @@ export const RelatedProductCard = ({ product }) => {
                         <AddToListButton product={product} />
                     )}
                 </div>
-                <NavLink to={productURL}>
+                <LinkComponent href={productURL}>
+
                     <Button buttonStyleType="secondary" buttonTextType="action">
                         See details
                     </Button>
-                </NavLink>
+                </LinkComponent>
             </div>
 
         </div>

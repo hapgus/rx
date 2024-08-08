@@ -43,26 +43,7 @@ export const SearchProvider = ({ children }) => {
 
     const { isRoutingState} = useRoutingHook();
 
-    useEffect(() => {
-        if (isRoutingState.isNavLinkClicked)
-
-            setIsDesktopSearchState(prevState=>({
-                ...prevState,
-                isSearchResults: [],
-                isSearchInputValue:[],
-            }))
-            setIsMobileSearchState(prevState=>({
-                ...prevState,
-                isSearchResults: [],
-                isSearchInputValue:[],
-            }))
-            setIsHomepageSearchState(prevState=>({
-                ...prevState,
-                isSearchResults: [],
-                isSearchInputValue:[],
-            }))
-    }, [isRoutingState.isNavLinkClicked])
-
+   
     const initialMobileSearchState = {
         isMobileSearch: false,
         isSearchOverlayOpen: false,
@@ -95,7 +76,32 @@ export const SearchProvider = ({ children }) => {
     }
     const [isHomepageSearchState, setIsHomepageSearchState] = useState(initialHomepageSearchState);
 
-console.log(isHomepageSearchState)
+
+    useEffect(() => {
+        if (isRoutingState.isNavLinkClicked === true)
+
+            setIsDesktopSearchState(prevState=>({
+                ...prevState,
+                isSearchResults: [],
+                isSearchInputValue:[],
+            }))
+            setIsMobileSearchState(prevState=>({
+                ...prevState,
+                isMobileSearch:false,
+                isSearchResults: [],
+                isSearchInputValue:'',
+                
+            }))
+            setIsHomepageSearchState(prevState=>({
+                ...prevState,
+                isSearchResults: [],
+                isSearchInputValue:[],
+            }))
+            console.log('run effect')
+    }, [isRoutingState.isNavLinkClicked])
+
+console.log('mobile',isMobileSearchState);
+
     return (
         <SearchContext.Provider
             value={{

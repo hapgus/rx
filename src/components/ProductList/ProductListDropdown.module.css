@@ -1,6 +1,5 @@
 /* EMPTY LIST */
 
-
 .mobileProductListDropdown {
     height: 100%;
     padding: 2rem;
@@ -10,17 +9,34 @@
 .emptyProductListBodyMobile {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto;
+    grid-template-rows: repeat(4,auto);
 
     height: 100%;
     justify-items: center;
+    margin-top: -2rem;
 
     /* width: auto; */
 }
 
+.mobileCloseIcon{
+    /* background-color: aqua; */
+    grid-row: 1;
+    padding: 2rem;
+    border-radius: 100rem;
+    display: flex;
+    /* align-self: start;
+    margin-right: auto; */
+    /* align-items: center;
+    justify-content: center; */
+}
+.mobileCloseIcon svg {
+    width: 2.4rem;
+    height: 2.4rem;
+    display: flex;
+}
 .mobileEmptyListHeaderText {
     grid-column: 1/-1;
-    grid-row: 1;
+    grid-row: 2;
     display: flex;
     gap: 1rem;
     flex-direction: column;
@@ -30,7 +46,7 @@
 
 .mobileEmptyListCharacterImage {
     grid-column: 1/-1;
-    grid-row: 2;
+    grid-row: 3;
     height: 30rem;
     width: 30rem;
     object-fit: contain;
@@ -48,7 +64,7 @@
 }
 
 .buttonsWrapper {
-    grid-row: 3;
+    grid-row: 4;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;

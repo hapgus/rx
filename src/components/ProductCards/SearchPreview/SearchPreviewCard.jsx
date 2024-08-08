@@ -1,4 +1,5 @@
-import { NavLink } from 'react-router-dom';
+
+import { LinkComponent } from '../../Links/LinkComponent';
 import { PageText } from '../../Text/Text';
 import { Button } from '../../Button/Button';
 import styles from './SearchPreviewCard.module.css';
@@ -24,19 +25,19 @@ export const SearchPreviewCard = ({ products }) => {
                     <div key={idx} className={styles.searchPreviewCardContainerM}>
                         <div className={styles.searchPreviewCardWrapperM}>
                             <div className={styles.searchPreviewCardImageWrapperM}>
-                                <img 
-                                loading='lazy'
-                                className={styles.searchPreviewCardImageM} 
-                                src={`${publicUrl}/assets/image/products/${image}`}
-                                alt={`product ${title}`} 
-                                
+                                <img
+                                    loading='lazy'
+                                    className={styles.searchPreviewCardImageM}
+                                    src={`${publicUrl}/assets/image/products/${image}`}
+                                    alt={`product ${title}`}
+
                                 />
                             </div>
 
                             <div className={styles.searchPreviewCardTextWrapperM}>
                                 <div >
-                                    <NavLink to={productURL}>
 
+                                    <LinkComponent href={productURL} >
                                         <div className={styles.searchPreviewCardTextM}>
                                             <div className={styles.searchPreviewTitle}>
                                                 <PageText type='productSearchTitle' >{title}</PageText>
@@ -47,7 +48,7 @@ export const SearchPreviewCard = ({ products }) => {
                                                 </PageText>
                                             </div>
                                         </div>
-                                    </NavLink>
+                                    </LinkComponent>
                                 </div>
 
                             </div>
@@ -59,17 +60,17 @@ export const SearchPreviewCard = ({ products }) => {
                                         <AddToListButton product={product} />
                                     )}
                                 </div>
-                                <NavLink to={productURL}>
-                                    {/* <NavigationLink href={productURL}> */}
+                                <LinkComponent href={productURL}>
+                            
                                     <Button buttonStyleType="secondary" buttonTextType="action">
-                                        See details
+                                        See detailss
                                     </Button>
-                                    {/* </NavigationLink> */}
-                                </NavLink>
+                                  
+                                </LinkComponent>
                             </div>
 
                         </div>
-                    </div>
+                    </div >
                 )
 
             })
@@ -87,19 +88,18 @@ export const SearchPreviewCard = ({ products }) => {
                     <div key={idx} className={styles.searchPreviewCardContainerM}>
                         <div className={styles.searchPreviewCardWrapperM}>
                             <div className={styles.searchPreviewCardImageWrapperM}>
-                                <img 
-                                loading='lazy'
-                                className={styles.searchPreviewCardImageM} 
-                                src={`${publicUrl}/assets/image/products/${image}`}
-                                alt={`product ${title}`} 
-                                
+                                <img
+                                    loading='lazy'
+                                    className={styles.searchPreviewCardImageM}
+                                    src={`${publicUrl}/assets/image/products/${image}`}
+                                    alt={`product ${title}`}
+
                                 />
                             </div>
 
                             <div className={styles.searchPreviewCardTextWrapperM}>
                                 <div >
-                                    <NavLink to={productURL}>
-
+                                    <LinkComponent href={productURL}>
                                         <div className={styles.searchPreviewCardTextM}>
                                             <div className={styles.searchPreviewTitle}>
                                                 <PageText type='productSearchTitle' >{title}</PageText>
@@ -110,7 +110,7 @@ export const SearchPreviewCard = ({ products }) => {
                                                 </PageText>
                                             </div>
                                         </div>
-                                    </NavLink>
+                                    </LinkComponent>
                                 </div>
 
                             </div>
@@ -122,26 +122,25 @@ export const SearchPreviewCard = ({ products }) => {
                                         <AddToListButton product={products} />
                                     )}
                                 </div>
-                                <NavLink to={productURL}>
+                                <LinkComponent href={productURL}>
+                             
                                     {/* <NavigationLink href={productURL}> */}
                                     <Button buttonStyleType="secondary" buttonTextType="action">
                                         See details
                                     </Button>
-                                    {/* </NavigationLink> */}
-                                </NavLink>
+                                   
+                                    </LinkComponent>
                             </div>
 
                         </div>
                     </div>
                 )
-
             })
-
         );
         // return (
         //     products && products.map((product, idx) => {
         //         const { title, subtitle, image, category } = product;
-    
+
         //         const isProductInList = productsInList.some(p => p.title === product.title);
         //         const productURL = GenerateProductURL(category, title);
         //         return (
@@ -170,17 +169,17 @@ export const SearchPreviewCard = ({ products }) => {
         //                         <span className={styles.searchPreviewClampedSubtitleM}>{subtitle}</span>
         //                     </PageText>
         //                 </div>
-    
+
         //                 {isProductInList ? (<RemoveFromListButton product={product} />) : (<AddToListButton product={product} />)}
-    
+
         //             </div>
         //         );
-    
-        //     })
-    
-        // );
-     }
 
- 
+        //     })
+
+        // );
+    }
+
+
 };
 
