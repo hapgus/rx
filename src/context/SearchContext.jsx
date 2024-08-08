@@ -95,7 +95,7 @@ export const SearchProvider = ({ children }) => {
     }
     const [isHomepageSearchState, setIsHomepageSearchState] = useState(initialHomepageSearchState);
 
-
+console.log(isHomepageSearchState)
     return (
         <SearchContext.Provider
             value={{

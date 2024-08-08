@@ -1,7 +1,7 @@
-import { BodyText, HeaderText, PageText, ProductText } from '../TextComponent/TextComponent'
+import { PageText } from '../Text/Text';
 import styles from './ScrollHeader.module.css'
 import { ScrollButtons } from './ScrollButtons'
-import { CountBubble } from '../IconComponent/CountBubble';
+import { CountBubble } from '../CountBubble/CountBubble';
 
 export const ScrollHeader = ({
     headerText,
@@ -20,7 +20,7 @@ export const ScrollHeader = ({
                     <PageText type='pageBodyTitle'>{headerText}</PageText>
                 </div>
                 <div className={styles.headerCountWrapper}>
-                <ProductText type='productCountTitle'>Results</ProductText>
+                <PageText type='productCountTitle'>Results</PageText>
                 <CountBubble itemCount={itemCount}/>   
                     
                 </div>

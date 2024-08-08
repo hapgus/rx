@@ -25,10 +25,13 @@ export const SearchInput = () => {
 
             if (isMobileSearchState.isMobileSearch === true) {
                 setIsMobileSearchState(prevState => ({ ...prevState, isNavSearchInputValue: query }));
+
+
                 if (query) {
                     const filteredResults = productDataSearch.filter((product) => {
                         // Check title, subtitle, and category
-                        const matchesBasicFields = product.title.toLowerCase().includes(query)
+                        const matchesBasicFields =
+                            product.title.toLowerCase().includes(query)
                             || product.subtitle.toLowerCase().includes(query)
                             || product.category.toLowerCase().includes(query);
                         // Check specification lists
@@ -37,22 +40,22 @@ export const SearchInput = () => {
                             || matchesSpecList(product.specList2)
                             || matchesSpecList(product.specList3)
                             || matchesSpecList(product.specList4);
-    
+
                         // Check colors
                         const matchesColors = product.colors.some(color => color.includes(query));
-    
+
                         // Check logos
                         const matchesLogos = product.logos.some(logo => logo.includes(query));
-    
-                        return matchesBasicFields || matchesSpecs || matchesColors || matchesLogos ;
+
+                        return matchesBasicFields || matchesSpecs || matchesColors || matchesLogos;
                     });
-                // if (query) {
-                //     const filteredResults = productDataSearch.filter((product) =>
-                //         // product.title.toLowerCase().includes(query)
-                //         product.title.toLowerCase().includes(query)
-                //         || product.subtitle.toLowerCase().includes(query)
-                //         || product.category.toLowerCase().includes(query)
-                //     );
+                    // if (query) {
+                    //     const filteredResults = productDataSearch.filter((product) =>
+                    //         // product.title.toLowerCase().includes(query)
+                    //         product.title.toLowerCase().includes(query)
+                    //         || product.subtitle.toLowerCase().includes(query)
+                    //         || product.category.toLowerCase().includes(query)
+                    //     );
                     // setSearchResults(filteredResults);
                     setIsMobileSearchState(prevState => ({ ...prevState, isSearchResults: filteredResults }));
                 } else {
@@ -131,15 +134,15 @@ export const SearchInput = () => {
                     // Check logos
                     const matchesLogos = product.logos.some(logo => logo.includes(query));
 
-                    return matchesBasicFields || matchesSpecs || matchesColors || matchesLogos ;
+                    return matchesBasicFields || matchesSpecs || matchesColors || matchesLogos;
                 });
-            // if (query) {
-            //     const filteredResults = productDataSearch.filter((product) =>
-            //         product.title.toLowerCase().includes(query)
-            //         || product.subtitle.toLowerCase().includes(query)
-            //         || product.category.toLowerCase().includes(query)
+                // if (query) {
+                //     const filteredResults = productDataSearch.filter((product) =>
+                //         product.title.toLowerCase().includes(query)
+                //         || product.subtitle.toLowerCase().includes(query)
+                //         || product.category.toLowerCase().includes(query)
 
-            //     );
+                //     );
                 setIsDesktopSearchState(prevState => ({ ...prevState, isSearchResults: filteredResults }));
             } else {
                 setIsDesktopSearchState(prevState => ({ ...prevState, isSearchResults: [] }));

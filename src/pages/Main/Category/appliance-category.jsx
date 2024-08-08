@@ -7,6 +7,8 @@ import { capitalizeFirstLetterEachWord } from '../../../utils/text-help';
 import { CATEGORY_VERBIAGE, CATEGORY_IMAGERY } from '../../../data/VERBIAGE_DATA';
 import { Button } from '../../../components/Button/Button';
 import { GridSystem } from '../../../components/GridSystem/GridSystem';
+import { ScrollingComponent } from '../../../components/ScrollingComponent/ScrollingComponent';
+
 
 const ApplianceCategoryPage = () => {
     const { categoryId } = useParams();
@@ -16,7 +18,9 @@ const ApplianceCategoryPage = () => {
 
     const filteredProducts = FilterProductsByCategoryId(publicProducts, normalizedCategoryId);
     const reducedProducts = ListProductsByCategorySubcategory(filteredProducts);
-    const transformedCategoryName = capitalizeFirstLetterEachWord(normalizedCategoryId)
+    const transformedCategoryName = capitalizeFirstLetterEachWord(normalizedCategoryId);
+
+    const subcategories = Object.values(reducedProducts);
     const publicUrl = process.env.PUBLIC_URL;
     const backgroundImageMap = {
         'air care': {
@@ -54,34 +58,40 @@ const ApplianceCategoryPage = () => {
     }
 
     return (
-        <GridSystem>
-            {
-                CATEGORY_IMAGERY && CATEGORY_VERBIAGE &&
-                <div className={styles.heroContainer}>
-                    <div className={styles.heroTextWrapper}>
-                        <PageText color='white' type='pageTitle'>{CATEGORY_VERBIAGE[normalizedCategoryId].title2}</PageText>
-                        <PageText color='white' type='pageSubtitle'>{CATEGORY_VERBIAGE[normalizedCategoryId].title1}</PageText>
-                        <div className={styles.heroButtonWrapper}>
-                            <Button buttonStyleType="primaryAction">Explore</Button>
+        <>
+            <GridSystem>
+                {
+                    CATEGORY_IMAGERY && CATEGORY_VERBIAGE &&
+                    <div className={styles.heroContainer}>
+                        <div className={styles.heroTextWrapper}>
+                            <PageText color='white' type='pageTitle'>{CATEGORY_VERBIAGE[normalizedCategoryId].title2}</PageText>
+                            <PageText color='white' type='pageSubtitle'>{CATEGORY_VERBIAGE[normalizedCategoryId].title1}</PageText>
+                            <div className={styles.heroButtonWrapper}>
+                                <Button buttonStyleType="primaryAction">Explore</Button>
+                            </div>
+                        </div>
+                        <div className={styles.heroImageWrapper}>
+                            <div className={styles.image0}>
+                                <img
+                                    src={CATEGORY_IMAGERY[normalizedCategoryId].imageShape1}
+                                    alt={CATEGORY_VERBIAGE[normalizedCategoryId].imageShape1} />
+                            </div>
+                            <div className={styles.image1}>
+
+                                <img
+                                    src={CATEGORY_IMAGERY[normalizedCategoryId].imageShape2}
+                                    alt={CATEGORY_VERBIAGE[normalizedCategoryId].imageShape2} />
+                            </div>
+
                         </div>
                     </div>
-                    <div className={styles.heroImageWrapper}>
-                        <div className={styles.image0}>
-                            <img
-                                src={CATEGORY_IMAGERY[normalizedCategoryId].imageShape1}
-                                alt={CATEGORY_VERBIAGE[normalizedCategoryId].imageShape1} />
-                        </div>
-                        <div className={styles.image1}>
-
-                            <img
-                                src={CATEGORY_IMAGERY[normalizedCategoryId].imageShape2}
-                                alt={CATEGORY_VERBIAGE[normalizedCategoryId].imageShape2} />
-                        </div>
-
-                    </div>
-                </div>
-            }
-        </GridSystem>
+                }
+            </GridSystem>
+            <section className={styles.productsContainer}>
+          <ScrollingComponent processedProducts={subcategories} />
+        </section>
+        
+        </>
     );
 };
 

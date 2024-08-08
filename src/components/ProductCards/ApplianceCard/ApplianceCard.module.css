@@ -1,0 +1,106 @@
+
+
+
+.card {
+    background-color: white;
+    border: var(--border-line);
+    border-radius: 4rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 3.2rem 2.5rem;
+}
+
+.productCardContainer {
+    height: 35rem;
+    width: 27.6rem;
+    /* background-color: blue;
+    border: 3px solid red; */
+    /* margin-right: 10px; */
+    transition: all 0.3s ease;
+}
+
+
+.productCardWrapper {
+    display: flex;
+    flex-direction: column;
+    height: inherit;
+    justify-content: space-evenly;
+
+}
+
+.productTitle {
+    color: var(--product-title-color);
+    font-family: var(--product-title-font-family);
+    font-size: var(--product-title-font-size);
+}
+
+.productSubtitle {
+    color: var(--product-subtitle-color);
+    font-family: var(--product-title-font-family);
+    font-size: var(--product-subtitle-font-size);
+    /* 
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden; */
+}
+
+.clampedSubtitle {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.clampedSubtitleLong {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.productAvailability {
+    color: var(--product-availability-color);
+    font-family: var(--product-availability-font-family);
+    font-size: var(--product-availability-font-size);
+    color: red;
+}
+
+.productCardImage {
+    max-width: 50%;
+    height: 22vh;
+    object-fit: contain;
+    align-self: center;
+}
+
+.buttonsWrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    padding-top: 2rem;
+}
+
+.buttonsWrapper button,
+.buttonsWrapper a {
+    width: 100%;
+}
+
+@media (min-width:1280px) {
+    .productCardContainer {
+        height: 45rem;
+        width: 37.6rem;
+        /* background-color: blue;
+        border: 3px solid red; */
+        /* margin-right: 10px; */
+        transition: all 0.3s ease;
+    }
+    
+}
+ 
+
+/* @media (min-width: 430px) {}
+@media (min-width: 768px) {}
+@media (min-width: 834px) {}
+@media (min-width: 1024px) {}
+@media (min-width: 1280px) {}
+@media (min-width: 1440px) {}
+@media (min-width: 1920px) {} */

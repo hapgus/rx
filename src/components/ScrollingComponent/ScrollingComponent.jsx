@@ -1,10 +1,11 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import styles from './ScrollingComponent.module.css';
-
-import { ProductCard } from '../ProductCardComponent/ProductCard/ProductCard';
+import { ApplianceCard } from '../ProductCards/ApplianceCard/ApplianceCard';
 import { useScrollableRefs } from '../../hooks/use-ref-hook';
-import { CapitalizeFirstLetter } from '../../utils/category-helper';
+
+import { capitalizeFirstLetterEachWord } from '../../utils/text-help';
+
 import { CountProductsInCategory } from '../../utils/category-helper';
 
 import { ScrollHeader } from './ScrollHeader';
@@ -95,7 +96,7 @@ export const ScrollingComponent = ({ processedProducts }) => {
                                             leftDisabled={scrollDisabled[currentRefIdx]?.left}
                                             rightDisabled={scrollDisabled[currentRefIdx]?.right}
                                             itemCount={CountProductsInCategory(items)}
-                                            headerText={CapitalizeFirstLetter(subcategory)}
+                                            headerText={capitalizeFirstLetterEachWord(subcategory)}
                                             progress={scrollProgress[currentRefIdx]}
                                         />
                                     </div>
@@ -116,7 +117,7 @@ export const ScrollingComponent = ({ processedProducts }) => {
                                             }}
                                         >
                                             {items && items.map((product, itemIdx) => (
-                                                <ProductCard key={product.id || itemIdx} product={product} />
+                                                <ApplianceCard key={product.id || itemIdx} product={product} />
                                             ))}
                                         </div>
                                     </div>
