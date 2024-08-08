@@ -7,6 +7,7 @@ import FeatureDefinitionsPage from "./pages/Main/Feature-Definitions/feature-def
 import WarrantiesPage from "./pages/Main/Warranties/warranties";
 import StepUpChartPage from "./pages/Main/Step-Up-Charts/step-up-chart-pages";
 import AppliancePage from "./pages/Main/Appliance/appliance-page";
+import ApplianceCategories from "./pages/Main/Appliance-Categories/appliance-categories-page";
 
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
      <Route path='product-list-builder' element={<ProductListBuilderPage />} />
      <Route path='feature-definitions' element={<FeatureDefinitionsPage />} />
      <Route path='warranties' element={<WarrantiesPage />} />
+     <Route path='appliances' element={<ApplianceCategories />} />
      <Route path='appliances/:categoryId/:productId' element={<AppliancePage />} />
      <Route path='step-up-chart/:categoryId' element={<StepUpChartPage />} />
     </>

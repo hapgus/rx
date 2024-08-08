@@ -92,15 +92,15 @@ export const stepUpChartLinks = [
     { href: `${publicUrl}/step-up-chart/vacuums`, text: 'Vacuums' }
 ];
 export const categoryLinks = [
-    { href: '/appliances/air-care', text: 'Air Care' },
-    { href: '/appliances/cooking', text: 'Cooking' },
-    { href: '/appliances/dishwashers', text: 'Dishwashers' },
-    { href: '/appliances/laundry', text: 'Laundry' },
-    { href: '/appliances/refrigeration', text: 'Refrigeration' },
-    { href: '/appliances/vacuums', text: 'Vacuums' },
-    { href: '/appliances/signature', text: 'LG Signature' },
-    { href: '/appliances/studio', text: 'LG Studio' },
-    { href: '/appliances/', text: 'All Home Appliances' }
+    { href: `${publicUrl}/appliances/air-care`, text: 'Air Care' },
+    { href: `${publicUrl}/appliances/cooking`, text: 'Cooking' },
+    { href: `${publicUrl}/appliances/dishwashers`, text: 'Dishwashers' },
+    { href: `${publicUrl}/appliances/laundry`, text: 'Laundry' },
+    { href: `${publicUrl}/appliances/refrigeration`, text: 'Refrigeration' },
+    { href: `${publicUrl}/appliances/vacuums`, text: 'Vacuums' },
+    { href: `${publicUrl}/appliances/signature`, text: 'LG Signature' },
+    { href: `${publicUrl}/appliances/studio`, text: 'LG Studio' },
+    { href: `${publicUrl}/appliances/`, text: 'All Home Appliances' }
 ];
 export const navCategoryLinks = [
     { href: '/appliances/air-care', text: 'Air Care' },

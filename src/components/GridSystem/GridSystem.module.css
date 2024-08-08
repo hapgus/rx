@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: 1fr;
-    padding: 0 1rem;
+    /* padding: 0 1rem; */
 }
 
 .wrapperGrid {
