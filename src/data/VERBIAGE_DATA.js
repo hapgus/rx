@@ -61,55 +61,59 @@ export const CATEGORY_VERBIAGE = {
 
 }
 
+const publicUrl = process.env.PUBLIC_URL;
 export const CATEGORY_IMAGERY = {
     signature: {
-
-        imageShape1:"/assets/image/backgrounds/signature/sig-shape1.png",
-        imageShape2:"/assets/image/backgrounds/signature/sig-shape2.png",
+        imageShape1:`${publicUrl}/assets/image/backgrounds/categories/signature/sig-shape1.png`,
+        imageShape2:`${publicUrl}/assets/image/backgrounds/categories/signature/sig-shape2.png`,
         styleShape1:"bodyHeadImage2Shape1",
         styleShape2:"bodyHeadImage2Shape2",
         mobileImage:"/assets/image/backgrounds/signature/signature-laundry-02.webp",
     },
     studio: {
-        imageShape1:"/assets/image/backgrounds/studio/studio-shape1.png",
-        imageShape2:"/assets/image/backgrounds/studio/studio-shape2.png",
+        imageShape1:`${publicUrl}/assets/image/backgrounds/categories/studio/studio-shape1.png`,
+        imageShape2:`${publicUrl}/assets/image/backgrounds/categories/studio/studio-shape2.png`,
         styleShape1:"bodyHeadImage1Shape1",
         styleShape2:"bodyHeadImage1Shape2",
     },
     [`air care`]: {
-        imageShape1:"/assets/image/backgrounds/air-care/air-shape1.png",
-        imageShape2:"/assets/image/backgrounds/air-care/air-shape2.png",
+        imageShape1:`${publicUrl}/assets/image/backgrounds/categories/air-care/air-shape1.png`,
+        imageShape2:`${publicUrl}/assets/image/backgrounds/categories/air-care/air-shape2.png`,
         styleShape1:"bodyHeadImage1Shape1",
         styleShape2:"bodyHeadImage1Shape2",
     },
     cooking: {
-        imageShape1:"/assets/image/backgrounds/cooking/cooking-shape1.png",
-        imageShape2:"/assets/image/backgrounds/cooking/cooking-shape2.png",
+        
+        imageShape1:`${publicUrl}/assets/image/backgrounds/categories/cooking/cooking-shape1.png`,
+        imageShape2:`${publicUrl}/assets/image/backgrounds/categories/cooking/cooking-shape2.png`,
         styleShape1:"bodyHeadImage2Shape1",
         styleShape2:"bodyHeadImage2Shape2",
     },
     dishwashers: {
         title1: "LG Dishwashers",
-        imageShape1:"/assets/image/backgrounds/dishwasher/dishwasher-shape1.png",
-        imageShape2:"/assets/image/backgrounds/dishwasher/dishwasher-shape2.png",
+        
+        imageShape1:`${publicUrl}/assets/image/backgrounds/categories/dishwasher/dishwasher-shape1.png`,
+        imageShape2:`${publicUrl}/assets/image/backgrounds/categories/dishwasher/dishwasher-shape2.png`,
         styleShape1:"bodyHeadImage1Shape1",
         styleShape2:"bodyHeadImage1Shape2",
     },
     laundry: {
-        imageShape1:"/assets/image/backgrounds/laundry/laundry-shape4.png",
-        imageShape2:"/assets/image/backgrounds/laundry/laundry-shape5.png",
+        imageShape1:`${publicUrl}/assets/image/backgrounds/categories/laundry/laundry-shape1.png`,
+        imageShape2:`${publicUrl}/assets/image/backgrounds/categories/laundry/laundry-shape2.png`,
         styleShape1:"bodyHeadImage2Shape1",
         styleShape2:"bodyHeadImage2Shape2",
     },
     refrigeration: {
-        imageShape1:"/assets/image/backgrounds/refrigerator/fridge-shape5.png",
-        imageShape2:"/assets/image/backgrounds/refrigerator/fridge-shape4.png",
+        imageShape1:`${publicUrl}/assets/image/backgrounds/categories/refrigerator/fridge-shape1.png`,
+        imageShape2:`${publicUrl}/assets/image/backgrounds/categories/refrigerator/fridge-shape2.png`,
+     
         styleShape1:"bodyHeadImage2Shape1",
         styleShape2:"bodyHeadImage2Shape2",
     },
     vacuums: {
-        imageShape1:"/assets/image/backgrounds/vacuum/vacuum-shape3.png",
-        imageShape2:"/assets/image/backgrounds/vacuum/vacuum-shape2.png",
+        imageShape1:`${publicUrl}/assets/image/backgrounds/categories/vacuum/vacuum-shape1.png`,
+        imageShape2:`${publicUrl}/assets/image/backgrounds/categories/vacuum/vacuum-shape2.png`,
+       
         styleShape1:"bodyHeadImage2Shape1",
         styleShape2:"bodyHeadImage2Shape2",
     },

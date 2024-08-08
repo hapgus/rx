@@ -51,7 +51,7 @@ const Homepage = () => {
                     </div>
                     <div className={styles.linksContainer}>
 
-                        {categoryLinks && categoryLinks.map((e => <span className={styles.featureLink}><NavLink to={e.href}><Button buttonStyleType='primary'>{e.text}</Button></NavLink></span>))}
+                        {categoryLinks && categoryLinks.map((e => <span className={styles.featureLink}><NavLink to={e.href}><Button buttonStyleType='secondary'>{e.text}</Button></NavLink></span>))}
                     </div>
                 </GridSystem>
             </div>
