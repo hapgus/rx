@@ -97,7 +97,7 @@ export const TechnologyLogo = ({ logos }) => {
                         return (
                             <li key={idx} className={styles.logosListItemContainer}>
                                 <div className={styles.logoImageWrapper}>
-                                    <img className={styles.logoImage} src={logoImage} alt={e} />
+                                    <img loading='lazy' className={styles.logoImage} src={logoImage} alt={e} />
                                 </div>
                                 {/* <ImageComponent>
                                     <img className={styles.logoImage} src={logoImage} alt={e} />

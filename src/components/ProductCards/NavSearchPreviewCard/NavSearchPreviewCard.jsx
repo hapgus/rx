@@ -24,6 +24,7 @@ export const NavSearchPreviewCard = ({ products }) => {
                 <div key={idx} className={styles.searchResultsPreviewCardContainer}>
                     <div className={styles.searchResultsPreviewCardImageWrapper}>
                         <img
+                        loading='lazy'
                             className={styles.searchResultsPreviewCardImage}
                             src={`${publicUrl}/assets/image/products/${image}`}
                             alt={`product ${title}`}

@@ -10,7 +10,7 @@ export const ProductImageComponent = ({
 }) => {
     return (
         <div className={`${styles.imageWrapper} ${className}`} style={style}>
-            <img src={src} alt={alt} className={styles.image} />
+            <img src={src} alt={alt} className={styles.image} loading='lazy' />
             {/* {caption && <p className={styles.caption}>{caption}</p>} */}
         </div>
     );

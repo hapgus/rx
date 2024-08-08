@@ -34,6 +34,7 @@ export const ProductListDropdownCard = ({ product }) => {
                 <div className={styles.productBuilderListCardImageWrapper}>
                     {/* <ImageComponent> */}
                     <img
+                    loading='lazy'
                         className={styles.productBuilderDropdownCardImage}
                         src={`${publicUrl}/assets/image/products/${image}`}
                         alt={`product ${title}`}

@@ -45,7 +45,7 @@ const MobileNavComponent = () => {
         <div className={styles.mobileNavComponentContainer}>
             <div className={styles.mobileLogoWrapper}>
                 <LinkComponent href='/hapg'>
-                    <img src='/hapg/assets/image/logos/lg-logo.webp' alt='lg red face logo' />
+                    <img loading='lazy' src='/hapg/assets/image/logos/lg-logo.webp' alt='lg red face logo' />
                 </LinkComponent>
             </div>
             <div className={styles.mobileIconsWrapper}>
@@ -151,7 +151,7 @@ const DesktopNavComponent = () => {
                 <div className={styles.desktopNavContainer}>
                     <div className={styles.desktopNavLogoWrapper}>
                         <LinkComponent href='/hapg'>
-                            <img src='/hapg/assets/image/logos/lg-logo.webp' alt='lg red face logo' />
+                            <img loading='lazy' src='/hapg/assets/image/logos/lg-logo.webp' alt='lg red face logo' />
                         </LinkComponent>
                     </div>
                     <section className={styles.desktopNavMenuWrapper}>

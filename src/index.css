@@ -11,12 +11,12 @@
   --color-gray-06: #F0ECE4;
   --color-gray-07: #F6F3EB;
 
-  --headline-light: "LG EI Headline Light";
-  --headline-regular: "LG EI Headline Regular";
-  --headline-semibold: "LG EI Headline SemiBold";
-  --text-regular: "LG EI Text Regular";
-  --text-bold: "LG EI Text Bold";
-  --text-semibold: "LG EI Text SemiBold";
+  --headline-light: "LG EI Headline Light","Microsoft Sans Serif", sans-serif;
+  --headline-regular: "LG EI Headline Regular","Microsoft Sans Serif", sans-serif;
+  --headline-semibold: "LG EI Headline SemiBold","Microsoft Sans Serif", sans-serif;
+  --text-regular: "LG EI Text Regular","Microsoft Sans Serif", sans-serif;
+  --text-bold: "LG EI Text Bold","Microsoft Sans Serif", sans-serif;
+  --text-semibold: "LG EI Text SemiBold","Microsoft Sans Serif", sans-serif;
 }
 *,
 *::after,

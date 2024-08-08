@@ -11,6 +11,7 @@ import Modal from '../components/Modal/Modal';
 import { useEffect } from 'react';
 import Footer from '../components/Footer/Footer';
 import { PrintScreen } from '../components/Print/PrintScreen';
+import Loader from '../components/Loader/Loader';
 
 
 
@@ -66,6 +67,8 @@ export default function Layout() {
     return (
         <>
             <PrintScreen />
+
+{isRoutingState.isLoading && <Loader/>}
 
             {isAlert.show && (
                 <ProductGuideAlerts

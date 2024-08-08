@@ -31,7 +31,9 @@ export const RelatedProductCard = ({ product }) => {
         <div className={styles.relatedProductContainer}>
             <NavLink to={productURL}>
                 <div className={styles.realtedProductImageWrapper}>
-                    <img className={styles.relatedProductImage} src={`/assets/image/products/${image}`} alt={`product ${title}`} />
+                    <img 
+                    loading='lazy'
+                    className={styles.relatedProductImage} src={`/assets/image/products/${image}`} alt={`product ${title}`} />
                 </div>
                 <div className={styles.realtedProductTextWrapper}>
                     {/* <ProductText type='relatedProductAvailability'>{CapitalizeFirstLetter(availability)}</ProductText> */}

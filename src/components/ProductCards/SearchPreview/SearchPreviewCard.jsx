@@ -25,6 +25,7 @@ export const SearchPreviewCard = ({ products }) => {
                         <div className={styles.searchPreviewCardWrapperM}>
                             <div className={styles.searchPreviewCardImageWrapperM}>
                                 <img 
+                                loading='lazy'
                                 className={styles.searchPreviewCardImageM} 
                                 src={`${publicUrl}/assets/image/products/${image}`}
                                 alt={`product ${title}`} 
@@ -87,6 +88,7 @@ export const SearchPreviewCard = ({ products }) => {
                         <div className={styles.searchPreviewCardWrapperM}>
                             <div className={styles.searchPreviewCardImageWrapperM}>
                                 <img 
+                                loading='lazy'
                                 className={styles.searchPreviewCardImageM} 
                                 src={`${publicUrl}/assets/image/products/${image}`}
                                 alt={`product ${title}`} 

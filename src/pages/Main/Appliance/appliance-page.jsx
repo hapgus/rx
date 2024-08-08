@@ -52,7 +52,7 @@ const MobileAppliancePage = () => {
                   <div className={styles.mobileProductImageWrapper}>
                     <ProductBackgroundShape className={styles.mobileProductImageShape} />
                     <div className={styles.mobileProductImage}>
-                      <img src={`${publicUrl}/assets/image/products/${details.image}`} alt={`${details.title}`} />
+                      <img loading='lazy' src={`${publicUrl}/assets/image/products/${details.image}`} alt={`${details.title}`} />
                     </div>
                   </div>
                   <div className={styles.colorButtonWrapper}>
@@ -194,7 +194,7 @@ const DesktopAppliancePage = () => {
                 <div className={styles.imageShapeGroupWrapper}>
                   <div className={styles.productImageForShape}>
                     <div className={styles.productImage}>
-                    <img src={`${publicUrl}/assets/image/products/${details.image}`} alt={`${details.title}`} />
+                    <img loading='lazy' src={`${publicUrl}/assets/image/products/${details.image}`} alt={`${details.title}`} />
                       </div>
                   </div>
                   <ProductBackgroundShape className={styles.productBackgroundShapeContainer} />

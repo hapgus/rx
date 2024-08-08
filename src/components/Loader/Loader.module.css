@@ -1,0 +1,67 @@
+
+.loaderContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  overflow: hidden; /* Prevent any overflow from animations */
+}
+
+
+.logoSpinnerContainer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15rem;
+  height: 15rem;
+}
+
+.loader {
+  border: 1rem solid var(--color-gray-01);
+  border-radius: 100%;
+  border-top: 8px solid var(--color-red-02);
+  width: 20rem;
+  height: 20rem;
+  box-shadow: 0 0 16px rgba(114, 113, 113, 0.5);
+  animation: spin .5s linear infinite;
+  position: absolute;
+  z-index: 2; /* Loader should be above the logo */
+}
+
+.gif {
+  position: absolute;
+  width: 80%; /* Adjust based on the desired logo size inside the loader */
+  z-index: 1; /* Logo should be below the loader */
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+@media (min-width: 768px) {
+  .logoSpinnerContainer {
+    width: 20rem;
+    height: 20rem;
+  }
+  .loader{
+    width: 25rem;
+    height: 25rem;
+  }
+}
+
+@media (min-width: 1440px) {
+ 
+}
+
+@media (min-width: 1920px) {
+
+}
+

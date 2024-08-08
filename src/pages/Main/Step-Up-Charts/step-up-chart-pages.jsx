@@ -35,7 +35,7 @@ const StepUpChartPage = () => {
                 <div className={styles.chartBodyContainer}>
                     {stepUpCharts && stepUpCharts.map((imageSrc, index) => (
                         <div className={styles.chartImageWrapper} key={index}>
-                            <img src={imageSrc} alt={`Comparison ${index + 1}`} />
+                            <img loading='lazy' src={imageSrc} alt={`Comparison ${index + 1}`} />
                         </div>
                     ))}
                 </div>

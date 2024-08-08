@@ -24,6 +24,8 @@ export const RoutingContext = createContext({
 
         isAccountMenuOpen: false,
         isBuilderDropdownOpen: false,
+
+        isLoading:false,
     },
     setIsRoutingState: () => { },
 
@@ -50,6 +52,8 @@ export const RoutingProvider = ({ children }) => {
         
         isAccountMenuOpen: false,
         isBuilderDropdownOpen: false,
+
+        isLoading:false,
 
     }
     const [isRoutingState, setIsRoutingState] = useState(initialRoutingState);

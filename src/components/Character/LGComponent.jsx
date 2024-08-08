@@ -18,6 +18,6 @@ export const LGComponent = ({ type }) => {
  
     const LGCharacterUrl = typeUrlMap[type];
 
-    return <img src={LGCharacterUrl} />;
+    return <img loading='lazy' src={LGCharacterUrl} />;
 
 }

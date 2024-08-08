@@ -17,7 +17,7 @@ export const ProductCategoryCard = ({
                 <div className={styles.categoryCardWrapper}>
                    
                     <div className={styles.productCategoryCardImage}>
-                        <img src={`${publicUrl}${subcategoryImagePath}`} alt={subcategory} />
+                        <img loading='lazy' src={`${publicUrl}${subcategoryImagePath}`} alt={subcategory} />
                     </div>
                     <PageText type='productCategory'>{subcategory}</PageText>
                 </div>

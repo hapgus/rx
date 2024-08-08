@@ -74,13 +74,17 @@ const ApplianceCategoryPage = () => {
                             <div className={styles.image0}>
                                 <img
                                     src={CATEGORY_IMAGERY[normalizedCategoryId].imageShape1}
-                                    alt={CATEGORY_VERBIAGE[normalizedCategoryId].imageShape1} />
+                                    alt={CATEGORY_VERBIAGE[normalizedCategoryId].imageShape1} 
+                                    loading='lazy'
+                                    />
                             </div>
                             <div className={styles.image1}>
 
                                 <img
                                     src={CATEGORY_IMAGERY[normalizedCategoryId].imageShape2}
-                                    alt={CATEGORY_VERBIAGE[normalizedCategoryId].imageShape2} />
+                                    alt={CATEGORY_VERBIAGE[normalizedCategoryId].imageShape2} 
+                                    loading='lazy'
+                                    />
                             </div>
 
                         </div>

@@ -41,7 +41,7 @@ const Logo = ({ type = 'lgDefault', style = 'lgDefault' }) => {
     const renderLogoStyle = logoStylesMap[style]
     return (
         <div>
-            <img src={renderLogo.url} alt={renderLogo.alt} className={renderLogoStyle} />
+            <img loading='lazy' src={renderLogo.url} alt={renderLogo.alt} className={renderLogoStyle} />
         </div>
     );
 };
