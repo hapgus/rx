@@ -1,12 +1,14 @@
 .containerGrid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
+    grid-template-columns: 1fr minmax(16px, 2rem) repeat(10, 1fr) minmax(16px, 2rem) 1fr;
     grid-template-rows: 1fr;
     /* padding: 0 1rem; */
 }
 
 .wrapperGrid {
-    grid-column: 1/-1;
+    /* grid-column: 1/-1; */
+    grid-column: 2 / -2;
     grid-row: 1;
     display: grid;
     grid-template-columns: repeat(12, 1fr);
@@ -16,12 +18,12 @@
 .gridItem{
     grid-column: 1/-1;
 }
-
+/* 
 @media (min-width: 834px) {
      .containerGrid {
         padding: 0 2rem;
     }
-}
+} */
 
 
 @media (min-width: 1440px) {

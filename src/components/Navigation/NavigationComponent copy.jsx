@@ -4,7 +4,7 @@ import { useRoutingHook } from '../../hooks/routing-hook';
 import { IconComponent } from '../Icon/IconComponent';
 import { GridSystem } from '../GridSystem/GridSystem';
 import Overlay from '../Overlay/Overlay';
-import { RouteLinks, allCategoryLink, exclusiveLinks, navCategoryLinks, navSecondaryCategoryLinks, resourceLinks } from '../../utils/link-helper';
+import { RouteLinks, navCategoryLinks, navSecondaryCategoryLinks, resourceLinks } from '../../utils/link-helper';
 import { PageText } from '../Text/Text';
 import { LinkComponent } from '../Links/LinkComponent';
 import { SearchComponent } from '../Search/SearchComponent/SearchComponent';
@@ -52,7 +52,9 @@ const MobileNavComponent = () => {
                 <IconComponent onClick={handleMobileSearchIconClick} iconType='searchInput' />
                 <IconComponent iconType='userAccount' />
                 <IconComponent onClick={handleMobileProductListIconClick} iconType='productList' />
+                {
 
+                }
                 <IconComponent onClick={handleToggleMainMobileMenu} iconType={isRoutingState.isMobileNavOpen === true ? 'xClose' : 'mobileNavMenu'} />
             </div>
             {isRoutingState.isMobileNavOpen &&
@@ -145,157 +147,55 @@ const MobileNavComponent = () => {
 
 
 const DesktopNavComponent = () => {
-    const { isRoutingState, setIsRoutingState } = useRoutingHook();
+    const { setIsRoutingState } = useRoutingHook();
     const { setIsDesktopSearchState } = useSearchHook();
 
     const handleDesktopProductListIconClick = () => {
         setIsRoutingState(prevState =>
             ({ ...prevState, isProductListDropdownOpen: !prevState.isProductListDropdownOpen }))
-    }
 
-    const handlAppliancesLinkMouseEnter = () => {
-        setIsRoutingState(prevState => ({
-            ...prevState,
-            isCategoriesMenuOpen: true,
-            isResourcesMenuOpen: false,
-            isExclusiveMenuOpen: false
-        }));
     }
-    const handlAppliancesLinkMouseLeave = () => {
-        setIsRoutingState(prevState => ({
-            ...prevState,
-            isCategoriesMenuOpen: false
-        }));
-    }
-    const handleResourcesLinkMouseEnter = () => {
-        setIsRoutingState(prevState => ({
-            ...prevState,
-            isResourcesMenuOpen: true,
-            isCategoriesMenuOpen: false,
-            isExclusiveMenuOpen: false
-        }));
-    }
-    const handleResourcesLinkMouseLeave = () => {
-        setIsRoutingState(prevState => ({
-            ...prevState,
-            isResourcesMenuOpen: false
-        }));
-    }
-
-    const handleExclusiveLinkMouseEnter = () => {
-        setIsRoutingState(prevState => ({
-            ...prevState,
-            isExclusiveMenuOpen: true,
-            isCategoriesMenuOpen: false,
-            isResourcesMenuOpen: false
-        }));
-    }
-    const handleExclusiveLinkMouseLeave = () => {
-        setIsRoutingState(prevState => ({
-            ...prevState,
-            isExclusiveMenuOpen: false
-        }));
-    }
-
-
     return (
-        <>
-            <div className={styles.desktopNavComponentContainer}>
-                <GridSystem>
-                    <div className={styles.desktopNavContainer}>
-                        <div className={styles.desktopNavLogoWrapper}>
-                            <LinkComponent href='/hapg'>
-                                <img loading='lazy' src='/hapg/assets/image/logos/lg-logo.webp' alt='lg red face logo' />
-                            </LinkComponent>
-                        </div>
-                        <section className={styles.desktopNavMenuWrapper}>
-                            <div className={styles.dropdownSection}>
-                                <div
-                                    // onMouseLeave={handlAppliancesLinkMouseLeave} 
-                                    className={styles.desktopNavMenuHeader}>
-                                    <div onMouseEnter={handlAppliancesLinkMouseEnter} className={styles.desktopNavMenuText}>
-                                        <PageText type='navTitleText'>Home Appliances</PageText>
-                                    </div>
-                                </div>
-                                {
-                                    isRoutingState.isCategoriesMenuOpen &&
-                                    <div onMouseLeave={handlAppliancesLinkMouseLeave} className={styles.dropdownContainer}>
-                                        <div id={styles.applianceDropdownWrapperWidth} className={styles.dropdownWrapper}>
-                                            <div className={styles.dropdownContent}>
-                                                <div className={styles.dropdownLinks}>
-                                                    <ul className={styles.dropdownLinksList}>{RouteLinks(navCategoryLinks)}</ul>
-                                                    <ul className={styles.dropdownLinksList}>{RouteLinks(navSecondaryCategoryLinks)}</ul>
-                                                    <ul className={styles.dropdownLinksList}>{RouteLinks(allCategoryLink)}</ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                }
-                            </div>
-                            <div className={styles.dropdownSection}>
-                                <div
-                                    // onMouseLeave={handlAppliancesLinkMouseLeave} 
-                                    className={styles.desktopNavMenuHeader}>
-                                    <div onMouseEnter={handleResourcesLinkMouseEnter} className={styles.desktopNavMenuText}>
-                                        <PageText type='navTitleText'>Resources</PageText>
-                                    </div>
-                                </div>
-                                {
-                                    isRoutingState.isResourcesMenuOpen &&
-                                    <div onMouseLeave={handleResourcesLinkMouseLeave} className={styles.dropdownContainer}>
-                                        <div className={styles.dropdownWrapper}>
-                                            <div className={styles.dropdownContent}>
-                                                <div className={styles.dropdownLinks}>
-                                                    <ul className={styles.dropdownLinksList}>{RouteLinks(resourceLinks)}</ul>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                }
-                            </div>
-                            <div className={styles.dropdownSection}>
-                                <div
-                                    // onMouseLeave={handlAppliancesLinkMouseLeave} 
-                                    className={styles.desktopNavMenuHeader}>
-                                    <div onMouseEnter={handleExclusiveLinkMouseEnter} className={styles.desktopNavMenuText}>
-                                    <PageText type='navTitleText'>Exclusive</PageText>
-                                    </div>
-                                </div>
-                                {
-                                    isRoutingState.isExclusiveMenuOpen &&
-                                    <div onMouseLeave={handleExclusiveLinkMouseLeave} className={styles.dropdownContainer}>
-                                        <div className={styles.dropdownWrapper}>
-                                            <div className={styles.dropdownContent}>
-                                                <div className={styles.dropdownLinks}>
-                                                    <ul className={styles.dropdownLinksList}>{RouteLinks(exclusiveLinks)}</ul>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                }
-                            </div>
-                           
-                        </section>
-
-                        <section className={styles.desktopNavSearchWrapper}>
-                            <SearchComponent type='desktop' />
-                        </section>
-                        <section className={styles.desktopNavMenuWrapper}>
-                            <div className={styles.desktopNavIconsWrapper}>
-                                <IconComponent onClick={handleDesktopProductListIconClick} iconType='productList' />
-                                <IconComponent iconType='userAccount' />
-                            </div>
-                        </section>
+        <div className={styles.desktopNavComponentContainer}>
+            <GridSystem>
+                <div className={styles.desktopNavContainer}>
+                    <div className={styles.desktopNavLogoWrapper}>
+                        <LinkComponent href='/hapg'>
+                            <img loading='lazy' src='/hapg/assets/image/logos/lg-logo.webp' alt='lg red face logo' />
+                        </LinkComponent>
                     </div>
-                </GridSystem>
+                    <section className={styles.desktopNavMenuWrapper}>
+                        <div className={styles.desktopNavMenuHeader} >
+                            <PageText type='navTitleText'>Home Appliances</PageText>
+                        </div>
+                        <div className={styles.desktopNavMenuHeader} >
+                            <PageText
+                                type='navTitleText'
+                            >Resources</PageText>
+                        </div>
+                        <div className={styles.desktopNavMenuHeader} >
+                            <PageText
+                                type='navTitleText'
+                            >Offers</PageText>
+                        </div>
+                    </section>
+
+                    <section className={styles.desktopNavSearchWrapper}>
+                        <SearchComponent type='desktop' />
+                    </section>
+                    <section className={styles.desktopNavMenuWrapper}>
+                        <div className={styles.desktopNavIconsWrapper}>
+                            <IconComponent onClick={handleDesktopProductListIconClick} iconType='productList' />
+                            <IconComponent iconType='userAccount' />
+                        </div>
+                    </section>
 
 
+                </div>
+            </GridSystem>
 
-            </div>
 
-        </>
+        </div>
     );
 };
 

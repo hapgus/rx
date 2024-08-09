@@ -7,7 +7,6 @@ import { LinkComponent } from '../Links/LinkComponent';
 import styles from './Footer.module.css';
 import Logo from '../Logo/Logo';
 import { PageText } from '../Text/Text';
-import { GridSystem } from '../GridSystem/GridSystem';
 export function footerColumn(title, data = []) {
     return (
         <div className={styles.column}>
@@ -18,12 +17,12 @@ export function footerColumn(title, data = []) {
             <ul className={styles.columnList}>
                 {data.length > 0 ? data.map(link => (
                     <li key={link.href}>
-                        <LinkComponent
-                            href={link.href}
-                            type='trackedLinks'
+                        <LinkComponent 
+                        href={link.href}
+                        type='trackedLinks'
                         >
                             {/* <NavLink to={link.href}> */}
-                            <PageText type='footerMenuItem' className={styles.columnListMenuItem}>{link.text}</PageText>
+                                <PageText type='footerMenuItem' className={styles.columnListMenuItem}>{link.text}</PageText>
                             {/* </NavLink> */}
                         </LinkComponent>
                         {/* <LinkComponent
@@ -73,43 +72,31 @@ export function footerEmailLinks(title) {
 
 const Footer = () => {
     return (
+        <footer className={styles.footerContainer}>
+            <div className={styles.wrapper1}>
+                <div className={styles.section1}>
 
-        <footer >
-            <GridSystem containerBorderTop='1px solid #D0CBC1' containerBorderBottom='1px solid #D0CBC1' containerBackgroundColor='#F0ECE4'>
-                <div className={styles.contentWrapper}>
-                    <div className={styles.wrapper1}>
-                        <div className={styles.section1}>
-
-                            {footerColumn('Home Appliances', categoryLinks)}
-                            {footerColumn('Step Up Charts', stepUpChartLinks)}
-                            {footerColumn('Resources', resourceLinks)}
-                            {footerColumn('Exclusive', exclusiveLinks)}
-                            {footerExternalLinks('Support', externalLinks)}
-                            {footerEmailLinks('Contact Us', nativeEmailLinks)}
-                        </div>
-                    </div>
+                    {footerColumn('Home Appliances', categoryLinks)}
+                    {footerColumn('Step Up Charts', stepUpChartLinks)}
+                    {footerColumn('Resources', resourceLinks)}
+                    {footerColumn('Exclusive', exclusiveLinks)}
+                    {footerExternalLinks('Support', externalLinks)}
+                    {footerEmailLinks('Contact Us', nativeEmailLinks)}
                 </div>
-                <div className={styles.contentWrapper}>
-                    <div className={styles.wrapper2}>
-                        <div className={styles.section2}>
-                            <NavLink to='/'>
-                                <Logo type='lgVertical' style='lgVertical' />
-                            </NavLink>
-                        </div>
-                    </div>
+            </div>
+            <div className={styles.wrapper2}>
+                <div className={styles.section2}>
+                    <NavLink to='/'>
+                        <Logo type='lgVertical' style='lgVertical' />
+                    </NavLink>
                 </div>
-
-            </GridSystem>
-            <GridSystem containerBackgroundColor='#E6E1D6'>
-                <div className={styles.contentWrapper}>
-                    <div className={styles.wrapper3}>
-                        <div className={styles.section3}>
-                            <PageText type='footerMenuItem' > All rights reserved LG Home Appliances 2024</PageText>
-                            {/* <p className={styles.footerRightsText}></p> */}
-                        </div>
-                    </div>
+            </div>
+            <div className={styles.wrapper3}>
+                <div className={styles.section3}>
+                    <PageText type='footerMenuItem' > All rights reserved LG Home Appliances 2024</PageText>
+                    {/* <p className={styles.footerRightsText}></p> */}
                 </div>
-            </GridSystem>
+            </div>
         </footer>
     );
 }

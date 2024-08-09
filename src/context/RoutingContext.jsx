@@ -75,6 +75,7 @@ useEffect(()=> {
             
             isCategoriesMenuOpen: false,
             isResourcesMenuOpen: false,
+            isExclusiveMenuOpen: false,
             isAccountMenuOpen: false,
             isBuilderDropdownOpen: false,
         }))

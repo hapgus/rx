@@ -1,82 +1,70 @@
-.desktopAppliancePageContainer {
+
+.desktopAppliancePageContainer{
     display: none;
 }
-
 .mobileAppliancePageContainer {
     background-color: var(--color-gray-07);
 }
 
 /* HEADER  */
-.gridContainer1 {
+.gridContainer1{
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
+    grid-template-columns: repeat(12,1fr);
     grid-row: 1fr;
     padding: 4rem 0;
 }
-
-.gridWrapper1 {
+.gridWrapper1{
     grid-column: 1/-1;
-
+   
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
+    grid-template-columns: repeat(12,1fr);
     grid-row: 1fr;
 }
 
-.gridItem1 {
-    /* grid-column: 2/12; */
+.gridItem1{
+    grid-column: 2/12;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-
+    gap: 1rem;  
 }
 
-.titleText {
+.titleText{
     color: var(--color-gray-03);
 }
-
-.subtitleText {
+.subtitleText{
     color: var(--color-gray-01);
 }
-
-/* #specsGrid {
+#specsGrid{
     background-color: var(--color-gray-05);
 }
-
-#videoGrid {
+#videoGrid{
     background-color: var(--color-gray-05);
     border-top: 1px solid var(--color-gray-04);
 }
-
-#specSheetLinkGrid {
+#specSheetLinkGrid{
     background-color: var(--color-gray-05);
     border-top: 1px solid var(--color-gray-04);
 }
-
-#upcGrid {
+#upcGrid{
     background-color: var(--color-gray-05);
     border-top: 1px solid var(--color-gray-04);
 }
-
-#logosGrid {
+#logosGrid{
     background-color: var(--color-gray-05);
     border-top: 1px solid var(--color-gray-04);
 }
-
-#relatedProductGrid {
+#relatedProductGrid{
     background-color: var(--color-gray-04);
     border-top: 1px solid var(--color-gray-04);
-} */
-
-.buttonWrapper button {
+}
+.buttonWrapper button{
     width: 100%;
 }
-
-.colorButtonWrapper {
+.colorButtonWrapper{
     display: flex;
     flex-direction: column;
     gap: 4rem;
 }
-
 /* ---------------------------------------------------- */
 /* MOBILE HEADER */
 /* ---------------------------------------------------- */
@@ -126,14 +114,13 @@
 }
 
 
-.sectionTextWrapper {
+.sectionTextWrapper{
     padding-bottom: 2rem;
 }
 
-.applianceHeaderWrapperDiv1BtnWrapper button {
+.applianceHeaderWrapperDiv1BtnWrapper button{
     width: max-content;
 }
-
 @media (min-width: 430px) {
 
     /* ---------------------------------------------------- */
@@ -165,58 +152,59 @@
     }
 
 }
-
-@media (min-width:1024px) {}
-
-@media (min-width: 1280px) {
-    .mobileAppliancePageContainer {
+@media (min-width:1024px){
+   
+}
+@media (min-width: 1280px){
+    .mobileAppliancePageContainer{
         display: none;
     }
-
-    .desktopAppliancePageContainer {
+    .desktopAppliancePageContainer{
         display: block;
     }
-
+    
     .applianceSectionContainer1 {
         display: grid;
         grid-template-columns: repeat(12, 1fr);
         background-color: var(--color-gray-06);
     }
-
+    
     .applianceHeaderContainer {
         display: grid;
         grid-template-columns: repeat(12, 1fr);
         grid-column: 1/-1;
         padding: 0 8rem 4rem 8rem;
-
+        
     }
-
+    
     .applianceHeaderWrapper {
-        /* grid-column: 2/12;
+        grid-column: 2/12;
         display: grid;
         grid-template-columns: repeat(12, 1fr);
         grid-template-rows: repeat(3, auto);
         align-items: center;
-        column-gap: 4rem; */
+        column-gap: 4rem;
     }
-
-    /* .applianceHeaderWrapperDiv1 {
+    
+    .applianceHeaderWrapperDiv1 {
         grid-column: 1/8;
         grid-row: 1;
      padding-right: 2rem;
-    } */
-
-    /* .applianceHeaderWrapperDiv2 {
+    }
+    
+    .applianceHeaderWrapperDiv2 {
         grid-column: 8/-1;
         grid-row: 1/2;
+       
+    
     }
-     */
-    /* .applianceHeaderWrapperDiv3 {
+    
+    .applianceHeaderWrapperDiv3 {
         grid-column: 1/-1;
         grid-row: 3;
     
-    } */
-
+    }
+    
     .imageShapeGroupWrapper {
         /* background-color: palevioletred; */
         display: grid;
@@ -225,118 +213,144 @@
         justify-items: center;
         align-items: center;
     }
-
+    
     .productBackgroundShapeContainer {
         /* background-color: blue; */
         grid-column: 1/-1;
         grid-row: 1;
         z-index: 0;
     }
-
-    .productBackgroundShapeContainer svg {
+    .productBackgroundShapeContainer svg{
         height: 60rem;
     }
-
+    
     .productImageForShape {
         /* background-color: rgb(120, 120, 171); */
         grid-column: 1/-1;
         grid-row: 1;
         z-index: 1;
     }
-
+    
     .productImage {
         /* height: 49.4rem; */
-
+    
         /* background-color: aqua;  */
-
-        height: 50rem;
-        padding: 4rem;
-        max-width: 50rem;
+        
+       height: 50rem;
+     padding: 4rem;
+       max-width: 50rem;
         display: flex;
         justify-content: center;
         /* max-width: 100%; */
     }
-
+    
     .productImage img {
         height: 100%;
         width: 100%;
-
+    
         object-fit: contain;
-
+     
     }
-
+    
     /* TRANSFER */
     .applianceHeaderWrapperDiv1BtnWrapper {
         padding-top: 2rem;
     }
-
+    
     .applianceSectionContainer2 {
         display: grid;
         grid-template-columns: repeat(12, 1fr);
         background-color: var(--color-gray-05);
     }
-
+    
     .applianceSpecsContainer {
-        /* grid-column: 1/-1;
+        grid-column: 1/-1;
         display: grid;
         grid-template-columns: repeat(12, 1fr);
         grid-template-rows: 1fr;
         padding: 4rem 8rem;
         column-gap: 4rem;
-        border-top: 1px solid var(--color-gray-04); */
+        border-top: 1px solid var(--color-gray-04);
     }
-
-    /* .applianceSpecsWrapper {
+    .applianceSpecsWrapper {
         grid-column: 2/12;
     }
-     */
+    
     .specListItem {
         /* list-style: none; */
     }
-
+    
     .speclistWrapper ul,
     li {
         list-style: none;
     }
-
+    
     .applianceSectionContainer3 {
         /* display: grid;
         grid-template-columns: repeat(12,1fr); */
         background-color: var(--color-gray-05);
-        /* border-top: 1px solid var(--color-gray-04);
-        padding: 2rem 0 4rem 0; */
+        border-top: 1px solid var(--color-gray-04);
+        padding: 2rem 0 4rem 0;
     }
-
+    
     .applianceSectionContainer4 {
         background-color: var(--color-gray-01);
         display: grid;
         grid-template-columns: repeat(12, 1fr);
     }
-
+    
     .applianceSectionContainer {
         background-color: var(--color-gray-01);
         display: grid;
         grid-template-columns: repeat(12, 1fr);
-        /* border-top: 1px solid var(--color-gray-04); */
+        border-top: 1px solid var(--color-gray-04);
     }
-
     .applianceSectionWrapper {
-       
-
+        grid-column: 1/-1;
+        background-color: var(--color-gray-05);
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        padding: 4rem 8rem;
+    
     }
-
     .keyFeaturesContainer {
-       
-
+        grid-column: 1/-1;
+        background-color: var(--color-gray-05);
+        /* border-top: 1px solid var(--color-gray-04); */
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        padding: 0 8rem;
+    
     }
-
-  
-
+    
+    .keyFeaturesWrapper {
+        grid-column: 2/12;
+        /* background-color: var(--color-gray-06); */
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-rows: 1fr;
+    }
+    
+    .keyFeaturesWrapperDiv1 {
+        /* grid-column: 1/6; */
+        grid-column: 1/-1;
+        grid-row: 1;
+    
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .keyFeaturesWrapperDiv2 {
+        grid-column: 6/-1;
+        grid-row: 1;
+        justify-content: flex-end;
+    }
+    
     .featureShapeImage {
         height: 49.4rem;
         max-width: 100%;
     }
-
+    
     .logoListWrapper {
         display: flex;
         flex-direction: row;
@@ -345,10 +359,9 @@
         gap: 2rem;
         /* gap: 4rem;
         align-items: center; */
-
+    
     }
 }
-
 @media (min-width: 1920px) {
 
     /* ---------------------------------------------------- */

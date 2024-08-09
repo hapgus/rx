@@ -1,24 +1,23 @@
 .scrollToTopcontainer {
     display: flex;
-    width: 3.2rem;
-    height: 3.2rem;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgb(209, 58, 58);
+
+    width: 3.2rem;
+    height: 3.2rem;
+   
+    background-color: white;
+    
     border-radius: 100rem;
-    border: 1px solid var(--color-gray-03);
-    font-size: 1.6rem;
-    font-family: var(--lg-ei-text-regular);
+    border: 1px solid var(--color-gray-04);
+  
     position: fixed;
-    /* bottom: 10.67vw; */
     bottom: 10%;
     right: 10%;
-  
+    z-index: 2;
 
     cursor: pointer;
-  
-    z-index: 2;
 }
 @media (min-width: 1024px) {
     .scrollToTopcontainer {

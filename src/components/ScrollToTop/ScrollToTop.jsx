@@ -23,7 +23,7 @@ const ScrollToTop = () => {
             onClick={scrollToTop}
             className={styles.scrollToTopcontainer}
         >
-            <IconComponent iconType='xClose'/>
+            <IconComponent iconType='upArrow'/>
           
                 {/* <TheButton
                     animated="true"

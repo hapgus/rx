@@ -1,11 +1,9 @@
 import styles from './VideoComponent.module.css';
 import { GenericScrollHeader } from '../../ScrollingComponent/GenericScrollHeader';
 import { useState, useEffect, useRef } from 'react';
-import { GridSystem } from '../../GridSystem/GridSystem';
-import { useResponsiveStateHook } from '../../../hooks/responsive-hook';
 
 
-const MobileVideoComponent = ({ videos }) => {
+const MobileVideoComponent = ({videos}) => {
 
     const [scrollDisabled, setScrollDisabled] = useState({});
     const scrollRef = useRef();
@@ -65,13 +63,7 @@ const MobileVideoComponent = ({ videos }) => {
 
     return (
         <section className={styles.applianceSectionContainer3}>
-            <GridSystem
-             containerPaddingTop='2rem'
-             containerPaddingBottom='2rem'
-             containerBorderBottom='1px solid #D0CBC1'
-             containerBackgroundColor='#F6F3EB'
-            >
-                {/* <div className={styles.videosHeaderWrapper}> */}
+            <div className={styles.videosHeaderWrapper}>
                 <div className={styles.videosScrollHeader}>
                     <GenericScrollHeader
                         headerText='Feature Innovation'
@@ -81,19 +73,17 @@ const MobileVideoComponent = ({ videos }) => {
                         rightDisabled={scrollDisabled.right}
                     />
                 </div>
-                {/* </div> */}
-
-                <div className={styles.scrollWrapper}>
-                    <div ref={scrollRef} className={styles.container}>
-                        {featureVideos(videos)}
-                    </div>
+            </div>
+            <div className={styles.scrollWrapper}>
+                <div ref={scrollRef} className={styles.container}>
+                    {featureVideos(videos)}
                 </div>
-            </GridSystem>
+            </div>
         </section>
     );
 }
 
-const DesktopVideoComponent = ({ videos }) => {
+const DesktopVideoComponent = ({videos}) => {
     const [scrollDisabled, setScrollDisabled] = useState({});
     const scrollRef = useRef();
 
@@ -151,40 +141,34 @@ const DesktopVideoComponent = ({ videos }) => {
     }
 
     return (
-        <GridSystem
-        containerPaddingTop='2rem'
-             containerPaddingBottom='2rem'
-             containerBorderBottom='1px solid #D0CBC1'
-             containerBackgroundColor='#F0ECE4'
-        >
-
-            <div className={styles.videosScrollHeader}>
-                <GenericScrollHeader
-                    headerText='Feature Innovation'
-                    leftOnClick={() => scroll('left')}
-                    rightOnClick={() => scroll('right')}
-                    leftDisabled={scrollDisabled.left}
-                    rightDisabled={scrollDisabled.right}
-                />
+        <section className={styles.applianceSectionContainer3}>
+            <div className={styles.videosHeaderWrapper}>
+                <div className={styles.videosScrollHeader}>
+                    <GenericScrollHeader
+                        headerText='Feature Innovation'
+                        leftOnClick={() => scroll('left')}
+                        rightOnClick={() => scroll('right')}
+                        leftDisabled={scrollDisabled.left}
+                        rightDisabled={scrollDisabled.right}
+                    />
+                </div>
             </div>
-
             <div className={styles.scrollWrapper}>
                 <div ref={scrollRef} className={styles.container}>
                     {featureVideos(videos)}
                 </div>
             </div>
-        </GridSystem>
+        </section>
     );
 }
 
 export const VideoComponent = ({ videos }) => {
+   
 
-    const { isDesktop, isMobile } = useResponsiveStateHook()
     return (
-        <>
-            {isDesktop && <DesktopVideoComponent videos={videos} />}
-            {isMobile && <MobileVideoComponent videos={videos} />}
-        </>
-
+        <section className={styles.applianceSectionContainer3}>
+            <div className={styles.mobileVideoComponent}><MobileVideoComponent videos={videos}/></div>
+            <div className={styles.desktopVideoComponent}><DesktopVideoComponent videos={videos}/></div>
+        </section>
     );
 } 

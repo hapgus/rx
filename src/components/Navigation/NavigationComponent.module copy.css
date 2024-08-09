@@ -3,11 +3,10 @@
 /* --------------------------------------------------------------------------------------- */
 .mainNavComponentContainer {
     background-color: var(--color-gray-06);
-    /* padding: 1.5rem 2rem; */
+    padding: 1.5rem 2rem;
     border-bottom: 1px solid var(--color-gray-04);
 
 }
-
 .mobileNavWrapper {
     /* display: flex; */
 }
@@ -17,82 +16,63 @@
 /* --------------------------------------------------------------------------------------- */
 
 
-.mobileNavComponentContainer {
+.mobileNavComponentContainer{
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
 }
-
-.mobileLogoWrapper {
+.mobileLogoWrapper{
     height: 3.2rem;
     width: auto;
+}.mobileLogoWrapper img{
+  object-fit: contain;
+  height: 100%;
+  width: auto;
 }
 
-.mobileLogoWrapper img {
-    object-fit: contain;
-    height: 100%;
-    width: auto;
-}
-
-.mobileIconsWrapper {
+.mobileIconsWrapper{
     display: flex;
     flex-direction: row;
     gap: 2.5rem;
-}
-
-.mobileIconsWrapper svg {
+}.mobileIconsWrapper svg {
     height: 2.4rem;
     width: 2.4rem;
     display: flex;
 }
-
-.mobileMenuBackIconWrapper {
-    padding: 0 0 1rem 0;
+.mobileMenuBackIconWrapper{
+    padding: 0 0 2rem 0 ;
 }
-
-.mobileMenuBackIconWrapper svg {
-    height: 2.4rem;
-    width: 2.4rem;
-
-}
-
-.mobileNavDropdownMenuWrapper {
-    /* padding: 0 4rem; */
+.mobileNavDropdownMenuWrapper{
+    padding: 0 4rem;
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 1rem;
 }
-
-.mobileMenuHeader {
+.mobileMenuHeader{
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: center;   
     justify-content: space-between;
     gap: 2rem;
-}
-
-.mobileMenuHeader svg {
-    height: 2.4rem;
-    width: 2.4rem;
+}.mobileMenuHeader svg{
+    height: 1.8rem;
+    width: 1.8rem;
     display: flex;
     align-items: center;
 }
-
-.mobileNavOptionsList a {
+.mobileNavOptionsList a{
     color: black;
     font-size: 1.8rem;
 }
-
-.mobileNavOptionsList {
+.mobileNavOptionsList{
     display: flex;
     flex-direction: column;
     gap: 1rem;
     padding-bottom: 1rem;
 }
-
-.mobileNavOptionsList li {
-    list-style: none;
+.mobileNavOptionsList li{
+  list-style: none;
 }
 
 /* --------------------------------------------------------------------------------------- */
@@ -124,106 +104,45 @@
         display: block;
     }
 
-    .desktopNavContainer {
+    .desktopNavContainer{
         display: flex;
         flex-direction: row;
         align-items: center;
         /* justify-content: space-between; */
     }
-
-    .desktopNavLogoWrapper {
+    .desktopNavLogoWrapper{
         height: 4.4rem;
         width: auto;
         padding-right: 4rem;
     }
-
-    .desktopNavLogoWrapper img {
+    
+    .desktopNavLogoWrapper img{
         object-fit: contain;
         height: 100%;
         width: auto;
     }
-
-    .desktopNavMenuWrapper {
+    .desktopNavMenuWrapper{
         display: flex;
         flex-direction: row;
         gap: 2.5rem;
-        /* background-color: aqua; */
     }
-    .desktopNavMenuHeader {
-        display: flex;
-        flex-direction: row;
-        gap: 2.5rem;
-        /* background-color: rgb(13, 114, 114); */
-         padding: 2.5rem 2rem;
-    }
-    .desktopNavSearchWrapper {
+    .desktopNavSearchWrapper{
         /* background-color: pink; */
         margin-left: auto;
         margin-right: 2.5rem;
         width: 40rem;
     }
-
-    .desktopNavIconsWrapper {
+    .desktopNavIconsWrapper{
         display: flex;
         flex-direction: row;
         gap: 2.5rem;
-
-    }
-
-    .desktopNavIconsWrapper svg {
+        
+    }.desktopNavIconsWrapper svg {
         height: 2.4rem;
         width: 2.4rem;
         display: flex;
-
+    
     }
-.dropdownSection{
-
-    position: relative;
-}
-    .dropdownContainer {
-
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: auto; /* Let the container width be determined by the content */
-        z-index: 999; /* Ensure the dropdown is above other elements */
-    }
-
-    .dropdownWrapper {
-        position: relative;
-        min-width: 30rem;
-        /* width: 300px;  */
-        /* Set a desired width or percentage */
-        max-width: 100%; /* Ensure it doesn’t overflow the container */
-    }
-    #applianceDropdownWrapperWidth{
-        min-width: 70rem;
-    }
-    .dropdownContent{
-        position: relative; /* Change to relative if width adjustments didn't work */
-        background-color: var(--color-gray-06);
-        padding: 3rem 4rem;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for a subtle 3D effect */
-        border-radius: 4px; /* Add rounding for a modern look */
-        width: 100%; /* Ensure it takes the full width of dropdownWrapper */
-        border-bottom-left-radius: 2rem;
-        border-bottom-right-radius: 2rem;
-    }
-    .dropdownLinks{
-        display: flex;
-        flex-direction: row;
-        gap: 8rem;
-    }
-    .dropdownLinksList{
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-.dropdownLinksList a{
-    color: var(--color-gray-01);
-    font-size: 1.6rem;
-}
-
 }
 
 

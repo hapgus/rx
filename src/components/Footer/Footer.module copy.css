@@ -1,7 +1,21 @@
-
-.contentWrapper{
-    padding: 2rem 0;
+.footerContainer {
+    background-color: var(--color-gray-06);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-top: 2px solid var(--color-gray-04);
 }
+
+.wrapper1,
+.wrapper2,
+.wrapper3 {
+    padding: 1rem;
+}
+
+.wrapper1 {
+    background-color: var(--color-gray-06);
+}
+
 .wrapper2 {
     display: flex;
     align-items: center;
@@ -10,7 +24,7 @@
 
 .wrapper3 {
     background-color: var(--color-gray-05);
-    /* border-top: 1px solid var(--color-gray-04); */
+    border-top: 1px solid var(--color-gray-04);
 
 }
 
@@ -46,11 +60,11 @@ color: var(--color-gray-03);
 
 @media (min-width: 390px) {
 
-    /* .wrapper1,
+    .wrapper1,
     .wrapper2,
     .wrapper3 {
         padding: 2rem;
-    } */
+    }
 
     /* .section1{
         gap: 3rem;
@@ -67,42 +81,42 @@ color: var(--color-gray-03);
 @media (min-width: 834px) {}
 
 @media (min-width: 1024px) {
-/* 
+
     .footerContainer {
         display: grid;
         grid-template-rows: 2rem auto auto auto;
         grid-template-columns: repeat(12, 1fr);
-    } */
+    }
 
-    /* .wrapper1,
+    .wrapper1,
     .wrapper2,
     .wrapper3 {
         padding: 2rem 4rem;
-    } */
+    }
 
     .wrapper1 {
-        /* display: grid;
+        display: grid;
         grid-template-columns: repeat(12, 1fr);
         grid-row: 2;
-        grid-column: 1/-1; */
+        grid-column: 1/-1;
         /* padding: 0 8rem;
         column-gap: 4rem; */
     }
 
     .wrapper2 {
         display: grid;
-        /* grid-template-columns: repeat(12, 1fr); */
+        grid-template-columns: repeat(12, 1fr);
         justify-items: end;
-        /* grid-row: 3;
-        grid-column: 1/-1; */
+        grid-row: 3;
+        grid-column: 1/-1;
         /* padding: 1rem 0; */
     }
 
     .wrapper3 {
-        /* display: grid;
+        display: grid;
         grid-template-columns: repeat(12, 1fr);
         grid-row: 4;
-        grid-column: 1/-1; */
+        grid-column: 1/-1;
         /* padding: 1rem 8rem; */
         /* column-gap: 4rem; */
     }
@@ -150,7 +164,7 @@ color: var(--color-gray-03);
     .wrapper1,
     .wrapper2,
     .wrapper3 {
-        /* padding: 2rem 8rem; */
+        padding: 2rem 8rem;
     }
 }
 

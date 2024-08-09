@@ -87,14 +87,34 @@ const DownChevron = () => (
 );
 
 const RightChevron = () => (
-    <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0.88502 13.27L7.52002 6.635L0.88502 0L2.00272e-05 0.885L5.75002 6.635L2.00272e-05 12.385L0.88502 13.27Z" fill="black" />
+    <svg xmlns="http://www.w3.org/2000/svg" width="7" height="12" viewBox="0 0 7 12" fill="none">
+        <g clipPath="url(#clip0_53_299)">
+            <path d="M0.769531 0.299805L6.38953 5.9098L0.769531 11.5298" stroke="#231F20" strokeWidth="0.6" strokeLinecap="round" strokeLinejoin="round" />
+        </g>
+        <defs>
+            <clipPath id="clip0_53_299">
+                <rect width="6.22" height="11.83" fill="white" transform="translate(0.469727)" />
+            </clipPath>
+        </defs>
     </svg>
+    // <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+    //     <path d="M0.88502 13.27L7.52002 6.635L0.88502 0L2.00272e-05 0.885L5.75002 6.635L2.00272e-05 12.385L0.88502 13.27Z" fill="black" />
+    // </svg>
 );
 const LeftChevron = () => (
-    <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M6.635 13.27L0 6.635L6.635 0L7.52 0.885L1.77 6.635L7.52 12.385L6.635 13.27Z" fill="black" />
+    <svg xmlns="http://www.w3.org/2000/svg" width="7" height="12" viewBox="0 0 7 12" fill="none">
+        <g clipPath="url(#clip0_53_297)">
+            <path d="M6.1598 11.5298L0.549805 5.9198L6.1698 0.299805" stroke="#231F20" strokeWidth="0.6" strokeLinecap="round" strokeLinejoin="round" />
+        </g>
+        <defs>
+            <clipPath id="clip0_53_297">
+                <rect width="6.22" height="11.83" fill="white" transform="translate(0.25)" />
+            </clipPath>
+        </defs>
     </svg>
+    // <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+    //     <path d="M6.635 13.27L0 6.635L6.635 0L7.52 0.885L1.77 6.635L7.52 12.385L6.635 13.27Z" fill="black" />
+    // </svg>
 );
 
 const ExternalLink = () => (
@@ -125,6 +145,21 @@ const LeftArrow = () => (
         </defs>
     </svg>
 );
+
+const UpArrow = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="12" viewBox="0 0 13 12" fill="none">
+        <g clipPath="url(#clip0_47_134)">
+            <path d="M12.1807 5.93555L6.57066 0.315547L0.950665 5.93555" stroke="#231F20" strokeWidth="0.6" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M6.56055 11.5156L6.56055 0.315625" stroke="#231F20" strokeWidth="0.6" strokeLinecap="round" strokeLinejoin="round" />
+        </g>
+        <defs>
+            <clipPath id="clip0_47_134">
+                <rect width="11.8" height="11.83" fill="white" transform="matrix(1.19249e-08 -1 -1 -1.19249e-08 12.4805 11.8154)" />
+            </clipPath>
+        </defs>
+    </svg>
+);
+
 
 
 const Expand = () => (
@@ -160,6 +195,7 @@ const XClose = () => (
     </svg>
 )
 
+
 const icons = {
 
     mobileNavMenu: MobileNavMenu,
@@ -171,11 +207,12 @@ const icons = {
     upChevron: UpChevron,
     downChevron: DownChevron,
     leftArrow: LeftArrow,
+    upArrow: UpArrow,
     expand: Expand,
     print: Print,
     redMinus: RedMinus,
     xClose: XClose,
-    externalLink:ExternalLink
+    externalLink: ExternalLink
 }
 
 
