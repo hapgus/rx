@@ -81,10 +81,10 @@
 .bodySubtitle {
     font-size: 2.2rem;
 }
-/* .bodySubtitleBold{
+.bodySubtitleBold{
     font-family: var(--text-semibold);
     font-size: 2.2rem;
-} */
+}
 .bodyTertiaryTitle {
     font-size: 1.8rem;
 }
@@ -94,6 +94,12 @@
 }
 .bodyDescription {
     font-size: 1.4rem;
+}
+.bodyDescriptionMedium {
+    font-size: 1.6rem;
+}
+.bodyDescriptionLarge {
+    font-size: 1.8rem;
 }
 
 /* --------------------------------------------------------------------------------------- */

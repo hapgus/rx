@@ -55,78 +55,85 @@ const MobileNavComponent = () => {
                 {
 
                 }
-                <IconComponent onClick={handleToggleMainMobileMenu} iconType={isRoutingState.isMobileNavOpen === true ?'xClose':'mobileNavMenu'} />
+                <IconComponent onClick={handleToggleMainMobileMenu} iconType={isRoutingState.isMobileNavOpen === true ? 'xClose' : 'mobileNavMenu'} />
             </div>
             {isRoutingState.isMobileNavOpen &&
-                <Overlay containerMarginTop='5rem'>
+                <Overlay containerMarginTop='6rem'>
                     <GridSystem>
-                        <div className={styles.mobileMenuBackIconWrapper}>
-                            <IconComponent onClick={handleToggleMainMobileMenu} iconType='leftChevron' />
-                        </div>
+                        <div className={styles.mobileNavDropdownMenuWrapper}>
+                            <div className={styles.mobileMenuBackIconWrapper}>
+                                <IconComponent onClick={handleToggleMainMobileMenu} iconType='leftChevron' />
+                            </div>
 
-                        <div className={styles.mobileMenuHeader} >
-                            <PageText type='navTitleText'>Home Appliances</PageText>
-                            <IconComponent onClick={handleToggleMobileAppliancesMenu} iconType='rightChevron' />
+                            <div className={styles.mobileMenuHeader} >
+                                <PageText type='navTitleText'>Home Appliances</PageText>
+                                <IconComponent onClick={handleToggleMobileAppliancesMenu} iconType='rightChevron' />
+                            </div>
+                            <div className={styles.mobileMenuHeader} >
+                                <PageText type='navTitleText'>Resources</PageText>
+                                <IconComponent onClick={handleToggleMobileResourcesMenu} iconType='rightChevron' />
+                            </div>
+                            <div className={styles.mobileMenuHeader} >
+                                <PageText type='navTitleText'>Product Guide Exclusives</PageText>
+                                <IconComponent onClick={handleToggleMobileExclusiveMenu} iconType='rightChevron' />
+                            </div>
                         </div>
-                        <div className={styles.mobileMenuHeader} >
-                            <PageText type='navTitleText'>Resources</PageText>
-                            <IconComponent onClick={handleToggleMobileResourcesMenu} iconType='rightChevron' />
-                        </div>
-                        <div className={styles.mobileMenuHeader} >
-                            <PageText type='navTitleText'>Product Guide Exclusives</PageText>
-                            <IconComponent onClick={handleToggleMobileExclusiveMenu} iconType='rightChevron' />
-                        </div>
-
                     </GridSystem>
                 </Overlay>
             }
             {
                 isRoutingState.isMobileCategoriesMenuOpen &&
-                <Overlay containerMarginTop='5rem'>
+                <Overlay containerMarginTop='6rem'>
                     <GridSystem >
-                        <div className={styles.mobileMenuBackIconWrapper}>
-                            <IconComponent onClick={handleToggleMobileAppliancesMenu} iconType='leftChevron' />
-                        </div>
+                        <div className={styles.mobileNavDropdownMenuWrapper}>
+                            <div className={styles.mobileMenuBackIconWrapper}>
+                                <IconComponent onClick={handleToggleMobileAppliancesMenu} iconType='leftChevron' />
+                            </div>
 
-                        <div className={styles.mobileDropdownContent}>
-                            <ul className={styles.mobileNavOptionsList}>{RouteLinks(navCategoryLinks)}</ul>
-                            <ul className={styles.mobileNavOptionsList}>{RouteLinks(navSecondaryCategoryLinks)}</ul>
+                            <div className={styles.mobileDropdownContent}>
+                                <ul className={styles.mobileNavOptionsList}>{RouteLinks(navCategoryLinks)}</ul>
+                                <ul className={styles.mobileNavOptionsList}>{RouteLinks(navSecondaryCategoryLinks)}</ul>
+                            </div>
                         </div>
                     </GridSystem>
                 </Overlay>
             }
             {
                 isRoutingState.isMobileResourcesMenuOpen &&
-                <Overlay containerMarginTop='5rem'>
+                <Overlay containerMarginTop='6rem'>
                     <GridSystem >
-                        <div className={styles.mobileMenuBackIconWrapper}>
-                            <IconComponent onClick={handleToggleMobileResourcesMenu} iconType='leftChevron' />
-                        </div>
-                        <div className={styles.mobileDropdownContent}>
-                            <ul className={styles.mobileNavOptionsList}>{RouteLinks(resourceLinks)}</ul>
+                        <div className={styles.mobileNavDropdownMenuWrapper}>
+                            <div className={styles.mobileMenuBackIconWrapper}>
+                                <IconComponent onClick={handleToggleMobileResourcesMenu} iconType='leftChevron' />
+                            </div>
+                            <div className={styles.mobileDropdownContent}>
+                                <ul className={styles.mobileNavOptionsList}>{RouteLinks(resourceLinks)}</ul>
 
+                            </div>
                         </div>
                     </GridSystem>
                 </Overlay>
             }
             {
                 isRoutingState.isMobileExclusiveMenuOpen &&
-                <Overlay containerMarginTop='5rem'>
+                <Overlay containerMarginTop='6rem'>
                     <GridSystem >
-                        <div className={styles.mobileMenuBackIconWrapper}>
-                            <IconComponent onClick={handleToggleMobileExclusiveMenu} iconType='leftChevron' />
-                        </div>
+                        <div className={styles.mobileNavDropdownMenuWrapper}>
+                            <div className={styles.mobileMenuBackIconWrapper}>
+                                <IconComponent onClick={handleToggleMobileExclusiveMenu} iconType='leftChevron' />
+                            </div>
 
-                        <div className={styles.mobileDropdownContent}>
-                            <ul className={styles.mobileNavOptionsList}>
-                                <li>
-                                    <LinkComponent
-                                        linkText="Product List Builder"
-                                        href='/hapg'
-                                        type='trackedLink'
-                                    />
-                                </li>
-                            </ul>
+                            <div className={styles.mobileDropdownContent}>
+                                <ul className={styles.mobileNavOptionsList}>
+                                    <li>
+                                        <LinkComponent
+                                            linkText="Product List Builder"
+                                            href='/hapg'
+                                            type='trackedLink'
+                                        />
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </GridSystem>
                 </Overlay>

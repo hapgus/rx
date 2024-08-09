@@ -3,7 +3,9 @@
     position: relative;
     /* height: 100rem; */
     height: 100vh;
+    height: 90rem;
     overflow-y: scroll;
+    padding-bottom: 4rem;
 }
 
 .searchIconWrapper svg {

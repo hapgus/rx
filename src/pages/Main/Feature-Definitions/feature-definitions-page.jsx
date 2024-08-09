@@ -21,7 +21,7 @@ const FeatureDefinitionsPage = () => {
                 <GridSystem >
                     <PageText type="pageSubtitle">Resources</PageText>
                     <PageText type="pageTitle">Feature Definitions</PageText>
-                    <PageText type="bodyDescription">This is your go-to destination for a quick and informative overview of LG's cutting-edge technology and innovations. You play a pivotal role in guiding customers through our range of products, and we're here to equip you with the knowledge you need to provide exceptional customer experiences. Explore our intuitive and advanced features such as AIDD™, QuadWash® Pro and more.</PageText>
+                    <PageText type="bodySubtitle">This is your go-to destination for a quick and informative overview of LG's cutting-edge technology and innovations. You play a pivotal role in guiding customers through our range of products, and we're here to equip you with the knowledge you need to provide exceptional customer experiences. Explore our intuitive and advanced features such as AIDD™, QuadWash® Pro and more.</PageText>
                 </GridSystem>
             </div>
             {/* <div className={styles.pageHeaderContainer}>
@@ -50,15 +50,15 @@ const FeatureDefinitionsPage = () => {
 
                         <div className={styles.featureDefinitionsPageContainer} data-section id={`category-${categoryIndex}`}>
                             <div className={styles.categoryTitleWrapper}>
-                                <PageText type="bodySubtitle">{capitalizeFirstLetterEachWord(category)}</PageText>
+                                <PageText type="pageSubtitle">{capitalizeFirstLetterEachWord(category)}</PageText>
                             </div>
                             {groupedData[category].map((item, itemIndex) => (
                                 <div className={styles.definitionWrapper} key={itemIndex}>
                                     <div className={styles.featureTitleWrapper}>
-                                        <PageText type="bodyTertiaryTitle">{item.feature}</PageText>
+                                        <PageText type="bodySubtitle">{item.feature}</PageText>
                                     </div>
                                     <div className={styles.featureDescriptionWrapper}>
-                                        <PageText type="bodyDescription">{item.definition}</PageText>
+                                        <PageText type="bodyDescriptionMedium">{item.definition}</PageText>
                                     </div>
                                 </div>
                             ))}

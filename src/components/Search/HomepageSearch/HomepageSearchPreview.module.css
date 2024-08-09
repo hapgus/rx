@@ -8,10 +8,11 @@
 /* --------------------------------------------------------------------------------------- */
 .searchPreviewMainContainer{
   background-color: var(--color-gray-06);
-    padding: 0 1rem;
+    padding: 0 2rem 0 0;
     position: absolute;
      border-bottom-left-radius: 2.6rem;
     border-bottom-right-radius: 2.6rem;
+    /* height: 82rem; */
 }
 .searchPreviewWithResultsWrapper{
 position: relative;
@@ -20,13 +21,16 @@ width: 58rem;
  /* border-bottom-left-radius: 2.6rem;
     border-bottom-right-radius: 2.6rem; */
     height: 52rem;
+    /* background-color: aqua; */
 }
 
 .searchPreviewWithResultsInnerDiv{
     position: relative;
-    height: 50.5rem;
+    /* height: 50.5rem; */
+    height: 80rem;
     overflow-y: scroll;
     padding: 1rem;
+    /* background-color: rebeccapurple; */
 }
 /* For WebKit-based browsers */
 .searchPreviewWithResultsInnerDiv::-webkit-scrollbar {

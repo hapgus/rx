@@ -59,7 +59,7 @@ const PopulatedListScreen = () => {
 
             <div className={styles.populatedListHeader}>
                 <div className={styles.populatedListBackIconWrapper}>
-                    <IconComponent onClick={handleProductListDropdownIconClick} iconType='rightChevron' />
+                    <IconComponent onClick={handleProductListDropdownIconClick} iconType='xClose' />
                 </div>
 
                 <PageText type="searchTitle">Product List Builder</PageText>

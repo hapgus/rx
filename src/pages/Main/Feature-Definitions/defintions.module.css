@@ -12,11 +12,11 @@
 
 .featureTitleWrapper{
     /* font-family: var(--text-semibold); */
-    color: var(--color-gray-01);
+    color: var(--color-gray-02);
     padding-bottom: 1rem;
 }
 .featureDescriptionWrapper{
-    color: var(--color-gray-02);
+    color: var(--color-gray-01);
 }
 
 .definitionWrapper:not(:last-child){

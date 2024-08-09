@@ -41,14 +41,20 @@
     display: flex;
 }
 .mobileMenuBackIconWrapper{
-    padding: 0 0 1rem 0 ;
+    padding: 0 0 2rem 0 ;
 }
-
+.mobileNavDropdownMenuWrapper{
+    padding: 0 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
 .mobileMenuHeader{
     display: flex;
     flex-direction: row;
     align-items: center;   
     justify-content: space-between;
+    gap: 2rem;
 }.mobileMenuHeader svg{
     height: 1.8rem;
     width: 1.8rem;
@@ -58,6 +64,12 @@
 .mobileNavOptionsList a{
     color: black;
     font-size: 1.8rem;
+}
+.mobileNavOptionsList{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-bottom: 1rem;
 }
 .mobileNavOptionsList li{
   list-style: none;

@@ -10,13 +10,13 @@ export const HomepageSearchPreview = () => {
 
 
     const { publicProducts } = useProductsHook();
-   const {isMobile} = useResponsiveStateHook();
+    const { isMobile } = useResponsiveStateHook();
     const { isMobileSearchState, isHomepageSearchState, isDesktopSearchState } = useSearchHook();
     const productDataSearch = publicProducts;
     const mobileSearchResultsCount = isMobileSearchState.isSearchResults.length > 0 ? isMobileSearchState.isSearchResults.length : 0
     const desktopSearchResultsCount = isDesktopSearchState.isSearchResults.length > 0 ? isDesktopSearchState.isSearchResults.length : 0
 
- 
+
 
     if (isHomepageSearchState.isHomepageSearch === true && isMobile !== true) {
         return (
@@ -25,12 +25,13 @@ export const HomepageSearchPreview = () => {
                     isHomepageSearchState.isSearchResults.length > 0 ? (
                         <div className={styles.searchPreviewWithResultsWrapper}>
                             <div className={styles.searchPreviewWithResultsInnerDiv}>
-                                <HomepageSearchPreviewCard  products={isHomepageSearchState.isSearchResults && isHomepageSearchState.isSearchResults}  />
+                                <HomepageSearchPreviewCard products={isHomepageSearchState.isSearchResults && isHomepageSearchState.isSearchResults} />
                                 {/* <SearchPreviewCard products={isHomepageSearchState.isSearchResults && isHomepageSearchState.isSearchResults} /> */}
                             </div>
                         </div>
                     ) : null
-                }</div>
+                }
+            </div>
         );
     }
 

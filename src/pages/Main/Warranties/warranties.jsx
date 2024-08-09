@@ -15,7 +15,7 @@ const WarrantiesPage = () => {
                 <GridSystem>
                     <PageText type="pageSubtitle">Resources</PageText>
                     <PageText type="pageTitle">Limited Warrantiess</PageText>
-                    <PageText type="bodyDescription">LG is committed to making sure that each of our products perform at the highest level for years to come. We are constantly innovating to make sure our customers can purchase with confidence, and pride ourselves in creating the most reliable appliances on the market</PageText>
+                    <PageText type="bodySubtitle">LG is committed to making sure that each of our products perform at the highest level for years to come. We are constantly innovating to make sure our customers can purchase with confidence, and pride ourselves in creating the most reliable appliances on the market</PageText>
                 </GridSystem>
 
             </div>
@@ -26,12 +26,12 @@ const WarrantiesPage = () => {
                         return (
                             <div key={idx} className={styles.warrantyCard}>
                                 <div className={styles.warrantyCardTitle}>
-                                    <PageText type='bodyTertiaryTitle'>{warranties.warranty_category}</PageText>
+                                    <PageText type='bodySubtitleBold'>{warranties.warranty_category}</PageText>
                                 </div>
 
                                 <ul className={styles.warrantyItemListWrapper}> {warranties.description.map((list, idx) => {
                                     return <li className={styles.warrantyItem} key={idx}>
-                                        <PageText type='bodyDescription'>{list}</PageText>
+                                        <PageText type='bodyDescriptionLarge'>{list}</PageText>
 
                                     </li>;
                                 })}</ul>

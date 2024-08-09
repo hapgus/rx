@@ -12,14 +12,14 @@ import { useEffect } from 'react';
 import Footer from '../components/Footer/Footer';
 import { PrintScreen } from '../components/Print/PrintScreen';
 import Loader from '../components/Loader/Loader';
-
-
+import { useLocation } from "react-router-dom";
+import ScrollToTop from '../components/ScrollToTop/ScrollToTop';
 
 export default function Layout() {
-
+    const location = useLocation();
     const { isAlert, setIsAlert, isModal } = useNotificationHook();
     const { isMobileSearchState, isDesktopSearchState, isHomepageSearchState } = useSearchHook();
-    const { isRoutingState } = useRoutingHook();
+    const { isRoutingState, setIsRoutingState } = useRoutingHook();
 
     useEffect(() => {
         if (isMobileSearchState.isMobileSearch) {
@@ -63,12 +63,39 @@ export default function Layout() {
 
     }, [isAlert, setIsAlert]);
 
+    useEffect(() => {
+        // window.scrollTo(0, 0);
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }, [location]);
+      
+    // TOTOPBUTTON
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.pageYOffset > 800) {
+                setIsRoutingState(prevState => ({ ...prevState, isShowScrollToTopButton: true }))
+            } else {
+                setIsRoutingState(prevState => ({ ...prevState, isShowScrollToTopButton: false }))
+            }
+        };
 
+        window.addEventListener("scroll", handleScroll);
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, [location]);
+
+
+    console.log(isRoutingState)
     return (
         <>
             <PrintScreen />
 
-{isRoutingState.isLoading && <Loader/>}
+            {isRoutingState.isLoading && <Loader />}
+            {isRoutingState.isShowScrollToTopButton && <ScrollToTop />}
 
             {isAlert.show && (
                 <ProductGuideAlerts
