@@ -57,7 +57,7 @@ export default function Layout() {
         if (isAlert.show) {
             timeout = setTimeout(() => {
                 setIsAlert({ ...isAlert, show: false });
-            }, 1000);
+            }, 2000);
         }
         return () => clearTimeout(timeout);
 

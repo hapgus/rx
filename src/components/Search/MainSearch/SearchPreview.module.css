@@ -37,7 +37,7 @@
     border-bottom-left-radius: 2.6rem;
     border-bottom-right-radius: 2.6rem;
     border-left: 1px solid var(--color-gray-04);
-    border-right: 1px solid var(--color-gray-04);
+    border-right: 1px solid var(--color-gray-04);z-index: 2;
     /* border-bottom: 1px solid var(--color-gray-04); */
 }
 
@@ -45,13 +45,14 @@
     position: relative;
 
     width: 38rem;
-    height: 42rem;
+    height: 62rem;
+    
 
 }
 
 .desktopSearchPreviewWithResultsInnerDiv {
     /* position: absolute; */
-    height: 40.5rem;
+    height: 60.5rem;
     overflow-y: scroll;
     background-color: var(--color-gray-06);
 

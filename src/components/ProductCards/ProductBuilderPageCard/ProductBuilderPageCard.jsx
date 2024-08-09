@@ -89,7 +89,7 @@ const MobileProductBuilderPageCard = ({ product }) => {
                                 <Button
                                     buttonStyleType="primary"
                                     buttonTextType="action">
-                                    See the details
+                                    See details
                                 </Button>
                             </NavLink>
                         </div>

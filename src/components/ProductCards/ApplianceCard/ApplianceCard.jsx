@@ -45,7 +45,7 @@ const publicUrl = process.env.PUBLIC_URL;
                       
                             <LinkComponent href={productURL}>
                                 <Button buttonStyleType="secondary" buttonTextType="action">
-                                    See the details
+                                    See details
                                 </Button>
                             </LinkComponent>
                        
