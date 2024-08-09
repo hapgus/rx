@@ -13,36 +13,39 @@ import { IconComponent } from "../Icon/IconComponent";
 
 
 const EmptyListScreen = () => {
-    const {isRoutingState, setIsRoutingState}=useRoutingHook();
+    const { isRoutingState, setIsRoutingState } = useRoutingHook();
 
-    const handleCloseListClick = () => setIsRoutingState(prevState=>({...prevState, isProductListDropdownOpen: false}))
+    const handleCloseListClick = () => setIsRoutingState(prevState => ({ ...prevState, isProductListDropdownOpen: false }))
     return (
+        <div className={styles.a}>
+            <div className={styles.b}>
+                <div className={styles.emptyProductListBodyMobile}>
+                    <div onClick={handleCloseListClick} className={styles.mobileCloseIcon}>
+                        <IconComponent iconType='xClose' />
+                    </div>
+                    <div className={styles.mobileEmptyListHeaderText}>
+                        <PageText type="searchTitle">You forgot to add products!</PageText>
+                        <PageText type="searchSubtitle">Use search or explore appliance pages to find and add products to your list.</PageText>
+                    </div>
 
-        <div className={styles.emptyProductListBodyMobile}>
-            <div onClick={handleCloseListClick} className={styles.mobileCloseIcon}>
-                <IconComponent iconType='xClose' />
-            </div>
-            <div className={styles.mobileEmptyListHeaderText}>
-                <PageText type="searchTitle">You forgot to add products!</PageText>
-                <PageText type="searchSubtitle">Use search or explore appliance pages to find and add products to your list.</PageText>
-            </div>
 
+                    <div className={styles.mobileEmptyListCharacterImage}>
+                        <LGComponent type='girlFull' />
+                    </div>
+                    <div className={styles.buttonsWrapper}>
+                        {categoryLinks.map(link =>
+                            // <NavigationLink href={link.href}>
+                            <NavLink>
+                                <Button buttonStyleType="primary">{link.text}</Button>
+                            </NavLink>
+                            // </NavigationLink>
+                        )};
+                    </div>
 
-            <div className={styles.mobileEmptyListCharacterImage}>
-                <LGComponent type='girlFull' />
+                </div>
             </div>
-            <div className={styles.buttonsWrapper}>
-                {categoryLinks.map(link =>
-                    // <NavigationLink href={link.href}>
-                    <NavLink>
-                        <Button buttonStyleType="primary">{link.text}</Button>
-                    </NavLink>
-                    // </NavigationLink>
-                )};
-            </div>
-
         </div>
-    )
+    );
 }
 
 const PopulatedListScreen = () => {
@@ -86,13 +89,14 @@ export const ProductListDropdown = () => {
     const { productsInList } = useBuilderHook();
 
     if (productsInList.length !== 0) {
-        // return <PopulatedListScreen />;
-        return <Overlay   >
-            <PopulatedListScreen />
-        </Overlay>;
+        return <PopulatedListScreen />;
+        // return <Overlay   >
+        //     <PopulatedListScreen />
+        // </Overlay>;
     }
     if (productsInList.length === 0) {
-        return <Overlay containerMarginTop='6rem'><EmptyListScreen /></Overlay>;
+        return <EmptyListScreen />;
+        // return <Overlay containerMarginTop='6rem'><EmptyListScreen /></Overlay>;
     }
 
 }

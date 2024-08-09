@@ -6,9 +6,9 @@
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto;
-
     height: 100%;
     justify-items: center;
+    padding: 4rem 2rem;
 }
 
 .mobileEmptyListHeaderText {
@@ -118,29 +118,27 @@
     align-self: baseline;
     /* background-color: aqua; */
 }
-
+.titleContainer{
+    color: var(--color-gray-01);
+}
+.subtitleContainer{
+    color: var(--color-gray-01);
+}
 .imageComponentWrapper {
     display: none;
 }
 
 .listActionButtonsWrapper {
-    /* display: flex;
-    gap: 1rem; */
-    /* margin-top: 2rem; */
+  
     margin-bottom: 2rem;
-    /* background-color: var(--color-gray-05);
-    background-size: 400% 400%;
-    background-image: linear-gradient(100deg, red, black, var(--color-red-03));
-    animation: gradientAnimation 10s ease infinite; */
+   
     padding: 1rem 0;
   
 }
 .listActionButtons{
     display: flex;
 }
-/* .listActionButtonsWrapper button {
-    width: max-content;
-} */
+
 
 @media (min-width: 430px) {
     .imageComponentWrapper {
@@ -155,19 +153,21 @@
         object-fit: contain;
     }
 }
-@keyframes gradientAnimation {
-    0% {
-        background-position: 0% 50%;
-    }
 
-    50% {
-        background-position: 100% 50%;
+@media (min-width: 1024px) {
+    .mobileEmptyListCharacterImage {
+       
+        height: 50rem;
+        width: 60rem;
+       
     }
-
-    100% {
-        background-position: 0% 50%;
+    .buttonsWrapper {
+       
+        gap: 4rem;
     }
+ 
 }
+
 /* --------------------------------------------------------------------------------------- */
 /* MEDIA QUERY REFERENCE */
 /* --------------------------------------------------------------------------------------- */

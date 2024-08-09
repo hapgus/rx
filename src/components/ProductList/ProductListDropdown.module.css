@@ -1,19 +1,35 @@
 /* EMPTY LIST */
 
 .mobileProductListDropdown {
-    height: 100%;
+    height: auto;
     padding: 2rem;
     border-bottom: 1px solid var(--color-gray-04);
 }
+.a {
+    position: relative; /* This container will be the reference point for .b */
+  
+    background-color: lightgray; /* Example background */
+}
 
+.b {
+    position: absolute; /* Position relative to .a */
+ 
+    left: 58%; 
+    width: auto; /* Width of the dropdown menu */
+    background-color: var(--color-gray-04);
+  
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    height: max-content;
+}
 .emptyProductListBodyMobile {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(4,auto);
 
     height: 100%;
+    width: 100%;
     justify-items: center;
-    margin-top: -2rem;
+    
 
     /* width: auto; */
 }

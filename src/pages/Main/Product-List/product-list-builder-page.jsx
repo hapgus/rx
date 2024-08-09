@@ -15,9 +15,15 @@ const EmptyListScreen = () => {
     return (
         <div className={styles.emptyProductListBodyMobile}>
             <div className={styles.mobileEmptyListHeaderText}>
-                <PageText type="pageTitle">Product List Builder</PageText>
-                <PageText type="searchTitle">You forgot to add products!</PageText>
-                <PageText type="searchSubtitle">Use search or explore appliance pages to find and add products to your list.</PageText>
+                <div className={styles.titleContainer}>
+                    <PageText type="pageTitle">LG Product List Builder</PageText>
+                </div>
+                <div className={styles.subtitleContainer}>
+                <PageText type="pageTertiaryTitle">Get started adding products to your list</PageText>
+                </div>
+                <div className={styles.descriptionContainer}>
+                <PageText type="bodyDescriptionMedium">Use search or explore appliance pages to find products to create a customized list of LG Home Appliances</PageText>
+            </div>
             </div>
             <div className={styles.mobileEmptyListCharacterImage}>
                 <LGComponent type='boyFull' />
