@@ -1,7 +1,9 @@
 .iconContainer{
     position: relative;
 }
-
+.iconContainer:hover{
+  cursor: pointer;
+}
 .listCountBubble {
     position: absolute;
     top: -2rem;
