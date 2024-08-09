@@ -17,7 +17,7 @@ export const GenericScrollHeader = ({
                 headerText ?
                     <div className={styles.headerContainer}>
                         <div className={styles.headerTitleWrapper}>
-                            <PageText type='productPageSectionText'>{headerText}</PageText>
+                            <PageText type='bodyTertiaryTitleBold'>{headerText}</PageText>
                         </div>
                     </div>
                     : null

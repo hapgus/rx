@@ -1,6 +1,11 @@
+.titleContainer{
+    padding-bottom: 1rem;
+}
+
 .upcListWrapper {
     display: flex;
     flex-direction: column;
+    gap: 1rem;
 }
 
 .upcListItem {

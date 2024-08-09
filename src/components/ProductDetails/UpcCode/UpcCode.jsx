@@ -9,10 +9,12 @@ export const UpcCode = ({ upc }) => {
             {
                 upc ?
                     <>
-                        <PageText type='productPageSectionText'>UPC Codes</PageText>
+                        <div className={styles.titleContainer}>
+                            <PageText type='bodyTertiaryTitleBold'>UPC Codes</PageText>
+                        </div>
                         <ul className={styles.upcListWrapper}>
                             {upc.map((e, idx) => (<li className={styles.upcListItem} key={idx}>
-                                <PageText type='productPageSpecListText'>{e}</PageText>
+                                <PageText type='bodyDescription'>{e}</PageText>
 
                             </li>))}
                         </ul>

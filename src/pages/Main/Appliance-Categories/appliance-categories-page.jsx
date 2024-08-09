@@ -44,7 +44,7 @@ const ApplianceCategories = () => {
                     </div>
                 </GridSystem>
             </div>
-            <div>
+            <div className={styles.categoriesComponentWrapper}>
             <CategoriesComponent  products={categorizedProducts} />
         </div>
         </>

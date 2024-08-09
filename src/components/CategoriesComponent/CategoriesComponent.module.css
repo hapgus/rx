@@ -17,6 +17,9 @@
     /*
     padding-top: 2rem; */
 }
+.categoryTitle a{
+    color: var(--color-gray-03);
+}
 .categoryCardsContainer{
     /* background-color: aqua; */
     margin-bottom: 4rem;

@@ -19,10 +19,10 @@ export const Specifications = ({ product }) => {
                 {
                     product.specTitle1 && product.specList1 &&
                     <div>
-                        <PageText type='bodyDescription'>{capitalizeFirstLetterEachWord(product.specTitle1)}</PageText>
+                        <PageText type='bodyTertiaryTitleBold'>{capitalizeFirstLetterEachWord(product.specTitle1)}</PageText>
                         <ul className={styles.specListWrapper}>{product.specList1.map((e, idx) => (
                             <li className={styles.specListItem} key={idx}>
-                                <PageText type='productCardListText'>{e}</PageText>
+                                <PageText type='bodyDescription'>{e}</PageText>
                             </li>
                         ))}
                         </ul>
@@ -30,10 +30,10 @@ export const Specifications = ({ product }) => {
                 }
                 {product.specTitle2 && product.specList2 &&
                     <div>
-                        <PageText type='bodyDescription'>{capitalizeFirstLetter(product.specTitle2)}</PageText>
+                        <PageText type='bodyTertiaryTitleBold'>{capitalizeFirstLetter(product.specTitle2)}</PageText>
                         <ul className={styles.specListWrapper}>{product.specList2.map((e, idx) => (
                             <li className={styles.specListItem} key={idx}>
-                                <PageText type='productCardListText'>{e}</PageText>
+                                <PageText type='bodyDescription'>{e}</PageText>
                             </li>
                         ))}
                         </ul>
@@ -41,10 +41,10 @@ export const Specifications = ({ product }) => {
                 }
                 {product.specTitle3 && product.specList3 &&
                     <div>
-                        <PageText type='bodyDescription'>{capitalizeFirstLetter(product.specTitle3)}</PageText>
+                        <PageText type='bodyTertiaryTitleBold'>{capitalizeFirstLetter(product.specTitle3)}</PageText>
                         <ul className={styles.specListWrapper}>{product.specList3.map((e, idx) => (
                             <li className={styles.specListItem} key={idx}>
-                                <PageText type='productCardListText'>{e}</PageText>
+                                <PageText type='bodyDescription'>{e}</PageText>
                             </li>
                         ))}
                         </ul>
@@ -52,10 +52,10 @@ export const Specifications = ({ product }) => {
                 }
                 {product.specTitle4 && product.specList4 &&
                     <div>
-                        <PageText type='bodyDescription'>{product.specTitle4}</PageText>
+                        <PageText type='bodyTertiaryTitleBold'>{product.specTitle4}</PageText>
                         <ul className={styles.specListWrapper}>{product.specList4.map((e, idx) => (
                             <li className={styles.specListItem} key={idx}>
-                               <PageText type='productCardListText'>{e}</PageText>
+                               <PageText type='bodyDescription'>{e}</PageText>
                             </li>
                         ))}
                         </ul>

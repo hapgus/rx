@@ -44,10 +44,15 @@ const MobileAppliancePage = () => {
               <div className={styles.gridWrapper1}>
                 <div className={styles.gridItem1}>
                   <div className={styles.mobileHeaderWrapper}>
-                    <PageText type='pageHeaderTertiaryTitle'>{capitalizeFirstLetter(details.availability)}</PageText>
-                    <PageText type='pageHeaderSubtitle'>{details.title}</PageText>
-                    <PageText type='pageHeaderTitle'>{details.subtitle}</PageText>
-
+                    <div className={styles.availabilityText}>
+                      <PageText type='pageTertiaryTitle'>{capitalizeFirstLetter(details.availability)}</PageText>
+                    </div>
+                    <div className={styles.titleText}>
+                      <PageText type='pageSubtitle'>{details.title}</PageText>
+                    </div>
+                    <div className={styles.subtitleText}>
+                      <PageText type='pageTitle'>{details.subtitle}</PageText>
+                    </div>
                   </div>
                   <div className={styles.mobileProductImageWrapper}>
                     <ProductBackgroundShape className={styles.mobileProductImageShape} />
@@ -134,7 +139,7 @@ const MobileAppliancePage = () => {
                   <div className={styles.gridWrapper1}>
                     <div className={styles.gridItem1}>
                       <div className={styles.sectionTextWrapper}>
-                        <PageText type='productPageSectionText'>Related Home Appliances</PageText>
+                        <PageText type='bodyTertiaryTitleBold'>Related Home Appliances</PageText>
                       </div>
                       <MatchingProductComponent product={matchingProducts} />
                     </div>
@@ -183,9 +188,15 @@ const DesktopAppliancePage = () => {
           <div className={styles.applianceHeaderContainer}>
             <div className={styles.applianceHeaderWrapper}>
               <div className={styles.applianceHeaderWrapperDiv1}>
-                <PageText type='pageHeaderTertiaryTitle'>{capitalizeFirstLetter(details.availability)}</PageText>
-                <PageText type='pageHeaderSubtitle'>{details.title}</PageText>
-                <PageText type='pageHeaderTitle'>{details.subtitle}</PageText>
+                <div className={styles.availabilityText}>
+                  <PageText type='pageTertiaryTitle'>{capitalizeFirstLetter(details.availability)}</PageText>
+                </div>
+                <div className={styles.titleText}>
+                  <PageText type='pageSubtitle'>{details.title}</PageText>
+                </div>
+                <div className={styles.subtitleText}>
+                  <PageText type='pageTitle'>{details.subtitle}</PageText>
+                </div>
                 <div className={styles.applianceHeaderWrapperDiv1BtnWrapper} >
                   {isProductInList ? <RemoveFromListButton product={productObject} /> : <AddToListButton product={productObject} />}
                 </div>
@@ -194,8 +205,8 @@ const DesktopAppliancePage = () => {
                 <div className={styles.imageShapeGroupWrapper}>
                   <div className={styles.productImageForShape}>
                     <div className={styles.productImage}>
-                    <img loading='lazy' src={`${publicUrl}/assets/image/products/${details.image}`} alt={`${details.title}`} />
-                      </div>
+                      <img loading='lazy' src={`${publicUrl}/assets/image/products/${details.image}`} alt={`${details.title}`} />
+                    </div>
                   </div>
                   <ProductBackgroundShape className={styles.productBackgroundShapeContainer} />
                 </div>
@@ -248,7 +259,7 @@ const DesktopAppliancePage = () => {
           </section>
         }
         {
-          details.logo && details.logos.length > 0 &&
+          details.logos && details.logos.length > 0 &&
           <section className={styles.applianceSectionContainer}>
             <div className={styles.applianceSectionWrapper}>
               <div className={styles.keyFeaturesWrapper}>

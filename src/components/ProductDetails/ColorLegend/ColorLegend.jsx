@@ -64,7 +64,7 @@ export const ColorLegend = ({colors}) =>{
                 style={{ backgroundColor: swatchColor }}
               />
 
-              <PageText type='productPageColorText'>{formatColorName(e)}</PageText>
+              <PageText type='bodyDescription'>{formatColorName(e)}</PageText>
             </div>
           );
         })}

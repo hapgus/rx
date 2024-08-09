@@ -27,6 +27,13 @@
     flex-direction: column;
     gap: 1rem;  
 }
+
+.titleText{
+    color: var(--color-gray-03);
+}
+.subtitleText{
+    color: var(--color-gray-01);
+}
 #specsGrid{
     background-color: var(--color-gray-05);
 }
@@ -109,6 +116,10 @@
 
 .sectionTextWrapper{
     padding-bottom: 2rem;
+}
+
+.applianceHeaderWrapperDiv1BtnWrapper button{
+    width: max-content;
 }
 @media (min-width: 430px) {
 
@@ -321,7 +332,8 @@
     }
     
     .keyFeaturesWrapperDiv1 {
-        grid-column: 1/6;
+        /* grid-column: 1/6; */
+        grid-column: 1/-1;
         grid-row: 1;
     
         display: flex;

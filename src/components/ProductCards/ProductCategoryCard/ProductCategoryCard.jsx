@@ -15,11 +15,13 @@ export const ProductCategoryCard = ({
         <div key={idx} className={styles.categoryCardContainer}>
             <HashLink to={hashLinkPath}>
                 <div className={styles.categoryCardWrapper}>
-                   
+
                     <div className={styles.productCategoryCardImage}>
                         <img loading='lazy' src={`${publicUrl}${subcategoryImagePath}`} alt={subcategory} />
                     </div>
-                    <PageText type='productCategory'>{subcategory}</PageText>
+                    <div className={styles.titleContainer}>
+                        <PageText type='pageTertiaryTitle'>{subcategory}</PageText>
+                    </div>
                 </div>
             </HashLink>
         </div>

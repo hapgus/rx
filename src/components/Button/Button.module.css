@@ -49,6 +49,27 @@ button:hover {
     border: 1px solid var(--color-red-03);
 }
 
+.tertiaryGray {
+    background-color: var(--color-gray-04);
+    border: none;
+    color: black;
+    display: flex;
+    padding: 1rem 2rem;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 4px;
+    border: 1px solid var(--color-gray-03);
+    width: max-content;
+}
+
+.tertiaryGray a {
+    text-decoration: none;
+    font-size: var(--action-btn-font-size);
+    font-family: var(--action-btn-font-family);
+    color: var(--color-gray-01);
+}
+
 
 @media (min-width: 1024px) {
     button {

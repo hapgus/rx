@@ -17,7 +17,26 @@
     font-size: 2rem;
 }
 
+/* --------------------------------------------------------------------------------------- */
+/* PRODUCT CARD*/
+/* --------------------------------------------------------------------------------------- */
 
+.productCardTitle {
+    font-size: 1.6rem;
+}
+
+.productCardSubtitle {
+    font-size: 2rem;
+
+}
+
+.productCardTertiaryTitle {
+    font-size: 1.4rem;
+}
+
+.productCardListText {
+    font-size: 1.2rem;
+}
 
 /* --------------------------------------------------------------------------------------- */
 /* PRINT MODE */
@@ -62,11 +81,17 @@
 .bodySubtitle {
     font-size: 2.2rem;
 }
-
+/* .bodySubtitleBold{
+    font-family: var(--text-semibold);
+    font-size: 2.2rem;
+} */
 .bodyTertiaryTitle {
     font-size: 1.8rem;
 }
-
+.bodyTertiaryTitleBold {
+    font-size: 1.8rem;
+    font-family: var(--text-semibold);
+}
 .bodyDescription {
     font-size: 1.4rem;
 }
@@ -131,26 +156,6 @@
 }
 
 
-/* --------------------------------------------------------------------------------------- */
-/* BUILDER PRODUCT CARD*/
-/* --------------------------------------------------------------------------------------- */
-
-.productCardTitle {
-    font-size: 1.6rem;
-}
-
-.productCardSubtitle {
-    font-size: 2rem;
-
-}
-
-.productCardTertiaryTitle {
-    font-size: 1.4rem;
-}
-
-.productCardListText {
-    font-size: 1.2rem;
-}
 
 
 

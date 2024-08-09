@@ -65,10 +65,10 @@ export const CategoriesComponent = ({ products }) => {
         return (
             <div key={`category-${categoryIndex}`} className={styles.categoryCardsContainer}>
                 <div className={styles.categoryTitle}>
-                    <PageText type="pageHeaderTitle">{verbiage.title2}</PageText>
-                    <LinkComponent to={`${NormalizeSlugs(category)}`}>
+                    <PageText type="pageTitle">{verbiage.title2}</PageText>
+                    <LinkComponent href={`${NormalizeSlugs(category)}`}>
 
-                        <PageText type="pageHeaderSubtitle">{capitalizeFirstLetterEachWord(category)}</PageText>
+                        <PageText type="pageSubtitle">{capitalizeFirstLetterEachWord(category)}</PageText>
 
                     </LinkComponent>
                     {/* <PageText type="pageHeaderDescription">{verbiage.description1}</PageText> */}

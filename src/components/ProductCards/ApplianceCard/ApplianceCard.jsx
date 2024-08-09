@@ -35,8 +35,8 @@ const publicUrl = process.env.PUBLIC_URL;
 
                     <ProductImageComponent className={styles.productCardImage} src={`${publicUrl}/assets/image/products/${image}`} alt={`product ${title}`} />
 
-                    <PageText type='productTitle'>{title}</PageText>
-                    <PageText type='productSubtitle'>
+                    <PageText type='productCardTitle'>{title}</PageText>
+                    <PageText type='productCardSubtitle'>
                         <span className={styles.clampedSubtitle}>{subtitle}</span>
                         {TruncateText(subtitle)}
                     </PageText>

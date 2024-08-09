@@ -97,6 +97,20 @@ const LeftChevron = () => (
     </svg>
 );
 
+const ExternalLink = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="12" viewBox="0 0 13 12" fill="none">
+        <g clip-path="url(#clip0_45_127)">
+            <path d="M10.4202 6.7248V11.5248H0.950195V1.6748H5.6702" stroke="#231F20" strokeWidth="0.6" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M7.99023 0.304688H12.1202V4.38469" stroke="#231F20" strokeWidth="0.6" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M5.25 7.11469L12.12 0.304688" stroke="#231F20" strokeWidth="0.6" strokeLinecap="round" strokeLinejoin="round" />
+        </g>
+        <defs>
+            <clipPath id="clip0_45_127">
+                <rect width="11.77" height="11.82" fill="white" transform="translate(0.650391 0.00488281)" />
+            </clipPath>
+        </defs>
+    </svg>
+)
 
 const LeftArrow = () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="13" height="12" viewBox="0 0 13 12" fill="none">
@@ -161,6 +175,7 @@ const icons = {
     print: Print,
     redMinus: RedMinus,
     xClose: XClose,
+    externalLink:ExternalLink
 }
 
 

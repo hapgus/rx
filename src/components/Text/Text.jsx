@@ -35,8 +35,11 @@ export const PageText = ({ children, eventHandlers = {}, type = 'default' }) => 
         /* PAGE BODY */
         /* --------------------------------------------------------------------------------------- */
         bodySubtitle: styles.bodySubtitle,
+        // bodySubtitleBold: styles.bodySubtitleBold,
         bodyTertiaryTitle: styles.bodyTertiaryTitle,
+        bodyTertiaryTitleBold: styles.bodyTertiaryTitleBold,
         bodyDescription: styles.bodyDescription,
+
 
         /* --------------------------------------------------------------------------------------- */
         /* NAVIGATION + FOOTER */

@@ -1,5 +1,6 @@
 .techLogosContainer{
-    /* background-color: aqua; */
+
+    width: 100%;
 }
 .logosList{
     display: flex;
@@ -22,4 +23,11 @@
     height: 100%;
     width: 100%;
     object-fit: contain;
+}
+@media (min-width: 1024px) {
+    .logoImageWrapper{
+        width: 12rem; 
+        height: 12rem;
+      
+    }
 }

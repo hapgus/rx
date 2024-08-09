@@ -17,10 +17,10 @@ export const ScrollHeader = ({
             <div className={styles.headerContainer}>
                 <div className={styles.headerTitleWrapper}>
                     
-                    <PageText type='pageBodyTitle'>{headerText}</PageText>
+                    <PageText type='pageSubtitle'>{headerText}</PageText>
                 </div>
                 <div className={styles.headerCountWrapper}>
-                <PageText type='productCountTitle'>Results</PageText>
+                <PageText type='pageTertiaryTitle'>Results</PageText>
                 <CountBubble itemCount={itemCount}/>   
                     
                 </div>
