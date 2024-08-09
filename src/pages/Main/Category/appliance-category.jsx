@@ -8,14 +8,14 @@ import { CATEGORY_VERBIAGE, CATEGORY_IMAGERY } from '../../../data/VERBIAGE_DATA
 import { Button } from '../../../components/Button/Button';
 import { GridSystem } from '../../../components/GridSystem/GridSystem';
 import { ScrollingComponent } from '../../../components/ScrollingComponent/ScrollingComponent';
-
-
+import { useResponsiveStateHook } from '../../../hooks/responsive-hook';
 const ApplianceCategoryPage = () => {
+    const {isMobile}=useResponsiveStateHook();
     const { categoryId } = useParams();
 
     const { publicProducts } = useProductsHook();
     const normalizedCategoryId = NormalizeCategoryId(categoryId);
-
+const backgroundColor = isMobile ? '#F6F3EB' : '#F0ECE4'
     const filteredProducts = FilterProductsByCategoryId(publicProducts, normalizedCategoryId);
     const reducedProducts = ListProductsByCategorySubcategory(filteredProducts);
     const transformedCategoryName = capitalizeFirstLetterEachWord(normalizedCategoryId);
@@ -59,10 +59,14 @@ const ApplianceCategoryPage = () => {
 
     return (
         <>
-            <GridSystem>
+            <GridSystem containerBackgroundColor='#F6F3EB'>
                 {
                     CATEGORY_IMAGERY && CATEGORY_VERBIAGE &&
-                    <div className={styles.heroContainer}>
+                    <div className={styles.heroContainer}
+                    style={{
+                        backgroundColor:backgroundColor
+                    }}
+                    >
                         <div className={styles.heroTextWrapper}>
                             <PageText color='white' type='pageTitle'>{CATEGORY_VERBIAGE[normalizedCategoryId].title2}</PageText>
                             <PageText color='white' type='pageSubtitle'>{CATEGORY_VERBIAGE[normalizedCategoryId].title1}</PageText>

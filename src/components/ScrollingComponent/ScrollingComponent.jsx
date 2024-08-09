@@ -9,6 +9,7 @@ import { capitalizeFirstLetterEachWord } from '../../utils/text-help';
 import { CountProductsInCategory } from '../../utils/category-helper';
 
 import { ScrollHeader } from './ScrollHeader';
+import { GridSystem } from '../GridSystem/GridSystem';
 
 export const ScrollingComponent = ({ processedProducts }) => {
 
@@ -88,19 +89,21 @@ export const ScrollingComponent = ({ processedProducts }) => {
                         const currentRefIdx = refIdx++;
                         return (
                             <div key={subcategory}>
-                                <div className={styles.scrollHeaderWrapper}>
-                                    <div className={styles.scrollHeader}>
-                                        <ScrollHeader
-                                            leftOnClick={() => scroll(scrollRefs[currentRefIdx], 'left', currentRefIdx)}
-                                            rightOnClick={() => scroll(scrollRefs[currentRefIdx], 'right', currentRefIdx)}
-                                            leftDisabled={scrollDisabled[currentRefIdx]?.left}
-                                            rightDisabled={scrollDisabled[currentRefIdx]?.right}
-                                            itemCount={CountProductsInCategory(items)}
-                                            headerText={capitalizeFirstLetterEachWord(subcategory)}
-                                            progress={scrollProgress[currentRefIdx]}
-                                        />
+                              
+                                    <div className={styles.scrollHeaderWrapper}>
+                                        <div className={styles.scrollHeader}>
+                                            <ScrollHeader
+                                                leftOnClick={() => scroll(scrollRefs[currentRefIdx], 'left', currentRefIdx)}
+                                                rightOnClick={() => scroll(scrollRefs[currentRefIdx], 'right', currentRefIdx)}
+                                                leftDisabled={scrollDisabled[currentRefIdx]?.left}
+                                                rightDisabled={scrollDisabled[currentRefIdx]?.right}
+                                                itemCount={CountProductsInCategory(items)}
+                                                headerText={capitalizeFirstLetterEachWord(subcategory)}
+                                                progress={scrollProgress[currentRefIdx]}
+                                            />
+                                        </div>
                                     </div>
-                                </div>
+                              
                                 <div className={styles.mainScrollingDivContainer}>
 
                                     <div className={styles.scrollWrapper}>

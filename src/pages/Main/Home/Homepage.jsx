@@ -56,7 +56,7 @@ const Homepage = () => {
                 </GridSystem>
             </div>
         </GridSystem>
-            <GridSystem>
+            {/* <GridSystem>
                 <div className={styles.section2HeaderText}>
                     <PageText type='pageSubtitle'>Showcase brands your customers want</PageText>
                     <PageText type='pageTitle'>Learning and Sales Resources</PageText>
@@ -90,7 +90,7 @@ const Homepage = () => {
 
                     </div>
                 </div>
-            </GridSystem>
+            </GridSystem> */}
         </>
     )
 }

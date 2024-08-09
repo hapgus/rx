@@ -80,15 +80,16 @@ const PopulatedListScreen = () => {
                         </div>
                     </div>
                 </div>
-            </GridSystem>
-            <div className={styles.listActionButtonsWrapper}>
-                <GridSystem>
+                <div className={styles.listActionButtonsWrapper}>
+                {/* <GridSystem> */}
                     <div className={styles.listActionButtons}>
                         <PrintProductsButton productsInList={listCount} />
-                        {/* <RemoveAllFromListButton /> */}
+                        <RemoveAllFromListButton />
                     </div>
-                </GridSystem>
+                {/* </GridSystem> */}
             </div>
+            </GridSystem>
+           
             <GridSystem>
 
                 {
@@ -101,7 +102,7 @@ const PopulatedListScreen = () => {
                     ))
 
                 }
-                <RemoveAllFromListButton />
+               
             </GridSystem>
         </>
     );
