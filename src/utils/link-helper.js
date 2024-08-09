@@ -100,7 +100,7 @@ export const categoryLinks = [
     { href: `${publicUrl}/appliances/vacuums`, text: 'Vacuums' },
     { href: `${publicUrl}/appliances/signature`, text: 'LG Signature' },
     { href: `${publicUrl}/appliances/studio`, text: 'LG Studio' },
-    // { href: `${publicUrl}/appliances/`, text: 'All Home Appliances' }
+    { href: `${publicUrl}/appliances/`, text: 'All Home Appliances' }
 ];
 export const allCategoryLinks = [
     { href: `${publicUrl}/appliances/air-care`, text: 'Air Care' },

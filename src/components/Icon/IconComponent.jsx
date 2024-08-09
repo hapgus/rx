@@ -145,6 +145,32 @@ const LeftArrow = () => (
         </defs>
     </svg>
 );
+const RightArrow = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="12" viewBox="0 0 13 12" fill="none">
+    <g clip-path="url(#clip0_58_114)">
+      <path d="M6.72949 11.5303L12.3495 5.92027L6.72949 0.300274" stroke="#231F20" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M1.14941 5.91016H12.3494" stroke="#231F20" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <defs>
+      <clipPath id="clip0_58_114">
+        <rect width="11.8" height="11.83" fill="white" transform="matrix(1 0 0 -1 0.849609 11.8301)"/>
+      </clipPath>
+    </defs>
+  </svg>
+);
+const WhiteRightArrow = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="12" viewBox="0 0 13 12" fill="none">
+    <g clip-path="url(#clip0_78_126)">
+      <path d="M6.72949 0.299805L12.3495 5.9098L6.72949 11.5298" stroke="white" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M1.14941 5.91992H12.3494" stroke="white" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <defs>
+      <clipPath id="clip0_78_126">
+        <rect width="11.8" height="11.83" fill="white" transform="translate(0.849609)"/>
+      </clipPath>
+    </defs>
+  </svg>
+);
 
 const UpArrow = () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="13" height="12" viewBox="0 0 13 12" fill="none">
@@ -194,6 +220,20 @@ const XClose = () => (
         </defs>
     </svg>
 )
+const RoundXClose = () =>(
+    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="12" viewBox="0 0 13 12" fill="none">
+  <g clip-path="url(#clip0_53_318)">
+    <path d="M4.57031 3.66992L9.06031 8.15992" stroke="#231F20" strokeWidth="0.6" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M9.06031 3.66992L4.57031 8.15992" stroke="#231F20" strokeWidth="0.6" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M6.80996 11.5096C9.90276 11.5096 12.41 9.00237 12.41 5.90957C12.41 2.81678 9.90276 0.30957 6.80996 0.30957C3.71717 0.30957 1.20996 2.81678 1.20996 5.90957C1.20996 9.00237 3.71717 11.5096 6.80996 11.5096Z" stroke="#231F20" strokeWidth="0.6" strokeLinecap="round" strokeLinejoin="round"/>
+  </g>
+  <defs>
+    <clipPath id="clip0_53_318">
+      <rect width="11.81" height="11.81" fill="white" transform="translate(0.910156 0.00976562)"/>
+    </clipPath>
+  </defs>
+</svg>
+)
 
 
 const icons = {
@@ -212,7 +252,10 @@ const icons = {
     print: Print,
     redMinus: RedMinus,
     xClose: XClose,
-    externalLink: ExternalLink
+    roundXClose:RoundXClose,
+    externalLink: ExternalLink,
+    rightArrow:RightArrow,
+    whiteRightArrow:WhiteRightArrow,
 }
 
 

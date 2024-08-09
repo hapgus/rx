@@ -86,7 +86,7 @@ export const RemoveFromListButtonIcon = ({ product, iconSizeType, iconColor }) =
 
 
 
-export const RemoveFromListButton = ({ product, plainTextButton = false }) => {
+export const RemoveFromListButton = ({ product, buttonStyleType ='primary', plainTextButton = false }) => {
 
     const { removeProduct } = useBuilderHook();
 
@@ -99,7 +99,7 @@ export const RemoveFromListButton = ({ product, plainTextButton = false }) => {
 
     const regularButton = <Button
         type="button"
-        buttonStyleType="primary"
+        buttonStyleType={buttonStyleType}
         buttonText="action"
         onClick={handleRemoveProductFromList}
     >

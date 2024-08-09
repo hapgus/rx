@@ -12,6 +12,7 @@ import { ProductListDropdownCard } from "../ProductCards/ProductLisDropdownCard/
 import { IconComponent } from "../Icon/IconComponent";
 import Drawer from "../Drawer/Drawer";
 import { GridSystem } from "../GridSystem/GridSystem";
+import { LinkComponent } from "../Links/LinkComponent";
 
 
 const EmptyListScreen = () => {
@@ -59,6 +60,7 @@ const EmptyListScreen = () => {
 
 const PopulatedListScreen = () => {
 
+    const publicUrl = process.env.PUBLIC_URL;
     const { productsInList, listCount } = useBuilderHook();
     const { setIsRoutingState } = useRoutingHook();
 
@@ -70,32 +72,48 @@ const PopulatedListScreen = () => {
         <Drawer>
             <div className={styles.populatedListScreenContainer}>
                 {/* <GridSystem> */}
-                    <div className={styles.populatedListHeader}>
-                        <div className={styles.populatedListBackIconWrapper}>
-                            <IconComponent onClick={handleProductListDropdownIconClick} iconType='xClose' />
-                        </div>
+                <div className={styles.populatedListHeader}>
+                    <div className={styles.populatedListBackIconWrapper}>
 
-                        <PageText type="searchTitle">Product List Builder</PageText>
-
-                        <div className={styles.productCountWrapper}>
-                            <PageText type="searchSubtitle">Your Products</PageText>
-                            <CountBubble itemCount={listCount} />
-                        </div>
+                        <IconComponent onClick={handleProductListDropdownIconClick} iconType='xClose' />
                     </div>
-                    <div className={styles.populatedProductsList}>
-                       
-                            <div className={styles.scrollProductList}>
+                    <div className={styles.listHeaderTitleContainer}>
+                        <PageText type="bodyTertiaryTitle">LG Product List Builder</PageText>
+                    </div>
+                    <div className={styles.productCountWrapper}>
+                        <PageText type="bodySubtitleBold">Your Products</PageText>
+                        <CountBubble
+                            backgroundColor="#ED0602"
+                            borderColor="#ED0602"
+                            color="white"
+                            itemCount={listCount} />
+                    </div>
+                </div>
+                <div className={styles.populatedProductsList}>
 
-                                {productsInList && productsInList.map((product, idx) => (
-                                    <div key={idx}>
-                                        <ProductListDropdownCard product={product} />
-                                    </div>
-                                ))}
+                    <div className={styles.scrollProductList}>
 
+                        {productsInList && productsInList.map((product, idx) => (
+                            <div key={idx}>
+                                <ProductListDropdownCard product={product} />
                             </div>
-                    
+                        ))}
+                        <div className={styles.listFooterWrapper}>
+                            <LinkComponent href={`${publicUrl}/product-list-builder`}>
+                                <Button
+                                    icon
+                                    iconType='whiteRightArrow'
+                                    iconPosition="right"
+                                    buttonStyleType="printDefault">Go to product list builder
+                                </Button>
+                            </LinkComponent>
+                        </div>
                     </div>
+
+                </div>
+
                 {/* </GridSystem> */}
+
             </div>
         </Drawer>
 

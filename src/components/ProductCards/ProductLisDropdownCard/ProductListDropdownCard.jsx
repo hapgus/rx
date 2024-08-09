@@ -9,6 +9,7 @@ import { GenerateProductURL } from '../../../utils/link-helper';
 import { useRoutingHook } from '../../../hooks/routing-hook';
 import { NavLink } from 'react-router-dom';
 import { LinkComponent } from '../../Links/LinkComponent';
+import { RemoveFromListButton } from '../../Button/ProductButtons';
 
 
 
@@ -27,6 +28,7 @@ export const ProductListDropdownCard = ({ product }) => {
     return (
         <div className={styles.productBuilderListCardContainer}>
             <div className={styles.productBuilderListCardDiv0}>
+
                 {/* <RemoveFromListButton product={product} plainTextButton={true} /> */}
                 {/* <RemoveFromListButtonIcon iconColor='white' iconSizeType='small' product={product} /> */}
             </div>
@@ -50,17 +52,10 @@ export const ProductListDropdownCard = ({ product }) => {
                 </div>
             </div>
             <div className={styles.productBuilderListCardDiv2}>
-
+                <RemoveFromListButton buttonStyleType='secondary' product={product} />
                 {/* <NavigationLink > */}
                 <LinkComponent href={productURL}>
-
-                    <Button
-                        onClick={handleLinkClick}
-                        buttonStyleType="primary"
-                    >
-                        See details
-                    </Button>
-
+                    <Button onClick={handleLinkClick} buttonStyleType="primaryAction"> See details</Button>
                 </LinkComponent>
                 {/* </NavigationLink> */}
             </div>
