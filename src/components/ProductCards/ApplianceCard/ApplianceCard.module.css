@@ -6,7 +6,8 @@
     border: var(--border-line);
     border-radius: 4rem;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    padding: 3.2rem 2.5rem;
+    /* padding: 3.2rem 2.5rem; */
+    padding: 2.5rem;
 }
 
 .productCardContainer {
@@ -67,9 +68,11 @@
 
 .productCardImage {
     max-width: 50%;
-    height: 22vh;
+    /* height: 22vh; */
+    height: 22rem;
     object-fit: contain;
     align-self: center;
+  
 }
 
 .buttonsWrapper {
