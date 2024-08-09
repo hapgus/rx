@@ -97,10 +97,28 @@ export const SearchProvider = ({ children }) => {
                 isSearchResults: [],
                 isSearchInputValue:[],
             }))
-            console.log('run effect')
+       
     }, [isRoutingState.isNavLinkClicked])
 
-console.log('mobile',isMobileSearchState);
+    // useEffect(()=>{
+    //     if(isHomepageSearchState.isSearchFocused === true){
+    //         setIsDesktopSearchState(prevState=>({
+    //             ...prevState,
+    //             isSearchResults: [],
+    //             isSearchInputValue:[],
+    //         }))
+    //     }
+    // },[isHomepageSearchState.isSearchFocused])
+    
+    // useEffect(()=>{
+    //     if(isDesktopSearchState.isSearchFocused === true){
+    //         setIsHomepageSearchState(prevState=>({
+    //             ...prevState,
+    //             isSearchResults: [],
+    //             isSearchInputValue:[],
+    //         }))
+    //     }
+    // },[isDesktopSearchState.isSearchFocused])
 
     return (
         <SearchContext.Provider

@@ -34,16 +34,16 @@ export default function Layout() {
         };
     }, [isMobileSearchState.isMobileSearch]);
 
-    // useEffect(() => {
-    //     if (isRoutingState.isProductListDropdownOpen) {
+    useEffect(() => {
+        if (isRoutingState.isProductListDropdownOpen) {
 
-    //         document.body.style.overflow = 'hidden';
-    //     }
+            document.body.style.overflow = 'hidden';
+        }
 
-    //     return () => {
-    //         document.body.style.overflow = 'unset';
-    //     };
-    // }, [isRoutingState.isProductListDropdownOpen]);
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
+    }, [isRoutingState.isProductListDropdownOpen]);
 
     useEffect(() => {
         if (isRoutingState.isMobileNavOpen) {

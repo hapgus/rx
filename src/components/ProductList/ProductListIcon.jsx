@@ -11,11 +11,11 @@ export const ProductListIcon = () => {
         prevState => ({ ...prevState, isProductListDropdownOpen: true }))
     console.log(isRoutingState)
     return (
-        <div className={styles.iconContainer}>
+        <div  onClick={handleIconClick} className={styles.iconContainer}>
             {listCount !== 0 && (
                 <span className={styles.listCountBubble}>{listCount}</span>
             )}
-            <IconComponent onClick={handleIconClick} iconType='productList' />
+            <IconComponent iconType='productList' />
             
         </div>
     )
