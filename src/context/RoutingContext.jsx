@@ -78,6 +78,7 @@ useEffect(()=> {
             isExclusiveMenuOpen: false,
             isAccountMenuOpen: false,
             isBuilderDropdownOpen: false,
+            isProductListDropdownOpen:false,
         }))
 
        // Reset isNavLinkClicked to allow subsequent clicks

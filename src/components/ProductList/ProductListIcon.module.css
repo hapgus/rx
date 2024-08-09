@@ -1,0 +1,39 @@
+.iconContainer{
+    position: relative;
+}
+
+.listCountBubble {
+    position: absolute;
+    top: -2rem;
+    left: 1rem;
+      display: flex;
+      width: 30px;
+      height: 30px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: var(--color-red-02);
+      color: white;
+      border-radius: 100rem;
+      border: 3px solid var(--color-gray-07);
+      font-size: 1.2rem;
+      font-family: var(--lg-ei-text-regular);
+      /* transition: border-color 0.3s;
+      */
+      /* overflow: hidden; */
+  }
+
+ 
+  
+/* --------------------------------------------------------------------------------------- */
+/* MEDIA QUERY REFERENCE */
+/* --------------------------------------------------------------------------------------- */
+/* 
+
+@media (min-width: 768px) {}
+@media (min-width: 834px) {}
+@media (min-width: 1024px) {}
+@media (min-width: 1280px) {}
+@media (min-width: 1440px) {}
+@media (min-width: 1920px) {} 
+*/

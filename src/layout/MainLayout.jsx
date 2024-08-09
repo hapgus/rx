@@ -7,6 +7,7 @@ import { useNotificationHook } from '../hooks/notification-hook';
 import { SearchComponent } from '../components/Search/SearchComponent/SearchComponent';
 import ProductGuideAlerts from '../components/Alert/Alert';
 import Modal from '../components/Modal/Modal';
+import Drawer from '../components/Drawer/Drawer';
 
 import { useEffect } from 'react';
 import Footer from '../components/Footer/Footer';
@@ -14,6 +15,7 @@ import { PrintScreen } from '../components/Print/PrintScreen';
 import Loader from '../components/Loader/Loader';
 import { useLocation } from "react-router-dom";
 import ScrollToTop from '../components/ScrollToTop/ScrollToTop';
+import { ProductListDropdown } from '../components/ProductList/ProductListDropdown';
 
 export default function Layout() {
     const location = useLocation();
@@ -32,16 +34,16 @@ export default function Layout() {
         };
     }, [isMobileSearchState.isMobileSearch]);
 
-    useEffect(() => {
-        if (isRoutingState.isProductListDropdownOpen) {
+    // useEffect(() => {
+    //     if (isRoutingState.isProductListDropdownOpen) {
 
-            document.body.style.overflow = 'hidden';
-        }
+    //         document.body.style.overflow = 'hidden';
+    //     }
 
-        return () => {
-            document.body.style.overflow = 'unset';
-        };
-    }, [isRoutingState.isProductListDropdownOpen]);
+    //     return () => {
+    //         document.body.style.overflow = 'unset';
+    //     };
+    // }, [isRoutingState.isProductListDropdownOpen]);
 
     useEffect(() => {
         if (isRoutingState.isMobileNavOpen) {
@@ -66,11 +68,11 @@ export default function Layout() {
     useEffect(() => {
         // window.scrollTo(0, 0);
         window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
+            top: 0,
+            behavior: 'smooth'
         });
-      }, [location]);
-      
+    }, [location]);
+
     // TOTOPBUTTON
     useEffect(() => {
         const handleScroll = () => {
@@ -93,10 +95,10 @@ export default function Layout() {
     return (
         <>
             <PrintScreen />
-
+            
             {isRoutingState.isLoading && <Loader />}
             {isRoutingState.isShowScrollToTopButton && <ScrollToTop />}
-
+            {isRoutingState.isProductListDropdownOpen && <ProductListDropdown/>}
             {isAlert.show && (
                 <ProductGuideAlerts
                     onClick={() => setIsAlert({ ...isAlert, show: false })}

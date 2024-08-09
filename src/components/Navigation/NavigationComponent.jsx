@@ -9,6 +9,7 @@ import { PageText } from '../Text/Text';
 import { LinkComponent } from '../Links/LinkComponent';
 import { SearchComponent } from '../Search/SearchComponent/SearchComponent';
 import { ProductListDropdown } from '../ProductList/ProductListDropdown';
+import { ProductListIcon } from '../ProductList/ProductListIcon';
 
 
 const MobileNavComponent = () => {
@@ -51,12 +52,13 @@ const MobileNavComponent = () => {
             <div className={styles.mobileIconsWrapper}>
                 <IconComponent onClick={handleMobileSearchIconClick} iconType='searchInput' />
                 <IconComponent iconType='userAccount' />
-                <IconComponent onClick={handleMobileProductListIconClick} iconType='productList' />
+                <ProductListIcon/>
+                {/* <IconComponent onClick={handleMobileProductListIconClick} iconType='productList' /> */}
 
                 <IconComponent onClick={handleToggleMainMobileMenu} iconType={isRoutingState.isMobileNavOpen === true ? 'xClose' : 'mobileNavMenu'} />
             </div>
             {isRoutingState.isMobileNavOpen &&
-                <Overlay containerMarginTop='6rem'>
+                <Overlay containerMarginTop='7rem'>
                     <GridSystem>
                         <div className={styles.mobileNavDropdownMenuWrapper}>
                             <div className={styles.mobileMenuBackIconWrapper}>
@@ -81,7 +83,7 @@ const MobileNavComponent = () => {
             }
             {
                 isRoutingState.isMobileCategoriesMenuOpen &&
-                <Overlay containerMarginTop='6rem'>
+                <Overlay containerMarginTop='7rem'>
                     <GridSystem >
                         <div className={styles.mobileNavDropdownMenuWrapper}>
                             <div className={styles.mobileMenuBackIconWrapper}>
@@ -98,7 +100,7 @@ const MobileNavComponent = () => {
             }
             {
                 isRoutingState.isMobileResourcesMenuOpen &&
-                <Overlay containerMarginTop='6rem'>
+                <Overlay containerMarginTop='7rem'>
                     <GridSystem >
                         <div className={styles.mobileNavDropdownMenuWrapper}>
                             <div className={styles.mobileMenuBackIconWrapper}>
@@ -114,7 +116,7 @@ const MobileNavComponent = () => {
             }
             {
                 isRoutingState.isMobileExclusiveMenuOpen &&
-                <Overlay containerMarginTop='6rem'>
+                <Overlay containerMarginTop='7rem'>
                     <GridSystem >
                         <div className={styles.mobileNavDropdownMenuWrapper}>
                             <div className={styles.mobileMenuBackIconWrapper}>
@@ -284,7 +286,8 @@ const DesktopNavComponent = () => {
                         </section>
                         <section className={styles.desktopNavMenuWrapper}>
                             <div className={styles.desktopNavIconsWrapper}>
-                                <IconComponent onClick={handleDesktopProductListIconClick} iconType='productList' />
+                                <ProductListIcon/>
+                                {/* <IconComponent onClick={handleDesktopProductListIconClick} iconType='productList' /> */}
                                 <IconComponent iconType='userAccount' />
                             </div>
                         </section>
@@ -314,7 +317,7 @@ export const MainNavigationComponent = () => {
                 <MobileNavComponent />
                 {/* </GridSystem> */}
             </div>
-            {isRoutingState.isProductListDropdownOpen && <ProductListDropdown />}
+            {/* {isRoutingState.isProductListDropdownOpen && <ProductListDropdown />} */}
         </nav>
     )
 }
