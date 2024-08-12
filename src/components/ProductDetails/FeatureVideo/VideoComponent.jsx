@@ -74,7 +74,7 @@ const MobileVideoComponent = ({ videos }) => {
                 {/* <div className={styles.videosHeaderWrapper}> */}
                 <div className={styles.videosScrollHeader}>
                     <GenericScrollHeader
-                        headerText='Feature Innovation'
+                        // headerText='Feature Innovation'
                         leftOnClick={() => scroll('left')}
                         rightOnClick={() => scroll('right')}
                         leftDisabled={scrollDisabled.left}
@@ -160,7 +160,7 @@ const DesktopVideoComponent = ({ videos }) => {
 
             <div className={styles.videosScrollHeader}>
                 <GenericScrollHeader
-                    headerText='Feature Innovation'
+                    // headerText='Feature Innovation'
                     leftOnClick={() => scroll('left')}
                     rightOnClick={() => scroll('right')}
                     leftDisabled={scrollDisabled.left}

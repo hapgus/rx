@@ -1,0 +1,124 @@
+.pageContainer {}
+
+.applianceHeaderWrapperDiv1 {}
+
+.availabilityText {}
+
+.titleText {
+    font-size: 2.4rem;
+    color: var(--color-gray-03);
+}
+
+.subtitleText {
+    font-size: 5rem;
+    color: var(--color-gray-01);
+}
+
+.applianceSectionContainer1 {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    background-color: var(--color-gray-06);
+}
+
+/* .applianceHeaderWrapper {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(3, auto);
+    align-items: center;
+    column-gap: 4rem;
+} */
+
+.applianceHeaderWrapper {
+    grid-column: 2/12;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(3, auto);
+    align-items: center;
+    column-gap: 4rem;
+    padding-bottom: 4rem;
+}
+
+.applianceHeaderWrapperDiv1 {
+    /* grid-column: 1/8; */
+    grid-column: 1/7;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.applianceHeaderWrapperDiv2 {
+    grid-column: 8/-1;
+    grid-row: 1/2;
+}
+
+.applianceHeaderWrapperDiv3 {
+    grid-column: 1/-1;
+    grid-row: 3;
+
+}
+
+.imageShapeGroupWrapper {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: auto;
+    justify-items: center;
+    align-items: center;
+}
+
+.productBackgroundShapeContainer {
+    grid-column: 1/-1;
+    grid-row: 1;
+    z-index: 0;
+}
+
+.productBackgroundShapeContainer svg {
+    height: 60rem;
+    width: max-content;
+}
+
+.productImageForShape {
+    grid-column: 1/-1;
+    grid-row: 1;
+    z-index: 1;
+}
+
+
+.productImage {
+    height: 50rem;
+    padding: 4rem;
+    max-width: 50rem;
+    display: flex;
+    justify-content: center;
+    /* max-width: 100%; */
+}
+
+.productImage img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+/* TRANSFER */
+.applianceHeaderWrapperDiv1BtnWrapper {
+    padding-top: 2rem;
+}
+.applianceHeaderWrapperDiv1BtnWrapper button{
+    width: max-content;
+}
+
+@media (min-width: 1920px) {
+    .productBackgroundShapeContainer svg {
+        height: 80rem;
+        width: max-content;
+    }
+.productImage {
+    height: 70rem;
+    padding: 4rem;
+    max-width: 70rem;
+    display: flex;
+    justify-content: center;
+    /* max-width: 100%; */
+}
+
+}

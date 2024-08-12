@@ -7,24 +7,23 @@ export const ProductCategoryCard = ({
     subcategory,
     hashLinkPath,
     subcategoryImagePath,
-    idx
+
 }) => {
 
     const publicUrl = process.env.PUBLIC_URL;
     return (
-        <div key={idx} className={styles.categoryCardContainer}>
-            <HashLink to={hashLinkPath}>
-                <div className={styles.categoryCardWrapper}>
+        <HashLink to={hashLinkPath}>
+            <div className={styles.categoryCardContainer}>
 
-                    <div className={styles.productCategoryCardImage}>
-                        <img loading='lazy' src={`${publicUrl}${subcategoryImagePath}`} alt={subcategory} />
-                    </div>
-                    <div className={styles.titleContainer}>
-                        <PageText type='pageTertiaryTitle'>{subcategory}</PageText>
-                    </div>
+                <div className={styles.imageWrapper}>
+                    <img loading='lazy' src={`${publicUrl}${subcategoryImagePath}`} alt={subcategory} />
                 </div>
-            </HashLink>
-        </div>
+                <div className={styles.titleWrapper}>
+                    <PageText type='pageTertiaryTitle'>{subcategory}</PageText>
+                </div>
+
+            </div>
+        </HashLink>
     );
 }
 

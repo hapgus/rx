@@ -17,8 +17,18 @@ const ApplianceCategories = () => {
                 <GridSystem>
                     <div className={styles.heroContainer}>
                         <div className={styles.heroTextWrapper}>
-                            <PageText type="pageTitle">America's Most Reliable Line of Home Appliances</PageText>
-                            <PageText type="pageTertiaryTitle">Change the way you think, and the way you live</PageText>
+                            {/* <PageText type="pageTitle">America's Most Reliable Line of Home Appliances</PageText> */}
+                            {/* <PageText type="pageTertiaryTitle">Change the way you think, and the way you live</PageText> */}
+                            <PageText type="pageTitle">Innovation that elevates your home</PageText>
+                            <PageText type="pageSubtitle">Discover a smarter, more stylish way to live</PageText>
+
+                            {/* <PageText type="bodyDescriptionLarge">Step into a world where cutting-edge technology meets elegant design. From intuitive kitchen appliances that make cooking a breeze to advanced laundry solutions that care for your clothes, LG brings you a range of home appliances engineered for the way you live today. Experience the perfect blend of form and function, crafted to elevate every moment at home.</PageText> */}
+                            <PageText type="pageTertiaryTitle">
+                                LG brings you a range of home appliances engineered for the way you live today.
+                                <span className={styles.headerDescriptionLong}> Experience the perfect blend of form and function, crafted to elevate every moment at home.</span>
+                            </PageText>
+
+
                             <div className={styles.heroButtonWrapper}>
                                 <Button buttonStyleType="primaryAction">Explore</Button>
                             </div>
@@ -42,11 +52,14 @@ const ApplianceCategories = () => {
                             </div>
                         </div>
                     </div>
+                    <div className={styles.heroButtonWrapperMobile}>
+                                <Button buttonStyleType="primaryAction">Explore</Button>
+                            </div>
                 </GridSystem>
             </div>
             <div className={styles.categoriesComponentWrapper}>
-            <CategoriesComponent  products={categorizedProducts} />
-        </div>
+                <CategoriesComponent products={categorizedProducts} />
+            </div>
         </>
     );
 };

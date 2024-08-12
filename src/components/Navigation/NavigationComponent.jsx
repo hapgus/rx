@@ -52,7 +52,7 @@ const MobileNavComponent = () => {
             <div className={styles.mobileIconsWrapper}>
                 <IconComponent onClick={handleMobileSearchIconClick} iconType='searchInput' />
                 <IconComponent iconType='userAccount' />
-                <ProductListIcon/>
+                <ProductListIcon />
                 {/* <IconComponent onClick={handleMobileProductListIconClick} iconType='productList' /> */}
 
                 <IconComponent onClick={handleToggleMainMobileMenu} iconType={isRoutingState.isMobileNavOpen === true ? 'xClose' : 'mobileNavMenu'} />
@@ -65,17 +65,24 @@ const MobileNavComponent = () => {
                                 <IconComponent onClick={handleToggleMainMobileMenu} iconType='leftChevron' />
                             </div>
 
-                            <div className={styles.mobileMenuHeader} >
-                                <PageText type='navTitleText'>Home Appliances</PageText>
-                                <IconComponent onClick={handleToggleMobileAppliancesMenu} iconType='rightChevron' />
+                            <div id={styles.firstHeader} className={styles.mobileMenuHeader} >
+                                <div className={styles.headerText}>
+                                    <PageText type='mobileNavTitle'>Home Appliances</PageText>
+                                    <IconComponent onClick={handleToggleMobileAppliancesMenu} iconType='rightChevron' />
+                                </div>
+
                             </div>
                             <div className={styles.mobileMenuHeader} >
-                                <PageText type='navTitleText'>Resources</PageText>
-                                <IconComponent onClick={handleToggleMobileResourcesMenu} iconType='rightChevron' />
+                                <div className={styles.headerText}>
+                                    <PageText type='mobileNavTitle'>Resources</PageText>
+                                    <IconComponent onClick={handleToggleMobileResourcesMenu} iconType='rightChevron' />
+                                </div>
                             </div>
                             <div className={styles.mobileMenuHeader} >
-                                <PageText type='navTitleText'>Product Guide Exclusives</PageText>
-                                <IconComponent onClick={handleToggleMobileExclusiveMenu} iconType='rightChevron' />
+                                <div className={styles.headerText}>
+                                    <PageText type='mobileNavTitle'>Exclusive</PageText>
+                                    <IconComponent onClick={handleToggleMobileExclusiveMenu} iconType='rightChevron' />
+                                </div>
                             </div>
                         </div>
                     </GridSystem>
@@ -93,6 +100,7 @@ const MobileNavComponent = () => {
                             <div className={styles.mobileDropdownContent}>
                                 <ul className={styles.mobileNavOptionsList}>{RouteLinks(navCategoryLinks)}</ul>
                                 <ul className={styles.mobileNavOptionsList}>{RouteLinks(navSecondaryCategoryLinks)}</ul>
+                                <ul className={styles.mobileNavOptionsList}>{RouteLinks(allCategoryLink)}</ul>
                             </div>
                         </div>
                     </GridSystem>
@@ -261,7 +269,7 @@ const DesktopNavComponent = () => {
                                     // onMouseLeave={handlAppliancesLinkMouseLeave} 
                                     className={styles.desktopNavMenuHeader}>
                                     <div onMouseEnter={handleExclusiveLinkMouseEnter} className={styles.desktopNavMenuText}>
-                                    <PageText type='navTitleText'>Exclusive</PageText>
+                                        <PageText type='navTitleText'>Exclusive</PageText>
                                     </div>
                                 </div>
                                 {
@@ -278,7 +286,7 @@ const DesktopNavComponent = () => {
                                     </div>
                                 }
                             </div>
-                           
+
                         </section>
 
                         <section className={styles.desktopNavSearchWrapper}>
@@ -286,7 +294,7 @@ const DesktopNavComponent = () => {
                         </section>
                         <section className={styles.desktopNavMenuWrapper}>
                             <div className={styles.desktopNavIconsWrapper}>
-                                <ProductListIcon/>
+                                <ProductListIcon />
                                 {/* <IconComponent onClick={handleDesktopProductListIconClick} iconType='productList' /> */}
                                 <IconComponent iconType='userAccount' />
                             </div>

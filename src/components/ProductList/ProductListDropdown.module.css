@@ -131,13 +131,13 @@ height: 100vh;
     /* height: max-content; */
     background-color: var(--color-gray-06);
     padding-bottom: 10rem;
-    scroll-snap-type: y proximity;
+    /* scroll-snap-type: y proximity; */
     /* scroll-snap-type: y mandatory; */
     scroll-behavior: smooth;
   
 }
 .scrollProductList > div {
-    scroll-snap-align: start;
+    /* scroll-snap-align: start; */
 
 }
 .scrollProductList::-webkit-scrollbar {

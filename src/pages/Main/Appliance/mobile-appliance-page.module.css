@@ -1,0 +1,118 @@
+.gridItem1 {
+    /* grid-column: 2/12; */
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+
+/* ---------------------------------------------------- */
+/* MOBILE HEADER */
+/* ---------------------------------------------------- */
+.mobileHeaderWrapper {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.mobileProductImageWrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    height: auto;
+    justify-items: center;
+    align-items: center;
+}
+
+.mobileProductImageShape {
+    grid-row: 1;
+    grid-column: 1;
+    width: auto;
+    height: auto;
+    width: 30rem;
+}
+
+.mobileProductImageShape svg {
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+
+.mobileProductImage {
+    grid-row: 1;
+    grid-column: 1;
+    height: 30rem;
+    max-width: 12rem;
+    display: flex;
+}
+
+.mobileProductImage img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    display: flex;
+}
+
+
+.sectionTextWrapper {
+    padding-bottom: 2rem;
+}
+
+.buttonWrapper{
+    padding-bottom: 2rem;
+}
+
+@media (min-width: 430px) {
+
+    /* ---------------------------------------------------- */
+    /* MOBILE HEADER */
+    /* ---------------------------------------------------- */
+    .mobileProductImageShape {
+        width: 40rem;
+    }
+
+    .mobileProductImage {
+        height: 40rem;
+        max-width: 20rem;
+    }
+
+   
+}
+
+
+@media (min-width: 768px) {
+
+    /* ---------------------------------------------------- */
+    /* MOBILE HEADER */
+    /* ---------------------------------------------------- */
+    .mobileHeaderWrapper{
+        padding-bottom: 2rem ;
+    }
+    .mobileProductImageShape {
+        width: 50rem;
+    }
+
+    .mobileProductImage {
+        height: 50rem;
+        max-width: 30rem;
+    }
+    .buttonWrapper button{
+        width: 100%;
+    }
+}
+
+@media (min-width: 1024px) {
+    .mobileHeaderWrapper{
+        padding-bottom: 3rem ;
+    }
+    
+.buttonWrapper{
+    padding-bottom: 3rem;
+}
+
+    
+    /* .buttonWrapper button{
+        width: max-content;
+    } */
+}

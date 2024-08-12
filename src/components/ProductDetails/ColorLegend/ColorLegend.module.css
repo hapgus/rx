@@ -4,7 +4,7 @@
     flex-wrap: wrap;
     gap: 1rem;
 
-    /* justify-content: flex-end; */
+    padding-bottom: 2rem;
 }
 
 .colorListItem {
@@ -30,16 +30,16 @@
         flex-direction: row;
         gap: 4rem;
         justify-content: space-between;
-    
+        padding-bottom: 4rem;
         /* justify-content: flex-end; */
     }
-    
+
     .colorListItem {
         display: flex;
         align-items: center;
         gap: 1rem;
     }
-    
+
     .colorSwatch {
         display: flex;
         width: 50px;
@@ -51,13 +51,22 @@
         border: 1px solid var(--color-gray-03);
     }
 }
+
+@media (min-width: 768px) {
+    .colorListWrapper {
+        padding-bottom: 3rem;
+    }
+
+   
+}
 @media (min-width: 1280px) {
     .colorListWrapper {
         display: flex;
         flex-direction: row;
         gap: 4rem;
-        justify-content: flex-start ;
-        padding-top: 4rem;
+        justify-content: flex-start;
+        /* padding-top: 4rem; */
+        padding-bottom: 0;
 
     }
 }

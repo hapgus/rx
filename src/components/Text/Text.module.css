@@ -1,20 +1,82 @@
 /* --------------------------------------------------------------------------------------- */
+/* NAVIGATION + FOOTER */
+/* --------------------------------------------------------------------------------------- */
+
+.navTitleText {
+    font-size: 2rem;
+    font-family: var(--text-semibold);
+}
+
+.mobileNavTitle {
+    font-size: 2rem;
+}
+
+.footerTitle {
+    font-size: 1.8rem;
+    font-family: var(--text-semibold);
+
+}
+
+.footerMenuItem {
+    font-size: 1.6rem;
+}
+
+/* --------------------------------------------------------------------------------------- */
+/* PRODUCT
+/* --------------------------------------------------------------------------------------- */
+
+.productPageSubtitle {
+    font-family: var(--headline-light);
+    font-weight: 600;
+    font-size: 2.8rem;
+    color: var(--color-gray-01);
+}
+
+.productPageTitle {
+    font-size: 2rem;
+    color: var(--color-gray-03);
+}
+
+.productPageSpecTitle {
+    font-size: 2rem;
+    font-family: var(--text-semibold);
+    color: var(--color-gray-02);
+}
+
+.productPageSpecList {
+    font-size: 1.6rem;
+    color: var(--color-gray-03);
+}
+
+.productPageTertiary {
+    font-size: 1.8rem;
+    color: var(--color-gray-03);
+}
+
+.productPageSection {
+    font-size: 2rem;
+    font-family: var(--text-semibold);
+    color: var(--color-gray-02);
+}
+
+/* --------------------------------------------------------------------------------------- */
 /* PAGE HERO */
 /* --------------------------------------------------------------------------------------- */
 .pageTitle {
     font-family: var(--headline-light);
     font-weight: 600;
-    font-size: 2.8rem;
+    font-size: 3.2rem;
+    /* color: var(--color-gray-01) */
 }
 
 .pageSubtitle {
-    font-family: var(--headline-regular);
-    font-size: 2.4rem;
+    font-size: 2rem;
+    /* color: var(--color-gray-02); */
 }
 
 .pageTertiaryTitle {
-    font-family: var(--headline-regular);
-    font-size: 2rem;
+    /* color: var(--color-gray-03); */
+    font-size: 1.6rem;
 }
 
 /* --------------------------------------------------------------------------------------- */
@@ -81,23 +143,29 @@
 .bodySubtitle {
     font-size: 2.2rem;
 }
-.bodySubtitleBold{
+
+.bodySubtitleBold {
     font-family: var(--text-semibold);
     font-size: 2.2rem;
 }
+
 .bodyTertiaryTitle {
     font-size: 1.8rem;
 }
+
 .bodyTertiaryTitleBold {
     font-size: 1.8rem;
     font-family: var(--text-semibold);
 }
+
 .bodyDescription {
     font-size: 1.4rem;
 }
+
 .bodyDescriptionMedium {
     font-size: 1.6rem;
 }
+
 .bodyDescriptionLarge {
     font-size: 1.8rem;
 }
@@ -105,7 +173,7 @@
 /* --------------------------------------------------------------------------------------- */
 /* NAVIGATION + FOOTER */
 /* --------------------------------------------------------------------------------------- */
-
+/* 
 .navTitleText {
     font-size: 2rem;
     font-family: var(--text-semibold);
@@ -123,7 +191,7 @@
 
 .footerMenuItem {
     font-size: 1.6rem;
-}
+} */
 
 /* --------------------------------------------------------------------------------------- */
 /* SEARCH */
@@ -181,33 +249,154 @@
     .pageTertiaryTitle {
         font-size: 2.2rem;
     }
-    
+
 }
+
 @media (min-width: 768px) {
     /* --------------------------------------------------------------------------------------- */
-  /* PAGE HERO */
-  /* --------------------------------------------------------------------------------------- */
-  .pageTitle {
-      font-size: 4.4rem;
-  }
+/* PAGE HERO */
+/* --------------------------------------------------------------------------------------- */
+.pageTitle {
+    font-size: 2.8rem;
+}
+.pageSubtitle {
+    font-size: 2rem;
+   
+}
 
-  /* .pageSubtitle {
+.pageTertiaryTitle {
+    font-size: 2rem;
+}
+
+    /* --------------------------------------------------------------------------------------- */
+    /* PRODUCT
+/* --------------------------------------------------------------------------------------- */
+
+    .productPageSubtitle {
+        font-size: 2.8rem;
+        font-size: 3rem;
+    }
+
+    .productPageTitle {
+        font-size: 2rem;
+        font-size: 2.2rem;
+    }
+
+    .productPageSpecTitle {
+        font-size: 2rem;
+        font-size: 2.2rem;
+    }
+
+    .productPageSpecList {
+        font-size: 1.6rem;
+        font-size: 1.8rem;
+    }
+
+    .productPageTertiary {
+        font-size: 1.8rem;
+        font-size: 2rem;
+    }
+
+    .productPageSection {
+        font-size: 2rem;
+        font-size: 2.2rem;
+    }
+
+    /* --------------------------------------------------------------------------------------- */
+    /* PAGE HERO */
+    /* --------------------------------------------------------------------------------------- */
+    .pageTitle {
+        font-size: 4.4rem;
+    }
+
+    /* .pageSubtitle {
       font-size: 3.2rem;
   }
 
   .pageTertiaryTitle {
       font-size: 2.4rem;
   } */
-  
+
 }
-@media (min-width: 834px) {
-    /* --------------------------------------------------------------------------------------- */
-  /* PAGE HERO */
-  /* --------------------------------------------------------------------------------------- */
-  
-  
-}
+
+@media (min-width: 834px) {}
+
 @media (min-width: 1024px) {
+    /* --------------------------------------------------------------------------------------- */
+    /* PRODUCT
+/* --------------------------------------------------------------------------------------- */
+
+    .productPageSubtitle {
+        font-size: 2.8rem;
+        font-size: 3rem;
+        font-size: 3.2rem;
+    }
+
+    .productPageTitle {
+        font-size: 2rem;
+        font-size: 2.2rem;
+        font-size: 2.4rem;
+    }
+
+    .productPageSpecTitle {
+        font-size: 2rem;
+        font-size: 2.2rem;
+        font-size: 2.4rem;
+    }
+
+    .productPageSpecList {
+        font-size: 1.6rem;
+        font-size: 2rem;
+    }
+
+    .productPageTertiary {
+        font-size: 1.8rem;
+        font-size: 2rem;
+        font-size: 2.2rem;
+    }
+
+    .productPageSection {
+        font-size: 2rem;
+        font-size: 2.2rem;
+        font-size: 2.4rem;
+    }
+
+    @media (min-width: 1280px) {
+
+        .productPageSubtitle {
+            font-size: 2.8rem;
+            font-size: 3rem;
+            font-size: 3.2rem;
+            font-size: 3.6rem;
+        }
+
+        .productPageTitle {
+            font-size: 2rem;
+            font-size: 2.2rem;
+            font-size: 2.4rem;
+            font-size: 2.8rem;
+        }
+
+    }
+    @media (min-width: 1440px) {
+
+        .productPageSubtitle {
+            font-size: 2.8rem;
+            font-size: 3rem;
+            font-size: 3.2rem;
+            font-size: 3.6rem;
+            font-size: 4.4rem;
+        }
+
+        .productPageTitle {
+            font-size: 2rem;
+            font-size: 2.2rem;
+            font-size: 2.4rem;
+            font-size: 2.8rem;
+            font-size: 3.6rem
+        }
+
+    }
 
     /* --------------------------------------------------------------------------------------- */
     /* PAGE HERO */

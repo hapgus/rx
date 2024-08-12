@@ -1,4 +1,5 @@
-import { CATEGORY_VERBIAGE } from "../data/VERBIAGE_DATA";
+
+import { CATEGORY_VERBIAGE } from "../data/CATEGORY_VERBIAGE";
 
 
 // export const FilterProductsByCategoryId = (products, categoryId) => {

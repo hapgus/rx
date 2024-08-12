@@ -55,12 +55,12 @@
     height: 60.5rem;
     overflow-y: scroll;
     background-color: var(--color-gray-06);
-    scroll-snap-type: y proximity;
+    /* scroll-snap-type: y proximity; */
 
 }
 
 .desktopSearchPreviewWithResultsInnerDiv > div {
-    scroll-snap-align: start;
+    /* scroll-snap-align: start; */
 
 }
 

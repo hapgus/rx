@@ -81,7 +81,7 @@ export const GenerateProductURL = (category, productTitle) => {
 export const resourceLinks = [
     { href: `${publicUrl}/feature-definitions`, text: 'Feature Definition' },
     { href: `${publicUrl}/warranties`, text: 'Warranty Information' },
-    { href: '/model-transitions', text: 'Model Transitions' }
+    { href: `${publicUrl}/model-transitions`, text: 'Model Transitions' }
 ];
 
 export const stepUpChartLinks = [

@@ -8,6 +8,7 @@ import { NormalizeSlugs } from "../../utils/link-helper";
 import { PageText } from "../Text/Text";
 import styles from './CategoriesComponent.module.css'
 import { LinkComponent } from "../Links/LinkComponent";
+import { GridSystem } from "../GridSystem/GridSystem";
 export const CategoriesComponent = ({ products }) => {
     const { publicProducts } = useProductsHook();
 
@@ -64,27 +65,39 @@ export const CategoriesComponent = ({ products }) => {
         const verbiage = GetCategoryVerbiage(category);
         return (
             <div key={`category-${categoryIndex}`} className={styles.categoryCardsContainer}>
-                <div className={styles.categoryTitle}>
-                    <PageText type="pageTitle">{verbiage.title2}</PageText>
-                    <LinkComponent href={`${NormalizeSlugs(category)}`}>
+                <GridSystem>
+                    <div className={styles.categorySectionHeaderWrapper}>
+                        <div className={styles.categoryTitleWrapper}>
+                            <LinkComponent href={`${NormalizeSlugs(category)}`}>
+                                <PageText type="pageSubtitle">{capitalizeFirstLetterEachWord(category)}</PageText>
+                            </LinkComponent>
+                            <PageText type="pageTitle">{verbiage.allCategoriesHeadline}</PageText>
+                            {/* <PageText type="pageSubtitle">{verbiage.allCategoriesSubheadline}</PageText> */}
+                        </div>
+                        <div className={styles.categoryDescriptionWrapper}>
+                            <div className={styles.categoryDescriptionShort}>
+                                <PageText type="bodyDescriptionLarge">{verbiage.allCategoriesDescriptionShort}</PageText>
+                            </div>
+                            <div className={styles.categoryDescriptionLong}>
+                            <PageText type="bodyDescriptionLarge">{verbiage.allCategoriesDescriptionLong}</PageText>
+                            </div>
+                        </div>
+                        {/* <PageText type="pageHeaderDescription">{verbiage.description1}</PageText> */}
+                    </div>
+                </GridSystem>
+                <GridSystem>
+                    <div className={styles.categoryCardsWrapper}>
+                        {Object.entries(subcategories).map(([subcategory, subcategoryIndex]) => (
 
-                        <PageText type="pageSubtitle">{capitalizeFirstLetterEachWord(category)}</PageText>
-
-                    </LinkComponent>
-                    {/* <PageText type="pageHeaderDescription">{verbiage.description1}</PageText> */}
-                </div>
-
-                <div className={styles.categoryCardsWrapper}>
-                    {Object.entries(subcategories).map(([subcategory, subcategoryIndex]) => (
-
-                        <ProductCategoryCard
-                            key={`subcategory-${category}-${subcategory}-${subcategoryIndex}`}
-                            subcategory={capitalizeFirstLetterEachWord(subcategory)}
-                            hashLinkPath={`${category}#${NormalizeSlugs(subcategory)}`}
-                            subcategoryImagePath={subcategoryProductImageMap[category][subcategory]}
-                        />
-                    ))}
-                </div>
+                            <ProductCategoryCard
+                                key={`subcategory-${category}-${subcategory}-${subcategoryIndex}`}
+                                subcategory={capitalizeFirstLetterEachWord(subcategory)}
+                                hashLinkPath={`${category}#${NormalizeSlugs(subcategory)}`}
+                                subcategoryImagePath={subcategoryProductImageMap[category][subcategory]}
+                            />
+                        ))}
+                    </div>
+                </GridSystem>
             </div>
         );
     });

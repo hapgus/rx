@@ -29,8 +29,9 @@ const Homepage = () => {
             <div className={styles.pageContainer}>
                 <GridSystem>
                     <div className={styles.section1HeaderText}>
-                        <PageText type='pageSubtitle'>Home Appliances</PageText>
-                        <PageText type='pageTitle'>LG Product Guide</PageText>
+                        <PageText type='pageSubtitle'>LG Home Appliances</PageText>
+                        <PageText type='pageTitle'>Product Guide</PageText>
+
 
                     </div>
                     <div className={styles.section1Search}>
@@ -47,12 +48,13 @@ const Homepage = () => {
                         </div>
                     </div>
                     <div className={styles.section1FooterText}>
-                        <PageText type='pageTertiaryTitle'>Find the latest product and sales resources for LG Home Appliances </PageText>
+                        <PageText type='pageTertiaryTitle'>{`Search and Explore LG’s Best-In-Class Home Appliances`} </PageText>
+                        <PageText></PageText>
                     </div>
-                    <div className={styles.linksContainer}>
+                    {/* <div className={styles.linksContainer}>
 
                         {categoryLinks && categoryLinks.map((e => <span className={styles.featureLink}><NavLink to={e.href}><Button buttonStyleType='secondary'>{e.text}</Button></NavLink></span>))}
-                    </div>
+                    </div> */}
                 </GridSystem>
             </div>
         </GridSystem>

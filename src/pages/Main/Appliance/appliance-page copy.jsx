@@ -12,7 +12,7 @@ import { ColorLegend } from '../../../components/ProductDetails/ColorLegend/Colo
 import { Specifications } from '../../../components/ProductDetails/Specifications/Specifications';
 import { VideoComponent } from '../../../components/ProductDetails/FeatureVideo/VideoComponent';
 import { MatchingProductComponent } from '../../../components/ProductDetails/MatchingProduct/MatchingProductComponent';
-import { ExternalSpecificationSheetComponent } from '../../../components/ProductCards/ExternalSpecificationSheet/ExternalSpecificationSheetComponent';
+import { ExternalSpecificationSheetComponent } from '../../../components/ProductDetails/ExternalSpecificationSheet/ExternalSpecificationSheetComponent.jsx';
 import { UpcCode } from '../../../components/ProductDetails/UpcCode/UpcCode.jsx';
 const MobileAppliancePage = () => {
   const { productId } = useParams();

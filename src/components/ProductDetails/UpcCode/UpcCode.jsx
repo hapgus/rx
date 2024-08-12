@@ -10,11 +10,11 @@ export const UpcCode = ({ upc }) => {
                 upc ?
                     <>
                         <div className={styles.titleContainer}>
-                            <PageText type='bodyTertiaryTitleBold'>UPC Codes</PageText>
+                            <PageText type='productPageSection'>UPC Codes</PageText>
                         </div>
                         <ul className={styles.upcListWrapper}>
                             {upc.map((e, idx) => (<li className={styles.upcListItem} key={idx}>
-                                <PageText type='bodyDescription'>{e}</PageText>
+                                <PageText type='productPageTertiary'>{e}</PageText>
 
                             </li>))}
                         </ul>

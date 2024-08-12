@@ -23,3 +23,29 @@ export const useResponsiveStateHook = (breakpoint = 1024) => {
 
     return responsiveState;
 };
+
+
+// Hook for handling responsiveness based on a 1280px breakpoint
+export const useResponsiveMediaStateHook = (breakpoint = 1280) => {
+    const [responsiveState, setResponsiveState] = useState({
+        isMediaMobile: window.innerWidth < breakpoint,
+        isMediaDesktop: window.innerWidth >= breakpoint,
+    });
+
+    useEffect(() => {
+        const handleResize = () => {
+            setResponsiveState({
+                isMediaMobile: window.innerWidth < breakpoint,
+                isMediaDesktop: window.innerWidth >= breakpoint,
+            });
+        };
+
+        window.addEventListener('resize', handleResize);
+        // Set initial state
+        handleResize();
+
+        return () => window.removeEventListener('resize', handleResize);
+    }, [breakpoint]);
+
+    return responsiveState;
+};

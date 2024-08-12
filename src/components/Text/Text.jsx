@@ -9,12 +9,33 @@ export const PageText = ({ children, eventHandlers = {}, type = 'default' }) => 
 
     const textStyles = {
         /* --------------------------------------------------------------------------------------- */
+        /* PRODUCT
+        /* --------------------------------------------------------------------------------------- */
+        productPageTitle: styles.productPageTitle,
+        productPageSubtitle: styles.productPageSubtitle,
+
+        productPageSpecTitle: styles.productPageSpecTitle,
+        productPageSpecList: styles.productPageSpecList,
+        productPageTertiary: styles.productPageTertiary,
+        productPageSection: styles.productPageSection,
+
+        
+        /* --------------------------------------------------------------------------------------- */
+        /* NAVIGATION + FOOTER */
+        /* --------------------------------------------------------------------------------------- */
+        navTitleText: styles.navTitleText,
+        mobileNavTitle: styles.mobileNavTitle,
+
+        footerTitle: styles.footerTitle,
+        footerMenuItem: styles.footerMenuItem,
+
+        /* --------------------------------------------------------------------------------------- */
         /* PRINT MODE */
         /* --------------------------------------------------------------------------------------- */
 
-        coverTitle:styles.coverTitle,
-        coverSubtitle:styles.coverSubtitle,
-        coverTertiaryTitle:styles.coverTertiaryTitle,
+        coverTitle: styles.coverTitle,
+        coverSubtitle: styles.coverSubtitle,
+        coverTertiaryTitle: styles.coverTertiaryTitle,
 
         /* --------------------------------------------------------------------------------------- */
         /* MODALS + ALERTS */
@@ -43,14 +64,6 @@ export const PageText = ({ children, eventHandlers = {}, type = 'default' }) => 
         bodyDescriptionLarge: styles.bodyDescriptionLarge,
 
 
-        /* --------------------------------------------------------------------------------------- */
-        /* NAVIGATION + FOOTER */
-        /* --------------------------------------------------------------------------------------- */
-        navTitleText: styles.navTitleText,
-        mobileNavTitleText: styles.mobileNavTitleText,
-
-        footerTitle: styles.footerTitle,
-        footerMenuItem: styles.footerMenuItem,
         /* --------------------------------------------------------------------------------------- */
         /* SEARCH */
         /* --------------------------------------------------------------------------------------- */

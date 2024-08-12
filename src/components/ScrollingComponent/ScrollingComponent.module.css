@@ -4,7 +4,7 @@
   grid-template-columns: repeat(12, 1fr);
   border-top: 2px solid var(--color-gray-04);
   padding-top: 2rem;
-  padding-bottom: 2rem;
+  /* padding-bottom: 2rem; */
   /* padding: 2rem 8rem 0 8rem; */
 }
 
@@ -18,8 +18,8 @@
   display: flex;
   overflow-x: auto;
   gap: 2rem;
-
-  padding-bottom: 6rem;
+  padding-bottom: 2rem;
+  /* padding-bottom: 6rem; */
 }
 .scrollWrapper {
   display: flex;
@@ -33,7 +33,7 @@
   display: flex;
   align-items: center;
   position: relative;
-  padding: 2rem 8.5vw 4rem 8.5vw;
+  padding: 2rem;
   background-color: var(--color-gray-05);
 }
 
