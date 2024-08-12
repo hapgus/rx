@@ -19,7 +19,7 @@ const FeatureDefinitionsPage = () => {
         <div className={styles.featureDefinitionsPageContainer}>
             <div className={styles.pageHeaderContainer}>
                 <GridSystem >
-                    <PageText type="pageSubtitle">Resources</PageText>
+                    <PageText type="pageSubtitle">Resource</PageText>
                     <PageText type="pageTitle">Feature Definitions</PageText>
                     <PageText type="bodySubtitle">This is your go-to destination for a quick and informative overview of LG's cutting-edge technology and innovations. You play a pivotal role in guiding customers through our range of products, and we're here to equip you with the knowledge you need to provide exceptional customer experiences. Explore our intuitive and advanced features such as AIDD™, QuadWash® Pro and more.</PageText>
                 </GridSystem>
