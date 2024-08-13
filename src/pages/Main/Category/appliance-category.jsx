@@ -12,6 +12,7 @@ import { GridSystem } from '../../../components/GridSystem/GridSystem';
 import { ScrollingComponent } from '../../../components/ScrollingComponent/ScrollingComponent';
 import { useResponsiveStateHook } from '../../../hooks/responsive-hook';
 import { useResponsiveMediaStateHook } from '../../../hooks/responsive-hook';
+import { InnerGridItem } from '../../../components/GridSystem/InnerGridItem';
 const ApplianceCategoryPage = () => {
     const { isMobile } = useResponsiveStateHook();
     const { isMediaMobile } = useResponsiveMediaStateHook();
@@ -74,49 +75,53 @@ const ApplianceCategoryPage = () => {
         };
     return (
         <>
-            <GridSystem>
-                {
-                    CATEGORY_SHAPED_IMAGE && CATEGORY_VERBIAGE &&
-                    <div className={styles.heroContainer} style={heroStyles}>
-                        <div className={styles.heroWrapper}>
-                            <div className={styles.heroTextWrapper}>
-                                <div className={styles.heroTitle}>
-                                    <PageText type='pageTitle'>{CATEGORY_VERBIAGE[normalizedCategoryId].categoryHeadline}</PageText>
-                                    <PageText type='bodyDescriptionLarge'>{CATEGORY_VERBIAGE[normalizedCategoryId].categorySubheadline}</PageText>
+            <GridSystem
+                gridType='spread'
+            >
+               
+                    {
+                        CATEGORY_SHAPED_IMAGE && CATEGORY_VERBIAGE &&
+                        <div className={styles.heroContainer} style={heroStyles}>
+                            <div className={styles.heroWrapper}>
+                                <div className={styles.heroTextWrapper}>
+                                    <div className={styles.heroTitle}>
+                                        <PageText type='pageTitle'>{CATEGORY_VERBIAGE[normalizedCategoryId].categoryHeadline}</PageText>
+                                        <PageText type='bodyDescriptionLarge'>{CATEGORY_VERBIAGE[normalizedCategoryId].categorySubheadline}</PageText>
+                                    </div>
+                                    <div className={styles.heroDescription}>
+                                        <PageText type='bodyDescriptionLarge'>{CATEGORY_VERBIAGE[normalizedCategoryId].categoryDescription1}</PageText>
+                                        <PageText type='bodyDescriptionLarge'>{CATEGORY_VERBIAGE[normalizedCategoryId].categoryDescription2}</PageText>
+                                    </div>
                                 </div>
-                                <div className={styles.heroDescription}>
-                                    <PageText type='bodyDescriptionLarge'>{CATEGORY_VERBIAGE[normalizedCategoryId].categoryDescription1}</PageText>
-                                    <PageText type='bodyDescriptionLarge'>{CATEGORY_VERBIAGE[normalizedCategoryId].categoryDescription2}</PageText>
-                                </div>
-                            </div>
-                            <div className={styles.heroImageWrapper}>
-                                <div className={styles.mobileImageGroup}>
-                                    <div className={styles.image1}>
+                                <div className={styles.heroImageWrapper}>
+                                    <div className={styles.mobileImageGroup}>
+                                        <div className={styles.image1}>
+                                            <img
+                                                src={CATEGORY_SHAPED_IMAGE[normalizedCategoryId].imageShape1}
+                                                alt={`${CATEGORY_SHAPED_IMAGE[normalizedCategoryId]} image shapes`}
+                                                loading='lazy'
+                                            />
+                                        </div>
+                                        <div className={styles.image2}>
+                                            <img
+                                                src={CATEGORY_SHAPED_IMAGE[normalizedCategoryId].imageShape2}
+                                                alt={`${CATEGORY_SHAPED_IMAGE[normalizedCategoryId]} image shapes`}
+                                                loading='lazy'
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className={styles.image3}>
                                         <img
-                                            src={CATEGORY_SHAPED_IMAGE[normalizedCategoryId].imageShape1}
+                                            src={CATEGORY_SHAPED_IMAGE[normalizedCategoryId].imageShape3}
                                             alt={`${CATEGORY_SHAPED_IMAGE[normalizedCategoryId]} image shapes`}
                                             loading='lazy'
                                         />
                                     </div>
-                                    <div className={styles.image2}>
-                                        <img
-                                            src={CATEGORY_SHAPED_IMAGE[normalizedCategoryId].imageShape2}
-                                            alt={`${CATEGORY_SHAPED_IMAGE[normalizedCategoryId]} image shapes`}
-                                            loading='lazy'
-                                        />
-                                    </div>
-                                </div>
-                                <div className={styles.image3}>
-                                    <img
-                                        src={CATEGORY_SHAPED_IMAGE[normalizedCategoryId].imageShape3}
-                                        alt={`${CATEGORY_SHAPED_IMAGE[normalizedCategoryId]} image shapes`}
-                                        loading='lazy'
-                                    />
                                 </div>
                             </div>
                         </div>
-                    </div>
-                }
+                    }
+             
             </GridSystem>
             <section className={styles.productsContainer}>
                 <ScrollingComponent processedProducts={subcategories} />

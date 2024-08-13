@@ -1,41 +1,35 @@
+.mainContainer{
+
+  border-top: 1px solid var(--color-gray-04);
+}
+.innerContainer{
+  padding: 0 2rem;
+}
 .scrollHeaderWrapper {
-  background-color: var(--color-gray-05);
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  border-top: 2px solid var(--color-gray-04);
-  padding-top: 2rem;
-  /* padding-bottom: 2rem; */
-  /* padding: 2rem 8rem 0 8rem; */
+ 
 }
 
 .scrollHeader {
-  grid-column: 2/12;
+  /* grid-column: 2/12; */
 }
 .mainScrollingDivContainer {}
 
 .container {
-  background-color: var(--color-gray-05);
+  /* background-color: var(--color-gray-05); */
   display: flex;
   overflow-x: auto;
   gap: 2rem;
   padding-bottom: 2rem;
+  margin-bottom: 2rem;
   /* padding-bottom: 6rem; */
 }
 .scrollWrapper {
   display: flex;
   align-items: center;
   position: relative;
-  /* padding: 2rem 11.5vw 4rem 11.5vw; */
-   padding: 2rem 11.5vw 4rem 11.5vw;
-  background-color: var(--color-gray-05);
+
 }
-.scrollWrapper {
-  display: flex;
-  align-items: center;
-  position: relative;
-  padding: 2rem;
-  background-color: var(--color-gray-05);
-}
+
 
 /* For WebKit-based browsers */
 .container::-webkit-scrollbar {
@@ -57,24 +51,37 @@
 }
 @media (min-width: 430px) {
   .scrollWrapper {
-    padding: 2rem 8.5vw 4rem 8.5vw;
+    /* padding: 2rem 8.5vw 4rem 8.5vw; */
   }
+ 
 }
 
 @media (min-width: 768px) {
-  /* .scrollWrapper {
-    padding: 2rem 11.5vw 4rem 11.5vw;
-  } */
+  .container {
+    padding-bottom: 3rem;
+    /* padding-bottom: 6rem; */
+  }
 }
 
-@media (min-width:1280px) {
+@media(min-width: 1440px){
+  .innerContainer{
+    padding: 0 4rem;
+  }
+}
+@media (min-width:1920px) {
 
- 
+  .innerContainer{
+    padding: 0;
+  }
+  .scrollWrapper {
+    padding: 0;
+
+  }
   .scrollHeaderWrapper {
  
-  padding: 2rem 8rem 0 8rem;
+  /* padding: 2rem 8rem 0 8rem; */
 }
-  /* .mainScrollingDivContainer:not(:last-child){
+ /* .mainScrollingDivContainer:not(:last-child){
     border-bottom: 2px solid var(--color-red-03);
   } */
   
@@ -83,51 +90,7 @@
   
 
   
-  /* For WebKit-based browsers */
-  .container::-webkit-scrollbar {
-    width: 12px;
-  }
-  
-  .container::-webkit-scrollbar-track {
-    background: var(--color-gray-05);
-  }
-  
-  .container::-webkit-scrollbar-thumb {
-    background-color: var(--color-gray-04);
-    border-radius: 10px;
-    border: 3px solid var(--color-gray-05);
-  }
-  
-  .container::-webkit-scrollbar-thumb:hover {
-    background-color: var(--color-red-02);
-  }
+
   
   
-  .scrollWrapper {
-    display: flex;
-    align-items: center;
-    position: relative;
-    padding: 2rem 11.5vw 4rem 11.5vw;
-    background-color: var(--color-gray-05);
-  }
-  
-  
-  
-  .scrollProgress {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 4px;
-    background-color: red;
-    /* Adjust color as needed */
-  }
-  
-  .subcategoryCountContainer {
-    display: flex;
-    align-items: center;
-  }
 }
-
-
-
-

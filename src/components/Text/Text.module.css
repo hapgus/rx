@@ -6,7 +6,10 @@
     font-size: 2rem;
     font-family: var(--text-semibold);
 }
-
+.stickyNavTitleText {
+    font-size: 1.6rem;
+    /* font-family: var(--text-semibold); */
+}
 .mobileNavTitle {
     font-size: 2rem;
 }
@@ -14,7 +17,6 @@
 .footerTitle {
     font-size: 1.8rem;
     font-family: var(--text-semibold);
-
 }
 
 .footerMenuItem {
@@ -170,6 +172,12 @@
     font-size: 1.8rem;
 }
 
+.bodyFeatureSectionTitle {
+    font-family: var(--headline-regular);
+    /* font-weight: 600; */
+    font-size: 2.8rem;
+}
+
 /* --------------------------------------------------------------------------------------- */
 /* NAVIGATION + FOOTER */
 /* --------------------------------------------------------------------------------------- */
@@ -243,7 +251,7 @@
     } */
 
     .pageSubtitle {
-        font-size: 2.8rem;
+        font-size: 2.4rem;
     }
 
     .pageTertiaryTitle {
@@ -254,19 +262,17 @@
 
 @media (min-width: 768px) {
     /* --------------------------------------------------------------------------------------- */
-/* PAGE HERO */
-/* --------------------------------------------------------------------------------------- */
-.pageTitle {
-    font-size: 2.8rem;
-}
-.pageSubtitle {
+    /* PAGE HERO */
+    /* --------------------------------------------------------------------------------------- */
+
+    /* .pageSubtitle {
     font-size: 2rem;
    
 }
 
 .pageTertiaryTitle {
     font-size: 2rem;
-}
+} */
 
     /* --------------------------------------------------------------------------------------- */
     /* PRODUCT
@@ -316,7 +322,13 @@
   .pageTertiaryTitle {
       font-size: 2.4rem;
   } */
+    /* --------------------------------------------------------------------------------------- */
+    /* PAGE BODY */
+    /* --------------------------------------------------------------------------------------- */
 
+    .pageFeatureSectionTitle {
+        font-size: 3.2rem;
+    }
 }
 
 @media (min-width: 834px) {}
@@ -361,6 +373,27 @@
         font-size: 2.4rem;
     }
 
+    .stickyNavTitleText {
+        font-size: 1.6rem;
+        font-size: 1.8rem;
+        /* font-family: var(--text-semibold); */
+    }
+
+    /* --------------------------------------------------------------------------------------- */
+    /* PAGE HERO */
+    /* --------------------------------------------------------------------------------------- */
+    /* .pageTitle {
+        font-size: 7rem;
+    }
+
+    .pageSubtitle {
+        font-size: 3.6rem;
+    }
+
+    .pageTertiaryTitle {
+        font-size: 3rem;
+    } */
+}
     @media (min-width: 1280px) {
 
         .productPageSubtitle {
@@ -378,6 +411,7 @@
         }
 
     }
+
     @media (min-width: 1440px) {
 
         .productPageSubtitle {
@@ -396,24 +430,14 @@
             font-size: 3.6rem
         }
 
+        .stickyNavTitleText {
+            font-size: 1.6rem;
+            font-size: 1.8rem;
+            font-size: 2rem;
+            /* font-family: var(--text-semibold); */
+        }
+
     }
-
-    /* --------------------------------------------------------------------------------------- */
-    /* PAGE HERO */
-    /* --------------------------------------------------------------------------------------- */
-    /* .pageTitle {
-        font-size: 7rem;
-    }
-
-    .pageSubtitle {
-        font-size: 3.6rem;
-    }
-
-    .pageTertiaryTitle {
-        font-size: 3rem;
-    } */
-}
-
 /* --------------------------------------------------------------------------------------- */
 /* MEDIA QUERY REFERENCE */
 /* --------------------------------------------------------------------------------------- */

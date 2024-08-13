@@ -44,7 +44,7 @@ export const DesktopAppliancePage = ({ productId }) => {
             <main key={idx} className={styles.pageContainer}>
 
 
-                <GridSystem>
+                <GridSystem >
                     <div className={styles.applianceHeaderWrapper}>
                         <div className={styles.applianceHeaderWrapperDiv1}>
                             <PageText type='productPageTitle'>{details.title}</PageText>

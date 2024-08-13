@@ -65,7 +65,7 @@ export const ProductProvider = ({ children }) => {
         publicProducts,
         setPublicProducts,
     };
-
+console.log(publicProducts)
     return (
         <ProductContext.Provider value={value}>
             {children}

@@ -7,9 +7,9 @@
 
 .scrollButton {
     display: flex;
-    width: 5.5rem;
-    height: 5.5rem;
-    padding: 21px 24px;
+    width: 4.5rem;
+    height: 4.5rem;
+    padding: 10px 19px;
     align-items: center;
     gap: 10px;
     flex-shrink: 0;

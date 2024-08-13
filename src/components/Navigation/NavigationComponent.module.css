@@ -116,10 +116,9 @@
 
 
 
-@media (min-width: 1024px) {
+@media (min-width: 1280px) {
     .mainNavComponentContainer:hover {
         border-bottom: 1px solid var(--color-gray-04);
-    
     }
 
     /* --------------------------------------------------------------------------------------- */
@@ -136,6 +135,7 @@
 
     .desktopNavWrapper {
         display: block;
+        padding: 1rem 2rem;
     }
 
     .desktopNavContainer {
@@ -240,6 +240,19 @@
 
 }
 
+
+@media (min-width: 1440px) {
+    .desktopNavWrapper {
+        padding: 1rem 4rem;
+    }
+}
+@media (min-width: 1920px) {
+  
+    .desktopNavWrapper {
+        padding: 1rem 0;
+    }
+
+} 
 
 /* --------------------------------------------------------------------------------------- */
 /* MEDIA QUERY REFERENCE */

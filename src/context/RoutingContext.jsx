@@ -13,6 +13,7 @@ export const RoutingContext = createContext({
         isMobileNavOpen: false,   
         isMobileCategoriesMenuOpen: false,
         isMobileResourcesMenuOpen: false,
+        isMobileStepUpChartsMenuOpen: false,
         isMobileExclusiveMenuOpen: false,
 
         isMobileAccountMenuOpen: false,
@@ -20,6 +21,7 @@ export const RoutingContext = createContext({
 
         isCategoriesMenuOpen: false,
         isResourcesMenuOpen: false,
+        isStepUpChartsMenuOpen: false,
         isExclusiveMenuOpen: false,
 
         isAccountMenuOpen: false,

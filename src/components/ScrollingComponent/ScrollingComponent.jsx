@@ -88,43 +88,60 @@ export const ScrollingComponent = ({ processedProducts }) => {
                     {Object.entries(products).map(([subcategory, items]) => {
                         const currentRefIdx = refIdx++;
                         return (
-                            <div key={subcategory}>
-                              
-                                    <div className={styles.scrollHeaderWrapper}>
-                                        <div className={styles.scrollHeader}>
-                                            <ScrollHeader
-                                                leftOnClick={() => scroll(scrollRefs[currentRefIdx], 'left', currentRefIdx)}
-                                                rightOnClick={() => scroll(scrollRefs[currentRefIdx], 'right', currentRefIdx)}
-                                                leftDisabled={scrollDisabled[currentRefIdx]?.left}
-                                                rightDisabled={scrollDisabled[currentRefIdx]?.right}
-                                                itemCount={CountProductsInCategory(items)}
-                                                headerText={capitalizeFirstLetterEachWord(subcategory)}
-                                                progress={scrollProgress[currentRefIdx]}
-                                            />
+                            <div className={styles.mainContainer} key={subcategory}>
+                                <GridSystem
+                                    gridType='spread'
+                                    containerPaddingTop='2rem'
+                                    //   containerPaddingBottom='2rem'
+                                    //   containerBorderBottom='1px solid #D0CBC1'
+                                    //   containerBackgroundColor='#E6E1D6'
+                                    // containerBorderBottom='1px solid #D0CBC1'
+                                    containerBackgroundColor='#E6E1D6'
+                                >
+                                    <div className={styles.innerContainer}>
+                                        <div className={styles.scrollHeaderWrapper}>
+                                            <div className={styles.scrollHeader}>
+                                                <ScrollHeader
+                                                    leftOnClick={() => scroll(scrollRefs[currentRefIdx], 'left', currentRefIdx)}
+                                                    rightOnClick={() => scroll(scrollRefs[currentRefIdx], 'right', currentRefIdx)}
+                                                    leftDisabled={scrollDisabled[currentRefIdx]?.left}
+                                                    rightDisabled={scrollDisabled[currentRefIdx]?.right}
+                                                    itemCount={CountProductsInCategory(items)}
+                                                    headerText={capitalizeFirstLetterEachWord(subcategory)}
+                                                    progress={scrollProgress[currentRefIdx]}
+                                                />
+                                            </div>
                                         </div>
                                     </div>
-                              
+                                </GridSystem>
                                 <div className={styles.mainScrollingDivContainer}>
-
-                                    <div className={styles.scrollWrapper}>
-                                        {/* <motion.div
+                                    <GridSystem
+                                        gridType='spread'
+                                        containerBackgroundColor='#E6E1D6'
+                                    >
+                                        <div className={styles.innerContainer}>
+                                            <div className={styles.scrollWrapper}>
+                                                {/* <motion.div
                                             className={styles.scrollProgress}
                                             style={{ width: `${scrollProgress[currentRefIdx]}%` }}
                                         /> */}
-                                        <div
-                                            className={styles.container}
-                                            ref={scrollRefs[currentRefIdx]}
-                                            onScroll={() => {
-                                                updateScrollButtons(scrollRefs[currentRefIdx], currentRefIdx);
-                                                updateScrollProgress(scrollRefs[currentRefIdx], currentRefIdx);
-                                            }}
-                                        >
-                                            {items && items.map((product, itemIdx) => (
-                                                <ApplianceCard key={product.id || itemIdx} product={product} />
-                                            ))}
+                                                <div
+                                                    className={styles.container}
+                                                    ref={scrollRefs[currentRefIdx]}
+                                                    onScroll={() => {
+                                                        updateScrollButtons(scrollRefs[currentRefIdx], currentRefIdx);
+                                                        updateScrollProgress(scrollRefs[currentRefIdx], currentRefIdx);
+                                                    }}
+                                                >
+                                                    {items && items.map((product, itemIdx) => (
+                                                        <ApplianceCard key={product.id || itemIdx} product={product} />
+                                                    ))}
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </GridSystem>
                                 </div>
+
                             </div>
                         );
                     })}

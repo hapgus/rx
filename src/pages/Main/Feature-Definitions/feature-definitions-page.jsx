@@ -13,15 +13,41 @@ import { GridSystem } from "../../../components/GridSystem/GridSystem";
 
 
 const FeatureDefinitionsPage = () => {
+    const publicUrl = process.env.PUBLIC_URL
 
     const groupedData = GroupDataByCategory(FEATURE_DEFINITIONS_DATA);
     return (
         <div className={styles.featureDefinitionsPageContainer}>
             <div className={styles.pageHeaderContainer}>
-                <GridSystem >
-                    <PageText type="pageSubtitle">Resources</PageText>
-                    <PageText type="pageTitle">Feature Definitions</PageText>
-                    <PageText type="bodySubtitle">This is your go-to destination for a quick and informative overview of LG's cutting-edge technology and innovations. You play a pivotal role in guiding customers through our range of products, and we're here to equip you with the knowledge you need to provide exceptional customer experiences. Explore our intuitive and advanced features such as AIDD™, QuadWash® Pro and more.</PageText>
+                <GridSystem gridType="spread" >
+                    <div className={styles.contentWrapper}>
+                        <div className={styles.heroGridContainer}>
+                            <div className={styles.heroGridWrapper}>
+                                <div className={styles.gridItem1}>
+                                    <div className={styles.subtitle}>
+                                        <PageText type="pageSubtitle">Resources</PageText>
+                                    </div>
+                                    <div className={styles.title}>
+                                        <PageText type="pageTitle">Feature Definitions</PageText>
+                                    </div>
+                                    <div className={styles.description}>
+                                        <div className={styles.shortDescription}>
+                                            <PageText type="bodySubtitle">This is your go-to destination for a quick and informative overview of LG's cutting-edge technology and innovations. </PageText>
+                                        </div>
+                                        <div className={styles.longDescription}>
+                                            <PageText type="bodySubtitle">This is your go-to destination for a quick and informative overview of LG's cutting-edge technology and innovations. You play a pivotal role in guiding customers through our range of products, and we're here to equip you with the knowledge you need to provide exceptional customer experiences. Explore our intuitive and advanced features such as AIDD™, QuadWash® Pro and more.</PageText>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div  className={styles.gridItem2}>
+                                    <div className={styles.gridItem2Image}>
+                                    <img alt="lg mom and daughter" src={`${publicUrl}/assets/image/backgrounds/main/lg-mom-shape.png`} />
+                                    </div>
+                                </div>
+                              
+                            </div>
+                        </div>
+                    </div>
                 </GridSystem>
             </div>
             {/* <div className={styles.pageHeaderContainer}>
@@ -46,24 +72,25 @@ const FeatureDefinitionsPage = () => {
 
             {Object.keys(groupedData).map((category, categoryIndex) => (
                 <div key={categoryIndex}>
-                    <GridSystem containerBackgroundColor='#E6E1D6'>
+                    <GridSystem gridType="spread" containerBackgroundColor='#E6E1D6'>
+                        <div className={styles.contentWrapper}>
 
-                        <div className={styles.featureDefinitionsPageContainer} data-section id={`category-${categoryIndex}`}>
-                            <div className={styles.categoryTitleWrapper}>
-                                <PageText type="pageSubtitle">{capitalizeFirstLetterEachWord(category)}</PageText>
-                            </div>
-                            {groupedData[category].map((item, itemIndex) => (
-                                <div className={styles.definitionWrapper} key={itemIndex}>
-                                    <div className={styles.featureTitleWrapper}>
-                                        <PageText type="bodySubtitle">{item.feature}</PageText>
-                                    </div>
-                                    <div className={styles.featureDescriptionWrapper}>
-                                        <PageText type="bodyDescriptionMedium">{item.definition}</PageText>
-                                    </div>
+                            <div className={styles.featureDefinitionsPageContainer} data-section id={`category-${categoryIndex}`}>
+                                <div className={styles.categoryTitleWrapper}>
+                                    <PageText type="bodyFeatureSectionTitle">{capitalizeFirstLetterEachWord(category)}</PageText>
                                 </div>
-                            ))}
+                                {groupedData[category].map((item, itemIndex) => (
+                                    <div className={styles.definitionWrapper} key={itemIndex}>
+                                        <div className={styles.featureTitleWrapper}>
+                                            <PageText type="bodyTertiaryTitleBold">{item.feature}</PageText>
+                                        </div>
+                                        <div className={styles.featureDescriptionWrapper}>
+                                            <PageText type="bodyDescriptionMedium">{item.definition}</PageText>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
-
                     </GridSystem >
                 </div >
             ))}

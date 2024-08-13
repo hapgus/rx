@@ -10,7 +10,9 @@ export const STEP_UP_CHART_CATEGORIES = {
         `${publicUrl}/assets/image/step-up-charts/lg-line-logic-cooking-05.webp`,
         `${publicUrl}/assets/image/step-up-charts/lg-line-logic-cooking-07.webp`,
         `${publicUrl}/assets/image/step-up-charts/lg-line-logic-cooking-09.webp`,
-    ]
+    ],
+    hero: `${publicUrl}/assets/image/backgrounds/main/cooking-step.png`,
+
  },  
  refrigeration:{
     ctaText:'To see more refrigerators view',
@@ -22,7 +24,8 @@ export const STEP_UP_CHART_CATEGORIES = {
         `${publicUrl}/assets/image/step-up-charts/lg-line-logic-fridge-04.webp`,
         `${publicUrl}/assets/image/step-up-charts/lg-line-logic-fridge-05.webp`,
         `${publicUrl}/assets/image/step-up-charts/lg-line-logic-fridge-06.webp`,
-    ]
+    ],
+    hero: `${publicUrl}/assets/image/backgrounds/main/fridge-step.png`,
  },
  dishwashers:{
      ctaText:'To see more products view',
@@ -30,7 +33,8 @@ export const STEP_UP_CHART_CATEGORIES = {
     charts:[
         `${publicUrl}/assets/image/step-up-charts/lg-line-logic-dish-01.webp`,
         `${publicUrl}/assets/image/step-up-charts/lg-line-logic-dish-02.webp`,
-    ]
+    ],
+    hero: `${publicUrl}/assets/image/backgrounds/main/dish-step.png`,
  },
  laundry:{
     ctaText:'To see more laundry, including WashTowers, Stylers, Pairs, and more, view',
@@ -40,14 +44,16 @@ export const STEP_UP_CHART_CATEGORIES = {
     `${publicUrl}/assets/image/step-up-charts/lg-line-logic-laundry-05.webp`,
     `${publicUrl}/assets/image/step-up-charts/lg-line-logic-laundry-07.webp`,
     `${publicUrl}/assets/image/step-up-charts/lg-line-logic-laundry-08.webp`,
-   ]
+   ],
+   hero: `${publicUrl}/assets/image/backgrounds/main/laundry-step.png`
 },
 vacuums:{
     ctaText:'To see more products view',
    ctaUrl:'https://lg.widen.net/s/wj2j7mcjlh/2024_line_logic_guide_lg_floor_care_june',
    charts:[
     `${publicUrl}/assets/image/step-up-charts/lg-line-logic-floor-01.webp`,
-   ]
+   ],
+   hero: `${publicUrl}/assets/image/backgrounds/main/vacuum-step.png`
 },
 
 }

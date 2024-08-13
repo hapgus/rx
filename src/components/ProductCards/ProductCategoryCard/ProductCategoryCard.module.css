@@ -20,9 +20,7 @@
 }
 
 .titleWrapper {
-    padding: 0 2rem 2rem 2rem;
-    /* background-color: aquamarine; */
-    /* padding: .5rem 2rem; */
+    padding: 0 2rem 2rem 2rem; color: var(--color-gray-01);
 }
 
 @media (min-width: 1024px) {

@@ -75,7 +75,7 @@ const Footer = () => {
     return (
 
         <footer >
-            <GridSystem containerBorderTop='1px solid #D0CBC1' containerBorderBottom='1px solid #D0CBC1' containerBackgroundColor='#F0ECE4'>
+            <GridSystem  gridType='spread' containerBorderTop='1px solid #D0CBC1' containerBorderBottom='1px solid #D0CBC1' containerBackgroundColor='#F0ECE4'>
                 <div className={styles.contentWrapper}>
                     <div className={styles.wrapper1}>
                         <div className={styles.section1}>
@@ -100,7 +100,7 @@ const Footer = () => {
                 </div>
 
             </GridSystem>
-            <GridSystem containerBackgroundColor='#E6E1D6'>
+            <GridSystem gridType='spread' containerBackgroundColor='#E6E1D6'>
                 <div className={styles.contentWrapper}>
                     <div className={styles.wrapper3}>
                         <div className={styles.section3}>

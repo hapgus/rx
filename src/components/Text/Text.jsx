@@ -25,7 +25,7 @@ export const PageText = ({ children, eventHandlers = {}, type = 'default' }) => 
         /* --------------------------------------------------------------------------------------- */
         navTitleText: styles.navTitleText,
         mobileNavTitle: styles.mobileNavTitle,
-
+        stickyNavTitleText:styles.stickyNavTitleText,
         footerTitle: styles.footerTitle,
         footerMenuItem: styles.footerMenuItem,
 
@@ -62,6 +62,7 @@ export const PageText = ({ children, eventHandlers = {}, type = 'default' }) => 
         bodyDescription: styles.bodyDescription,
         bodyDescriptionMedium: styles.bodyDescriptionMedium,
         bodyDescriptionLarge: styles.bodyDescriptionLarge,
+        bodyFeatureSectionTitle:styles. bodyFeatureSectionTitle,
 
 
         /* --------------------------------------------------------------------------------------- */

@@ -35,7 +35,9 @@ export const StickyNavigationBar = ({ data }) => {
 
   return (
     <GridSystem 
+    gridType='spread'
     containerBackgroundColor='#F6F3EB'>
+       <div className={styles.contentWrapper}>
       <nav className={styles.stickyNavContainer}>
         <div className={styles.stickyNavWrapper}>
           <div className={styles.stickyNav}>
@@ -46,7 +48,7 @@ export const StickyNavigationBar = ({ data }) => {
                 onClick={(e) => handleClick(e, categoryIndex)}
                 style={activeSection === `category-${categoryIndex}` ? activeStyle : {}}
               >
-                <PageText type='productSearchNavTitle'>
+                <PageText type='stickyNavTitleText'>
                   {capitalizeFirstLetterEachWord(category)}
                 </PageText>
               </a>
@@ -54,6 +56,7 @@ export const StickyNavigationBar = ({ data }) => {
           </div>
         </div>
       </nav>
+      </div>
     </GridSystem>
   );
 };

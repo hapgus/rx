@@ -1,6 +1,6 @@
 .heroContainer {
     height: auto;
-    padding-bottom: 3rem;
+    padding: 0 2rem 3rem 2rem;
 }
 
 .heroWrapper {
@@ -110,7 +110,7 @@
     }
     .heroContainer {
         padding: 0;
-        margin-bottom: 4rem;
+        /* margin-bottom: 4rem; */
     }
 
     .heroWrapper {

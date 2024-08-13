@@ -4,6 +4,10 @@
     display: flex;
     flex-direction: column;
 }
+
+.scrollBarContainer {
+    padding-bottom: 2rem;
+}
 .headerContainer{
     display: flex;
     flex-direction: column-reverse;
@@ -11,6 +15,9 @@
     padding-bottom: 1rem;
     /* NEW */
     /* align-items: center; */
+}
+.headerTitle{
+    color: var(--color-gray-01);
 }
 .headerCountWrapper{
     display: flex;
@@ -20,7 +27,10 @@
     gap: 2rem;
 
 }
-
+.countTitle{
+    color: var(--color-gray-02);
+}
+/* @media (min-width: 1440px) { */
 @media (min-width: 1920px) {
     .headerContainer{
         flex-direction: row;

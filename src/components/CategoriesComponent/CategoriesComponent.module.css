@@ -1,15 +1,6 @@
-.categoryCardsWrapper{
-    /* display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 100%;
-    gap: 2rem;
-    background-color: var(--color-gray-04);
-    align-items: center;
-    justify-content: center;
-    padding: 4rem;
-    border-radius: 2rem; */
-    
+
+.contentWrapper{
+    padding: 0 2rem;
 }
 .categoryCardsContainer{
     /* background-color: aqua; */
@@ -27,16 +18,21 @@
     align-items:center;
     justify-content: center;
     padding-top: 1.5rem;
-    
-
 }
 .categoryTitleWrapper{
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
+.categoryTitle a{
+color: var(--color-gray-01);
+}
+.categoryHeadline{
+    color: var(--color-gray-02);
+}
 .categoryDescriptionWrapper{
     padding: 1rem 0;
+    color: var(--color-gray-03);
 }
 
 .categoryDescriptionShort{
@@ -53,18 +49,25 @@ display: none;
 }
 @media (min-width: 640px) {
     .categoryCardsWrapper {
-        grid-template-columns: repeat(auto-fit, minmax(14rem, 24rem));
+        grid-template-columns: repeat(auto-fit, minmax(19rem, 21rem));
+        padding: 0;  
     }
+    .categoryDescriptionWrapper{
+        padding: 1rem 0 2rem 0;
+    }
+    
 }
 
 @media (min-width: 768px) {
     .categoryCardsWrapper {
-        grid-template-columns: repeat(auto-fit, minmax(14rem, 28rem));
+        grid-template-columns: repeat(auto-fit, minmax(14rem, 23rem));
+        align-items:normal;
+        justify-content: normal;
     }
 }
 @media (min-width: 834px) {
     .categoryCardsWrapper {
-        grid-template-columns: repeat(auto-fit, minmax(14rem, 30rem));
+        grid-template-columns: repeat(auto-fit, minmax(23rem, 25rem));
     }
 }
 @media (min-width: 1024px) {
@@ -75,18 +78,30 @@ display: none;
         .categoryDescriptionLong{
         display: flex;
         }
-
+        .categoryDescriptionWrapper{
+            padding: 1rem 0 3rem 0;
+        }
         .categoryCardsWrapper {
             /* grid-template-columns: repeat(auto-fit, minmax(14rem, 27rem)); */
             align-items: normal;
             justify-content: normal;
         }
-        .categorySectionHeaderWrapper{
-            width: 80%;
-        }
+       
+}
+@media(min-width:1280px){
+    .contentWrapper{
+        padding: 0 4rem;
+    }
+    .categorySectionHeaderWrapper{
+        width: 50%;
+    }
 }
 
-
+@media(min-width:1920px){
+    .contentWrapper{
+        padding: 0;
+    }
+}
 /* --------------------------------------------------------------------------------------- */
 /* MEDIA QUERY REFERENCE */
 /* --------------------------------------------------------------------------------------- */

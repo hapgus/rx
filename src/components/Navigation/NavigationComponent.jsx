@@ -168,6 +168,7 @@ const DesktopNavComponent = () => {
             ...prevState,
             isCategoriesMenuOpen: true,
             isResourcesMenuOpen: false,
+            isStepUpChartsMenuOpen: false,
             isExclusiveMenuOpen: false
         }));
     }
@@ -181,6 +182,7 @@ const DesktopNavComponent = () => {
         setIsRoutingState(prevState => ({
             ...prevState,
             isResourcesMenuOpen: true,
+            isStepUpChartsMenuOpen: false,
             isCategoriesMenuOpen: false,
             isExclusiveMenuOpen: false
         }));
@@ -191,13 +193,29 @@ const DesktopNavComponent = () => {
             isResourcesMenuOpen: false
         }));
     }
+    const handleStepUpChartLinkMouseEnter = () => {
+        setIsRoutingState(prevState => ({
+            ...prevState,
+            isStepUpChartsMenuOpen: true,
+            isResourcesMenuOpen: false,
+            isCategoriesMenuOpen: false,
+            isExclusiveMenuOpen: false
+        }));
+    }
+    const handleStepUpChartLinkMouseLeave = () => {
+        setIsRoutingState(prevState => ({
+            ...prevState,
+            isStepUpChartsMenuOpen: false
+        }));
+    }
 
     const handleExclusiveLinkMouseEnter = () => {
         setIsRoutingState(prevState => ({
             ...prevState,
             isExclusiveMenuOpen: true,
             isCategoriesMenuOpen: false,
-            isResourcesMenuOpen: false
+            isResourcesMenuOpen: false,
+            isStepUpChartsMenuOpen: false,
         }));
     }
     const handleExclusiveLinkMouseLeave = () => {
@@ -211,7 +229,8 @@ const DesktopNavComponent = () => {
     return (
         <>
             <div className={styles.desktopNavComponentContainer}>
-                <GridSystem>
+                <GridSystem gridType='spread'>
+                {/* <GridSystem> */}
                     <div className={styles.desktopNavContainer}>
                         <div className={styles.desktopNavLogoWrapper}>
                             <LinkComponent href='/hapg'>

@@ -19,7 +19,7 @@ export const ProductCategoryCard = ({
                     <img loading='lazy' src={`${publicUrl}${subcategoryImagePath}`} alt={subcategory} />
                 </div>
                 <div className={styles.titleWrapper}>
-                    <PageText type='pageTertiaryTitle'>{subcategory}</PageText>
+                    <PageText type='productCardTitle'>{subcategory}</PageText>
                 </div>
 
             </div>
