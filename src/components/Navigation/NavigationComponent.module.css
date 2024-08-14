@@ -3,9 +3,9 @@
 /* --------------------------------------------------------------------------------------- */
 .mainNavComponentContainer {
     background-color: var(--color-gray-07);
-    border-bottom: 1px solid var(--color-gray-07);
+    border-bottom: 2px solid var(--color-gray-07);
     /* padding: 1.5rem 2rem; */
- 
+
     /* border-bottom: 1px solid var(--color-gray-04); */
 
 }
@@ -52,8 +52,9 @@
 }
 
 .mobileMenuBackIconWrapper {
+    color: pink;
     /* padding: 0 0 2rem 0; */
-    
+
 }
 
 .mobileMenuBackIconWrapper svg {
@@ -66,15 +67,18 @@
     flex-direction: column;
     gap: 2rem;
 }
-#firstHeader{
-    border-top: 1px solid var(--color-gray-04);
+
+#firstHeader {
+    /* border-top: 1px solid var(--color-gray-04); */
     padding-top: 2rem;
 }
+
 .mobileMenuHeader {
     /* background-color: aqua; */
     border-bottom: 1px solid var(--color-gray-04);
 }
-.headerText{
+
+.headerText {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -82,6 +86,7 @@
     gap: 2rem;
     margin-bottom: 2rem;
 }
+
 .mobileMenuHeader svg {
     height: 2rem;
     width: 2rem;
@@ -118,7 +123,7 @@
 
 @media (min-width: 1280px) {
     .mainNavComponentContainer:hover {
-        border-bottom: 1px solid var(--color-gray-04);
+        border-bottom: 2px solid var(--color-gray-04);
     }
 
     /* --------------------------------------------------------------------------------------- */
@@ -146,9 +151,10 @@
     }
 
     .desktopNavLogoWrapper {
-        height: 4.4rem;
+        /* height: 4.4rem; */
+        height: 4rem;
         width: auto;
-        padding-right: 4rem;
+        padding-right: 2rem;
     }
 
     .desktopNavLogoWrapper img {
@@ -160,16 +166,19 @@
     .desktopNavMenuWrapper {
         display: flex;
         flex-direction: row;
-        gap: 2.5rem;
+        /* gap: 2.5rem; */
+        /* gap: 1rem; */
         /* background-color: aqua; */
     }
+
     .desktopNavMenuHeader {
         display: flex;
         flex-direction: row;
         gap: 2.5rem;
         /* background-color: rgb(13, 114, 114); */
-         padding: 2.5rem 2rem;
+        padding: 2.5rem 2rem;
     }
+
     .desktopNavSearchWrapper {
         /* background-color: pink; */
         margin-left: auto;
@@ -190,17 +199,20 @@
         display: flex;
 
     }
-.dropdownSection{
 
-    position: relative;
-}
+    .dropdownSection {
+        position: relative;
+    }
+
     .dropdownContainer {
 
         position: absolute;
         top: 100%;
         left: 0;
-        width: auto; /* Let the container width be determined by the content */
-        z-index: 999; /* Ensure the dropdown is above other elements */
+        width: auto;
+        /* Let the container width be determined by the content */
+        z-index: 999;
+        /* Ensure the dropdown is above other elements */
     }
 
     .dropdownWrapper {
@@ -208,51 +220,65 @@
         min-width: 30rem;
         /* width: 300px;  */
         /* Set a desired width or percentage */
-        max-width: 100%; /* Ensure it doesn’t overflow the container */
+        max-width: 100%;
+        /* Ensure it doesn’t overflow the container */
     }
-    #applianceDropdownWrapperWidth{
+
+    #applianceDropdownWrapperWidth {
         min-width: 70rem;
     }
-    .dropdownContent{
-        position: relative; /* Change to relative if width adjustments didn't work */
+    #resourcesDropdownWrapperWidth{
+        min-width: 70rem;
+    }
+    .dropdownContent {
+        position: relative;
+        /* Change to relative if width adjustments didn't work */
         background-color: var(--color-gray-07);
         padding: 3rem 4rem;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for a subtle 3D effect */
-        border-radius: 4px; /* Add rounding for a modern look */
-        width: 100%; /* Ensure it takes the full width of dropdownWrapper */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        /* Add shadow for a subtle 3D effect */
+        border-radius: 4px;
+        /* Add rounding for a modern look */
+        width: 100%;
+        /* Ensure it takes the full width of dropdownWrapper */
         border-bottom-left-radius: 2rem;
         border-bottom-right-radius: 2rem;
     }
-    .dropdownLinks{
+
+    .dropdownLinks {
         display: flex;
         flex-direction: row;
         gap: 8rem;
     }
-    .dropdownLinksList{
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-.dropdownLinksList a{
-    color: var(--color-gray-01);
-    font-size: 1.6rem;
-}
+
+    .dropdownLinksList {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .dropdownLinksList a {
+        color: var(--color-gray-01);
+        font-size: 1.6rem;
+    }
 
 }
 
 
 @media (min-width: 1440px) {
     .desktopNavWrapper {
-        padding: 1rem 4rem;
+        /* padding: 1rem 4rem; */
+        padding: 0rem 4rem;
     }
 }
+
 @media (min-width: 1920px) {
-  
+
     .desktopNavWrapper {
         padding: 1rem 0;
     }
 
-} 
+}
 
 /* --------------------------------------------------------------------------------------- */
 /* MEDIA QUERY REFERENCE */

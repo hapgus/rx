@@ -79,17 +79,17 @@ export const GenerateProductURL = (category, productTitle) => {
 
 
 export const resourceLinks = [
-    { href: `${publicUrl}/feature-definitions`, text: 'Feature Definition' },
-    { href: `${publicUrl}/warranties`, text: 'Warranty Information' },
+    { href: `${publicUrl}/feature-definitions`, text: 'Feature Definitions' },
+    { href: `${publicUrl}/warranties`, text: 'Limited Warranties' },
     { href: `${publicUrl}/model-transitions`, text: 'Model Transitions' }
 ];
 
 export const stepUpChartLinks = [
-    { href: `${publicUrl}/step-up-chart/cooking`, text: 'Cooking' },
-    { href: `${publicUrl}/step-up-chart/dishwashers`, text: 'Dishwashers' },
-    { href: `${publicUrl}/step-up-chart/laundry`, text: 'Laundry' },
-    { href: `${publicUrl}/step-up-chart/refrigeration`, text: 'Refrigeration' },
-    { href: `${publicUrl}/step-up-chart/vacuums`, text: 'Vacuums' }
+    { href: `${publicUrl}/step-up-chart/cooking`, text: 'Cooking Step Up Charts' },
+    { href: `${publicUrl}/step-up-chart/dishwashers`, text: 'Dishwasher Step Up Charts' },
+    { href: `${publicUrl}/step-up-chart/laundry`, text: 'Laundry Step Up Charts' },
+    { href: `${publicUrl}/step-up-chart/refrigeration`, text: 'Refrigeration Step Up Charts' },
+    { href: `${publicUrl}/step-up-chart/vacuums`, text: 'Vacuum Step Up Charts' }
 ];
 export const categoryLinks = [
     { href: `${publicUrl}/appliances/air-care`, text: 'Air Care' },

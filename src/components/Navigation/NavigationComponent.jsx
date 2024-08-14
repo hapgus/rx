@@ -4,7 +4,7 @@ import { useRoutingHook } from '../../hooks/routing-hook';
 import { IconComponent } from '../Icon/IconComponent';
 import { GridSystem } from '../GridSystem/GridSystem';
 import Overlay from '../Overlay/Overlay';
-import { RouteLinks, allCategoryLink, exclusiveLinks, navCategoryLinks, navSecondaryCategoryLinks, resourceLinks } from '../../utils/link-helper';
+import { RouteLinks, allCategoryLink, exclusiveLinks, navCategoryLinks, navSecondaryCategoryLinks, resourceLinks, stepUpChartLinks } from '../../utils/link-helper';
 import { PageText } from '../Text/Text';
 import { LinkComponent } from '../Links/LinkComponent';
 import { SearchComponent } from '../Search/SearchComponent/SearchComponent';
@@ -66,22 +66,22 @@ const MobileNavComponent = () => {
                             </div>
 
                             <div id={styles.firstHeader} className={styles.mobileMenuHeader} >
-                                <div className={styles.headerText}>
+                                <div onClick={handleToggleMobileAppliancesMenu} className={styles.headerText}>
                                     <PageText type='mobileNavTitle'>Home Appliances</PageText>
-                                    <IconComponent onClick={handleToggleMobileAppliancesMenu} iconType='rightChevron' />
+                                    <IconComponent  iconType='rightChevron' />
                                 </div>
 
                             </div>
                             <div className={styles.mobileMenuHeader} >
-                                <div className={styles.headerText}>
+                                <div onClick={handleToggleMobileResourcesMenu}  className={styles.headerText}>
                                     <PageText type='mobileNavTitle'>Resources</PageText>
-                                    <IconComponent onClick={handleToggleMobileResourcesMenu} iconType='rightChevron' />
+                                    <IconComponent iconType='rightChevron' />
                                 </div>
                             </div>
                             <div className={styles.mobileMenuHeader} >
-                                <div className={styles.headerText}>
+                                <div onClick={handleToggleMobileExclusiveMenu} className={styles.headerText}>
                                     <PageText type='mobileNavTitle'>Exclusive</PageText>
-                                    <IconComponent onClick={handleToggleMobileExclusiveMenu} iconType='rightChevron' />
+                                    <IconComponent iconType='rightChevron' />
                                 </div>
                             </div>
                         </div>
@@ -115,6 +115,7 @@ const MobileNavComponent = () => {
                                 <IconComponent onClick={handleToggleMobileResourcesMenu} iconType='leftChevron' />
                             </div>
                             <div className={styles.mobileDropdownContent}>
+                                <ul className={styles.mobileNavOptionsList}>{RouteLinks(stepUpChartLinks)}</ul>
                                 <ul className={styles.mobileNavOptionsList}>{RouteLinks(resourceLinks)}</ul>
 
                             </div>
@@ -230,7 +231,7 @@ const DesktopNavComponent = () => {
         <>
             <div className={styles.desktopNavComponentContainer}>
                 <GridSystem gridType='spread'>
-                {/* <GridSystem> */}
+                    {/* <GridSystem> */}
                     <div className={styles.desktopNavContainer}>
                         <div className={styles.desktopNavLogoWrapper}>
                             <LinkComponent href='/hapg'>
@@ -261,6 +262,7 @@ const DesktopNavComponent = () => {
                                     </div>
                                 }
                             </div>
+
                             <div className={styles.dropdownSection}>
                                 <div
                                     // onMouseLeave={handlAppliancesLinkMouseLeave} 
@@ -272,9 +274,10 @@ const DesktopNavComponent = () => {
                                 {
                                     isRoutingState.isResourcesMenuOpen &&
                                     <div onMouseLeave={handleResourcesLinkMouseLeave} className={styles.dropdownContainer}>
-                                        <div className={styles.dropdownWrapper}>
+                                        <div id={styles.resourcesDropdownWrapperWidth} className={styles.dropdownWrapper}>
                                             <div className={styles.dropdownContent}>
                                                 <div className={styles.dropdownLinks}>
+                                                    <ul className={styles.dropdownLinksList}>{RouteLinks(stepUpChartLinks)}</ul>
                                                     <ul className={styles.dropdownLinksList}>{RouteLinks(resourceLinks)}</ul>
 
                                                 </div>

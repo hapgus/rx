@@ -4,7 +4,7 @@
 
 .navTitleText {
     font-size: 2rem;
-    font-family: var(--text-semibold);
+    /* font-family: var(--text-semibold); */
 }
 .stickyNavTitleText {
     font-size: 1.6rem;

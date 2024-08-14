@@ -33,21 +33,21 @@ const StepUpChartPage = () => {
                             <div className={styles.heroGridWrapper}>
                                 <div className={styles.gridItem1}>
                                     <div className={styles.subtitle}>
-                                        <PageText type="pageSubtitle">Step Up Charts</PageText>
+                                        <PageText type="pageTertiaryTitle">Step Up Charts</PageText>
                                     </div>
                                     <div className={styles.title}>
                                         <PageText type="pageTitle">{capitalizeFirstLetterEachWord(categoryId)}</PageText>
                                     </div>
                                     <div className={styles.description}>
 
-                                        <PageText type="bodySubtitle">{categoryHeroVerbiage.description}</PageText>
+                                        <PageText type="bodyDescriptionMedium">{categoryHeroVerbiage.description}</PageText>
 
 
 
                                     </div>
                                     <div className={styles.heroCallout}>
 
-                                        <PageText type="bodySubtitle">
+                                        <PageText type="bodyDescriptionMedium">
                                             {`${stepUpChartCTA} `}
                                             <span className={styles.ctaLinkText}>
                                                 <ExternalLink href={stepUpChartURL}>LG Line Logic.</ExternalLink>

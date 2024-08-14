@@ -27,8 +27,8 @@ const SearchInput = () => (
     // </svg>
     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
         <g clipPath="url(#clip0_45_107)">
-            <path d="M5.2298 10.1901C7.95257 10.1901 10.1598 7.98284 10.1598 5.26008C10.1598 2.53731 7.95257 0.330078 5.2298 0.330078C2.50704 0.330078 0.299805 2.53731 0.299805 5.26008C0.299805 7.98284 2.50704 10.1901 5.2298 10.1901Z" stroke="#231F20" strokeWidth="0.6" strokeMiterlimit="10" />
-            <path d="M8.78027 8.77051L11.5203 11.5005" stroke="#231F20" strokeWidth="0.6" strokeMiterlimit="10" strokeLinecap="round" />
+            <path d="M5.2298 10.1901C7.95257 10.1901 10.1598 7.98284 10.1598 5.26008C10.1598 2.53731 7.95257 0.330078 5.2298 0.330078C2.50704 0.330078 0.299805 2.53731 0.299805 5.26008C0.299805 7.98284 2.50704 10.1901 5.2298 10.1901Z" stroke="#716F6A" strokeWidth="0.6" strokeMiterlimit="10" />
+            <path d="M8.78027 8.77051L11.5203 11.5005" stroke="#716F6A" strokeWidth="0.6" strokeMiterlimit="10" strokeLinecap="round" />
         </g>
         <defs>
             <clipPath id="clip0_45_107">
