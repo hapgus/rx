@@ -140,7 +140,8 @@
 
     .desktopNavWrapper {
         display: block;
-        padding: 1rem 2rem;
+        /* padding: 1rem 2rem; */
+        padding: 0 2rem;
     }
 
     .desktopNavContainer {
@@ -176,7 +177,8 @@
         flex-direction: row;
         gap: 2.5rem;
         /* background-color: rgb(13, 114, 114); */
-        padding: 2.5rem 2rem;
+        /* padding: 2.5rem 2rem; */
+        padding: 2rem;
     }
 
     .desktopNavSearchWrapper {
@@ -275,7 +277,7 @@
 @media (min-width: 1920px) {
 
     .desktopNavWrapper {
-        padding: 1rem 0;
+        padding: 0;
     }
 
 }
