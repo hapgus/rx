@@ -1,0 +1,130 @@
+.portalTopbarNavigationContainer {
+   /* background-color: var(--color-red-01); */
+   /* background-color: #FAFAFA; */
+   /* background-color: var(--color-gray-04); */
+   background-color: var(--color-gray-05);
+   padding: 1rem 4rem;
+ display: flex;
+ flex-direction: row;
+ align-items: center;
+ justify-content: space-between;
+}
+.iconWrapper{
+    display: flex;
+    flex-direction: row;
+    gap: .5rem;
+    align-items: center;
+}
+.iconWrapper svg{
+    height: 2.4rem;
+    width: 2.4rem;
+
+}
+.sidebarContainer {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, auto);
+    background-color: var(--color-gray-05);
+    /* background-color: #F0F2F5; */
+    /* background-color: #FAFAFA; */
+    /* background-color: var(--color-gray-04); */
+    /* padding: 0 4rem; */
+    height: 100%;  
+    /* padding-right: .1rem; */
+}
+
+.sidebarWrapper {
+    grid-row: 1/-1;
+    grid-column: 1/-1;
+
+    /* background-color: aquamarine; */
+
+    /* display: grid;
+    grid-template-columns: repeat(12,1fr);
+    grid-template-columns: repeat(12,auto);
+    background-color: rgb(21, 99, 99);
+    height: 100%; */
+  
+}
+
+.sidebarContent {
+    grid-column: 1/-1;
+    grid-row: 3;
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+   margin-top: 6rem;
+   padding-right: .2rem;
+
+    /* height: 100%; */
+}
+
+.navMenuHeaderWrapper{
+    background-color: var(--color-gray-07);
+    /* border-bottom: 1px solid gainsboro; */
+    display: flex;
+    flex-direction: row;
+    /* border: 1px solid black; */
+    padding: 1.5rem 2rem;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.navMenuHeaderWrapper:hover{
+    
+}
+
+
+.headerTextIconGroup{
+    /* background-color: rgb(16, 97, 97); */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+    color: black;
+}
+.headerTextIconGroup svg {
+    height: 2rem;
+    width: auto;
+    display: flex;
+    align-items: center;
+}
+.headerChevronIcon svg{
+    height:.8rem;
+    width: auto;
+    display: flex;
+    align-items: center;
+}
+.headerMenuWrapper{ 
+ 
+    /* display: flex;
+    flex-direction: column; */
+}
+.menu{
+    /* background-color: brown; */
+}
+.dropdownList{
+   
+    /* background-color: white; */
+    display: flex;
+    flex-direction: column;
+    /* gap: 1.5rem; */
+}
+.dropdownList li{
+    padding: 1.5rem 6rem;
+   
+}
+.dropdownList li:hover{
+   /* box-shadow: 2px 0px var(--color-red-01); 
+   background-color: #ffdddd; */
+}
+.dropdownList a{
+text-decoration: none;
+color: black;
+
+
+}
+.dropdownList a:hover{
+    color: var(--color-red-01);
+   
+}

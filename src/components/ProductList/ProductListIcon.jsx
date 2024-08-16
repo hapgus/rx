@@ -5,11 +5,15 @@ import styles from './ProductListIcon.module.css';
 
 export const ProductListIcon = () => {
     const { listCount } = useBuilderHook();
-    const { isRoutingState, setIsRoutingState } = useRoutingHook();
+    const {  setIsRoutingState } = useRoutingHook();
 
     const handleIconClick = () => setIsRoutingState(
-        prevState => ({ ...prevState, isProductListDropdownOpen: true }))
-    console.log(isRoutingState)
+        prevState => ({ ...prevState, 
+            isProductListDropdownOpen: true,
+            isMobileNavOpen:false, 
+        
+        }))
+ 
     return (
         <div  onClick={handleIconClick} className={styles.iconContainer}>
             {listCount !== 0 && (

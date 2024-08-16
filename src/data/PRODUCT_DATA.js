@@ -3025,7 +3025,7 @@ export const PRODUCT_DATA =
     ],
     "specTitle4": "",
     "specList4": [],
-    "image": "DLEX8600 DLEX8601BE.webp",
+    "image": "DLEX8600 8601BE.webp",
     "logos": [
       "lgThinQ",
       "ThinQ Care",
@@ -3191,7 +3191,7 @@ export const PRODUCT_DATA =
     ],
     "specTitle4": "",
     "specList4": [],
-    "image": "DLE6100_  DLG6101_.webp",
+    "image": "DLE6100_ DLG6101_.webp",
     "logos": [
       "energyStar"
     ],
@@ -6636,7 +6636,8 @@ export const PRODUCT_DATA =
     ],
     "specTitle4": "",
     "specList4": [],
-    "image": "LFXS26973_.webp",
+    // "image": "LFXS26973_.webp",
+    "image": "LFXS26973S.webp",
     "logos": [
       "energyStar"
     ],

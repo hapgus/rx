@@ -1,0 +1,49 @@
+.pagination{
+  background-color: #FAFAFA;
+ padding: 1.5rem 2rem;
+ font-size: 1.6rem;
+}
+.paginationContentWrapper{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.buttonWrapper{
+  display: flex;
+  gap: 1.5rem;
+}
+.pagNum{
+  color: black;
+  font-family: var(--lg-ei-text-semibold);
+}
+.paginationButton:hover{
+  cursor: pointer;
+}
+.pagNum:hover{
+  cursor: pointer;
+  color: var(--color-red-03);
+}
+.tableInfoText{
+  color: black;
+  font-family: var(--lg-ei-text-regular);
+font-size: 1.6rem;
+}
+.paginationButton{
+  background-color: inherit;
+  border: none;
+  color: var(--color-gray-01);
+  font-family: var(--lg-ei-text-regular);
+  font-size: 1.6rem;
+}
+.paginationButton:disabled{
+  color: rgb(196, 196, 196);
+  cursor: not-allowed;
+}
+.paginationButton:disabled{
+  color: rgb(196, 196, 196);
+  cursor: not-allowed;
+}
+.paginationButton:hover:not(:disabled){
+  color: var(--color-red-03);
+}
+

@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 
-import { ExternalLink, EmailLink, resourceLinks, stepUpChartLinks, categoryLinks, exclusiveLinks, externalLinks, nativeEmailLinks } from '../../utils/link-helper';
+import { ExternalLink, EmailLink, resourceLinks, stepUpChartFooterLinks, stepUpChartLinks, categoryLinks, exclusiveLinks, externalLinks, nativeEmailLinks } from '../../utils/link-helper';
 
 import { LinkComponent } from '../Links/LinkComponent';
 
@@ -81,7 +81,7 @@ const Footer = () => {
                         <div className={styles.section1}>
 
                             {footerColumn('Home Appliances', categoryLinks)}
-                            {footerColumn('Step Up Charts', stepUpChartLinks)}
+                            {footerColumn('Step Up Charts', stepUpChartFooterLinks)}
                             {footerColumn('Resources', resourceLinks)}
                             {footerColumn('Exclusive', exclusiveLinks)}
                             {footerExternalLinks('Support', externalLinks)}

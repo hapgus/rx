@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 
 const useIntersectionObserver = (setActiveSection) => {
+  console.log(setActiveSection)
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {

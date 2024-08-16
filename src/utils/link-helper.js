@@ -77,6 +77,8 @@ export const GenerateProductURL = (category, productTitle) => {
 };
 
 
+export const homeLink = process.env.PUBLIC_URL;
+export const portalLink = `${homeLink}/portal/dashboard`
 
 export const resourceLinks = [
     { href: `${publicUrl}/feature-definitions`, text: 'Feature Definitions' },
@@ -90,6 +92,13 @@ export const stepUpChartLinks = [
     { href: `${publicUrl}/step-up-chart/laundry`, text: 'Laundry Step Up Charts' },
     { href: `${publicUrl}/step-up-chart/refrigeration`, text: 'Refrigeration Step Up Charts' },
     { href: `${publicUrl}/step-up-chart/vacuums`, text: 'Vacuum Step Up Charts' }
+];
+export const stepUpChartFooterLinks = [
+    { href: `${publicUrl}/step-up-chart/cooking`, text: 'Cooking' },
+    { href: `${publicUrl}/step-up-chart/dishwashers`, text: 'Dishwashers' },
+    { href: `${publicUrl}/step-up-chart/laundry`, text: 'Laundry' },
+    { href: `${publicUrl}/step-up-chart/refrigeration`, text: 'Refrigeration' },
+    { href: `${publicUrl}/step-up-chart/vacuums`, text: 'Vacuums' }
 ];
 export const categoryLinks = [
     { href: `${publicUrl}/appliances/air-care`, text: 'Air Care' },
@@ -134,6 +143,7 @@ export const exclusiveLinks = [
     { href: `${publicUrl}/product-list-builder`, text: 'Product List Builder' },
 ];
 
+
 export const externalLinks = [
     { href: 'https://www.lg.com/us/legal', text: 'Terms' },
     { href: 'https://privacy.us.lg.com/policies', text: 'Privacy' },
@@ -144,18 +154,20 @@ export const nativeEmailLinks = [
 ];
 
 export const accountLinks = [
-    { href: 'user-account/profile', text: 'My profile' },
-    { href: 'user-account/saved-lists', text: 'My Saved lists' },
-    { href: '/', text: 'Sign Out' },
-    { href: 'member/login', text: 'Test Sign In' },
-    { href: 'member/forgot-password', text: 'Test Forgot Password' },
-    { href: 'member/sign-up', text: 'Test Sign Up' },
-    { href: '/portal/dashboard', text: 'Test Portal Dash' },
-    { href: '/portal/analytics', text: 'Test portal analytics' },
-    { href: '/portal/add-product', text: 'Test Add product' },
-    { href: '/portal/product-directory', text: 'Test see product directory' },
-    { href: '/portal/add-user', text: 'Test Add portal users' },
-    { href: '/portal/user-directory', text: 'Test see user directory' },
+    // { href: 'user-account/profile', text: 'My profile' },
+    // { href: 'user-account/saved-lists', text: 'My Saved lists' },
+    // { href: '/', text: 'Sign Out' },
+    { href: `${publicUrl}/member/login`, text: 'Sign in' },
+    // { href: `${publicUrl}/member/forgot-password`, text: 'Test Forgot Password' },
+    { href: `${publicUrl}/member/sign-up`, text: 'Sign up' },
+    { href: `${publicUrl}/portal/dashboard`, text: 'Portal' },
+    { href: `${publicUrl}/profile`, text: 'My account' },
+    // { href: '/portal/dashboard', text: 'Test Portal Dash' },
+    // { href: '/portal/analytics', text: 'Test portal analytics' },
+    // { href: '/portal/add-product', text: 'Test Add product' },
+    // { href: '/portal/product-directory', text: 'Test see product directory' },
+    // { href: '/portal/add-user', text: 'Test Add portal users' },
+    // { href: '/portal/user-directory', text: 'Test see user directory' },
 ]
 
 export const onboardingLinks = [
@@ -166,20 +178,20 @@ export const onboardingLinks = [
 
 
 export const portalDashLinks = [
-    { href: '/portal/dashboard', text: 'Overview' },
-    { href: '/portal/analytics', text: 'Analytics' },
+    { href: `${publicUrl}/portal/dashboard`, text: 'Overview' },
+    { href: `${publicUrl}/portal/analytics`, text: 'Analytics' },
 ]
 
 export const portalFormLinks = [
-    { href: '/portal/add-product', text: 'Product Form' },
-    { href: '/portal/add-user', text: 'User Form' },
+    { href: `${publicUrl}/portal/add-product`, text: 'Product Form' },
+    { href: `${publicUrl}/portal/add-user`, text: 'User Form' },
 ]
 
 
 export const portalTableLinks = [
    
-    { href: '/portal/product-directory', text: 'Product Table' },
-    { href: '/portal/user-directory', text: 'Member Table' },
-    { href: '/portal/admin-directory', text: 'Admin Table' },
+    { href: `${publicUrl}/portal/product-directory`, text: 'Product Table' },
+    { href: `${publicUrl}/portal/user-directory`, text: 'Member Table' },
+    { href: `${publicUrl}/portal/admin-directory`, text: 'Admin Table' },
     // { href: '/portal/user-directory', text: 'Test see user directory' },
 ]

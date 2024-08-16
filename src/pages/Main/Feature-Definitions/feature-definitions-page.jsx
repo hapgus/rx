@@ -16,6 +16,8 @@ const FeatureDefinitionsPage = () => {
     const publicUrl = process.env.PUBLIC_URL
 
     const groupedData = GroupDataByCategory(FEATURE_DEFINITIONS_DATA);
+
+    console.log('group',groupedData)
     return (
         <div className={styles.featureDefinitionsPageContainer}>
             <div className={styles.pageHeaderContainer}>

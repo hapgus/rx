@@ -1,0 +1,25 @@
+.section{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1rem;
+    
+}
+/* .checkboxLabel{
+    background-color: rgb(91, 88, 137);
+    padding: 1rem;
+    font-size: 10rem;
+} */
+.sectionContent{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+.sectionHeader{
+    border-bottom: 1px solid var(--color-gray-04);
+    padding-bottom: 1rem;
+
+}
+.formButtonWrapper{
+    max-width: max-content;
+    padding: 4rem 0;
+}

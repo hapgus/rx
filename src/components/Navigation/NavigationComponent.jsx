@@ -4,7 +4,7 @@ import { useRoutingHook } from '../../hooks/routing-hook';
 import { IconComponent } from '../Icon/IconComponent';
 import { GridSystem } from '../GridSystem/GridSystem';
 import Overlay from '../Overlay/Overlay';
-import { RouteLinks, allCategoryLink, exclusiveLinks, navCategoryLinks, navSecondaryCategoryLinks, resourceLinks, stepUpChartLinks } from '../../utils/link-helper';
+import { RouteLinks, allCategoryLink, exclusiveLinks, navCategoryLinks, navSecondaryCategoryLinks, resourceLinks, stepUpChartLinks, accountLinks } from '../../utils/link-helper';
 import { PageText } from '../Text/Text';
 import { LinkComponent } from '../Links/LinkComponent';
 import { SearchComponent } from '../Search/SearchComponent/SearchComponent';
@@ -12,13 +12,21 @@ import { ProductListDropdown } from '../ProductList/ProductListDropdown';
 import { ProductListIcon } from '../ProductList/ProductListIcon';
 
 
+
 const MobileNavComponent = () => {
 
     const { setIsRoutingState, isRoutingState } = useRoutingHook();
     const { setIsMobileSearchState } = useSearchHook();
 
+    // const handleToggleMainMobileMenu = () => {
+    //     setIsRoutingState(prevState => ({ ...prevState, isMobileNavOpen: !prevState.isMobileNavOpen }))
+    // }
     const handleToggleMainMobileMenu = () => {
-        setIsRoutingState(prevState => ({ ...prevState, isMobileNavOpen: !prevState.isMobileNavOpen }))
+        setIsRoutingState(prevState => (
+            { ...prevState, 
+                isMobileNavOpen: !prevState.isMobileNavOpen 
+            
+            }))
     }
     const handleToggleMobileAppliancesMenu = () => {
         setIsRoutingState(prevState => ({ ...prevState, isMobileCategoriesMenuOpen: !prevState.isMobileCategoriesMenuOpen }))
@@ -30,8 +38,6 @@ const MobileNavComponent = () => {
         setIsRoutingState(prevState => ({ ...prevState, isMobileExclusiveMenuOpen: !prevState.isMobileExclusiveMenuOpen }))
     }
 
-
-
     const handleMobileSearchIconClick = () => {
         setIsMobileSearchState(prevState =>
             ({ ...prevState, isMobileSearch: true }))
@@ -40,7 +46,11 @@ const MobileNavComponent = () => {
     const handleMobileProductListIconClick = () => {
         setIsRoutingState(prevState =>
             ({ ...prevState, isProductListDropdownOpen: !prevState.isProductListDropdownOpen }))
+    }
 
+    const handleToggleMobileAccountMenu = () => {
+        setIsRoutingState(prevState => ({ ...prevState, 
+            isMobileAccountMenuOpen: !prevState.isMobileAccountMenuOpen }))
     }
     return (
         <div className={styles.mobileNavComponentContainer}>
@@ -51,7 +61,10 @@ const MobileNavComponent = () => {
             </div>
             <div className={styles.mobileIconsWrapper}>
                 <IconComponent onClick={handleMobileSearchIconClick} iconType='searchInput' />
-                <IconComponent iconType='userAccount' />
+                <IconComponent  iconType='userAccount' />
+                {/* <IconComponent onClick={handleToggleMobileAccountMenu} iconType='userAccount' /> */}
+                
+              
                 <ProductListIcon />
                 {/* <IconComponent onClick={handleMobileProductListIconClick} iconType='productList' /> */}
 
@@ -68,12 +81,12 @@ const MobileNavComponent = () => {
                             <div id={styles.firstHeader} className={styles.mobileMenuHeader} >
                                 <div onClick={handleToggleMobileAppliancesMenu} className={styles.headerText}>
                                     <PageText type='mobileNavTitle'>Home Appliances</PageText>
-                                    <IconComponent  iconType='rightChevron' />
+                                    <IconComponent iconType='rightChevron' />
                                 </div>
 
                             </div>
                             <div className={styles.mobileMenuHeader} >
-                                <div onClick={handleToggleMobileResourcesMenu}  className={styles.headerText}>
+                                <div onClick={handleToggleMobileResourcesMenu} className={styles.headerText}>
                                     <PageText type='mobileNavTitle'>Resources</PageText>
                                     <IconComponent iconType='rightChevron' />
                                 </div>
@@ -134,14 +147,32 @@ const MobileNavComponent = () => {
 
                             <div className={styles.mobileDropdownContent}>
                                 <ul className={styles.mobileNavOptionsList}>
-                                    <li>
+                                {RouteLinks(exclusiveLinks)}
+                                    {/* <li>
                                         <LinkComponent
                                             linkText="Product List Builder"
-                                            href='/hapg'
+                                            href='/hapg/product-list-builder'
                                             type='trackedLink'
                                         />
-                                    </li>
+                                    </li> */}
                                 </ul>
+                            </div>
+                        </div>
+                    </GridSystem>
+                </Overlay>
+            }
+            {
+                isRoutingState.isMobileAccountMenuOpen &&
+                <Overlay containerMarginTop='7rem'>
+                    <GridSystem >
+                        <div className={styles.mobileNavDropdownMenuWrapper}>
+                            <div className={styles.mobileMenuBackIconWrapper}>
+                                <IconComponent onClick={handleToggleMobileAccountMenu} iconType='leftChevron' />
+                            </div>
+                            <div className={styles.mobileDropdownContent}>
+                                <ul className={styles.mobileNavOptionsList}>{RouteLinks(accountLinks)}</ul>
+                                {/* <ul className={styles.mobileNavOptionsList}>{RouteLinks(resourceLinks)}</ul> */}
+
                             </div>
                         </div>
                     </GridSystem>
@@ -226,6 +257,12 @@ const DesktopNavComponent = () => {
         }));
     }
 
+    // const handleAccountLinkMouseEnter = () => {
+    const handleAccountLinkClick = () => {
+        setIsRoutingState(prevState =>
+            ({ ...prevState, isAccountMenuOpen: !prevState.isAccountMenuOpen }))
+    }
+    // console.log('r', isRoutingState.isAccountMenuOpen)
 
     return (
         <>
@@ -318,8 +355,28 @@ const DesktopNavComponent = () => {
                             <div className={styles.desktopNavIconsWrapper}>
                                 <ProductListIcon />
                                 {/* <IconComponent onClick={handleDesktopProductListIconClick} iconType='productList' /> */}
-                                <IconComponent iconType='userAccount' />
+                                <div className={styles.dropdownSection}>
+                                <IconComponent onClick={handleAccountLinkClick} iconType='userAccount' />
+                                    {/* <IconComponent onClick={handleAccountLinkClick} iconType='userAccount' /> */}
+                                    {
+                                        isRoutingState.isAccountMenuOpen &&
+                                        <div 
+                                        onMouseLeave={handleExclusiveLinkMouseLeave} 
+                                        className={styles.acountDropdownContainer}>
+                                            <div  id={styles.accountDropdownWrapperWidth} className={styles.dropdownWrapper}>
+                                                <div className={styles.dropdownContent}>
+                                                    <div className={styles.dropdownLinks}>
+                                                        <ul className={styles.dropdownLinksList}>{RouteLinks(accountLinks)}</ul>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    }
+                                </div>
                             </div>
+
                         </section>
                     </div>
                 </GridSystem>

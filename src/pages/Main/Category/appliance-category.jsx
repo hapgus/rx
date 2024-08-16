@@ -12,7 +12,9 @@ import { GridSystem } from '../../../components/GridSystem/GridSystem';
 import { ScrollingComponent } from '../../../components/ScrollingComponent/ScrollingComponent';
 import { useResponsiveStateHook } from '../../../hooks/responsive-hook';
 import { useResponsiveMediaStateHook } from '../../../hooks/responsive-hook';
-import { InnerGridItem } from '../../../components/GridSystem/InnerGridItem';
+import { stepUpChartLinks } from '../../../utils/link-helper';
+import { LinkComponent } from '../../../components/Links/LinkComponent';
+// import { InnerGridItem } from '../../../components/GridSystem/InnerGridItem';
 const ApplianceCategoryPage = () => {
     const { isMobile } = useResponsiveStateHook();
     const { isMediaMobile } = useResponsiveMediaStateHook();
@@ -29,6 +31,14 @@ const ApplianceCategoryPage = () => {
 
 
     const publicUrl = process.env.PUBLIC_URL;
+
+    const getStepUpChartLinksByCategory = (category) => {
+        return stepUpChartLinks.filter(link => link.href.includes(category));
+    };
+
+    const stepUpChartCategoryLinks = getStepUpChartLinksByCategory(normalizedCategoryId);
+
+
     const backgroundImageMap = {
         'air care': {
             image: `${publicUrl}/assets/image/backgrounds/categories/air-care/air.png`,
@@ -78,50 +88,91 @@ const ApplianceCategoryPage = () => {
             <GridSystem
                 gridType='spread'
             >
-               
-                    {
-                        CATEGORY_SHAPED_IMAGE && CATEGORY_VERBIAGE &&
-                        <div className={styles.heroContainer} style={heroStyles}>
-                            <div className={styles.heroWrapper}>
-                                <div className={styles.heroTextWrapper}>
-                                    <div className={styles.heroTitle}>
-                                        <PageText type='pageTitle'>{CATEGORY_VERBIAGE[normalizedCategoryId].categoryHeadline}</PageText>
-                                        <PageText type='bodyDescriptionLarge'>{CATEGORY_VERBIAGE[normalizedCategoryId].categorySubheadline}</PageText>
-                                    </div>
-                                    <div className={styles.heroDescription}>
-                                        <PageText type='bodyDescriptionLarge'>{CATEGORY_VERBIAGE[normalizedCategoryId].categoryDescription1}</PageText>
-                                        <PageText type='bodyDescriptionLarge'>{CATEGORY_VERBIAGE[normalizedCategoryId].categoryDescription2}</PageText>
-                                    </div>
+
+                {
+                    CATEGORY_SHAPED_IMAGE && CATEGORY_VERBIAGE &&
+                    <div className={styles.heroContainer} style={heroStyles}>
+                        <div className={styles.heroWrapper}>
+                            <div className={styles.heroTextWrapper}>
+                                <div className={styles.heroTitle}>
+                                    <PageText type='pageTitle'>{CATEGORY_VERBIAGE[normalizedCategoryId].categoryHeadline}</PageText>
+                                    <PageText type='bodyDescriptionLarge'>{CATEGORY_VERBIAGE[normalizedCategoryId].categorySubheadline}</PageText>
                                 </div>
-                                <div className={styles.heroImageWrapper}>
-                                    <div className={styles.mobileImageGroup}>
-                                        <div className={styles.image1}>
-                                            <img
-                                                src={CATEGORY_SHAPED_IMAGE[normalizedCategoryId].imageShape1}
-                                                alt={`${CATEGORY_SHAPED_IMAGE[normalizedCategoryId]} image shapes`}
-                                                loading='lazy'
-                                            />
-                                        </div>
-                                        <div className={styles.image2}>
-                                            <img
-                                                src={CATEGORY_SHAPED_IMAGE[normalizedCategoryId].imageShape2}
-                                                alt={`${CATEGORY_SHAPED_IMAGE[normalizedCategoryId]} image shapes`}
-                                                loading='lazy'
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className={styles.image3}>
+                                <div className={styles.heroDescription}>
+                                    <PageText type='bodyDescriptionLarge'>{CATEGORY_VERBIAGE[normalizedCategoryId].categoryDescription1}</PageText>
+                                    <PageText type='bodyDescriptionLarge'>{CATEGORY_VERBIAGE[normalizedCategoryId].categoryDescription2}</PageText>
+                                </div>
+                                <div className={styles.dStepUpLinksContainer}>
+                                <ul>
+                                    {stepUpChartCategoryLinks.map((link, index) => (
+                                        <li key={index}>
+                                            <PageText type='bodyDescriptionMedium'> See {``}
+                                                <span className={styles.dStepUpChartCalloutText}>
+                                                    <LinkComponent href={link.href}>{link.text}</LinkComponent>
+                                                </span>
+                                            </PageText>
+                                            {/* <LinkComponent href={link.href}>
+                                                    <Button buttonStyleType='primaryAction'>{link.text}</Button>
+                                                </LinkComponent> */}
+                                        </li>
+                                    ))}
+                                </ul>
+                                    {/* <ul>
+                                        {stepUpChartCategoryLinks.map((link, index) => (
+                                            <li key={index}>
+                                                <LinkComponent href={link.href}>
+                                                    <Button buttonStyleType='primaryAction'>{link.text}</Button>
+                                                </LinkComponent>
+                                            </li>
+                                        ))}
+                                    </ul> */}
+                                </div>
+                            </div>
+                            <div className={styles.heroImageWrapper}>
+                                <div className={styles.mobileImageGroup}>
+                                    <div className={styles.image1}>
                                         <img
-                                            src={CATEGORY_SHAPED_IMAGE[normalizedCategoryId].imageShape3}
+                                            src={CATEGORY_SHAPED_IMAGE[normalizedCategoryId].imageShape1}
+                                            alt={`${CATEGORY_SHAPED_IMAGE[normalizedCategoryId]} image shapes`}
+                                            loading='lazy'
+                                        />
+                                    </div>
+                                    <div className={styles.image2}>
+                                        <img
+                                            src={CATEGORY_SHAPED_IMAGE[normalizedCategoryId].imageShape2}
                                             alt={`${CATEGORY_SHAPED_IMAGE[normalizedCategoryId]} image shapes`}
                                             loading='lazy'
                                         />
                                     </div>
                                 </div>
+                                <div className={styles.image3}>
+                                    <img
+                                        src={CATEGORY_SHAPED_IMAGE[normalizedCategoryId].imageShape3}
+                                        alt={`${CATEGORY_SHAPED_IMAGE[normalizedCategoryId]} image shapes`}
+                                        loading='lazy'
+                                    />
+                                </div>
+                            </div>
+                            <div className={styles.mStepUpLinksContainer}>
+                                <ul>
+                                    {stepUpChartCategoryLinks.map((link, index) => (
+                                        <li key={index}>
+                                            <PageText type='bodyDescriptionMedium'> See {``}
+                                                <span className={styles.stepUpChartCalloutText}>
+                                                    <LinkComponent href={link.href}>{link.text}</LinkComponent>
+                                                </span>
+                                            </PageText>
+                                            {/* <LinkComponent href={link.href}>
+                                                    <Button buttonStyleType='primaryAction'>{link.text}</Button>
+                                                </LinkComponent> */}
+                                        </li>
+                                    ))}
+                                </ul>
                             </div>
                         </div>
-                    }
-             
+                    </div>
+                }
+
             </GridSystem>
             <section className={styles.productsContainer}>
                 <ScrollingComponent processedProducts={subcategories} />

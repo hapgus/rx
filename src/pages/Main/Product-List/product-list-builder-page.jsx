@@ -10,6 +10,7 @@ import { CountBubble } from '../../../components/CountBubble/CountBubble';
 import { NavLink } from 'react-router-dom';
 import { ProductBuilderPageCard } from '../../../components/ProductCards/ProductBuilderPageCard/ProductBuilderPageCard';
 import { PrintScreen } from '../../../components/Print/PrintScreen';
+import { LinkComponent } from '../../../components/Links/LinkComponent';
 
 const EmptyListScreen = () => {
     return (
@@ -19,11 +20,11 @@ const EmptyListScreen = () => {
                     <PageText type="pageTitle">LG Product List Builder</PageText>
                 </div>
                 <div className={styles.subtitleContainer}>
-                <PageText type="pageTertiaryTitle">Get started adding products to your list</PageText>
+                    <PageText type="pageTertiaryTitle">Get started adding products to your list</PageText>
                 </div>
                 <div className={styles.descriptionContainer}>
-                <PageText type="bodyDescriptionMedium">Use search or explore appliance pages to find products to create a customized list of LG Home Appliances</PageText>
-            </div>
+                    <PageText type="bodyDescriptionMedium">Use search or explore appliance pages to find products to create a customized list of LG Home Appliances</PageText>
+                </div>
             </div>
             <div className={styles.mobileEmptyListCharacterImage}>
                 <LGComponent type='boyFull' />
@@ -32,9 +33,11 @@ const EmptyListScreen = () => {
                 {categoryLinks.map(link =>
                     // <NavigationLink href={link.href}>
                     <div key={link.href}>
-                        <NavLink>
-                            <Button buttonStyleType="primary">{link.text}</Button>
-                        </NavLink>
+                        <LinkComponent href={link.href}>
+                            {/* <NavLink> */}
+                                <Button buttonStyleType="primary">{link.text}</Button>
+                            {/* </NavLink> */}
+                        </LinkComponent>
                     </div>
                     // </NavigationLink>
                 )};
@@ -81,15 +84,15 @@ const PopulatedListScreen = () => {
                     </div>
                 </div>
                 <div className={styles.listActionButtonsWrapper}>
-                {/* <GridSystem> */}
+                    {/* <GridSystem> */}
                     <div className={styles.listActionButtons}>
                         <PrintProductsButton productsInList={listCount} />
                         <RemoveAllFromListButton />
                     </div>
-                {/* </GridSystem> */}
-            </div>
+                    {/* </GridSystem> */}
+                </div>
             </GridSystem>
-           
+
             <GridSystem>
 
                 {
@@ -102,7 +105,7 @@ const PopulatedListScreen = () => {
                     ))
 
                 }
-               
+
             </GridSystem>
         </>
     );

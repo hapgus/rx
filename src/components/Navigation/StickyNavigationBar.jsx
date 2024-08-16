@@ -11,9 +11,14 @@ export const StickyNavigationBar = ({ data }) => {
   const [activeSection, setActiveSection] = useState(null);
 
   useIntersectionObserver(setActiveSection);
+  // useIntersectionObserver(setActiveSection, {
+  //   root: null,
+  //   rootMargin: '0px',
+  //   threshold: 0.5, 
+  // });
 
   const handleClick = (event, categoryIndex) => {
-
+console.log(categoryIndex)
     event.preventDefault();
     const targetElement = document.getElementById(`category-${categoryIndex}`);
     if (targetElement) {
@@ -22,6 +27,8 @@ export const StickyNavigationBar = ({ data }) => {
         behavior: 'smooth'
       });
     }
+    console.log('active section',activeSection)
+    console.log('target section',targetElement)
   };
   const activeStyle = {
     fontWeight: '600',
@@ -32,7 +39,7 @@ export const StickyNavigationBar = ({ data }) => {
     
      borderBottom:'3px solid #EA1917',
   };
-
+console.log(data)
   return (
     <GridSystem 
     gridType='spread'

@@ -1,4 +1,4 @@
-import styles from './InnerGridItem.module.css'
+import styles from './InnerGridContentWrapper.module.css'
 export const InnerGridItem = ({
     gridType = 'controlledGrid',
     children

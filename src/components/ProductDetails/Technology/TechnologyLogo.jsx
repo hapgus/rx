@@ -25,10 +25,10 @@ export const TechnologyLogo = ({ logos }) => {
                                 logoImage = `${path}thinQ.svg`
                                 break;
                             case 'Ada':
-                                logoImage = `${path}ada,svg`
+                                logoImage = `${path}ada.webp`
                                 break;
                             case 'lgDoorInDoorWithCraftIce':
-                                logoImage = `${path}doorInDoorWithCraftIce`
+                                logoImage = `${path}doorInDoorWithCraftIce.svg`
                                 break;
                             case 'counterDepthMax':
                                 logoImage = `${path}counterDepthMax.svg`
@@ -37,7 +37,7 @@ export const TechnologyLogo = ({ logos }) => {
                                 logoImage = `${path}energyStar.svg`
                                 break;
                             case 'energyStarMostEfficient2023':
-                                logoImage = `${path}energyStarMostEfficient2023.svg`
+                                logoImage = `${path}energyStarMostEfficient2023.webp`
                                 break;
                             case 'energyStarMostEfficient':
                                 logoImage = `${path}energyStarMostEfficient2024.svg`
@@ -70,7 +70,7 @@ export const TechnologyLogo = ({ logos }) => {
                                 logoImage = `${path}sideChef.svg`
                                 break;
                             case 'standardDepthMax':
-                                logoImage = `${path}standardDepthMax.svg`
+                                logoImage = `${path}standardDepthMax.webp`
                                 break;
                             case 'ThinQ Care':
                                 logoImage = `${path}thinQCare.svg`
@@ -85,7 +85,7 @@ export const TechnologyLogo = ({ logos }) => {
                                 logoImage = `${path}washerComboAllInOne.svg`
                                 break;
                             case 'lGWashTowerWithCenterControl':
-                                logoImage = `${path}washTowerWithCenterControl.svg`
+                                logoImage = `${path}washTowerWithCenterControl.webp`
                                 break;
                             case 'worksWithAlexa':
                                 logoImage = `${path}worksWithAlexa.png`

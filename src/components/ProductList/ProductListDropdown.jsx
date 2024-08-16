@@ -41,11 +41,10 @@ const EmptyListScreen = () => {
                                 </div>
                                 <div className={styles.buttonsWrapper}>
                                     {categoryLinks.map(link =>
-                                        // <NavigationLink href={link.href}>
-                                        <NavLink>
+
+                                        <LinkComponent href={link.href}>
                                             <Button buttonStyleType="primary">{link.text}</Button>
-                                        </NavLink>
-                                        // </NavigationLink>
+                                        </LinkComponent>
                                     )};
                                 </div>
                             </div>

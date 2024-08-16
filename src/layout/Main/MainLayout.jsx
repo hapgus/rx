@@ -1,21 +1,21 @@
-import { MainNavigationComponent } from '../components/Navigation/NavigationComponent';
-import styles from './Layout.module.css'
+import { MainNavigationComponent } from '../../components/Navigation/NavigationComponent';
+import styles from './MainLayout.module.css'
 import { Outlet } from 'react-router';
-import { useSearchHook } from '../hooks/search-hook';
-import { useRoutingHook } from '../hooks/routing-hook';
-import { useNotificationHook } from '../hooks/notification-hook';
-import { SearchComponent } from '../components/Search/SearchComponent/SearchComponent';
-import ProductGuideAlerts from '../components/Alert/Alert';
-import Modal from '../components/Modal/Modal';
-import Drawer from '../components/Drawer/Drawer';
+import { useSearchHook } from '../../hooks/search-hook';
+import { useRoutingHook } from '../../hooks/routing-hook';
+import { useNotificationHook } from '../../hooks/notification-hook';
+import { SearchComponent } from '../../components/Search/SearchComponent/SearchComponent';
+import ProductGuideAlerts from '../../components/Alert/Alert';
+import Modal from '../../components/Modal/Modal';
+import Drawer from '../../components/Drawer/Drawer';
 
 import { useEffect } from 'react';
-import Footer from '../components/Footer/Footer';
-import { PrintScreen } from '../components/Print/PrintScreen';
-import Loader from '../components/Loader/Loader';
+import Footer from '../../components/Footer/Footer';
+import { PrintScreen } from '../../components/Print/PrintScreen';
+import Loader from '../../components/Loader/Loader';
 import { useLocation } from "react-router-dom";
-import ScrollToTop from '../components/ScrollToTop/ScrollToTop';
-import { ProductListDropdown } from '../components/ProductList/ProductListDropdown';
+import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
+import { ProductListDropdown } from '../../components/ProductList/ProductListDropdown';
 
 export default function Layout() {
     const location = useLocation();
@@ -91,7 +91,7 @@ export default function Layout() {
     }, [location]);
 
 
-    console.log(isRoutingState)
+
     return (
         <>
             <PrintScreen />

@@ -147,29 +147,29 @@ const LeftArrow = () => (
 );
 const RightArrow = () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="13" height="12" viewBox="0 0 13 12" fill="none">
-    <g clip-path="url(#clip0_58_114)">
-      <path d="M6.72949 11.5303L12.3495 5.92027L6.72949 0.300274" stroke="#231F20" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M1.14941 5.91016H12.3494" stroke="#231F20" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"/>
-    </g>
-    <defs>
-      <clipPath id="clip0_58_114">
-        <rect width="11.8" height="11.83" fill="white" transform="matrix(1 0 0 -1 0.849609 11.8301)"/>
-      </clipPath>
-    </defs>
-  </svg>
+        <g clip-path="url(#clip0_58_114)">
+            <path d="M6.72949 11.5303L12.3495 5.92027L6.72949 0.300274" stroke="#231F20" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M1.14941 5.91016H12.3494" stroke="#231F20" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" />
+        </g>
+        <defs>
+            <clipPath id="clip0_58_114">
+                <rect width="11.8" height="11.83" fill="white" transform="matrix(1 0 0 -1 0.849609 11.8301)" />
+            </clipPath>
+        </defs>
+    </svg>
 );
 const WhiteRightArrow = () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="13" height="12" viewBox="0 0 13 12" fill="none">
-    <g clip-path="url(#clip0_78_126)">
-      <path d="M6.72949 0.299805L12.3495 5.9098L6.72949 11.5298" stroke="white" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M1.14941 5.91992H12.3494" stroke="white" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"/>
-    </g>
-    <defs>
-      <clipPath id="clip0_78_126">
-        <rect width="11.8" height="11.83" fill="white" transform="translate(0.849609)"/>
-      </clipPath>
-    </defs>
-  </svg>
+        <g clip-path="url(#clip0_78_126)">
+            <path d="M6.72949 0.299805L12.3495 5.9098L6.72949 11.5298" stroke="white" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M1.14941 5.91992H12.3494" stroke="white" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" />
+        </g>
+        <defs>
+            <clipPath id="clip0_78_126">
+                <rect width="11.8" height="11.83" fill="white" transform="translate(0.849609)" />
+            </clipPath>
+        </defs>
+    </svg>
 );
 
 const UpArrow = () => (
@@ -220,22 +220,91 @@ const XClose = () => (
         </defs>
     </svg>
 )
-const RoundXClose = () =>(
+const RoundXClose = () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="13" height="12" viewBox="0 0 13 12" fill="none">
-  <g clip-path="url(#clip0_53_318)">
-    <path d="M4.57031 3.66992L9.06031 8.15992" stroke="#231F20" strokeWidth="0.6" strokeLinecap="round" strokeLinejoin="round"/>
-    <path d="M9.06031 3.66992L4.57031 8.15992" stroke="#231F20" strokeWidth="0.6" strokeLinecap="round" strokeLinejoin="round"/>
-    <path d="M6.80996 11.5096C9.90276 11.5096 12.41 9.00237 12.41 5.90957C12.41 2.81678 9.90276 0.30957 6.80996 0.30957C3.71717 0.30957 1.20996 2.81678 1.20996 5.90957C1.20996 9.00237 3.71717 11.5096 6.80996 11.5096Z" stroke="#231F20" strokeWidth="0.6" strokeLinecap="round" strokeLinejoin="round"/>
-  </g>
-  <defs>
-    <clipPath id="clip0_53_318">
-      <rect width="11.81" height="11.81" fill="white" transform="translate(0.910156 0.00976562)"/>
-    </clipPath>
-  </defs>
-</svg>
+        <g clip-path="url(#clip0_53_318)">
+            <path d="M4.57031 3.66992L9.06031 8.15992" stroke="#231F20" strokeWidth="0.6" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M9.06031 3.66992L4.57031 8.15992" stroke="#231F20" strokeWidth="0.6" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M6.80996 11.5096C9.90276 11.5096 12.41 9.00237 12.41 5.90957C12.41 2.81678 9.90276 0.30957 6.80996 0.30957C3.71717 0.30957 1.20996 2.81678 1.20996 5.90957C1.20996 9.00237 3.71717 11.5096 6.80996 11.5096Z" stroke="#231F20" strokeWidth="0.6" strokeLinecap="round" strokeLinejoin="round" />
+        </g>
+        <defs>
+            <clipPath id="clip0_53_318">
+                <rect width="11.81" height="11.81" fill="white" transform="translate(0.910156 0.00976562)" />
+            </clipPath>
+        </defs>
+    </svg>
 )
 
+const Cross = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="17" viewBox="0 0 18 17" fill="none">
+        <g clip-path="url(#clip0_53_318)">
+            <path d="M9.26074 5.17578V11.5256" stroke="#231F20" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M12.4357 8.35069H6.08583" stroke="#231F20" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" />
+        </g>
+        <defs>
+            <clipPath id="clip0_53_318">
+                <rect width="11.81" height="11.81" fill="white" transform="translate(9.26074) rotate(45)" />
+            </clipPath>
+        </defs>
+    </svg>
+);
+const Minus = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="17" viewBox="0 0 18 17" fill="none">
+        <path d="M12.1378 8.35069H5.78798" stroke="#231F20" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+)
 
+const InfoDoc = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="62" height="81" viewBox="0 0 62 81" fill="none">
+        <path d="M2.06055 78.6907H59.5635V2.06055H18.4114L2.06055 15.7935V78.6907Z" stroke="#231F20" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M2.26562 16.8922H18.0669V2.06055" stroke="#231F20" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M30.366 26.7106C32.8322 26.7106 34.8316 24.7124 34.8316 22.2474C34.8316 19.7824 32.8322 17.7842 30.366 17.7842C27.8997 17.7842 25.9004 19.7824 25.9004 22.2474C25.9004 24.7124 27.8997 26.7106 30.366 26.7106Z" stroke="#231F20" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M20.4727 33.7842H37.9228V59.7395H44.4494V67.224H20.2666V59.8082H27.3428V41.6807H20.4727V33.7842Z" stroke="#231F20" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+);
+
+
+const Compare = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="84" height="85" viewBox="0 0 84 85" fill="none">
+        <path d="M81.8414 6.35156H2.16016V78.6479H81.8414V6.35156Z" stroke="#231F20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M41.9648 2.14062V82.8585" stroke="#231F20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M15.4043 28.4756L29.5123 42.4638L15.4043 56.4521" stroke="#231F20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M67.2291 56.4521L53.1211 42.4638L67.2291 28.4756" stroke="#231F20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+)
+
+const Warranty = () => (
+
+    <svg width="7304" height="7304" viewBox="0 0 7304 7304" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7017.35 2298.39C7035.98 2672.46 7035.98 3117.46 7035.98 3651.99C7035.98 5247.2 7035.98 6044.83 6540.42 6540.42C6044.83 7035.98 5247.2 7035.98 3651.99 7035.98C2056.76 7035.98 1259.15 7035.98 763.573 6540.42C268 6044.83 268 5247.2 268 3651.99C268 2056.76 268 1259.15 763.573 763.573C1259.15 268 2056.76 268 3651.99 268C4033.81 268 4369.97 268 4667.19 274.796" stroke="#262626" stroke-width="534.314" stroke-linecap="round"/>
+<path d="M2227.16 3473.89C2227.16 3473.89 2761.47 3473.89 3473.89 4720.62C3473.89 4720.62 5275.88 1455.36 7035.99 802.314" stroke="#ED0602" stroke-width="534.314" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+    // <svg width="7276" height="7276" viewBox="0 0 7276 7276" fill="none" xmlns="http://www.w3.org/2000/svg">
+    //     <path d="M4653.19 408.919C4332.72 308.262 3991.69 254 3637.99 254C1769.06 254 254 1769.06 254 3637.99C254 5506.9 1769.06 7021.98 3637.99 7021.98C5506.9 7021.98 7021.98 5506.9 7021.98 3637.99C7021.98 3284.3 6967.7 2943.27 6867.06 2622.79" stroke="#262626" stroke-width="507.599" stroke-linecap="round" />
+    //     <path d="M2453.59 2791.99L3637.99 3976.39L6683.65 592.398" stroke="#ED0602" stroke-width="507.599" stroke-linecap="round" stroke-linejoin="round" />
+    // </svg>
+
+    //     <svg width="7276" height="7276" viewBox="0 0 7276 7276" fill="none" xmlns="http://www.w3.org/2000/svg">
+    // <path d="M6649.74 1194.75L3076.25 4578.74L2128.73 3583.85M4869.76 484.111C4487.37 335.216 4074.53 254 3637.99 254C1770.03 254 254 1770.03 254 3637.99C254 5505.95 1770.03 7021.98 3637.99 7021.98C5505.95 7021.98 7021.98 5505.95 7021.98 3637.99" stroke="#EA1917" stroke-width="507.599" stroke-linecap="round" stroke-linejoin="round"/>
+    // </svg>
+
+
+    //     <svg width="7276" height="7276" viewBox="0 0 7276 7276" fill="none" xmlns="http://www.w3.org/2000/svg">
+    // <path d="M6649.74 1194.75L3076.25 4578.74L2128.73 3583.85M4869.76 484.111C4487.37 335.216 4074.53 254 3637.99 254C1770.03 254 254 1770.03 254 3637.99C254 5505.95 1770.03 7021.98 3637.99 7021.98C5505.95 7021.98 7021.98 5505.95 7021.98 3637.99" stroke="#262626" stroke-width="507.599" stroke-linecap="round" stroke-linejoin="round"/>
+    // </svg>
+
+    // <svg width="3973" height="3973" viewBox="0 0 3973 3973" fill="none" xmlns="http://www.w3.org/2000/svg">
+    //     <path d="M2404.33 434.478C2207.35 237.492 2108.86 139 1986.47 139C1864.07 139 1765.58 237.492 1568.6 434.478C1450.39 552.685 1333.25 607.566 1164.73 607.566C1017.58 607.566 808.232 579.026 693.24 694.984C579.157 810.026 607.569 1018.51 607.569 1164.72C607.569 1333.25 552.685 1450.39 434.475 1568.6C237.492 1765.58 139.002 1864.07 139 1986.47C139.004 2108.84 237.496 2207.35 434.48 2404.33C566.903 2536.75 607.569 2622.25 607.569 2808.2C607.569 2955.35 579.031 3164.71 694.993 3279.69C810.033 3393.77 1018.52 3365.36 1164.72 3365.36C1344.19 3365.36 1430.62 3400.46 1558.7 3528.55C1667.76 3637.62 1813.97 3833.93 1986.47 3833.93C2158.96 3833.93 2305.17 3637.62 2414.23 3528.55C2542.31 3400.46 2628.74 3365.36 2808.2 3365.36C2954.41 3365.36 3162.9 3393.77 3277.94 3279.69M3277.94 3279.69C3393.9 3164.71 3365.36 2955.35 3365.36 2808.2C3365.36 2622.25 3406.02 2536.75 3538.45 2404.33C3735.45 2207.35 3833.93 2108.84 3833.93 1986.47C3833.93 1864.07 3735.45 1765.58 3538.45 1568.6M3277.94 3279.69H3279.69" stroke="#262626" stroke-width="277.12" stroke-linecap="round" stroke-linejoin="round" />
+    //     <path d="M1339.85 1524.6L1986.46 2171.21L3649.22 323.747" stroke="#262626" stroke-width="277.12" stroke-linecap="round" stroke-linejoin="round" />
+    // </svg>
+
+
+    // <svg xmlns="http://www.w3.org/2000/svg" width="3973" height="3973" viewBox="0 0 3973 3973" fill="none">
+    //     <path d="M2404.33 434.478C2207.35 237.492 2108.86 139 1986.47 139C1864.07 139 1765.58 237.492 1568.6 434.478C1450.39 552.685 1333.25 607.566 1164.73 607.566C1017.58 607.566 808.232 579.026 693.24 694.984C579.157 810.026 607.569 1018.51 607.569 1164.72C607.569 1333.25 552.685 1450.39 434.475 1568.6C237.492 1765.58 139.002 1864.07 139 1986.47C139.004 2108.84 237.496 2207.35 434.48 2404.33C566.903 2536.75 607.569 2622.25 607.569 2808.2C607.569 2955.35 579.031 3164.71 694.993 3279.69C810.033 3393.77 1018.52 3365.36 1164.72 3365.36C1344.19 3365.36 1430.62 3400.46 1558.7 3528.55C1667.76 3637.62 1813.97 3833.93 1986.47 3833.93C2158.96 3833.93 2305.17 3637.62 2414.23 3528.55C2542.31 3400.46 2628.74 3365.36 2808.2 3365.36C2954.41 3365.36 3162.9 3393.77 3277.94 3279.69M3277.94 3279.69C3393.9 3164.71 3365.36 2955.35 3365.36 2808.2C3365.36 2622.25 3406.02 2536.75 3538.45 2404.33C3735.45 2207.35 3833.93 2108.84 3833.93 1986.47C3833.93 1864.07 3735.45 1765.58 3538.45 1568.6M3277.94 3279.69H3279.69" stroke="#141B34" stroke-width="277.12" stroke-linecap="round" stroke-linejoin="round" />
+    // </svg>
+
+);
 const icons = {
 
     mobileNavMenu: MobileNavMenu,
@@ -252,12 +321,16 @@ const icons = {
     print: Print,
     redMinus: RedMinus,
     xClose: XClose,
-    roundXClose:RoundXClose,
+    roundXClose: RoundXClose,
     externalLink: ExternalLink,
-    rightArrow:RightArrow,
-    whiteRightArrow:WhiteRightArrow,
+    rightArrow: RightArrow,
+    whiteRightArrow: WhiteRightArrow,
+    cross: Cross,
+    minus: Minus,
+    infoDoc: InfoDoc,
+    compare: Compare,
+    warranty: Warranty
 }
-
 
 const IconContainer = ({ onClick, children }) => (
     <span onClick={onClick} className={styles.iconContainer}>{children}</span>

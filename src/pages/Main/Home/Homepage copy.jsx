@@ -32,7 +32,8 @@ const Homepage = () => {
                 </div>
             </div>
 
-
+  {/* <PageText type='pageSubtitle'>Your gateway to mastering LG's line of best-in-class home appliances </PageText> */}
+                            {/* <PageText type='pageSubtitle'>Equip yourself with the knowledge to address customer needs effectively through detailed specifications, immersive feature videos, and customizable product lists. This platform is designed to help you build trust, showcase innovation, and ultimately drive sales by offering solutions that resonate with your customers.</PageText> */}
         </div>
     )
 }

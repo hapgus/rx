@@ -1,107 +1,497 @@
-.pageContainer {
+.heroContainer {
     display: flex;
     flex-direction: column;
     background-image:
-        linear-gradient(to right, rgba(0, 0, 0, 0.559), rgba(255, 255, 255, 0.1)),
+        linear-gradient(rgba(0, 0, 0, 0.614), rgba(0, 0, 0, 0.564)), linear-gradient(90deg, hsla(0, 0%, 100%, .3), rgba(0, 0, 0, .166)),
         url('/public/assets/image/backgrounds/main/studio-kitchen-01.webp');
     background-size: cover;
     background-position: center;
+   
     background-repeat: no-repeat;
-    min-height: 50rem;
     justify-content: center;
-    padding: 1rem;
-    
-    margin: 2rem 0;
-    /* border-radius: 2rem; */
-    /* Ensure text color contrasts with the gradient */
+    height: 50rem;
+    /* overflow: hidden; */
+    /* background-attachment: fixed; */
 }
 
-.section1HeaderText {
+.contentWrapper {
+    padding: 0rem 2rem 2rem 2rem;
+}
+
+.longHeroSubtitle {
+    display: none;
+}
+
+.heroWrapper {}
+
+.heroHeader {
     display: flex;
     flex-direction: column;
-    gap: .5rem;
-    /* padding-top: 4rem; */
+    gap: 0rem;
+    padding-bottom: 2rem;
+
+}
+
+.heroSearch {}
+
+.footer {
+    padding-top: 2rem;
+}
+
+
+.title,
+.subtitle,
+.footer {
     color: white;
 }
 
-
-.section1Search {
-    display: grid;
-    align-items: center;
-    /* display: flex;
-    align-items: center;
-    justify-content: stretch;
-    width: 100%; */
-
+.collar {
+    background-color: var(--color-gray-07);
+    overflow-x: auto;
+    border-top: 1px solid var(--color-gray-04);
+    border-bottom: 1px solid var(--color-gray-04);
+    white-space: nowrap;
+    /* background-size: 400% 400%;
+     background-image: linear-gradient(45deg, #dc4545, #ffb5b5, rgb(255, 224, 224), var(--color-gray-07), #ffb5b5, #f78b8b);
+     animation: gradientAnimation 15s ease infinite; */
 }
 
-.section1FooterText {
-margin-top: 2rem;
- margin-bottom: 2rem;
- color: white;
+.collarList {
+    display: flex;
+    /* flex-direction: row-reverse; */
+    gap: 2rem;
+    padding: 1.5rem 2rem;
+    justify-content: space-between;
+}
+
+.collar::-webkit-scrollbar {
+    width: 1rem;
+}
+
+.collar::-webkit-scrollbar-track {
+    background-color: var(--color-gray-07);
+}
+
+.collar::-webkit-scrollbar-thumb {
+    background-color: var(--color-gray-06);
+    border-radius: 10px;
+    border: 1px solid var(--color-gray-04);
+}
+
+.exploreText {
+    border-right: 1px solid var(--color-gray-01);
+    position: sticky;
+    padding-right: 1rem;
+    color: var(--color-gray-01);
+}
+
+.collar a {
+    color: var(--color-gray-01);
 }
 
 .desktopHomeSearchWrapper {
     display: none;
 }
 
+.textWrapper {}
 
-.linksContainer{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-.resourceCardWrapper{
-   display: flex;
-   flex-direction: row;
-   flex-wrap: wrap;
-    height: auto;
-    margin: 2rem 0;
-}
-.resourceCard{
-    background-color: var(--color-gray-06);
-    height: auto;
-    
+
+/* INTRO SECTION */
+.introductionContainer {
     display: flex;
     flex-direction: column;
-    height: auto;
-    padding: 4rem;
-    border-radius: 2rem;
-    /* gap: 1rem;
-    padding: 8rem; */
-    /* border-radius: 100rem; */
+    padding-top: 2rem;
+    /* background-color: var(--color-gray-01); */
+    /* display: grid;
+    grid-template-rows: repeat(4,1fr);
+    grid-template-columns: 1fr; */
 }
-.resourceCardButtonWrapper{
+
+.introTitle {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-bottom: 1rem;
+}
+
+.introTitleText {
+    color: var(--color-gray-01);
+}
+
+.introDescriptionHeader {
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+}
+
+.textWrapper {
+    grid-row: 1;
+    grid-column: 1;
+    /* background-color: rgb(6, 57, 57); */
+}
+.rep2{
+    display: none;
+}
+.headImage1{
+    height: 10rem;
+    width: auto;
+}
+.headImage2{
+    height: 20rem;
+    width: auto;
+}
+
+.headImageGroup{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.imageWrapper {
+    grid-row: 2;
+    grid-column: 1;
+    /* height: 30rem; */
+    width: auto;
+    display: flex;
+    /* justify-content: center;
+    align-items: center; */
+}
+
+.imageWrapper img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+}
+
+.benefitsList {}
+
+.benefitCard {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    gap: 1rem;
+    /* align-items: center; */
+    padding-bottom: 2rem;
+}
+
+.benefitCardText {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.longBenefitText {
+    display: none;
+}
+
+.shortBenefitText {
+    display: flex;
+}
+
+.longSubtitle {
+    display: none;
+    color: var(--color-gray-02);
+}
+
+.iconWrapper {
+    height: 4rem;
+    width: 4rem;
+}
+
+.iconWrapper svg {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+}
+
+.sectionTitle {
+    color: var(--color-gray-01);
+}
+
+.sectionSubtitle {
+    color: var(--color-gray-02);
+}
+
+/* QCARD */
+.qCardWrapper {
+    display: flex;
+    flex-direction: column;
     gap: 2rem;
+    /* padding-top: 1rem; */
+    padding: 1rem 0;
 }
-.resourceCardButtonWrapper button{
-    width: max-content;
+
+.qCard {
+    /* width: 48.5rem;
+    height: 17.7rem; */
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: .75rem;
+    border-radius: 2rem;
+    padding: 2.25rem;
 }
-@media (min-width: 834px) {
-    .resourceCardWrapper{
-      
-        gap: 10rem;
-   
+
+.qText {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.qIcon {
+    height: 4rem;
+    width: 4rem;
+}
+
+.qIcon svg {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+}
+
+.buttonWrapper {
+    padding: 1rem 0 2rem 0;
+}
+
+.sectionHeader{
+    display: flex;
+    flex-direction: column;
+    padding-top: 3rem;
+    padding-bottom: 1rem;
+    gap: .5rem;
+}
+
+
+@media (min-width: 430px) {
+
+    .imageWrapper {
+        /* height: 35rem; */
+        /* justify-content: flex-start; */
+        /* justify-content: center; */
+    }
+    .headImage1{
+        height: 12rem;
+    }
+    .headImage2{
+        height: 24rem;
+    }
+
+    .introTitle {
+        padding-bottom: 2rem;
+    }
+
+    .introDescriptionHeader {
+        padding-top: 2rem;
+        padding-bottom: 3rem;
+    }
+
+    .benefitCard {
+        gap: 2rem;
+        align-items: center;
+        padding-bottom: 2rem;
     }
 }
+
+@media (min-width: 768px) {
+    .contentWrapper {
+        padding: 0rem 4rem 2rem 4rem;
+    }
+
+    /* .imageWrapper {
+        height: 40rem;
+    } */
+    .headImage1{
+        height: 20rem;
+    }
+    .headImage2{
+        height: 40rem;
+    }
+    .qIcon {
+        height: 5rem;
+        width: 5rem;
+    }
+    
+}
+
 @media (min-width: 1024px) {
-    .resourceCardWrapper{
+
+
+    .longBenefitText {
+        display: flex;
+    }
+
+    .shortBenefitText {
+        display: none;
+    }
+
+    .introductionContainer {
         display: grid;
-        grid-template-columns: repeat(3,1fr);
-        grid-template-rows: 1fr;
-        gap: 20rem;
-        height: auto;
-        margin: 2rem 0;
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-rows: repeat(4, auto);
+        align-items: center;
+        /* background-color: var(--color-gray-01); */
+        padding: 4rem 0;
+        /* padding: 2rem 0; */
     }
-    .pageContainer {
 
-        height: 80rem;
+    /* .textWrapper {
+        grid-row: 1;
+        grid-column: 1/7;
+    } */
+
+    .imageWrapper {
+        grid-column: 6/-1;
+        grid-row: 1/-1;
+        justify-self: end;
+
+        /* height: 40rem; */
+        width: auto;
+    }
+    .rep1{
+        display: none;
+    }
+    .rep2{
+        display: flex;
+    }
+    .headImageGroup{
+        flex-direction: column;
+    }
+    .headImage1{
+        height: 20rem;
+    }
+    .headImage2{
+        height: 40rem;
+    }
+    .textWrapper {
+        grid-column: 1/6;
+        grid-row: 1;
+    }
+
+    .introDescription {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        grid-row: 2;
+        grid-column: 1/6;
+    }
+
+    .introDescriptionHeader {
+        display: none;
+        padding-top: 0rem;
+        padding-bottom: 0rem;
+    }
+
+    .introTitle {
+
+        padding-bottom: 2rem;
+    }
+
+    .longSubtitle {
+        display: flex;
+        padding-bottom: 1rem;
+    }
+
+    .shortSubtitle {
+        display: none;
+    }
+
+    .benefitCard {
+        gap: 2rem;
+        align-items: center;
 
     }
+
+    .benefitCardText {
+        gap: 1rem;
+    }
+
+    .iconWrapper {
+        height: 4.5rem;
+        width: 4.5rem;
+        /* background-color: var(--color-gray-06);
+        border-radius: 100rem;
+        padding: .5rem; */
+    }
+
+    /* QCARD */
+
+    .qCard {
+        width: 48.5rem;
+        height: 17.7rem;
+        /* background-color: white;
+        display: flex;
+        flex-direction: row;
+        align-items: center; */
+        gap: 1rem;
+        border-radius: 2rem;
+        padding: 2rem 3rem;
+    }
+
+    .qCardWrapper {
+        display: flex;
+        flex-direction: row;
+        gap: 2rem;
+    }
+
+    .qIcon {
+        height: 6rem;
+        width: 6rem;
+        align-self: flex-start;
+    }
+
+    /* .buttonWrapper button{
+        max-width: max-content;
+    }
+    
+    .benefitsList{
+        padding: 2rem 0;
+    }
+    .benefitCard{
+        display: flex;
+        flex-direction: row;
+        gap: 2rem;
+        align-items: center;
+        padding-bottom: 2rem;
+    }
+    .benefitCardText{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .sectionHeader{
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 1rem;
+        gap: .5rem;
+    }
+    
+    .qCardWrapper{
+        display: flex;
+      flex-direction: column;
+    }
+    .qCard{
+    width: 48.5rem;
+    height: 17.7rem;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6rem;
+    border-radius: 4rem;
+    padding: 2rem 3rem;
+    }
+    .qText{
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .qCardWrapper{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+    */
 
     .mobileHomeSearchWrapper {
         display: none;
@@ -116,6 +506,63 @@ margin-top: 2rem;
     }
 }
 
+@media(min-width:1280px){
+    .imageWrapper {
+        height: 50rem;
+    }
+  
+    .qIcon {
+        height: 7rem;
+        width: 7rem;
+        align-self: center;
+    }
+}
+@media(min-width:1440px){
+    .introductionContainer {
+       
+        padding: 4rem 0;
+       
+    }
+    .rep1{
+        display: flex;
+    }
+    .rep2{
+        display: none;
+    }
+    .headImageGroup{
+        flex-direction: row;
+    }
+    .headImage1{
+        height: 25rem;
+    }
+    .headImage2{
+        height: 50rem;
+    }
+}
+
+@media (min-width: 1920px) {
+    .heroContainer{
+        height: 60rem;
+    }
+    .collarList {
+        
+     
+        padding: 1.5rem 0;
+        justify-content: space-between;
+    }
+    .headImage1{
+        height: 27rem;
+    }
+    .headImage2{
+        height: 54rem;
+    }
+    .introductionContainer {
+       
+        padding: 8rem 2rem;
+       
+    }
+
+} 
 /* --------------------------------------------------------------------------------------- */
 /* MEDIA QUERY REFERENCE */
 /* --------------------------------------------------------------------------------------- */

@@ -55,7 +55,7 @@ export const HomepageSearchInput = () => {
         }
         const handleHomepageSearchFocus = () => {
             setIsHomepageSearchState(prevState => ({ ...prevState, isSearchFocused: true }));
-            console.log('home focus', isHomepageSearchState)
+     
         }
         return (
             <div className={styles.searchInputContainer}>

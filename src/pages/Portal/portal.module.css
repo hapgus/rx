@@ -1,0 +1,14 @@
+.portalPageContainer{
+    background-color: brown;
+    /* padding: 3rem; */
+    /* min-height: 100vh;
+    height: 200rem; */
+
+    /* display: grid;
+    grid-template-rows:  repeat(auto-fill, 1fr);
+    grid-template-columns:  1fr; */
+}
+.portalPageWrapper{
+display: flex;
+flex-direction: column;
+}

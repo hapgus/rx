@@ -74,6 +74,7 @@ useEffect(()=> {
             isMobileResourcesMenuOpen: false,
             isMobileAccountMenuOpen: false,
             isMobileBuilderDropdownOpen: false,
+            isMobileExclusiveMenuOpen:false,
             
             isCategoriesMenuOpen: false,
             isResourcesMenuOpen: false,
@@ -92,6 +93,8 @@ useEffect(()=> {
     }, 100); // Adjust the delay as needed
     }
 },[isRoutingState.isNavLinkClicked])
+
+console.log(isRoutingState)
     useEffect(() => {
         if (!isRoutingState.isMobileNavOpen) {
             
@@ -109,8 +112,26 @@ useEffect(()=> {
         // return () => {document.body.style.overflow = 'unset';}
     }, [isRoutingState.isMobileNavOpen])
 
+
+
     // useEffect(() => {
     //     if (isRoutingState.isBuilderDropdownOpen ||
+    //         isRoutingState.isMobileBuilderDropdownOpen ||
+    //         isRoutingState.isMobileNavOpen
+    //     ) {
+    //         document.body.style.overflow = 'hidden';
+    //     }
+    //     return () => {
+    //         document.body.style.overflow = 'unset';
+    //     }
+
+    // }, [
+    //     isRoutingState.isBuilderDropdownOpen,
+    //     isRoutingState.isMobileBuilderDropdownOpen,
+    //     isRoutingState.isMobileNavOpen
+    // ])
+    // useEffect(() => {
+    //     if (isRoutingState.isProductListDropdownOpen ||
     //         isRoutingState.isMobileBuilderDropdownOpen ||
     //         isRoutingState.isMobileNavOpen
     //     ) {

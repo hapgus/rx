@@ -1,0 +1,15 @@
+.accountInformationWrapper{
+    background-color: var(--color-gray-07);
+}
+.sectionTitle{
+    color:var(--color-gray-01);
+}
+.sectionDescription{
+    color:var(--color-gray-02);
+}
+.passwordInformationWrapper{
+    background-color: var(--color-gray-07);
+}
+.buttonWrapper button{
+    max-width: max-content;
+}

@@ -64,6 +64,8 @@ export const PageText = ({ children, eventHandlers = {}, type = 'default' }) => 
         bodyDescriptionLarge: styles.bodyDescriptionLarge,
         bodyFeatureSectionTitle:styles. bodyFeatureSectionTitle,
 
+        bodyBenefitTitle:styles.bodyBenefitTitle,
+        bodyBenefitDescription:styles.bodyBenefitDescription,
 
         /* --------------------------------------------------------------------------------------- */
         /* SEARCH */

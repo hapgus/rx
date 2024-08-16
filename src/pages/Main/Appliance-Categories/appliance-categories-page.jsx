@@ -11,6 +11,14 @@ const ApplianceCategories = () => {
     const { publicProducts } = useProductsHook();
     const categorizedProducts = ListProductsByCategorySubcategory(publicProducts);
     const publicUrl = process.env.PUBLIC_URL;
+
+    const scrollToPosition = () => {
+        window.scrollBy({
+          top: 500, // Scroll down by 500 pixels
+          behavior: 'smooth' // Smooth scrolling
+        });
+      };
+
     return (
         <>
             <div>
@@ -35,7 +43,7 @@ const ApplianceCategories = () => {
                             </div>
 
                             <div className={styles.heroButtonWrapper}>
-                                <Button buttonStyleType="primaryAction">Explore</Button>
+                                <Button onClick={scrollToPosition} buttonStyleType="primaryAction">Explore</Button>
                             </div>
                         </div>
                         <div className={styles.heroImageWrapper}>
@@ -58,7 +66,7 @@ const ApplianceCategories = () => {
                         </div>
                     </div>
                     <div className={styles.heroButtonWrapperMobile}>
-                        <Button buttonStyleType="primaryAction">Explore</Button>
+                        <Button onClick={scrollToPosition} buttonStyleType="primaryAction">Explore</Button>
                     </div>
                 </GridSystem>
             </div>

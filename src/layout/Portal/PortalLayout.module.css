@@ -1,0 +1,41 @@
+.flexContainer {
+    display: flex;
+
+}
+
+.portalPageContainer {
+    background-color: #F0F2F5;
+
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, auto);
+    width: 100%;
+}
+
+.portalLayoutSideNavWrapper {
+    grid-column: 1/3;
+    grid-row: 2/-1;
+    height: 100%;
+}
+
+.portalLayoutTopNavWrapper {
+    grid-column: 1/-1;
+    grid-row: 1;
+    width: 100%;
+    border-bottom: 2px solid var(--color-gray-04);
+    /* background-color: black;
+    padding: 1rem 8rem; */
+
+
+}
+
+.portalLayoutChildrenWrapper {
+    grid-column: 3/-1;
+    grid-row: 2/-1;
+    min-height: 100%;
+    /* background: rgb(165,0,52);
+    background: -moz-linear-gradient(0deg, rgba(165,0,52,1) 0%, rgba(38,38,38,1) 100%);
+    background: -webkit-linear-gradient(0deg, rgba(165,0,52,1) 0%, rgba(38,38,38,1) 100%);
+    background: linear-gradient(0deg, rgba(165,0,52,1) 0%, rgba(38,38,38,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#a50034",endColorstr="#262626",GradientType=1); */
+}

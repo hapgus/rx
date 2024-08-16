@@ -88,7 +88,8 @@ export const ScrollingComponent = ({ processedProducts }) => {
                     {Object.entries(products).map(([subcategory, items]) => {
                         const currentRefIdx = refIdx++;
                         return (
-                            <div className={styles.mainContainer} key={subcategory}>
+                            // ID SUPPORTING HASH LINK
+                            <div id={subcategory} className={styles.mainContainer} key={subcategory}>
                                 <GridSystem
                                     gridType='spread'
                                     containerPaddingTop='2rem'
