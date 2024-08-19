@@ -258,10 +258,10 @@ const DesktopNavComponent = () => {
     }
 
     // const handleAccountLinkMouseEnter = () => {
-    const handleAccountLinkClick = () => {
-        setIsRoutingState(prevState =>
-            ({ ...prevState, isAccountMenuOpen: !prevState.isAccountMenuOpen }))
-    }
+    // const handleAccountLinkClick = () => {
+    //     setIsRoutingState(prevState =>
+    //         ({ ...prevState, isAccountMenuOpen: !prevState.isAccountMenuOpen }))
+    // }
     // console.log('r', isRoutingState.isAccountMenuOpen)
 
     return (
@@ -356,9 +356,10 @@ const DesktopNavComponent = () => {
                                 <ProductListIcon />
                                 {/* <IconComponent onClick={handleDesktopProductListIconClick} iconType='productList' /> */}
                                 <div className={styles.dropdownSection}>
-                                <IconComponent onClick={handleAccountLinkClick} iconType='userAccount' />
+                                {/* <IconComponent onClick={handleAccountLinkClick} iconType='userAccount' /> */}
+                                <IconComponent iconType='userAccount' />
                                     {/* <IconComponent onClick={handleAccountLinkClick} iconType='userAccount' /> */}
-                                    {
+                                    {/* {
                                         isRoutingState.isAccountMenuOpen &&
                                         <div 
                                         onMouseLeave={handleExclusiveLinkMouseLeave} 
@@ -373,7 +374,7 @@ const DesktopNavComponent = () => {
                                             </div>
                                         </div>
 
-                                    }
+                                    } */}
                                 </div>
                             </div>
 
