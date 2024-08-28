@@ -2,6 +2,7 @@
 import { LinkComponent } from "../components/Links/LinkComponent";
 import { Button } from "../components/Button/Button";
 
+
 const publicUrl = process.env.PUBLIC_URL;
 
 export function ExternalLink({ children, href }) {
@@ -78,7 +79,10 @@ export const GenerateProductURL = (category, productTitle) => {
 
 
 export const homeLink = process.env.PUBLIC_URL;
-export const portalLink = `${homeLink}/portal/dashboard`
+export const homeDepotRoot = `${homeLink}/home-depot/`
+export const portalLink = `${homeLink}/portal/dashboard`;
+
+// export const rootUrl = 
 
 export const resourceLinks = [
     { href: `${publicUrl}/feature-definitions`, text: 'Feature Definitions' },
@@ -126,12 +130,18 @@ export const allCategoryLink = [
     { href: `${publicUrl}/appliances/`, text: 'All Home Appliances' }
 ];
 export const navCategoryLinks = [
-    { href: `${publicUrl}/appliances/air-care`, text: 'Air Care' },
+    { href: `${homeLink}/appliances/air-care`, text: 'Air Care' },
     { href: `${publicUrl}/appliances/cooking`, text: 'Cooking' },
     { href: `${publicUrl}/appliances/dishwashers`, text: 'Dishwashers' },
     { href: `${publicUrl}/appliances/laundry`, text: 'Laundry' },
     { href: `${publicUrl}/appliances/refrigeration`, text: 'Refrigeration' },
     { href: `${publicUrl}/appliances/vacuums`, text: 'Vacuums' },
+    // { href: `${publicUrl}/appliances/air-care`, text: 'Air Care' },
+    // { href: `${publicUrl}/appliances/cooking`, text: 'Cooking' },
+    // { href: `${publicUrl}/appliances/dishwashers`, text: 'Dishwashers' },
+    // { href: `${publicUrl}/appliances/laundry`, text: 'Laundry' },
+    // { href: `${publicUrl}/appliances/refrigeration`, text: 'Refrigeration' },
+    // { href: `${publicUrl}/appliances/vacuums`, text: 'Vacuums' },
     // { href: `${publicUrl}/appliances/`, text: 'Explore' }
 ];
 export const navSecondaryCategoryLinks = [
@@ -157,11 +167,14 @@ export const accountLinks = [
     // { href: 'user-account/profile', text: 'My profile' },
     // { href: 'user-account/saved-lists', text: 'My Saved lists' },
     // { href: '/', text: 'Sign Out' },
-    { href: `${publicUrl}/member/login`, text: 'Sign in' },
+    // { href: `${publicUrl}/member/login`, text: 'Sign in' },
     // { href: `${publicUrl}/member/forgot-password`, text: 'Test Forgot Password' },
-    { href: `${publicUrl}/member/sign-up`, text: 'Sign up' },
-    { href: `${publicUrl}/portal/dashboard`, text: 'Portal' },
+
+    // { href: `${publicUrl}/member/sign-up`, text: 'Sign up' },
+    { href: `${publicUrl}/portal/dashboard`, text: 'Admin Portal' },
+    { href: `${publicUrl}/saved-lists`, text: 'My saved lists' },
     { href: `${publicUrl}/profile`, text: 'My account' },
+    { href: `${publicUrl}/sign-out`, text: 'Sign out' },
     // { href: '/portal/dashboard', text: 'Test Portal Dash' },
     // { href: '/portal/analytics', text: 'Test portal analytics' },
     // { href: '/portal/add-product', text: 'Test Add product' },
@@ -170,6 +183,17 @@ export const accountLinks = [
     // { href: '/portal/user-directory', text: 'Test see user directory' },
 ]
 
+export const activeUserAccountLinks = [
+
+    { href: '/', text: 'Sign Out' },
+    { href: `${publicUrl}/profile`, text: 'My account' },
+    { href: `${publicUrl}/saved-lists`, text: 'My account' },
+]
+export const publicAccountLinks = [
+
+    { href: `${publicUrl}/member/sign-up`, text: 'Sign up' },
+    { href: `${publicUrl}/member/login`, text: 'Sign in' },
+]
 export const onboardingLinks = [
     { href: '/sign-up', text: 'Sign Up' },
     { href: '/login', text: 'Sign In' },
@@ -189,9 +213,14 @@ export const portalFormLinks = [
 
 
 export const portalTableLinks = [
-   
+
     { href: `${publicUrl}/portal/product-directory`, text: 'Product Table' },
     { href: `${publicUrl}/portal/user-directory`, text: 'Member Table' },
     { href: `${publicUrl}/portal/admin-directory`, text: 'Admin Table' },
     // { href: '/portal/user-directory', text: 'Test see user directory' },
+]
+
+export const portalWebsiteLinks = [
+    { href: `${publicUrl}/`, text: 'www.lgproductguide.com' },
+    { href: `${publicUrl}/home-depot`, text: 'www.lgproductguide.com/home-depot' },
 ]

@@ -5,7 +5,7 @@ import Logo from "../../Logo/Logo";
 import { SidebarDropdownComponent } from "../../PageComponent/DropdownComponent";
 import styles from './PortalNavigation.module.css';
 
-import { portalDashLinks, portalFormLinks, portalTableLinks, portalLink } from "../../../utils/link-helper";
+import { portalDashLinks, portalFormLinks, portalTableLinks, portalWebsiteLinks, portalLink } from "../../../utils/link-helper";
 
 import { PageText } from "../../Text/Text";
 import { LinkComponent } from "../../Links/LinkComponent";
@@ -14,6 +14,7 @@ import { NavLink } from "react-router-dom";
 import { CountBubble } from "../../CountBubble/CountBubble";
 
 export const PortalTopbarNavigation = () => {
+    const publicUrl = process.env.PUBLIC_URL;
     return (
         <div className={styles.portalTopbarNavigationContainer}>
             <div>
@@ -22,18 +23,16 @@ export const PortalTopbarNavigation = () => {
                 </LinkComponent>
 
             </div>
+            <LinkComponent href={`${publicUrl}/profile`}>
+                <div className={styles.iconWrapper}>
 
-            <div className={styles.iconWrapper}>
-                <IconComponent iconType='userAccount' />
-                <div className={styles.accountDetails}>
-                    <PageText type="bodyTertiaryTitleBold">Andre</PageText>
-                    <PageText type="bodyDescription">Admin</PageText>
+                    <IconComponent iconType='userAccount' />
+                    <div className={styles.accountDetails}>
+                        <PageText type="bodyTertiaryTitleBold">Andre</PageText>
+                        <PageText type="bodyDescription">Admin</PageText>
+                    </div>
                 </div>
-            
-            
-            </div>
-
-
+            </LinkComponent>
         </div>
     );
 }
@@ -127,9 +126,6 @@ export const PortalSidebarNavigation = () => {
 
                     {renderDropdown('Dashboard', portalDashLinks)}
 
-
-
-
                     <NavMenuHeader
                         headerText='Form'
                         iconType='form'
@@ -148,6 +144,14 @@ export const PortalSidebarNavigation = () => {
                     />
                     {renderDropdown('Table', portalTableLinks)}
 
+                    <NavMenuHeader
+                        headerText='Websites'
+                        iconType='greenCheckmark'
+                        iconStyleType='generalIcon'
+                        onClick={handleDropdownClick}
+                        isOpen={dropdownState.website}
+                    />
+                    {renderDropdown('Table', portalWebsiteLinks)}
                     {/* Uncomment and add links for the Website section if needed */}
                     {/* <NavMenuHeader
                         headerText='Website'

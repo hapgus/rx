@@ -6,6 +6,7 @@ export const NotificationContext = createContext({
         title: '',
         message: '',
         errorList: [],
+        formElements:null,
         actionText: 'Close',
         wasSuccessful: false,
         onConfirm: null,
@@ -13,6 +14,7 @@ export const NotificationContext = createContext({
         onClose: null,
         cancelText: '',
         confirmText: '',
+        modalType:''
     },
     setIsModal: () => { },
 
@@ -32,6 +34,7 @@ export const NotificationProvider = ({ children }) => {
         title: '',
         message: '',
         errorList: [],
+        formElements:null,
         actionText: 'Close',
         wasSuccessful: false,
         onConfirm: null,
@@ -39,6 +42,7 @@ export const NotificationProvider = ({ children }) => {
         onClose: null,
         cancelText: '',
         confirmText: '',
+         modalType:''
     };
 
     const initialAlertState = {

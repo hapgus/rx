@@ -62,7 +62,7 @@ const Homepage = () => {
         {
             title: 'Limited Warranties',
             description: "Learn how LG provides customers with confidence on their purchase",
-            icon: 'compare'
+               icon: 'warrantyShield'
         }
 
     ];

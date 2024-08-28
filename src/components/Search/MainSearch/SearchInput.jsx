@@ -29,26 +29,35 @@ export const SearchInput = () => {
 
                 if (query) {
                     const filteredResults = productDataSearch.filter((product) => {
-                        // Check title, subtitle, and category
-                        const matchesBasicFields =
-                            product.title.toLowerCase().includes(query)
-                            || product.subtitle.toLowerCase().includes(query)
-                            || product.category.toLowerCase().includes(query);
-                        // Check specification lists
-                        const matchesSpecList = (list) => list.some(spec => spec.toLowerCase().includes(query));
+                        const matchesBasicFields = (product.title?.toLowerCase().includes(query) ?? false)
+                            || (product.subtitle?.toLowerCase().includes(query) ?? false)
+                            || (product.category?.toLowerCase().includes(query) ?? false);
+    
+                        const matchesSpecList = (list) => list?.some(spec => spec.toLowerCase().includes(query)) ?? false;
                         const matchesSpecs = matchesSpecList(product.specList1)
                             || matchesSpecList(product.specList2)
                             || matchesSpecList(product.specList3)
                             || matchesSpecList(product.specList4);
-
-                        // Check colors
-                        const matchesColors = product.colors.some(color => color.includes(query));
-
-                        // Check logos
-                        const matchesLogos = product.logos.some(logo => logo.includes(query));
-
+    
+                        const matchesColors = product.colors?.some(color => color.includes(query)) ?? false;
+                        const matchesLogos = product.logos?.some(logo => logo.includes(query)) ?? false;
+    
                         return matchesBasicFields || matchesSpecs || matchesColors || matchesLogos;
                     });
+                    // const filteredResults = productDataSearch.filter((product) => {
+                    //     const matchesBasicFields =
+                    //         product.title.toLowerCase().includes(query)
+                    //         || product.subtitle.toLowerCase().includes(query)
+                    //         || product.category.toLowerCase().includes(query);
+                    //     const matchesSpecList = (list) => list.some(spec => spec.toLowerCase().includes(query));
+                    //     const matchesSpecs = matchesSpecList(product.specList1)
+                    //         || matchesSpecList(product.specList2)
+                    //         || matchesSpecList(product.specList3)
+                    //         || matchesSpecList(product.specList4);
+                    //     const matchesColors = product.colors.some(color => color.includes(query));
+                    //     const matchesLogos = product.logos.some(logo => logo.includes(query));
+                    //     return matchesBasicFields || matchesSpecs || matchesColors || matchesLogos;
+                    // });
                     // if (query) {
                     //     const filteredResults = productDataSearch.filter((product) =>
                     //         // product.title.toLowerCase().includes(query)
@@ -117,25 +126,35 @@ export const SearchInput = () => {
             setIsDesktopSearchState(prevState => ({ ...prevState, isSearchInputValue: query }));
             if (query) {
                 const filteredResults = productDataSearch.filter((product) => {
-                    // Check title, subtitle, and category
-                    const matchesBasicFields = product.title.toLowerCase().includes(query)
-                        || product.subtitle.toLowerCase().includes(query)
-                        || product.category.toLowerCase().includes(query);
-                    // Check specification lists
-                    const matchesSpecList = (list) => list.some(spec => spec.toLowerCase().includes(query));
+                    const matchesBasicFields = (product.title?.toLowerCase().includes(query) ?? false)
+                        || (product.subtitle?.toLowerCase().includes(query) ?? false)
+                        || (product.category?.toLowerCase().includes(query) ?? false);
+
+                    const matchesSpecList = (list) => list?.some(spec => spec.toLowerCase().includes(query)) ?? false;
                     const matchesSpecs = matchesSpecList(product.specList1)
                         || matchesSpecList(product.specList2)
                         || matchesSpecList(product.specList3)
                         || matchesSpecList(product.specList4);
 
-                    // Check colors
-                    const matchesColors = product.colors.some(color => color.includes(query));
-
-                    // Check logos
-                    const matchesLogos = product.logos.some(logo => logo.includes(query));
+                    const matchesColors = product.colors?.some(color => color.includes(query)) ?? false;
+                    const matchesLogos = product.logos?.some(logo => logo.includes(query)) ?? false;
 
                     return matchesBasicFields || matchesSpecs || matchesColors || matchesLogos;
                 });
+                // const filteredResults = productDataSearch.filter((product) => {
+                //     const matchesBasicFields = product.title.toLowerCase().includes(query)
+                //         || product.subtitle.toLowerCase().includes(query)
+                //         || product.category.toLowerCase().includes(query);
+                //     const matchesSpecList = (list) => list.some(spec => spec.toLowerCase().includes(query));
+                //     const matchesSpecs = matchesSpecList(product.specList1)
+                //         || matchesSpecList(product.specList2)
+                //         || matchesSpecList(product.specList3)
+                //         || matchesSpecList(product.specList4);
+                //     const matchesColors = product.colors.some(color => color.includes(query));
+                //     const matchesLogos = product.logos.some(logo => logo.includes(query));
+
+                //     return matchesBasicFields || matchesSpecs || matchesColors || matchesLogos;
+                // });
                 // if (query) {
                 //     const filteredResults = productDataSearch.filter((product) =>
                 //         product.title.toLowerCase().includes(query)

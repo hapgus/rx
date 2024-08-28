@@ -6,22 +6,24 @@ import { Outlet } from 'react-router';
 import ProductGuideAlerts from '../../components/Alert/Alert';
 import Modal from '../../components/Modal/Modal';
 
-
+import Loader from '../../components/Loader/Loader';
 import { useNotificationHook } from '../../hooks/notification-hook';
-
-
-
+import { useRoutingHook } from '../../hooks/routing-hook';
 import {PortalSidebarNavigation, PortalTopbarNavigation} from '../../components/PortalComponent/PortalPageComponent/PortalNavigation';
 export default function PortalLayout() {
 
     const { isAlert, setIsAlert, isModal, setIsModal } = useNotificationHook();
+    const {isRoutingState}=useRoutingHook();
 
     return (
         <>
+          {isRoutingState.isLoading && <Loader />}
 
             {isModal.show &&
 
                 <Modal
+                modalType={isModal.modalType}
+                errorList={isModal.errorList}
                     show={isModal.show}
                     title={isModal.title}
                     message={isModal.message}

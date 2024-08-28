@@ -37,27 +37,27 @@ export const ProductProvider = ({ children }) => {
     };
 
     // API CONFIG
-    // const fetchProducts = async () => {
+    const fetchProducts = async () => {
        
-    //     try {
-    //         const response = await fetch('http://localhost:3005/products');
-    //         if (!response.ok) {
-    //             throw new Error('Network response was not ok');
-    //         }
-    //         const data = await response.json();
-    //         // console.log('data',data)
-    //         setPublicProducts(data.allProducts);
-    //     } catch (err) {
-    //     console.log(`error ${err}`)
-    //     }
-    // };
+        try {
+            const response = await fetch('http://localhost:3005/products');
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            // console.log('data',data)
+            setPublicProducts(data.allProducts);
+        } catch (err) {
+        console.log(`error ${err}`)
+        }
+    };
 
     useEffect(() => {
         // API CONFIG
-        // fetchProducts();
+        fetchProducts();
 
         // STATIC DATA CONFIG
-        setPublicProducts(PRODUCT_DATA);
+        // setPublicProducts(PRODUCT_DATA);
         // console.log(publicProducts)
     }, []);
 

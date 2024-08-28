@@ -25,6 +25,8 @@ export default function AuthLayout() {
             )}
             {isModal.show &&
                 <Modal
+                    modalType={isModal.modalType}
+                    errorList={isModal.errorList}
                     show={isModal.show}
                     title={isModal.title}
                     message={isModal.message}
@@ -33,6 +35,7 @@ export default function AuthLayout() {
                     onConfirm={isModal.onConfirm}
                     onCancel={isModal.onCancel}
                 />
+
             }
 
             <div id={styles.main} className={styles.authLayouContainer}>

@@ -8,8 +8,6 @@ const PortalDashboardPage = () => {
             pageTitle='Welcome your Team Portal Dashboard'
             pageDescription='Manage your product guide'
         >
-
-
             <PortalPageBody></PortalPageBody>
 
         </PortalPageWrapper>

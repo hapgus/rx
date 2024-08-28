@@ -25,15 +25,17 @@ export const RetailerProvider = ({ children }) => {
     const [isHomeDepotApp, setIsHomeDepotApp] = useState(initialHomeDepotState);
 
     const location = useLocation();
-    const isHomeDepot = location.pathname.startsWith('/home-depot');
-    const homeDepotPrefix = isHomeDepot ? '/home-depot' : '';
-    
+    const isHomeDepot = location.pathname.startsWith('/hapg/home-depot');
+    const homeDepotPrefix = isHomeDepot ? '/hapg/home-depot' : '';
+
     useEffect(() => {
         setIsHomeDepotApp({
             isHomeDepotActive: isHomeDepot,
             isHomeDepotPrefix: homeDepotPrefix
         });
     }, [location, isHomeDepot, homeDepotPrefix]);
+
+
 
     return (
         <RetailerContext.Provider value={{ isClicked, setIsClicked,isHomeDepotApp, setIsHomeDepotApp }}>

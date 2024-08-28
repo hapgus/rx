@@ -1,9 +1,6 @@
-import styles from './InnerGridContentWrapper.module.css'
-export const InnerGridItem = ({
-    gridType = 'controlledGrid',
-    children
+import styles from './InnerGridContentWrapper.module.css';
 
-}) => {
+export const InnerGridItem = ({ gridType = 'controlledGrid', children }) => {
 
     const gridTypeMap = {
         spread: styles.sContainer,

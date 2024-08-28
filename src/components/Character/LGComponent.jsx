@@ -12,7 +12,7 @@ export const LGComponent = ({ type }) => {
         girlFull: `${publicUrl}/assets/image/characters/girl-full.webp`,
         girlHand: `${publicUrl}/assets/image/characters/girl-hand.webp`,
         boyFull: `${publicUrl}/assets/image/characters/boy-full.webp`,
- 
+        boyFullCrop: `${publicUrl}/assets/image/characters/boy-full-crop.png`,
     }
 
  

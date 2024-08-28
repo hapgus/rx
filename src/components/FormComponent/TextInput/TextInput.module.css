@@ -1,0 +1,36 @@
+.mainTextInputContainer{
+    /* background-color: aqua; */
+    /* padding: .5rem 0; */
+}
+
+.inputContainer{
+    background-color: white;
+    padding: 1rem 1.14rem;
+    border-radius: .8rem;
+    border: 1px solid var(--color-gray-04);
+    display: flex;
+    width: 100%;
+}
+.input{
+   width: 100%;
+   border: none;
+   color: var(--color-gray-02);
+   font-size: 1.6rem;
+   font-family: inherit;
+}
+.input:focus-visible{
+    outline: none;
+}
+.inputIcon svg{
+    height: 2rem;
+    width: 2rem;
+}
+input:-webkit-autofill {
+    appearance: none;
+    background-color: white !important; /* Override the default blue background */
+    /* color: var(--color-gray-07);  */
+    /* Set text color */
+    border: none; /* Set border */
+   
+    transition: background-color 5000s ease-in-out 0s; /* Prevent background from flashing on autofill */
+}

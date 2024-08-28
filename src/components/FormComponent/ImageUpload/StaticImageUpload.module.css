@@ -1,0 +1,99 @@
+.imageUploadContainer{
+    /* background-color: aqua; */
+    background-color: white;
+    height: auto;
+ 
+    margin: 4rem 0;
+    padding:  3rem 3.5rem 3rem 3.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border-radius: 1rem;
+}
+.title{
+    font-size: 2rem;
+    font-family: var(--text-semibold);
+    color: var(--color-gray-01);
+}
+.description{
+    font-size: 1.6rem;
+    color: var(--color-gray-03);
+}
+.imageUploadHeader{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    padding-bottom: 1rem;
+}
+.imageUploadBody{
+    border: 2px dotted var(--color-gray-05);
+    border-radius: .5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 4rem 0;
+  
+}
+.imageUploadBodyPreview{
+    min-height: 30rem;
+    height: auto;
+    width: 70rem;
+    display: flex;
+    flex-direction: column;
+align-items: center;
+border-top: 1px solid var(--color-gray-04);
+border-bottom: 1px solid var(--color-gray-04);
+padding: 2rem 0;
+    gap: 2rem;
+}
+
+.imageWrapper{
+    height: 22rem;
+    width: 22rem;
+}
+.imageWrapper img{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    object-fit: contain;
+}
+
+.bodyIcon{
+background-color: var(--color-gray-07);
+border: 8px solid var(--color-gray-07);
+border-radius: 100rem;
+padding: .5rem;
+display: flex;
+justify-content: center;
+align-items: center;
+
+}
+.bodyIcon svg{
+height: 2rem;
+width: 2rem;
+display: flex;
+
+}
+.bodyText{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+}
+.bodyTitle{
+    font-size: 1.8rem;
+    color: var(--color-gray-03);
+}
+.bodyDescription{
+    font-size: 1.2rem;
+    color: var(--color-gray-04);
+}
+.buttonWrapper button{
+width: max-content;
+}
+.footerDescription{
+font-size: 1.6rem;
+color: var(--color-gray-04);
+}

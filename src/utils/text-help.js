@@ -9,5 +9,16 @@ export const TruncateText = (str) => {
 
 // BELOW IS BETTER
 export const capitalizeFirstLetterEachWord = (str) => {
-  return str.replace(/\b\w+/g, word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase());
+  return str?.replace(/\b\w+/g, word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase());
 };
+
+export const transformToTitleCase = (str) => {
+  return str?.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
+}
+
+// function toTitleCase(str) {
+//   return str
+//       .split(' ')
+//       .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+//       .join(' ');
+// }

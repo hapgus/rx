@@ -4,28 +4,36 @@ import { useRoutingHook } from '../../hooks/routing-hook';
 import { IconComponent } from '../Icon/IconComponent';
 import { GridSystem } from '../GridSystem/GridSystem';
 import Overlay from '../Overlay/Overlay';
-import { RouteLinks, allCategoryLink, exclusiveLinks, navCategoryLinks, navSecondaryCategoryLinks, resourceLinks, stepUpChartLinks, accountLinks } from '../../utils/link-helper';
+import { RouteLinks, allCategoryLink, exclusiveLinks, navCategoryLinks, navSecondaryCategoryLinks, resourceLinks, stepUpChartLinks, accountLinks, publicAccountLinks, activeUserAccountLinks } from '../../utils/link-helper';
 import { PageText } from '../Text/Text';
 import { LinkComponent } from '../Links/LinkComponent';
 import { SearchComponent } from '../Search/SearchComponent/SearchComponent';
 import { ProductListDropdown } from '../ProductList/ProductListDropdown';
 import { ProductListIcon } from '../ProductList/ProductListIcon';
-
+import Logo from '../Logo/LinkedLogo';
+import LinkedLogo from '../Logo/LinkedLogo';
+import { useAuthHook, useAuthUser, useAuth } from '../../hooks/auth-hook';
+import { useState } from 'react';
 
 
 const MobileNavComponent = () => {
 
     const { setIsRoutingState, isRoutingState } = useRoutingHook();
     const { setIsMobileSearchState } = useSearchHook();
+    const { token } = useAuthHook();
+    // const {decodedToken} = useAuthUser();
+
+    const [isHideAccount, setIsHideAccount] = useState(true);
 
     // const handleToggleMainMobileMenu = () => {
     //     setIsRoutingState(prevState => ({ ...prevState, isMobileNavOpen: !prevState.isMobileNavOpen }))
     // }
     const handleToggleMainMobileMenu = () => {
         setIsRoutingState(prevState => (
-            { ...prevState, 
-                isMobileNavOpen: !prevState.isMobileNavOpen 
-            
+            {
+                ...prevState,
+                isMobileNavOpen: !prevState.isMobileNavOpen
+
             }))
     }
     const handleToggleMobileAppliancesMenu = () => {
@@ -49,22 +57,31 @@ const MobileNavComponent = () => {
     }
 
     const handleToggleMobileAccountMenu = () => {
-        setIsRoutingState(prevState => ({ ...prevState, 
-            isMobileAccountMenuOpen: !prevState.isMobileAccountMenuOpen }))
+        setIsRoutingState(prevState => ({
+            ...prevState,
+            isMobileAccountMenuOpen: !prevState.isMobileAccountMenuOpen
+        }))
     }
     return (
         <div className={styles.mobileNavComponentContainer}>
             <div className={styles.mobileLogoWrapper}>
-                <LinkComponent href='/hapg'>
+                <LinkedLogo />
+                {/* <LinkComponent href='/hapg'>
                     <img loading='lazy' src='/hapg/assets/image/logos/lg-logo.webp' alt='lg red face logo' />
-                </LinkComponent>
+                </LinkComponent> */}
             </div>
             <div className={styles.mobileIconsWrapper}>
                 <IconComponent onClick={handleMobileSearchIconClick} iconType='searchInput' />
-                <IconComponent  iconType='userAccount' />
-                {/* <IconComponent onClick={handleToggleMobileAccountMenu} iconType='userAccount' /> */}
-                
-              
+                {
+                    token &&
+                        token ?
+                        <IconComponent onClick={handleToggleMobileAccountMenu} iconType='userAccount' />
+                        : <IconComponent iconType='userAccount' />
+                }
+
+
+
+
                 <ProductListIcon />
                 {/* <IconComponent onClick={handleMobileProductListIconClick} iconType='productList' /> */}
 
@@ -147,7 +164,7 @@ const MobileNavComponent = () => {
 
                             <div className={styles.mobileDropdownContent}>
                                 <ul className={styles.mobileNavOptionsList}>
-                                {RouteLinks(exclusiveLinks)}
+                                    {RouteLinks(exclusiveLinks)}
                                     {/* <li>
                                         <LinkComponent
                                             linkText="Product List Builder"
@@ -187,9 +204,12 @@ const MobileNavComponent = () => {
 
 
 const DesktopNavComponent = () => {
+    const [isHideAccount, setIsHideAccount] = useState(true);
     const { isRoutingState, setIsRoutingState } = useRoutingHook();
     const { setIsDesktopSearchState } = useSearchHook();
-
+    const { token } = useAuthHook()
+    const decodedToken = useAuthUser();
+    const { isAuthenticated, isAdmin, isSuperAdmin, isApprovedUser } = useAuth();
     const handleDesktopProductListIconClick = () => {
         setIsRoutingState(prevState =>
             ({ ...prevState, isProductListDropdownOpen: !prevState.isProductListDropdownOpen }))
@@ -257,11 +277,11 @@ const DesktopNavComponent = () => {
         }));
     }
 
-    // const handleAccountLinkMouseEnter = () => {
-    // const handleAccountLinkClick = () => {
-    //     setIsRoutingState(prevState =>
-    //         ({ ...prevState, isAccountMenuOpen: !prevState.isAccountMenuOpen }))
-    // }
+    // const handleAccountLinkMouseEnter = () => {}
+    const handleAccountLinkClick = () => {
+        setIsRoutingState(prevState =>
+            ({ ...prevState, isAccountMenuOpen: !prevState.isAccountMenuOpen }))
+    }
     // console.log('r', isRoutingState.isAccountMenuOpen)
 
     return (
@@ -271,9 +291,12 @@ const DesktopNavComponent = () => {
                     {/* <GridSystem> */}
                     <div className={styles.desktopNavContainer}>
                         <div className={styles.desktopNavLogoWrapper}>
-                            <LinkComponent href='/hapg'>
-                                <img loading='lazy' src='/hapg/assets/image/logos/lg-logo.webp' alt='lg red face logo' />
-                            </LinkComponent>
+                            <LinkedLogo />
+                            {/* <Logo/> */}
+                            {/* <LinkComponent href='/hapg'>
+                             </LinkComponent> */}
+                                {/* <img loading='lazy' src='/hapg/assets/image/logos/lg-logo.webp' alt='lg red face logo' /> */}
+                           
                         </div>
                         <section className={styles.desktopNavMenuWrapper}>
                             <div className={styles.dropdownSection}>
@@ -356,25 +379,50 @@ const DesktopNavComponent = () => {
                                 <ProductListIcon />
                                 {/* <IconComponent onClick={handleDesktopProductListIconClick} iconType='productList' /> */}
                                 <div className={styles.dropdownSection}>
-                                {/* <IconComponent onClick={handleAccountLinkClick} iconType='userAccount' /> */}
-                                <IconComponent iconType='userAccount' />
-                                    {/* <IconComponent onClick={handleAccountLinkClick} iconType='userAccount' /> */}
                                     {/* {
+                                        token && token 
+                                        ? 
+                                        :    <IconComponent iconType='userAccount' />
+                                    } */}
+                                    <IconComponent onClick={handleAccountLinkClick} iconType='userAccount' />
+                                    {
                                         isRoutingState.isAccountMenuOpen &&
-                                        <div 
-                                        onMouseLeave={handleExclusiveLinkMouseLeave} 
-                                        className={styles.acountDropdownContainer}>
-                                            <div  id={styles.accountDropdownWrapperWidth} className={styles.dropdownWrapper}>
+                                        <div
+                                            onMouseLeave={handleExclusiveLinkMouseLeave}
+                                            className={styles.acountDropdownContainer}>
+                                            <div id={styles.accountDropdownWrapperWidth} className={styles.dropdownWrapper}>
                                                 <div className={styles.dropdownContent}>
                                                     <div className={styles.dropdownLinks}>
-                                                        <ul className={styles.dropdownLinksList}>{RouteLinks(accountLinks)}</ul>
+
+                                                        {isSuperAdmin || isAdmin ? (
+                                                            <ul className={styles.dropdownLinksList}>{RouteLinks(accountLinks)}</ul>
+                                                        ) : isApprovedUser ? (
+                                                            <ul className={styles.dropdownLinksList}>{RouteLinks(activeUserAccountLinks)}</ul>
+                                                        ) : (
+                                                            <ul className={styles.dropdownLinksList}>{RouteLinks(publicAccountLinks)}</ul>
+                                                        )}
+                                                        {/* {
+
+                                                            token && decodedToken && decodedToken?.role === 'superAdmin' || decodedToken?.role === 'admin'
+                                                                ? <ul className={styles.dropdownLinksList}>{RouteLinks(accountLinks)}</ul>
+                                                                : token && decodedToken && decodedToken?.role === 'user' && decodedToken?.status === 'approved'
+                                                                    ? <ul className={styles.dropdownLinksList}>{RouteLinks(activeUserAccountLinks)}</ul>
+                                                                    : <ul className={styles.dropdownLinksList}>{RouteLinks(publicAccountLinks)}</ul>
+
+                                                        } */}
+
+                                                        {/* {
+                                                            decodedToken && decodedToken.role === 'superAdmin'
+                                                                ? <ul className={styles.dropdownLinksList}>{RouteLinks(accountLinks)}</ul>
+                                                                : <ul className={styles.dropdownLinksList}>{RouteLinks(activeUserAccountLinks)}</ul>
+                                                        } */}
 
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
 
-                                    } */}
+                                    }
                                 </div>
                             </div>
 

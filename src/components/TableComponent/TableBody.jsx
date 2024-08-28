@@ -18,8 +18,9 @@ const TableBody = ({ columns, data }) => {
           </thead>
           <tbody className={styles.tableBody}>
 
-            {data.map(row => (
-              <tr className={styles.tableRows} key={row._id}>
+            {data.map((row, idx) => (
+              // <tr className={styles.tableRows} key={row._id}>
+              <tr className={styles.tableRows} key={idx}>
                 {columns.map(column => (
                   <td className={styles.tableData} key={`${row._id}-${column.key}`}>
                     {column.render ? column.render(row) : row[column.key]}

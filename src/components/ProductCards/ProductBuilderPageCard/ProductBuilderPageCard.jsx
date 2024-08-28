@@ -52,6 +52,7 @@ const MobileProductBuilderPageCard = ({ product }) => {
     }
 
     return (
+      
         <div className={styles.builderCardContainer}>
             {/* <div className={styles.builderCardWrapper}> */}
 
@@ -212,8 +213,10 @@ const MobileProductBuilderPageCard = ({ product }) => {
 
 
 export const ProductBuilderPageCard = ({ product }) => {
+    console.log(product)
 
     return (
+        product &&
         <MobileProductBuilderPageCard product={product} />
 
     );

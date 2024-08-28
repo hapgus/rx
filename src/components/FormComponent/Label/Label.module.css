@@ -1,0 +1,19 @@
+.mainLabelContainer {
+
+    display: flex;
+    flex-direction: column;
+    min-height: 10rem;
+}
+
+.labelHeaderWrapper {
+    padding: 0rem 0 .5rem 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.labelText {
+    font-size: 1.6rem;
+    color: var(--color-gray-01);
+}

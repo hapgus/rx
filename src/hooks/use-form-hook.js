@@ -2,7 +2,6 @@
 import { useState } from "react";
 
 export const useForm = (initialValues) => {
-    console.log('values',initialValues)
     const [values, setValues] = useState(initialValues);
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -56,7 +55,7 @@ export const useForm = (initialValues) => {
         setErrors(tempErrors);
         return Object.keys(tempErrors).length === 0;
     };
-console.log('from hook',values)
+
     return {
         values,
         errors,

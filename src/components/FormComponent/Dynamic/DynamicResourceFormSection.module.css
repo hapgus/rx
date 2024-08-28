@@ -1,0 +1,43 @@
+.a{
+    background-color: aqua;
+}
+.b{
+    background-color: aquamarine;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.countWrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}
+.groupTitle{
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}
+.buttonWrapper{
+    display: flex;
+}
+.buttonWrapper button{
+    max-width: max-content;
+}
+.formElementsWrapper{
+    display: flex;
+    flex-direction: column;
+   /* align-items: center; */
+    background-color: aqua;
+    border: 1px solid black;
+}
+.groupContainer{
+    background-color: bisque;
+}
+.groupFormElements{
+    display: flex;
+    flex-direction: column;
+}

@@ -11,6 +11,7 @@ import { RoutingProvider } from './context/RoutingContext';
 import { ProductProvider } from './context/ProductContext';
 import { BuilderProvider } from './context/BuilderContext';
 import { NotificationProvider } from './context/NotificationContext';
+import { AuthProvider } from './context/AuthContext';
 
 
 
@@ -20,13 +21,15 @@ root.render(
     <NotificationProvider>
       <RetailerProvider>
         <RoutingProvider>
-          <ProductProvider>
-            <BuilderProvider>
-              <SearchProvider>
-                <App />
-              </SearchProvider>
-            </BuilderProvider>
-          </ProductProvider>
+          <AuthProvider>
+            <ProductProvider>
+              <BuilderProvider>
+                <SearchProvider>
+                  <App />
+                </SearchProvider>
+              </BuilderProvider>
+            </ProductProvider>
+          </AuthProvider>
         </RoutingProvider>
       </RetailerProvider>
     </NotificationProvider>

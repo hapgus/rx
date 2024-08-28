@@ -7,10 +7,10 @@ export const RoutingContext = createContext({
 
     isRoutingState: {
         isNavLinkClicked: false,
-        
-        isProductListDropdownOpen:false,
-        
-        isMobileNavOpen: false,   
+
+        isProductListDropdownOpen: false,
+
+        isMobileNavOpen: false,
         isMobileCategoriesMenuOpen: false,
         isMobileResourcesMenuOpen: false,
         isMobileStepUpChartsMenuOpen: false,
@@ -27,11 +27,18 @@ export const RoutingContext = createContext({
         isAccountMenuOpen: false,
         isBuilderDropdownOpen: false,
 
-        isLoading:false,
+        isLoading: false,
 
         isShowScrollToTopButton: false,
     },
     setIsRoutingState: () => { },
+
+
+    isAdminRoutingState: {
+        isUserToEdit: null
+    },
+    setIsAdminRoutingState: () => { },
+
 
 });
 
@@ -40,9 +47,9 @@ export const RoutingProvider = ({ children }) => {
 
     const initialRoutingState = {
         isNavLinkClicked: false,
-        isProductListDropdownOpen:false,
-        
-        isMobileNavOpen: false,   
+        isProductListDropdownOpen: false,
+
+        isMobileNavOpen: false,
         isMobileCategoriesMenuOpen: false,
         isMobileResourcesMenuOpen: false,
         isMobileExclusiveMenuOpen: false,
@@ -53,51 +60,55 @@ export const RoutingProvider = ({ children }) => {
         isCategoriesMenuOpen: false,
         isResourcesMenuOpen: false,
         isExclusiveMenuOpen: false,
-        
+
         isAccountMenuOpen: false,
         isBuilderDropdownOpen: false,
 
-        isLoading:false,
+        isLoading: false,
 
         isShowScrollToTopButton: false,
 
     }
     const [isRoutingState, setIsRoutingState] = useState(initialRoutingState);
 
-
-useEffect(()=> {
-    if(isRoutingState.isNavLinkClicked){
-        setIsRoutingState(prevState=>({
-            ...prevState, 
-            isMobileNavOpen: false,
-            isMobileCategoriesMenuOpen: false,
-            isMobileResourcesMenuOpen: false,
-            isMobileAccountMenuOpen: false,
-            isMobileBuilderDropdownOpen: false,
-            isMobileExclusiveMenuOpen:false,
-            
-            isCategoriesMenuOpen: false,
-            isResourcesMenuOpen: false,
-            isExclusiveMenuOpen: false,
-            isAccountMenuOpen: false,
-            isBuilderDropdownOpen: false,
-            isProductListDropdownOpen:false,
-        }))
-
-       // Reset isNavLinkClicked to allow subsequent clicks
-       setTimeout(() => {
-        setIsRoutingState(prevState => ({
-            ...prevState,
-            isNavLinkClicked: false
-        }));
-    }, 100); // Adjust the delay as needed
+    const initialAdminRoutingState = {
+        isUserToEdit: null
     }
-},[isRoutingState.isNavLinkClicked])
+    const [isAdminRoutingState, setIsAdminRoutingState] = useState(initialAdminRoutingState);
 
-console.log(isRoutingState)
+    useEffect(() => {
+        if (isRoutingState.isNavLinkClicked) {
+            setIsRoutingState(prevState => ({
+                ...prevState,
+                isMobileNavOpen: false,
+                isMobileCategoriesMenuOpen: false,
+                isMobileResourcesMenuOpen: false,
+                isMobileAccountMenuOpen: false,
+                isMobileBuilderDropdownOpen: false,
+                isMobileExclusiveMenuOpen: false,
+
+                isCategoriesMenuOpen: false,
+                isResourcesMenuOpen: false,
+                isExclusiveMenuOpen: false,
+                isAccountMenuOpen: false,
+                isBuilderDropdownOpen: false,
+                isProductListDropdownOpen: false,
+            }))
+
+            // Reset isNavLinkClicked to allow subsequent clicks
+            setTimeout(() => {
+                setIsRoutingState(prevState => ({
+                    ...prevState,
+                    isNavLinkClicked: false
+                }));
+            }, 100); // Adjust the delay as needed
+        }
+    }, [isRoutingState.isNavLinkClicked])
+
+
     useEffect(() => {
         if (!isRoutingState.isMobileNavOpen) {
-            
+
             setIsRoutingState(prevState => ({
                 ...prevState,
                 isMobileCategoriesMenuOpen: false,
@@ -105,7 +116,7 @@ console.log(isRoutingState)
                 isMobileAccountMenuOpen: false,
                 isMobileBuilderDropdownOpen: false,
             }))
-        } 
+        }
         // else if (isRoutingState.isMobileNavOpen) {
         //     document.body.style.overflow = 'hidden';
         // }
@@ -162,7 +173,8 @@ console.log(isRoutingState)
             value={{
                 isRoutingState,
                 setIsRoutingState,
-              
+                isAdminRoutingState,
+                setIsAdminRoutingState
             }}
         >
             {children}

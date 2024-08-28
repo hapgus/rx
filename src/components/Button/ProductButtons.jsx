@@ -3,7 +3,7 @@ import { useBuilderHook } from "../../hooks/builder-hook";
 
 import { IconComponent } from "../Icon/IconComponent";
 import { useNotificationHook } from "../../hooks/notification-hook";
-
+import { useState, useEffect } from "react";
 
 export const AddToListButton = ({ product, iconButton = false }) => {
 
@@ -44,7 +44,7 @@ export const AddToListButtonIcon = ({ product, iconSizeType, iconColor }) => {
 
     const handleAddProductToList = () => {
         addProduct(product);
-     
+
     }
     const iconStyleType = iconSizeMap[iconSizeType];
     const svgColor = iconSvgColorMap[iconColor];
@@ -86,7 +86,7 @@ export const RemoveFromListButtonIcon = ({ product, iconSizeType, iconColor }) =
 
 
 
-export const RemoveFromListButton = ({ product, buttonStyleType ='primary', plainTextButton = false }) => {
+export const RemoveFromListButton = ({ product, buttonStyleType = 'primary', plainTextButton = false }) => {
 
     const { removeProduct } = useBuilderHook();
 
@@ -132,6 +132,7 @@ export const RemoveAllFromListButton = () => {
             });
         } else {
             setIsModal({
+                modalType:'infoModal',
                 show: true,
                 title: 'Confirm Removal',
                 message: 'Are you sure you want to remove all products from the list?',
@@ -166,51 +167,67 @@ export const PrintProductsButton = () => {
 
     const { setIsPrintScreen, removeAllProducts, productsInList } = useBuilderHook();
     const { isModal, setIsModal } = useNotificationHook();
-
+    const [isPrinting, setIsPrinting] = useState(false);
+    const [clearAfterPrint, setClearAfterPrint] = useState(false); // New state for clearing products after print
     const handlePrint = () => {
         if (productsInList.length === 0) {
             alert('no products to print')
-            // return setIsModal({
-            //     show: true,
-            //     title: 'You have no products in your list.',
-            //     message: 'Use search or explore home appliances to find products for your list so you can print!',
+            return setIsModal({
+                show: true,
 
-            //     onCancel: () => {
-            //         setIsModal({ ...isModal, show: false });
-            //     },
-            //     cancelText: 'Go back',
-            // });
+                title: 'You have no products in your list.',
+                message: 'Use search or explore home appliances to find products for your list so you can print!',
+
+                onCancel: () => {
+                    setIsModal({ ...isModal, show: false });
+                },
+                cancelText: 'Go back',
+            });
         }
         if (productsInList.length !== 0) {
-            window.print();
-            // setIsModal({
-            //     show: true,
-            //     title: "Time to print your list! ",
-            //     message: 'What do you want to do with your list after we print it?',
-            //     onConfirm: () => {
-            //         window.print();
-            //         removeAllProducts();
-            //         setIsModal({ ...isModal, show: false });
-            //     },
-            //     onCancel: () => {
+            // window.print();
+            setIsModal({
+                show: true,
+                // modalType:'success',
+                title: "Time to print your list! ",
+                message: 'What do you want to do with your list after we print it?',
+                cancelText: 'Keep my list',
+                confirmText: 'Clear my list',
+                onConfirm: () => {
+                    setIsModal(prevState => ({ ...prevState, show: false }))
+                    setIsPrinting(true); // Set isPrinting to true to trigger the print
+                    
+                    setClearAfterPrint(true); // Set flag to clear products after print
+                },
 
-            //         window.print();
-            //         setIsModal({ ...isModal, show: false });
-            //     },
-            //     cancelText: 'Keep my list',
-            //     confirmText: 'Clear my list'
-            // });
+                onCancel: () => {
+
+
+                    setIsModal(prevState => ({ ...prevState, show: false }))
+                    setIsPrinting(true);
+                    // window.print();
+                },
+
+            });
         }
 
-        // setIsPrintScreen(true);
-        // window.print();
-        // setTimeout(() => {
-        //     window.print();
-        //     setIsPrintScreen(false);
-        // }, 500);
-
-
     };
+    useEffect(() => {
+        if (isPrinting) {
+            window.print();
+            setIsPrinting(false); // Reset isPrinting after the print action
+            
+            if (clearAfterPrint) {
+                // Delay clearing products to ensure the print action has completed
+                setTimeout(() => {
+                    removeAllProducts(); // Clear products after printing is complete
+                    setClearAfterPrint(false); // Reset the flag
+                }, 1000); // Adjust the delay as needed
+               
+            }
+        }
+    }, [isPrinting, clearAfterPrint]);
+
 
     return <Button
         // icon

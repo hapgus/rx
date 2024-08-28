@@ -1,0 +1,18 @@
+.actionIconContainer{
+    /* background-color: var(--color-gray-03); */
+    display: flex;
+    /* justify-content: space-around;
+    align-items: start; */
+}
+.actionIconContainer svg{
+height: 2rem;
+width: 2rem;
+display: flex;
+margin-right: 1rem;
+}
+
+.actionIconContainer svg:hover{
+  cursor: pointer;
+  stroke: red;
+  
+    }

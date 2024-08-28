@@ -1,0 +1,45 @@
+.imageSquare {
+    height: auto;
+    background-color: white;
+    padding: 5rem 2rem 3rem 0rem;
+    row-gap: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 16px;
+}
+.imageSquare p{
+    font-size: var(--body-font-size);
+}
+.imageSquare svg{
+    color: white;
+}
+.imagePreviewBox {
+    height: 20rem;
+}
+
+.imagePreviewBox img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+@media (min-width: 768px) {}
+
+
+@media (min-width: 1080px) {}
+
+/* Styles for laptops and larger devices */
+@media (min-width: 1440px) {
+ /* .imageSquare{
+     display: grid;
+     grid-template-columns: .5fr;
+ } */
+
+}
+
+/* Styles for larger desktop screens */
+@media (min-width: 1920px) {
+ 
+}

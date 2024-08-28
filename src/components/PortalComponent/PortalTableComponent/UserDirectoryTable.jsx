@@ -1,23 +1,52 @@
 import TableBody from "../../TableComponent/TableBody";
 import TablePagination from "../../TableComponent/TablePagination";
 import { useState, useEffect } from "react";
+import styles from './TableComponent.module.css'
+import { IconComponent } from "../../Icon/IconComponent";
+import { useNavigate } from "react-router";
+import { useRoutingHook } from "../../../hooks/routing-hook";
 
 export const UserDirectoryTable = () => {
 
-    const [isUsers, setIsUsers]=useState(false);
-     const [currentPage, setCurrentPage] = useState(1);
+    const redirect = useNavigate();
+    const { setIsAdminRoutingState } = useRoutingHook();
+
+    const [isUsers, setIsUsers] = useState(false);
+    
+    const [currentPage, setCurrentPage] = useState(1);
+    
     const itemsPerPage = 10;
+    
     const tableColumns = [
         { key: 'firstName', title: 'First Name' },
         { key: 'lastName', title: 'Last Name' },
         { key: 'email', title: 'Email' },
         { key: 'store', title: 'Store' },
-        // { key: 'msrp', title: 'MSRP' },
-        // { key: 'updatedAt', title: 'Last changed' },
-        // { key: '', title: '' },
+        { key: 'status', title: 'Status' },
+        { key: 'role', title: 'Role' },
+        {
+            key: 'manage',
+            title: 'Actions',
+            render: row => (
+                <div className={styles.actionIconContainer}>
+
+                    <IconComponent
+                        iconType='edit'
+                        onClick={
+                            () => {
+                                setIsAdminRoutingState(row._id)
+                                redirect(`/hapg/portal/edit-user/${row._id}`)
+                            }
+                        }
+                    />
+
+                </div>
+            )
+        }
+
     ];
     const fetchUsers = async () => {
-       
+
         try {
             const response = await fetch('http://localhost:3005/users');
             if (!response.ok) {
@@ -27,7 +56,7 @@ export const UserDirectoryTable = () => {
             // console.log('data',data)
             setIsUsers(data.users);
         } catch (err) {
-        console.log(`error ${err}`)
+            console.log(`error ${err}`)
         }
     };
 
@@ -35,12 +64,12 @@ export const UserDirectoryTable = () => {
         fetchUsers();
     }, []);
 
-   
-   
+
+
 
     console.log('dir', isUsers)
 
-;
+        ;
 
     return (
         isUsers &&

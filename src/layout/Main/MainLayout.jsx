@@ -109,9 +109,11 @@ export default function Layout() {
             )}
             {isModal.show &&
                 <Modal
+                modalType={isModal.modalType}
                     show={isModal.show}
                     title={isModal.title}
                     message={isModal.message}
+                    formElements={isModal.formElements}
                     confirmText={isModal.confirmText}
                     cancelText={isModal.cancelText}
                     onConfirm={isModal.onConfirm}

@@ -20,11 +20,13 @@ export const DynamicSections = ({ sections, onChange }) => {
 
 
         handleTitleChange(index, value) {
-            const updatedSections = sections.map((section, idx) => idx === index ? { ...section, resourceTitle: value } : section);
+            const updatedSections = sections.map((section, idx) => 
+                idx === index ? { ...section, resourceTitle: value } : section);
             onChange(updatedSections);
         },
         handleUrlChange(index, value) {
-            const updatedSections = sections.map((section, idx) => idx === index ? { ...section, resourceUrl: value } : section);
+            const updatedSections = sections.map((section, idx) => 
+                idx === index ? { ...section, resourceUrl: value } : section);
             onChange(updatedSections);
         },
 

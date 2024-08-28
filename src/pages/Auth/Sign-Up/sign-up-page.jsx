@@ -1,6 +1,6 @@
 
 import styles from './sign-up.module.css';
-import { SignupForm } from '../../../components/AuthComponent/SignupForm';
+import { SignupForm } from '../../../components/AuthComponent/Signup/SignupForm';
 import { LinkComponent } from '../../../components/Links/LinkComponent';
 import { PageText } from '../../../components/Text/Text';
 import { AuthTemplate } from '../../../layout/Auth/AuthTemplate';

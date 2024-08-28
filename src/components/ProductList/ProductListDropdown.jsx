@@ -40,11 +40,12 @@ const EmptyListScreen = () => {
                                     <LGComponent type='girlFull' />
                                 </div>
                                 <div className={styles.buttonsWrapper}>
-                                    {categoryLinks.map(link =>
-
-                                        <LinkComponent href={link.href}>
-                                            <Button buttonStyleType="primary">{link.text}</Button>
-                                        </LinkComponent>
+                                    {categoryLinks.map((link, idx) =>
+                                        <span key={idx}>
+                                            <LinkComponent href={link.href}>
+                                                <Button buttonStyleType="primary">{link.text}</Button>
+                                            </LinkComponent>
+                                        </span>
                                     )};
                                 </div>
                             </div>

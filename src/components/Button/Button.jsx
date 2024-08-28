@@ -5,6 +5,7 @@ import styles from './Button.module.css';
 export const Button = ({
   children,
   onClick,
+  buttonType='button',
   buttonStyleType = 'default',
   disabled = false,
   icon,
@@ -37,6 +38,7 @@ export const Button = ({
         onClick={onClick}
         className={buttonStyle}
         disabled={disabled}
+        type={buttonType}
       >
         
         {icon && iconPosition === 'left' && (

@@ -241,7 +241,7 @@
         z-index: 999;
     }
     #accountDropdownWrapperWidth{
-        min-width: 15rem;
+        min-width: 20rem;
       
     }
     .dropdownContent {

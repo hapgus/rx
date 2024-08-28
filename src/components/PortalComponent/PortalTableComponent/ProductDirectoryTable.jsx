@@ -1,17 +1,50 @@
 
 import { useProductsHook } from "../../../hooks/product-hook";
+import { IconComponent } from "../../Icon/IconComponent";
 import TableBody from "../../TableComponent/TableBody"
-
+import { useNavigate } from "react-router";
+import { useNotificationHook } from "../../../hooks/notification-hook";
 import TablePagination from "../../TableComponent/TablePagination";
 import { useState } from "react";
+import { useAuth } from '../../../hooks/auth-hook'
+import styles from './TableComponent.module.css'
 
 export const ProductDirectoryTable = () => {
 
+    const redirect = useNavigate();
     const { publicProducts } = useProductsHook();
+    const { isModal, setIsModal } = useNotificationHook();
+    const { authUserId } = useAuth();
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 10;
 
-    console.log('dir', publicProducts)
+    const handleDeleteProduct = async (productId) => {
+        console.log('product to delete',productId)
+
+        try {
+            const response = await fetch(
+                `http://localhost:3005/delete-product/${productId}`,
+                {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        adminId: authUserId,
+                    })
+                }
+            )
+            if (response.status === 200) {
+                alert('product delete')
+            }
+            console.log('delete response', response)
+        } catch (err) {
+            console.log('deletion', err)
+        }
+
+    }
+
+
 
     const tableColumns = [
         { key: 'title', title: 'Model' },
@@ -19,6 +52,19 @@ export const ProductDirectoryTable = () => {
         { key: 'subcategory', title: 'Subcategory' },
         { key: 'msrp', title: 'MSRP' },
         { key: 'updatedAt', title: 'Last changed' },
+        {
+            key: 'actions',
+            title: 'Actions',
+            render: row => (
+                <div className={styles.actionIconContainer}>
+
+                    <IconComponent onClick={() => redirect(`/hapg/portal/edit-product/${row._id}`)} iconType='edit' />
+                    <IconComponent onClick={() => redirect(`/hapg/portal/add-template-product/${row._id}`)} iconType='copy' />
+                    <IconComponent onClick={() => handleDeleteProduct(row._id)} iconType='trash' />
+                </div>
+            )
+
+        }
         // { key: '', title: '' },
     ];
 

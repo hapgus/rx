@@ -60,10 +60,11 @@ export const BuilderContext = createContext({
     removeProductSaved: () => { },
     removeAllProductsSaved: () => { },
     productsInListSaved: [],
+    setProductsInListSaved: () => { },
     listSavedCount: 0,
 
-    isPrintScreen:false,
-    setIsPrintScreen:()=>{},
+    isPrintScreen: false,
+    setIsPrintScreen: () => { },
 
 });
 
@@ -73,7 +74,7 @@ export const BuilderProvider = ({ children }) => {
     const [listCount, setListCount] = useState(0);
     const [savedListCount, setSavedListCount] = useState(0);
 
-    const [isPrintScreen, setIsPrintScreen]=useState(false);
+    const [isPrintScreen, setIsPrintScreen] = useState(false);
 
     const { setIsAlert } = useContext(NotificationContext);
 
@@ -106,7 +107,7 @@ export const BuilderProvider = ({ children }) => {
     }
     const removeAllProductsSaved = (productsToRemove) => {
         setProductsInListSaved([])
-       
+
     }
 
     useEffect(() => {
@@ -126,6 +127,8 @@ export const BuilderProvider = ({ children }) => {
 
 
         productsInListSaved,
+        setProductsInListSaved,
+        
         addProductToSaved,
         removeProductSaved,
         removeAllProductsSaved,

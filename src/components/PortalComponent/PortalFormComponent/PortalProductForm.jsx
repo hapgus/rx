@@ -3,95 +3,186 @@ import { useForm } from "../../../hooks/use-form-hook";
 import { DynamicSections } from "../../FormComponent/DynamicSectionsFormElement";
 import { FormComponent } from "../../FormComponent/FormComponent";
 import { FormElement } from "../../FormComponent/FormElement";
-import { useState, useEffect } from "react";
+
 import styles from './PortalForm.module.css'
 import { PageText } from "../../Text/Text";
 import { Button } from "../../Button/Button";
 
+import { VALIDATOR_REQUIRE } from "../../../utils/validators";
+import { TextInput } from "../../FormComponent/TextInput/TextInput";
+import { TextArea } from "../../FormComponent/TextArea/TextArea";
+import { useCallback, useReducer, useState, useEffect } from "react";
+import { Select } from "../../FormComponent/Select/Select";
+import { Checkbox } from "../../FormComponent/Checkbox/Checkbox";
+
+// const formReducer = (state, action) => {
+//     switch (action.type) {
+//         case 'INPUT_CHANGE':
+
+     
+//             let formIsValid = true;
+//             for (const inputId in state.inputs) {
+//                 if (inputId === action.inputId) {
+//                     formIsValid = formIsValid && action.isValid;
+//                 } else {
+//                     formIsValid = formIsValid && state.inputs[inputId].isValid;
+//                 }
+//             }
+//             return {
+//                 ...state,
+//                 inputs: {
+//                     ...state.inputs,
+//                     [action.inputId]: { 
+//                         value: action.value, 
+//                         isValid: action.isValid 
+//                     }
+//                 },
+//                 isValid: formIsValid
+//             };
+//         default:
+//             return state;
+//     }
+// };
+const formReducer = (state, action) => {
+    console.log(state)
+    switch (action.type) {
+        case 'INPUT_CHANGE':
+            const updatedInputs = {
+                ...state.inputs,
+                [action.inputId]: {
+                    value: action.value,
+                    isValid: action.isValid,
+                },
+            };
+
+            let formIsValid = true;
+            for (const inputId in updatedInputs) {
+                formIsValid = formIsValid && updatedInputs[inputId].isValid;
+            }
+
+            return {
+                ...state,
+                inputs: updatedInputs,
+                isValid: formIsValid,
+            };
+
+        default:
+            return state;
+    }
+};
 export const PortalProductForm = () => {
 
-    const { handleSectionChange, errors, handleChange, values } = useForm({
-        title: "",
-        subtitle: "",
-        category: "",
-        subcategory: "",
-        stylecategory: "",
-        msrp: "",
-        availability: "",
-        store: "",
-        upc: "",
-        videos: "",
-        specTitle1: "",
-        specTitle2: "",
-        specTitle3: "",
-        specTitle4: "",
-        specList1: "",
-        specList2: "",
-        specList3: "",
-        specList4: "",
-        sections: [],
-        colors: [],
-        logos: []
+    const [formState, dispatch] = useReducer(formReducer, {
+        inputs: {
+            title: { value: '', isValid: false },
+            subtitle: { value: '', isValid: false },
+            stylecategory: { value: '', isValid: false },
+            store: { value: '', isValid: false },
+            availability: { value: '', isValid: false },
+            upc: { value: '', isValid: false },
+            videos: { value: '', isValid: false },
+            specTitle1: { value: '', isValid: false },
+            specTitle2: { value: '', isValid: false },
+            specTitle3: { value: '', isValid: false },
+            specTitle4: { value: '', isValid: false },
+            specList1: { value: '', isValid: false },
+            specList2: { value: '', isValid: false },
+            specList3: { value: '', isValid: false },
+            specList4: { value: '', isValid: false },
+            colors: { value: [], isValid: false },
+            logos: { value: [], isValid: false },
 
-    })
+        },
+        isValid: false
+    });
 
-    const [subcategoryOptions, setSubcategoryOptions] = useState([]);
 
-    useEffect(() => {
-        const options = {
-            "air care": [
-                { value: "air care", label: "Air care" },
-            ],
-            "cooking": [
-                { value: "ranges", label: "Ranges" },
-                { value: "built-in", label: "Built-in" },
-                { value: "microwaves", label: "Microwaves" },
-            ],
-            "laundry": [
-                { value: "all-in-one", label: "All-In-One" },
-                { value: "washers", label: "Washers" },
-                { value: "dryers", label: "Dryers" },
-                { value: "washtower", label: "WashTower" },
-                { value: "stylers", label: "Stylers" },
-                { value: "accessories", label: "Accessories" },
-            ],
-            "refrigeration": [
-                { value: "french door", label: "French Door" },
-                { value: "side-by-side", label: "Side-by-Side" },
-                { value: "top and bottom freezer", label: "Top and Bottom Freezer" },
-                { value: "single door", label: "Single Door" },
-            ],
-            "dishwashers": [
-                { value: "dishwasher", label: "Dishwasher" },
-            ],
-            "vacuums": [
-                { value: "vacuum", label: "vacuum" },
-            ],
-            "signature": [
-                { value: "laundry", label: "Laundry" },
-                { value: "dishwasher", label: "Dishwasher" },
-                { value: "refrigeration", label: "Refrigeration" },
-                { value: "cooking", label: "Cooking" },
-                { value: "accessories", label: "Accessories" },
-            ],
-            "studio": [
-                { value: "laundry", label: "Laundry" },
-                { value: "dishwasher", label: "Dishwasher" },
-                { value: "refrigeration", label: "Refrigeration" },
-                { value: "cooking", label: "Cooking" },
-                { value: "stylers", label: "Stylers" },
-            ],
-        };
+    const inputHandler = useCallback((id, value, isValid) => {
+        dispatch({
+            type: 'INPUT_CHANGE',
+            value: value,
+            isValid: isValid,
+            inputId: id
+        });
+    }, []);
 
-        if (values.category) {
-            setSubcategoryOptions(options[values.category.toLowerCase()] || []);
-        } else {
-            setSubcategoryOptions([]);
-        }
-    }, [values.category]);
 
     const currentYear = new Date().getFullYear();
     const nextYear = currentYear + 1;
+
+
+    // const { handleSectionChange, errors, handleChange, values } = useForm({
+    //  
+    //     category: "",
+    //     subcategory: "",
+    //    
+    //     msrp: "",
+
+
+    //  
+    //     sections: [],
+    //     colors: [],
+    //     logos: []
+
+    // })
+
+    // const [subcategoryOptions, setSubcategoryOptions] = useState([]);
+
+    // useEffect(() => {
+    //     const options = {
+    //         "air care": [
+    //             { value: "air care", label: "Air care" },
+    //         ],
+    //         "cooking": [
+    //             { value: "ranges", label: "Ranges" },
+    //             { value: "built-in", label: "Built-in" },
+    //             { value: "microwaves", label: "Microwaves" },
+    //         ],
+    //         "laundry": [
+    //             { value: "all-in-one", label: "All-In-One" },
+    //             { value: "washers", label: "Washers" },
+    //             { value: "dryers", label: "Dryers" },
+    //             { value: "washtower", label: "WashTower" },
+    //             { value: "stylers", label: "Stylers" },
+    //             { value: "accessories", label: "Accessories" },
+    //         ],
+    //         "refrigeration": [
+    //             { value: "french door", label: "French Door" },
+    //             { value: "side-by-side", label: "Side-by-Side" },
+    //             { value: "top and bottom freezer", label: "Top and Bottom Freezer" },
+    //             { value: "single door", label: "Single Door" },
+    //         ],
+    //         "dishwashers": [
+    //             { value: "dishwasher", label: "Dishwasher" },
+    //         ],
+    //         "vacuums": [
+    //             { value: "vacuum", label: "vacuum" },
+    //         ],
+    //         "signature": [
+    //             { value: "laundry", label: "Laundry" },
+    //             { value: "dishwasher", label: "Dishwasher" },
+    //             { value: "refrigeration", label: "Refrigeration" },
+    //             { value: "cooking", label: "Cooking" },
+    //             { value: "accessories", label: "Accessories" },
+    //         ],
+    //         "studio": [
+    //             { value: "laundry", label: "Laundry" },
+    //             { value: "dishwasher", label: "Dishwasher" },
+    //             { value: "refrigeration", label: "Refrigeration" },
+    //             { value: "cooking", label: "Cooking" },
+    //             { value: "stylers", label: "Stylers" },
+    //         ],
+    //     };
+
+    //     if (values.category) {
+    //         setSubcategoryOptions(options[values.category.toLowerCase()] || []);
+    //     } else {
+    //         setSubcategoryOptions([]);
+    //     }
+    // }, [values.category]);
+
+    // const currentYear = new Date().getFullYear();
+    // const nextYear = currentYear + 1;
 
     const columnTitleOptions = [
         { value: "stylish design", label: "Stylish Design" },
@@ -160,77 +251,209 @@ export const PortalProductForm = () => {
         { logo: 'lGWashTowerWithCenterControl' },
         { logo: 'worksWithAlexa' }
     ]
-    // const handleSectionChange = (newSections) => {
-    //     console.log('create page - handle section', newSections)
-    //     setFormData(prevState => ({ ...prevState, pageSections: newSections }));
-    // };
-    // const handleFormSubmit = async (e) => {
-    //     e.preventDefault();
-
-    //     try {
-    //         const response = await fetch('http://localhost:3005/add-product', {
-    //             method: 'POST',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //             },
-    //             body: JSON.stringify(values),
-    //         });
-
-    //         if (!response.ok) {
-    //             throw new Error('Network response was not ok');
-    //         }
-
-    //         const data = await response.json();
-    //         console.log('Success:', data);
-    //     } catch (error) {
-    //         console.error('Error:', error);
-    //     }
-    // };
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
 
         const formData = new FormData();
         formData.append('creator', '669d89abd83506711b144161');
-
+        console.log(formState)
         // Object.keys(values).forEach(key => {
         //     formData.append(key, values[key]);
         // });
 
-        Object.keys(values).forEach(key => {
-            if (key !== 'sections') {
-                formData.append(key, values[key]);
-            }
-        });
+        // Object.keys(values).forEach(key => {
+        //     if (key !== 'sections') {
+        //         formData.append(key, values[key]);
+        //     }
+        // });
 
-        values.sections.forEach((section, index) => {
-            formData.append(`sections[${index}][resourceTitle]`, section.resourceTitle);
-            formData.append(`sections[${index}][resourceUrl]`, section.resourceUrl);
-            if (section.resourceQrCodeImage.length > 0) {
-                formData.append(`sections[${index}][resourceQrCodeImage]`, section.resourceQrCodeImage[0].file);
-            }
-        });
-        const dataResult = formData.values()
-        console.log('3', dataResult)
-        try {
-            const response = await fetch('http://localhost:3005/add-product', {
-                method: 'POST',
-                body: formData,
-            });
+        // values.sections.forEach((section, index) => {
+        //     formData.append(`sections[${index}][resourceTitle]`, section.resourceTitle);
+        //     formData.append(`sections[${index}][resourceUrl]`, section.resourceUrl);
+        //     if (section.resourceQrCodeImage.length > 0) {
+        //         formData.append(`sections[${index}][resourceQrCodeImage]`, section.resourceQrCodeImage[0].file);
+        //     }
+        // });
+        // const dataResult = formData.values()
+        // console.log('3', dataResult)
+        // try {
+        //     const response = await fetch('http://localhost:3005/add-product', {
+        //         method: 'POST',
+        //         body: formData,
+        //     });
 
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
+        //     if (!response.ok) {
+        //         throw new Error('Network response was not ok');
+        //     }
 
-            const data = await response.json();
-            console.log('Success:', data);
-        } catch (error) {
-            console.error('Error:', error);
-        }
+        //     const data = await response.json();
+        //     console.log('Success:', data);
+        // } catch (error) {
+        //     console.error('Error:', error);
+        // }
     };
 
     return (
         <FormComponent onSubmit={handleFormSubmit}>
+            <div className={styles.sectionContent}>
+                <TextInput
+                    id="title"
+                    name="title"
+                    labelName="Model title"
+                    secondaryLabel='e.g. MXY8Z'
+                    errorText='Model title required'
+                    validators={[VALIDATOR_REQUIRE()]}
+                    onInput={inputHandler}
+
+                />
+                <TextInput
+                    id="subtitle"
+                    name="subtitle"
+                    labelName="Sub-title"
+                    //  secondaryLabel='e.g. MXY8Z'
+                    errorText=' Subtitle required'
+                    validators={[VALIDATOR_REQUIRE()]}
+                    onInput={inputHandler}
+                />
+                <TextInput
+                    id="stylecategory"
+                    name="stylecategory"
+                    labelName="Style category"
+                    secondaryLabel='Optional'
+                    errorText=' Style category error'
+                    noTouchValidation={true}
+                    validators={[]}
+                    onInput={inputHandler}
+                />
+
+                <Select
+                    id='store'
+                    name="store"
+                    labelName="Retailer"
+                    // errorText='Please select a retailer'
+                    validators={[]}
+                    onInput={inputHandler}
+                    options={[
+                        { value: "lg", label: "LG Generic" },
+                        { value: "hd", label: "Home Depot" }
+                    ]}
+                />
+                <Select
+                    id='availability'
+                    name="availability"
+                    labelName="Retailer"
+                    // errorText='Please select a retailer'
+                    validators={[]}
+                    onInput={inputHandler}
+                    options={[
+                        { value: "", label: "Set Availability", disabled: true },
+                        { value: `Available`, label: `Available` },
+                        { value: `EOL`, label: `EOL` },
+                        { value: `Q1 ${currentYear}`, label: `Q1 ${currentYear}` },
+                        { value: `Q2 ${currentYear}`, label: `Q2 ${currentYear}` },
+                        { value: `Q3 ${currentYear}`, label: `Q3 ${currentYear}` },
+                        { value: `Q4 ${currentYear}`, label: `Q4 ${currentYear}` },
+                        { value: `Q1 ${nextYear}`, label: `Q1 ${nextYear}` },
+                        { value: `Q2 ${nextYear}`, label: `Q2 ${nextYear}` },
+                        { value: `Q3 ${nextYear}`, label: `Q3 ${nextYear}` },
+                        { value: `Q4 ${nextYear}`, label: `Q4 ${nextYear}` },
+                    ]}
+                />
+                <TextArea
+                    id="videos"
+                    name="videos"
+                    type="textarea"
+                    rows={10}
+                    onInput={inputHandler}
+                    validators={[]}
+                    labelName="Youtube videos"
+                    secondaryLabel='Optional'
+                    noTouchValidation={true}
+                />
+                <TextArea
+                    id="upc"
+                    name="upc"
+                    type="textarea"
+                    rows={10}
+                    onInput={inputHandler}
+                    validators={[]}
+                    labelName="UPC Code"
+                    noTouchValidation={true}
+                />
+                <Select
+                    id="specTitle1"
+                    name="specTitle1"
+                    labelName="Column one title"
+                    // errorText='Please select a retailer'
+                    validators={[]}
+                    onInput={inputHandler}
+                    options={columnTitleOptions}
+                />
+                <TextArea
+                    id="specList1"
+                    name="specList1"
+                    type="textarea"
+                    rows={10}
+                    onInput={inputHandler}
+                    validators={[]}
+                    labelName="List 1"
+                    noTouchValidation={true}
+                />
+                <Select
+                    id="specTitle2"
+                    name="specTitle2"
+                    labelName="Column two title"
+                    // errorText='Please select a retailer'
+                    validators={[]}
+                    onInput={inputHandler}
+                    options={columnTitleOptions}
+                />
+                <TextArea
+                    id="specList2"
+                    name="specList2"
+                    type="textarea"
+                    rows={10}
+                    onInput={inputHandler}
+                    validators={[]}
+                    labelName="List 2"
+                    noTouchValidation={true}
+                />
+                <Select
+                    id="specTitle3"
+                    name="specTitle3"
+                    labelName="Column three title"
+                    // errorText='Please select a retailer'
+                    validators={[]}
+                    onInput={inputHandler}
+                    options={columnTitleOptions}
+                />
+                <TextArea
+                    id="specList3"
+                    name="specList3"
+                    type="textarea"
+                    rows={10}
+                    onInput={inputHandler}
+                    validators={[]}
+                    labelName="List 3"
+                    noTouchValidation={true}
+                />
+                 <div className={styles.sectionContent}>
+                {techLogoOptions.map((e, index) => (
+                    <Checkbox
+                        key={index}
+                        id="logos" // Ensure this ID is consistent with the form state key
+                        name="logos"
+                        labelName={e.logo}
+                        value={e.logo}
+                        onInput={inputHandler}
+                        initialChecked={formState.inputs.logos.value}
+                    />
+                ))}
+            </div>
+            </div>
+
+            {/* 
 
             <section className={styles.section}>
                 <div className={styles.sectionHeader}>
@@ -238,56 +461,7 @@ export const PortalProductForm = () => {
                     <PageText type="pageTertiaryTitle">Pick retailer</PageText>
                 </div>
                 <div className={styles.sectionContent}>
-                    <FormElement
-                        id="msrp"
-                        name="msrp"
-                        type="textnumber"
-                        value={values.msrp}
-                        onChange={handleChange}
-                        labelName="MSRP"
-                        feedback={!!errors.msrp}
-                        feedbackType={errors.msrp ? "error" : "success"}
-                        feedbackMessage={errors.msrp || "Looks good"}
-                    />
-                    <FormElement
-                        id='store'
-                        name="store"
-                        type='selectmenu'
-                        labelName="Retailer"
-                        onChange={handleChange}
-                        value={values.store}
-                        feedback={!!errors.store}
-                        feedbackType={errors.store ? "error" : "success"}
-                        feedbackMessage={errors.store || "Looks good"}
-                        options={[
-                            { value: "lg", label: "LG Generic" },
-                            { value: "hd", label: "Home Depot" }
-                        ]}
-                    />
-                    <FormElement
-                        id='availability'
-                        name="availability"
-                        type='selectmenu'
-                        labelName="Availability"
-                        onChange={handleChange}
-                        value={values.availability}
-                        feedback={!!errors.availability}
-                        feedbackType={errors.availability ? "error" : "success"}
-                        feedbackMessage={errors.availability || "Looks good"}
-                        options={[
-                            { value: "", label: "Set Availability", disabled: true },
-                            { value: `Available`, label: `Available` },
-                            { value: `EOL`, label: `EOL` },
-                            { value: `Q1 ${currentYear}`, label: `Q1 ${currentYear}` },
-                            { value: `Q2 ${currentYear}`, label: `Q2 ${currentYear}` },
-                            { value: `Q3 ${currentYear}`, label: `Q3 ${currentYear}` },
-                            { value: `Q4 ${currentYear}`, label: `Q4 ${currentYear}` },
-                            { value: `Q1 ${nextYear}`, label: `Q1 ${nextYear}` },
-                            { value: `Q2 ${nextYear}`, label: `Q2 ${nextYear}` },
-                            { value: `Q3 ${nextYear}`, label: `Q3 ${nextYear}` },
-                            { value: `Q4 ${nextYear}`, label: `Q4 ${nextYear}` },
-                        ]}
-                    />
+                   
 
                 </div>
             </section>
@@ -298,32 +472,7 @@ export const PortalProductForm = () => {
                 </div>
 
                 <div className={styles.sectionContent}>
-                    <FormElement
-                        id="title"
-                        name="title"
-                        secondaryLabel='e.g. MXY8Z'
-                        type="textinput"
-                        value={values.title}
-                        onChange={handleChange}
-                        labelName="Model title"
-                        feedback={!!errors.title}
-                        feedbackType={errors.title ? "error" : "success"}
-                        feedbackMessage={errors.title || "Looks good"}
-                    />
-                    <FormElement
-                        id="subtitle"
-                        name="subtitle"
-                        secondaryLabel='Min 15 characters'
-                        type="textarea"
-                        value={values.subtitle}
-                        onChange={handleChange}
-                        labelName="Subtitle"
-                        feedback={!!errors.subtitle}
-                        feedbackType={errors.subtitle ? "error" : "success"}
-                        feedbackMessage={errors.subtitle || "Looks good"}
-                    />
-
-
+                   
                 </div>
             </section>
             <section className={styles.section}>
@@ -334,65 +483,7 @@ export const PortalProductForm = () => {
                 </div>
                 <div className={styles.sectionContent}>
 
-                    <FormElement
-                        labelName="Category"
-                        id='category'
-                        name="category"
-                        type='selectmenu'
-                        onChange={handleChange}
-                        value={values.category}
-                        feedback={!!errors.category}
-                        feedbackType={errors.category ? "error" : "success"}
-                        feedbackMessage={errors.category || "Looks good"}
-                        options={[
-                            { value: "air care", label: "Air care" },
-                            { value: "cooking", label: "Cooking" },
-                            { value: "dishwashers", label: "Dishwashers" },
-                            { value: "laundry", label: "Laundry" },
-                            { value: "refrigeration", label: "Refrigeration" },
-                            { value: "vacuums", label: "Vacuums" },
-                            { value: "signature", label: "Signature" },
-                            { value: "studio", label: "Studio" },
-                        ]}
-                    />
-                    {values.category && (
-
-                        <div>
-                            <div className={styles.sectionHeader}>
-                                <PageText type="pageTitle">Subcategory and style category</PageText>
-                                <PageText type="pageTertiaryTitle">Subcategory and style category</PageText>
-
-                            </div>
-                            <div className={styles.dualRow}>
-                                <FormElement
-                                    labelName="Subcategory"
-                                    id='subcategory'
-                                    name="subcategory"
-                                    type='selectmenu'
-                                    onChange={handleChange}
-                                    value={values.subcategory}
-                                    feedback={!!errors.subcategory}
-                                    feedbackType={errors.subcategory ? "error" : "success"}
-                                    feedbackMessage={errors.subcategory || "Looks good"}
-                                    options={subcategoryOptions}
-                                />
-                                <FormElement
-                                    id="stylecategory"
-                                    name="stylecategory"
-                                    secondaryLabel="This will be optional"
-                                    type="textinput"
-                                    value={values.stylecategory}
-                                    onChange={handleChange}
-                                    labelName="Style category"
-                                    feedback={!!errors.stylecategory}
-                                    feedbackType={errors.stylecategory ? "error" : "success"}
-                                    feedbackMessage={errors.stylecategory || "Looks good"}
-                                />
-                            </div>
-                        </div>
-
-                    )}
-
+                 
                 </div>
             </section>
             <section className={styles.section}>
@@ -600,7 +691,7 @@ export const PortalProductForm = () => {
                     />
                 </div>
             </section>
-
+ */}
 
             <div className={styles.formButtonWrapper}>
 
