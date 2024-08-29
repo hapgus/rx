@@ -78,9 +78,7 @@ const EmptyProductListBody = () => {
                     <ImageComponent position='center'>
                         <LGComponent type='boyFull' />
                     </ImageComponent>
-                    {/* <ImageComponent position='center'>
-                        <img src='/assets/image/gif/look-around-black.gif' alt='lg white logo looking around' className={styles.gifLogo} />
-                    </ImageComponent> */}
+                    
                     <HeaderText type='h4'>You forgot to add products list!</HeaderText>
                     <BodyText type='b0'>Use search or explore appliance pages to find and add products to start a list.</BodyText>
 

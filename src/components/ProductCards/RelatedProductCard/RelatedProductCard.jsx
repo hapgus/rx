@@ -35,7 +35,7 @@ export const RelatedProductCard = ({ product }) => {
                 <div className={styles.realtedProductImageWrapper}>
                     <img
                         loading='lazy'
-                        className={styles.relatedProductImage} src={`${publicUrl}/assets/image/products/${image}`} alt={`product ${title}`} />
+                        className={styles.relatedProductImage} src={`${process.env.REACT_APP_AWS_URL_IMAGE}/${image}`} alt={`product ${title}`} />
                 </div>
                 <div className={styles.realtedProductTextWrapper}>
                     {/* <ProductText type='relatedProductAvailability'>{CapitalizeFirstLetter(availability)}</ProductText> */}

@@ -13,7 +13,7 @@ const NotFoundPage = () => {
             <div className={styles.notFoundPageWrapper}>
                 <div className={styles.notFoundPage}>
                     {/* <ImageComponent position='center'> */}
-                        <img src={`${publicUrl}/assets/image/gif/look-around-white.gif`} alt='lg white logo looking around' className={styles.gifLogo} />
+                        <img src={`/assets/image/gif/look-around-white.gif`} alt='lg white logo looking around' className={styles.gifLogo} />
                     {/* </ImageComponent> */}
                     <PageText color='white'type='pageTitle'>404 Page Not Found</PageText>
                     <PageText color='white'type='pageTitle'>Looks like something went wrong</PageText>

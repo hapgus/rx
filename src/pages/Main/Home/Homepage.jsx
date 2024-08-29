@@ -100,9 +100,7 @@ const Homepage = () => {
                                     <PageText type='pageSubtitle'>Discover best-in-class products and accessories at the LG Product Guide</PageText>
                                 </div>
                             </div>
-                            {/* <div className={styles.heroShapeWrapper}>
-                            <img src={`${publicUrl}/assets/image/backgrounds/main/left-panel-shape.png`} />
-                        </div> */}
+                          
                         </div>
                     </div>
                 </div>
@@ -144,11 +142,11 @@ const Homepage = () => {
                         <div className={styles.imageWrapper}>
                             <div className={styles.headImageGroup}>
                                 <div className={styles.headImage1}>
-                                    <img src={`${publicUrl}/assets/image/backgrounds/main/lg-customer.png`} />
+                                    <img src={`/assets/image/backgrounds/builder/lg-customer.webp`} />
                                 </div>
                                 <div className={styles.headImage2}>
-                                    <img className={styles.rep1} src={`${publicUrl}/assets/image/backgrounds/main/lg-rep.png`} />
-                                    <img className={styles.rep2} src={`${publicUrl}/assets/image/backgrounds/main/lg-rep-bottom.png`} />
+                                    <img className={styles.rep1} src={`/assets/image/backgrounds/builder/lg-rep.webp`} />
+                                    <img className={styles.rep2} src={`/assets/image/backgrounds/builder/lg-rep-bottom.webp`} />
                                 </div>
                             </div>
                         </div>
@@ -163,8 +161,7 @@ const Homepage = () => {
                                             <div key={idx} className={styles.benefitCard}>
                                                 <div className={styles.benefitCardCount}>
                                                     <div className={styles.iconWrapper}>
-                                                        {/* <img src={`${publicUrl}/assets/image/backgrounds/main/checkmark.png`}/> */}
-                                                        {/* <CheckmarkIcon/> */}
+                                                      
                                                         <IconComponent iconType='warranty' />
                                                     </div>
                                                     {/* <CountBubble itemCount={idx + 1} /> */}

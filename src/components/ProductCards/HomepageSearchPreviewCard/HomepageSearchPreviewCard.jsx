@@ -30,7 +30,7 @@ export const HomepageSearchPreviewCard = ({ products }) => {
                         <img 
                         loading='lazy'
                         className={styles.searchResultsPreviewCardImage} 
-                        src={`${publicUrl}/assets/image/products/${image}`} 
+                        src={`${process.env.REACT_APP_AWS_URL_IMAGE}/${image}`} 
                         alt={`product ${title}`} 
                         />
                     </div>

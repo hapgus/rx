@@ -16,7 +16,7 @@ export const TechnologyLogo = ({ logos }) => {
                 <ul className={styles.logosList}>
                     {logos.map((e, idx) => {
                         let logoImage;
-                        const path = `${publicUrl}/assets/image/technology/`
+                        const path = `/assets/image/technology/`
                         switch (e) {
                             case 'worksWithHeyGoogle':
                                 logoImage = `${path}worksWithHeyGoogle.png`;

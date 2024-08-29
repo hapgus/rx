@@ -131,14 +131,13 @@ export const ActiveListPage = ({ isEditing }) => {
                             // <Button buttonStyleType='primaryAction'>Save list</Button>
                         }
                                     <RemoveAllFromListButton />
-                                   
-                                    {/* <Button buttonStyleType='primaryAction'>Save list</Button> */}
+                                
                                 </div>
 
 
                                 <div className={styles.heroImage}>
                                     <div className={styles.imageWrapper}>
-                                        <img src={`${publicUrl}/assets/image/backgrounds/main/lg-print-handoff.png`} />
+                                        <img src={`/assets/image/backgrounds/builder/lg-print-handoff.webp`} />
                                     </div>
                                     <PageText type='bodyDescription'>Registered users enjoy even more features benefits. Submit your request today.</PageText>
                                 </div>

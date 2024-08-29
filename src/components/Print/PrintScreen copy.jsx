@@ -37,7 +37,7 @@ export const PrintScreen = () => {
                                 <PageText type="pageHeaderSubtitle">{p.subtitle}</PageText>
                             </div>
                             <div>
-                                <img src={`${publicUrl}/assets/image/products/${p.image}`} alt="LG Logo" />
+                                <img src={`${process.env.REACT_APP_AWS_URL_IMAGE}/${p.image}`} alt="LG Logo" />
                             </div>
                         </div>
                     ))}

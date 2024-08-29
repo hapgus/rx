@@ -43,7 +43,7 @@ const FeatureDefinitionsPage = () => {
                                 </div>
                                 <div  className={styles.gridItem2}>
                                     <div className={styles.gridItem2Image}>
-                                    <img alt="lg mom and daughter" src={`${publicUrl}/assets/image/backgrounds/main/lg-mom-shape.png`} />
+                                    <img alt="lg mom and daughter" src={`/assets/image/backgrounds/resources/lg-mom-shape.webp`} />
                                     </div>
                                 </div>
                               

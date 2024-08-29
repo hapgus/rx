@@ -155,7 +155,7 @@ export const EmptyListPage = () => {
                             </div>
                             <div className={styles.lgMan}>
                                 <div className={styles.lgManImageWrapper}>
-                                    <img src={`${publicUrl}/assets/image/backgrounds/main/lg-print-handoff.png`} />
+                                    <img src={`/assets/image/backgrounds/builder/lg-print-handoff.webp`} />
                                 </div>
                                 {/* <img src={`${publicUrl}/assets/image/backgrounds/main/lg-man.png`} /> */}
                             </div>

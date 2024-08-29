@@ -1,6 +1,6 @@
 import { useProductsHook } from "../../hooks/product-hook";
 
-import { GetCategoryVerbiage } from "../../utils/category-helper";
+import { GetCategoryVerbiage, ListProductsByCategorySubcategory } from "../../utils/category-helper";
 import { ProductCategoryCard } from "../ProductCards/ProductCategoryCard/ProductCategoryCard";
 import { capitalizeFirstLetterEachWord } from "../../utils/text-help";
 import { NormalizeSlugs } from "../../utils/link-helper";
@@ -12,55 +12,59 @@ import { GridSystem } from "../GridSystem/GridSystem";
 export const CategoriesComponent = ({ products }) => {
     const { publicProducts } = useProductsHook();
 
-    // const categorizedProducts = ListProductsByCategorySubcategory(publicProducts);
+    const categorizedProducts = ListProductsByCategorySubcategory(publicProducts);
 
     const subcategoryProductImageMap = {
         signature: {
-            laundry: '/assets/image/products/WM9500HKA.webp',
-            accessories: '/assets/image/products/WD205CK.webp',
-            cooking: '/assets/image/products/LUTD4919SN.webp',
-            refrigeration: '/assets/image/products/URETC1408N.webp',
-            dishwasher: '/assets/image/products/LUDP8908SN.webp',
+            laundry: 'WM9500HKA.webp',
+            accessories: 'WD205CK.webp',
+            cooking: 'LUTD4919SN.webp',
+            refrigeration: 'URETC1408N.webp',
+            dishwasher: 'LUDP8908SN.webp',
         },
         studio: {
-            laundry: '/assets/image/products/SWWE50N3 SWWG50N3.webp',
-            stylers: '/assets/image/products/S5MSB.webp',
-            cooking: '/assets/image/products/WCES6428F.webp',
-            refrigeration: '/assets/image/products/SRFVC2416S.webp',
-            dishwasher: '/assets/image/products/SDWD24P3.webp'
+            laundry: 'SWWE50N3 SWWG50N3.webp',
+            stylers: 'S5MSB.webp',
+            cooking: 'WCES6428F.webp',
+            refrigeration: 'SRFVC2416S.webp',
+            dishwasher: 'SDWD24P3.webp'
         },
         vacuums: {
-            vacuum: '/assets/image/products/A925KSM.webp',
+            vacuum: 'A925KSM.webp',
         },
         refrigeration: {
-            'french door': '/assets/image/products/LRYKC2606_.webp',
-            'side-by-side': '/assets/image/products/LRSOS2706_.webp',
-            'top and bottom freezer': '/assets/image/products/LBNC15231V.webp',
-            'single door': '/assets/image/products/LRONC0605V.webp'
+            'french door': 'LRYKC2606_.webp',
+            'side-by-side': 'LRSOS2706_.webp',
+            'top and bottom freezer': 'LBNC15231V.webp',
+            'single door': 'LRONC0605V.webp'
         },
         laundry: {
-            'all-in-one': '/assets/image/products/WM3555H_A.webp',
-            washers: '/assets/image/products/WT8600CB.webp',
-            dryers: '/assets/image/products/DLHC1455W.webp',
-            washtowers: '/assets/image/products/WKHC252H_A.webp',
-            accessories: '/assets/image/products/WD200CB.webp',
-            stylers: '/assets/image/products/S5WBC.webp',
+            'all-in-one': 'WM3555H_A.webp',
+            washers: 'WT8600CB.webp',
+            dryers: 'DLHC1455W.webp',
+            washtowers: 'WKHC252H_A.webp',
+            accessories: 'WD200CB.webp',
+            stylers: 'S5WBC.webp',
         },
         cooking: {
-            ranges: '/assets/image/products/LRGL5823_.webp',
-            'built-in': '/assets/image/products/CBGJ3027S.webp',
-            microwaves: '/assets/image/products/MVEL2137_.webp',
+            ranges: 'LRGL5823_.webp',
+            'built-in': 'CBGJ3027S.webp',
+            microwaves: 'MVEL2137_.webp',
         },
         'air care': {
-            'air care': '/assets/image/products/AS560DWR0.webp',
+            'air care': 'AS560DWR0.webp',
         },
         dishwashers: {
-            dishwasher: '/assets/image/products/WM9500HKA.webp',
+            dishwasher: 'WM9500HKA.webp',
         }
 
     }
 
-    return Object.entries(products).map(([category, subcategories], categoryIndex) => {
+    // return Object.entries(products).map(([category, subcategories], categoryIndex) => {
+
+
+        return Object.entries(categorizedProducts).map(([category, subcategories], categoryIndex) => {
+        
 
         const verbiage = GetCategoryVerbiage(category);
         return (
@@ -94,15 +98,17 @@ export const CategoriesComponent = ({ products }) => {
                 <GridSystem gridType="spread">
                     <div className={styles.contentWrapper}>
                         <div className={styles.categoryCardsWrapper}>
-                            {Object.entries(subcategories).map(([subcategory, subcategoryIndex]) => (
+                         
+                            {Object.entries(subcategories)?.map(([subcategory, subcategoryIndex]) => (
 
                                 <ProductCategoryCard
                                     key={`subcategory-${category}-${subcategory}-${subcategoryIndex}`}
                                     subcategory={capitalizeFirstLetterEachWord(subcategory)}
                                     hashLinkPath={`${category}#${NormalizeSlugs(subcategory)}`}
-                                    subcategoryImagePath={subcategoryProductImageMap[category][subcategory]}
+                                    subcategoryImagePath={category && subcategoryProductImageMap[category][subcategory]}
                                 />
-                            ))}
+                            ))
+                            }
                         </div>
                     </div>
                 </GridSystem>

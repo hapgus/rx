@@ -13,7 +13,7 @@ const LoginPage = () => {
         <AuthTemplate>
             <>
                 <div className={styles.logo}>
-                    <img src={`${publicUrl}/assets/image/gif/dance-black.gif`} />
+                    <img src={`/assets/image/gif/dance-black.gif`} />
                 </div>
                 <div>
                     <PageText type='pageTitle'>LG Product Guide</PageText>

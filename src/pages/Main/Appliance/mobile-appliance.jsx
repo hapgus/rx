@@ -1,4 +1,5 @@
 import styles from './mobile-appliance-page.module.css'
+import { GridSystem } from '../../../components/GridSystem/GridSystem.jsx';
 import { useProductsHook } from '../../../hooks/product-hook';
 import { useBuilderHook } from '../../../hooks/builder-hook';
 import { ProductBackgroundShape } from '../../../components/Shape/ProductBackgroundShape';
@@ -14,13 +15,12 @@ import { MatchingProductComponent } from '../../../components/ProductDetails/Mat
 import { ExternalSpecificationSheetComponent } from '../../../components/ProductDetails/ExternalSpecificationSheet/ExternalSpecificationSheetComponent.jsx'
 
 import { UpcCode } from '../../../components/ProductDetails/UpcCode/UpcCode.jsx';
-import { GridSystem } from '../../../components/GridSystem/GridSystem.jsx';
+
 export const MobileAppliancePage = ({
     productId
 
 }) => {
 
-    const publicUrl = process.env.PUBLIC_URL;
 
     const { publicProducts } = useProductsHook();
     const { productsInList } = useBuilderHook();
@@ -61,7 +61,7 @@ export const MobileAppliancePage = ({
                                 <div className={styles.mobileProductImageWrapper}>
                                     <ProductBackgroundShape className={styles.mobileProductImageShape} />
                                     <div className={styles.mobileProductImage}>
-                                        <img loading='lazy' src={`${publicUrl}/assets/image/products/${details.image}`} alt={`${details.title}`} />
+                                        <img loading='lazy' src={`${process.env.REACT_APP_AWS_URL_IMAGE}/${details.image}`} alt={`${details.title}`} />
                                     </div>
                                 </div>
                                 <div className={styles.colorButtonWrapper}>
@@ -143,11 +143,9 @@ export const MobileAppliancePage = ({
                             </GridSystem>
 
                         }
-
                     </div>
                 ))
             }
-
         </div>
     )
 }

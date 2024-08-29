@@ -25,7 +25,7 @@ export const PrintScreen = () => {
                             <div className={styles.footerContent}>
                                 <PageText type="pageTertiaryTitle"></PageText>
                                 <div className={styles.logoWrapper}>
-                                    <img src={`${publicUrl}/assets/image/logos/lg-logo.webp`} alt="LG Logo" />
+                                    <img src={`/assets/image/logos/lg-logo.webp`} alt="LG Logo" />
                                 </div>
                             </div>
                             <div className={styles.legalTextWrapper}>
@@ -47,7 +47,7 @@ export const PrintScreen = () => {
                                 <PageText type="pageSubtitle">{p.subtitle}</PageText>
                             </div>
                             <div className={styles.productImage}>
-                                <img src={`${publicUrl}/assets/image/products/${p.image}`} alt="LG Logo" />
+                                <img src={`${process.env.REACT_APP_AWS_URL_IMAGE}/${p.image}`} alt="LG Logo" />
                             </div>
                             <div className={styles.productSpecs}>
                                 <Specifications product={p} />

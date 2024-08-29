@@ -57,7 +57,7 @@ export const DesktopAppliancePage = ({ productId }) => {
                             <div className={styles.imageShapeGroupWrapper}>
                                 <div className={styles.productImageForShape}>
                                     <div className={styles.productImage}>
-                                        <img loading='lazy' src={`${publicUrl}/assets/image/products/${details.image}`} alt={`${details.title}`} />
+                                    <img loading='lazy' src={`${process.env.REACT_APP_AWS_URL_IMAGE}/${details.image}`} alt={`${details.title}`} />
                                     </div>
                                 </div>
                                 <ProductBackgroundShape className={styles.productBackgroundShapeContainer} />

@@ -34,7 +34,7 @@ const WarrantiesPage = () => {
                                 </div>
                                 <div className={styles.gridItem2}>
                                     <div className={styles.gridItem2Image}>
-                                        <img alt="lg dad and son" src={`${publicUrl}/assets/image/backgrounds/main/lg-dad-shape.png`} />
+                                        <img alt="lg dad and son" src={`/assets/image/backgrounds/resources/lg-dad-shape.webp`} />
                                     </div>
                                 </div>
 

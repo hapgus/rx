@@ -82,7 +82,7 @@ const MobileProductBuilderPageCard = ({ product }) => {
 
                     <div className={styles.builderCardImageButtonGroupItem1}>
                         <div className={styles.builderCardImage}>
-                            <img src={`${publicUrl}/assets/image/products/${image}`} alt={`product ${title}`} />
+                            <img src={`${process.env.REACT_APP_AWS_URL_IMAGE}/${image}`} alt={`product ${title}`} />
                         </div>
 
                         <div className={styles.builderCardButton}>

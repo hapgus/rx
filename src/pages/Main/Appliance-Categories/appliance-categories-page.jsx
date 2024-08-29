@@ -1,16 +1,16 @@
-import { Button } from "../../../components/Button/Button";
-import { GridSystem } from "../../../components/GridSystem/GridSystem";
+
+import styles from './ApplianceCategories.module.css';
 import { PageText } from "../../../components/Text/Text";
+import { Button } from "../../../components/Button/Button";
 import { useProductsHook } from "../../../hooks/product-hook";
+import { GridSystem } from "../../../components/GridSystem/GridSystem";
 import { ListProductsByCategorySubcategory } from "../../../utils/category-helper";
-import styles from './ApplianceCategories.module.css'
 import { CategoriesComponent } from "../../../components/CategoriesComponent/CategoriesComponent";
 
 const ApplianceCategories = () => {
 
     const { publicProducts } = useProductsHook();
     const categorizedProducts = ListProductsByCategorySubcategory(publicProducts);
-    const publicUrl = process.env.PUBLIC_URL;
 
     const scrollToPosition = () => {
         window.scrollBy({
@@ -48,20 +48,20 @@ const ApplianceCategories = () => {
                         </div>
                         <div className={styles.heroImageWrapper}>
                             <div className={styles.image0}>
-                                <img loading='lazy' src={`${publicUrl}/assets/image/backgrounds/categories/full-set.png`} />
+                                <img loading='lazy' src={`/assets/image/backgrounds/categories/full-set.png`} />
                             </div>
                             <div className={styles.image1}>
-                                <img loading='lazy' src={`${publicUrl}/assets/image/backgrounds/categories/cooking-shape.webp`} />
+                                <img loading='lazy' src={`/assets/image/backgrounds/categories/cooking-shape.webp`} />
                             </div>
                             <div className={styles.image2}>
-                                <img loading='lazy' src={`${publicUrl}/assets/image/backgrounds/categories/air-care-shape.webp`} />
+                                <img loading='lazy' src={`/assets/image/backgrounds/categories/air-care-shape.webp`} />
                             </div>
                             <div className={styles.image3}>
-                                <img loading='lazy' src={`${publicUrl}/assets/image/backgrounds/categories/cat-shape-3.webp`} />
+                                <img loading='lazy' src={`/assets/image/backgrounds/categories/cat-shape-3.webp`} />
                             </div>
                             <div className={styles.image4}>
 
-                                <img loading='lazy' src={`${publicUrl}/assets/image/backgrounds/categories/laundry-shape-5.webp`} />
+                                <img loading='lazy' src={`/assets/image/backgrounds/categories/laundry-shape-5.webp`} />
                             </div>
                         </div>
                     </div>
@@ -71,7 +71,11 @@ const ApplianceCategories = () => {
                 </GridSystem>
             </div>
             <div className={styles.categoriesComponentWrapper}>
-                <CategoriesComponent products={categorizedProducts} />
+                {
+                    categorizedProducts && publicProducts && <CategoriesComponent products={categorizedProducts} />
+
+                }
+               
             </div>
         </>
     );

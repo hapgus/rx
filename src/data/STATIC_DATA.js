@@ -11,7 +11,7 @@ export const STEP_UP_CHART_CATEGORIES = {
         `${publicUrl}/assets/image/step-up-charts/lg-line-logic-cooking-07.webp`,
         `${publicUrl}/assets/image/step-up-charts/lg-line-logic-cooking-09.webp`,
     ],
-    hero: `${publicUrl}/assets/image/backgrounds/main/cooking-step.png`,
+    hero: `${publicUrl}/assets/image/backgrounds/resources/cooking-step.webp`,
 
  },  
  refrigeration:{
@@ -25,7 +25,7 @@ export const STEP_UP_CHART_CATEGORIES = {
         `${publicUrl}/assets/image/step-up-charts/lg-line-logic-fridge-05.webp`,
         `${publicUrl}/assets/image/step-up-charts/lg-line-logic-fridge-06.webp`,
     ],
-    hero: `${publicUrl}/assets/image/backgrounds/main/fridge-step.png`,
+    hero: `${publicUrl}/assets/image/backgrounds/resources/fridge-step.webp`,
  },
  dishwashers:{
      ctaText:'To see more products view',
@@ -34,7 +34,7 @@ export const STEP_UP_CHART_CATEGORIES = {
         `${publicUrl}/assets/image/step-up-charts/lg-line-logic-dish-01.webp`,
         `${publicUrl}/assets/image/step-up-charts/lg-line-logic-dish-02.webp`,
     ],
-    hero: `${publicUrl}/assets/image/backgrounds/main/dish-step.png`,
+    hero: `${publicUrl}/assets/image/backgrounds/resources/dish-step.webp`,
  },
  laundry:{
     ctaText:'To see more laundry, including WashTowers, Stylers, Pairs, and more, view',
@@ -45,7 +45,7 @@ export const STEP_UP_CHART_CATEGORIES = {
     `${publicUrl}/assets/image/step-up-charts/lg-line-logic-laundry-07.webp`,
     `${publicUrl}/assets/image/step-up-charts/lg-line-logic-laundry-08.webp`,
    ],
-   hero: `${publicUrl}/assets/image/backgrounds/main/laundry-step.png`
+   hero: `${publicUrl}/assets/image/backgrounds/resources/laundry-step.webp`
 },
 vacuums:{
     ctaText:'To see more products view',
@@ -53,7 +53,7 @@ vacuums:{
    charts:[
     `${publicUrl}/assets/image/step-up-charts/lg-line-logic-floor-01.webp`,
    ],
-   hero: `${publicUrl}/assets/image/backgrounds/main/vacuum-step.png`
+   hero: `${publicUrl}/assets/image/backgrounds/resources/vacuum-step.webp`
 },
 
 }

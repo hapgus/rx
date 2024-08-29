@@ -21,7 +21,7 @@ export const Card = ({ children }) => {
 
 //DYNAMIC ADD/REMOVE BUTTONS/ICONS --DONE
 export const ApplianceCard = ({ product }) => {
-const publicUrl = process.env.PUBLIC_URL;
+    const publicUrl = process.env.PUBLIC_URL;
     const { title, subtitle, availability, image, category, } = product;
     const configuredProductURL = GenerateProductURL(category, title);
     const productURL = `${publicUrl}${configuredProductURL}`;
@@ -33,8 +33,8 @@ const publicUrl = process.env.PUBLIC_URL;
             <div key={title} className={styles.productCardContainer}>
                 <div className={styles.productCardWrapper}>
 
-                    <ProductImageComponent className={styles.productCardImage} src={`${publicUrl}/assets/image/products/${image}`} alt={`product ${title}`} />
-
+                    {/* <ProductImageComponent className={styles.productCardImage} src={`${publicUrl}/assets/image/products/${image}`} alt={`product ${title}`} /> */}
+                    <ProductImageComponent className={styles.productCardImage} src={`${process.env.REACT_APP_AWS_URL_IMAGE}/${image}`} alt={`product ${title}`} />
                     <PageText type='productCardTitle'>{title}</PageText>
                     <PageText type='productCardSubtitle'>
                         <span className={styles.clampedSubtitle}>{subtitle}</span>
@@ -42,13 +42,13 @@ const publicUrl = process.env.PUBLIC_URL;
                     </PageText>
                     <div className={styles.buttonsWrapper}>
                         {isProductInList ? <RemoveFromListButton product={product} /> : <AddToListButton product={product} />}
-                      
-                            <LinkComponent href={productURL}>
-                                <Button buttonStyleType="secondary" buttonTextType="action">
-                                    See details
-                                </Button>
-                            </LinkComponent>
-                       
+
+                        <LinkComponent href={productURL}>
+                            <Button buttonStyleType="secondary" buttonTextType="action">
+                                See details
+                            </Button>
+                        </LinkComponent>
+
                     </div>
                 </div>
             </div>
