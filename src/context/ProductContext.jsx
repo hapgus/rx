@@ -35,7 +35,6 @@ export const ProductProvider = ({ children }) => {
     const setPublicProducts = (products) => {
         dispatch({ type: PRODUCT_ACTION_TYPES.SET_PUBLIC_PRODUCTS, payload: products });
     };
-
     // API CONFIG
     const fetchProducts = async () => {
        
