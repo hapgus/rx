@@ -33,10 +33,10 @@ import UserSavedListsPage from "./pages/Main/User-Account/user-saved-lists";
 
 const App = () => {
 
-  const baseUrl = '/hapg'
-   const baseHDUrl = '/hapg/home-depot/*'
-  const authUrl = '/hapg/member/*'
-  const PortalUrl = '/hapg/portal/*'
+  const baseUrl = '/'
+   const baseHDUrl = '/home-depot/*'
+  const authUrl = '/member/*'
+  const PortalUrl = '/portal/*'
   const renderAuthRoutes = () => (
     <>
       <Route path='login' element={<LoginPage />} />
