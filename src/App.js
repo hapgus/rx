@@ -59,7 +59,6 @@ const App = () => {
       <Route path='add-user' element={<AddUserPage />} />
       <Route path='user-directory' element={<UserDirectoryPage />} />
       <Route path='admin-directory' element={<AdminDirectoryPage />} />
-
       <Route path="*" element={<NotFoundPage />} />
     </>
   )
@@ -69,7 +68,6 @@ const App = () => {
       <Route path='saved-lists' element={<UserSavedListsPage />} />
     </>
   )
-
 
   const renderMainRoutes = () => (
     <>
@@ -106,6 +104,5 @@ const App = () => {
     </Routes>
   )
 }
-
 
 export default App;
