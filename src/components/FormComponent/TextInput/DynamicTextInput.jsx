@@ -4,7 +4,7 @@ import { IconComponent } from "../../Icon/IconComponent";
 import { Label } from "../Label/Label";
 import { Feedback } from "../Feedback/Feedback";
 import styles from "./TextInput.module.css";
-import { useState, useEffect, useRef } from "react";
+
 
 
 // THE EXPORT

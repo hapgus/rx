@@ -23,9 +23,17 @@ const ModalContent = props => {
                     <div className={styles.infoModalContainer}>
                         <div className={styles.infoModal}>
                             <div className={styles.infoIconWrapper}>
-                                <div className={styles.infoIcon}>
-                                    <IconComponent iconType='errorInfo' />
-                                </div>
+
+                                {
+                                    props.iconType === 'errorInfo'
+                                        ? <div className={styles.infoErrorIcon}>
+                                            <IconComponent iconType={props.iconType || 'errorInfo'} />
+                                        </div>
+                                        : <div className={styles.infoIcon}>
+                                            <IconComponent iconType={props.iconType || 'infoIcon'} />
+                                        </div>
+                                }
+
                             </div>
                             <div className={styles.infoModalBodyWrapper}>
                                 <div className={styles.infoTitle}>
@@ -35,7 +43,7 @@ const ModalContent = props => {
                                     <PageText type="modalTertiaryTitle">{props.message}</PageText>
                                 </div>
                                 {/* {isModal.errorList > 0 &&  */}
-                                <ul>
+                                <ul className={styles.errorList}>
                                     {isModal?.errorList?.map((e, idx) => (
                                         <li key={idx}>
                                             <PageText>{e}</PageText>

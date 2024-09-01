@@ -8,7 +8,14 @@ const trimAndLowercase = (value) => {
   return value.trim().toLowerCase();
 };
 
+// const trimAndNormalizeSpaces = (value) => {
+//   return value.trim().replace(/\s+/g, ' ');
+// };
+
 const trimAndNormalizeSpaces = (value) => {
+  if (typeof value !== 'string') {
+    return ''; // Return an empty string if value is null, undefined, or not a string
+  }
   return value.trim().replace(/\s+/g, ' ');
 };
 

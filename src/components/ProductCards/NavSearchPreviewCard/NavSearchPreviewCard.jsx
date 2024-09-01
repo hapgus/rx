@@ -1,5 +1,5 @@
 
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 import { PageText } from '../../Text/Text';
 import styles from './NavSearchPreviewCard.module.css';
 import { useBuilderHook } from '../../../hooks/builder-hook';
@@ -10,7 +10,7 @@ import { LinkComponent } from '../../Links/LinkComponent';
 
 
 export const NavSearchPreviewCard = ({ products }) => {
-    const publicUrl = process.env.PUBLIC_URL;
+
 
     const { productsInList } = useBuilderHook();
 
@@ -19,14 +19,15 @@ export const NavSearchPreviewCard = ({ products }) => {
             const { title, subtitle, image, category } = product;
             const isProductInList = productsInList.some(p => p.title === product.title);
             const configuredProductURL = GenerateProductURL(category, title);
-            const productURL = `${publicUrl}${configuredProductURL}`;
+             const productURL = `${configuredProductURL}`;
+            // const productURL = `${publicUrl}${configuredProductURL}`;
             return (
                 <div key={idx} className={styles.searchResultsPreviewCardContainer}>
                     <div className={styles.searchResultsPreviewCardImageWrapper}>
                         <img
                         loading='lazy'
                             className={styles.searchResultsPreviewCardImage}
-                            src={`${process.env.REACT_APP_AWS_URL_IMAGE}/${image}`}
+                            src={`${process.env.REACT_APP_AWS_URL}/${image}`}
                             alt={`product ${title}`}
                         />
                     </div>

@@ -15,7 +15,7 @@ export const ActiveListPage = ({ isEditing }) => {
     const { listCount, productsInList, productsInListSaved, savedListCount } = useBuilderHook();
     const decodedToken = useAuthUser();
     const logout = useLogout();
-    const publicUrl = process.env.PUBLIC_URL;
+  
     console.log(savedListCount)
 
     const{isAuthenticated}=useAuth();

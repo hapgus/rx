@@ -1,3 +1,4 @@
+
 import { useNavigate } from "react-router";
 import { useForm } from "../../../hooks/form-hook";
 
@@ -12,15 +13,16 @@ import { useRoutingHook } from "../../../hooks/routing-hook";
 import { Button } from "../../Button/Button";
 import { appendFormDataWithLineBreak } from "../../../utils/form-helpers";
 import { validateProductForm, validateDynamicSections } from "../../../utils/form-validation";
-import { useState, useEffect } from "react";
+
+import { useState, useEffect, useRef } from "react";
 import { PageText } from "../../Text/Text";
 import { Checkbox } from "../../FormComponent/Checkbox/Checkbox";
 import ImageUpload from "../../FormComponent/ImageUpload/ImageUpload";
 import { DynamicSections } from "../../FormComponent/DynamicSectionsFormElement";
 import { useNotificationHook } from "../../../hooks/notification-hook";
-import { useAuth } from "../../../hooks/auth-hook";
-import { ResourceFormSection } from "../../FormComponent/Dynamic/ResourceFormSection";
+import { useProductsHook } from "../../../hooks/product-hook";
 
+import { useAuth } from "../../../hooks/auth-hook";
 import {
     useCategoryOptions,
     useColumnTitles,
@@ -32,16 +34,28 @@ import {
 import { useDynamicForm } from "../../../hooks/use-dynamic-form-hook";
 import { NumberInput } from "../../FormComponent/Number/NumberInput";
 import { StaticImageUpload } from "../../FormComponent/ImageUpload/StaticImageUpload";
+
+
 import { DynamicResourceFormSection } from "../../FormComponent/Dynamic/DynamicResourceFormSection";
+import { ResourceFormSection } from "../../FormComponent/Dynamic/ResourceFormSection";
+
+export const UpdateProductForm = ({ productId, productTemplate = false }) => {
 
 
-export const CreateProductForm = () => {
+
+    const [selectedFile, setSelectedFile] = useState(null);
+    const [previewUrl, setPreviewUrl] = useState(null);
+
+    const [selectedQrcode, setSelectedQrcode] = useState(null);
+    const [qrcodePreviewUrl, setQrcodePreviewUrl] = useState(null);
 
     const redirect = useNavigate();
-    const { sendRequest } = useHttpClient();
     const { authUserId } = useAuth();
-    const { isModal, setIsModal } = useNotificationHook();
+    const { publicProducts } = useProductsHook();
+    const { sendRequest } = useHttpClient();
     const { setIsRoutingState } = useRoutingHook();
+    const { isModal, setIsModal } = useNotificationHook();
+
 
     const options = useCategoryOptions();
     const columnTitleOptions = useColumnTitles();
@@ -53,12 +67,23 @@ export const CreateProductForm = () => {
     const [subcategoryOptions, setSubcategoryOptions] = useState([]);
     const [selectedColors, setSelectedColors] = useState([]);
     const [selectedLogos, setSelectedLogos] = useState([]);
-    const [sections, setSections] = useState([]);
+    const [initialValues, setInitialValues] = useState({});
+    const [initialSections, setInitialSections] = useState([]);
+    const [loadedProduct, setLoadedProduct] = useState();
 
-    const { handleSectionChange, handleChange, values } = useDynamicForm({ sections: [] });
+    // const { handleSectionChange, handleChange, values } = useDynamicForm({ sections: [] });
+    // const { handleSectionChange, handleChange, values } = useDynamicForm({ sections: [] });
+    const {
+        handleSectionChange,
+        setValues,
+        handleChange,
+        values,
 
-    const [formState, inputHandler] = useForm({
-        msrp: { value: '', isValid: false },
+    } = useDynamicForm(initialValues, initialSections, 'edit');
+
+
+    const [formState, inputHandler, setFormData] = useForm({
+        msrp: { value: 0, isValid: false },
         // image: { value: null, isValid: false },
         // qrcode: { value: null, isValid: false },
         title: { value: '', isValid: false },
@@ -109,37 +134,100 @@ export const CreateProductForm = () => {
         }
     };
 
-    const [selectedImage, setSelectedImage] = useState(null);
-    const [previewUrl, setPreviewUrl] = useState('');
-
-    const handleImageChange = (file) => {
-        setSelectedImage(file);
-        setPreviewUrl(URL.createObjectURL(file));
-    };
-
-    const [selectedQrcodeImage, setSelectedQrcodeImage] = useState(null);
-    const [previewQrcodeUrl, setPreviewQrcodeUrl] = useState('');
-
-    const handleQrcodeImageChange = (file) => {
-        setSelectedQrcodeImage(file);
-        setPreviewQrcodeUrl(URL.createObjectURL(file));
-    };
-
     const handleProductDirectoryModalClick = () => {
         setIsModal(prevState => ({ ...prevState, show: false }))
-        redirect('/portal/product-directory')
+        redirect('/hapg/portal/product-directory')
     }
 
 
-    console.log(values)
+    // const pickImageHandler = () => {
+    //     filePickerRef.current.click();
+    // }
 
+    const handleFileChange = (event) => {
+        if (!event.target.files || event.target.files.length === 0) { //NEW
+            return;
+        }
+        const file = event.target.files[0];
+        setSelectedFile(file);
+        setPreviewUrl(URL.createObjectURL(file));
+    };
+
+    const handleQrcodeFileChange = (event) => {
+        if (!event.target.files || event.target.files.length === 0) { //NEW
+            return;
+        }
+        const file = event.target.files[0];
+        setSelectedQrcode(file);
+        setQrcodePreviewUrl(URL.createObjectURL(file));
+    };
+
+
+    // SETTING FORM DATA
+    useEffect(() => {
+
+        if (productId) {
+
+            const fetchProductData = async () => {
+                try {
+                    const response = await sendRequest(`http://localhost:3005/product/${productId}`);
+                    const productData = await response.responseData.product;
+
+                    console.log('product', productData)
+                    setLoadedProduct(productData);
+                    setSelectedColors(productData?.colors || '')
+                    setSelectedLogos(productData?.logos || '')
+                    setInitialValues(productData?.sections || []);
+                    // setValues(productData?.sections || null);
+                    setPreviewUrl(`${process.env.REACT_APP_AWS_URL}/${productData?.image}`)
+                    setQrcodePreviewUrl(`${process.env.REACT_APP_AWS_URL}/${productData?.qrcode}`)
+                    // setPreviewUrl(`${publicUrl}/assets/image/products/${productData?.image}`)
+                    // setQrcodePreviewUrl(`${publicUrl}/assets/image/products/${productData?.image}`)
+                    setFormData({
+                        msrp: { value: productData.msrp || '', isValid: true },
+                        // image: { value: productData.image || '', isValid: true },
+                        // qrcode: { value: productData.qrcode || '', isValid: true },
+                        title: { value: productData.title, isValid: true },
+                        subtitle: { value: productData.subtitle, isValid: true },
+                        specSheetLink: { value: productData.specSheetLink || '', isValid: true },
+                        category: { value: productData.category, isValid: true },
+                        subcategory: { value: productData.subcategory, isValid: true },
+                        stylecategory: { value: productData.stylecategory || '', isValid: true },
+                        store: { value: productData.store, isValid: true },
+                        availability: { value: productData.availability || '', isValid: true },
+                        upc: { value: productData.upc.join('\n') || '', isValid: true },
+                        videos: { value: productData.videos.join('\n') || '', isValid: true },
+                        specTitle1: { value: productData.specTitle1.toLowerCase() || '', isValid: true },
+                        specTitle2: { value: productData.specTitle2.toLowerCase() || '', isValid: true },
+                        specTitle3: { value: productData.specTitle3.toLowerCase() || '', isValid: true },
+                        specTitle4: { value: productData.specTitle4.toLowerCase() || '', isValid: true },
+                        specList1: { value: productData.specList1.join('\n') || '', isValid: true },
+                        specList2: { value: productData.specList2.join('\n') || '', isValid: true },
+                        specList3: { value: productData.specList3.join('\n') || '', isValid: true },
+                        specList4: { value: productData.specList4.join('\n') || '', isValid: true },
+                    }, true);
+                    // setValues({
+                    //     ...productData,
+                    //     sections: productData.sections || [] // Assuming 'sections' is part of the fetched data
+                    // });
+                } catch (err) {
+                    console.error('Error fetching product data:', err);
+                }
+            };
+
+            fetchProductData();
+        }
+    }, [productId, sendRequest, setFormData]);
+
+    console.log('selected file', selectedFile)
     const handleFormSubmit = async (e) => {
         e.preventDefault();
 
-        const formErrors = validateProductForm(formState, selectedImage, selectedQrcodeImage)
+
+        const formErrors = validateProductForm(formState)
 
         // Validate the dynamic sections
-        // const formSectionErrors = validateDynamicSections(values.sections);
+        const formSectionErrors = validateDynamicSections(values.sections);
 
         // Combine all errors
         const errorMessage = [...formErrors];
@@ -163,11 +251,12 @@ export const CreateProductForm = () => {
                 cancelText: "Go back",
 
             }));
+
         } else {
             const formData = new FormData();
             // formData.append('image', formState.inputs.image.value)
-            formData.append('image', selectedImage)
-            formData.append('qrcode', selectedQrcodeImage)
+            formData.append('image', selectedFile || loadedProduct.image)
+            formData.append('qrcode', selectedQrcode || loadedProduct.qrcode)
 
             // formData.append('qrcode', formState.inputs.qrcode.value)
             formData.append('title', formState.inputs.title.value)
@@ -192,32 +281,18 @@ export const CreateProductForm = () => {
             appendFormDataWithLineBreak(formData, 'specList3', formState.inputs.specList3.value);
             appendFormDataWithLineBreak(formData, 'specList4', formState.inputs.specList4.value);
 
-            // Object.keys(values).forEach(key => {
-            //     if (key !== 'sections') {
-            //         formData.append(key, values[key]);
-            //     }
-            // });
+            Object.keys(values).forEach(key => {
+                if (key !== 'sections') {
+                    formData.append(key, values[key]);
+                }
+            });
 
-            // values.sections.forEach((section, index) => {
-            //     formData.append(`sections[${index}][resourceTitle]`, section.resourceTitle);
-            //     formData.append(`sections[${index}][resourceUrl]`, section.resourceUrl);
-            //     if (section.resourceQrCodeImage.length > 0) {
-            //         formData.append(`sections[${index}][resourceQrCodeImage]`, section.resourceQrCodeImage[0].file);
-            //     }
-            // });
-            sections.forEach((section, index) => {
+            values.sections.forEach((section, index) => {
                 formData.append(`sections[${index}][resourceTitle]`, section.resourceTitle);
                 formData.append(`sections[${index}][resourceUrl]`, section.resourceUrl);
-                if (section.resourceQrCodeImage instanceof File) {
-                    formData.append(`sections[${index}][resourceQrCodeImage]`, section.resourceQrCodeImage);
+                if (section.resourceQrCodeImage.length > 0) {
+                    formData.append(`sections[${index}][resourceQrCodeImage]`, section.resourceQrCodeImage[0].file);
                 }
-                // Check if resourceQrCodeImage is a valid string and not null or empty
-                // if (section.resourceQrCodeImage) {
-                //     formData.append(`sections[${index}][resourceQrCodeImage]`, section.resourceQrCodeImage);
-                // }
-                // if (section.resourceQrCodeImage.length > 0) {
-                //     formData.append(`sections[${index}][resourceQrCodeImage]`, section.resourceQrCodeImage[0].file);
-                // }
             });
             for (const logo of selectedLogos) {
                 formData.append('logos', logo);
@@ -227,49 +302,85 @@ export const CreateProductForm = () => {
             }
             formData.append('creator', authUserId);
 
+            console.log('form data', formData)
 
-            try {
-                const response = await sendRequest('http://localhost:3005/add-product',
-                    'POST',
-                    formData
-                )
-                if (response.responseStatusCode === 201) {
-                    setIsRoutingState(prevState => ({ ...prevState, isLoading: false }));
+            if (productTemplate === true) {
+                try {
+                    const response = await sendRequest('http://localhost:3005/add-product',
+                        'POST',
+                        formData
+                    )
+                    console.log(response)
+                    if (response.responseStatusCode === 201) {
+                        setIsRoutingState(prevState => ({ ...prevState, isLoading: false }));
 
-                    setIsModal(prevState => ({
-                        ...prevState,
-                        show: true,
-                        modalType: 'successModal',
-                        title: "Success",
-                        message: "Congrats! The product was added successfully.",
-                        errorList: errorMessage,
-                        onConfirm: () => setIsModal({ show: false }),
-                        onCancel: handleProductDirectoryModalClick,
+                        setIsModal(prevState => ({
+                            ...prevState,
+                            show: true,
+                            modalType: 'successModal',
+                            title: "Success",
+                            message: "Congrats! The product was added updated.",
+                            errorList: errorMessage,
+                            onConfirm: () => setIsModal({ show: false }),
+                            onCancel: () => setIsModal({ show: false }),
+                            // handleProductDirectoryModalClick,
+                            confirmText: "Close",
+                            cancelText: "Go to product directory",
 
-                        // () => setIsModal({ show: false })
+                        }));
+                    }
 
-                        // onCancel: () => setIsModal({ show: false }),
+                } catch (err) {
 
-                        // 
-                        confirmText: "Close",
-                        cancelText: "Go to product directory",
-
-                    }));
-
-                    // THIS MIGHT NOT BE NEEDED
-                    setTimeout(() => {
-                        // alert('Product updated successfully');
-                    }, 100);
+                    console.log(err)
                 }
-            } catch (err) {
+            } else {
+                try {
+                    const response = await sendRequest(`http://localhost:3005/edit-product/${productId}`,
+                        'PATCH',
+                        formData
+                    )
+                    if (response.message === 'Product updated') {
+                        setIsRoutingState(prevState => ({ ...prevState, isLoading: false }));
 
-                console.log(err)
+                        setIsModal(prevState => ({
+                            ...prevState,
+                            show: true,
+                            modalType: 'successModal',
+                            title: "Success",
+                            message: "Congrats! The product was updated successfully.",
+                            errorList: errorMessage,
+                            onConfirm: () => setIsModal({ show: false }),
+                            onCancel: handleProductDirectoryModalClick,
+                            confirmText: "Close",
+                            cancelText: "Go to product directory",
+
+                        }));
+
+                        // THIS MIGHT NOT BE NEEDED
+                        setTimeout(() => {
+                            // alert('Product updated successfully');
+                        }, 100);
+                    }
+
+                } catch (err) {
+
+                    console.log(err)
+                }
             }
-            console.log('is modal', isModal)
+
 
         }
 
+
     }
+
+    // console.log('is modal', isModal)
+
+
+    console.log('form state', formState)
+    // console.log('form data', formData)
+
     return (
         // <FormComponent onSubmit={handleFormSubmit}>
         <FormComponent>
@@ -287,27 +398,24 @@ export const CreateProductForm = () => {
                         // errorText='Please select a retailer'
                         validators={[]}
                         onInput={inputHandler}
+                        initialValue={formState.inputs.store.value}
+                        initialIsValid={formState.inputs.store.isValid}
                         options={[
-                            { value: "lg", label: "LG Generic" },
+                            { value: "LG US", label: "LG Generic" },
                             { value: "hd", label: "Home Depot" }
                         ]}
                     />
                     <Select
                         id='availability'
                         name="availability"
-                        labelName="Retailer"
+                        labelName="Availability"
                         // errorText='Please select a retailer'
                         validators={[]}
                         onInput={inputHandler}
+                        initialValue={formState.inputs.availability.value}
+                        initialIsValid={formState.inputs.availability.isValid}
+                        value={formState.inputs.availability.value}
                         options={availabilityOptions}
-                    />
-                    <NumberInput
-                        id="msrp"
-                        name="msrp"
-                        validators={[]}
-                        value={values.msrp}
-                        onInput={inputHandler}
-                        labelName="MSRP"
                     />
                     {/* <NumberInput
                         id="msrp"
@@ -316,6 +424,19 @@ export const CreateProductForm = () => {
                         onChange={handleChange}
                         labelName="MSRP"
                     /> */}
+                    <NumberInput
+                        id="msrp"
+                        name="msrp"
+                        labelName="MSRP"
+                        placeholder="Enter MSRP"
+                        validators={[]}
+                        initialValue={formState.inputs.msrp.value}
+                        initialIsValid={formState.inputs.msrp.isValid}
+                        onInput={inputHandler}
+                        min={0}
+                        max={10000}
+                        step={1}
+                    />
                 </div>
             </section>
 
@@ -334,6 +455,10 @@ export const CreateProductForm = () => {
                         errorText='Model title required'
                         validators={[VALIDATOR_REQUIRE()]}
                         onInput={inputHandler}
+                        // initialValue={formState.inputs.title.value} 
+                        initialValue={formState.inputs.title.value}
+                        initialIsValid={formState.inputs.title.isValid}
+
 
                     />
                     <TextInput
@@ -343,6 +468,8 @@ export const CreateProductForm = () => {
                         //  secondaryLabel='e.g. MXY8Z'
                         errorText=' Subtitle required'
                         validators={[VALIDATOR_REQUIRE()]}
+                        initialValue={formState.inputs.subtitle.value}
+                        initialIsValid={formState.inputs.subtitle.isValid}
                         onInput={inputHandler}
                     />
                 </div>
@@ -360,7 +487,8 @@ export const CreateProductForm = () => {
                         labelName="Category"
                         onInput={inputHandler}
                         validators={[]}
-
+                        initialValue={formState.inputs.category.value}
+                        initialIsValid={formState.inputs.category.isValid}
                         options={categoryOptions}
                     />
                     {formState.inputs.category.value && (
@@ -373,13 +501,13 @@ export const CreateProductForm = () => {
                             </div>
                             <div className={styles.dualRow}>
                                 <Select
-
-
                                     id='subcategory'
                                     name="subcategory"
                                     labelName="Subcategory"
                                     onInput={inputHandler}
                                     validators={[]}
+                                    initialValue={formState.inputs.subcategory.value}
+                                    initialIsValid={formState.inputs.subcategory.isValid}
                                     options={subcategoryOptions}
                                 />
                                 <TextInput
@@ -391,6 +519,8 @@ export const CreateProductForm = () => {
                                     noTouchValidation={true}
                                     validators={[]}
                                     onInput={inputHandler}
+                                    initialValue={formState.inputs.stylecategory.value}
+                                    initialIsValid={formState.inputs.stylecategory.isValid}
                                 />
                             </div>
                         </div>
@@ -416,6 +546,8 @@ export const CreateProductForm = () => {
                         labelName="Youtube videos"
                         secondaryLabel='Optional'
                         noTouchValidation={true}
+                        initialValue={formState.inputs.videos.value}
+                        initialIsValid={formState.inputs.videos.isValid}
                     />
                 </div>
             </section>
@@ -435,6 +567,8 @@ export const CreateProductForm = () => {
                         validators={[]}
                         onInput={inputHandler}
                         options={columnTitleOptions}
+                        initialValue={formState.inputs.specTitle1.value}
+                        initialIsValid={formState.inputs.specTitle1.isValid}
                     />
                     <TextArea
                         id="specList1"
@@ -445,6 +579,8 @@ export const CreateProductForm = () => {
                         validators={[]}
                         labelName="List One"
                         noTouchValidation={true}
+                        initialValue={formState.inputs.specList1.value}
+                        initialIsValid={formState.inputs.specList1.isValid}
                     />
                     <Select
                         id="specTitle2"
@@ -454,6 +590,9 @@ export const CreateProductForm = () => {
                         validators={[]}
                         onInput={inputHandler}
                         options={columnTitleOptions}
+                        initialValue={formState.inputs.specTitle2.value}
+                        initialIsValid={formState.inputs.specTitle2.isValid}
+
                     />
                     <TextArea
                         id="specList2"
@@ -464,6 +603,8 @@ export const CreateProductForm = () => {
                         validators={[]}
                         labelName="List Two"
                         noTouchValidation={true}
+                        initialValue={formState.inputs.specList2.value}
+                        initialIsValid={formState.inputs.specList2.isValid}
                     />
                     <Select
                         id="specTitle3"
@@ -473,6 +614,8 @@ export const CreateProductForm = () => {
                         validators={[]}
                         onInput={inputHandler}
                         options={columnTitleOptions}
+                        initialValue={formState.inputs.specTitle3.value}
+                        initialIsValid={formState.inputs.specTitle3.isValid}
                     />
                     <TextArea
                         id="specList3"
@@ -483,6 +626,8 @@ export const CreateProductForm = () => {
                         validators={[]}
                         labelName="List Three"
                         noTouchValidation={true}
+                        initialValue={formState.inputs.specList3.value}
+                        initialIsValid={formState.inputs.specList3.isValid}
                     />
                     <Select
                         id="specTitle4"
@@ -492,6 +637,8 @@ export const CreateProductForm = () => {
                         validators={[]}
                         onInput={inputHandler}
                         options={columnTitleOptions}
+                        initialValue={formState.inputs.specTitle4.value}
+                        initialIsValid={formState.inputs.specTitle4.isValid}
                     />
                     <TextArea
                         id="specList4"
@@ -502,6 +649,8 @@ export const CreateProductForm = () => {
                         validators={[]}
                         labelName="List Four"
                         noTouchValidation={true}
+                        initialValue={formState.inputs.specList4.value}
+                        initialIsValid={formState.inputs.specList4.isValid}
                     />
 
                 </div>
@@ -560,6 +709,8 @@ export const CreateProductForm = () => {
                         validators={[]}
                         labelName="UPC Code"
                         noTouchValidation={true}
+                        initialValue={formState.inputs.upc.value}
+                        initialIsValid={formState.inputs.upc.isValid}
                     />
                 </div>
             </section>
@@ -572,23 +723,23 @@ export const CreateProductForm = () => {
 
                 </div>
                 <div className={styles.sectionContent}>
+                    {/* <StaticImageUpload iconType='qrCode' /> */}
+                    <StaticImageUpload
+                        iconType='imageFile'
+                        handleFileChange={handleFileChange}
+                        previewUrl={previewUrl}
+                        selectedFile={selectedFile}
+                    //  pickImageHandler={pickImageHandler}
+                    />
                     {/* <ImageUpload
                         id='image'
                         onInput={inputHandler}
                     /> */}
-                    <StaticImageUpload
-                        iconType='imageFile'
-                        itemName='Image'
-                        previewUrl={previewUrl}
-                        selectedFile={selectedImage}
-                        handleFileChange={(e) => handleImageChange(e.target.files[0])}
-
-                    />
                 </div>
             </section>
             <section className={styles.section}>
                 <div className={styles.sectionHeader}>
-                    <PageText type="pageTitle">Add a Specification Sheet Link and Qrcode </PageText>
+                    <PageText type="pageTitle">Specification Sheet Link and Qrcode Image Upload </PageText>
                     <PageText type="pageTertiaryTitle">Add external spec sheet url and the associated qr code image files</PageText>
 
                 </div>
@@ -602,39 +753,56 @@ export const CreateProductForm = () => {
                         // errorText=' Subtitle required'
                         validators={[]}
                         onInput={inputHandler}
+                        initialValue={formState.inputs.specSheetLink.value}
+                        initialIsValid={formState.inputs.specSheetLink.isValid}
+
                     />
                     {/* <ImageUpload
                         id='qrcode'
                         onInput={inputHandler}
                     /> */}
-
                     <StaticImageUpload
                         iconType='qrCode'
-                        itemName='Qrcode'
-                        previewUrl={previewQrcodeUrl}
-                        selectedFile={selectedQrcodeImage}
-                        handleFileChange={(e) => handleQrcodeImageChange(e.target.files[0])}
-
+                        handleFileChange={handleQrcodeFileChange}
+                        previewUrl={qrcodePreviewUrl}
+                        selectedFile={selectedQrcode}
+                    //  pickImageHandler={pickImageHandler}
                     />
                 </div>
             </section>
-            <section className={styles.section}>
+            {/* <section className={styles.section}>
                 <div className={styles.sectionHeader}>
                     <PageText type="pageTitle">Resource Links</PageText>
                     <PageText type="pageTertiaryTitle">Build links to external resources</PageText>
                 </div>
-                <ResourceFormSection initialSections={[]} onSectionsChange={setSections} />
-                {/* <DynamicResourceFormSection
-                    sections={values.sections}
-                    onChange={handleSectionChange}
-                /> */}
-                {/* <div className={styles.sectionContent}>
+                <div className={styles.sectionContent}>
+
                     <DynamicSections
                         sections={values.sections}
                         onChange={handleSectionChange}
                     />
-                </div> */}
+                </div>
+
+            </section> */}
+
+            <section className={styles.section}>
+                <div className={styles.sectionHeader}>
+                    <PageText type="pageTitle">Add Resources Groups</PageText>
+                    <PageText type="pageTertiaryTitle">Press 'Add Group' to create a new resource. Provide a button text and destination URL, then upload a QR code image. The button will link to the URL on the website, and in print mode, the QR code will provide quick access to the same link</PageText>
+                </div>
+                <ResourceFormSection
+                initialSections={}
+                />
+                {/* <DynamicResourceFormSection
+                    sections={values.sections}
+                    onChange={handleSectionChange}
+                /> */}
+                <div className={styles.sectionContent}>
+
+
+                </div>
             </section>
+
 
             <div className={styles.formButtonWrapper}>
 

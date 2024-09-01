@@ -8,7 +8,12 @@ import { useState, useEffect, useCallback } from "react";
 //     const [isSubmitting, setIsSubmitting] = useState(false);
 
     
-export const useDynamicForm = (initialValues = {}, initialSections = [], mode = 'create') => {
+export const useDynamicForm = (
+
+    initialValues = {}, 
+    initialSections = [], 
+    mode = 'create'
+) => {
     const [values, setValues] = useState({
         ...initialValues,
         sections: initialSections,
@@ -80,6 +85,7 @@ export const useDynamicForm = (initialValues = {}, initialSections = [], mode = 
 
     return {
         values,
+        setValues,
         errors,
         isSubmitting,
         handleChange,

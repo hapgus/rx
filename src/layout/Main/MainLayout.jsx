@@ -95,10 +95,10 @@ export default function Layout() {
     return (
         <>
             <PrintScreen />
-            
+
             {isRoutingState.isLoading && <Loader />}
             {isRoutingState.isShowScrollToTopButton && <ScrollToTop />}
-            {isRoutingState.isProductListDropdownOpen && <ProductListDropdown/>}
+            {isRoutingState.isProductListDropdownOpen && <ProductListDropdown />}
             {isAlert.show && (
                 <ProductGuideAlerts
                     onClick={() => setIsAlert({ ...isAlert, show: false })}
@@ -109,7 +109,8 @@ export default function Layout() {
             )}
             {isModal.show &&
                 <Modal
-                modalType={isModal.modalType}
+                    modalType={isModal.modalType}
+                    iconType={isModal.iconType}
                     show={isModal.show}
                     title={isModal.title}
                     message={isModal.message}

@@ -8,9 +8,16 @@ export const PortalPageHeader = ({ pageTitle, pageDescription }) => {
 
     return (
         <div className={styles.headerContainer}>
-            {pageTitle ? <PageText type='pageTitle'>{pageTitle}</PageText> : null}
+
+            {pageTitle ?
+                <div className={styles.title}>
+                    <PageText >{pageTitle}</PageText>
+                </div>
+                : null}
             {pageDescription ?
-                <PageText type='pageSubtitle'>{pageDescription}</PageText>
+                <div className={styles.description}>
+                    <PageText >{pageDescription}</PageText>
+                </div>
                 : null
             }
         </div>
@@ -36,12 +43,16 @@ export const PortalPageWrapper = ({ children, pageTitle, pageDescription, type =
                 <div className={styles.pageBodyContainer}>
 
 
-                    <div className={styles.pageHeaderWrapper}>
-                        <PortalPageHeader
-                            pageTitle={pageTitle}
-                            pageDescription={pageDescription}
-                        />
-                    </div>
+                    {
+                        pageTitle && pageDescription &&
+                        <div className={styles.pageHeaderWrapper}>
+                            <PortalPageHeader
+                                pageTitle={pageTitle}
+                                pageDescription={pageDescription}
+                            />
+                        </div>
+                    }
+
 
                     <div className={styles.pageBodyWrapper}>
                         {children}

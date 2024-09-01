@@ -13,6 +13,7 @@ import { useRoutingHook } from "../../../hooks/routing-hook";
 import { Button } from "../../Button/Button";
 import { appendFormDataWithLineBreak } from "../../../utils/form-helpers";
 import { validateProductForm, validateDynamicSections } from "../../../utils/form-validation";
+
 import { useState, useEffect, useRef } from "react";
 import { PageText } from "../../Text/Text";
 import { Checkbox } from "../../FormComponent/Checkbox/Checkbox";
@@ -21,7 +22,7 @@ import { DynamicSections } from "../../FormComponent/DynamicSectionsFormElement"
 import { useNotificationHook } from "../../../hooks/notification-hook";
 import { useProductsHook } from "../../../hooks/product-hook";
 
-
+import { useAuth } from "../../../hooks/auth-hook";
 import {
     useCategoryOptions,
     useColumnTitles,
@@ -36,17 +37,18 @@ import { StaticImageUpload } from "../../FormComponent/ImageUpload/StaticImageUp
 
 
 import { DynamicResourceFormSection } from "../../FormComponent/Dynamic/DynamicResourceFormSection";
-
+import { ResourceFormSection } from "../../FormComponent/Dynamic/ResourceFormSection";
 
 export const UpdateProductForm = ({ productId, productTemplate = false }) => {
 
-    const publicUrl = process.env.PUBLIC_URL;
-
     const [selectedFile, setSelectedFile] = useState(null);
     const [previewUrl, setPreviewUrl] = useState(null);
-    const [qrcodePreviewUrl, setQrcodePreviewUrl] = useState(null);
-    const redirect = useNavigate();
 
+    const [selectedQrcode, setSelectedQrcode] = useState(null);
+    const [qrcodePreviewUrl, setQrcodePreviewUrl] = useState(null);
+
+    const redirect = useNavigate();
+    const { authUserId } = useAuth();
     const { publicProducts } = useProductsHook();
     const { sendRequest } = useHttpClient();
     const { setIsRoutingState } = useRoutingHook();
@@ -63,17 +65,25 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
     const [subcategoryOptions, setSubcategoryOptions] = useState([]);
     const [selectedColors, setSelectedColors] = useState([]);
     const [selectedLogos, setSelectedLogos] = useState([]);
-    const [initialValues, setInitialValues] = useState({});
+    const [sections, setSections] = useState([]);
     const [initialSections, setInitialSections] = useState([]);
+    const [loadedProduct, setLoadedProduct] = useState();
 
     // const { handleSectionChange, handleChange, values } = useDynamicForm({ sections: [] });
     // const { handleSectionChange, handleChange, values } = useDynamicForm({ sections: [] });
-    const { handleSectionChange, handleChange, values, handleSubmit } = useDynamicForm(initialValues, initialSections, 'edit');
+    // const {
+    //     handleSectionChange,
+    //     setValues,
+    //     handleChange,
+    //     values,
+
+    // } = useDynamicForm(initialValues, initialSections, 'edit');
+
 
     const [formState, inputHandler, setFormData] = useForm({
         msrp: { value: 0, isValid: false },
-        image: { value: null, isValid: false },
-        qrcode: { value: null, isValid: false },
+        // image: { value: null, isValid: false },
+        // qrcode: { value: null, isValid: false },
         title: { value: '', isValid: false },
         subtitle: { value: '', isValid: false },
         specSheetLink: { value: '', isValid: false },
@@ -141,26 +151,61 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
         setPreviewUrl(URL.createObjectURL(file));
     };
 
+    const handleQrcodeFileChange = (event) => {
+        if (!event.target.files || event.target.files.length === 0) { //NEW
+            return;
+        }
+        const file = event.target.files[0];
+        setSelectedQrcode(file);
+        setQrcodePreviewUrl(URL.createObjectURL(file));
+    };
+
+
     // SETTING FORM DATA
     useEffect(() => {
 
         if (productId) {
-            
+
             const fetchProductData = async () => {
                 try {
                     const response = await sendRequest(`http://localhost:3005/product/${productId}`);
                     const productData = await response.responseData.product;
 
                     console.log('product', productData)
+                    setLoadedProduct(productData);
                     setSelectedColors(productData?.colors || '')
                     setSelectedLogos(productData?.logos || '')
-                    setInitialSections(productData?.sections || []);
-                    setPreviewUrl(`${publicUrl}/assets/image/products/${productData?.image}`)
-                    setQrcodePreviewUrl(`${publicUrl}/assets/image/products/${productData?.image}`)
+
+                    // Initialize sections with both the original file path and full preview URL
+                    const initializedSections = (productData?.sections || []).map(section => ({
+                        ...section,
+                        originalResourceQrCodeImage: section.resourceQrCodeImage,  // Original file path
+                        resourceQrCodeImage: section.resourceQrCodeImage
+                            ? `${process.env.REACT_APP_AWS_URL}/${section.resourceQrCodeImage}`  // Full URL for preview
+                            : ''  // Default to an empty string if no image
+                    }));
+                    // Initialize sections with full URLs for existing images
+
+                    // const initializedSections = (productData?.sections || []).map(section => ({
+                    //     ...section,
+                    //     resourceQrCodeImage: section.resourceQrCodeImage
+                    //         ? `${process.env.REACT_APP_AWS_URL}/${section.resourceQrCodeImage}`
+                    //         : '' // Default to an empty string if no image
+                    // }));
+
+                    setInitialSections(initializedSections);
+                    setSections(initializedSections);
+
+                    // setInitialSections(productData?.sections || []);
+                    // setValues(productData?.sections || null);
+                    setPreviewUrl(`${process.env.REACT_APP_AWS_URL}/${productData?.image}`)
+                    setQrcodePreviewUrl(`${process.env.REACT_APP_AWS_URL}/${productData?.qrcode}`)
+                    // setPreviewUrl(`${publicUrl}/assets/image/products/${productData?.image}`)
+                    // setQrcodePreviewUrl(`${publicUrl}/assets/image/products/${productData?.image}`)
                     setFormData({
                         msrp: { value: productData.msrp || '', isValid: true },
-                        image: { value: productData.image || '', isValid: true },
-                        qrcode: { value: productData.qrcode || '', isValid: true },
+                        // image: { value: productData.image || '', isValid: true },
+                        // qrcode: { value: productData.qrcode || '', isValid: true },
                         title: { value: productData.title, isValid: true },
                         subtitle: { value: productData.subtitle, isValid: true },
                         specSheetLink: { value: productData.specSheetLink || '', isValid: true },
@@ -193,7 +238,6 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
         }
     }, [productId, sendRequest, setFormData]);
 
-
     const handleFormSubmit = async (e) => {
         e.preventDefault();
 
@@ -201,11 +245,11 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
         const formErrors = validateProductForm(formState)
 
         // Validate the dynamic sections
-        const formSectionErrors = validateDynamicSections(values.sections);
+        // const formSectionErrors = validateDynamicSections(values.sections);
 
         // Combine all errors
-        // const errorMessage = [...formErrors, ...formSectionErrors];
-        const errorMessage = [...formErrors, ...formSectionErrors.map(error => `${error.section + 1}: ${error.message}`)];
+        const errorMessage = [...formErrors];
+        // const errorMessage = [...formErrors, ...formSectionErrors.map(error => `${error.section + 1}: ${error.message}`)];
         console.log(errorMessage)
         if (errorMessage.length !== 0) {
             // setIsModal(prevState => ({
@@ -225,11 +269,13 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
                 cancelText: "Go back",
 
             }));
+
         } else {
             const formData = new FormData();
-            formData.append('image', formState.inputs.image.value)
+            formData.append('image', selectedFile || loadedProduct.image)
+            formData.append('qrcode', selectedQrcode || loadedProduct.qrcode)
 
-            formData.append('qrcode', formState.inputs.qrcode.value)
+            // formData.append('qrcode', formState.inputs.qrcode.value)
             formData.append('title', formState.inputs.title.value)
             formData.append('msrp', formState.inputs.msrp.value)
             formData.append('subtitle', formState.inputs.subtitle.value)
@@ -252,17 +298,17 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
             appendFormDataWithLineBreak(formData, 'specList3', formState.inputs.specList3.value);
             appendFormDataWithLineBreak(formData, 'specList4', formState.inputs.specList4.value);
 
-            Object.keys(values).forEach(key => {
-                if (key !== 'sections') {
-                    formData.append(key, values[key]);
-                }
-            });
 
-            values.sections.forEach((section, index) => {
+            sections.forEach((section, index) => {
                 formData.append(`sections[${index}][resourceTitle]`, section.resourceTitle);
                 formData.append(`sections[${index}][resourceUrl]`, section.resourceUrl);
-                if (section.resourceQrCodeImage.length > 0) {
-                    formData.append(`sections[${index}][resourceQrCodeImage]`, section.resourceQrCodeImage[0].file);
+
+                if (section.resourceQrCodeImage instanceof File) {
+                    // New file selected
+                    formData.append(`sections[${index}][resourceQrCodeImage]`, section.resourceQrCodeImage);
+                } else if (section.resourceQrCodeImage) {
+                    // Original image path should be preserved
+                    formData.append(`sections[${index}][resourceQrCodeImage]`, section.originalResourceQrCodeImage);
                 }
             });
             for (const logo of selectedLogos) {
@@ -271,9 +317,9 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
             for (const color of selectedColors) {
                 formData.append('colors', color);
             }
-            formData.append('creator', '669d89abd83506711b144161');
+            formData.append('creator', authUserId);
 
-            console.log('form data', formData)
+
 
             if (productTemplate === true) {
                 try {
@@ -281,7 +327,8 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
                         'POST',
                         formData
                     )
-                    if (response.message === 'Product added') {
+               
+                    if (response.responseStatusCode === 201) {
                         setIsRoutingState(prevState => ({ ...prevState, isLoading: false }));
 
                         setIsModal(prevState => ({
@@ -289,19 +336,15 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
                             show: true,
                             modalType: 'successModal',
                             title: "Success",
-                            message: "Congrats! The product was added successfully.",
+                            message: "Congrats! The product was added updated.",
                             errorList: errorMessage,
                             onConfirm: () => setIsModal({ show: false }),
-                            onCancel: handleProductDirectoryModalClick,
+                            onCancel: () => setIsModal({ show: false }),
+                            // handleProductDirectoryModalClick,
                             confirmText: "Close",
                             cancelText: "Go to product directory",
 
                         }));
-
-                        // THIS MIGHT NOT BE NEEDED
-                        setTimeout(() => {
-                            // alert('Product updated successfully');
-                        }, 100);
                     }
 
                 } catch (err) {
@@ -351,12 +394,14 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
 
     // console.log('is modal', isModal)
 
-
-    // console.log('form state', formState)
+    console.log('sections', sections)
+    console.log('initial sections', initialSections)
+    console.log('form state', formState)
+    // console.log('form data', formData)
 
     return (
         // <FormComponent onSubmit={handleFormSubmit}>
-             <FormComponent>
+        <FormComponent>
 
             <section className={styles.section}>
                 <div className={styles.sectionHeader}>
@@ -696,16 +741,22 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
 
                 </div>
                 <div className={styles.sectionContent}>
-                    <StaticImageUpload iconType='qrCode' />
-                    <ImageUpload
+                    {/* <StaticImageUpload iconType='qrCode' /> */}
+                    <StaticImageUpload
+                        iconType='imageFile'
+                        handleFileChange={handleFileChange}
+                        previewUrl={previewUrl}
+                        selectedFile={selectedFile}
+                    />
+                    {/* <ImageUpload
                         id='image'
                         onInput={inputHandler}
-                    />
+                    /> */}
                 </div>
             </section>
             <section className={styles.section}>
                 <div className={styles.sectionHeader}>
-                    <PageText type="pageTitle">Add a Specification Sheet Link and Qrcode </PageText>
+                    <PageText type="pageTitle">Specification Sheet Link and Qrcode Image Upload </PageText>
                     <PageText type="pageTertiaryTitle">Add external spec sheet url and the associated qr code image files</PageText>
 
                 </div>
@@ -723,19 +774,20 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
                         initialIsValid={formState.inputs.specSheetLink.isValid}
 
                     />
-                    <ImageUpload
+                    {/* <ImageUpload
                         id='qrcode'
                         onInput={inputHandler}
-                    />
+                    /> */}
                     <StaticImageUpload
-                        iconType='imageFile'
-                        handleFileChange={handleFileChange}
-                        previewUrl={previewUrl}
+                        iconType='qrCode'
+                        handleFileChange={handleQrcodeFileChange}
+                        previewUrl={qrcodePreviewUrl}
+                        selectedFile={selectedQrcode}
                     //  pickImageHandler={pickImageHandler}
                     />
                 </div>
             </section>
-            <section className={styles.section}>
+            {/* <section className={styles.section}>
                 <div className={styles.sectionHeader}>
                     <PageText type="pageTitle">Resource Links</PageText>
                     <PageText type="pageTertiaryTitle">Build links to external resources</PageText>
@@ -747,21 +799,22 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
                         onChange={handleSectionChange}
                     />
                 </div>
-                
-            </section>
+
+            </section> */}
 
             <section className={styles.section}>
                 <div className={styles.sectionHeader}>
                     <PageText type="pageTitle">Add Resources Groups</PageText>
                     <PageText type="pageTertiaryTitle">Press 'Add Group' to create a new resource. Provide a button text and destination URL, then upload a QR code image. The button will link to the URL on the website, and in print mode, the QR code will provide quick access to the same link</PageText>
                 </div>
-
+                <ResourceFormSection initialSections={initialSections} onSectionsChange={setSections} />
+                {/* <DynamicResourceFormSection
+                    sections={values.sections}
+                    onChange={handleSectionChange}
+                /> */}
                 <div className={styles.sectionContent}>
 
-                    <DynamicResourceFormSection
-                        sections={values.sections}
-                        onChange={handleSectionChange}
-                    />
+
                 </div>
             </section>
 

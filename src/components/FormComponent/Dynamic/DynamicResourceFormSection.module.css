@@ -1,25 +1,74 @@
-.a{
-    background-color: aqua;
+.mainContainer{
+    padding: 2rem 0;
+  
 }
-.b{
-    background-color: aquamarine;
+.headerWrapper{
+    /* background-color: aquamarine; */
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
 }
-.countWrapper{
+
+.headerCountWrapper{
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 1rem;
 }
+
+.bodyWrapper{
+    padding: 2rem 0;
+   /* background-color: var(--color-gray-04); */
+   
+}
+.resourceGroupWrapper{
+    /* background-color: var(--color-gray-05); */
+    border-top: 1px solid var(--color-gray-04);
+    padding: 2rem;
+}
+.groupContainer{}
+.groupHeader{
+    padding-bottom: 2rem;
+}
+.groupHeaderTitle{}
+.groupFormElementsWrapper{
+    width: 50%;
+}
+.formElementsInputs{}
+.formElementsUploader{}
+.groupFooter{}
+.footerButtonWrapper{
+    display: flex;
+}
+.footerButtonWrapper button{
+    width: max-content;
+}
+
+
+
 .groupTitle{
-    padding: 1rem;
+    /* padding: 1rem; */
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 1rem;
+}
+.formElementsWrapper{
+    display: flex;
+    flex-direction: column;
+   /* align-items: center; */
+ 
+    border: 1px solid black;
+    width: 50%;
+}
+.inputsWrapper{
+
+    display: flex;
+    flex-direction: column;
+}
+.uploadsWrapper{
+ 
 }
 .buttonWrapper{
     display: flex;
@@ -27,17 +76,12 @@
 .buttonWrapper button{
     max-width: max-content;
 }
-.formElementsWrapper{
-    display: flex;
-    flex-direction: column;
-   /* align-items: center; */
-    background-color: aqua;
-    border: 1px solid black;
-}
+
 .groupContainer{
-    background-color: bisque;
+ 
 }
 .groupFormElements{
     display: flex;
     flex-direction: column;
 }
+

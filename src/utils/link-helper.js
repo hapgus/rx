@@ -78,16 +78,16 @@ export const GenerateProductURL = (category, productTitle) => {
 };
 
 
-export const homeLink = process.env.PUBLIC_URL;
-export const homeDepotRoot = `${homeLink}/home-depot/`
-export const portalLink = `${homeLink}/portal/dashboard`;
+export const homeLink = '/';
+export const homeDepotRoot = `/home-depot/`
+export const portalLink = `/portal/dashboard`;
 
 // export const rootUrl = 
 
 export const resourceLinks = [
-    { href: `${publicUrl}/feature-definitions`, text: 'Feature Definitions' },
-    { href: `${publicUrl}/warranties`, text: 'Limited Warranties' },
-    { href: `${publicUrl}/model-transitions`, text: 'Model Transitions' }
+    { href: `/feature-definitions`, text: 'Feature Definitions' },
+    { href: `/warranties`, text: 'Limited Warranties' },
+    { href: `/model-transitions`, text: 'Model Transitions' }
 ];
 
 export const stepUpChartLinks = [
@@ -127,15 +127,15 @@ export const allCategoryLinks = [
     { href: `${publicUrl}/appliances/`, text: 'All Home Appliances' }
 ];
 export const allCategoryLink = [
-    { href: `${publicUrl}/appliances/`, text: 'All Home Appliances' }
+    { href: `/appliances/`, text: 'All Home Appliances' }
 ];
 export const navCategoryLinks = [
-    { href: `${homeLink}/appliances/air-care`, text: 'Air Care' },
-    { href: `${publicUrl}/appliances/cooking`, text: 'Cooking' },
-    { href: `${publicUrl}/appliances/dishwashers`, text: 'Dishwashers' },
-    { href: `${publicUrl}/appliances/laundry`, text: 'Laundry' },
-    { href: `${publicUrl}/appliances/refrigeration`, text: 'Refrigeration' },
-    { href: `${publicUrl}/appliances/vacuums`, text: 'Vacuums' },
+    { href: `/appliances/air-care`, text: 'Air Care' },
+    { href: `/appliances/cooking`, text: 'Cooking' },
+    { href: `/appliances/dishwashers`, text: 'Dishwashers' },
+    { href: `/appliances/laundry`, text: 'Laundry' },
+    { href: `/appliances/refrigeration`, text: 'Refrigeration' },
+    { href: `/appliances/vacuums`, text: 'Vacuums' },
     // { href: `${publicUrl}/appliances/air-care`, text: 'Air Care' },
     // { href: `${publicUrl}/appliances/cooking`, text: 'Cooking' },
     // { href: `${publicUrl}/appliances/dishwashers`, text: 'Dishwashers' },
@@ -145,12 +145,12 @@ export const navCategoryLinks = [
     // { href: `${publicUrl}/appliances/`, text: 'Explore' }
 ];
 export const navSecondaryCategoryLinks = [
-    { href: `${publicUrl}/appliances/signature`, text: 'LG Signature' },
-    { href: `${publicUrl}/appliances/studio`, text: 'LG Studio' },
+    { href: `/appliances/signature`, text: 'LG Signature' },
+    { href: `/appliances/studio`, text: 'LG Studio' },
 ];
 
 export const exclusiveLinks = [
-    { href: `${publicUrl}/product-list-builder`, text: 'Product List Builder' },
+    { href: `/product-list-builder`, text: 'Product List Builder' },
 ];
 
 
@@ -171,10 +171,10 @@ export const accountLinks = [
     // { href: `${publicUrl}/member/forgot-password`, text: 'Test Forgot Password' },
 
     // { href: `${publicUrl}/member/sign-up`, text: 'Sign up' },
-    { href: `${publicUrl}/portal/dashboard`, text: 'Admin Portal' },
-    { href: `${publicUrl}/saved-lists`, text: 'My saved lists' },
-    { href: `${publicUrl}/profile`, text: 'My account' },
-    { href: `${publicUrl}/sign-out`, text: 'Sign out' },
+    { href: `/portal/dashboard`, text: 'Admin Portal' },
+    { href: `/saved-lists`, text: 'My saved lists' },
+    { href: `/profile`, text: 'My account' },
+    // { href: `${publicUrl}/sign-out`, text: 'Sign out' },
     // { href: '/portal/dashboard', text: 'Test Portal Dash' },
     // { href: '/portal/analytics', text: 'Test portal analytics' },
     // { href: '/portal/add-product', text: 'Test Add product' },
@@ -190,9 +190,12 @@ export const activeUserAccountLinks = [
     { href: `${publicUrl}/saved-lists`, text: 'My account' },
 ]
 export const publicAccountLinks = [
-
-    { href: `${publicUrl}/member/sign-up`, text: 'Sign up' },
+    { href: `${publicUrl}/profile`, text: 'My account' },
+    // { href: `${publicUrl}/member/sign-up`, text: 'Create account' },
+]
+export const inactivePublicAccountLinks = [
     { href: `${publicUrl}/member/login`, text: 'Sign in' },
+    { href: `${publicUrl}/member/sign-up`, text: 'Create account' },
 ]
 export const onboardingLinks = [
     { href: '/sign-up', text: 'Sign Up' },
@@ -206,17 +209,27 @@ export const portalDashLinks = [
     { href: `${publicUrl}/portal/analytics`, text: 'Analytics' },
 ]
 
-export const portalFormLinks = [
+export const superPortalFormLinks = [
     { href: `${publicUrl}/portal/add-product`, text: 'Product Form' },
     { href: `${publicUrl}/portal/add-user`, text: 'User Form' },
 ]
+export const portalFormLinks = [
+    { href: `${publicUrl}/portal/add-product`, text: 'Product Form' },
+    // { href: `${publicUrl}/portal/add-user`, text: 'User Form' },
+]
 
-
-export const portalTableLinks = [
+export const superPortalTableLinks = [
 
     { href: `${publicUrl}/portal/product-directory`, text: 'Product Table' },
     { href: `${publicUrl}/portal/user-directory`, text: 'Member Table' },
     { href: `${publicUrl}/portal/admin-directory`, text: 'Admin Table' },
+    // { href: '/portal/user-directory', text: 'Test see user directory' },
+]
+export const portalTableLinks = [
+
+    { href: `${publicUrl}/portal/product-directory`, text: 'Product Table' },
+    { href: `${publicUrl}/portal/user-directory`, text: 'Member Table' },
+    // { href: `${publicUrl}/portal/admin-directory`, text: 'Admin Table' },
     // { href: '/portal/user-directory', text: 'Test see user directory' },
 ]
 

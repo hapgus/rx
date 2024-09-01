@@ -57,11 +57,11 @@ export const SignupForm = () => {
     };
     const handleHomeModalClick = () => {
         setIsModal(prevState => ({ ...prevState, show: false }))
-        redirect('/hapg/')
+        redirect('/')
     }
     const handleCloseModalClick = () => {
         // resetForm();
-         redirect('/hapg/member/login') 
+         redirect('/member/login') 
          setIsModal(prevState => ({ ...prevState, show: false }))
       
         console.log('clicked')
@@ -114,20 +114,20 @@ export const SignupForm = () => {
                     }
                     // formData
                 )
-                if (response.message === 'New user added.') {
+                if (response.responseStatusCode === 201) {
                     setIsRoutingState(prevState => ({ ...prevState, isLoading: false }));
 
                     setIsModal(prevState => ({
                         ...prevState,
                         show: true,
                         modalType: 'successModal',
-                        title: "Success",
-                        message: "Your sign up request has been sent! Once approved, you should receive an approval confirmation from us. In the meantime, explore our Home Appliance Product Guide.",
+                        title: "Signup Request Submitted!",
+                        message: "Thank you for signing up! We’re reviewing your request and will send you a confirmation email once it’s approved. While you wait, feel free to explore our Home Appliance Product Guide.",
                         errorList: errorMessage,
                         onConfirm:handleCloseModalClick, 
                         onCancel: handleHomeModalClick,
                         confirmText: "Close",
-                        cancelText: "Go to LG Product Guide",
+                        cancelText: "Go to the LG Product Guide",
 
                     }));
 
@@ -140,13 +140,8 @@ export const SignupForm = () => {
 
                 console.log(err)
             }
-            console.log('is modal', isModal)
-
         }
-
     };
-
-    console.log('sign up', formState)
     return (
         // <FormComponent onSubmit={submitForm}>
         <FormComponent >

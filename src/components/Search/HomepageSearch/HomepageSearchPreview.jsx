@@ -1,20 +1,23 @@
 import styles from './HomepageSearchPreview.module.css';
-import { useProductsHook } from '../../../hooks/product-hook';
+// import { useProductsHook } from '../../../hooks/product-hook';
 import { useSearchHook } from '../../../hooks/search-hook';
 import { useResponsiveStateHook } from '../../../hooks/responsive-hook';
-import { IconComponent } from '../../Icon/IconComponent';
-import { SearchPreviewCard } from '../../ProductCards/SearchPreview/SearchPreviewCard';
+
 import { HomepageSearchPreviewCard } from '../../ProductCards/HomepageSearchPreviewCard/HomepageSearchPreviewCard';
 
 export const HomepageSearchPreview = () => {
 
 
-    const { publicProducts } = useProductsHook();
+    // const { publicProducts } = useProductsHook();
     const { isMobile } = useResponsiveStateHook();
-    const { isMobileSearchState, isHomepageSearchState, isDesktopSearchState } = useSearchHook();
-    const productDataSearch = publicProducts;
-    const mobileSearchResultsCount = isMobileSearchState.isSearchResults.length > 0 ? isMobileSearchState.isSearchResults.length : 0
-    const desktopSearchResultsCount = isDesktopSearchState.isSearchResults.length > 0 ? isDesktopSearchState.isSearchResults.length : 0
+    const { 
+        // isMobileSearchState, 
+        isHomepageSearchState, 
+        // isDesktopSearchState 
+    } = useSearchHook();
+    // const productDataSearch = publicProducts;
+    // const mobileSearchResultsCount = isMobileSearchState.isSearchResults.length > 0 ? isMobileSearchState.isSearchResults.length : 0
+    // const desktopSearchResultsCount = isDesktopSearchState.isSearchResults.length > 0 ? isDesktopSearchState.isSearchResults.length : 0
 
 
 

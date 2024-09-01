@@ -6,7 +6,9 @@ import { Button } from '../../Button/Button';
 // import { NavigationLink } from "../../NavigationComponent/NavigationLink";
 
 
-import { CapitalizeFirstLetter, capitalizeFirstLetterEachWord, TruncateText } from '../../../utils/text-help'
+import { 
+    // CapitalizeFirstLetter, 
+    capitalizeFirstLetterEachWord, TruncateText } from '../../../utils/text-help'
 import { PageText } from '../../Text/Text';
 import { GenerateProductURL } from '../../../utils/link-helper';
 import { NavLink } from 'react-router-dom';
@@ -24,7 +26,7 @@ const MobileProductBuilderPageCard = ({ product }) => {
     const {
         title,
         subtitle,
-        availability,
+        // availability,
         image,
         category,
         specList1,
@@ -82,7 +84,7 @@ const MobileProductBuilderPageCard = ({ product }) => {
 
                     <div className={styles.builderCardImageButtonGroupItem1}>
                         <div className={styles.builderCardImage}>
-                            <img src={`${process.env.REACT_APP_AWS_URL_IMAGE}/${image}`} alt={`product ${title}`} />
+                            <img src={`${process.env.REACT_APP_AWS_URL}/${image}`} alt={`product ${title}`} />
                         </div>
 
                         <div className={styles.builderCardButton}>

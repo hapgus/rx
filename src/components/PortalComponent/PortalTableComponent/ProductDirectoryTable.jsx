@@ -58,8 +58,8 @@ export const ProductDirectoryTable = () => {
             render: row => (
                 <div className={styles.actionIconContainer}>
 
-                    <IconComponent onClick={() => redirect(`/hapg/portal/edit-product/${row._id}`)} iconType='edit' />
-                    <IconComponent onClick={() => redirect(`/hapg/portal/add-template-product/${row._id}`)} iconType='copy' />
+                    <IconComponent onClick={() => redirect(`/portal/edit-product/${row._id}`)} iconType='edit' />
+                    <IconComponent onClick={() => redirect(`/portal/add-template-product/${row._id}`)} iconType='copy' />
                     <IconComponent onClick={() => handleDeleteProduct(row._id)} iconType='trash' />
                 </div>
             )

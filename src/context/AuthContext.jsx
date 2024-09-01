@@ -101,7 +101,7 @@ export const AuthProvider = ({ children }) => {
         if (logoutTimer) {
             clearTimeout(logoutTimer);
         }
-        redirect('/hapg');
+        redirect('/member/login');
     }, [redirect, currentUserId]);
 
 

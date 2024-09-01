@@ -12,6 +12,7 @@ import { useForm } from '../../../hooks/form-hook';
 import { TextInput } from '../../../components/FormComponent/TextInput/TextInput';
 import { useAuthHook, useAuthUser } from '../../../hooks/auth-hook';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router';
 
 import { VALIDATOR_REQUIRE } from '../../../utils/validators';
 
@@ -21,9 +22,9 @@ import { validateUserProfileForm } from '../../../utils/form-validation';
 
 const UserProfilePage = () => {
 
-    
-   
-    const publicUrl = process.env.PUBLIC_URL;
+
+
+    const redirect = useNavigate()
     const { setIsModal, isModal } = useNotificationHook();
     const { setIsRoutingState } = useRoutingHook();
     const { sendRequest } = useHttpClient();
@@ -63,14 +64,20 @@ const UserProfilePage = () => {
     }, [decodedToken, sendRequest, setFormData])
 
 
-
+    const handleGoBack = () => {
+        setIsModal({ show: false })
+    }
+    const handleConfirm = () => {
+        redirect('/')
+        setIsModal({ show: false })
+    }
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
 
 
         const errorMessage = validateUserProfileForm(formState)
-     
+
         console.log(errorMessage)
         if (errorMessage.length !== 0) {
             // setIsModal(prevState => ({
@@ -86,6 +93,7 @@ const UserProfilePage = () => {
                 errorList: errorMessage,
                 onConfirm: () => setIsModal({ show: false }),
                 onCancel: () => setIsModal({ show: false }),
+               
                 confirmText: "Close",
                 cancelText: "Go back",
 
@@ -98,41 +106,41 @@ const UserProfilePage = () => {
                 store: formState.inputs.store.value,
                 address: formState.inputs.address.value,
             }
-           
-       
 
-                try {
-                    const response = await sendRequest(`http://localhost:3005/edit-profile/${decodedToken.userId}`,
-                        'PATCH',
-                        JSON.stringify(data),{
-                            'Content-Type': 'application/json',
-                            }
-                    )
-                    if (response.message === 'Product added') {
-                        setIsRoutingState(prevState => ({ ...prevState, isLoading: false }));
 
-                        setIsModal(prevState => ({
-                            ...prevState,
-                            show: true,
-                            modalType: 'successModal',
-                            title: "Success",
-                            message: "Congrats! The product was added successfully.",
-                            errorList: errorMessage,
-                            onConfirm: () => setIsModal({ show: false }),
-                            onCancel: () => setIsModal({ show: false }),
-                            confirmText: "Close",
-                            cancelText: "Go back",
 
-                        }));
-
-                       
-                    }
-
-                } catch (err) {
-
-                    console.log(err)
+            try {
+                const response = await sendRequest(`http://localhost:3005/edit-profile/${decodedToken.userId}`,
+                    'PATCH',
+                    JSON.stringify(data), {
+                    'Content-Type': 'application/json',
                 }
-          
+                )
+                if (response.responseStatusCode === 201) {
+                    setIsRoutingState(prevState => ({ ...prevState, isLoading: false }));
+
+                    setIsModal(prevState => ({
+                        ...prevState,
+                        show: true,
+                        modalType: 'successModal',
+                        title: "Success",
+                        message: "Congrats! Your profile has been updated.",
+                        errorList: errorMessage,
+                        onConfirm: handleConfirm,
+                        onCancel: handleGoBack,
+                        confirmText: "Close",
+                        cancelText: "Go back",
+
+                    }));
+
+
+                }
+
+            } catch (err) {
+
+                console.log(err)
+            }
+
 
 
         }
@@ -140,17 +148,17 @@ const UserProfilePage = () => {
 
     }
     return (
-        <GridSystem>
+        <GridSystem containerBackgroundColor='#E6E1D6' containerPaddingTop='3rem' >
             <div className={styles.contentWrapper}>
-                <div>
-                    <PageText type='pageTitle'>Profile</PageText>
-                    <PageText type='pageSubtitle'>Your user account</PageText>
+                <div className={styles.sectionTitle}>
+                    <PageText type='pageTitle'>My Profile</PageText>
+                    <PageText type='pageSubtitle'>Manage your user account</PageText>
                 </div>
 
             </div>
 
             <div className={styles.accountInformationWrapper}>
-                <div>
+                {/* <div>
                     <div className={styles.sectionTitle}>
                         <PageText type='bodyTertiaryTitle'>Account information</PageText>
                     </div>
@@ -158,13 +166,14 @@ const UserProfilePage = () => {
                         <PageText type='bodyDescription'>Edit your profile</PageText>
                     </div>
 
+                </div> */}
+                <div className={styles.row}>
+                    {/* <PageText type='bodyTertiaryTitle'>Account</PageText> */}
+                    {/* <div className={styles.description}>
+                        <PageText>{decodedToken ? decodedToken.role : `You're signed out and should not be seeing this`}</PageText>
+                    </div> */}
                 </div>
-                <div>
-                    <PageText type='bodyTertiaryTitle'>Account type</PageText>
-                    <PageText type='bodyDescription'>{decodedToken ? decodedToken.role: `You're signed out and should not be seeing this`}</PageText>
-
-                </div>
-                <div>
+                <div className={styles.formElements}>
                     <TextInput
                         id="firstName"
                         name="firstName"
@@ -217,35 +226,39 @@ const UserProfilePage = () => {
                         initialIsValid={formState.inputs.address.isValid}
 
                     />
-
-<Button type='button' onClick={handleFormSubmit} buttonStyleType="primaryAction">Sumbit </Button>
+                    <div className={styles.buttonWrapper}>
+                        <Button type='button' onClick={handleFormSubmit} buttonStyleType="primaryAction">Update my account </Button>
+                    </div>
                 </div>
 
 
             </div>
             <div className={styles.accountInformationWrapper}>
-                <div className={styles.sectionTitle}>
+                {/* <div className={styles.sectionTitle}>
                     <PageText type='bodyTertiaryTitle'>Password</PageText>
-                </div>
-                <div>
-                    <LinkComponent href={`/hapg/member/forgot-password`}>
+                </div> */}
+                <div className={styles.passwordReset}>
+                    <LinkComponent href={`/member/forgot-password`}>
                         <PageText>Reset Password</PageText>
                     </LinkComponent>
                 </div>
-            
-                
+
+
             </div>
-            <div className={styles.accountInformationWrapper}>
-                <div className={styles.sectionTitle}>
+            <div className={styles.accountInformationFooter}>
+                {/* <div className={styles.sectionTitle}>
                     <PageText type='bodyTertiaryTitle'>Account status</PageText>
                 </div>
                 <div>
-                    <PageText type='bodyDescription'>{decodedToken ? decodedToken.status: `You're signed out and should not be seeing this`}</PageText>
-                </div>
+                    <PageText type='bodyDescription'>{decodedToken ? decodedToken.status : `You're signed out and should not be seeing this`}</PageText>
+                </div> */}
                 <div>
-                    <PageText type='bodyTertiaryTitle'>Deactivate</PageText>
-                    <div className={styles.buttonWrapper}>
-                        <Button buttonStyleType='secondary'>Delete account</Button>
+                    {/* <PageText type='bodyTertiaryTitle'>Deactivate</PageText> */}
+                    <div className={styles.deleteAccountWrapper}>
+                        <PageText>
+                            Delete my account
+                        </PageText>
+                        {/* <Button buttonStyleType='secondary'></Button> */}
                     </div>
                 </div>
 

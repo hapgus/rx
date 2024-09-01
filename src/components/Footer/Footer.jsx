@@ -8,6 +8,7 @@ import styles from './Footer.module.css';
 import Logo from '../Logo/Logo';
 import { PageText } from '../Text/Text';
 import { GridSystem } from '../GridSystem/GridSystem';
+import LinkedLogo from '../Logo/LinkedLogo';
 export function footerColumn(title, data = []) {
     return (
         <div className={styles.column}>
@@ -92,9 +93,10 @@ const Footer = () => {
                 <div className={styles.contentWrapper}>
                     <div className={styles.wrapper2}>
                         <div className={styles.section2}>
-                            <NavLink to='/'>
+                            <LinkedLogo/>
+                            {/* <NavLink to='/'>
                                 <Logo type='lgVertical' style='lgVertical' />
-                            </NavLink>
+                            </NavLink> */}
                         </div>
                     </div>
                 </div>

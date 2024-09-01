@@ -11,11 +11,6 @@ export const AddToListButton = ({ product, iconButton = false }) => {
 
     const handleAddProductToList = () => addProduct(product);
 
-    // return iconButton ? (
-    //     <span onClick={handleAddProductToList}>
-    //         <IconComponent  iconStyleType='addProductIcon' iconType='cross' />
-    //     </span>
-    // ) : (
     return iconButton ? (
         <IconComponent onClick={handleAddProductToList} iconStyleType='addProductIcon' iconType='cross' />
     ) : (
@@ -107,7 +102,7 @@ export const RemoveFromListButton = ({ product, buttonStyleType = 'primary', pla
         Remove
     </Button>
 
-    const iconButton = <IconComponent iconType='xClose'></IconComponent>
+    // const iconButton = <IconComponent iconType='xClose'></IconComponent>
 
     return plainTextButton === true ? textOnlyButton : regularButton;
 }
@@ -131,11 +126,13 @@ export const RemoveAllFromListButton = () => {
                 cancelText: 'Go back',
             });
         } else {
-            setIsModal({
+            setIsModal(prevState=>({
+                ...prevState,
                 modalType:'infoModal',
+                iconType:'errorInfo',
                 show: true,
                 title: 'Confirm Removal',
-                message: 'Are you sure you want to remove all products from the list?',
+                message: 'Are you sure you want to remove all products from your list?',
                 onConfirm: () => {
                     removeAllProducts();
                     setIsModal({ ...isModal, show: false });
@@ -143,9 +140,10 @@ export const RemoveAllFromListButton = () => {
                 onCancel: () => {
                     setIsModal({ ...isModal, show: false });
                 },
-                cancelText: 'Cancel',
-                confirmText: 'Confirm'
-            });
+                cancelText: 'Go back',
+                confirmText: 'Remove all products'
+            }))
+           
         }
 
 
@@ -165,7 +163,9 @@ export const RemoveAllFromListButton = () => {
 
 export const PrintProductsButton = () => {
 
-    const { setIsPrintScreen, removeAllProducts, productsInList } = useBuilderHook();
+    const { 
+        // setIsPrintScreen, 
+        removeAllProducts, productsInList } = useBuilderHook();
     const { isModal, setIsModal } = useNotificationHook();
     const [isPrinting, setIsPrinting] = useState(false);
     const [clearAfterPrint, setClearAfterPrint] = useState(false); // New state for clearing products after print
@@ -174,6 +174,7 @@ export const PrintProductsButton = () => {
             alert('no products to print')
             return setIsModal({
                 show: true,
+
 
                 title: 'You have no products in your list.',
                 message: 'Use search or explore home appliances to find products for your list so you can print!',
@@ -188,7 +189,8 @@ export const PrintProductsButton = () => {
             // window.print();
             setIsModal({
                 show: true,
-                // modalType:'success',
+                modalType:'infoModal',
+                iconType:'print',
                 title: "Time to print your list! ",
                 message: 'What do you want to do with your list after we print it?',
                 cancelText: 'Keep my list',

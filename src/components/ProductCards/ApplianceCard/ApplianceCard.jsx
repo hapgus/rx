@@ -34,7 +34,7 @@ export const ApplianceCard = ({ product }) => {
                 <div className={styles.productCardWrapper}>
 
                     {/* <ProductImageComponent className={styles.productCardImage} src={`${publicUrl}/assets/image/products/${image}`} alt={`product ${title}`} /> */}
-                    <ProductImageComponent className={styles.productCardImage} src={`${process.env.REACT_APP_AWS_URL_IMAGE}/${image}`} alt={`product ${title}`} />
+                    <ProductImageComponent className={styles.productCardImage} src={`${process.env.REACT_APP_AWS_URL}/${image}`} alt={`product ${title}`} />
                     <PageText type='productCardTitle'>{title}</PageText>
                     <PageText type='productCardSubtitle'>
                         <span className={styles.clampedSubtitle}>{subtitle}</span>

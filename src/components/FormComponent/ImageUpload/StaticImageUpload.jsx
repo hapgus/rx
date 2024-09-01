@@ -8,19 +8,21 @@ export const StaticImageUpload = ({
     iconType = 'uploadArrow',
     itemName = 'Media',
     previewUrl,
-    selectedFile,
-    // initialFile,
-    // pickImageHandler,
+    // selectedFile,
+  
     handleFileChange,
 }) => {
 
-    console.log(previewUrl, selectedFile)
-    const imagePreview = () => {}
+
+
     const filePickerRef = useRef();
 
     const pickImageHandler = () => {
         filePickerRef.current.click();
     }
+    
+    
+
     // console.log(previewUrl)
     return (
         <div className={styles.imageUploadContainer}>
@@ -35,10 +37,12 @@ export const StaticImageUpload = ({
             </div>
 
             {
-                previewUrl || selectedFile ? (
+                // previewUrl || selectedFile ? (
+                    previewUrl ? (
                     <div className={styles.imageUploadBodyPreview}>
                         <div className={styles.imageWrapper}>
-                            <img alt='image dish' src={previewUrl ? previewUrl : selectedFile} />
+                        <img alt='image preview' src={previewUrl} />
+                            {/* <img alt='image dish' src={previewUrl ? previewUrl : selectedFile} /> */}
                         </div>
                         <div className={styles.imageUploadFooterPreview}>
                             <div className={styles.bodyActionContainer}>

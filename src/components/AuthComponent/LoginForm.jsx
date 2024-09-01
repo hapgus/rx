@@ -61,19 +61,14 @@ export const LoginForm = () => {
                     JSON.stringify(data), {
                     'Content-Type': 'application/json',
 
-                }
-                    // formData
-
-                )
-                console.log(responseStatusCode, responseData)
-                if (responseStatusCode === 200) {
+                })
+                if (responseStatusCode === 202) {
                     const activeUser = await responseData;
                     // const expirationTime = new Date(new Date().getTime() + 1000 * 60);//1 min
                     const expirationTime = new Date(new Date().getTime() + 1000 * 60 * 60);
                     login(activeUser.token, expirationTime.toISOString());
                     setIsRoutingState(prevState => ({ ...prevState, isLoading: false }));
-                    redirect('/hapg');
-                    console.log('active user' , activeUser)
+                    redirect('/');
                 }
 
             } catch (error) {

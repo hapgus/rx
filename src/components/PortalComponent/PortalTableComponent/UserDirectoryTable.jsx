@@ -35,7 +35,7 @@ export const UserDirectoryTable = () => {
                         onClick={
                             () => {
                                 setIsAdminRoutingState(row._id)
-                                redirect(`/hapg/portal/edit-user/${row._id}`)
+                                redirect(`/portal/edit-user/${row._id}`)
                             }
                         }
                     />

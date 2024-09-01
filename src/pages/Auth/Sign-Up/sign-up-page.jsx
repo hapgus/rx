@@ -13,16 +13,27 @@ const SignUpPage = () => {
                 <div className={styles.logo}>
                     <img src={`/assets/image/gif/dance-black.gif`} />
                 </div>
-                <div>
-                    <PageText type='pageTitle'>LG Product Guide</PageText>
+                <div className={styles.headerText}>
+                    <div className={styles.title}>
+                        <PageText type='pageTitle'>LG Product Guide</PageText>
+                    </div>
+                    <div className={styles.tertiaryTitle}>
+                        <PageText>
+                            Create account 
+                        </PageText>
+                    </div>
                 </div>
-                <PageText type='pageTertiaryTitle'>
-                    Already a member? <LinkComponent href={`../login`} linkText='login to your account' />
-                </PageText>
                 <div className={styles.formWrapper}>
-                    <SignupForm />
-
+                    <div className={styles.loginForm}>
+                        <SignupForm />
+                    </div>
+                    <div className={styles.loginFooterDescription}>
+                        <PageText>
+                            Already a member? <LinkComponent href={`../login`} linkText='login to your account' />
+                        </PageText>
+                    </div>
                 </div>
+                
             </>
 
         </AuthTemplate>

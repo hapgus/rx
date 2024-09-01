@@ -1,5 +1,5 @@
 import styles from './desktop-appliance-page.module.css';
-import { useParams } from 'react-router-dom';
+
 import { useProductsHook } from '../../../hooks/product-hook';
 import { useBuilderHook } from '../../../hooks/builder-hook';
 import { ProductBackgroundShape } from '../../../components/Shape/ProductBackgroundShape';
@@ -19,7 +19,7 @@ import {ExternalSpecificationSheetComponent} from '../../../components/ProductDe
 
 export const DesktopAppliancePage = ({ productId }) => {
 
-    const publicUrl = process.env.PUBLIC_URL;
+
 
     const { publicProducts } = useProductsHook();
     const { productsInList } = useBuilderHook();
@@ -40,7 +40,6 @@ export const DesktopAppliancePage = ({ productId }) => {
     return (
 
         productDetails && productDetails.map((details, idx) => (
-
             <main key={idx} className={styles.pageContainer}>
 
 
@@ -57,7 +56,7 @@ export const DesktopAppliancePage = ({ productId }) => {
                             <div className={styles.imageShapeGroupWrapper}>
                                 <div className={styles.productImageForShape}>
                                     <div className={styles.productImage}>
-                                    <img loading='lazy' src={`${process.env.REACT_APP_AWS_URL_IMAGE}/${details.image}`} alt={`${details.title}`} />
+                                    <img loading='lazy' src={`${process.env.REACT_APP_AWS_URL}/${details.image}`} alt={`${details.title}`} />
                                     </div>
                                 </div>
                                 <ProductBackgroundShape className={styles.productBackgroundShapeContainer} />

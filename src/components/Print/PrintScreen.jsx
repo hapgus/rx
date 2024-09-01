@@ -5,7 +5,7 @@ import { Specifications } from "../ProductDetails/Specifications/Specifications"
 import { TechnologyLogo } from "../ProductDetails/Technology/TechnologyLogo";
 
 export const PrintScreen = () => {
-    const publicUrl = process.env.PUBLIC_URL;
+    // const publicUrl = process.env.PUBLIC_URL;
     const { productsInList } = useBuilderHook();
  
     if (productsInList) {
@@ -47,7 +47,7 @@ export const PrintScreen = () => {
                                 <PageText type="pageSubtitle">{p.subtitle}</PageText>
                             </div>
                             <div className={styles.productImage}>
-                                <img src={`${process.env.REACT_APP_AWS_URL_IMAGE}/${p.image}`} alt="LG Logo" />
+                                <img src={`${process.env.REACT_APP_AWS_URL}/${p.image}`} alt="LG Logo" />
                             </div>
                             <div className={styles.productSpecs}>
                                 <Specifications product={p} />

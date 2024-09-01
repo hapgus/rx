@@ -2,7 +2,7 @@
 import styles from './AuthFormComponent.module.css'
 
 import { PageText } from '../../components/Text/Text';
-import { GridSystem } from '../../components/GridSystem/GridSystem';
+
 import { Button } from '../../components/Button/Button';
 
 import { useNotificationHook } from '../../hooks/notification-hook';
@@ -12,14 +12,16 @@ import { useRoutingHook } from '../../hooks/routing-hook';
 import { useForm } from '../../hooks/form-hook';
 
 import { Select } from '../FormComponent/Select/Select';
-import { useAuthHook, useAuthUser, useAuth } from '../../hooks/auth-hook';
+import { useAuthUser, useAuth } from '../../hooks/auth-hook';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import { useParams, useNavigate } from 'react-router';
+import { PortalPageBody, PortalPageWrapper } from '../PortalComponent/PortalPageComponent/PortalPageComponents';
 
 
 export const ManageUserForm = () => {
 
     const { userId } = useParams();
+    const redirect = useNavigate()
 
     const { setIsModal } = useNotificationHook();
     const { setIsRoutingState, isAdminRoutingState } = useRoutingHook();
@@ -28,7 +30,7 @@ export const ManageUserForm = () => {
 
     console.log('admin routing', isAdminRoutingState)
     const decodedToken = useAuthUser();
-    const { authUserId, isAdmin, isSuperAdmin } = useAuth();
+    const { authUserId } = useAuth();
 
 
     const [formState, inputHandler, setFormData] = useForm({
@@ -57,9 +59,7 @@ export const ManageUserForm = () => {
                     console.error('Error fetching user data:', err);
                 }
             };
-
             fetchProductData();
-
         }
 
 
@@ -116,7 +116,10 @@ export const ManageUserForm = () => {
 
 
     }
-
+    const handleOnCancel = () => {
+        setIsModal({show: false})
+        redirect('/portal/user-directory/')
+    }
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
@@ -128,16 +131,16 @@ export const ManageUserForm = () => {
             creatorId: authUserId
         }
 
-
-
         try {
             const response = await sendRequest(`http://localhost:3005/manage-user/${userId}`,
                 'PATCH',
                 JSON.stringify(data), {
                 'Content-Type': 'application/json',
             }
+
             )
-            if (response.message === 'Product added') {
+            console.log(response)
+            if (response.responseStatusCode === 202) {
                 setIsRoutingState(prevState => ({ ...prevState, isLoading: false }));
 
                 setIsModal(prevState => ({
@@ -145,12 +148,12 @@ export const ManageUserForm = () => {
                     show: true,
                     modalType: 'successModal',
                     title: "Success",
-                    message: "Congrats! The product was added successfully.",
-
+                    message: "Congrats! The user has been updated.",
+                    errorList: [],
                     onConfirm: () => setIsModal({ show: false }),
-                    onCancel: () => setIsModal({ show: false }),
+                    onCancel: handleOnCancel,
                     confirmText: "Close",
-                    cancelText: "Go back",
+                    cancelText: "Go to users tables",
 
                 }));
 
@@ -161,103 +164,122 @@ export const ManageUserForm = () => {
 
             console.log(err)
         }
-
-
-
     }
     return (
-        <GridSystem>
-            <div className={styles.contentWrapper}>
-                <div>
-                    <PageText type='pageTitle'>{userInfo?.firstName} {userInfo?.lastName}'s Account </PageText>
-                    <PageText type='pageSubtitle'>Change {userInfo?.firstName}'s  status or role</PageText>
+        <PortalPageWrapper
+            pageTitle={`${userInfo?.firstName} ${userInfo?.lastName}'s Account `}
+            pageDescription={`${userInfo?.firstName}'s  status or role`}
+        >
+
+            <PortalPageBody>
+
+                <div className={styles.accountInformationWrapper}>
+                    <div>
+
+                        <div className={styles.sectionTitle2}>
+                            <PageText>Manage Status and Role</PageText>
+
+                        </div>
+
+
+                    </div>
+
+                    <div className={styles.formElements}>
+                        <Select
+                            id='role'
+                            name="role"
+                            labelName="User Role"
+                            // errorText='Please select a retailer'
+                            validators={[]}
+                            onInput={inputHandler}
+                            initialValue={formState.inputs.role.value}
+                            initialIsValid={formState.inputs.role.isValid}
+                            options={[
+                                { value: "user", label: "User" },
+                                { value: "admin", label: "Administrator" },
+                                { value: "superAdmin", label: "Super Administrator" }
+                            ]}
+                        />
+
+                        <Select
+                            id='status'
+                            name='status'
+                            labelName="User Status"
+                            // errorText='Please select a retailer'
+                            validators={[]}
+                            onInput={inputHandler}
+                            initialValue={formState.inputs.status.value}
+                            initialIsValid={formState.inputs.status.isValid}
+                            options={[
+                                { value: "pending", label: "Pending approval" },
+                                { value: "approved", label: "Approved" },
+                                { value: "notApproved", label: "Not Approved" }
+                            ]}
+                        />
+                        <div className={styles.buttonWrapper}>
+                            <Button type='button' onClick={handleFormSubmit} buttonStyleType="primaryAction">Sumbit </Button>
+                        </div>
+                    </div>
+
+
                 </div>
 
-            </div>
-
-            <div className={styles.accountInformationWrapper}>
-                <div>
+                <div className={styles.accountInformationWrapper}>
                     <div className={styles.sectionTitle}>
-                        <PageText type='bodyTertiaryTitle'>About the user</PageText>
+                        <PageText>Contact Information</PageText>
 
+                    </div>
+                    <div className={styles.infoWrapper}>
+                        <div className={styles.infoRow}>
+                            <div className={styles.infoTitle}>
+                                <PageText>Email:</PageText>
+                            </div>
+                            <div className={styles.infoData}>
+                                {userInfo?.email}
+                            </div>
+
+                        </div>
+                        <div className={styles.infoRow}>
+                            <div className={styles.infoTitle}>
+                                <PageText>First name:</PageText>
+                            </div>
+
+                            <div className={styles.infoData}>
+                                {userInfo?.firstName}
+                            </div>
+
+                        </div>
+                        <div className={styles.infoRow}>
+                            <div className={styles.infoTitle}>
+                                <PageText>Last name:</PageText>
+                            </div>
+
+                            <div className={styles.infoData}>
+                                {userInfo?.lastName}
+                            </div>
+
+                        </div>
+                        <div className={styles.infoRow}>
+                            <div className={styles.infoTitle}>
+                                <PageText>Store:</PageText>
+                            </div>
+                            <div className={styles.infoData}>
+                                {userInfo?.store}
+                            </div>
+                        </div>
                     </div>
                     <div>
-                        <div>
-                            <PageText>Email</PageText>
-                            {userInfo?.email}
-                        </div>
-                        <div>
-                            <PageText>First name</PageText>
-                            {userInfo?.firstName}
-                        </div>
-                        <div>
-                            <PageText>Last name</PageText>
-                            {userInfo?.lastName}
-                        </div>
-                        <div>
-                            <PageText>Store</PageText>
-                            {userInfo?.store}
+                        {/* <div className={styles.deleteAccountTitle}>
+                            <PageText>Remove User</PageText>
+                        </div> */}
+                        <div className={styles.buttonWrapper}>
+                            <Button onClick={handleDeleteUser} buttonStyleType='secondary'>Delete account</Button>
                         </div>
                     </div>
-                    <div className={styles.sectionDescription}>
-                        <PageText type='bodyDescription'>Edit the user's privileges</PageText>
-                    </div>
 
                 </div>
+            </PortalPageBody>
+        </PortalPageWrapper>
 
-                <div>
-                    <Select
-                        id='role'
-                        name="role"
-                        labelName="User Role"
-                        // errorText='Please select a retailer'
-                        validators={[]}
-                        onInput={inputHandler}
-                        initialValue={formState.inputs.role.value}
-                        initialIsValid={formState.inputs.role.isValid}
-                        options={[
-                            { value: "user", label: "User" },
-                            { value: "admin", label: "Administrator" },
-                            { value: "superAdmin", label: "Super Administrator" }
-                        ]}
-                    />
-
-                    <Select
-                        id='status'
-                        name='status'
-                        labelName="User Status"
-                        // errorText='Please select a retailer'
-                        validators={[]}
-                        onInput={inputHandler}
-                        initialValue={formState.inputs.status.value}
-                        initialIsValid={formState.inputs.status.isValid}
-                        options={[
-                            { value: "pending", label: "Pending approval" },
-                            { value: "approved", label: "Approved" },
-                            { value: "notApproved", label: "Not Approved" }
-                        ]}
-                    />
-                    <Button type='button' onClick={handleFormSubmit} buttonStyleType="primaryAction">Sumbit </Button>
-                </div>
-
-
-            </div>
-
-            <div className={styles.accountInformationWrapper}>
-                <div className={styles.sectionTitle}>
-                    <PageText type='bodyTertiaryTitle'>Account status</PageText>
-                </div>
-                <div>
-                    <PageText type='bodyDescription'>{decodedToken ? decodedToken.status : `You're signed out and should not be seeing this`}</PageText>
-                </div>
-                <div>
-                    <PageText type='bodyTertiaryTitle'>Deactivate</PageText>
-                    <div className={styles.buttonWrapper}>
-                        <Button onClick={handleDeleteUser} buttonStyleType='secondary'>Delete account</Button>
-                    </div>
-                </div>
-
-            </div>
-        </GridSystem>
     );
 }

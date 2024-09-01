@@ -4,6 +4,7 @@ export const NotificationContext = createContext({
     isModal: {
         show: false,
         title: '',
+        iconType:'',
         message: '',
         errorList: [],
         formElements:null,
@@ -32,6 +33,7 @@ export const NotificationProvider = ({ children }) => {
     const initialModalState = {
         show: false,
         title: '',
+        iconType:'',
         message: '',
         errorList: [],
         formElements:null,

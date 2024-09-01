@@ -15,46 +15,30 @@ const LoginPage = () => {
                 <div className={styles.logo}>
                     <img src={`/assets/image/gif/dance-black.gif`} />
                 </div>
-                <div>
-                    <PageText type='pageTitle'>LG Product Guide</PageText>
+                <div className={styles.headerText}>
+                    <div className={styles.title}>
+                        <PageText type='pageTitle'>LG Product Guide</PageText>
+                    </div>
+                    <div className={styles.tertiaryTitle}>
+                        <PageText>
+                            Not a member? <LinkComponent href={`../sign-up`} linkText='Sign up today!' />
+                        </PageText>
+                    </div>
                 </div>
-                <PageText type='pageTertiaryTitle'>
-                    Not a member? <LinkComponent href={`../sign-up`} linkText='Sign up today!' />
-                </PageText>
                 <div className={styles.formWrapper}>
-                    <LoginForm />
-                    <PageText type='pageTertiaryTitle'>
-                        Forgot your password? <LinkComponent href={`..${publicUrl}/../forgot-password`} linkText='Request a password reset link!' />
-                    </PageText>
+                    <div className={styles.loginForm}>
+                        <LoginForm />
+                    </div>
+                    <div className={styles.loginFooterDescription}>
+                        <PageText>
+                            Forgot your password? <LinkComponent href={`..${publicUrl}/../forgot-password`} linkText='Request a password reset link!' />
+                        </PageText>
+                    </div>
                 </div>
             </>
 
         </AuthTemplate>
-        // <div className={styles.loginPageContainer}>
 
-        //     <div className={styles.loginBody}>
-        //         <div className={styles.logo}>
-        //             <img src={`${publicUrl}/assets/image/gif/dance-black.gif`} />
-        //         </div>
-        //         <div>
-        //             <PageText type='pageTitle'>LG Product Guide</PageText>
-        //         </div>
-        //         <PageText type='pageTertiaryTitle'>
-        //             Not a member? <LinkComponent href={`../sign-up`} linkText='Sign up today!' />
-        //         </PageText>
-        //         <div className={styles.formWrapper}>
-        //             <LoginForm />
-        //             <PageText type='pageTertiaryTitle'>
-        //                 Forgot your password? <LinkComponent href={`..${publicUrl}/../forgot-password`} linkText='Request a password reset link!' />
-        //             </PageText>
-        //         </div>
-        //     </div>
-        //     <div className={styles.loginFooter}>
-        //         <ExternalLink href={'https://www.lg.com/us/legal'} >Terms</ExternalLink>
-        //         <ExternalLink href={'https://privacy.us.lg.com/policies'} >Privacy</ExternalLink>
-        //        <LinkComponent href={publicUrl}>Homepage</LinkComponent>
-        //     </div>
-        // </div>
     );
 };
 

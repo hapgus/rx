@@ -7,14 +7,14 @@ import { PageText } from '../../Text/Text';
 import { GenerateProductURL } from '../../../utils/link-helper';
 
 import { AddToListButton, RemoveFromListButton } from '../../Button/ProductButtons';
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 import { LinkComponent } from '../../Links/LinkComponent';
 
 
 
 
 export const HomepageSearchPreviewCard = ({ products }) => {
-    const publicUrl = process.env.PUBLIC_URL;
+
     const { productsInList } = useBuilderHook();
 
     return (
@@ -22,7 +22,7 @@ export const HomepageSearchPreviewCard = ({ products }) => {
             const { title, subtitle, image, category } = product;
             const isProductInList = productsInList.some(p => p.title === product.title);
             const configuredProductURL = GenerateProductURL(category, title);
-            const productURL = `${publicUrl}${configuredProductURL}`;
+            const productURL = `${configuredProductURL}`;
 
             return (
                 < div key={idx} className={styles.searchResultsPreviewCardContainer} >
@@ -30,7 +30,7 @@ export const HomepageSearchPreviewCard = ({ products }) => {
                         <img 
                         loading='lazy'
                         className={styles.searchResultsPreviewCardImage} 
-                        src={`${process.env.REACT_APP_AWS_URL_IMAGE}/${image}`} 
+                        src={`${process.env.REACT_APP_AWS_URL}/${image}`} 
                         alt={`product ${title}`} 
                         />
                     </div>

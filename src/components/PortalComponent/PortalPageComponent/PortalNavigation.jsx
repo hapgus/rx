@@ -5,16 +5,32 @@ import Logo from "../../Logo/Logo";
 import { SidebarDropdownComponent } from "../../PageComponent/DropdownComponent";
 import styles from './PortalNavigation.module.css';
 
-import { portalDashLinks, portalFormLinks, portalTableLinks, portalWebsiteLinks, portalLink } from "../../../utils/link-helper";
+import {
+    portalDashLinks,
+    portalFormLinks,
+    portalTableLinks,
+    superPortalTableLinks,
+    portalWebsiteLinks,
+    portalLink,
+    superPortalFormLinks
+} from "../../../utils/link-helper";
 
 import { PageText } from "../../Text/Text";
 import { LinkComponent } from "../../Links/LinkComponent";
 import { useLocation } from 'react-router-dom';
 import { NavLink } from "react-router-dom";
-import { CountBubble } from "../../CountBubble/CountBubble";
+
+import { useAuth } from "../../../hooks/auth-hook";
+
 
 export const PortalTopbarNavigation = () => {
+
+
     const publicUrl = process.env.PUBLIC_URL;
+
+
+
+
     return (
         <div className={styles.portalTopbarNavigationContainer}>
             <div>
@@ -59,6 +75,7 @@ const NavMenuHeader = ({ onClick, headerText, iconStyleType, iconType, isOpen })
 
 export const PortalSidebarNavigation = () => {
     const location = useLocation();
+    const { isAuthenticated, isSuperAdmin } = useAuth();
     const [dropdownState, setDropdownState] = useState({
         dashboard: true,
         form: true,
@@ -111,6 +128,9 @@ export const PortalSidebarNavigation = () => {
         />
     );
 
+    const formLinks = isSuperAdmin === true ? superPortalFormLinks : portalFormLinks;
+    const tableLinks = isSuperAdmin === true ? superPortalTableLinks : portalTableLinks;
+
     return (
         <div className={styles.sidebarContainer}>
             <div className={styles.sidebarWrapper}>
@@ -133,7 +153,7 @@ export const PortalSidebarNavigation = () => {
                         onClick={handleDropdownClick}
                         isOpen={dropdownState.form}
                     />
-                    {renderDropdown('Form', portalFormLinks)}
+                    {renderDropdown('Form', formLinks)}
 
                     <NavMenuHeader
                         headerText='Table'
@@ -142,7 +162,7 @@ export const PortalSidebarNavigation = () => {
                         onClick={handleDropdownClick}
                         isOpen={dropdownState.table}
                     />
-                    {renderDropdown('Table', portalTableLinks)}
+                    {renderDropdown('Table', tableLinks)}
 
                     <NavMenuHeader
                         headerText='Websites'

@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
+// import React, { useContext } from 'react';
 import Overlay from "../../Overlay/Overlay";
 import { SearchInput } from "../MainSearch/SearchInput";
 import { SearchPreview } from "../MainSearch/SearchPreview";
-import { useResponsiveStateHook } from '../../../hooks/responsive-hook';
-import { SearchContext } from '../../../context/SearchContext';
+// import { useResponsiveStateHook } from '../../../hooks/responsive-hook';
+// import { SearchContext } from '../../../context/SearchContext';
 import { HomepageSearchInput } from '../HomepageSearch/HomepageSearchInput';
 import { HomepageSearchPreview } from '../HomepageSearch/HomepageSearchPreview';
 
@@ -36,8 +36,8 @@ const searchTypeMap = {
 };
 
 export const SearchComponent = ({ type }) => {
-    const { isMobile, isDesktop } = useResponsiveStateHook();
-    const { setIsMobileSearchState, setIsDesktopSearchState } = useContext(SearchContext);
+    // const { isMobile, isDesktop } = useResponsiveStateHook();
+    // const { setIsMobileSearchState, setIsDesktopSearchState } = useContext(SearchContext);
 
     // useEffect(() => {
     //     setIsMobileSearchState(prevState => ({ ...prevState, isMobileSearch: isMobile }));

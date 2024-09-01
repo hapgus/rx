@@ -1,6 +1,6 @@
 import styles from './SearchPreview.module.css';
 
-import { useProductsHook } from '../../../hooks/product-hook';
+// import { useProductsHook } from '../../../hooks/product-hook';
 import { useSearchHook } from '../../../hooks/search-hook';
 
 import { SearchPreviewCard } from '../../ProductCards/SearchPreview/SearchPreviewCard';
@@ -11,11 +11,13 @@ import { NavSearchPreviewCard } from '../../ProductCards/NavSearchPreviewCard/Na
 export const SearchPreview = () => {
 
 
-    const { publicProducts } = useProductsHook();
-    const { isMobileSearchState, isHomepageSearchState, isDesktopSearchState } = useSearchHook();
-    const productDataSearch = publicProducts;
-    const mobileSearchResultsCount = isMobileSearchState.isSearchResults.length > 0 ? isMobileSearchState.isSearchResults.length : 0
-    const desktopSearchResultsCount = isDesktopSearchState.isSearchResults.length > 0 ? isDesktopSearchState.isSearchResults.length : 0
+    // const { publicProducts } = useProductsHook();
+    const { isMobileSearchState, 
+        // isHomepageSearchState, 
+        isDesktopSearchState } = useSearchHook();
+    // const productDataSearch = publicProducts;
+    // const mobileSearchResultsCount = isMobileSearchState.isSearchResults.length > 0 ? isMobileSearchState.isSearchResults.length : 0
+    // const desktopSearchResultsCount = isDesktopSearchState.isSearchResults.length > 0 ? isDesktopSearchState.isSearchResults.length : 0
 
     // console.log(isMobileSearchState)
     // if(isMobileSearchState === true){}

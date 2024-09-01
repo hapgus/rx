@@ -4,7 +4,7 @@ import { useRoutingHook } from '../../hooks/routing-hook';
 import { IconComponent } from '../Icon/IconComponent';
 import { GridSystem } from '../GridSystem/GridSystem';
 import Overlay from '../Overlay/Overlay';
-import { RouteLinks, allCategoryLink, exclusiveLinks, navCategoryLinks, navSecondaryCategoryLinks, resourceLinks, stepUpChartLinks, accountLinks, publicAccountLinks, activeUserAccountLinks } from '../../utils/link-helper';
+import { RouteLinks, inactivePublicAccountLinks ,allCategoryLink, exclusiveLinks, navCategoryLinks, navSecondaryCategoryLinks, resourceLinks, stepUpChartLinks, accountLinks, publicAccountLinks, activeUserAccountLinks } from '../../utils/link-helper';
 import { PageText } from '../Text/Text';
 import { LinkComponent } from '../Links/LinkComponent';
 import { SearchComponent } from '../Search/SearchComponent/SearchComponent';
@@ -397,25 +397,14 @@ const DesktopNavComponent = () => {
                                                         {isSuperAdmin || isAdmin ? (
                                                             <ul className={styles.dropdownLinksList}>{RouteLinks(accountLinks)}</ul>
                                                         ) : isApprovedUser ? (
-                                                            <ul className={styles.dropdownLinksList}>{RouteLinks(activeUserAccountLinks)}</ul>
-                                                        ) : (
                                                             <ul className={styles.dropdownLinksList}>{RouteLinks(publicAccountLinks)}</ul>
-                                                        )}
-                                                        {/* {
-
-                                                            token && decodedToken && decodedToken?.role === 'superAdmin' || decodedToken?.role === 'admin'
-                                                                ? <ul className={styles.dropdownLinksList}>{RouteLinks(accountLinks)}</ul>
-                                                                : token && decodedToken && decodedToken?.role === 'user' && decodedToken?.status === 'approved'
-                                                                    ? <ul className={styles.dropdownLinksList}>{RouteLinks(activeUserAccountLinks)}</ul>
-                                                                    : <ul className={styles.dropdownLinksList}>{RouteLinks(publicAccountLinks)}</ul>
-
-                                                        } */}
-
-                                                        {/* {
-                                                            decodedToken && decodedToken.role === 'superAdmin'
-                                                                ? <ul className={styles.dropdownLinksList}>{RouteLinks(accountLinks)}</ul>
-                                                                : <ul className={styles.dropdownLinksList}>{RouteLinks(activeUserAccountLinks)}</ul>
-                                                        } */}
+                                                        ) : 
+                                                        // null
+                                                        (
+                                                            <ul className={styles.dropdownLinksList}>{RouteLinks(inactivePublicAccountLinks)}</ul>
+                                                        )
+                                                        }
+                                                       
 
                                                     </div>
                                                 </div>

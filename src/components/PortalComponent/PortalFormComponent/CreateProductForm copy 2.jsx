@@ -19,7 +19,6 @@ import ImageUpload from "../../FormComponent/ImageUpload/ImageUpload";
 import { DynamicSections } from "../../FormComponent/DynamicSectionsFormElement";
 import { useNotificationHook } from "../../../hooks/notification-hook";
 import { useAuth } from "../../../hooks/auth-hook";
-import { ResourceFormSection } from "../../FormComponent/Dynamic/ResourceFormSection";
 
 import {
     useCategoryOptions,
@@ -33,7 +32,7 @@ import { useDynamicForm } from "../../../hooks/use-dynamic-form-hook";
 import { NumberInput } from "../../FormComponent/Number/NumberInput";
 import { StaticImageUpload } from "../../FormComponent/ImageUpload/StaticImageUpload";
 import { DynamicResourceFormSection } from "../../FormComponent/Dynamic/DynamicResourceFormSection";
-
+import { ResourceFormSection } from "../../FormComponent/Dynamic/ResourceFormSection";
 
 export const CreateProductForm = () => {
 
@@ -53,7 +52,6 @@ export const CreateProductForm = () => {
     const [subcategoryOptions, setSubcategoryOptions] = useState([]);
     const [selectedColors, setSelectedColors] = useState([]);
     const [selectedLogos, setSelectedLogos] = useState([]);
-    const [sections, setSections] = useState([]);
 
     const { handleSectionChange, handleChange, values } = useDynamicForm({ sections: [] });
 
@@ -192,32 +190,18 @@ export const CreateProductForm = () => {
             appendFormDataWithLineBreak(formData, 'specList3', formState.inputs.specList3.value);
             appendFormDataWithLineBreak(formData, 'specList4', formState.inputs.specList4.value);
 
-            // Object.keys(values).forEach(key => {
-            //     if (key !== 'sections') {
-            //         formData.append(key, values[key]);
-            //     }
-            // });
+            Object.keys(values).forEach(key => {
+                if (key !== 'sections') {
+                    formData.append(key, values[key]);
+                }
+            });
 
-            // values.sections.forEach((section, index) => {
-            //     formData.append(`sections[${index}][resourceTitle]`, section.resourceTitle);
-            //     formData.append(`sections[${index}][resourceUrl]`, section.resourceUrl);
-            //     if (section.resourceQrCodeImage.length > 0) {
-            //         formData.append(`sections[${index}][resourceQrCodeImage]`, section.resourceQrCodeImage[0].file);
-            //     }
-            // });
-            sections.forEach((section, index) => {
+            values.sections.forEach((section, index) => {
                 formData.append(`sections[${index}][resourceTitle]`, section.resourceTitle);
                 formData.append(`sections[${index}][resourceUrl]`, section.resourceUrl);
-                if (section.resourceQrCodeImage instanceof File) {
-                    formData.append(`sections[${index}][resourceQrCodeImage]`, section.resourceQrCodeImage);
+                if (section.resourceQrCodeImage.length > 0) {
+                    formData.append(`sections[${index}][resourceQrCodeImage]`, section.resourceQrCodeImage[0].file);
                 }
-                // Check if resourceQrCodeImage is a valid string and not null or empty
-                // if (section.resourceQrCodeImage) {
-                //     formData.append(`sections[${index}][resourceQrCodeImage]`, section.resourceQrCodeImage);
-                // }
-                // if (section.resourceQrCodeImage.length > 0) {
-                //     formData.append(`sections[${index}][resourceQrCodeImage]`, section.resourceQrCodeImage[0].file);
-                // }
             });
             for (const logo of selectedLogos) {
                 formData.append('logos', logo);
@@ -623,11 +607,10 @@ export const CreateProductForm = () => {
                     <PageText type="pageTitle">Resource Links</PageText>
                     <PageText type="pageTertiaryTitle">Build links to external resources</PageText>
                 </div>
-                <ResourceFormSection initialSections={[]} onSectionsChange={setSections} />
-                {/* <DynamicResourceFormSection
+                <DynamicResourceFormSection
                     sections={values.sections}
                     onChange={handleSectionChange}
-                /> */}
+                />
                 {/* <div className={styles.sectionContent}>
                     <DynamicSections
                         sections={values.sections}

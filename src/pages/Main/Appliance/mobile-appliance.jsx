@@ -16,10 +16,7 @@ import { ExternalSpecificationSheetComponent } from '../../../components/Product
 
 import { UpcCode } from '../../../components/ProductDetails/UpcCode/UpcCode.jsx';
 
-export const MobileAppliancePage = ({
-    productId
-
-}) => {
+export const MobileAppliancePage = ({productId}) => {
 
 
     const { publicProducts } = useProductsHook();
@@ -61,7 +58,7 @@ export const MobileAppliancePage = ({
                                 <div className={styles.mobileProductImageWrapper}>
                                     <ProductBackgroundShape className={styles.mobileProductImageShape} />
                                     <div className={styles.mobileProductImage}>
-                                        <img loading='lazy' src={`${process.env.REACT_APP_AWS_URL_IMAGE}/${details.image}`} alt={`${details.title}`} />
+                                        <img loading='lazy' src={`${process.env.REACT_APP_AWS_URL}/${details.image}`} alt={`${details.title}`} />
                                     </div>
                                 </div>
                                 <div className={styles.colorButtonWrapper}>

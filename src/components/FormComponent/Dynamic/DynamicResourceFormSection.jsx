@@ -59,10 +59,9 @@ export const DynamicResourceFormSection = ({ sections, onChange }) => {
     return (
 
 
-        <div className={styles.a}>
-            <div className={styles.b}>
-
-                <div className={styles.buttonWrapper}>
+        <div className={styles.mainContainer}>
+            <div className={styles.headerWrapper}>
+                <div className={styles.headerButtonWrapper}>
                     <Button
                         onClick={pageSectionTemplate.handleAddSection}
                         buttonStyleType="primary"
@@ -70,96 +69,69 @@ export const DynamicResourceFormSection = ({ sections, onChange }) => {
                         Add Group
                     </Button>
                 </div>
-                <div className={styles.countWrapper}>
+                <div className={styles.headerCountWrapper}>
                     <PageText type="pageTertiaryTitle">Groups Added</PageText>
                     <CountBubble itemCount={sections.length} />
-
                 </div>
             </div>
-            {
-                sections && sections.map((section, index) => (
-                    <div key={index} className={styles.groupContainer}>
-                        <div className={styles.groupTitle}>
-                            <PageText type="pageSubtitle">Resource Group {`${index + 1}`}</PageText>
-
-                        </div>
-                        <div className={styles.formElementsWrapper}>
-                            <div className={styles.groupFormInputElements}>
-                                <DynamicTextInput
-                                    id={`resourceTitle-${index}`}
-                                    name={`resourceTitle-${index}`}
-                                    labelName={`Resource Title`}
-                                    value={section.resourceTitle}
-                                    onChange={(e) => pageSectionTemplate.handleTitleChange(index, e.target.value)}
-
-                                />
-
-                                <DynamicTextInput
-                                    id={`resourceTitle-${index}`}
-                                    name={`resourceTitle-${index}`}
-                                    labelName={`Resource Title`}
-                                    value={section.resourceUrl}
-                                    type="textinput"
-                                    onChange={(e) => pageSectionTemplate.handleUrlChange(index, e.target.value)}
-                                />
-
-                                {/* <TextInput
-                                    id={`resourceTitle-${index}`}
-                                    name={`resourceTitle-${index}`}
-                                    labelName={`Resource Title`}
-                                    initialValue={section.resourceTitle}
-                                    initialIsValid={false}
-                                    validators={[]}
-                                    onInput={(id, value, isValid) => pageSectionTemplate.handleTitleChange(index, id, value, isValid)}
-                                />
-                                <TextInput
-                                    id={`resourceUrl-${index}`}
-                                    name={`resourceUrl-${index}`}
-                                    labelName={`Resource URL`}
-                                    initialValue={section.resourceUrl}
-                                    initialIsValid={false}
-                                    validators={[]}
-                                    onInput={(id, value, isValid) => pageSectionTemplate.handleUrlChange(index, id, value, isValid)}
-                                /> */}
+            <div className={styles.bodyWrapper}>
+                {
+                    sections && sections?.map((section, index) => (
+                        <div key={index} className={styles.resourceGroupWrapper}>
+                            <div className={styles.groupHeader}>
+                                <div className={styles.groupHeaderTitle}>
+                                    <PageText type="pageSubtitle">Resource Group {`${index + 1}`}</PageText>
+                                </div>
                             </div>
-                            <div className={styles.groupFormUploadElements}>
-                                {/* <div>
-                                    {section.resourceQrCodeImage.length > 0 && (
-                                        <div>
-                                            <img
-                                                src={section.resourceQrCodeImage[0].previewUrl}
-                                                alt="Preview"
-                                                style={{ width: "100px", height: "auto" }}
-                                            />
-                                        </div>
-                                    )}
-                                    <input
-                                        type="file"
-                                        accept="image/*"
-                                        onChange={(e) => pageSectionTemplate.addImageUpload(index, e.target.files)}
+                            <div className={styles.groupFormElementsWrapper}>
+                                <div className={styles.formElementsInputs}>
+                                    <DynamicTextInput
+                                        id={`resourceTitle-${index}`}
+                                        name={`resourceTitle-${index}`}
+                                        labelName={`Resource Title`}
+                                        value={section.resourceTitle}
+                                        onChange={(e) => pageSectionTemplate.handleTitleChange(index, e.target.value)}
+
                                     />
-                                </div> */}
+
+                                    <DynamicTextInput
+                                        id={`resourceUrl-${index}`}
+                                        name={`resourceUrl-${index}`}
+                                        labelName={`Resource Url`}
+                                        value={section.resourceUrl}
+                                        type="textinput"
+                                        onChange={(e) => pageSectionTemplate.handleUrlChange(index, e.target.value)}
+                                    />
+
+                                </div>
+                                <div className={styles.formElementsUploader}>
+                                   { section.resourceQrCodeImage &&
+                                   <StaticImageUpload
+                                            previewUrl={section?.resourceQrCodeImage[0]?.previewUrl} // Use preview URL if available
+                                            initialFile={section?.resourceQrCodeImage[0]?.file} // Use initial file if available
+                                            handleFileChange={(e) => pageSectionTemplate?.addImageUpload(index, e.target.files)} // Handler for file changes
+                                        />
+                                   }
+                                        
+                                
+
+                                </div>
                             </div>
-                            <StaticImageUpload
-                                previewUrl={section.resourceQrCodeImage[0]?.previewUrl} // Use preview URL if available
-                                initialFile={section.resourceQrCodeImage[0]?.file} // Use initial file if available
-                                handleFileChange={(e) => pageSectionTemplate.addImageUpload(index, e.target.files)} // Handler for file changes
-                            />
+
+
+                            <div className={styles.groupFooter}>
+
+                                <div className={styles.footerButtonWrapper}>
+                                    <Button buttonStyleType='secondary' onClick={() => pageSectionTemplate.handleRemoveSection(index)} >Remove Group  {`${index + 1}`}</Button>
+                                </div>
+                            </div>
                         </div>
 
-                        <div className={styles.b}>
 
-                            <div className={styles.buttonWrapper}>
-                                <Button buttonStyleType='secondary' onClick={() => pageSectionTemplate.handleRemoveSection(index)} >Remove Group  {`${index + 1}`}</Button>
-                            </div>
-                        </div>
-                    </div>
+                    ))
 
-
-                ))
-
-            }
-
+                }
+            </div>
 
         </div>
     )

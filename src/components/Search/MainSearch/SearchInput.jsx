@@ -14,7 +14,7 @@ export const SearchInput = () => {
         setIsMobileSearchState,
         isDesktopSearchState,
         setIsDesktopSearchState,
-        isHomepageSearchState,
+        // isHomepageSearchState,
         setIsHomepageSearchState,
     } = useSearchHook();
 

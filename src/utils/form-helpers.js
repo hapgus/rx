@@ -15,39 +15,43 @@ export const appendFormDataWithLineBreak = (formData, fieldName, value) => {
 
 
 
+export const hasProductChanged = (formState, loadedProduct, selectedFile, selectedQrcode, selectedColors, selectedLogos) => {
+  const arrayValuesChanged = (newValues, originalValues) => {
+    return newValues.join('\n') !== originalValues.join('\n');
+  };
 
-export const validateProductForm = (formState) => {
-  const errorMessage = [];
-
-  if (!formState.inputs.title.value) errorMessage.push('Title missing or invalid.');
-  if (!formState.inputs.subtitle.value) errorMessage.push('Subtitle missing or invalid.');
-  if (!formState.inputs.category.value) errorMessage.push('Category missing or invalid.');
-  if (!formState.inputs.subcategory.value) errorMessage.push('Subcategory missing or invalid.');
+  console.log('product', loadedProduct)
+  console.log('formstate', formState)
   
+  if(loadedProduct.title === formState.inputs.title.value){
+    console.log('title did not change')
+  } else {
+    console.log('title changed')
+  }
+  const currentMsrp = String(formState.inputs.msrp.value).trim();
+  const originalMsrp = String(loadedProduct.msrp).trim();
 
-  if (!formState.inputs.specList1.value.length === 0 ) errorMessage.push('Spec list missing or invalid.');
-  if (!formState.inputs.image.value) errorMessage.push('Image missing or invalid.');
-  if (!formState.inputs.qrcode.value) errorMessage.push('Qrcode missing or invalid.');
+  const hasChanges = (
+    formState.inputs.title.value !== loadedProduct.title ||
+    currentMsrp !== originalMsrp ||
+    formState.inputs.subtitle.value !== loadedProduct.subtitle ||
+    formState.inputs.specSheetLink.value !== loadedProduct.specSheetLink ||
+    formState.inputs.category.value !== loadedProduct.category ||
+    formState.inputs.subcategory.value !== loadedProduct.subcategory ||
+    formState.inputs.stylecategory.value !== loadedProduct.stylecategory ||
+    formState.inputs.store.value !== loadedProduct.store ||
+    formState.inputs.availability.value !== loadedProduct.availability ||
+    arrayValuesChanged(formState.inputs.upc.value.split('\n'), loadedProduct.upc) ||
+    arrayValuesChanged(formState.inputs.videos.value.split('\n'), loadedProduct.videos) ||
+    arrayValuesChanged(formState.inputs.specList1.value.split('\n'), loadedProduct.specList1) ||
+    arrayValuesChanged(formState.inputs.specList2.value.split('\n'), loadedProduct.specList2) ||
+    arrayValuesChanged(formState.inputs.specList3.value.split('\n'), loadedProduct.specList3) ||
+    arrayValuesChanged(formState.inputs.specList4.value.split('\n'), loadedProduct.specList4) ||
+    arrayValuesChanged(selectedColors, loadedProduct.colors) ||
+    arrayValuesChanged(selectedLogos, loadedProduct.logos) ||
+    selectedFile !== null ||
+    selectedQrcode !== null
+  );
 
-  return errorMessage;
-}
-
-// export const validateProductForm = (formState, formField, category, selectedColours, subcategory, store, availability) => {
-//   const validations = [
-//       { condition: !formState.inputs.title.value, message: 'Title missing or invalid.' },
-//       { condition: !formState.inputs.msrp.value, message: 'Price missing or invalid.' },
-//       { condition: formField.specList1EN.length === 0 || formField.specList1FR.length === 0, message: 'Specs missing or invalid.' },
-//       { condition: !category, message: 'Category missing or invalid.' },
-//       { condition: selectedColours.length === 0, message: 'Colour selection missing' },
-//       { condition: !subcategory, message: 'Subcategory selection missing' },
-//       { condition: !store, message: 'Retailer selection missing.' },
-//       { condition: !availability, message: 'Availability selection missing.' },
-//       { condition: !formState.inputs.subtitleEN.value || !formState.inputs.subtitleFR.value, message: 'Subtitle(s) missing or invalid.' },
-//       { condition: !formState.inputs.upcCodeEN.value || !formState.inputs.upcCodeFR.value, message: 'UPC code(s) missing or invalid.' },
-//       { condition: !formState.inputs.image.value, message: 'Image missing or invalid.' }
-//   ];
-
-//   return validations
-//       .filter(validation => validation.condition)
-//       .map(validation => validation.message);
-// }
+  return hasChanges;
+};

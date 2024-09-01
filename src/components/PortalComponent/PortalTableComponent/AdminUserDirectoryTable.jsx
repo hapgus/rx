@@ -23,7 +23,7 @@ export const AdminUserDirectoryTable = () => {
             title: 'Manage',
             render: row => (
                 <div className={styles.actionIconContainer}>
-                    <IconComponent onClick={()=> redirect(`/hapg/portal/edit-user/${row._id}`)} iconType='edit' />
+                    <IconComponent onClick={()=> redirect(`/portal/edit-user/${row._id}`)} iconType='edit' />
                 </div>
             )
         }
