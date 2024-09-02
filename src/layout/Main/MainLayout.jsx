@@ -7,7 +7,7 @@ import { useNotificationHook } from '../../hooks/notification-hook';
 import { SearchComponent } from '../../components/Search/SearchComponent/SearchComponent';
 import ProductGuideAlerts from '../../components/Alert/Alert';
 import Modal from '../../components/Modal/Modal';
-import Drawer from '../../components/Drawer/Drawer';
+import { useCurrentLocation } from '../../hooks/location-hook';
 
 import { useEffect } from 'react';
 import Footer from '../../components/Footer/Footer';
@@ -16,13 +16,27 @@ import Loader from '../../components/Loader/Loader';
 import { useLocation } from "react-router-dom";
 import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
 import { ProductListDropdown } from '../../components/ProductList/ProductListDropdown';
+import { initializeGA, logPageView, logEvent } from '../../utils/google-analytics';
+
+import ReactGA from 'react-ga4';
 
 export default function Layout() {
+
+
+
     const location = useLocation();
+    const theLocation = useCurrentLocation()
     const { isAlert, setIsAlert, isModal } = useNotificationHook();
     const { isMobileSearchState, isDesktopSearchState, isHomepageSearchState } = useSearchHook();
     const { isRoutingState, setIsRoutingState } = useRoutingHook();
 
+
+    ReactGA.initialize('G-SCG6TQW9TN');
+    useEffect(() => {
+        // initializeGA();
+        logPageView(location.pathname);
+      }, [location]);
+      
     useEffect(() => {
         if (isMobileSearchState.isMobileSearch) {
             document.body.style.overflow = 'hidden';
