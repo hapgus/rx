@@ -45,9 +45,9 @@ export const ManageUserForm = () => {
         if (userId) {
             const fetchProductData = async () => {
                 try {
-                    const { responseData } = await sendRequest(`http://localhost:3005/user/${userId}`);
+                    const { responseData } = await sendRequest(` ${process.env.REACT_APP_BACKEND_URL}user/${userId}`);
                     const userData = responseData?.user;
-                    console.log('user data', userData)
+                  
                     setUserInfo(userData)
 
                     setFormData({
@@ -71,7 +71,7 @@ export const ManageUserForm = () => {
         if (userInfo.role === 'superAdmin' || userInfo.role === 'admin') {
             try {
                 const response = await fetch(
-                    `http://localhost:3005/delete-admin/${userId}`,
+                    ` ${process.env.REACT_APP_BACKEND_URL}delete-admin/${userId}`,
                     {
                         method: 'DELETE',
                         headers: {
@@ -92,7 +92,7 @@ export const ManageUserForm = () => {
         } else if (userInfo.role !== 'superAdmin' || userInfo.role !== 'admin') {
             try {
                 const response = await fetch(
-                    `http://localhost:3005/delete-user/${userId}`,
+                    ` ${process.env.REACT_APP_BACKEND_URL}delete-user/${userId}`,
                     {
                         method: 'DELETE',
                         headers: {
@@ -132,7 +132,7 @@ export const ManageUserForm = () => {
         }
 
         try {
-            const response = await sendRequest(`http://localhost:3005/manage-user/${userId}`,
+            const response = await sendRequest(` ${process.env.REACT_APP_BACKEND_URL}manage-user/${userId}`,
                 'PATCH',
                 JSON.stringify(data), {
                 'Content-Type': 'application/json',

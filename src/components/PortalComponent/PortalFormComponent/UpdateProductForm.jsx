@@ -134,7 +134,7 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
 
     const handleProductDirectoryModalClick = () => {
         setIsModal(prevState => ({ ...prevState, show: false }))
-        redirect('/hapg/portal/product-directory')
+        redirect('/portal/product-directory')
     }
 
 
@@ -168,7 +168,7 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
 
             const fetchProductData = async () => {
                 try {
-                    const response = await sendRequest(`http://localhost:3005/product/${productId}`);
+                    const response = await sendRequest(` ${process.env.REACT_APP_BACKEND_URL}product/${productId}`);
                     const productData = await response.responseData.product;
 
                     console.log('product', productData)

@@ -226,10 +226,10 @@ export const CreateProductForm = () => {
                 formData.append('colors', color);
             }
             formData.append('creator', authUserId);
-
+           
 
             try {
-                const response = await sendRequest('http://localhost:3005/add-product',
+                const response = await sendRequest(` ${process.env.REACT_APP_BACKEND_URL}add-product`,
                     'POST',
                     formData
                 )
@@ -245,12 +245,6 @@ export const CreateProductForm = () => {
                         errorList: errorMessage,
                         onConfirm: () => setIsModal({ show: false }),
                         onCancel: handleProductDirectoryModalClick,
-
-                        // () => setIsModal({ show: false })
-
-                        // onCancel: () => setIsModal({ show: false }),
-
-                        // 
                         confirmText: "Close",
                         cancelText: "Go to product directory",
 
@@ -386,8 +380,8 @@ export const CreateProductForm = () => {
                                     id="stylecategory"
                                     name="stylecategory"
                                     labelName="Style category"
-                                    secondaryLabel='Optional'
-                                    errorText=' Style category error'
+                                    secondaryLabel='Example, Front Load Washer'
+                                    // errorText=' Style category error'
                                     noTouchValidation={true}
                                     validators={[]}
                                     onInput={inputHandler}
@@ -548,7 +542,7 @@ export const CreateProductForm = () => {
             <section className={styles.section}>
                 <div className={styles.sectionHeader}>
                     <PageText type="pageTitle">UPC Codes</PageText>
-                    <PageText type="pageTertiaryTitle">Add the UPC Codesa</PageText>
+                    <PageText type="pageTertiaryTitle">Add the UPC Code</PageText>
                 </div>
                 <div className={styles.sectionContent}>
                     <TextArea
