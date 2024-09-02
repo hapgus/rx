@@ -20,31 +20,25 @@ import { LinkComponent } from "../../Links/LinkComponent";
 import { useLocation } from 'react-router-dom';
 import { NavLink } from "react-router-dom";
 
-import { useAuth } from "../../../hooks/auth-hook";
+import { useAuth, useAuthUser } from "../../../hooks/auth-hook";
+import LinkedLogo from "../../Logo/LinkedLogo";
 
 
 export const PortalTopbarNavigation = () => {
 
-
-    const publicUrl = process.env.PUBLIC_URL;
-
-
-
+    const decodedToken = useAuthUser();
 
     return (
         <div className={styles.portalTopbarNavigationContainer}>
             <div>
-                <LinkComponent href={portalLink} >
-                    <Logo />
-                </LinkComponent>
-
+                <LinkedLogo portalLogo={true} />
             </div>
-            <LinkComponent href={`${publicUrl}/profile`}>
+            <LinkComponent href={`/profile`}>
                 <div className={styles.iconWrapper}>
 
                     <IconComponent iconType='userAccount' />
                     <div className={styles.accountDetails}>
-                        <PageText type="bodyTertiaryTitleBold">Andre</PageText>
+                        <PageText type="bodyTertiaryTitleBold">{decodedToken?.firstName}</PageText>
                         <PageText type="bodyDescription">Admin</PageText>
                     </div>
                 </div>

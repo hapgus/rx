@@ -4,7 +4,7 @@ import { RetailerContext } from '../../context/RetailerContext';
 import styles from "./Logo.module.css";
 import { LinkComponent } from '../Links/LinkComponent';
 
-const LinkedLogo = ({ type = 'lgDefault', style = 'lgDefault' }) => {
+const LinkedLogo = ({ type = 'lgDefault', style = 'lgDefault', portalLogo = false }) => {
   
     const { isHomeDepotApp } = useContext(RetailerContext);
   
@@ -45,9 +45,11 @@ const LinkedLogo = ({ type = 'lgDefault', style = 'lgDefault' }) => {
     const renderLogo = isHomeDepotApp.isHomeDepotActive ? logoTypesMap.homeDepot : logoTypesMap[type];
     const renderLogoStyle = logoStylesMap[style];
     const renderLink = isHomeDepotApp.isHomeDepotActive ? '/home-depot/':'/';
+    
+    const logoLink = portalLogo === true ? '/portal/dashboard' : renderLink
    
     return (
-        <LinkComponent href={renderLink}>
+        <LinkComponent href={logoLink}>
             <div className={renderLogoStyle}>
                 <img loading='lazy' src={renderLogo.url} alt={renderLogo.alt} className={renderLogoStyle} />
             </div>

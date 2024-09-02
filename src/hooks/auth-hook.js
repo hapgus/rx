@@ -19,7 +19,7 @@ export const useAuthUser = () => {
             return null;
         }
     }, [token]);
-
+console.log(decodedToken)
     return decodedToken;
 
     // const { token } = useAuthHook();

@@ -1,3 +1,47 @@
+
+
+.portalPageContainer{
+    background-color: var(--color-gray-04);
+    height: 100vh;
+}
+
+
+
+
+
+
+.portalPageWrapper{
+    display: grid;
+    /* padding: 10rem; */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .defaultPageContainer{
     height: 100%;
 

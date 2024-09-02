@@ -11,29 +11,29 @@ export const initializeGA = () => {
     }
 };
 export const logPageView = (location) => {
-    const path = location.pathname;
+   const path = location.pathname;
     const pageTitleMap = {
         '/': 'Home',
         '/product-list-builder': 'Builder',
         '/model-transitions': 'Transitions',
         '/warranties': 'Warranties',
         '/feature-definitions': 'Definitions',
-        '/step-up-chart/dishwashers': 'Diswahser Step-Up-Charts',
-        '/step-up-chart/laundry': 'Laundry Step-Up-Charts',
-        '/step-up-chart/refrigeration': 'Refrigeration Step-Up-Charts',
-        '/step-up-chart/vacuums': 'Vacuum Step-Up-Charts',
-        '/appliances/air-care': 'All Air Care Appliances',
-        '/appliances/cooking': 'All Cooking Appliances',
-        '/appliances/dishwashers': 'All Dishwasher Appliances',
-        '/appliances/laundry': 'All Laundry Appliances',
-        '/appliances/refrigeration': 'All Refrigeration Appliances',
-        '/appliances/vacuums': 'All Vacuums Appliances',
-        '/appliances/signature': 'All Signature Appliances',
-        '/appliances/studio': 'All Studio Appliances',
+        '/step-up-chart/dishwashers':'Diswahser Step-Up-Charts',
+        '/step-up-chart/laundry':'Laundry Step-Up-Charts',
+        '/step-up-chart/refrigeration':'Refrigeration Step-Up-Charts',
+        '/step-up-chart/vacuums':'Vacuum Step-Up-Charts',
+        '/appliances/air-care':'All Air Care Appliances',
+        '/appliances/cooking':'All Cooking Appliances',
+        '/appliances/dishwashers':'All Dishwasher Appliances',
+        '/appliances/laundry':'All Laundry Appliances',
+        '/appliances/refrigeration':'All Refrigeration Appliances',
+        '/appliances/vacuums':'All Vacuums Appliances',
+        '/appliances/signature':'All Signature Appliances',
+        '/appliances/studio':'All Studio Appliances',
     };
 
-    // Example function to create a title dynamically based on URL structure
-    const generateTitleFromPath = (path) => {
+     // Example function to create a title dynamically based on URL structure
+     const generateTitleFromPath = (path) => {
         const parts = path.split('/').filter(Boolean); // ['appliances', 'signature', 'WM9500HKA']
         if (parts[0] === 'appliances' && parts.length > 2) {
             // Specific logic for product pages
@@ -46,13 +46,13 @@ export const logPageView = (location) => {
 
     // Determine the page title: use the map or generate dynamically
     const pageTitle = pageTitleMap[path] || generateTitleFromPath(path);
-
-    // Collect additional data for analytics
-    const deviceCategory = window.innerWidth <= 768 ? 'mobile' : (window.innerWidth <= 1024 ? 'tablet' : 'desktop'); // Simplified device detection
-    const viewportSize = `${window.innerWidth}x${window.innerHeight}`;
-    const ag = navigator.userAgent
+ 
+     // Collect additional data for analytics
+     const deviceCategory = window.innerWidth <= 768 ? 'mobile' : (window.innerWidth <= 1024 ? 'tablet' : 'desktop'); // Simplified device detection
+     const viewportSize = `${window.innerWidth}x${window.innerHeight}`;
+ 
     try {
-        ReactGA.send({
+        ReactGA.send({ 
             hitType: "pageview",
             page: location.pathname,          // The path of the page
             location: window.location.href,   // The full URL of the page
@@ -65,31 +65,10 @@ export const logPageView = (location) => {
             userLanguage: navigator.language, // The user's browser language
             deviceCategory: deviceCategory, // Simplified device category
             browser: navigator.userAgent,   // User agent for more detail (or parse for specific browser and version)
+      
         });
-        console.log({
-            deviceCategory,
-            viewportSize,
-        })
-        // Performance timing for page load
-        if (window.performance) {
-            const [performanceTiming] = window.performance.getEntriesByType("navigation");
-
-            if (performanceTiming) {
-                const pageLoadTime = performanceTiming.loadEventEnd - performanceTiming.startTime;
-
-                ReactGA.send({
-                    hitType: 'timing_complete',
-                    timingCategory: 'Page Load',
-                    timingVar: path,             // Track timing for each path
-                    timingValue: pageLoadTime,   // Time in milliseconds
-                    timingLabel: pageTitle,      // Optional label
-                });
-
-                console.log(`Page load time for ${pageTitle}: ${pageLoadTime} ms`);
-            }
-        }
     } catch (error) {
-        console.error('Error logging page view or timing', error);
+        console.error('Error logging page view', error);
     }
 };
 
