@@ -43,7 +43,7 @@ const UserProfilePage = () => {
         if (decodedToken) {
             const fetchProductData = async () => {
                 try {
-                    const { responseData } = await sendRequest(`http://localhost:3005/user-profile/${decodedToken.userId}`);
+                    const { responseData } = await sendRequest(` ${process.env.REACT_APP_BACKEND_URL}user-profile/${decodedToken.userId}`);
                     const userData = responseData.user;
                     console.log('user data', userData)
                     setFormData({
@@ -110,7 +110,7 @@ const UserProfilePage = () => {
 
 
             try {
-                const response = await sendRequest(`http://localhost:3005/edit-profile/${decodedToken.userId}`,
+                const response = await sendRequest(` ${process.env.REACT_APP_BACKEND_URL}edit-profile/${decodedToken.userId}`,
                     'PATCH',
                     JSON.stringify(data), {
                     'Content-Type': 'application/json',

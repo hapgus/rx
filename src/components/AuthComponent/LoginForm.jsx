@@ -56,7 +56,7 @@ export const LoginForm = () => {
             const data = { email: formState.inputs.email.value, password: formState.inputs.password.value, };
             try {
                 const { responseData, responseStatusCode } = await sendRequest(
-                    // 'http://localhost:3005/signin',
+                   
                     `${process.env.REACT_APP_BACKEND_URL}signin`,
                     'POST',
                     JSON.stringify(data), {

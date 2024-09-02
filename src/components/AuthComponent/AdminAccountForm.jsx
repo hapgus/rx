@@ -52,11 +52,11 @@ export const AdminAccountForm = () => {
     };
     const handleHomeModalClick = () => {
         setIsModal(prevState => ({ ...prevState, show: false }))
-        redirect('/hapg/')
+        redirect('/')
     }
     const handleCloseModalClick = () => {
         // resetForm();
-        redirect('/hapg/member/login')
+        redirect('/member/login')
         setIsModal(prevState => ({ ...prevState, show: false }))
         console.log('clicked')
 
@@ -95,7 +95,7 @@ export const AdminAccountForm = () => {
 
             try {
                 const response = await sendRequest(
-                    `http://localhost:3005/add-admin/`,
+                    ` ${process.env.REACT_APP_BACKEND_URL}add-admin/`,
                     'POST',
                     JSON.stringify(data), {
                     'Content-Type': 'application/json',

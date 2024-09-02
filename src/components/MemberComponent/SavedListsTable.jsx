@@ -24,7 +24,7 @@ export const SavedListTable = () => {
         if (authUserId) {
             const fetchProductData = async () => {
                 try {
-                    const response = await sendRequest(`http://localhost:3005/user-lists/${authUserId}`);
+                    const response = await sendRequest(`${process.env.REACT_APP_BACKEND_URL}user-lists/${authUserId}`);
                     const listData = await response.responseData.userLists;
                     console.log(listData)
                     setIsSavedList(listData)

@@ -23,7 +23,7 @@ export const ProductDirectoryTable = () => {
 
         try {
             const response = await fetch(
-                `http://localhost:3005/delete-product/${productId}`,
+                `${process.env.REACT_APP_BACKEND_URL}delete-product/${productId}`,
                 {
                     method: 'DELETE',
                     headers: {

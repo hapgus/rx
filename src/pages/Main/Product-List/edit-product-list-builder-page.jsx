@@ -25,7 +25,7 @@ const EditProductListBuilderPage = () => {
         if (authUserId) {
             const fetchProductData = async () => {
                 try {
-                    const response = await sendRequest(`http://localhost:3005/user-list/${listId}`);
+                    const response = await sendRequest(`${process.env.REACT_APP_BACKEND_URL}user-list/${listId}`);
                     const listData = await response.responseData.savedList;
                     setIsSavedList(listData)
                   // Debugging: Log each item and its corresponding product

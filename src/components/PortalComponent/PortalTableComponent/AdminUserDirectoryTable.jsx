@@ -31,7 +31,7 @@ export const AdminUserDirectoryTable = () => {
     const fetchUsers = async () => {
        
         try {
-            const response = await fetch('http://localhost:3005/admin-users');
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}admin-users`);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
