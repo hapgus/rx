@@ -28,7 +28,7 @@ export const SearchPreviewCard = ({ products }) => {
                                 <img
                                     loading='lazy'
                                     className={styles.searchPreviewCardImageM}
-                                    src={`${process.env.REACT_APP_AWS_URL_IMAGE}/${image}`}
+                                    src={`${process.env.REACT_APP_AWS_URL}/${image}`}
                                     alt={`product ${title}`}
 
                                 />

@@ -14,14 +14,14 @@ import { GenerateProductURL } from '../../../utils/link-helper';
 import { AddToListButton, RemoveFromListButton } from '../../Button/ProductButtons';
 
 
-import { NavLink } from 'react-router-dom';
+
 import { LinkComponent } from '../../Links/LinkComponent';
 
 
 
 export const RelatedProductCard = ({ product }) => {
     const publicUrl = process.env.PUBLIC_URL;
-    const { title, subtitle, availability, image, category, subcategory } = product;
+    const { title, subtitle, image, category, subcategory } = product;
     // const productURL = GenerateProductURL(category, title);
     const configuredProductURL = GenerateProductURL(category, title);
     const productURL = `${publicUrl}${configuredProductURL}`;
@@ -35,7 +35,7 @@ export const RelatedProductCard = ({ product }) => {
                 <div className={styles.realtedProductImageWrapper}>
                     <img
                         loading='lazy'
-                        className={styles.relatedProductImage} src={`${process.env.REACT_APP_AWS_URL_IMAGE}/${image}`} alt={`product ${title}`} />
+                        className={styles.relatedProductImage} src={`${process.env.REACT_APP_AWS_URL}/${image}`} alt={`product ${title}`} />
                 </div>
                 <div className={styles.realtedProductTextWrapper}>
                     {/* <ProductText type='relatedProductAvailability'>{CapitalizeFirstLetter(availability)}</ProductText> */}

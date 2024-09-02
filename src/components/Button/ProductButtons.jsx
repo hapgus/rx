@@ -4,6 +4,7 @@ import { useBuilderHook } from "../../hooks/builder-hook";
 import { IconComponent } from "../Icon/IconComponent";
 import { useNotificationHook } from "../../hooks/notification-hook";
 import { useState, useEffect } from "react";
+import { logEvent } from "../../utils/google-analytics";
 
 export const AddToListButton = ({ product, iconButton = false }) => {
 
@@ -169,6 +170,8 @@ export const PrintProductsButton = () => {
     const { isModal, setIsModal } = useNotificationHook();
     const [isPrinting, setIsPrinting] = useState(false);
     const [clearAfterPrint, setClearAfterPrint] = useState(false); // New state for clearing products after print
+    
+    
     const handlePrint = () => {
         if (productsInList.length === 0) {
             alert('no products to print')
@@ -186,6 +189,7 @@ export const PrintProductsButton = () => {
             });
         }
         if (productsInList.length !== 0) {
+            console.log('print triggered')
             // window.print();
             setIsModal({
                 show: true,
@@ -196,10 +200,16 @@ export const PrintProductsButton = () => {
                 cancelText: 'Keep my list',
                 confirmText: 'Clear my list',
                 onConfirm: () => {
+                    logEvent({
+                        category: 'User Interaction',
+                        action: 'Click_Print',
+                        label: 'Print Button Click'
+                      });
                     setIsModal(prevState => ({ ...prevState, show: false }))
                     setIsPrinting(true); // Set isPrinting to true to trigger the print
                     
                     setClearAfterPrint(true); // Set flag to clear products after print
+                   
                 },
 
                 onCancel: () => {
