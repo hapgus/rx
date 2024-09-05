@@ -1,4 +1,4 @@
-
+import { PortalPage } from "../../components/PortalComponent/PortalPageComponent/PortalPage/PortalPage";
 
 import { PortalPageBody, PortalPageWrapper } from "../../components/PortalComponent/PortalPageComponent/PortalPageComponents";
 
@@ -6,16 +6,19 @@ import { ProductDirectoryTable } from "../../components/PortalComponent/PortalTa
 const ProductDirectoryPage = () => {
 
     return (
-        <PortalPageWrapper 
-         pageTitle='Product Table' pageDescription='See all products'
+        <PortalPage
+            pageTitle='Product Directory'
+            pageDescription='All home appliance featured on the product guide websites'
+
+            breadcrumb='Product Directory'
+            breadcrumbDirectory="Products"
+            breadcrumbDirectoryLink="/portal/product-directory"
+            breadcrumbLink="/portal/product-directory"
+            bodyTitle='Product Management Table'
         >
-        
-            <PortalPageBody>
-                <ProductDirectoryTable />
+            <ProductDirectoryTable />
+        </PortalPage>
 
-            </PortalPageBody>
-
-        </PortalPageWrapper>
     );
 }
 

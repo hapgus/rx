@@ -38,6 +38,7 @@ import { StaticImageUpload } from "../../FormComponent/ImageUpload/StaticImageUp
 
 import { DynamicResourceFormSection } from "../../FormComponent/Dynamic/DynamicResourceFormSection";
 import { ResourceFormSection } from "../../FormComponent/Dynamic/ResourceFormSection";
+import { FormSection } from "../../FormComponent/FormSection/FormSection";
 
 export const UpdateProductForm = ({ productId, productTemplate = false }) => {
 
@@ -169,6 +170,7 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
             const fetchProductData = async () => {
                 try {
                     const response = await sendRequest(` ${process.env.REACT_APP_BACKEND_URL}product/${productId}`);
+
                     const productData = await response.responseData.product;
 
                     console.log('product', productData)
@@ -323,11 +325,11 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
 
             if (productTemplate === true) {
                 try {
-                    const response = await sendRequest(`${process.env.REACT_APP_BACKEND_URL}add-product`,
+                    const response = await sendRequest(`http://localhost:3005/copy-product`,
                         'POST',
                         formData
                     )
-               
+
                     if (response.responseStatusCode === 201) {
                         setIsRoutingState(prevState => ({ ...prevState, isLoading: false }));
 
@@ -336,11 +338,10 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
                             show: true,
                             modalType: 'successModal',
                             title: "Success",
-                            message: "Congrats! The product was added updated.",
+                            message: "Congrats! The product was added.",
                             errorList: errorMessage,
                             onConfirm: () => setIsModal({ show: false }),
-                            onCancel: () => setIsModal({ show: false }),
-                            // handleProductDirectoryModalClick,
+                            onCancel: handleProductDirectoryModalClick,
                             confirmText: "Close",
                             cancelText: "Go to product directory",
 
@@ -349,7 +350,21 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
 
                 } catch (err) {
 
-                    console.log(err)
+                    setIsModal(prevState => ({
+                        ...prevState,
+                        show: true,
+                        modalType: 'infoModal',
+                        iconType: 'errorInfo',
+                        // title: "Almost there",
+                        // message: "You need to fix the following errors to continue.",
+                        // errorList: errorMessage,
+                        onConfirm: () => setIsModal({ show: false }),
+                        onCancel: () => setIsModal({ show: false }),
+                        confirmText: "Close",
+                        cancelText: "Go back",
+
+                    }));
+                    // console.log(err)
                 }
             } else {
                 try {
@@ -357,7 +372,7 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
                         'PATCH',
                         formData
                     )
-                    if (response.message === 'Product updated') {
+                    if (response.responseStatusCode === 201) {
                         setIsRoutingState(prevState => ({ ...prevState, isLoading: false }));
 
                         setIsModal(prevState => ({
@@ -403,390 +418,330 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
         // <FormComponent onSubmit={handleFormSubmit}>
         <FormComponent>
 
-            <section className={styles.section}>
-                <div className={styles.sectionHeader}>
-                    <PageText type="pageTitle">MSRP retailer and availability</PageText>
-                    <PageText type="pageTertiaryTitle">Pick retailer</PageText>
-                </div>
-                <div className={styles.sectionContent}>
-                    <Select
-                        id='store'
-                        name="store"
-                        labelName="Retailer"
-                        // errorText='Please select a retailer'
-                        validators={[]}
-                        onInput={inputHandler}
-                        initialValue={formState.inputs.store.value}
-                        initialIsValid={formState.inputs.store.isValid}
-                        options={[
-                            { value: "LG US", label: "LG Generic" },
-                            { value: "hd", label: "Home Depot" }
-                        ]}
-                    />
-                    <Select
-                        id='availability'
-                        name="availability"
-                        labelName="Availability"
-                        // errorText='Please select a retailer'
-                        validators={[]}
-                        onInput={inputHandler}
-                        initialValue={formState.inputs.availability.value}
-                        initialIsValid={formState.inputs.availability.isValid}
-                        value={formState.inputs.availability.value}
-                        options={availabilityOptions}
-                    />
-                    {/* <NumberInput
-                        id="msrp"
-                        name="msrp"
-                        value={values.msrp}
-                        onChange={handleChange}
-                        labelName="MSRP"
-                    /> */}
-                    <NumberInput
-                        id="msrp"
-                        name="msrp"
-                        labelName="MSRP"
-                        placeholder="Enter MSRP"
-                        validators={[]}
-                        initialValue={formState.inputs.msrp.value}
-                        initialIsValid={formState.inputs.msrp.isValid}
-                        onInput={inputHandler}
-                        min={0}
-                        max={10000}
-                        step={1}
-                    />
-                </div>
-            </section>
+            <FormSection
+                sectionTitle="MSRP retailer and availability"
+                sectionDescription="Pick retailer"
+            >
+                <NumberInput
+                    id="msrp"
+                    name="msrp"
+                    labelName="MSRP"
+                    placeholder="Enter MSRP"
+                    validators={[]}
+                    initialValue={formState.inputs.msrp.value}
+                    initialIsValid={formState.inputs.msrp.isValid}
+                    onInput={inputHandler}
+                    min={0}
+                    max={10000}
+                    step={1}
+                />
+                <Select
+                    id='store'
+                    name="store"
+                    labelName="Retailer"
+                    // errorText='Please select a retailer'
+                    validators={[]}
+                    onInput={inputHandler}
+                    initialValue={formState.inputs.store.value}
+                    initialIsValid={formState.inputs.store.isValid}
+                    options={[
+                        { value: "LG US", label: "LG Generic" },
+                        { value: "hd", label: "Home Depot" }
+                    ]}
+                />
+                <Select
+                    id='availability'
+                    name="availability"
+                    labelName="Availability"
+                    // errorText='Please select a retailer'
+                    validators={[]}
+                    onInput={inputHandler}
+                    initialValue={formState.inputs.availability.value}
+                    initialIsValid={formState.inputs.availability.isValid}
+                    value={formState.inputs.availability.value}
+                    options={availabilityOptions}
+                />
+            </FormSection>
+            <FormSection
+                sectionTitle="Model name/title and subtitles"
+                sectionDescription="Add model name and subtitle"
+            >
+                <TextInput
+                    id="title"
+                    name="title"
+                    labelName="Model title"
+                    secondaryLabel='Special characters allowed ( / \ - _ )'
+                    errorText='Model title required'
+                    validators={[VALIDATOR_REQUIRE()]}
+                    onInput={inputHandler}
+                    // initialValue={formState.inputs.title.value} 
+                    initialValue={formState.inputs.title.value}
+                    initialIsValid={formState.inputs.title.isValid}
 
 
-            <section className={styles.section}>
-                <div className={styles.sectionHeader}>
-                    <PageText type="pageTitle">Model name/title and subtitles</PageText>
-                    <PageText type="pageTertiaryTitle">Add model name and subtitle</PageText>
-                </div>
-                <div className={styles.sectionContent}>
-                    <TextInput
-                        id="title"
-                        name="title"
-                        labelName="Model title"
-                        secondaryLabel='Special characters allowed ( / \ - _ )'
-                        errorText='Model title required'
-                        validators={[VALIDATOR_REQUIRE()]}
-                        onInput={inputHandler}
-                        // initialValue={formState.inputs.title.value} 
-                        initialValue={formState.inputs.title.value}
-                        initialIsValid={formState.inputs.title.isValid}
+                />
+                <TextInput
+                    id="subtitle"
+                    name="subtitle"
+                    labelName="Sub-title"
+                    //  secondaryLabel='e.g. MXY8Z'
+                    errorText=' Subtitle required'
+                    validators={[VALIDATOR_REQUIRE()]}
+                    initialValue={formState.inputs.subtitle.value}
+                    initialIsValid={formState.inputs.subtitle.isValid}
+                    onInput={inputHandler}
+                />
+            </FormSection>
+            <FormSection
+                sectionTitle="Category"
+                sectionDescription="Pick category"
+            >
+                <Select
+                    id='category'
+                    name="category"
+                    labelName="Category"
+                    onInput={inputHandler}
+                    validators={[]}
+                    initialValue={formState.inputs.category.value}
+                    initialIsValid={formState.inputs.category.isValid}
+                    options={categoryOptions}
+                />
+                {formState.inputs.category.value && (
 
-
-                    />
-                    <TextInput
-                        id="subtitle"
-                        name="subtitle"
-                        labelName="Sub-title"
-                        //  secondaryLabel='e.g. MXY8Z'
-                        errorText=' Subtitle required'
-                        validators={[VALIDATOR_REQUIRE()]}
-                        initialValue={formState.inputs.subtitle.value}
-                        initialIsValid={formState.inputs.subtitle.isValid}
-                        onInput={inputHandler}
-                    />
-                </div>
-            </section>
-
-            <section className={styles.section}>
-                <div className={styles.sectionHeader}>
-                    <PageText type="pageTitle">Category</PageText>
-                    <PageText type="pageTertiaryTitle">Pick category</PageText>
-                </div>
-                <div className={styles.sectionContent}>
-                    <Select
-                        id='category'
-                        name="category"
-                        labelName="Category"
-                        onInput={inputHandler}
-                        validators={[]}
-                        initialValue={formState.inputs.category.value}
-                        initialIsValid={formState.inputs.category.isValid}
-                        options={categoryOptions}
-                    />
-                    {formState.inputs.category.value && (
-
-                        <div>
-                            <div className={styles.sectionHeader}>
-                                <PageText type="pageTitle">Subcategory and style category</PageText>
-                                <PageText type="pageTertiaryTitle">Subcategory and style category</PageText>
-
-                            </div>
-                            <div className={styles.dualRow}>
-                                <Select
-                                    id='subcategory'
-                                    name="subcategory"
-                                    labelName="Subcategory"
-                                    onInput={inputHandler}
-                                    validators={[]}
-                                    initialValue={formState.inputs.subcategory.value}
-                                    initialIsValid={formState.inputs.subcategory.isValid}
-                                    options={subcategoryOptions}
-                                />
-                                <TextInput
-                                    id="stylecategory"
-                                    name="stylecategory"
-                                    labelName="Style category"
-                                    secondaryLabel='Optional'
-                                    errorText=' Style category error'
-                                    noTouchValidation={true}
-                                    validators={[]}
-                                    onInput={inputHandler}
-                                    initialValue={formState.inputs.stylecategory.value}
-                                    initialIsValid={formState.inputs.stylecategory.isValid}
-                                />
-                            </div>
-                        </div>
-
-                    )}
-                </div>
-            </section>
-
-
-            <section className={styles.section}>
-                <div className={styles.sectionHeader}>
-                    <PageText type="pageTitle">Youtube videos</PageText>
-                    <PageText type="pageTertiaryTitle">Add feature videos</PageText>
-                </div>
-                <div className={styles.sectionContent}>
-                    <TextArea
-                        id="videos"
-                        name="videos"
-                        type="textarea"
-                        rows={10}
-                        onInput={inputHandler}
-                        validators={[]}
-                        labelName="Youtube videos"
-                        secondaryLabel='Optional'
-                        noTouchValidation={true}
-                        initialValue={formState.inputs.videos.value}
-                        initialIsValid={formState.inputs.videos.isValid}
-                    />
-                </div>
-            </section>
-
-
-            <section className={styles.section}>
-                <div className={styles.sectionHeader}>
-                    <PageText type="pageTitle">Specifications</PageText>
-                    <PageText type="pageTertiaryTitle">Add specifcation details</PageText>
-                </div>
-                <div className={styles.sectionContent}>
-                    <Select
-                        id="specTitle1"
-                        name="specTitle1"
-                        labelName="Column one title"
-                        // errorText='Please select a retailer'
-                        validators={[]}
-                        onInput={inputHandler}
-                        options={columnTitleOptions}
-                        initialValue={formState.inputs.specTitle1.value}
-                        initialIsValid={formState.inputs.specTitle1.isValid}
-                    />
-                    <TextArea
-                        id="specList1"
-                        name="specList1"
-                        type="textarea"
-                        rows={10}
-                        onInput={inputHandler}
-                        validators={[]}
-                        labelName="List One"
-                        noTouchValidation={true}
-                        initialValue={formState.inputs.specList1.value}
-                        initialIsValid={formState.inputs.specList1.isValid}
-                    />
-                    <Select
-                        id="specTitle2"
-                        name="specTitle2"
-                        labelName="Column two title"
-                        // errorText='Please select a retailer'
-                        validators={[]}
-                        onInput={inputHandler}
-                        options={columnTitleOptions}
-                        initialValue={formState.inputs.specTitle2.value}
-                        initialIsValid={formState.inputs.specTitle2.isValid}
-
-                    />
-                    <TextArea
-                        id="specList2"
-                        name="specList2"
-                        type="textarea"
-                        rows={10}
-                        onInput={inputHandler}
-                        validators={[]}
-                        labelName="List Two"
-                        noTouchValidation={true}
-                        initialValue={formState.inputs.specList2.value}
-                        initialIsValid={formState.inputs.specList2.isValid}
-                    />
-                    <Select
-                        id="specTitle3"
-                        name="specTitle3"
-                        labelName="Column three title"
-                        // errorText='Please select a retailer'
-                        validators={[]}
-                        onInput={inputHandler}
-                        options={columnTitleOptions}
-                        initialValue={formState.inputs.specTitle3.value}
-                        initialIsValid={formState.inputs.specTitle3.isValid}
-                    />
-                    <TextArea
-                        id="specList3"
-                        name="specList3"
-                        type="textarea"
-                        rows={10}
-                        onInput={inputHandler}
-                        validators={[]}
-                        labelName="List Three"
-                        noTouchValidation={true}
-                        initialValue={formState.inputs.specList3.value}
-                        initialIsValid={formState.inputs.specList3.isValid}
-                    />
-                    <Select
-                        id="specTitle4"
-                        name="specTitle4"
-                        labelName="Column four title"
-                        // errorText='Please select a retailer'
-                        validators={[]}
-                        onInput={inputHandler}
-                        options={columnTitleOptions}
-                        initialValue={formState.inputs.specTitle4.value}
-                        initialIsValid={formState.inputs.specTitle4.isValid}
-                    />
-                    <TextArea
-                        id="specList4"
-                        name="specList4"
-                        type="textarea"
-                        rows={10}
-                        onInput={inputHandler}
-                        validators={[]}
-                        labelName="List Four"
-                        noTouchValidation={true}
-                        initialValue={formState.inputs.specList4.value}
-                        initialIsValid={formState.inputs.specList4.isValid}
-                    />
-
-                </div>
-            </section>
-
-            <section className={styles.section}>
-                <div className={styles.sectionHeader}>
-                    <PageText type="pageTitle">Color Section</PageText>
-                    <PageText type="pageTertiaryTitle">Pick colors</PageText>
-                </div>
-                <div className={styles.sectionContent}>
-                    {colorOptions.map((e, index) => (
-                        <Checkbox
-                            key={index}
-                            id={e.color}
-                            labelName={e.color}
-                            value={e.color}
-                            onChange={handleColourChange}
-                            checked={selectedColors.includes(e.color)}
+                    <FormSection
+                        sectionTitle="Subcategory and style category"
+                        sectionDescription="Subcategory and style category"
+                    >
+                        <Select
+                            id='subcategory'
+                            name="subcategory"
+                            labelName="Subcategory"
+                            onInput={inputHandler}
+                            validators={[]}
+                            initialValue={formState.inputs.subcategory.value}
+                            initialIsValid={formState.inputs.subcategory.isValid}
+                            options={subcategoryOptions}
                         />
-                    ))}
-                </div>
-            </section>
-
-            <section className={styles.section}>
-                <div className={styles.sectionHeader}>
-                    <PageText type="pageTitle">Technology logos</PageText>
-                    <PageText type="pageTertiaryTitle">Tech logos</PageText>
-                </div>
-                <div className={styles.sectionContent}>
-                    {techLogoOptions.map((e, index) => (
-                        <Checkbox
-                            key={index}
-                            id={e.logo}
-                            labelName={e.logo}
-                            value={e.logo}
-                            onChange={handleLogoChange}
-                            checked={selectedLogos.includes(e.logo)}
+                        <TextInput
+                            id="stylecategory"
+                            name="stylecategory"
+                            labelName="Style category"
+                            secondaryLabel='Optional'
+                            errorText=' Style category error'
+                            noTouchValidation={true}
+                            validators={[]}
+                            onInput={inputHandler}
+                            initialValue={formState.inputs.stylecategory.value}
+                            initialIsValid={formState.inputs.stylecategory.isValid}
                         />
-                    ))}
-                </div>
-            </section>
+                    </FormSection>
+                )}
+            </FormSection>
+            <FormSection
+                sectionTitle="Youtube videos"
+                sectionDescription="Add feature videos"
+            >
+                <TextArea
+                    id="videos"
+                    name="videos"
+                    type="textarea"
+                    rows={10}
+                    onInput={inputHandler}
+                    validators={[]}
+                    labelName="Youtube videos"
+                    secondaryLabel='Optional'
+                    noTouchValidation={true}
+                    initialValue={formState.inputs.videos.value}
+                    initialIsValid={formState.inputs.videos.isValid}
+                />
+            </FormSection>
+            <FormSection
+                sectionTitle="Specifications"
+                sectionDescription="Add specifcation details"
+            >
+                <Select
+                    id="specTitle1"
+                    name="specTitle1"
+                    labelName="Column one title"
+                    // errorText='Please select a retailer'
+                    validators={[]}
+                    onInput={inputHandler}
+                    options={columnTitleOptions}
+                    initialValue={formState.inputs.specTitle1.value}
+                    initialIsValid={formState.inputs.specTitle1.isValid}
+                />
+                <TextArea
+                    id="specList1"
+                    name="specList1"
+                    type="textarea"
+                    rows={10}
+                    onInput={inputHandler}
+                    validators={[]}
+                    labelName="List One"
+                    noTouchValidation={true}
+                    initialValue={formState.inputs.specList1.value}
+                    initialIsValid={formState.inputs.specList1.isValid}
+                />
+                <Select
+                    id="specTitle2"
+                    name="specTitle2"
+                    labelName="Column two title"
+                    // errorText='Please select a retailer'
+                    validators={[]}
+                    onInput={inputHandler}
+                    options={columnTitleOptions}
+                    initialValue={formState.inputs.specTitle2.value}
+                    initialIsValid={formState.inputs.specTitle2.isValid}
 
-            <section className={styles.section}>
-                <div className={styles.sectionHeader}>
-                    <PageText type="pageTitle">UPC Codes</PageText>
-                    <PageText type="pageTertiaryTitle">Add the UPC Codesa</PageText>
-                </div>
-                <div className={styles.sectionContent}>
-                    <TextArea
-                        id="upc"
-                        name="upc"
-                        type="textarea"
-                        rows={10}
-                        onInput={inputHandler}
-                        validators={[]}
-                        labelName="UPC Code"
-                        noTouchValidation={true}
-                        initialValue={formState.inputs.upc.value}
-                        initialIsValid={formState.inputs.upc.isValid}
+                />
+                <TextArea
+                    id="specList2"
+                    name="specList2"
+                    type="textarea"
+                    rows={10}
+                    onInput={inputHandler}
+                    validators={[]}
+                    labelName="List Two"
+                    noTouchValidation={true}
+                    initialValue={formState.inputs.specList2.value}
+                    initialIsValid={formState.inputs.specList2.isValid}
+                />
+                <Select
+                    id="specTitle3"
+                    name="specTitle3"
+                    labelName="Column three title"
+                    // errorText='Please select a retailer'
+                    validators={[]}
+                    onInput={inputHandler}
+                    options={columnTitleOptions}
+                    initialValue={formState.inputs.specTitle3.value}
+                    initialIsValid={formState.inputs.specTitle3.isValid}
+                />
+                <TextArea
+                    id="specList3"
+                    name="specList3"
+                    type="textarea"
+                    rows={10}
+                    onInput={inputHandler}
+                    validators={[]}
+                    labelName="List Three"
+                    noTouchValidation={true}
+                    initialValue={formState.inputs.specList3.value}
+                    initialIsValid={formState.inputs.specList3.isValid}
+                />
+                <Select
+                    id="specTitle4"
+                    name="specTitle4"
+                    labelName="Column four title"
+                    // errorText='Please select a retailer'
+                    validators={[]}
+                    onInput={inputHandler}
+                    options={columnTitleOptions}
+                    initialValue={formState.inputs.specTitle4.value}
+                    initialIsValid={formState.inputs.specTitle4.isValid}
+                />
+                <TextArea
+                    id="specList4"
+                    name="specList4"
+                    type="textarea"
+                    rows={10}
+                    onInput={inputHandler}
+                    validators={[]}
+                    labelName="List Four"
+                    noTouchValidation={true}
+                    initialValue={formState.inputs.specList4.value}
+                    initialIsValid={formState.inputs.specList4.isValid}
+                />
+            </FormSection>
+
+            <FormSection
+                sectionTitle="Color Section"
+                sectionDescription="Pick colors"
+            >
+                {colorOptions.map((e, index) => (
+                    <Checkbox
+                        key={index}
+                        id={e.color}
+                        labelName={e.color}
+                        value={e.color}
+                        onChange={handleColourChange}
+                        checked={selectedColors.includes(e.color)}
                     />
-                </div>
-            </section>
-
-
-            <section className={styles.section}>
-                <div className={styles.sectionHeader}>
-                    <PageText type="pageTitle">Upload Product Image</PageText>
-                    <PageText type="pageTertiaryTitle">Add product image files</PageText>
-
-                </div>
-                <div className={styles.sectionContent}>
-                    {/* <StaticImageUpload iconType='qrCode' /> */}
-                    <StaticImageUpload
-                        iconType='imageFile'
-                        handleFileChange={handleFileChange}
-                        previewUrl={previewUrl}
-                        selectedFile={selectedFile}
+                ))}
+            </FormSection>
+            <FormSection
+                sectionTitle="Technology logos"
+                sectionDescription="Pick retailer"
+            >
+                {techLogoOptions.map((e, index) => (
+                    <Checkbox
+                        key={index}
+                        id={e.logo}
+                        labelName={e.logo}
+                        value={e.logo}
+                        onChange={handleLogoChange}
+                        checked={selectedLogos.includes(e.logo)}
                     />
-                    {/* <ImageUpload
-                        id='image'
-                        onInput={inputHandler}
-                    /> */}
-                </div>
-            </section>
-            <section className={styles.section}>
-                <div className={styles.sectionHeader}>
-                    <PageText type="pageTitle">Specification Sheet Link and Qrcode Image Upload </PageText>
-                    <PageText type="pageTertiaryTitle">Add external spec sheet url and the associated qr code image files</PageText>
+                ))}
+            </FormSection>
 
-                </div>
+            <FormSection
+                sectionTitle="UPC Codes"
+                sectionDescription="Pick retailer"
+            >
+                <TextArea
+                    id="upc"
+                    name="upc"
+                    type="textarea"
+                    rows={10}
+                    onInput={inputHandler}
+                    validators={[]}
+                    labelName="UPC Code"
+                    noTouchValidation={true}
+                    initialValue={formState.inputs.upc.value}
+                    initialIsValid={formState.inputs.upc.isValid}
+                />
+            </FormSection>
 
-                <div className={styles.sectionContent}>
-                    <TextInput
-                        id="specSheetLink"
-                        name="specSheetLink"
-                        labelName="Specification Sheet Link"
-                        //  secondaryLabel='e.g. MXY8Z'
-                        // errorText=' Subtitle required'
-                        validators={[]}
-                        onInput={inputHandler}
-                        initialValue={formState.inputs.specSheetLink.value}
-                        initialIsValid={formState.inputs.specSheetLink.isValid}
+            <FormSection
+                sectionTitle="Upload Product Image"
+                sectionDescription="Add product image files"
+            >
+                <StaticImageUpload
+                    iconType='imageFile'
+                    handleFileChange={handleFileChange}
+                    previewUrl={previewUrl}
+                    selectedFile={selectedFile}
+                />
+            </FormSection>
 
-                    />
-                    {/* <ImageUpload
-                        id='qrcode'
-                        onInput={inputHandler}
-                    /> */}
-                    <StaticImageUpload
-                        iconType='qrCode'
-                        handleFileChange={handleQrcodeFileChange}
-                        previewUrl={qrcodePreviewUrl}
-                        selectedFile={selectedQrcode}
-                    //  pickImageHandler={pickImageHandler}
-                    />
-                </div>
-            </section>
+            <FormSection
+                sectionTitle="Upload Spec Sheet Qrcode Image and link"
+                sectionDescription="Add product image files"
+            >
+                <StaticImageUpload
+                    iconType='qrCode'
+                    handleFileChange={handleQrcodeFileChange}
+                    previewUrl={qrcodePreviewUrl}
+                    selectedFile={selectedQrcode}
+                //  pickImageHandler={pickImageHandler}
+                />
+                <TextInput
+                    id="specSheetLink"
+                    name="specSheetLink"
+                    labelName="Specification Sheet Link"
+                    //  secondaryLabel='e.g. MXY8Z'
+                    // errorText=' Subtitle required'
+                    validators={[]}
+                    onInput={inputHandler}
+                    initialValue={formState.inputs.specSheetLink.value}
+                    initialIsValid={formState.inputs.specSheetLink.isValid}
+
+                />
+            </FormSection>
+
+
+
             {/* <section className={styles.section}>
                 <div className={styles.sectionHeader}>
                     <PageText type="pageTitle">Resource Links</PageText>
@@ -802,21 +757,11 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
 
             </section> */}
 
-            <section className={styles.section}>
-                <div className={styles.sectionHeader}>
-                    <PageText type="pageTitle">Add Resources Groups</PageText>
-                    <PageText type="pageTertiaryTitle">Press 'Add Group' to create a new resource. Provide a button text and destination URL, then upload a QR code image. The button will link to the URL on the website, and in print mode, the QR code will provide quick access to the same link</PageText>
-                </div>
-                <ResourceFormSection initialSections={initialSections} onSectionsChange={setSections} />
-                {/* <DynamicResourceFormSection
-                    sections={values.sections}
-                    onChange={handleSectionChange}
-                /> */}
-                <div className={styles.sectionContent}>
-
-
-                </div>
-            </section>
+            <div className={styles.sectionHeader}>
+                <PageText type="pageTitle">Add Resources Groups</PageText>
+                <PageText type="pageTertiaryTitle">Press 'Add Group' to create a new resource. Provide a button text and destination URL, then upload a QR code image. The button will link to the URL on the website, and in print mode, the QR code will provide quick access to the same link</PageText>
+            </div>
+            <ResourceFormSection initialSections={initialSections} onSectionsChange={setSections} />
 
 
             <div className={styles.formButtonWrapper}>

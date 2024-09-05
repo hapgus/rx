@@ -12,6 +12,7 @@ import { ScrollHeader } from './ScrollHeader';
 import { GridSystem } from '../GridSystem/GridSystem';
 
 export const ScrollingComponent = ({ processedProducts }) => {
+    console.log(processedProducts)
 
     const scrollRefs = useScrollableRefs(processedProducts.flatMap(Object.keys).length);
 

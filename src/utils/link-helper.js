@@ -84,6 +84,7 @@ export const portalLink = `/portal/dashboard`;
 
 // export const rootUrl = 
 
+
 export const resourceLinks = [
     { href: `/feature-definitions`, text: 'Feature Definitions' },
     { href: `/warranties`, text: 'Limited Warranties' },
@@ -205,8 +206,8 @@ export const onboardingLinks = [
 
 
 export const portalDashLinks = [
-    { href: `${publicUrl}/portal/dashboard`, text: 'Overview' },
-    { href: `${publicUrl}/portal/analytics`, text: 'Analytics' },
+    { href: `dashboard`, text: 'Overview' },
+    { href: `analytics`, text: 'Analytics' },
 ]
 
 export const superPortalFormLinks = [
@@ -234,6 +235,20 @@ export const portalTableLinks = [
 ]
 
 export const portalWebsiteLinks = [
-    { href: `${publicUrl}/`, text: 'www.lgproductguide.com' },
-    { href: `${publicUrl}/home-depot`, text: 'www.lgproductguide.com/home-depot' },
+    { href: `/`, text: 'www.lgproductguide.com' },
+    { href: `/home-depot`, text: 'www.lgproductguide.com/home-depot' },
+]
+
+export const portalAdminUserLinks = [
+    { href: `/portal/user-directory`, text: 'Member Table' },
+]
+
+export const portalSuperAdminUserLinks = [
+    { href: `add-user`, text: 'Create User' },
+    { href: `user-directory`, text: 'See All Users' },
+    { href: `admin-directory`, text: 'See All Admins' },
+]
+export const portalProductLinks = [
+    { href: `product-directory`, text: 'See All Products' },
+    { href: `add-product`, text: 'Create Products' },
 ]

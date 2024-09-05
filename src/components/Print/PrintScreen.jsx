@@ -3,11 +3,12 @@ import styles from './PrintScreen.module.css';
 import { PageText } from "../Text/Text";
 import { Specifications } from "../ProductDetails/Specifications/Specifications";
 import { TechnologyLogo } from "../ProductDetails/Technology/TechnologyLogo";
+import { Qrcode } from "../Qrcode/Qrcode";
 
 export const PrintScreen = () => {
     // const publicUrl = process.env.PUBLIC_URL;
     const { productsInList } = useBuilderHook();
- 
+    console.log('sss', productsInList)
     if (productsInList) {
         return (
             <div className={styles.printScreenPage} >
@@ -17,8 +18,6 @@ export const PrintScreen = () => {
                             <div className={styles.headerContent}>
                                 <PageText type="coverTitle">Product Guide Exclusive</PageText>
                                 <PageText type="pageTertiaryTitle">LG Home Appliance Product List</PageText>
-
-
                             </div>
                         </div>
                         <div className={styles.footer}>
@@ -55,9 +54,25 @@ export const PrintScreen = () => {
                             {
                                 p.specSheetQrcode &&
                                 <div className={styles.productQrcodes}>
-                                    <h1>QR Code</h1>
+                                    <Qrcode title='Scan Spec Sheet QR Code' imageUrl={`${process.env.REACT_APP_AWS_URL}/${p.resourceQrCodeImage}`} />
+                                    
                                 </div>
                             }
+                            {
+                                p.sections.length !== 0 && p.sections.resourceQrCodeImage !== '' ?
+                                    <div className={styles.qrcodeWrapper}>
+                                        {
+                                            p.sections.map((q) => (
+                                                <Qrcode 
+                                                title={`Scan qrcode ${q.resourceTitle}`}
+                                                imageUrl={`${process.env.REACT_APP_AWS_URL}/${q.resourceQrCodeImage}`} />
+
+                                            ))
+                                        }
+                                    </div>
+                                    : null
+                            }
+
 
                             {
                                 p.logos &&
@@ -71,7 +86,7 @@ export const PrintScreen = () => {
 
                 </div>
             </div>
-           
+
 
         );
     }

@@ -37,7 +37,8 @@ export const useCategoryOptions = () => {
             { value: "all-in-one", label: "All-In-One" },
             { value: "washers", label: "Washers" },
             { value: "dryers", label: "Dryers" },
-            { value: "washtower", label: "WashTower" },
+            // { value: "washtower", label: "WashTower" },
+            { value: "washtowers", label: "WashTower" },
             { value: "stylers", label: "Stylers" },
             { value: "accessories", label: "Accessories" },
         ],
@@ -51,7 +52,7 @@ export const useCategoryOptions = () => {
             { value: "dishwasher", label: "Dishwasher" },
         ],
         "vacuums": [
-            { value: "vacuum", label: "vacuum" },
+            { value: "vacuum", label: "Vacuum" },
         ],
         "signature": [
             { value: "laundry", label: "Laundry" },
@@ -69,6 +70,7 @@ export const useCategoryOptions = () => {
         ]
     }), []);
 };
+
 
 export const useCategories = () => {
     return useMemo(() => {

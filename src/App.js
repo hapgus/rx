@@ -30,13 +30,16 @@ import ProductDirectoryPage from "./pages/Portal/product-directory";
 import AddUserPage from "./pages/Portal/add-user";
 import UserProfilePage from "./pages/Main/User-Account/user-profile";
 import UserSavedListsPage from "./pages/Main/User-Account/user-saved-lists";
+import { useAuth } from "./hooks/auth-hook";
 
 const App = () => {
 
   const baseUrl = '/'
-   const baseHDUrl = '/home-depot/*'
+  const baseHDUrl = '/home-depot/*'
   const authUrl = '/member/*'
   const PortalUrl = '/portal/*'
+
+  const { isAuthenticated, isSuperAdmin, isAdmin } = useAuth()
   const renderAuthRoutes = () => (
     <>
       <Route path='login' element={<LoginPage />} />
@@ -56,9 +59,16 @@ const App = () => {
       <Route path='product-directory' element={<ProductDirectoryPage />} />
 
       <Route path='edit-user/:userId' element={<EditUserPage />} />
-      <Route path='add-user' element={<AddUserPage />} />
+      {
+        isSuperAdmin &&
+        <>
+          <Route path='add-user' element={<AddUserPage />} />
+          <Route path='admin-directory' element={<AdminDirectoryPage />} />
+        </>
+      }
+
       <Route path='user-directory' element={<UserDirectoryPage />} />
-      <Route path='admin-directory' element={<AdminDirectoryPage />} />
+
       <Route path="*" element={<NotFoundPage />} />
     </>
   )
@@ -88,18 +98,16 @@ const App = () => {
     <Routes>
       <Route path={baseUrl} element={<MainLayout />}>
         {renderMainRoutes()}
-        {renderAccountRoutes()}
+        {isAuthenticated && renderAccountRoutes()}
       </Route>
       <Route path={baseHDUrl} element={<MainLayout />}>
         {renderMainRoutes()}
-      
       </Route>
       <Route path={authUrl} element={<AuthLayout />}>
-        {renderAuthRoutes()}
+        { renderAuthRoutes()}
       </Route>
       <Route path={PortalUrl} element={<PortalLayout />}>
-        {renderPortalRoutes()}
-
+        {isSuperAdmin && isAdmin && renderPortalRoutes()}
       </Route>
     </Routes>
   )

@@ -1,9 +1,7 @@
-import { PortalPageHeader, PortalPageWrapper, PortalPageBody } from "../../components/PortalComponent/PortalPageComponent/PortalPageComponents";
-import { PortalUserForm } from "../../components/PortalComponent/PortalFormComponent/PortalUserForm";
+
 import { AdminAccountForm } from "../../components/AuthComponent/AdminAccountForm";
-import { GridSystem } from "../../components/GridSystem/GridSystem";
-import { PageContainerComponent } from "../../components/PageComponent/PageContainerComponent";
-import { PortalPage } from "../../components/PortalComponent/PortalPageComponent/PortalPage";
+import { PortalPage } from "../../components/PortalComponent/PortalPageComponent/PortalPage/PortalPage";
+import { FormWrapper } from "../../components/FormComponent/FormWrapper/FormWrapper";
 
 const AddUserPage = () => {
     return (
@@ -11,22 +9,15 @@ const AddUserPage = () => {
             pageTitle='Create Administrator'
             pageSubtitle='Complete the form below to create a new administrator'
             pageDescription='Complete the form below to create a new administrator'
+            breadcrumb='Create Admin User'
+            breadcrumbDirectory="Users"
+            bodyTitle='Create Admin User Form'
         >
-            <AdminAccountForm />
+            <FormWrapper>
+                <AdminAccountForm />
+            </FormWrapper>
         </PortalPage>
-        // <PortalPageWrapper>
-        //     <GridSystem>
-        //         <PortalPageHeader
-        //             pageTitle='Admin User Form'
-        //             pageDescription='Create a new admin user'
-        //         />
-        //         <PortalPageBody>
-        //             
-        //             {/* <PortalUserForm/>      */}
-        //         </PortalPageBody>
-        //     </GridSystem>
-
-        // </PortalPageWrapper>
+        
     );
 }
 

@@ -24,6 +24,7 @@
 .inputIcon svg{
     height: 2rem;
     width: 2rem;
+    margin-left:1.14rem ;
 }
 input:-webkit-autofill {
     appearance: none;

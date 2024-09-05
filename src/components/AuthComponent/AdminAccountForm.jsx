@@ -99,9 +99,7 @@ export const AdminAccountForm = () => {
                     'POST',
                     JSON.stringify(data), {
                     'Content-Type': 'application/json',
-
                 }
-                    // formData
                 )
                 if (response.responseStatusCode === 201) {
                     // setIsRoutingState(prevState => ({ ...prevState, isLoading: false }));
@@ -126,13 +124,9 @@ export const AdminAccountForm = () => {
                     }, 100);
                 }
             } catch (err) {
-
                 console.log(err)
             }
-            console.log('is modal', isModal)
-
         }
-
     };
 
     console.log('sign up', formState)

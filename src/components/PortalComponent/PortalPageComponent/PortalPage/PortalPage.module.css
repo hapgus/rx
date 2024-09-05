@@ -1,0 +1,146 @@
+.portalPageContainer {
+    background-color: var(--color-gray-06);
+}
+
+.portalPageHeaderWrapper {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 1fr;
+
+    /* margin-bottom: 2rem;
+    padding: 2rem; */
+}
+
+.portalPageHeaderInnerDiv {
+    background-color: var(--color-gray-07);
+    grid-column: 1/-1;
+    grid-row: 1;
+    margin-bottom: 2rem;
+    padding: 3rem 0;
+    /* padding: 2rem; */
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(2, auto);
+}
+
+.breadcrumbs {
+    grid-row: 1;
+    grid-column: 2/12;
+    display: flex;
+    flex-direction: row;
+    color: var(--color-gray-03);
+    font-size: 1.4rem;
+    /* padding-bottom: 2rem;
+    margin-bottom: 2rem; */
+    /* border-bottom: 1px solid var(--color-gray-04); */
+}
+
+.slash1 {
+    padding: 0 .5rem;
+}
+
+.slash2 {
+    padding: 0 .5rem;
+}
+
+.currentPage {
+    color: var(--color-red-02);
+    font-family: var(--text-semibold);
+}
+
+.headerText {
+    grid-column: 2/12;
+    grid-row: 2;
+}
+
+.pageTitle {
+   
+    /* padding-bottom: 1.5rem; */
+    color: var(--color-gray-01);
+}
+
+.pageDescription {
+    font-size: 1.6rem;
+    color: var(--color-gray-03);
+}
+
+.portalPageBodyWrapper {
+
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 1fr;
+    background-color: var(--color-gray-07);
+    height: 100%;
+    padding-bottom: 8rem;
+}
+
+.portalPageBodyInnerDiv {
+    
+    grid-column: 2/12;
+
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(2, auto);
+    /* padding: 3rem */
+}
+
+.bodyTitleWrapper {
+    grid-column: 1/-1;
+    grid-row: 1;
+    border-bottom: 1px solid var(--color-gray-04);
+    padding: 2rem 0;
+}
+.bodyTitle{
+    font-size: 2rem;
+}
+.bodyContent {
+    grid-column: 1/-1;
+    grid-row: 2;
+    padding: 2rem 0;
+
+
+}
+
+@media (min-width: 768px) {
+    .breadcrumbs {
+        font-size: 1.6rem;
+        padding-bottom: 1rem;
+        margin-bottom: 1rem;
+        /* border-bottom: 1px solid var(--color-gray-04); */
+    }
+
+    .pageTitle {
+        font-size: 4rem;
+
+    }
+
+    .pageDescription {
+        font-size: 2rem;
+
+    }
+
+    .portalPageContainer {
+
+        /* padding: 4rem; */
+    }
+
+    .portalPageWrapper {
+
+        padding: 3rem 6rem;
+    }
+}
+
+@media (min-width: 1024px) {}
+
+/* --------------------------------------------------------------------------------------- */
+/* MEDIA QUERY REFERENCE */
+/* --------------------------------------------------------------------------------------- */
+/* 
+@media (min-width: 430px) {}
+@media (min-width: 768px) {}
+@media (min-width: 834px) {}
+@media (min-width: 1024px) {} - MOBILE / DESKTOP Breakpoint
+@media (min-width: 1280px) {}
+@media (min-width: 1440px) {}
+@media (min-width: 1920px) {} 
+*/

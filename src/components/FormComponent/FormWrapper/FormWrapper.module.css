@@ -1,0 +1,8 @@
+.formWrapperContainer{
+    width: 100%;
+}
+@media (min-width: 1024px) {
+    .formWrapperContainer{
+        width: 50%;
+    }
+}

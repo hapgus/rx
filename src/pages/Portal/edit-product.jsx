@@ -1,22 +1,27 @@
-
+import { PortalPage } from '../../components/PortalComponent/PortalPageComponent/PortalPage/PortalPage';
 import { UpdateProductForm } from '../../components/PortalComponent/PortalFormComponent/UpdateProductForm';
-import { PortalPageHeader, PortalPageWrapper } from '../../components/PortalComponent/PortalPageComponent/PortalPageComponents';
-import { PageText } from '../../components/Text/Text';
+import { FormWrapper } from '../../components/FormComponent/FormWrapper/FormWrapper';
 import { useParams } from 'react-router-dom';
-import { PRODUCT_DATA } from '../../data/PRODUCT_DATA';
+
 
 const EditProductPage = () => {
     const { productId } = useParams();
 
-    const data = PRODUCT_DATA.map(e=>e)
+ 
     return (
-        <div>
-            <PortalPageWrapper>
-                <PortalPageHeader pageTitle={`Edit Product ${productId && productId}`} pageDescription={`Update text, selections, or media, of product model ${productId}`} />
-<UpdateProductForm productId={productId} />
+        <PortalPage
+            pageTitle='Update Product'
+            pageDescription='Complete the form below to Update your product'
+           
+            breadcrumb='Edit Products'
+            breadcrumbDirectory="Products"
+            bodyTitle="Product Management Form"
+        >
+            <FormWrapper>
+                <UpdateProductForm productId={productId} />
+            </FormWrapper>
+        </PortalPage>
 
-            </PortalPageWrapper>
-        </div>
     );
 }
 

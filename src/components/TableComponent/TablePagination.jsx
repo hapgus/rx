@@ -1,4 +1,7 @@
 import styles from "./TablePagination.module.css";
+// import SkeletonTable from "../Skeletons/TableSkeleton";
+import { TableRowSkeleton } from "../Skeletons/TableSkeleton";
+import { IconComponent } from "../Icon/IconComponent";
 
 const TablePagination = ({
     itemsPerPage,
@@ -8,7 +11,7 @@ const TablePagination = ({
 }) => {
 
     if (!Array.isArray(tableData) || tableData.length === 0) {
-        return <div>No records available</div>;
+        return <TableRowSkeleton />;
     }
 
     const totalPages = itemsPerPage ? Math.ceil(tableData.length / itemsPerPage) : 0;
@@ -62,43 +65,52 @@ const TablePagination = ({
                             onClick={() => setCurrentPage(prevPage => prevPage - 1)}
                             disabled={currentPage === 1}
                         >
-                            Previous
+                             <div className={styles.chevronWrapper}>
+                                    <IconComponent iconType='leftChevron' />
+                                </div>
+                            {/* Previous */}
                         </button>
 
-                        {pageNumbers[0] !== 1 && <>...</>}
-
-                        {pageNumbers.map(number => (
-                            <span
-                                key={number}
-                                className={`${styles.pagNum} ${number === currentPage ? styles.activePage : ""}`}
-                                onClick={() => setCurrentPage(number)}
-                            >
-                                {number}
-                            </span>
-                        ))}
-                        {pageNumbers[pageNumbers.length - 1] !== totalPages && <><p className={styles.pagNum}>...</p></>}
+                        {/* {pageNumbers[0] !== 1 && <>...</>} */}
+                        <div className={styles.pageNumberWrapper}>
+                            {pageNumbers.map(number => (
+                                <span
+                                    key={number}
+                                    className={`${styles.pagNum} ${number === currentPage ? styles.activePage : ""}`}
+                                    onClick={() => setCurrentPage(number)}
+                                >
+                                    {number}
+                                </span>
+                            ))}
+                        </div>
+                        <div className={styles.spreadDotsWrapper}>
+                            {pageNumbers[pageNumbers.length - 1] !== totalPages && <><p className={styles.pagNum}>...</p></>}
+                        </div>
                         {/* <p> | Page {currentPage} of {totalPages}</p> */}
                         <div className={styles.buttonWrapper}>
-                        <button
-                            type="button"
-                            className={styles.paginationButton}
-                            onClick={() => setCurrentPage(prevPage => prevPage + 1)}
-                            disabled={currentPage === totalPages}
-                        >
-                            Next
-                        </button>
-                        <button
-                            type="button"
-                            className={styles.paginationButton}
-                            onClick={() => setCurrentPage(totalPages)}
-                            disabled={currentPage === totalPages}
-                        >
-                            Last
-                        </button>
+                            <button
+                                type="button"
+                                className={styles.paginationButton}
+                                onClick={() => setCurrentPage(prevPage => prevPage + 1)}
+                                disabled={currentPage === totalPages}
+                            >
+                                <div className={styles.chevronWrapper}>
+                                    <IconComponent iconType='rightChevron' />
+                                </div>
+                                {/* Next */}
+                            </button>
+                            <button
+                                type="button"
+                                className={styles.paginationButton}
+                                onClick={() => setCurrentPage(totalPages)}
+                                disabled={currentPage === totalPages}
+                            >
+                                Last
+                            </button>
                         </div>
                     </div>
                     <div className={styles.tableInfoWrapper}>
-                       <p className={styles.tableInfoText}>{`Showing ${startingItem} to ${endingItem} of ${tableData.length} records`}</p>
+                        <p className={styles.tableInfoText}>{`Showing ${startingItem} to ${endingItem} of ${tableData.length} records`}</p>
                     </div>
                 </div>
 

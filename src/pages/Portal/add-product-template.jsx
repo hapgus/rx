@@ -1,22 +1,30 @@
 
 import { UpdateProductForm } from '../../components/PortalComponent/PortalFormComponent/UpdateProductForm';
-import { PortalPageHeader, PortalPageWrapper } from '../../components/PortalComponent/PortalPageComponent/PortalPageComponents';
-import { PageText } from '../../components/Text/Text';
+// import { PortalPageHeader, PortalPageWrapper } from '../../components/PortalComponent/PortalPageComponent/PortalPageComponents';
+// import { PageText } from '../../components/Text/Text';
 import { useParams } from 'react-router-dom';
-import { PRODUCT_DATA } from '../../data/PRODUCT_DATA';
+// import { PRODUCT_DATA } from '../../data/PRODUCT_DATA';
+import { PortalPage } from '../../components/PortalComponent/PortalPageComponent/PortalPage/PortalPage';
+import { FormWrapper } from '../../components/FormComponent/FormWrapper/FormWrapper';
 
 const AddProductTemplatePage = () => {
     const { productId } = useParams();
 
-    const data = PRODUCT_DATA.map(e => e)
+    // const data = PRODUCT_DATA.map(e => e)
     return (
-        <div>
-            <PortalPageWrapper>
-                <PortalPageHeader pageTitle={`Product ${productId && productId} Template`} pageDescription={`Use the product template to streamline product creation`} />
-                <UpdateProductForm productTemplate={true} productId={productId} />
+        <PortalPage
+            pageTitle='Add New Product (Copied)'
+            pageDescription='Update the product details in the form below and submit to create a new product'
 
-            </PortalPageWrapper>
-        </div>
+            breadcrumb='Create Products from Template'
+            breadcrumbDirectory="Products"
+            bodyTitle="Product Management Form"
+        >
+            <FormWrapper>
+                <UpdateProductForm productTemplate={true} productId={productId} />
+            </FormWrapper>
+        </PortalPage>
+
     );
 }
 

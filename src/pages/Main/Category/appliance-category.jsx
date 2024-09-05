@@ -14,6 +14,9 @@ import { useResponsiveStateHook } from '../../../hooks/responsive-hook';
 import { useResponsiveMediaStateHook } from '../../../hooks/responsive-hook';
 import { stepUpChartLinks } from '../../../utils/link-helper';
 import { LinkComponent } from '../../../components/Links/LinkComponent';
+import { sortProductsByMsrp } from '../../../utils/category-helper';
+import { sortProductsByTitle } from '../../../utils/category-helper';
+import { sortProductsByMsrpAndTitle } from '../../../utils/category-helper';
 // import { InnerGridItem } from '../../../components/GridSystem/InnerGridItem';
 const ApplianceCategoryPage = () => {
     const { isMobile } = useResponsiveStateHook();
@@ -28,7 +31,9 @@ const ApplianceCategoryPage = () => {
     const transformedCategoryName = capitalizeFirstLetterEachWord(normalizedCategoryId);
 
     const subcategories = Object.values(reducedProducts);
-
+     // **Apply the sorting here** REPLACING SUBCATEGORIES WITH sortedSubcategories
+    //  const sortedSubcategories = subcategories.map(subcategory => sortProductsByMsrp(subcategory));
+    const sortedSubcategories = subcategories.map(subcategory => sortProductsByMsrpAndTitle(subcategory));
 
     const publicUrl = process.env.PUBLIC_URL;
 
@@ -175,7 +180,8 @@ const ApplianceCategoryPage = () => {
 
             </GridSystem>
             <section className={styles.productsContainer}>
-                <ScrollingComponent processedProducts={subcategories} />
+                {/* <ScrollingComponent processedProducts={subcategories} /> */}
+                <ScrollingComponent processedProducts={sortedSubcategories} />
             </section>
 
         </>

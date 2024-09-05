@@ -43,11 +43,13 @@ export const ManageUserForm = () => {
     useEffect(() => {
 
         if (userId) {
+            console.log(userId)
             const fetchProductData = async () => {
                 try {
                     const { responseData } = await sendRequest(` ${process.env.REACT_APP_BACKEND_URL}user/${userId}`);
+                    // const { responseData } = await sendRequest(` http://localhost:3005/user/${userId}`);
                     const userData = responseData?.user;
-                  
+
                     setUserInfo(userData)
 
                     setFormData({
@@ -117,7 +119,7 @@ export const ManageUserForm = () => {
 
     }
     const handleOnCancel = () => {
-        setIsModal({show: false})
+        setIsModal({ show: false })
         redirect('/portal/user-directory/')
     }
 
@@ -166,120 +168,114 @@ export const ManageUserForm = () => {
         }
     }
     return (
-        <PortalPageWrapper
-            pageTitle={`${userInfo?.firstName} ${userInfo?.lastName}'s Account `}
-            pageDescription={`${userInfo?.firstName}'s  status or role`}
-        >
 
-            <PortalPageBody>
+        <>
+            <div className={styles.accountInformationWrapper}>
+                <div>
 
-                <div className={styles.accountInformationWrapper}>
-                    <div>
+                    <div className={styles.sectionTitle2}>
+                        <PageText>Manage Status and Role</PageText>
 
-                        <div className={styles.sectionTitle2}>
-                            <PageText>Manage Status and Role</PageText>
-
-                        </div>
-
-
-                    </div>
-
-                    <div className={styles.formElements}>
-                        <Select
-                            id='role'
-                            name="role"
-                            labelName="User Role"
-                            // errorText='Please select a retailer'
-                            validators={[]}
-                            onInput={inputHandler}
-                            initialValue={formState.inputs.role.value}
-                            initialIsValid={formState.inputs.role.isValid}
-                            options={[
-                                { value: "user", label: "User" },
-                                { value: "admin", label: "Administrator" },
-                                { value: "superAdmin", label: "Super Administrator" }
-                            ]}
-                        />
-
-                        <Select
-                            id='status'
-                            name='status'
-                            labelName="User Status"
-                            // errorText='Please select a retailer'
-                            validators={[]}
-                            onInput={inputHandler}
-                            initialValue={formState.inputs.status.value}
-                            initialIsValid={formState.inputs.status.isValid}
-                            options={[
-                                { value: "pending", label: "Pending approval" },
-                                { value: "approved", label: "Approved" },
-                                { value: "notApproved", label: "Not Approved" }
-                            ]}
-                        />
-                        <div className={styles.buttonWrapper}>
-                            <Button type='button' onClick={handleFormSubmit} buttonStyleType="primaryAction">Sumbit </Button>
-                        </div>
                     </div>
 
 
                 </div>
 
-                <div className={styles.accountInformationWrapper}>
-                    <div className={styles.sectionTitle}>
-                        <PageText>Contact Information</PageText>
+                <div className={styles.formElements}>
+                    <Select
+                        id='role'
+                        name="role"
+                        labelName="User Role"
+                        // errorText='Please select a retailer'
+                        validators={[]}
+                        onInput={inputHandler}
+                        initialValue={formState.inputs.role.value}
+                        initialIsValid={formState.inputs.role.isValid}
+                        options={[
+                            { value: "user", label: "User" },
+                            { value: "admin", label: "Administrator" },
+                            { value: "superAdmin", label: "Super Administrator" }
+                        ]}
+                    />
+
+                    <Select
+                        id='status'
+                        name='status'
+                        labelName="User Status"
+                        // errorText='Please select a retailer'
+                        validators={[]}
+                        onInput={inputHandler}
+                        initialValue={formState.inputs.status.value}
+                        initialIsValid={formState.inputs.status.isValid}
+                        options={[
+                            { value: "pending", label: "Pending approval" },
+                            { value: "approved", label: "Approved" },
+                            { value: "notApproved", label: "Not Approved" }
+                        ]}
+                    />
+                    <div className={styles.buttonWrapper}>
+                        <Button type='button' onClick={handleFormSubmit} buttonStyleType="primaryAction">Sumbit </Button>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div className={styles.accountInformationWrapper}>
+                <div className={styles.sectionTitle}>
+                    <PageText>Contact Information</PageText>
+
+                </div>
+                <div className={styles.infoWrapper}>
+                    <div className={styles.infoRow}>
+                        <div className={styles.infoTitle}>
+                            <PageText>Email:</PageText>
+                        </div>
+                        <div className={styles.infoData}>
+                            {userInfo?.email}
+                        </div>
 
                     </div>
-                    <div className={styles.infoWrapper}>
-                        <div className={styles.infoRow}>
-                            <div className={styles.infoTitle}>
-                                <PageText>Email:</PageText>
-                            </div>
-                            <div className={styles.infoData}>
-                                {userInfo?.email}
-                            </div>
-
+                    <div className={styles.infoRow}>
+                        <div className={styles.infoTitle}>
+                            <PageText>First name:</PageText>
                         </div>
-                        <div className={styles.infoRow}>
-                            <div className={styles.infoTitle}>
-                                <PageText>First name:</PageText>
-                            </div>
 
-                            <div className={styles.infoData}>
-                                {userInfo?.firstName}
-                            </div>
-
+                        <div className={styles.infoData}>
+                            {userInfo?.firstName}
                         </div>
-                        <div className={styles.infoRow}>
-                            <div className={styles.infoTitle}>
-                                <PageText>Last name:</PageText>
-                            </div>
 
-                            <div className={styles.infoData}>
-                                {userInfo?.lastName}
-                            </div>
-
+                    </div>
+                    <div className={styles.infoRow}>
+                        <div className={styles.infoTitle}>
+                            <PageText>Last name:</PageText>
                         </div>
-                        <div className={styles.infoRow}>
-                            <div className={styles.infoTitle}>
-                                <PageText>Store:</PageText>
-                            </div>
-                            <div className={styles.infoData}>
-                                {userInfo?.store}
-                            </div>
+
+                        <div className={styles.infoData}>
+                            {userInfo?.lastName}
+                        </div>
+
+                    </div>
+                    <div className={styles.infoRow}>
+                        <div className={styles.infoTitle}>
+                            <PageText>Store:</PageText>
+                        </div>
+                        <div className={styles.infoData}>
+                            {userInfo?.store}
                         </div>
                     </div>
-                    <div>
-                        {/* <div className={styles.deleteAccountTitle}>
+                </div>
+                <div>
+                    {/* <div className={styles.deleteAccountTitle}>
                             <PageText>Remove User</PageText>
                         </div> */}
-                        <div className={styles.buttonWrapper}>
-                            <Button onClick={handleDeleteUser} buttonStyleType='secondary'>Delete account</Button>
-                        </div>
+                    <div className={styles.buttonWrapper}>
+                        <Button onClick={handleDeleteUser} buttonStyleType='secondary'>Delete account</Button>
                     </div>
-
                 </div>
-            </PortalPageBody>
-        </PortalPageWrapper>
+
+            </div>
+        </>
 
     );
 }

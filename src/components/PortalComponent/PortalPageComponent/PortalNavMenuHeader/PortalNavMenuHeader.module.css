@@ -1,0 +1,70 @@
+.navMenuHeaderWrapper{
+    background-color: var(--color-gray-07);
+    /* border-bottom: 1px solid gainsboro; */
+    display: flex;
+    flex-direction: row;
+    /* border: 1px solid black; */
+    padding: 1.5rem 2rem;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.navMenuHeaderWrapper:hover{
+    
+}
+
+
+.headerTextIconGroup{
+    /* background-color: rgb(16, 97, 97); */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+    color: black;
+}
+.headerTextIconGroup svg {
+    height: 2rem;
+    width: auto;
+    display: flex;
+    align-items: center;
+}
+
+.headerChevronIcon svg{
+    height:.8rem;
+    width: auto;
+    display: flex;
+    align-items: center;
+}
+.headerMenuWrapper{ 
+ 
+    /* display: flex;
+    flex-direction: column; */
+}
+.menu{
+    /* background-color: brown; */
+}
+.dropdownList{
+   
+    /* background-color: white; */
+    display: flex;
+    flex-direction: column;
+    /* gap: 1.5rem; */
+}
+.dropdownList li{
+    padding: 1.5rem 6rem;
+   
+}
+.dropdownList li:hover{
+   /* box-shadow: 2px 0px var(--color-red-01); 
+   background-color: #ffdddd; */
+}
+.dropdownList a{
+text-decoration: none;
+color: black;
+
+
+}
+.dropdownList a:hover{
+    color: var(--color-red-01);
+   
+}

@@ -1,7 +1,4 @@
-.mainTextInputContainer{
-    /* background-color: aqua; */
-    /* padding: .5rem 0; */
-}
+
 
 .inputContainer{
     background-color: white;
@@ -17,6 +14,7 @@
    color: var(--color-gray-02);
    font-size: 1.6rem;
    font-family: inherit;
+   resize: none;
 }
 .input:focus-visible{
     outline: none;

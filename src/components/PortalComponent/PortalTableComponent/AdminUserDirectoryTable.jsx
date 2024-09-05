@@ -13,17 +13,23 @@ export const AdminUserDirectoryTable = () => {
      const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 10;
     const tableColumns = [
-        { key: 'firstName', title: 'First Name' },
-        { key: 'lastName', title: 'Last Name' },
+        { key: 'firstName', title: 'Name' },
+        // { key: 'lastName', title: 'Last Name' },
         { key: 'email', title: 'Email' },
         { key: 'role', title: 'Role' },
-        { key: 'status', title: 'Status' },
+        // { key: 'status', title: 'Status' },
+        { key: 'productsCreated', title: 'Products Created' },
+        { key: 'productsUpdated', title: 'Products Updated' },
+        { key: 'productsDeleted', title: 'Products Deleted' },
+        { key: 'usersCreated', title: 'Users Created' },
+        { key: 'usersUpdated', title: 'Users Updated' },
+        { key: 'usersDeleted', title: 'Users Deleted' },
         {
             key: 'manage',
             title: 'Manage',
             render: row => (
                 <div className={styles.actionIconContainer}>
-                    <IconComponent onClick={()=> redirect(`/portal/edit-user/${row._id}`)} iconType='edit' />
+                    <IconComponent onClick={()=> redirect(`/portal/edit-user/${row.userId}`)} iconType='edit' />
                 </div>
             )
         }

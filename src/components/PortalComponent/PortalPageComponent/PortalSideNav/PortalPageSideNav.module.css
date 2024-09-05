@@ -1,0 +1,84 @@
+.sidebarContainer {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, auto);
+    /* background-color: var(--color-gray-05); */
+    /* background-color: var(--color-gray-05); */
+    /* background-color: #F0F2F5; */
+    /* background-color: #FAFAFA; */
+    /* background-color: var(--color-gray-04); */
+    /* padding: 0 4rem; */
+    height: 100vh;  
+    /* padding-right: .1rem; */
+}
+
+.sidebarWrapper {
+    grid-row: 1/-1;
+    grid-column: 1/-1;
+/* background-color: var(--color-gray-05); */
+background-color: var(--color-gray-06);
+height: 100vh;
+box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    /* background-color: aquamarine; */
+
+    /* display: grid;
+    grid-template-columns: repeat(12,1fr);
+    grid-template-columns: repeat(12,auto);
+    background-color: rgb(21, 99, 99);
+    height: 100%; */
+  
+}
+
+.sidebarContent {
+    grid-column: 1/-1;
+    grid-row: 3;
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+   margin-top: 6rem;
+   padding-right: .2rem;
+
+    /* height: 100%; */
+}
+.logoutLinkWrapper{
+    padding: 0;
+}
+.logoutHeaderIconTextGroup{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    padding:  2rem;
+    border-top: 1px solid black;
+}
+.icon svg{
+    height: 2.4rem;
+    width: 2.4rem;
+    object-fit: contain;
+    display: flex;
+
+}
+.dropdownList{
+   
+    /* background-color: white; */
+    display: flex;
+    flex-direction: column;
+    /* gap: 1.5rem; */
+}
+.dropdownList li{
+    padding: 1.5rem 6rem;
+   
+}
+.dropdownList li:hover{
+   /* box-shadow: 2px 0px var(--color-red-01); 
+   background-color: #ffdddd; */
+}
+.dropdownList a{
+text-decoration: none;
+color: black;
+
+
+}
+.dropdownList a:hover{
+    color: var(--color-red-01);
+   
+}

@@ -1,0 +1,53 @@
+.customNumberInput{
+    display: flex;
+    flex-direction: row;
+}
+.customNumberInput svg:hover{
+cursor: pointer;
+}
+.numberInputButton{
+    background-color: var(--color-gray-04);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100rem;
+    width: 4.2rem;
+    height: 4.2rem;
+}
+.numberInputButton svg{
+    display: flex;
+    align-items: center;
+    height: 2.4rem;
+    width: 2.4rem;
+}
+
+
+.input{
+    -moz-appearance: textfield; /* Firefox */
+    -webkit-appearance: none; /* Chrome, Safari, Opera */
+    appearance: none; /* Modern browsers */
+    width: 4rem;
+    height: auto;
+    /* padding: 1rem 1rem; */
+    font-family: var(--text-regular);
+    font-size: 2rem;
+    border-bottom: 2px solid var(--color-gray-04);
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    outline: none;
+    background-color: var(--color-gray-07);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0 .5rem;
+    text-align: center;
+    
+}
+
+.input::-webkit-outer-spin-button,
+.input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

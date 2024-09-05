@@ -1,13 +1,15 @@
 .table{
     width: 100%;
-    background-color: white;
+    /* background-color: white; */
+    background-color: var(--color-gray-07);
     border: none;
     border-collapse: collapse;
 }
 .tableHeader{
     color: black;
     /* height: 80px; */
-    background-color: #FAFAFA;
+    /* background-color: #FAFAFA; */
+    background-color: var(--color-gray-05);
     font-family: var(--lg-ei-text-bold);
  
 }
@@ -17,9 +19,13 @@
 }
 .tableHeader, 
 .tableData{
-    border-bottom: 1px solid #ddd;
-    border-right: 1px solid #ddd;
-    border: 1px solid #FAFAFA;
+    /* border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd; */
+
+    border-right: none;
+    border-bottom: 1px solid var(--color-gray-04);
+
+    /* border: 1px solid #FAFAFA; */
     text-align: left;
     font-size: 1.6rem;
     padding: 1.5rem 2rem;

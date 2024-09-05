@@ -86,7 +86,7 @@ export const TextArea = ({
     }
 
     return (
-        <div className={styles.mainTextInputContainer}>
+      
             <Label
                 id={id}
                 labelName={labelName}
@@ -113,6 +113,6 @@ export const TextArea = ({
                 </div>
                 {!inputState.isValid && inputState.isTouched && <Feedback feedbackType='error' feedbackMessage={errorText} />}
             </Label>
-        </div>
+ 
     );
 }

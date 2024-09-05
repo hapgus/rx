@@ -1,0 +1,77 @@
+.portalTopbarNavigationContainer {
+  display: flex;
+  align-items: center;
+  padding: 2rem;
+  background-color: var(--color-gray-06);
+ }
+ .logoWrapper{
+    margin-right: auto;
+ }
+.mobileMenuHeader{
+ padding-bottom: 2.5rem;
+}
+ .headerIconTextGroup{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+
+    
+ }
+ .iconsWrapper{
+    display: flex;
+    flex-direction: row;
+    gap: 2.5rem;
+ }
+ .icon svg{
+    height: 2.4rem;
+    width: 2.4rem;
+    display: flex;
+ }
+ 
+
+ .headerText {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    /* gap: 2rem; */
+    /* margin-bottom: 2rem; */
+}
+#firstHeader {
+    /* border-top: 1px solid var(--color-gray-04); */
+    padding-top: 2rem;
+}
+.mobileNavOptionsList a {
+    color: black;
+    font-size: 1.8rem;
+}
+
+.mobileNavOptionsList {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-bottom: 1rem;
+}
+
+.mobileNavOptionsList li {
+    list-style: none;
+}
+
+@media (min-width: 1440px) {
+    .portalBurgerWrapper{
+        display: none;
+    }
+  
+}
+/* --------------------------------------------------------------------------------------- */
+/* MEDIA QUERY REFERENCE */
+/* --------------------------------------------------------------------------------------- */
+/* 
+@media (min-width: 430px) {}
+@media (min-width: 768px) {}
+@media (min-width: 834px) {}
+@media (min-width: 1024px) {} - MOBILE / DESKTOP Breakpoint
+@media (min-width: 1280px) {}
+@media (min-width: 1440px) {}
+@media (min-width: 1920px) {} 
+*/

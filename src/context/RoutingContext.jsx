@@ -30,6 +30,15 @@ export const RoutingContext = createContext({
         isLoading: false,
 
         isShowScrollToTopButton: false,
+
+
+        isMobilePortalNavOpen:false,
+        isMobilePortalNavOverviewMenuOpen:false,
+        isMobilePortalNavProductsMenuOpen:false,
+        isMobilePortalNavUsersMenuOpen:false,
+        isMobilePortalNavWebsitesMenuOpen:false,
+
+        isMobilePortalNavAccountMenuOpen:false,
     },
     setIsRoutingState: () => { },
 
@@ -67,7 +76,13 @@ export const RoutingProvider = ({ children }) => {
         isLoading: false,
 
         isShowScrollToTopButton: false,
-
+        
+        isMobilePortalNavOpen:false,
+        isMobilePortalNavOverviewMenuOpen:false,
+        isMobilePortalNavProductsMenuOpen:false,
+        isMobilePortalNavUsersMenuOpen:false,
+        isMobilePortalNavWebsitesMenuOpen:false,
+        isMobilePortalNavAccountMenuOpen:false,
     }
     const [isRoutingState, setIsRoutingState] = useState(initialRoutingState);
 
@@ -93,6 +108,12 @@ export const RoutingProvider = ({ children }) => {
                 isAccountMenuOpen: false,
                 isBuilderDropdownOpen: false,
                 isProductListDropdownOpen: false,
+
+                isMobilePortalNavOpen:false,
+                isMobilePortalNavOverviewMenuOpen:false,
+                isMobilePortalNavProductsMenuOpen:false,
+                isMobilePortalNavUsersMenuOpen:false,
+                isMobilePortalNavWebsitesMenuOpen:false,
             }))
 
             // Reset isNavLinkClicked to allow subsequent clicks

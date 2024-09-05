@@ -31,8 +31,8 @@ export const NumberInput = ({
     errorText,
     validators = [],
     secondaryLabel,
-    min,
-    max,
+    min = 0,
+    max=1000,
     step = 1,
     initialValue = '', // Default initial value
     initialIsValid = false,
@@ -70,6 +70,7 @@ export const NumberInput = ({
         if (!isNaN(newValue) && newValue.trim() !== "") {
             newValue = parseFloat(newValue);
             if ((min === undefined || newValue >= min) && (max === undefined || newValue <= max)) {
+                newValue = Math.max(min || -Infinity, Math.min(newValue, max || Infinity));
                 dispatch({
                     type: 'CHANGE',
                     val: newValue,
@@ -84,37 +85,77 @@ export const NumberInput = ({
             });
         }
     };
+    // const handleChange = (e) => {
+    //     let newValue = e.target.value;
+    //     if (!isNaN(newValue) && newValue.trim() !== "") {
+    //         newValue = parseFloat(newValue);
+    //         if ((min === undefined || newValue >= min) && (max === undefined || newValue <= max)) {
+    //             dispatch({
+    //                 type: 'CHANGE',
+    //                 val: newValue,
+    //                 validators
+    //             });
+    //         }
+    //     } else if (newValue === "") {
+    //         dispatch({
+    //             type: 'CHANGE',
+    //             val: "",
+    //             validators
+    //         });
+    //     }
+    // };
 
     // Increment and decrement handlers
     const increment = () => {
         let newValue = (value || 0) + step;
-        if (max === undefined || newValue <= max) {
-            dispatch({
-                type: 'CHANGE',
-                val: newValue,
-                validators
-            });
-        }
+        newValue = Math.min(newValue, max || Number.MAX_SAFE_INTEGER); // Ensure it does not exceed the max or safe integer
+        dispatch({
+            type: 'CHANGE',
+            val: newValue,
+            validators
+        });
     };
+    
+    // const increment = () => {
+    //     let newValue = (value || 0) + step;
+    //     if (max === undefined || newValue <= max) {
+    //         dispatch({
+    //             type: 'CHANGE',
+    //             val: newValue,
+    //             validators
+    //         });
+    //     }
+    // };
 
     const decrement = () => {
         let newValue = (value || 0) - step;
-        if (min === undefined || newValue >= min) {
-            dispatch({
-                type: 'CHANGE',
-                val: newValue,
-                validators
-            });
-        }
+        newValue = Math.max(newValue, min || -Number.MAX_SAFE_INTEGER); // Ensure it does not go below min or negative safe integer
+        dispatch({
+            type: 'CHANGE',
+            val: newValue,
+            validators
+        });
     };
+    // const decrement = () => {
+    //     let newValue = (value || 0) - step;
+    //     if (min === undefined || newValue >= min) {
+    //         dispatch({
+    //             type: 'CHANGE',
+    //             val: newValue,
+    //             validators
+    //         });
+    //     }
+    // };
 
     return (
         <div>
             <Label id={id} labelName={labelName} secondaryLabel={secondaryLabel}>
                 <div className={styles.customNumberInput}>
-                    <IconComponent onClick={decrement} iconType='minus' />
+                    <div className={styles.numberInputButton}>
+                        <IconComponent onClick={decrement} iconType='minus' />
+                    </div>
                     <input
-                        type="text"
+                        type="number"
                         id={id}
                         name={name}
                         value={value}
@@ -122,9 +163,13 @@ export const NumberInput = ({
                         onChange={handleChange}
                         {...eventHandlers}
                         className={styles.input}
-                        maxLength={1000000}
+                        // maxLength={1000000}
+                        min={min}
+                        max={max}
                     />
-                    <IconComponent onClick={increment} iconType='cross' />
+                    <div className={styles.numberInputButton}>
+                        <IconComponent onClick={increment} iconType='cross' />
+                    </div>
                 </div>
             </Label>
             {!isValid && <div className={styles.error}>{errorText}</div>}

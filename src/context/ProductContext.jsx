@@ -59,6 +59,7 @@ export const ProductProvider = ({ children }) => {
         // setPublicProducts(PRODUCT_DATA);
         // console.log(publicProducts)
     }, []);
+    // }, []);
 
     const value = {
         publicProducts,

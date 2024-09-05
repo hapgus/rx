@@ -33,7 +33,7 @@ export const MobileAppliancePage = ({productId}) => {
     const matchingProducts = findMatchingProducts(relatedProducts, publicProducts)
 
     const videoList = productDetails.flatMap(product => product.videos);
-
+console.log(productObject)
 
     return (
         <div className={styles.mobileAppliancePageContainer}>

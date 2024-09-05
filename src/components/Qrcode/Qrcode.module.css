@@ -1,0 +1,17 @@
+.qrcodeContainer {
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.imageWrapper{
+    height: 10rem;
+    width: 10rem;
+}
+.imageWrapper img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}

@@ -1,18 +1,21 @@
-import { PortalPageBody, PortalPageWrapper } from "../../components/PortalComponent/PortalPageComponent/PortalPageComponents";
+import { PortalPage } from "../../components/PortalComponent/PortalPageComponent/PortalPage/PortalPage";
 
 import { UserDirectoryTable } from "../../components/PortalComponent/PortalTableComponent/UserDirectoryTable";
 const UserDirectoryPage = () => {
     return (
-        <PortalPageWrapper
-        pageTitle='User Table' pageDescription='See all users' 
+
+        <PortalPage
+            pageTitle='User Directory'
+            pageDescription='All users approved, not approved or pending approval'
+
+            breadcrumb='User Directory'
+            breadcrumbDirectory="Users"
+            breadcrumbDirectoryLink="/portal/user-directory"
+            breadcrumbLink="/portal/user-directory"
+            bodyTitle='User Management Table'
         >
-
-            <PortalPageBody>
-                <UserDirectoryTable />
-            </PortalPageBody>
-        </PortalPageWrapper>
-
-
+            <UserDirectoryTable />
+        </PortalPage>
 
 
     );

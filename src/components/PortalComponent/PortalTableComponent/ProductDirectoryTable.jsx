@@ -67,8 +67,9 @@ export const ProductDirectoryTable = () => {
         }
         // { key: '', title: '' },
     ];
-
+console.log('table',publicProducts)
     return (
+        
         publicProducts &&
         <>
             <TableBody

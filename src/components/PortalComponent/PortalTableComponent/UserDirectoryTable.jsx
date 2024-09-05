@@ -26,7 +26,7 @@ export const UserDirectoryTable = () => {
         { key: 'role', title: 'Role' },
         {
             key: 'manage',
-            title: 'Actions',
+            title: 'Manage',
             render: row => (
                 <div className={styles.actionIconContainer}>
 
@@ -34,8 +34,8 @@ export const UserDirectoryTable = () => {
                         iconType='edit'
                         onClick={
                             () => {
-                                setIsAdminRoutingState(row._id)
-                                redirect(`/portal/edit-user/${row._id}`)
+                                setIsAdminRoutingState(row.userId)
+                                redirect(`/portal/edit-user/${row.userId}`)
                             }
                         }
                     />
@@ -67,9 +67,7 @@ export const UserDirectoryTable = () => {
 
 
 
-    console.log('dir', isUsers)
-
-        ;
+console.log(isUsers)
 
     return (
         isUsers &&
