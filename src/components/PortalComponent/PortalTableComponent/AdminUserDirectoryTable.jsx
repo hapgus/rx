@@ -5,6 +5,7 @@ import styles from './TableComponent.module.css'
 import { IconComponent } from "../../Icon/IconComponent";
 import { useNavigate } from "react-router";
 
+
 export const AdminUserDirectoryTable = () => {
 
     const redirect = useNavigate();

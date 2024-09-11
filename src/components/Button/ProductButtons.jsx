@@ -5,12 +5,58 @@ import { IconComponent } from "../Icon/IconComponent";
 import { useNotificationHook } from "../../hooks/notification-hook";
 import { useState, useEffect } from "react";
 import { logEvent } from "../../utils/google-analytics";
+import { useRoutingHook } from "../../hooks/routing-hook";
+import { useSearchHook } from "../../hooks/search-hook";
 
 export const AddToListButton = ({ product, iconButton = false }) => {
 
     const { addProduct } = useBuilderHook();
+    const { isDesktopSearchState, isMobileSearchState, isHomepageSearchState } = useSearchHook();
 
-    const handleAddProductToList = () => addProduct(product);
+    const handleAddProductToList = () => {
+
+      
+        const getSearchData = () => {
+            if (Array.isArray(isHomepageSearchState.isSearchResults) && isHomepageSearchState.isSearchResults.length > 0) {
+                return {
+                    searchQuery: isHomepageSearchState.isSearchInputValue,
+                    searchResultsCount: isHomepageSearchState.isSearchResults.length
+                };
+            } else if (Array.isArray(isMobileSearchState.isSearchResults) && isMobileSearchState.isSearchResults.length > 0) {
+                return {
+                    searchQuery: isMobileSearchState.isSearchInputValue,
+                    searchResultsCount: isMobileSearchState.isSearchResults.length
+                };
+            } else if (Array.isArray(isDesktopSearchState.isSearchResults) && isDesktopSearchState.isSearchResults.length > 0) {
+                return {
+                    searchQuery: isDesktopSearchState.isSearchInputValue,
+                    searchResultsCount: isDesktopSearchState.isSearchResults.length
+                };
+            }
+            return {
+                searchQuery: 'na',
+                searchResultsCount: 'na'
+            };
+        };
+    
+        const { searchQuery, searchResultsCount } = getSearchData();
+    
+
+        console.log('search query - btn', searchQuery)
+        console.log('search results count - btn', searchResultsCount)
+
+
+        addProduct(product);
+
+        logEvent('Add_Product_To_List', {
+            productName: product.title,
+            productCategory: product.category,
+            productSubcategory: product.subcategory,
+            searchQuery: searchQuery,
+            searchResultsCount: searchResultsCount,
+        });
+
+    }
 
     return iconButton ? (
         <IconComponent onClick={handleAddProductToList} iconStyleType='addProductIcon' iconType='cross' />
@@ -26,35 +72,35 @@ export const AddToListButton = ({ product, iconButton = false }) => {
     );
 };
 
+// NOT USED
+// export const AddToListButtonIcon = ({ product, iconSizeType, iconColor }) => {
 
-export const AddToListButtonIcon = ({ product, iconSizeType, iconColor }) => {
+//     const iconSizeMap = {
+//         large: 'largeAddProductIcon',
+//         small: 'smallAddProductIcon'
+//     }
+//     const iconSvgColorMap = {
+//         white: 'white',
+//     }
+//     const { addProduct } = useBuilderHook();
 
-    const iconSizeMap = {
-        large: 'largeAddProductIcon',
-        small: 'smallAddProductIcon'
-    }
-    const iconSvgColorMap = {
-        white: 'white',
-    }
-    const { addProduct } = useBuilderHook();
+//     const handleAddProductToList = () => {
+//         addProduct(product);
 
-    const handleAddProductToList = () => {
-        addProduct(product);
+//     }
+//     const iconStyleType = iconSizeMap[iconSizeType];
+//     const svgColor = iconSvgColorMap[iconColor];
 
-    }
-    const iconStyleType = iconSizeMap[iconSizeType];
-    const svgColor = iconSvgColorMap[iconColor];
+//     return <IconComponent onClick={handleAddProductToList}
+//         iconStyleType={iconStyleType}
+//         iconType='cross'
+//         svgFill={svgColor}
+//     />
 
-    return <IconComponent onClick={handleAddProductToList}
-        iconStyleType={iconStyleType}
-        iconType='cross'
-        svgFill={svgColor}
-    />
-
-};
+// };
 
 
-
+// USED ON BUILDER CARD
 export const RemoveFromListButtonIcon = ({ product, iconSizeType, iconColor }) => {
 
     const iconSizeMap = {
@@ -127,10 +173,10 @@ export const RemoveAllFromListButton = () => {
                 cancelText: 'Go back',
             });
         } else {
-            setIsModal(prevState=>({
+            setIsModal(prevState => ({
                 ...prevState,
-                modalType:'infoModal',
-                iconType:'errorInfo',
+                modalType: 'infoModal',
+                iconType: 'errorInfo',
                 show: true,
                 title: 'Confirm Removal',
                 message: 'Are you sure you want to remove all products from your list?',
@@ -144,7 +190,7 @@ export const RemoveAllFromListButton = () => {
                 cancelText: 'Go back',
                 confirmText: 'Remove all products'
             }))
-           
+
         }
 
 
@@ -164,14 +210,15 @@ export const RemoveAllFromListButton = () => {
 
 export const PrintProductsButton = () => {
 
-    const { 
+    const {
         // setIsPrintScreen, 
         removeAllProducts, productsInList } = useBuilderHook();
     const { isModal, setIsModal } = useNotificationHook();
     const [isPrinting, setIsPrinting] = useState(false);
     const [clearAfterPrint, setClearAfterPrint] = useState(false); // New state for clearing products after print
-    
-    
+
+    const productListByTitle = productsInList.map(e => e.title);
+
     const handlePrint = () => {
         if (productsInList.length === 0) {
             alert('no products to print')
@@ -189,32 +236,32 @@ export const PrintProductsButton = () => {
             });
         }
         if (productsInList.length !== 0) {
-            console.log('print triggered')
+
             // window.print();
             setIsModal({
                 show: true,
-                modalType:'infoModal',
-                iconType:'print',
+                modalType: 'infoModal',
+                iconType: 'print',
                 title: "Time to print your list! ",
                 message: 'What do you want to do with your list after we print it?',
                 cancelText: 'Keep my list',
                 confirmText: 'Clear my list',
                 onConfirm: () => {
-                    logEvent({
-                        category: 'User Interaction',
-                        action: 'Click_Print',
-                        label: 'Print Button Click'
-                      });
+                    logEvent('Print_Product_List', {
+                        productCount: productsInList.length,
+                        productsInList: productListByTitle,
+                        postPrintListAction: 'clearList',
+                    });
                     setIsModal(prevState => ({ ...prevState, show: false }))
                     setIsPrinting(true); // Set isPrinting to true to trigger the print
-                    
                     setClearAfterPrint(true); // Set flag to clear products after print
-                   
                 },
-
                 onCancel: () => {
-
-
+                    logEvent('Print_Product_List', {
+                        productCount: productsInList.length,
+                        productsInList: productListByTitle,
+                        postPrintListAction: 'keepList',
+                    });
                     setIsModal(prevState => ({ ...prevState, show: false }))
                     setIsPrinting(true);
                     // window.print();
@@ -228,14 +275,14 @@ export const PrintProductsButton = () => {
         if (isPrinting) {
             window.print();
             setIsPrinting(false); // Reset isPrinting after the print action
-            
+
             if (clearAfterPrint) {
                 // Delay clearing products to ensure the print action has completed
                 setTimeout(() => {
                     removeAllProducts(); // Clear products after printing is complete
                     setClearAfterPrint(false); // Reset the flag
                 }, 1000); // Adjust the delay as needed
-               
+
             }
         }
     }, [isPrinting, clearAfterPrint]);

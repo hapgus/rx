@@ -6,7 +6,8 @@ import { useRoutingHook } from "../../hooks/routing-hook";
 export const LinkComponent = ({ 
     type = 'default',
     linkText, 
-    href, 
+    href,
+    linkOnClick, 
     children, 
     
 }) => {
@@ -35,7 +36,7 @@ export const LinkComponent = ({
             className={`${textType} ${isActive && type === 'trackedLinks' ? styles.active : ''}`} 
             onClick={handleLinkClick}
         >
-            <span>{linkText}{children}</span>
+            <span onClick={linkOnClick} >{linkText}{children}</span>
         </NavLink>
     );
 };

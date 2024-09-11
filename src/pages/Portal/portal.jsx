@@ -1,8 +1,23 @@
 import { PortalPage } from "../../components/PortalComponent/PortalPageComponent/PortalPage/PortalPage";
 import { useAuthUser } from "../../hooks/auth-hook";
+import { useHttpClient } from "../../hooks/http-hook";
+import { useEffect } from "react";
+import { Chart } from 'react-google-charts';
+import { useData } from "../../hooks/data-hook";
+import { useChartConfig } from "../../hooks/chart-config-hook";
+import { BarChart } from "../../components/PortalComponent/PortalChartComponent/BarChart";
+import { transformWithSchema } from "../../utils/data-transformer";
+import { NewVsTotalUsersBarChart } from "../../components/PortalComponent/PortalPageComponent/PortalDashboard/UserVisualization";
+import { PageViewsLinChart } from "../../components/PortalComponent/PortalPageComponent/PortalDashboard/PageDataVisualizations";
+import { DashboardSkeleton } from "../../components/Skeletons/DashboardSkeleton";
+import { PortalDashboard } from "../../components/PortalComponent/PortalPageComponent/PortalDashboard/PortalDashboard";
+
+
+
 const PortalDashboardPage = () => {
 
-    const decodedToken = useAuthUser()
+    const decodedToken = useAuthUser();
+
 
     return (
 
@@ -15,6 +30,9 @@ const PortalDashboardPage = () => {
             breadcrumbDirectoryLink="/portal/dashboard"
             bodyTitle='Summary'
         >
+
+
+<PortalDashboard/>
 
         </PortalPage>
 

@@ -1,12 +1,11 @@
-import Skeleton from "react-loading-skeleton";
 import styles from "./TableBody.module.css";
-import { TableSkeleton } from "../Skeletons/TableSkeleton";
+import SkeletonTable from "../Skeletons/TableSkeleton";
 
 const TableBody = ({ columns, data }) => {
   const hasData = Array.isArray(data) && data.length > 0;
 
   return (
-    !hasData ? <TableSkeleton  height={50}/> :
+    !hasData ? <SkeletonTable /> :
       <div className={styles.tableWrapper}>
         <table className={styles.table}>
           <thead className={styles.columnHeader}>

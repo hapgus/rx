@@ -8,12 +8,13 @@ import { categoryLinks } from '../../../utils/link-helper';
 import { LinkComponent } from '../../../components/Links/LinkComponent';
 import { Button } from '../../../components/Button/Button';
 import { IconComponent } from '../../../components/Icon/IconComponent';
-import { useResponsiveMediaStateHook } from '../../../hooks/responsive-hook';
+// import { useResponsiveMediaStateHook } from '../../../hooks/responsive-hook';
+
 
 
 const Homepage = () => {
-    const publicUrl = process.env.PUBLIC_URL;
-    const { setIsHomepageSearchState, isHomepageSearchState, setIsMobileSearchState } = useSearchHook();
+
+    const { setIsHomepageSearchState, setIsMobileSearchState } = useSearchHook();
 
     const handleHomepageSearchClick = () => {
         setIsHomepageSearchState(prevState => ({ ...prevState, isHomepageSearch: true }))
@@ -23,11 +24,8 @@ const Homepage = () => {
         setIsMobileSearchState(prevState => ({ ...prevState, isMobileSearch: true }))
     }
 
-    const { isMediaMobile } = useResponsiveMediaStateHook();
-
-    const introStyles = isMediaMobile 
-    ? {}
-    : 'spread'
+    // const { isMediaMobile } = useResponsiveMediaStateHook();
+    // const introStyles = isMediaMobile? {}: 'spread'
 
     const benefits = [
         {
@@ -62,10 +60,11 @@ const Homepage = () => {
         {
             title: 'Limited Warranties',
             description: "Learn how LG provides customers with confidence on their purchase",
-               icon: 'warrantyShield'
+            icon: 'warrantyShield'
         }
 
     ];
+  
 
     return (
         <>
@@ -100,7 +99,7 @@ const Homepage = () => {
                                     <PageText type='pageSubtitle'>Discover best-in-class products and accessories at the LG Product Guide</PageText>
                                 </div>
                             </div>
-                          
+                           
                         </div>
                     </div>
                 </div>
@@ -161,7 +160,7 @@ const Homepage = () => {
                                             <div key={idx} className={styles.benefitCard}>
                                                 <div className={styles.benefitCardCount}>
                                                     <div className={styles.iconWrapper}>
-                                                      
+
                                                         <IconComponent iconType='warranty' />
                                                     </div>
                                                     {/* <CountBubble itemCount={idx + 1} /> */}

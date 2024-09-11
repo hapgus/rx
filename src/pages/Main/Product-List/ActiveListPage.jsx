@@ -63,11 +63,7 @@ export const ActiveListPage = ({ isEditing }) => {
                         {/* <PrintProductsButton productsInList={listCount} /> */}
                         <PrintProductsButton productsInList={currentListCount} />
                         <RemoveAllFromListButton />
-                        {
-                            isAuthenticated === true &&
-                            <SaveListButton/>
-                            // <Button buttonStyleType='primaryAction'>Save list</Button>
-                        }
+                        {/* {isAuthenticated === true &&<SaveListButton/>} */}
 
                     </div>
                 </GridSystem>
@@ -101,9 +97,7 @@ export const ActiveListPage = ({ isEditing }) => {
                                     </div>
                                     <div className={styles.title}>
                                         <PageText type='pageTitle'>LG Product List Builder</PageText>
-                                        { decodedToken !== null &&
-                                        <Button onClick={logout}>Logout</Button>
-                                        }
+                                      
                                         
                                     </div>
                                     <div className={styles.subtitle}>
@@ -125,11 +119,9 @@ export const ActiveListPage = ({ isEditing }) => {
                                 <div className={styles.buttonsWrapper}>
                                     {/* <PrintProductsButton productsInList={listCount} /> */}
                                     <PrintProductsButton productsInList={currentListCount} />
-                                    {
-                            isAuthenticated === true &&
-                            <SaveListButton/>
-                            // <Button buttonStyleType='primaryAction'>Save list</Button>
-                        }
+                                    {/* { isAuthenticated === true &&<SaveListButton/> } */}
+                           
+                            
                                     <RemoveAllFromListButton />
                                 
                                 </div>
@@ -146,7 +138,7 @@ export const ActiveListPage = ({ isEditing }) => {
                         </div>
                     </InnerGridItem>
                 </GridSystem>
-                <GridSystem gridType='spread' containerBackgroundColor='#F6F3EB'>
+                <GridSystem gridType='spread' containerBackgroundColor='#E6E1D6'>
                     <GridSystem>
                         {
                             currentProductsInList.length !== 0 && currentProductsInList.map((product, idx) =>

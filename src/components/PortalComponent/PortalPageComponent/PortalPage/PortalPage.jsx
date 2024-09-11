@@ -1,15 +1,14 @@
-import Skeleton from 'react-loading-skeleton';
 import { LinkComponent } from '../../../Links/LinkComponent';
 import { PageText } from '../../../Text/Text'
 import styles from './PortalPage.module.css'
 
-export const PortalPage = ({ 
-    pageTitle, 
-    pageDescription, 
-    breadcrumbDirectory, 
-    breadcrumbDirectoryLink, 
+export const PortalPage = ({
+    pageTitle,
+    pageDescription,
+    breadcrumbDirectory,
+    breadcrumbDirectoryLink,
     breadcrumb,
-    breadcrumbLink, 
+    breadcrumbLink,
     bodyTitle, children }) => {
 
     return (
@@ -39,7 +38,7 @@ export const PortalPage = ({
                     <div className={styles.headerText}>
 
                         {pageTitle && <div className={styles.pageTitle}><PageText type='pageTitle'>{pageTitle}</PageText></div>}
-                        {pageTitle && <div className={styles.pageDescription}><PageText type='pageTertiaryTitle'>{pageDescription}</PageText></div>}
+                        {pageDescription && <div className={styles.pageDescription}><PageText type='pageTertiaryTitle'>{pageDescription}</PageText></div>}
                     </div>
                 </div>
             </div>

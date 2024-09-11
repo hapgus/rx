@@ -6,7 +6,8 @@ import { useNavigate } from "react-router";
 import { useNotificationHook } from "../../../hooks/notification-hook";
 import TablePagination from "../../TableComponent/TablePagination";
 import { useState } from "react";
-import { useAuth } from '../../../hooks/auth-hook'
+import { useAuth } from '../../../hooks/auth-hook';
+import { DateComponent } from "../../Date/DateComponent";
 import styles from './TableComponent.module.css'
 
 export const ProductDirectoryTable = () => {
@@ -51,7 +52,16 @@ export const ProductDirectoryTable = () => {
         { key: 'category', title: 'Category' },
         { key: 'subcategory', title: 'Subcategory' },
         { key: 'msrp', title: 'MSRP' },
-        { key: 'updatedAt', title: 'Last changed' },
+        { 
+            key: 'updatedAt', 
+            title: 'Last Changed',
+            render: row => (
+                <DateComponent 
+                    dateType="customFormat" // Or 'isoDate', 'fullDate', etc.
+                    dateValue={row.updatedAt} // Pass the updatedAt date
+                />
+            )
+        },
         {
             key: 'actions',
             title: 'Actions',

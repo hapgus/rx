@@ -1,5 +1,6 @@
 import { PortalPage } from "../../components/PortalComponent/PortalPageComponent/PortalPage/PortalPage";
-
+import { LandingPageSummaryTable } from "../../components/PortalComponent/PortalPageComponent/PortalDashboard/LandingPageSummaryTable";
+import { VisitorsAnalyticsBoard } from "../../components/PortalComponent/PortalDataVisualization/VisitorsAnalyticsBoard";
 const AnalyticsPage = () => {
 
    
@@ -17,6 +18,9 @@ const AnalyticsPage = () => {
         breadcrumbLink="/portal/analytics"
         bodyTitle='Summary'
     >
+        <VisitorsAnalyticsBoard/>
+
+        <LandingPageSummaryTable/>
 
     </PortalPage>
 

@@ -1,0 +1,20 @@
+.toolTipContainer {
+    position: relative;
+    
+}
+.toolTipWrapper {}
+
+.toolTipInnerDiv {
+    top: 15px;
+    right: 5px;
+    position: absolute;
+    z-index: 1;
+}
+.toolTipText {
+   padding: 3rem; 
+   background-color: aquamarine;
+   display: flex;
+   width: 25rem;
+   border-radius: 4rem;
+
+}

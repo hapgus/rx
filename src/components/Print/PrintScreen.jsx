@@ -8,7 +8,7 @@ import { Qrcode } from "../Qrcode/Qrcode";
 export const PrintScreen = () => {
     // const publicUrl = process.env.PUBLIC_URL;
     const { productsInList } = useBuilderHook();
-    console.log('sss', productsInList)
+  
     if (productsInList) {
         return (
             <div className={styles.printScreenPage} >

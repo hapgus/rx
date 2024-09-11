@@ -119,7 +119,9 @@ export const SearchProvider = ({ children }) => {
     //         }))
     //     }
     // },[isDesktopSearchState.isSearchFocused])
-
+// console.log('home page', isHomepageSearchState)
+// console.log('mobile', isMobileSearchState)
+// console.log('desktop',isDesktopSearchState, )
     return (
         <SearchContext.Provider
             value={{

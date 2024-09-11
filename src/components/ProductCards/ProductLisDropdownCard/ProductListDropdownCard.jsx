@@ -39,7 +39,7 @@ export const ProductListDropdownCard = ({ product }) => {
                     <img
                         loading='lazy'
                         className={styles.productBuilderDropdownCardImage}
-                        src={`${process.env.REACT_APP_AWS_URL_IMAGE}/${image}`}
+                        src={`${process.env.REACT_APP_AWS_URL}/${image}`}
                         alt={`product ${title}`}
                     />
                     {/* </ImageComponent> */}
