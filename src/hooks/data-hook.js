@@ -1,5 +1,5 @@
-
-import { useState, useEffect } from 'react';
+import { DataContext } from '../context/DataContext';
+import { useState, useEffect, useContext } from 'react';
 
 export const useData = (apiEndpoint) => {
   const [data, setData] = useState([]);
@@ -28,3 +28,6 @@ export const useData = (apiEndpoint) => {
   return { data, loading, error };
 };
 
+export const useDataContext = () => {
+  return useContext(DataContext);
+}

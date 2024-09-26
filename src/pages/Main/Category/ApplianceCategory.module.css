@@ -1,6 +1,9 @@
+.list, li{
+    list-style: none;
+}
 .heroContainer {
     height: auto;
-    padding: 0 2rem 3rem 2rem;
+    padding: 3rem 2rem;
 }
 
 .heroWrapper {
@@ -14,7 +17,7 @@
 .heroDescription {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 2rem;
     color: var(--color-gray-01);
 }
 
@@ -83,7 +86,7 @@
 @media(min-width: 640px) {
 
     .heroContainer {
-        padding-bottom: 4rem;
+        /* padding-bottom: 4rem; */
     }
 
     .image1 {
@@ -99,7 +102,7 @@
 
 @media (min-width: 768px) {
     .heroContainer {
-        padding-top: 3rem;
+        /* padding-top: 3rem; */
     }
 
     .mStepUpLinksContainer {
@@ -110,6 +113,10 @@
 @media (min-width: 834px) {}
 
 @media (min-width: 1024px) {
+
+    /* .heroContainer{
+        margin: 4rem 0 4rem 0 ;
+    } */
     .heroTextWrapper {
         width: 80%;
     }
@@ -136,10 +143,41 @@
         display: block;
         margin-top: 4rem;
     }
-
-    .dStepUpChartCalloutText a {
-        color: var(--color-red-03);
+    .dStepUpChartCalloutText{
+        /* background-color: aqua;  
+        padding-right: 4rem; */
+    }
+    .stepUpChartLinkGroupWrapper a {
+        color: white;
         font-family: var(--text-semibold);
+ 
+      
+    }
+
+    .dStepUpChartCalloutIcon{
+        height: 2.4rem;
+        width: 2.4rem;
+        /* background-color: aquamarine; */
+       
+    }
+    .dStepUpChartCalloutIcon svg{
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+    }
+
+    .stepUpChartLinkGroupWrapper{
+        /* background-color: aqua; */
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    .stepUpChartInnerLinkDivWrapper{
+        display: flex;
+        flex-direction: row;
+        /* padding-left: .8rem; */
+        gap: 1rem;
+        align-items: center;
     }
 
     .heroContainer {
@@ -202,6 +240,9 @@
 }
 
 @media (min-width: 1920px) {
+      .heroContainer{
+        margin: 4rem 0;
+    }
     .dStepUpLinksContainer {
 
         margin-top: 8rem;

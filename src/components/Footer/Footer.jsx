@@ -1,9 +1,10 @@
 import { NavLink } from 'react-router-dom';
 
-import { ExternalLink, EmailLink, resourceLinks, stepUpChartFooterLinks, stepUpChartLinks, categoryLinks, exclusiveLinks, externalLinks, nativeEmailLinks } from '../../utils/link-helper';
-
+// import { ExternalLink, EmailLink, exclusiveLinks, externalLinks, nativeEmailLinks } from '../../utils/link-helper';
+import { ExternalLink, EmailLink } from '../../utils/link-helper';
 import { LinkComponent } from '../Links/LinkComponent';
-
+import { textStripper } from '../../utils/text-help';
+import { exclusiveLinks, resourceLinks, stepUpChartLinks, categoryLinks, externalLinks, nativeEmailLinks, devSupportFooter } from '../../utils/link-config';
 import styles from './Footer.module.css';
 import Logo from '../Logo/Logo';
 import { PageText } from '../Text/Text';
@@ -23,7 +24,7 @@ export function footerColumn(title, data = []) {
                             href={link.href}
                             type='trackedLinks'
                         >
-                            {/* <NavLink to={link.href}> */}
+
                             <PageText type='footerMenuItem' className={styles.columnListMenuItem}>{link.text}</PageText>
                             {/* </NavLink> */}
                         </LinkComponent>
@@ -72,28 +73,31 @@ export function footerEmailLinks(title) {
 }
 
 
+
 const Footer = () => {
     return (
 
         <footer >
-            <GridSystem  gridType='spread' containerBorderTop='1px solid #D0CBC1' containerBorderBottom='1px solid #D0CBC1' containerBackgroundColor='#F0ECE4'>
+            <GridSystem gridType='spread' containerBorderTop='1px solid #D0CBC1' containerBorderBottom='1px solid #D0CBC1' containerBackgroundColor='#F0ECE4'>
                 <div className={styles.contentWrapper}>
                     <div className={styles.wrapper1}>
                         <div className={styles.section1}>
 
                             {footerColumn('Home Appliances', categoryLinks)}
-                            {footerColumn('Step Up Charts', stepUpChartFooterLinks)}
+                            {footerColumn('Step Up Charts', textStripper(stepUpChartLinks, 'Step Up Charts'))}
                             {footerColumn('Resources', resourceLinks)}
                             {footerColumn('Exclusive', exclusiveLinks)}
-                            {footerExternalLinks('Support', externalLinks)}
+                            {footerExternalLinks('Support', externalLinks,)}
+
                             {footerEmailLinks('Contact Us', nativeEmailLinks)}
+                            {footerColumn('Account (Dev)', devSupportFooter)}
                         </div>
                     </div>
                 </div>
                 <div className={styles.contentWrapper}>
                     <div className={styles.wrapper2}>
                         <div className={styles.section2}>
-                            <LinkedLogo/>
+                            <LinkedLogo />
                             {/* <NavLink to='/'>
                                 <Logo type='lgVertical' style='lgVertical' />
                             </NavLink> */}

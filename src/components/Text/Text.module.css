@@ -1,4 +1,91 @@
 /* --------------------------------------------------------------------------------------- */
+/* PORTAL */
+/* --------------------------------------------------------------------------------------- */
+.smallPortalTitle {
+    font-size: 1.8rem;
+    /* color: var(--color-gray-01) */
+}
+
+
+/* --------------------------------------------------------------------------------------- */
+/* PAGE HERO */
+/* --------------------------------------------------------------------------------------- */
+.heroTitle {
+    font-family: var(--headline-light);
+    font-weight: 600;
+    font-size: 3.2rem;
+    /* color: var(--color-gray-01) */
+}
+.smallHeroTitle {
+    font-family: var(--headline-light);
+    font-weight: 600;
+    font-size: 3.2rem;
+    /* color: var(--color-gray-01) */
+}
+.heroSubtitle {
+    font-size: 2.4rem;
+    /* color: var(--color-gray-02); */
+}
+
+.heroTertiaryTitle {
+    /* color: var(--color-gray-03); */
+    font-size: 1.8rem;
+}
+
+.heroDescription {
+    /* color: var(--color-gray-03); */
+    font-size: 1.6rem;
+}
+
+
+.pageTitle {
+    font-family: var(--headline-light);
+    font-weight: 600;
+    font-size: 3.2rem;
+    /* color: var(--color-gray-01) */
+}
+
+.pageSubtitle {
+    font-size: 2rem;
+    /* color: var(--color-gray-02); */
+}
+
+.pageTertiaryTitle {
+    /* color: var(--color-gray-03); */
+    font-size: 1.6rem;
+}
+
+
+/* --------------------------------------------------------------------------------------- */
+/* FORMS */
+/* --------------------------------------------------------------------------------------- */
+
+.formSectionTitle {
+    font-size: 2.6rem;
+    color: var(--color-gray-01);
+    font-family: var(--headline-semibold);
+}
+
+.formLabel {
+    font-size: 1.8rem;
+    color: var(--color-gray-02);
+    font-family: var(--text-semibold);
+}
+
+.formSecondaryLabel {
+    font-size: 1.8rem;
+    color: var(--color-gray-03);
+    font-family: var(--text-regular);
+}
+
+.toolTip {
+    font-size: 1.4rem;
+    color: var(--color-gray-03);
+    font-family: var(--text-regular);
+}
+
+
+/* --------------------------------------------------------------------------------------- */
 /* NAVIGATION + FOOTER */
 /* --------------------------------------------------------------------------------------- */
 
@@ -7,10 +94,12 @@
     font-size: 1.8rem;
     /* font-family: var(--text-semibold); */
 }
+
 .stickyNavTitleText {
     font-size: 1.6rem;
     /* font-family: var(--text-semibold); */
 }
+
 .mobileNavTitle {
     font-size: 2rem;
 }
@@ -43,7 +132,7 @@
 .productPageSpecTitle {
     font-size: 2rem;
     font-family: var(--text-semibold);
-    color: var(--color-gray-02);
+    color: var(--color-red-02);
 }
 
 .productPageSpecList {
@@ -62,25 +151,6 @@
     color: var(--color-gray-02);
 }
 
-/* --------------------------------------------------------------------------------------- */
-/* PAGE HERO */
-/* --------------------------------------------------------------------------------------- */
-.pageTitle {
-    font-family: var(--headline-light);
-    font-weight: 600;
-    font-size: 3.2rem;
-    /* color: var(--color-gray-01) */
-}
-
-.pageSubtitle {
-    font-size: 2rem;
-    /* color: var(--color-gray-02); */
-}
-
-.pageTertiaryTitle {
-    /* color: var(--color-gray-03); */
-    font-size: 1.6rem;
-}
 
 /* --------------------------------------------------------------------------------------- */
 /* PRODUCT CARD*/
@@ -179,11 +249,12 @@
     font-size: 2.8rem;
 }
 
-.bodyBenefitTitle{
+.bodyBenefitTitle {
     font-size: 2.2rem;
-   
+
 }
-.bodyBenefitDescription{
+
+.bodyBenefitDescription {
     font-size: 1.8rem;
     color: var(--color-gray-02);
 }
@@ -263,6 +334,9 @@
     .pageSubtitle {
         font-size: 2.4rem;
     }
+    .heroSubtitle {
+        font-size: 2.4rem;
+    }
 
     .pageTertiaryTitle {
         font-size: 2.2rem;
@@ -321,6 +395,10 @@
     /* --------------------------------------------------------------------------------------- */
     /* PAGE HERO */
     /* --------------------------------------------------------------------------------------- */
+    .heroTitle {
+        font-size: 4.4rem;
+    }
+
     .pageTitle {
         font-size: 4.4rem;
     }
@@ -405,57 +483,84 @@
     } */
 
 
-    .bodyBenefitTitle{
+    .bodyBenefitTitle {
         font-size: 3rem;
     }
-    .bodyBenefitDescription{
+
+    .bodyBenefitDescription {
         font-size: 2rem;
     }
 }
-    @media (min-width: 1280px) {
 
-        .productPageSubtitle {
-            font-size: 2.8rem;
-            font-size: 3rem;
-            font-size: 3.2rem;
-            font-size: 3.6rem;
-        }
+@media (min-width: 1280px) {
 
-        .productPageTitle {
-            font-size: 2rem;
-            font-size: 2.2rem;
-            font-size: 2.4rem;
-            font-size: 2.8rem;
-        }
-
+    .productPageSubtitle {
+        font-size: 2.8rem;
+        font-size: 3rem;
+        font-size: 3.2rem;
+        font-size: 3.6rem;
     }
 
-    @media (min-width: 1440px) {
-
-        .productPageSubtitle {
-            font-size: 2.8rem;
-            font-size: 3rem;
-            font-size: 3.2rem;
-            font-size: 3.6rem;
-            font-size: 4.4rem;
-        }
-
-        .productPageTitle {
-            font-size: 2rem;
-            font-size: 2.2rem;
-            font-size: 2.4rem;
-            font-size: 2.8rem;
-            font-size: 3.6rem
-        }
-
-        .stickyNavTitleText {
-            font-size: 1.6rem;
-            font-size: 1.8rem;
-            font-size: 2rem;
-            /* font-family: var(--text-semibold); */
-        }
-
+    .productPageTitle {
+        font-size: 2rem;
+        font-size: 2.2rem;
+        font-size: 2.4rem;
+        font-size: 2.8rem;
     }
+
+}
+
+@media (min-width: 1440px) {
+
+    .productPageSubtitle {
+        font-size: 2.8rem;
+        font-size: 3rem;
+        font-size: 3.2rem;
+        font-size: 3.6rem;
+        font-size: 4.4rem;
+    }
+
+    .productPageTitle {
+        font-size: 2rem;
+        font-size: 2.2rem;
+        font-size: 2.4rem;
+        font-size: 2.8rem;
+        font-size: 3.6rem
+    }
+
+    .stickyNavTitleText {
+        font-size: 1.6rem;
+        font-size: 1.8rem;
+        font-size: 2rem;
+        /* font-family: var(--text-semibold); */
+    }
+
+}
+
+@media (min-width: 1920px) {
+
+    /* --------------------------------------------------------------------------------------- */
+    /* PAGE HERO */
+    /* --------------------------------------------------------------------------------------- */
+    /* .heroTitle {
+        font-size: 4.4rem;
+    } */
+
+    .heroSubtitle {
+        font-size: 3.2rem;
+    }
+
+    .heroTertiaryTitle {
+        font-size: 3rem;
+    }
+
+    .heroDescription {
+        font-size: 2.4rem;
+    }
+
+
+}
+
 /* --------------------------------------------------------------------------------------- */
 /* MEDIA QUERY REFERENCE */
 /* --------------------------------------------------------------------------------------- */

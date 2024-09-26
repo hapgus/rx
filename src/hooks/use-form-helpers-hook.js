@@ -23,53 +23,129 @@ export const useYearHelper = () => {
     }, []);
 }
 
+
+
+// NEW 
+
 export const useCategoryOptions = () => {
     return useMemo(() => ({
         "air care": [
             { value: "air care", label: "Air care" },
         ],
         "cooking": [
-            { value: "ranges", label: "Ranges" },
-            { value: "built-in", label: "Built-in" },
-            { value: "microwaves", label: "Microwaves" },
+            { value: "induction ranges", label: "Induction Ranges" },
+            { value: "gas ranges", label: "Gas Ranges" },
+            { value: "electric ranges", label: "Electric Ranges" },
+            { value: "dual fuel ranges", label: "Dual Fuel Ranges" },
+            { value: "built-in wall ovens", label: "Built-In Wall Ovens" },
+            { value: "built-in cooktops", label: "Built-In Cooktops" },
+            { value: "range hoods", label: "Range Hoods" },
+            { value: "over-the-range microwaves", label: "Over the Range Microwaves" },
+            { value: "countertop microwaves", label: "Countertop Microwaves" },
         ],
         "laundry": [
             { value: "all-in-one", label: "All-In-One" },
-            { value: "washers", label: "Washers" },
-            { value: "dryers", label: "Dryers" },
+            // { value: "washers", label: "Washers" },
+            // { value: "dryers", label: "Dryers" },
             // { value: "washtower", label: "WashTower" },
-            { value: "washtowers", label: "WashTower" },
-            { value: "stylers", label: "Stylers" },
+            { value: "washtower", label: "WashTower" },
             { value: "accessories", label: "Accessories" },
+            { value: "specialty laundry", label: "Specialty Laundry" },
+
+            { value: "front load washers", label: "Front Load Washers" },
+            { value: "top load washers", label: "Top Load Washer" },
+            { value: "front load dryers", label: "Front Load Dryers" },
+            { value: "top load dryers", label: "Top Load Dryers" },
+            { value: "stylers", label: "LG Stylers" },
+            
         ],
         "refrigeration": [
-            { value: "french door", label: "French Door" },
+            { value: "4-door french door", label: "4-Door French Door" },
+            { value: "3-door french door", label: "3-door French Door" },
+            { value: "under 33\" french door", label: "33\" and Under French Door" },
             { value: "side-by-side", label: "Side-by-Side" },
-            { value: "top and bottom freezer", label: "Top and Bottom Freezer" },
+            { value: "bottom and top freezer", label: "  Bottom and Top Freezer" },
             { value: "single door", label: "Single Door" },
         ],
         "dishwashers": [
-            { value: "dishwasher", label: "Dishwasher" },
+            { value: "pocket handle dishwashers", label: "Pocket Handle Dishwashers" },
+            { value: "towel bar handle dishwashers", label: "Towel Bar Handle Dishwashers" },
+            { value: "specialty dishwashers", label: "Specialty Dishwasher" },
         ],
         "vacuums": [
-            { value: "vacuum", label: "Vacuum" },
+            { value: "vacuums", label: "Vacuums" },
+            // { value: "vacuum", label: "Vacuum" },
         ],
         "signature": [
             { value: "laundry", label: "Laundry" },
-            { value: "dishwasher", label: "Dishwasher" },
+            { value: "dishwashers", label: "Dishwashers" },
             { value: "refrigeration", label: "Refrigeration" },
-            { value: "cooking", label: "Cooking" },
+            { value: "ranges", label: "Ranges" },
             { value: "accessories", label: "Accessories" },
         ],
         "studio": [
-            { value: "laundry", label: "Laundry" },
-            { value: "dishwasher", label: "Dishwasher" },
+            { value: "ranges", label: "Ranges" },  
             { value: "refrigeration", label: "Refrigeration" },
-            { value: "cooking", label: "Cooking" },
-            { value: "stylers", label: "Stylers" },
+            { value: "laundry", label: "Laundry" },
+            { value: "dishwashers", label: "Dishwashers" },
+            // { value: "dishwasher", label: "Dishwasher" },
+            { value: "built-in wall ovens", label: "Built-In Wall Ovens" },
+            { value: "built-in cooktops", label: "Built-In Cooktops" },
+            { value: "range hoods", label: "Range Hoods" },
+            { value: "microwaves", label: "Microwaves" },
+            // { value: "stylers", label: "LG Stylers" },
         ]
     }), []);
 };
+
+// OLD
+// export const useCategoryOptions = () => {
+//     return useMemo(() => ({
+//         "air care": [
+//             { value: "air care", label: "Air care" },
+//         ],
+//         "cooking": [
+//             { value: "ranges", label: "Ranges" },
+//             { value: "built-in", label: "Built-in" },
+//             { value: "microwaves", label: "Microwaves" },
+//         ],
+//         "laundry": [
+//             { value: "all-in-one", label: "All-In-One" },
+//             { value: "washers", label: "Washers" },
+//             { value: "dryers", label: "Dryers" },
+//             // { value: "washtower", label: "WashTower" },
+//             { value: "washtowers", label: "WashTower" },
+//             { value: "stylers", label: "Stylers" },
+//             { value: "accessories", label: "Accessories" },
+//         ],
+//         "refrigeration": [
+//             { value: "french door", label: "French Door" },
+//             { value: "side-by-side", label: "Side-by-Side" },
+//             { value: "top and bottom freezer", label: "Top and Bottom Freezer" },
+//             { value: "single door", label: "Single Door" },
+//         ],
+//         "dishwashers": [
+//             { value: "dishwasher", label: "Dishwasher" },
+//         ],
+//         "vacuums": [
+//             { value: "vacuum", label: "Vacuum" },
+//         ],
+//         "signature": [
+//             { value: "laundry", label: "Laundry" },
+//             { value: "dishwasher", label: "Dishwasher" },
+//             { value: "refrigeration", label: "Refrigeration" },
+//             { value: "cooking", label: "Cooking" },
+//             { value: "accessories", label: "Accessories" },
+//         ],
+//         "studio": [
+//             { value: "laundry", label: "Laundry" },
+//             { value: "dishwasher", label: "Dishwasher" },
+//             { value: "refrigeration", label: "Refrigeration" },
+//             { value: "cooking", label: "Cooking" },
+//             { value: "stylers", label: "Stylers" },
+//         ]
+//     }), []);
+// };
 
 
 export const useCategories = () => {

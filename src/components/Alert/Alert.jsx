@@ -5,29 +5,35 @@ import { PageText } from "../Text/Text";
 import { IconComponent } from "../Icon/IconComponent";
 import { LGComponent } from "../Character/LGComponent";
 
+import { motion } from "framer-motion";
 const Alert = ({ type = 'default', alertMessage, onClick }) => {
-const publicUrl = process.env.PUBLIC_URL;
-    const alertTypesMap = {
-        // productAdded: {
-        //     style: styles.productAlert,
-        //     icon: <IconComponent iconType='greenCheckmark' />
+    const modalVariants = {
+
+        hidden: { opacity: 0, y: "-100%" },
+        visible: { opacity: 1, y: "0%" },
+        exit: { opacity: 0, y: "-100%" }
+        // hidden: { opacity: 0, y: "-100%" }, // Start from above the screen
+        // visible: { 
+        //     opacity: 1, 
+        //     y: ["0%", "-10%", "0%"],  // Keyframe animation to overshoot slightly then come back
+        //     transition: {
+        //         duration: 0.8,  // Total duration
+        //         ease: [0.68, -0.55, 0.27, 1.55]  // Custom cubic-bezier for bounce effect
+        //     }
         // },
+        // exit: { opacity: 0, y: "-100%", transition: { duration: 0.5, ease: "easeInOut" } } // Animate exit upwards
+    };
+    const alertTypesMap = {
+
         productAdded: {
             style: styles.productAddedLG,
-            icon: <LGComponent type='boyHands'/>
+            icon: <LGComponent type='boyHands' />
         },
         productRemoved: {
             style: styles.productAlert,
             icon: <IconComponent iconType='redMinus' />
         },
-        // productAlreadyInList: {
-        //     style: styles.productsAlreadyInListAlert,
-        //     icon: <IconComponent iconType='yellowExclamation' />
-        // },
-        // productsReadyToPrint: {
-        //     style: styles.productsReadyToPrintAlert,
-        //     icon: <IconComponent iconType='bluePrinter' />
-        // },
+
         default: {
             style: styles.alertDefault,
             icon: null
@@ -36,12 +42,23 @@ const publicUrl = process.env.PUBLIC_URL;
     const alertConfig = alertTypesMap[type] || alertTypesMap.default;
 
     const alertContent = (
-        <div className={styles.alertContainer} onClick={onClick}>
-             <div className={alertConfig.style}>
-                {alertConfig.icon}
-                <PageText type="alertTitle">{alertMessage}</PageText>
+        <div className={styles.overlayContainer}>
+            <motion.div
+                variants={modalVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                className={styles.alertContainer} onClick={onClick}>
                 
-            </div>
+                
+
+                    <div className={alertConfig.style}>
+                        {alertConfig.icon}
+                        <PageText type="alertTitle">{alertMessage}</PageText>
+                    </div>
+                
+              
+            </motion.div>
         </div>
     );
     return ReactDOM.createPortal(alertContent, document.getElementById('alert'));
@@ -51,7 +68,11 @@ const publicUrl = process.env.PUBLIC_URL;
 const ProductGuideAlerts = props => {
     return (
         <>
-            {props.show && <Alert {...props} />}
+            {props.show &&
+
+                <Alert {...props} />
+
+            }
         </>
     )
 };

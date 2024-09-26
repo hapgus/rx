@@ -65,18 +65,33 @@ export const reduceEventsByDate = (events) => {
   }, {});
 };
 
+// export const formatChartLabel = (label) => {
+//   return label
+//     .replace(/_/g, ' ')                                  // Replace underscores with spaces
+//     .replace(/\b\w/g, char => char.toUpperCase());        // Capitalize first letter of each word
+// }
 export const formatChartLabel = (label) => {
+  if (!label || typeof label !== 'string') {
+    return 'Unknown'; // Default to 'Unknown' or another fallback
+  }
+  
   return label
     .replace(/_/g, ' ')                                  // Replace underscores with spaces
     .replace(/\b\w/g, char => char.toUpperCase());        // Capitalize first letter of each word
-}
+};
+
 
 
 // Step 1: Function to categorize page paths based on segments
 export const categorizePagePath = (pagePath) => {
+  
   if (pagePath === '/') {
     return 'Homepage'; // Root path for the homepage
   }
+  if (!pagePath || typeof pagePath !== 'string') {
+    return 'Unknown Page'; // Handle undefined or non-string values gracefully
+  }
+
 
   if (pagePath.startsWith('/appliances/')) {
     const segments = pagePath.split('/').filter(Boolean); // Split and remove empty segments
@@ -175,3 +190,17 @@ export const categorizeAppliancePath = (pagePath) => {
 //     }
 //     return 'Unknown Page'; // Fallback for unknown pages
 // };
+
+// This function will iterate over an array of objects, find the 'text' property in each, and strip the target words
+export const textStripper = (data, removeWords) => {
+  return data.map(item => ({
+    ...item,  // Spread the current item to keep its other properties
+    text: item.text.replace(removeWords, '').trim()  // Replace and trim the target words from the 'text' field
+  }));
+};
+
+export const removeObjectsFromArray = (data, removeWordsArray) => {
+  return data.filter(item => 
+    !removeWordsArray.some(removeWord => item.text.includes(removeWord))
+  );
+};

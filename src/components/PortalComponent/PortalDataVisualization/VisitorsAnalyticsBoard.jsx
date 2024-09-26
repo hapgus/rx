@@ -14,18 +14,18 @@ export const VisitorsAnalyticsBoard = () => {
   if (!tableData || !tableData.visitorOverview) {
     console.warn('No visitors table data found');
     return <div>No data available</div>;
-}
+  }
 
-let chartData = null;
-try {
+  let chartData = null;
+  try {
     chartData = transformWithSchema(tableData.visitorOverview, 'visitorOverview');
-} catch (error) {
+  } catch (error) {
     console.error(`Error transforming data: ${error.message}`);
     return <div>Error loadings data</div>;
-}
-    return(
-      <TableChart
+  }
+  return (
+    <TableChart
       data={chartData} options={tableChartOptions}
-      />
-    )
+    />
+  )
 }

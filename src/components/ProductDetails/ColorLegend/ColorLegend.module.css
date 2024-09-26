@@ -21,7 +21,7 @@
     justify-content: center;
     align-items: center;
     border-radius: 100rem;
-    border: 1px solid var(--color-gray-03);
+    border: 1px solid var(--color-gray-04);
 }
 
 @media (min-width: 430px) {
@@ -48,7 +48,7 @@
         justify-content: center;
         align-items: center;
         border-radius: 100rem;
-        border: 1px solid var(--color-gray-03);
+  
     }
 }
 

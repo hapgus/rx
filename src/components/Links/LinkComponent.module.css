@@ -29,4 +29,6 @@ a {
 .active {
   border-bottom: 2px solid var(--color-red-03);
 }
-
+.defaultText > li{
+  list-style-type: none;
+}

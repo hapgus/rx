@@ -2,6 +2,11 @@
     
     /* background-color: var(--color-gray-07); */
 }
+
+.contentWrapper{
+    /* padding: 2rem 0; */
+    padding: 2rem;
+}
 .accountInformationFooter{
     padding-bottom: 4rem;
 
@@ -21,21 +26,22 @@
 .buttonWrapper button{
     max-width: max-content;
 }
-.formElements{
-    padding-bottom: 3rem;
-}
-.row{
+
+.actionButtonsWrapper{
     display: flex;
     flex-direction: column;
-    gap: .5rem;
+    gap: 3rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+.actionButtonsWrapper, a{
+     font-size: 1.6rem;
+    color: var(--color-gray-03);
 }
 
-.passwordReset{
-    
-}
+
 .passwordReset a{
-    font-size: 1.6rem;
-    color: var(--color-gray-03);
+   
 }
 
 .deleteAccountWrapper{
@@ -44,4 +50,21 @@
     display: flex;
     justify-content: flex-end;
     color: var(--color-gray-03);
+}
+@media (min-width: 1280px) {
+    .contentWrapper{
+        padding: 2rem;
+    }
+    .contentWrapperBase{
+        padding: 2rem 4rem 2rem 4rem;
+    }
+}@media (min-width: 1440px) {
+    .contentWrapper{
+        padding: 3rem 4rem;
+    }
+}
+@media (min-width: 1920px) {
+    .contentWrapper{
+        padding: 8rem 0;
+    }
 }

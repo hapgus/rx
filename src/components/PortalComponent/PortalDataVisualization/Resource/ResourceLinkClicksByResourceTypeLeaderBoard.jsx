@@ -1,44 +1,38 @@
-import { useData } from "../../../../hooks/data-hook";
+import { useDataContext } from "../../../../hooks/data-hook";
 import { PortalLeaderBoard } from "../../PortalPageComponent/PortalLeaderBoard/PortalLeaderBoard";
 import { PortalLeaderBoardRow } from "../../PortalPageComponent/PortalLeaderBoard/PortalLeaderBoardRow";
+import Skeleton from 'react-loading-skeleton';
 
 export const ResourceLinkClicksByResourceTypeLeaderBoard = ({ limit = 10 }) => {
-    const { data } = useData('http://localhost:3005/data');
+    const { isDataState } = useDataContext(); // Access filtered data from context
+    const data = isDataState.resourceDataFilteredByDate;
 
-    if (!data || !data.eventOverview) {
-        return <div>No data available</div>;
+    const targetEvents = ['RESOURCE_CLICKED'];
+
+    if (!data || !data.length) {
+        return <Skeleton height={200} width="100%" />;
     }
 
-    // Step 1: Filter for 'Click_Resource_Link' events
-    const resourceLinkClickEvents = data.eventOverview.filter(
-        event => event.eventName === 'Click_Resource_Link' && event['customEvent:resourceType'] !== '(not set)'
-    );
-    console.log(resourceLinkClickEvents);
-
+    // Step 1: Filter 'Click_Resource_Link' events
+    const filteredEvents = data.filter(event => targetEvents.includes(event.eventName));
+console.log(filteredEvents)
     // Step 2: Aggregate eventCount by resourceType
     const resourceMap = new Map();
 
-    resourceLinkClickEvents.forEach(item => {
-        const resourceType = item['customEvent:resourceType'] || 'Unknown Resource';  // Default if resourceType is missing
+    filteredEvents.forEach(item => {
+        const resourceType = item['customEvent:resourceType'] || 'Unknown Resource';
         const eventCount = Number(item.eventCount);
 
         if (!resourceMap.has(resourceType)) {
-            resourceMap.set(resourceType, {
-                resourceType: resourceType,
-                totalEventCount: 0,
-            });
+            resourceMap.set(resourceType, { resourceType, totalEventCount: 0 });
         }
-
-        const current = resourceMap.get(resourceType);
-        current.totalEventCount += eventCount;
+        resourceMap.get(resourceType).totalEventCount += eventCount;
     });
 
-    // Step 3: Convert Map to array and sort by totalEventCount in descending order
+    // Step 3: Sort resources by eventCount and limit the result
     const sortedResources = Array.from(resourceMap.values())
         .sort((a, b) => b.totalEventCount - a.totalEventCount)
         .slice(0, limit);
-
-    console.log(sortedResources);
 
     return (
         <PortalLeaderBoard title="Top Resources by Click Count">
@@ -47,8 +41,8 @@ export const ResourceLinkClicksByResourceTypeLeaderBoard = ({ limit = 10 }) => {
                     <li key={idx}>
                         <PortalLeaderBoardRow
                             rank={idx + 1}
-                            dimension={resource.resourceType}  // Show resourceType
-                            metric={resource.totalEventCount}  // Show total event count
+                            dimension={resource.resourceType}
+                            metric={resource.totalEventCount}
                         />
                     </li>
                 ))}

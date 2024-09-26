@@ -12,7 +12,9 @@ export const Feedback = ({ feedbackMessage, feedbackType }) => {
 
     return (
         <div className={styles.mainFeedbackContainer}>
-            
+            <div className={styles.feedbackIcon}>
+                <IconComponent iconType={FeedbackIcon} />
+            </div> 
             <div className={styles.feedbackText}>
                 <PageText type="formMessage">
                     <span className={feedbackType === 'error' ? styles.errorMessage : styles.successMessage}>
@@ -20,9 +22,7 @@ export const Feedback = ({ feedbackMessage, feedbackType }) => {
                     </span>
                 </PageText>
             </div>
-            <div className={styles.feedbackIcon}>
-                <IconComponent iconType={FeedbackIcon} />
-            </div> 
+            
         </div>
     );
 };

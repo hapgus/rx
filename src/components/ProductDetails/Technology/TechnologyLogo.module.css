@@ -10,6 +10,9 @@
     gap: 1rem;
     padding-top: 2rem;
 }
+.logosList li{
+    list-style: none;
+}
 .logoImageWrapper{
     width: 10rem; 
     height: 10rem;

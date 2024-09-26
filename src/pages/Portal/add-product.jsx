@@ -1,25 +1,23 @@
-
-
 import { FormWrapper } from '../../components/FormComponent/FormWrapper/FormWrapper';
-import { CreateProductForm } from '../../components/PortalComponent/PortalFormComponent/CreateProductForm';
-import { PortalPage } from '../../components/PortalComponent/PortalPageComponent/PortalPage/PortalPage';
 
+import { PortalPage } from '../../components/PortalComponent/PortalPageComponent/PortalPage/PortalPage';
+import { CreateProductForm } from '../../components/PortalComponent/PortalFormComponent/CreateProduct/CreateProductForm';
 
 const AddProductPage = () => {
     return (
         <PortalPage
             pageTitle='Create Products'
-            pageDescription='Complete the form below to Create and add products to the product guide'
+            pageDescription='Complete the form below to add a product'
             breadcrumb='Create Products'
             breadcrumbDirectory="Products"
-            bodyTitle="Product Management Form"
+            // bodyTitle="Product Management Form"
         >
-            <FormWrapper>
+
+         
+            {/* <FormWrapper> */}
                 <CreateProductForm />
-            </FormWrapper>
+            {/* </FormWrapper> */}
         </PortalPage>
-
-
     );
 }
 

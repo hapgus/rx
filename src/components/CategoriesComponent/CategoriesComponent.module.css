@@ -10,22 +10,27 @@
     border-bottom: 1px solid var(--color-gray-04);
     padding-bottom: 4rem;
 }
-.categoryCardsWrapper {
+.categoryCardsWrapper, .lowVolumeCategoryCardsWrapper {
    
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(2rem, 14rem));
+    /* grid-template-columns: repeat(auto-fit, minmax(2rem, 14rem)); */
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
     gap: 2rem;
     align-items:center;
     justify-content: center;
     padding-top: 1.5rem;
 }
+
+
 .categoryTitleWrapper{
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
 .categoryTitle a{
-color: var(--color-gray-01);
+/* color: var(--color-gray-01); */
+color: var(--color-red-02);
+font-family: var(--text-semibold);
 }
 .categoryHeadline{
     color: var(--color-gray-02);
@@ -44,7 +49,11 @@ display: none;
 
 @media (min-width: 430px) {
     .categoryCardsWrapper {
-        grid-template-columns: repeat(auto-fit, minmax(14rem, 17rem));
+        grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    }
+    .lowVolumeCategoryCardsWrapper{
+        /* background-color: aqua; */
+        grid-template-columns: repeat(auto-fit, minmax(10rem, 20rem));
     }
 }
 @media (min-width: 640px) {
@@ -82,7 +91,7 @@ display: none;
             padding: 1rem 0 3rem 0;
         }
         .categoryCardsWrapper {
-            /* grid-template-columns: repeat(auto-fit, minmax(14rem, 27rem)); */
+            grid-template-columns: repeat(auto-fit, minmax(14rem, 27rem));
             align-items: normal;
             justify-content: normal;
         }

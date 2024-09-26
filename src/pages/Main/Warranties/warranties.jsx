@@ -3,15 +3,26 @@ import styles from './warranties.module.css'
 import { WARRANTY_DATA } from '../../../data/STATIC_DATA';
 import { PageText } from '../../../components/Text/Text';
 import { GridSystem } from '../../../components/GridSystem/GridSystem';
+import { HeroComponent } from '../../../components/HeroComponent/HeroComponent';
 
-
+import { useResponsiveStateHook } from '../../../hooks/responsive-hook';
 
 const WarrantiesPage = () => {
-    const publicUrl = process.env.PUBLIC_URL
+    const { isMobile} = useResponsiveStateHook();
+    const description = isMobile 
+    ? "LG is committed to making sure that each of our products perform at the highest level for years to come."
+    : "LG is committed to making sure that each of our products perform at the highest level for years to come. We are constantly innovating to make sure our customers can purchase with confidence, and pride ourselves in creating the most reliable appliances on the market."
     return (
         <div className={styles.warrantiesPageContainer}>
+            <HeroComponent
+             title="Limited Warranties"
+             subtitle="Resources"
+             description={description}
+             imgAlt="lg dad and son"
+             imgSrc="/assets/image/backgrounds/resources/lg-dad-shape.webp"
+            />
 
-            <div className={styles.pageHeaderContainer}>
+            {/* <div className={styles.pageHeaderContainer}>
                 <GridSystem gridType="spread" >
                     <div className={styles.contentWrapper}>
                         <div className={styles.heroGridContainer}>
@@ -42,7 +53,7 @@ const WarrantiesPage = () => {
                         </div>
                     </div>
                 </GridSystem>
-            </div>
+            </div> */}
           
             <GridSystem gridType="spread" containerBackgroundColor='#E6E1D6'>
                 <div className={styles.contentWrapper}>

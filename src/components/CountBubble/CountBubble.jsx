@@ -5,7 +5,7 @@ export const CountBubble = ({
     itemCount,
     onClick,
     backgroundColor='white',
-    borderColor = '#716F6A',
+    borderColor = '#D0CBC1',
     color='#262626'
  }) =>
     <span 

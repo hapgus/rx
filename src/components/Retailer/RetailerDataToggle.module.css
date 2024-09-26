@@ -1,0 +1,64 @@
+.toggleContainer{
+    display: flex;
+    margin-right: auto;
+}
+.toggleWrapper button{
+    background-color: transparent;
+    color: var(--color-gray-03);
+}
+.toggleHeaderWrapper{
+    /* padding-left: 2rem; */
+}
+.toggleTitle{
+    padding-bottom:1rem ;
+    color: var(--color-gray-01);
+}
+.buttonWrapper{
+    display: flex;
+    flex-direction: row;
+    gap:1rem
+}
+.toggleWrapper button {
+    background-color: white;
+    border: 1px solid var(--color-gray-05);
+    color: var(--color-gray-01);
+    font-family: inherit;
+    /* font-size: 1.rem; */
+    height: 5.235rem;
+    /* border-radius: .8rem; */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    /* background-color: transparent;
+    color: var(--color-gray-03);
+    cursor: pointer;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    border-bottom: 1px solid var(--color-gray-06);
+    outline: none;
+    transition: background-color 0.3s ease, color 0.3s ease; */
+}
+
+.toggleWrapper .activeButton {
+    background-color: var(--color-gray-01);
+    color: white;
+    font-weight: bold;
+    border-radius: 0.5rem;
+}
+
+.toggleWrapper .activeButton:hover {
+    background-color: var(--color-gray-02);
+
+}
+
+/* --------------------------------------------------------------------------------------- */
+/* MEDIA QUERY REFERENCE */
+/* --------------------------------------------------------------------------------------- */
+/* 
+@media (min-width: 430px) {}
+@media (min-width: 768px) {}
+@media (min-width: 834px) {}
+@media (min-width: 1024px) {} - MOBILE / DESKTOP Breakpoint
+@media (min-width: 1280px) {}
+@media (min-width: 1440px) {}
+@media (min-width: 1920px) {} 
+*/

@@ -102,11 +102,15 @@
 /* TRANSFER */
 .applianceHeaderWrapperDiv1BtnWrapper {
     padding-top: 2rem;
+    display: flex;
 }
 .applianceHeaderWrapperDiv1BtnWrapper button{
     width: max-content;
 }
 
+.sectionTextWrapper{
+    padding-bottom: 2rem;
+}
 @media (min-width: 1920px) {
     .productBackgroundShapeContainer svg {
         height: 80rem;

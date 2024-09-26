@@ -1,11 +1,13 @@
 import { IconComponent } from '../Icon/IconComponent';
 // import { ButtonText } from '../TextComponent/TextComponent';
 import styles from './Button.module.css';
+import { useResponsiveStateHook } from '../../hooks/responsive-hook';
+import { AnimatedButton, useAnimation } from '../../hooks/use-framer-motion';
 
 export const Button = ({
   children,
   onClick,
-  buttonType='button',
+  buttonType = 'button',
   buttonStyleType = 'default',
   disabled = false,
   icon,
@@ -13,8 +15,18 @@ export const Button = ({
   iconStyleType,
   iconPosition = 'left',
   animatedIcon = false,
+
 }) => {
 
+
+  // --------------------------
+  // ANIMATION SETUP
+  // -------------------------- 
+
+
+  // --------------------------
+  // BUTTON STYLES MAPPING
+  // -------------------------- 
   const buttonStyles = {
     primaryAction: styles.primaryAction,
     primary: styles.primary,
@@ -25,22 +37,20 @@ export const Button = ({
     printBanner: styles.printBanner,
     printDefault: styles.printDefault,
     default: styles.default,
-
-
     circleButton: styles.circleButton,
   }
-
   const buttonStyle = buttonStyles[buttonStyleType] || buttonStyles.default;
 
   return (
- 
-      <button
-        onClick={onClick}
-        className={buttonStyle}
-        disabled={disabled}
-        type={buttonType}
-      >
-        
+
+    <button
+      onClick={onClick}
+      className={buttonStyle}
+      disabled={disabled}
+      type={buttonType}
+
+    >
+      {/* <AnimatedButton> */}
         {icon && iconPosition === 'left' && (
           <span className={`${styles.icon} ${animatedIcon ? styles.animated : ''}`}>
             <IconComponent iconStyleType={iconStyleType} iconType={iconType}>{icon}</IconComponent>
@@ -55,7 +65,8 @@ export const Button = ({
             <IconComponent iconStyleType={iconStyleType} iconType={iconType}>{icon}</IconComponent>
           </span>
         )}
-      </button>
+      {/* </AnimatedButton> */}
+    </button>
 
   );
 };

@@ -31,8 +31,9 @@ export const NumberInput = ({
     errorText,
     validators = [],
     secondaryLabel,
+    secondaryLabelToolTip,
     min = 0,
-    max=1000,
+    max=1000000,
     step = 1,
     initialValue = '', // Default initial value
     initialIsValid = false,
@@ -148,8 +149,8 @@ export const NumberInput = ({
     // };
 
     return (
-        <div>
-            <Label id={id} labelName={labelName} secondaryLabel={secondaryLabel}>
+        <div className={styles.numberInputContainer}>
+            <Label id={id} labelName={labelName} secondaryLabelToolTip={secondaryLabelToolTip} secondaryLabel={secondaryLabel}>
                 <div className={styles.customNumberInput}>
                     <div className={styles.numberInputButton}>
                         <IconComponent onClick={decrement} iconType='minus' />
@@ -159,7 +160,7 @@ export const NumberInput = ({
                         id={id}
                         name={name}
                         value={value}
-                        placeholder={placeholder}
+                        placeholder="0"
                         onChange={handleChange}
                         {...eventHandlers}
                         className={styles.input}

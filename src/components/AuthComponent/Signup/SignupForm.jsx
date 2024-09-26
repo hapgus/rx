@@ -212,7 +212,7 @@ export const SignupForm = () => {
 
 
 
-            <Button type='button' onClick={submitForm} buttonStyleType="primaryAction">Sumbit </Button>
+            <Button type='button' onClick={submitForm} buttonStyleType="primaryAction">Sign up</Button>
 
         </FormComponent>
     )

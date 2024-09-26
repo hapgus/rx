@@ -11,7 +11,7 @@ const EditUserPage = () => {
             breadcrumb='Edit User'
             breadcrumbDirectory="Users"
             breadcrumbDirectoryLink='/portal/user-directory'
-            bodyTitle="User Management Form"
+            // bodyTitle="User Management Form"
         >
             <FormWrapper>
                 <ManageUserForm />;

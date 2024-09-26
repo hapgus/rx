@@ -3,6 +3,11 @@ import styles from './ScrollHeader.module.css'
 import { ScrollButtons } from './ScrollButtons'
 import { CountBubble } from '../CountBubble/CountBubble';
 
+import { capitalizeFirstLetterEachWord } from '../../utils/text-help';
+
+
+
+
 export const ScrollHeader = ({
     headerText,
     itemCount,
@@ -12,13 +17,23 @@ export const ScrollHeader = ({
     rightOnClick
 }) => {
 
+    const categoryTitleMap = {
+        signature: 'LG SIGNATURE',
+        studio: 'LG STUDIO',
+        vacuums: 'Vacuums',
+        washtower:'WashTower'
+    };
+    const getCategoryTitle = (category) => {
+        return categoryTitleMap[category] || capitalizeFirstLetterEachWord(category);
+    }
+
     return (
         <div className={styles.scrollBarContainer}>
             <div className={styles.headerContainer}>
                 {
                     headerText &&
                     <div className={styles.headerTitle}>
-
+  {/* <PageText type='pageTitle'>{getCategoryTitle(headerText)}</PageText> */}
                         <PageText type='pageTitle'>{headerText}</PageText>
                     </div>
                 }

@@ -3,16 +3,25 @@ import { PageText } from "../../Text/Text"
 
 export const FormSection = ({ sectionTitle, sectionDescription, children }) => {
     return (
-        <div>
+        <div className={styles.formSectionContainer}>
+
             <div className={styles.formSectionHeader}>
-               
-                <div className={styles.formSectionDescription}>
-                    <PageText type='bodyDescriptionMedium'>{sectionDescription}</PageText>
-                </div>
-                <div className={styles.formSectionTitle}>
-                    <PageText type='bodySubtitleBold'>{sectionTitle}</PageText>
-                </div>
+                {
+                    sectionTitle &&
+                    <div className={styles.formSectionTitle}>
+                        <PageText type='pageTitle'>{sectionTitle}</PageText>
+                    </div>
+                }
+                {
+                    sectionDescription &&
+                    <div className={styles.formSectionDescription}>
+                        <PageText type='pageSubtitle'>{sectionDescription}</PageText>
+                    </div>
+                }
+
             </div>
+
+
             <div className={styles.formSectionBody}>
                 {children}
             </div>

@@ -69,7 +69,7 @@ const MobileVideoComponent = ({ videos }) => {
              containerPaddingTop='2rem'
              containerPaddingBottom='2rem'
              containerBorderBottom='1px solid #D0CBC1'
-             containerBackgroundColor='#F6F3EB'
+             containerBackgroundColor='#E6E1D6'
             >
                 {/* <div className={styles.videosHeaderWrapper}> */}
                 <div className={styles.videosScrollHeader}>
@@ -155,7 +155,7 @@ const DesktopVideoComponent = ({ videos }) => {
         containerPaddingTop='2rem'
              containerPaddingBottom='2rem'
              containerBorderBottom='1px solid #D0CBC1'
-             containerBackgroundColor='#F0ECE4'
+               containerBackgroundColor='#E6E1D6'
         >
 
             <div className={styles.videosScrollHeader}>

@@ -18,7 +18,7 @@ export const ColorLegend = ({colors}) =>{
         [`black steel`]: "#0D1115",  // Black steel
         [`graphite steel`]: "#3A3A3A",  // Graphite steel
         [`middle black`]: "#4B4B4B",  // Middle black
-        [`apline white`]: "#F5F5F5",  // Alpine white
+        [`alpine white`]: "#F5F5F5",  // Alpine white
         [`matte black`]: "#1C1C1C",  // Matte black
         [`monochrome grey`]: "#7F7F7F",  // Monochrome grey
         [`candy apple red`]: "#FF0800",  // Candy apple red
@@ -56,6 +56,7 @@ export const ColorLegend = ({colors}) =>{
     return(
         <div className={styles.colorListWrapper}>
         {colors && colors.map((e, idx) => {
+    
           let swatchColor = colorMapping[e] || "#000000";
           return (
             <div className={styles.colorListItem} key={idx}>

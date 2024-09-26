@@ -9,9 +9,15 @@ export const Qrcode = ({ imageUrl, title, subtitle, description }) => {
             </div>
             {
                 <div className={styles.textWrapper}>
-                    <div><PageText>{title}</PageText></div>
-                    <div><PageText>{subtitle}</PageText></div>
-                    <div><PageText>{description}</PageText></div>
+                    <div className={styles.title}>
+                        <PageText>{title}</PageText>
+                    </div>
+                    <div className={styles.subtitle}>
+                        <PageText>{subtitle}</PageText>
+                    </div>
+                    <div className={styles.description}>
+                        <PageText>{description}</PageText>
+                    </div>
                 </div>
             }
 

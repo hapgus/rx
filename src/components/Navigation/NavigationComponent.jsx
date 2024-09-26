@@ -4,7 +4,8 @@ import { useRoutingHook } from '../../hooks/routing-hook';
 import { IconComponent } from '../Icon/IconComponent';
 import { GridSystem } from '../GridSystem/GridSystem';
 import Overlay from '../Overlay/Overlay';
-import { RouteLinks, inactivePublicAccountLinks ,allCategoryLink, exclusiveLinks, navCategoryLinks, navSecondaryCategoryLinks, resourceLinks, stepUpChartLinks, accountLinks, publicAccountLinks, activeUserAccountLinks } from '../../utils/link-helper';
+import { navCategoryLinks, navSecondaryCategoryLinks, accountLinks, inactivePublicAccountLinks, allCategoryLink, exclusiveLinks, publicAccountLinks, } from '../../utils/link-config';
+import { RouteLinks, activeUserAccountLinks } from '../../utils/link-helper';
 import { PageText } from '../Text/Text';
 import { LinkComponent } from '../Links/LinkComponent';
 import { SearchComponent } from '../Search/SearchComponent/SearchComponent';
@@ -14,10 +15,33 @@ import Logo from '../Logo/LinkedLogo';
 import LinkedLogo from '../Logo/LinkedLogo';
 import { useAuthHook, useAuthUser, useAuth } from '../../hooks/auth-hook';
 import { useState } from 'react';
-
+import { AnimatedComponent } from '../../hooks/use-framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
+import { resourceLinks, stepUpChartLinks } from '../../utils/link-config';
 
 const MobileNavComponent = () => {
 
+    const linkVariants = {
+        hidden: { opacity: 0, x: 100 },  // Start off-screen to the right
+        visible: {
+            opacity: 1,
+            x: 0,  // Slide into view
+            transition: {
+                type: "spring",  // Use a spring-like motion
+                stiffness: 150,   // Controls speed of the spring effect
+                damping: 13,      // Smooths the spring stop
+                // duration: 0.4     // Ensures a smooth animation time
+            }
+        },
+        exit: {
+            opacity: 0,
+            x: 100,  // Slide out to the right when exiting
+            transition: {
+                ease: "easeInOut",
+                // duration: 0.3     // Smooth exit duration
+            }
+        }
+    };
     const { setIsRoutingState, isRoutingState } = useRoutingHook();
     const { setIsMobileSearchState } = useSearchHook();
     const { token } = useAuthHook();
@@ -72,126 +96,135 @@ const MobileNavComponent = () => {
             </div>
             <div className={styles.mobileIconsWrapper}>
                 <IconComponent onClick={handleMobileSearchIconClick} iconType='searchInput' />
-                {
-                    token &&
-                        token ?
-                        <IconComponent onClick={handleToggleMobileAccountMenu} iconType='userAccount' />
+                {/* {
+                    token && token
+                        ? <IconComponent onClick={handleToggleMobileAccountMenu} iconType='userAccount' />
                         : <IconComponent iconType='userAccount' />
-                }
-
-
-
+                } */}
 
                 <ProductListIcon />
                 {/* <IconComponent onClick={handleMobileProductListIconClick} iconType='productList' /> */}
 
                 <IconComponent onClick={handleToggleMainMobileMenu} iconType={isRoutingState.isMobileNavOpen === true ? 'xClose' : 'mobileNavMenu'} />
             </div>
-            {isRoutingState.isMobileNavOpen &&
-                <Overlay containerMarginTop='7rem'>
-                    <GridSystem>
-                        <div className={styles.mobileNavDropdownMenuWrapper}>
-                            <div className={styles.mobileMenuBackIconWrapper}>
-                                <IconComponent onClick={handleToggleMainMobileMenu} iconType='leftChevron' />
-                            </div>
+            <AnimatePresence>
+                {isRoutingState.isMobileNavOpen &&
+                    <Overlay containerMarginTop='7rem' slideDirection="right">
+                        <GridSystem>
+                            <div className={styles.mobileNavDropdownMenuWrapper}>
+                                <motion.div variants={linkVariants} initial="hidden" animate="visible" exit="exit" className={styles.mobileMenuBackIconWrapper}>
+                                    <IconComponent onClick={handleToggleMainMobileMenu} iconType='leftChevron' />
+                                </motion.div>
 
-                            <div id={styles.firstHeader} className={styles.mobileMenuHeader} >
-                                <div onClick={handleToggleMobileAppliancesMenu} className={styles.headerText}>
-                                    <PageText type='mobileNavTitle'>Home Appliances</PageText>
-                                    <IconComponent iconType='rightChevron' />
+                                <div id={styles.firstHeader} className={styles.mobileMenuHeader} >
+
+                                    <motion.div variants={linkVariants} initial="hidden" animate="visible" exit="exit" onClick={handleToggleMobileAppliancesMenu} className={styles.headerText}>
+                                        <PageText type='mobileNavTitle'>Home Appliances</PageText>
+                                        <IconComponent iconType='rightChevron' />
+                                    </motion.div>
+                                </div>
+                                <div className={styles.mobileMenuHeader} >
+                                    <motion.div variants={linkVariants} onClick={handleToggleMobileResourcesMenu} className={styles.headerText}>
+                                        <PageText type='mobileNavTitle'>Resources</PageText>
+                                        <IconComponent iconType='rightChevron' />
+                                    </motion.div>
+                                </div>
+                                <div className={styles.mobileMenuHeader} >
+                                    <motion.div variants={linkVariants} onClick={handleToggleMobileExclusiveMenu} className={styles.headerText}>
+                                        <PageText type='mobileNavTitle'>Exclusive</PageText>
+                                        <IconComponent iconType='rightChevron' />
+                                    </motion.div>
+                                </div>
+                            </div>
+                        </GridSystem>
+                    </Overlay>
+                }
+            </AnimatePresence>
+            <AnimatePresence>
+                {
+
+                    isRoutingState.isMobileCategoriesMenuOpen &&
+                    <Overlay containerMarginTop='7rem'>
+                        <GridSystem >
+                            <div className={styles.mobileNavDropdownMenuWrapper}>
+                                <div className={styles.mobileMenuBackIconWrapper}>
+                                    <IconComponent onClick={handleToggleMobileAppliancesMenu} iconType='leftChevron' />
                                 </div>
 
-                            </div>
-                            <div className={styles.mobileMenuHeader} >
-                                <div onClick={handleToggleMobileResourcesMenu} className={styles.headerText}>
-                                    <PageText type='mobileNavTitle'>Resources</PageText>
-                                    <IconComponent iconType='rightChevron' />
+                                <div className={styles.mobileDropdownContent}>
+                                    <ul className={styles.mobileNavOptionsList}>{RouteLinks(navCategoryLinks)}</ul>
+                                    <ul className={styles.mobileNavOptionsList}>{RouteLinks(navSecondaryCategoryLinks)}</ul>
+                                    <ul className={styles.mobileNavOptionsList}>{RouteLinks(allCategoryLink)}</ul>
                                 </div>
                             </div>
-                            <div className={styles.mobileMenuHeader} >
-                                <div onClick={handleToggleMobileExclusiveMenu} className={styles.headerText}>
-                                    <PageText type='mobileNavTitle'>Exclusive</PageText>
-                                    <IconComponent iconType='rightChevron' />
+                        </GridSystem>
+                    </Overlay>
+                }
+            </AnimatePresence>
+            <AnimatePresence>
+                {
+                    isRoutingState.isMobileResourcesMenuOpen &&
+                    <Overlay containerMarginTop='7rem'>
+                        <GridSystem >
+                            <div className={styles.mobileNavDropdownMenuWrapper}>
+                                <div className={styles.mobileMenuBackIconWrapper}>
+                                    <IconComponent onClick={handleToggleMobileResourcesMenu} iconType='leftChevron' />
+                                </div>
+                                <div className={styles.mobileDropdownContent}>
+                                    <ul className={styles.mobileNavOptionsList}>{RouteLinks(stepUpChartLinks)}</ul>
+                                    <ul className={styles.mobileNavOptionsList}>{RouteLinks(resourceLinks)}</ul>
+
                                 </div>
                             </div>
-                        </div>
-                    </GridSystem>
-                </Overlay>
-            }
-            {
-                isRoutingState.isMobileCategoriesMenuOpen &&
-                <Overlay containerMarginTop='7rem'>
-                    <GridSystem >
-                        <div className={styles.mobileNavDropdownMenuWrapper}>
-                            <div className={styles.mobileMenuBackIconWrapper}>
-                                <IconComponent onClick={handleToggleMobileAppliancesMenu} iconType='leftChevron' />
-                            </div>
+                        </GridSystem>
+                    </Overlay>
+                }
+            </AnimatePresence>
+            <AnimatePresence>
+                {
+                    isRoutingState.isMobileExclusiveMenuOpen &&
+                    <Overlay containerMarginTop='7rem'>
+                        <GridSystem >
+                            <AnimatedComponent type='dropdownChildrenEffects'>
+                                <div className={styles.mobileNavDropdownMenuWrapper}>
+                                    <div className={styles.mobileMenuBackIconWrapper}>
+                                        <IconComponent onClick={handleToggleMobileExclusiveMenu} iconType='leftChevron' />
+                                    </div>
 
-                            <div className={styles.mobileDropdownContent}>
-                                <ul className={styles.mobileNavOptionsList}>{RouteLinks(navCategoryLinks)}</ul>
-                                <ul className={styles.mobileNavOptionsList}>{RouteLinks(navSecondaryCategoryLinks)}</ul>
-                                <ul className={styles.mobileNavOptionsList}>{RouteLinks(allCategoryLink)}</ul>
-                            </div>
-                        </div>
-                    </GridSystem>
-                </Overlay>
-            }
-            {
-                isRoutingState.isMobileResourcesMenuOpen &&
-                <Overlay containerMarginTop='7rem'>
-                    <GridSystem >
-                        <div className={styles.mobileNavDropdownMenuWrapper}>
-                            <div className={styles.mobileMenuBackIconWrapper}>
-                                <IconComponent onClick={handleToggleMobileResourcesMenu} iconType='leftChevron' />
-                            </div>
-                            <div className={styles.mobileDropdownContent}>
-                                <ul className={styles.mobileNavOptionsList}>{RouteLinks(stepUpChartLinks)}</ul>
-                                <ul className={styles.mobileNavOptionsList}>{RouteLinks(resourceLinks)}</ul>
-
-                            </div>
-                        </div>
-                    </GridSystem>
-                </Overlay>
-            }
-            {
-                isRoutingState.isMobileExclusiveMenuOpen &&
-                <Overlay containerMarginTop='7rem'>
-                    <GridSystem >
-                        <div className={styles.mobileNavDropdownMenuWrapper}>
-                            <div className={styles.mobileMenuBackIconWrapper}>
-                                <IconComponent onClick={handleToggleMobileExclusiveMenu} iconType='leftChevron' />
-                            </div>
-
-                            <div className={styles.mobileDropdownContent}>
-                                <ul className={styles.mobileNavOptionsList}>
-                                    {RouteLinks(exclusiveLinks)}
-                                    {/* <li>
+                                    <div className={styles.mobileDropdownContent}>
+                                        <ul className={styles.mobileNavOptionsList}>
+                                            {RouteLinks(exclusiveLinks)}
+                                            {/* <li>
                                         <LinkComponent
                                             linkText="Product List Builder"
                                             href='/hapg/product-list-builder'
                                             type='trackedLink'
                                         />
                                     </li> */}
-                                </ul>
-                            </div>
-                        </div>
-                    </GridSystem>
-                </Overlay>
-            }
+                                        </ul>
+                                    </div>
+                                </div>
+                            </AnimatedComponent>
+                        </GridSystem>
+                    </Overlay>
+                }
+            </AnimatePresence>
             {
                 isRoutingState.isMobileAccountMenuOpen &&
                 <Overlay containerMarginTop='7rem'>
                     <GridSystem >
-                        <div className={styles.mobileNavDropdownMenuWrapper}>
-                            <div className={styles.mobileMenuBackIconWrapper}>
-                                <IconComponent onClick={handleToggleMobileAccountMenu} iconType='leftChevron' />
-                            </div>
-                            <div className={styles.mobileDropdownContent}>
-                                <ul className={styles.mobileNavOptionsList}>{RouteLinks(accountLinks)}</ul>
-                                {/* <ul className={styles.mobileNavOptionsList}>{RouteLinks(resourceLinks)}</ul> */}
+                        <AnimatedComponent type='3dRoationDropdownEffects'>
+                            <div className={styles.mobileNavDropdownMenuWrapper}>
+                                <div className={styles.mobileMenuBackIconWrapper}>
+                                    <IconComponent onClick={handleToggleMobileAccountMenu} iconType='leftChevron' />
+                                </div>
+                                <div className={styles.mobileDropdownContent}>
+                                    <ul className={styles.mobileNavOptionsList}>{RouteLinks(accountLinks)}</ul>
+                                    {/* <ul className={styles.mobileNavOptionsList}>{RouteLinks(resourceLinks)}</ul> */}
 
+                                </div>
                             </div>
-                        </div>
+                        </AnimatedComponent>
                     </GridSystem>
                 </Overlay>
             }
@@ -295,11 +328,11 @@ const DesktopNavComponent = () => {
                             {/* <Logo/> */}
                             {/* <LinkComponent href='/hapg'>
                              </LinkComponent> */}
-                                {/* <img loading='lazy' src='/hapg/assets/image/logos/lg-logo.webp' alt='lg red face logo' /> */}
-                           
+                            {/* <img loading='lazy' src='/hapg/assets/image/logos/lg-logo.webp' alt='lg red face logo' /> */}
+
                         </div>
                         <section className={styles.desktopNavMenuWrapper}>
-                            <div className={styles.dropdownSection}>
+                            <div className={styles.dropdownSection} onMouseLeave={handlAppliancesLinkMouseLeave}>
                                 <div
                                     // onMouseLeave={handlAppliancesLinkMouseLeave} 
                                     className={styles.desktopNavMenuHeader}>
@@ -307,23 +340,27 @@ const DesktopNavComponent = () => {
                                         <PageText type='navTitleText'>Home Appliances</PageText>
                                     </div>
                                 </div>
-                                {
-                                    isRoutingState.isCategoriesMenuOpen &&
-                                    <div onMouseLeave={handlAppliancesLinkMouseLeave} className={styles.dropdownContainer}>
-                                        <div id={styles.applianceDropdownWrapperWidth} className={styles.dropdownWrapper}>
-                                            <div className={styles.dropdownContent}>
-                                                <div className={styles.dropdownLinks}>
-                                                    <ul className={styles.dropdownLinksList}>{RouteLinks(navCategoryLinks)}</ul>
-                                                    <ul className={styles.dropdownLinksList}>{RouteLinks(navSecondaryCategoryLinks)}</ul>
-                                                    <ul className={styles.dropdownLinksList}>{RouteLinks(allCategoryLink)}</ul>
+                                <AnimatePresence>
+                                    {
+                                        isRoutingState.isCategoriesMenuOpen &&
+                                        <AnimatedComponent type='3dRoationDropdownEffects'>
+                                            <div onMouseLeave={handlAppliancesLinkMouseLeave} className={styles.dropdownContainer}>
+                                                <div id={styles.applianceDropdownWrapperWidth} className={styles.dropdownWrapper}>
+                                                    <div className={styles.dropdownContent}>
+                                                        <div className={styles.dropdownLinks}>
+                                                            <ul className={styles.dropdownLinksList}>{RouteLinks(navCategoryLinks)}</ul>
+                                                            <ul className={styles.dropdownLinksList}>{RouteLinks(navSecondaryCategoryLinks)}</ul>
+                                                            <ul className={styles.dropdownLinksList}>{RouteLinks(allCategoryLink)}</ul>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                }
+                                        </AnimatedComponent>
+                                    }
+                                </AnimatePresence>
                             </div>
 
-                            <div className={styles.dropdownSection}>
+                            <div className={styles.dropdownSection} onMouseLeave={handleResourcesLinkMouseLeave} >
                                 <div
                                     // onMouseLeave={handlAppliancesLinkMouseLeave} 
                                     className={styles.desktopNavMenuHeader}>
@@ -331,42 +368,48 @@ const DesktopNavComponent = () => {
                                         <PageText type='navTitleText'>Resources</PageText>
                                     </div>
                                 </div>
-                                {
-                                    isRoutingState.isResourcesMenuOpen &&
-                                    <div onMouseLeave={handleResourcesLinkMouseLeave} className={styles.dropdownContainer}>
-                                        <div id={styles.resourcesDropdownWrapperWidth} className={styles.dropdownWrapper}>
-                                            <div className={styles.dropdownContent}>
-                                                <div className={styles.dropdownLinks}>
-                                                    <ul className={styles.dropdownLinksList}>{RouteLinks(stepUpChartLinks)}</ul>
-                                                    <ul className={styles.dropdownLinksList}>{RouteLinks(resourceLinks)}</ul>
+                                <AnimatePresence>
+                                    {
+                                        isRoutingState.isResourcesMenuOpen &&
+                                        <AnimatedComponent type='3dRoationDropdownEffects'>
+                                            <div onMouseLeave={handleResourcesLinkMouseLeave} className={styles.dropdownContainer}>
+                                                <div id={styles.resourcesDropdownWrapperWidth} className={styles.dropdownWrapper}>
+                                                    <div className={styles.dropdownContent}>
+                                                        <div className={styles.dropdownLinks}>
+                                                            <ul className={styles.dropdownLinksList}>{RouteLinks(stepUpChartLinks)}</ul>
+                                                            <ul className={styles.dropdownLinksList}>{RouteLinks(resourceLinks)}</ul>
 
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                }
+                                        </AnimatedComponent>
+                                    }
+                                </AnimatePresence>
                             </div>
-                            <div className={styles.dropdownSection}>
-                                <div
-                                    // onMouseLeave={handlAppliancesLinkMouseLeave} 
-                                    className={styles.desktopNavMenuHeader}>
-                                    <div onMouseEnter={handleExclusiveLinkMouseEnter} className={styles.desktopNavMenuText}>
+                            <div className={styles.dropdownSection} onMouseLeave={handleExclusiveLinkMouseLeave} >
+                                <div className={styles.desktopNavMenuHeader}>
+                                    <div className={styles.desktopNavMenuText} onMouseEnter={handleExclusiveLinkMouseEnter} >
                                         <PageText type='navTitleText'>Exclusive</PageText>
                                     </div>
                                 </div>
-                                {
-                                    isRoutingState.isExclusiveMenuOpen &&
-                                    <div onMouseLeave={handleExclusiveLinkMouseLeave} className={styles.dropdownContainer}>
-                                        <div className={styles.dropdownWrapper}>
-                                            <div className={styles.dropdownContent}>
-                                                <div className={styles.dropdownLinks}>
-                                                    <ul className={styles.dropdownLinksList}>{RouteLinks(exclusiveLinks)}</ul>
+                                <AnimatePresence>
+                                    {
+                                        isRoutingState.isExclusiveMenuOpen &&
+                                        <AnimatedComponent type='3dRoationDropdownEffects'>
+                                            <div onMouseLeave={handleExclusiveLinkMouseLeave} className={styles.dropdownContainer}>
+                                                <div className={styles.dropdownWrapper}>
+                                                    <div className={styles.dropdownContent}>
+                                                        <div className={styles.dropdownLinks}>
+                                                            <ul className={styles.dropdownLinksList}>{RouteLinks(exclusiveLinks)}</ul>
 
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                }
+                                        </AnimatedComponent>
+                                    }
+                                </AnimatePresence>
                             </div>
 
                         </section>
@@ -377,13 +420,8 @@ const DesktopNavComponent = () => {
                         <section className={styles.desktopNavMenuWrapper}>
                             <div className={styles.desktopNavIconsWrapper}>
                                 <ProductListIcon />
-                                {/* <IconComponent onClick={handleDesktopProductListIconClick} iconType='productList' /> */}
-                                <div className={styles.dropdownSection}>
-                                    {/* {
-                                        token && token 
-                                        ? 
-                                        :    <IconComponent iconType='userAccount' />
-                                    } */}
+                                {/* -------------------- ACCOUNT --------------------  */}
+                                {/* <div className={styles.dropdownSection}>
                                     <IconComponent onClick={handleAccountLinkClick} iconType='userAccount' />
                                     {
                                         isRoutingState.isAccountMenuOpen &&
@@ -398,13 +436,13 @@ const DesktopNavComponent = () => {
                                                             <ul className={styles.dropdownLinksList}>{RouteLinks(accountLinks)}</ul>
                                                         ) : isApprovedUser ? (
                                                             <ul className={styles.dropdownLinksList}>{RouteLinks(publicAccountLinks)}</ul>
-                                                        ) : 
-                                                        // null
-                                                        (
-                                                            <ul className={styles.dropdownLinksList}>{RouteLinks(inactivePublicAccountLinks)}</ul>
-                                                        )
+                                                        ) :
+                                                        
+                                                            (
+                                                                <ul className={styles.dropdownLinksList}>{RouteLinks(inactivePublicAccountLinks)}</ul>
+                                                            )
                                                         }
-                                                       
+
 
                                                     </div>
                                                 </div>
@@ -412,7 +450,8 @@ const DesktopNavComponent = () => {
                                         </div>
 
                                     }
-                                </div>
+                                </div> */}
+                                {/* -------------------- ACCOUNT --------------------  */}
                             </div>
 
                         </section>
@@ -430,7 +469,7 @@ const DesktopNavComponent = () => {
 
 
 export const MainNavigationComponent = () => {
-    const { isRoutingState } = useRoutingHook();
+
     return (
         <nav className={styles.mainNavComponentContainer}>
             <div className={styles.desktopNavWrapper}>

@@ -80,6 +80,7 @@ export const logPageView = (location) => {
 export const logEvent = (eventName, parameters = {}) => {
     try {
         ReactGA.event(eventName, parameters);
+        console.log('LOGGED EVENT', eventName, parameters)
     } catch (error) {
         console.error('Error logging event', error);
     }

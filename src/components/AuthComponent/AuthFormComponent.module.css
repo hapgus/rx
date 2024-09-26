@@ -43,3 +43,19 @@ max-width: max-content;
 
     padding: 1rem 0;
 }
+
+.userIntroWrapper{
+    padding-bottom: 3rem;
+}
+
+.actionButtonsWrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+.actionButtonsWrapper, a{
+     font-size: 1.6rem;
+    color: var(--color-gray-03);
+}

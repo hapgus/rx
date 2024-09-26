@@ -1,7 +1,7 @@
 .heroContainer {
     display: flex;
     flex-direction: column;
-    background-image:
+    background:
         linear-gradient(rgba(0, 0, 0, 0.614), rgba(0, 0, 0, 0.564)), linear-gradient(90deg, hsla(0, 0%, 100%, .3), rgba(0, 0, 0, .166)),
         url('/public/assets/image/backgrounds/main/studio-kitchen-01.webp');
     background-size: cover;
@@ -12,6 +12,8 @@
     height: 50rem;
     /* overflow: hidden; */
     /* background-attachment: fixed; */
+    margin-top: 4rem;
+    margin-bottom: 4rem;
 }
 
 .contentWrapper {
@@ -47,9 +49,9 @@
 
 .collar {
     background-color: var(--color-gray-07);
-    overflow-x: auto;
-    border-top: 1px solid var(--color-gray-04);
-    border-bottom: 1px solid var(--color-gray-04);
+    /* overflow-x: auto; */
+    /* border-top: 1px solid var(--color-gray-04);
+    border-bottom: 1px solid var(--color-gray-04); */
     white-space: nowrap;
     /* background-size: 400% 400%;
      background-image: linear-gradient(45deg, #dc4545, #ffb5b5, rgb(255, 224, 224), var(--color-gray-07), #ffb5b5, #f78b8b);
@@ -227,7 +229,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    gap: .75rem;
+    gap: 4rem;
     border-radius: 2rem;
     padding: 2.25rem;
 }
@@ -289,6 +291,11 @@
         gap: 2rem;
         align-items: center;
         padding-bottom: 2rem;
+    }
+    .qCard {
+    
+        gap: 8rem;
+      
     }
 }
 
@@ -406,23 +413,21 @@
     }
 
     .iconWrapper {
-        height: 4.5rem;
-        width: 4.5rem;
-        /* background-color: var(--color-gray-06);
+        height: 5.7rem;
+        width: 5.7rem;
+        background-color: var(--color-gray-06);
+        border: 4px solid var(--color-gray-06);
         border-radius: 100rem;
-        padding: .5rem; */
+        padding: 1rem;
     }
 
     /* QCARD */
 
     .qCard {
-        width: 48.5rem;
-        height: 17.7rem;
-        /* background-color: white;
-        display: flex;
-        flex-direction: row;
-        align-items: center; */
-        gap: 1rem;
+        /* width: 48.5rem;
+        height: 17.7rem; */
+       
+        gap: 4rem;
         border-radius: 2rem;
         padding: 2rem 3rem;
     }
@@ -516,6 +521,13 @@
         width: 7rem;
         align-self: center;
     }
+    .qCard {
+        width: 48.5rem;
+        height: 17.7rem;
+       
+     
+    }
+
 }
 @media(min-width:1440px){
     .introductionContainer {

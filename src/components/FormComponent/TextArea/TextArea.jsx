@@ -18,7 +18,7 @@ const textAreaReducer = (state, action) => {
                 ...state,
                 isTouched: true
             }
-            case 'SET_INITIAL': // New case for setting initial value and validity
+        case 'SET_INITIAL': // New case for setting initial value and validity
             return {
                 ...state,
                 value: action.val,
@@ -39,6 +39,8 @@ export const TextArea = ({
     errorText,
     validators,
     secondaryLabel,
+    secondaryLabelToolTip,
+    labelHeight,
     iconType,
     onIconClick,
     onInput,
@@ -86,11 +88,13 @@ export const TextArea = ({
     }
 
     return (
-      
+        <div className={styles.mainTextInputContainer}>
             <Label
                 id={id}
                 labelName={labelName}
                 secondaryLabel={secondaryLabel}
+                secondaryLabelToolTip={secondaryLabelToolTip}
+                labelHeight='15'
             >
                 <div className={styles.inputContainer}>
                     <textarea
@@ -100,7 +104,7 @@ export const TextArea = ({
                         value={inputState.value}
                         onChange={changeHandler}
                         onBlur={noTouchValidation === true ? undefined : touchHandler}
-                        className={styles.input}
+                        className={styles.textAreaInput}
                         rows={rows || 3}
                     />
                     {
@@ -111,8 +115,11 @@ export const TextArea = ({
                     }
 
                 </div>
+                <div className={styles.feedbackWrapper}>
                 {!inputState.isValid && inputState.isTouched && <Feedback feedbackType='error' feedbackMessage={errorText} />}
+            </div>
             </Label>
- 
+        </div>
+
     );
 }

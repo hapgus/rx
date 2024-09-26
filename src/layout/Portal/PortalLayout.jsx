@@ -4,8 +4,8 @@ import Modal from '../../components/Modal/Modal';
 import { useNotificationHook } from '../../hooks/notification-hook';
 import { PortalPageTopNav } from '../../components/PortalComponent/PortalPageComponent/PortalPageNav/PortalPageTopNav';
 import { PortalPageSideNav } from '../../components/PortalComponent/PortalPageComponent/PortalSideNav/PortalPageSideNav';
-
-
+import Loader from '../../components/Loader/Loader';
+import ProductGuideAlerts from '../../components/Alert/Alert';
 
 
 export default function PortalLayout() {
@@ -30,6 +30,14 @@ export default function PortalLayout() {
                 />
 
             }
+             {isAlert.show && (
+                <ProductGuideAlerts
+                    onClick={() => setIsAlert({ ...isAlert, show: false })}
+                    show={isAlert.show}
+                    alertMessage={isAlert.message}
+                    type={isAlert.type}
+                />
+            )}
             <div className={styles.portalContainer}>
                 <div className={styles.portalWrapper}>
                     <div className={styles.portalTopNavWrapper}>

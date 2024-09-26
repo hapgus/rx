@@ -3,6 +3,7 @@ import { RetailerContext } from '../../context/RetailerContext';
 
 import styles from "./Logo.module.css";
 import { LinkComponent } from '../Links/LinkComponent';
+import { useRetailerLinks } from '../../hooks/retailer-hook';
 
 const LinkedLogo = ({ type = 'lgDefault', style = 'lgDefault', portalLogo = false }) => {
   
@@ -27,7 +28,7 @@ const LinkedLogo = ({ type = 'lgDefault', style = 'lgDefault', portalLogo = fals
 
         },
         homeDepot: {
-            url: `/assets/image/logos/lg-red-gray-home-depot.svg`,
+            url: `/assets/image/logos/lg-red-gray-home-depot.webp`,
             alt: 'LG red gray Home Depot logo',
 
         }
@@ -44,8 +45,10 @@ const LinkedLogo = ({ type = 'lgDefault', style = 'lgDefault', portalLogo = fals
 
     const renderLogo = isHomeDepotApp.isHomeDepotActive ? logoTypesMap.homeDepot : logoTypesMap[type];
     const renderLogoStyle = logoStylesMap[style];
-    const renderLink = isHomeDepotApp.isHomeDepotActive ? '/home-depot/':'/';
+    // const renderLink = isHomeDepotApp.isHomeDepotActive ? 'home-depot':'/';
+    const renderLink = '/'
     
+    // const logoLink = portalLogo === true ? '/portal/dashboard' : renderLink
     const logoLink = portalLogo === true ? '/portal/dashboard' : renderLink
    
     return (

@@ -1,6 +1,5 @@
 import { Chart } from 'react-google-charts';
 
-
 export const TableChart = ({ data, options }) => {
   return (
     <Chart

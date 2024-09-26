@@ -3,7 +3,7 @@ import { useState } from "react";
 import styles from './ToolTip.module.css';
 import { PageText } from "../Text/Text";
 
-export const ToolTip = ({ text }) => {
+export const ToolTip = ({ text,positionTop, positionRight }) => {
     const [visible, setVisible] = useState(false);
 
     return (
@@ -15,9 +15,13 @@ export const ToolTip = ({ text }) => {
             <div className={styles.toolTipWrapper}>
                 <IconComponent iconType="toolTip" />
                 {visible &&
-                    <div className={styles.toolTipInnerDiv} >
+                    <div className={styles.toolTipInnerDiv} 
+                    style={{ 
+                        top: positionTop && `${positionTop}px` ,
+                        right: positionRight && `${positionRight}px` 
+                        }} >
                         <div className={styles.toolTipText}>
-                            <PageText>{text}</PageText>
+                            <PageText type="toolTip">{text}</PageText>
                         </div>
                     </div>
                 }

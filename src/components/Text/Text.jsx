@@ -8,6 +8,53 @@ import styles from './Text.module.css';
 export const PageText = ({ children, eventHandlers = {}, type = 'default' }) => {
 
     const textStyles = {
+
+        /* --------------------------------------------------------------------------------------- */
+        /* PAGE HERO */
+        /* --------------------------------------------------------------------------------------- */
+
+        heroTitle: styles.heroTitle,
+        heroSubtitle: styles.heroSubtitle,
+        heroTertiaryTitle: styles.heroTertiaryTitle,
+
+        heroDescription: styles.heroDescription,
+
+
+
+        pageTitle: styles.pageTitle,
+        pageSubtitle: styles.pageSubtitle,
+        pageTertiaryTitle: styles.pageTertiaryTitle,
+
+
+        /* --------------------------------------------------------------------------------------- */
+        /* PORTAL */
+        /* --------------------------------------------------------------------------------------- */
+
+        smallPortalTitle: styles.smallPortalTitle,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /* --------------------------------------------------------------------------------------- */
+        /* FORMS
+        /* --------------------------------------------------------------------------------------- */
+        formSectionTitle: styles.formSectionTitle,
+        formSectionSubtitle: styles.formSectionSubtitle,
+
+        formLabel: styles.formLabel,
+        formSecondaryLabel: styles.formSecondaryLabel,
+        toolTip: styles.toolTip,
         /* --------------------------------------------------------------------------------------- */
         /* PRODUCT
         /* --------------------------------------------------------------------------------------- */
@@ -19,13 +66,13 @@ export const PageText = ({ children, eventHandlers = {}, type = 'default' }) => 
         productPageTertiary: styles.productPageTertiary,
         productPageSection: styles.productPageSection,
 
-        
+
         /* --------------------------------------------------------------------------------------- */
         /* NAVIGATION + FOOTER */
         /* --------------------------------------------------------------------------------------- */
         navTitleText: styles.navTitleText,
         mobileNavTitle: styles.mobileNavTitle,
-        stickyNavTitleText:styles.stickyNavTitleText,
+        stickyNavTitleText: styles.stickyNavTitleText,
         footerTitle: styles.footerTitle,
         footerMenuItem: styles.footerMenuItem,
 
@@ -45,12 +92,6 @@ export const PageText = ({ children, eventHandlers = {}, type = 'default' }) => 
         modalTitle: styles.modalTitle,
         modalSubtitle: styles.modalSubtitle,
         modalTertiaryTitle: styles.modalTertiaryTitle,
-        /* --------------------------------------------------------------------------------------- */
-        /* PAGE HERO */
-        /* --------------------------------------------------------------------------------------- */
-        pageTitle: styles.pageTitle,
-        pageSubtitle: styles.pageSubtitle,
-        pageTertiaryTitle: styles.pageTertiaryTitle,
 
         /* --------------------------------------------------------------------------------------- */
         /* PAGE BODY */
@@ -62,10 +103,10 @@ export const PageText = ({ children, eventHandlers = {}, type = 'default' }) => 
         bodyDescription: styles.bodyDescription,
         bodyDescriptionMedium: styles.bodyDescriptionMedium,
         bodyDescriptionLarge: styles.bodyDescriptionLarge,
-        bodyFeatureSectionTitle:styles. bodyFeatureSectionTitle,
+        bodyFeatureSectionTitle: styles.bodyFeatureSectionTitle,
 
-        bodyBenefitTitle:styles.bodyBenefitTitle,
-        bodyBenefitDescription:styles.bodyBenefitDescription,
+        bodyBenefitTitle: styles.bodyBenefitTitle,
+        bodyBenefitDescription: styles.bodyBenefitDescription,
 
         /* --------------------------------------------------------------------------------------- */
         /* SEARCH */

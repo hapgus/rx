@@ -3,6 +3,8 @@ import { useState, useEffect, useRef, useReducer } from "react";
 import { validate } from '../../../utils/validators';
 import { Label } from '../Label/Label';
 import { PageText } from '../../Text/Text';
+import { se } from 'date-fns/locale';
+import { ToolTip } from '../../ToolTip/ToolTip';
 
 const selectReducer = (state, action) => {
     switch (action.type) {
@@ -17,7 +19,7 @@ const selectReducer = (state, action) => {
         //         ...state,
         //         isTouched: true
         //     }
-        case 'SET_INITIAL': 
+        case 'SET_INITIAL':
             return {
                 ...state,
                 value: action.val,
@@ -35,6 +37,7 @@ export const Select = ({
     errorText,
     validators,
     secondaryLabel,
+    secondaryLabelToolTip,
     onInput,
     initialValue = '',
     initialIsValid = false,
@@ -43,7 +46,7 @@ export const Select = ({
 
     const [selectState, dispatch] = useReducer(selectReducer,
         {
-            value: initialValue,  
+            value: initialValue,
             isValid: initialIsValid,
             // value: '',
             // isValid: false,
@@ -105,64 +108,51 @@ export const Select = ({
         <div className={styles.selectContainer} ref={wrapperRef}>
 
             <div className={styles.labelWrapper}>
-                <label className={styles.label} htmlFor={id}>{labelName}</label>
-                <PageText>{secondaryLabel}</PageText>
+                <label className={styles.label} htmlFor={id}>
+                    <PageText type='formLabel'>
+                        {labelName}
+                    </PageText>
+                    { secondaryLabel && <PageText type="formSecondaryLabel">{secondaryLabel}</PageText>}
+                    { secondaryLabelToolTip && <ToolTip text={secondaryLabelToolTip}/>}
+                </label>
+              
+                
             </div>
 
+            <div className={styles.selectWrapper} >
 
-        
-            <div className={`${styles.customSelect} ${isOpen ? styles.active : ''}`} onClick={toggleDropdown}>
-                {options.find(option => option.value === value)?.label || "Select..."}
-                <span className={styles.icon}>{isOpen ? '▲' : '▼'}</span>
-            </div>
-            {isOpen && (
-                <div className={styles.selectItems}>
-                    {options.map(option => (
-                        <div key={option.value} onClick={() => {
-                            handleSelectChange(option.value);
-                            // Trigger touch handler when an option is selected
-                            // touchHandler();
-                        }} className={`${styles.selectOption} ${value === option.value ? styles.active : ''}`}>
-                            {option.label}
-                        </div>
-                    ))}
+                <div className={`${styles.customSelect} ${isOpen ? styles.active : ''}`} onClick={toggleDropdown}>
+                    {
+                        options.find(option =>
+                            option.value === value)
+                            ?.label || <PageText>Select...</PageText>
+                    }
+                    <span className={styles.icon}>{isOpen ? '▲' : '▼'}</span>
                 </div>
-            )}
-            <select id={id} name={name} value={value} onChange={(e) => handleSelectChange(e.target.value)} style={{ display: 'none' }}>
-                {options.map(option => (
-                    <option key={option.value} value={option.value}>
-                        {option.label}
-                    </option>
-                ))}
-            </select>
-            {!isValid && <div className={styles.error}>{errorText}</div>}
-            {/* {!isValid && isTouched && <div className={styles.error}>{errorText}</div>} */}
+                {isOpen && (
+                    <div className={styles.selectItems}>
+                        {options.map(option => (
+                            <div key={option.value} onClick={() => {
+                                handleSelectChange(option.value);
+                                // Trigger touch handler when an option is selected
+                                // touchHandler();
+                            }} className={`${styles.selectOption} ${value === option.value ? styles.active : ''}`}>
+                                {option.label}
+                            </div>
+                        ))}
+                    </div>
+                )}
+                <select id={id} name={name} value={value} onChange={(e) => handleSelectChange(e.target.value)} style={{ display: 'none' }}>
+                    {options.map(option => (
+                        <option key={option.value} value={option.value}>
+                            {option.label}
+                        </option>
+                    ))}
+                </select>
+                {!isValid && <div className={styles.error}>{errorText}</div>}
+                {/* {!isValid && isTouched && <div className={styles.error}>{errorText}</div>} */}
+            </div>
         </div>
     );
-    // return (
-    //     <div className={styles.selectContainer} ref={wrapperRef}>
-    //         <label htmlFor={id}>{labelName}</label>
-    //         <div className={`${styles.customSelect} ${isOpen ? styles.active : ''}`} onClick={toggleDropdown}>
-    //             {options.find(option => option.value === value)?.label || "Select..."}
-    //             <span className={styles.icon}>{isOpen ? '▲' : '▼'}</span>
-    //         </div>
-    //         {isOpen && (
-    //             <div className={styles.selectItems}>
-    //                 {options.map(option => (
-    //                     <div key={option.value} onClick={() => handleSelectChange(option.value)} className={`${styles.selectOption} ${value === option.value ? styles.active : ''}`}>
-    //                         {option.label}
-    //                     </div>
-    //                 ))}
-    //             </div>
-    //         )}
-    //         <select id={id} name={name} value={value} onChange={(e) => handleSelectChange(e.target.value)} style={{ display: 'none' }}>
-    //             {options.map(option => (
-    //                 <option key={option.value} value={option.value}>
-    //                     {option.label}
-    //                 </option>
-    //             ))}
-    //         </select>
-    //         {!selectState.isValid && <div className={styles.error}>{errorText}</div>}
-    //     </div>
-    // );
+
 };

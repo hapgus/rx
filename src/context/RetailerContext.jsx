@@ -6,22 +6,12 @@ export const RetailerContext = createContext({
         isHomeDepotActive: false,
         isHomeDepotPrefix: null,
     },
-    setIsHomeDepotApp: () => {},
-    isClicked:false,
-    setIsClicked:()=>{}
+    setIsHomeDepotApp: () => { },
 });
 
 export const RetailerProvider = ({ children }) => {
-    const initialHomeDepotState = {
-        isHomeDepotActive: false,
-        isHomeDepotPrefix: null
-    };
 
-    const initialClickState = {
-        isClicked:false
-    }
-    const [isClicked, setIsClicked]=useState(initialClickState);
-    
+    const initialHomeDepotState = { isHomeDepotActive: false, isHomeDepotPrefix: null };
     const [isHomeDepotApp, setIsHomeDepotApp] = useState(initialHomeDepotState);
 
     const location = useLocation();
@@ -38,7 +28,7 @@ export const RetailerProvider = ({ children }) => {
 
 
     return (
-        <RetailerContext.Provider value={{ isClicked, setIsClicked,isHomeDepotApp, setIsHomeDepotApp }}>
+        <RetailerContext.Provider value={{ isHomeDepotApp, setIsHomeDepotApp}}>
             {children}
         </RetailerContext.Provider>
     );

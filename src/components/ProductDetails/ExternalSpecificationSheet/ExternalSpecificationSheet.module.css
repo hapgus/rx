@@ -1,3 +1,9 @@
 .titleContainer{
     padding-bottom: 2rem;
 }
+.resourceButtonsWrapper{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2rem;
+}

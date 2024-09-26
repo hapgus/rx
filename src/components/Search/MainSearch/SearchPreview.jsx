@@ -1,5 +1,5 @@
 import styles from './SearchPreview.module.css';
-
+import { LinkComponent } from '../../Links/LinkComponent';
 // import { useProductsHook } from '../../../hooks/product-hook';
 import { useSearchHook } from '../../../hooks/search-hook';
 
@@ -8,11 +8,31 @@ import { PageText } from '../../Text/Text';
 import { Button } from '../../Button/Button';
 import { NavSearchPreviewCard } from '../../ProductCards/NavSearchPreviewCard/NavSearchPreviewCard';
 
+import { categoryLinks } from '../../../utils/link-config';
+import { SearchFeedback } from './SearchFeedback';
+import { motion } from 'framer-motion';
+
+const listVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.1 // Adjust for timing between children
+        }
+    }
+};
+
+const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 }
+};
+
+
 export const SearchPreview = () => {
 
 
     // const { publicProducts } = useProductsHook();
-    const { isMobileSearchState, 
+    const { isMobileSearchState,
         // isHomepageSearchState, 
         isDesktopSearchState } = useSearchHook();
     // const productDataSearch = publicProducts;
@@ -27,7 +47,7 @@ export const SearchPreview = () => {
             isMobileSearchState.isSearchResults.length > 0 ? (
                 <div className={styles.searchPreviewWithResults}>
                     <div className={styles.searchPreviewWithResultsInnerDiv}>
-                       
+
                         <SearchPreviewCard products={isMobileSearchState.isSearchResults && isMobileSearchState.isSearchResults} />
                     </div>
                 </div>
@@ -35,29 +55,29 @@ export const SearchPreview = () => {
                 <div className={styles.searchPreview}>
 
                     <div className={styles.previewSectionBody}>
-                        {/* <div className={styles.previewBodyTitle1}>
-                <ProductText type='searchSectionTitle'>Search LG home appliances</ProductText>
-                </div>
-                <div className={styles.previewBodyTitle2}>
-                <ProductText type='searchSectionSubtitle'>Explore by category</ProductText>
-                </div> */}
+
                         <div className={styles.searchPreviewSectionTitleWraper}>
-                            <PageText type='searchSubtitle'>Explore by category</PageText>
+                            <PageText type='productCardSubtitle'>Explore by category</PageText>
                         </div>
 
-                        <div className={styles.searchOptionButtonWrapper}>
+                        <motion.div 
+                           variants={listVariants}
+                           initial="hidden"
+                           animate="visible"
+                        className={styles.searchOptionButtonWrapper}>
+                            {categoryLinks.map((link, idx) =>
+                                <motion.span 
+                                variants={itemVariants}
+                                key={idx}>
+                                    <LinkComponent href={link.href}>
+                                        <Button buttonStyleType="primary">{link.text}</Button>
+                                    </LinkComponent>
+                                </motion.span>
+                            )};
 
 
-                            <Button buttonStyleType='secondary'>Cooking</Button>
-                            <Button buttonStyleType='secondary'>Refrigeration</Button>
-                            <Button buttonStyleType='secondary'>Air Care</Button>
-                            <Button buttonStyleType='secondary'>Laundry</Button>
 
-                            <Button buttonStyleType='secondary'>Signature</Button>
-                            <Button buttonStyleType='secondary'>Studio</Button>
-                            <Button buttonStyleType='secondary'>Vacuums</Button>
-                            <Button buttonStyleType='secondary'>Dishwashers</Button>
-                        </div>
+                        </motion.div>
                     </div>
 
                 </div>
@@ -69,20 +89,44 @@ export const SearchPreview = () => {
 
 
         return (
-            <div className={styles.searchPreviewDesktopMainContainer}>
+            <motion.div 
+            variants={listVariants}
+                            initial="hidden"
+                            animate="visible"
+            className={styles.searchPreviewDesktopMainContainer}>
                 {
+                    isDesktopSearchState.isSearchResults.length > 0 ? (
+                        <motion.div
+                             variants={itemVariants}
+                            className={styles.desktopSearchPreviewWithResultsWrapper}>
+                            <div
+                               
+                                className={styles.desktopSearchPreviewWithResultsInnerDiv}>
+
+                                <NavSearchPreviewCard products={isDesktopSearchState.isSearchResults && isDesktopSearchState.isSearchResults} />
+
+                            </div>
+
+                        </motion.div>
+                    ) : isDesktopSearchState.isSearchInputValue.length > 2 && isDesktopSearchState.isSearchResults.length === 0 ?
+                        <SearchFeedback
+                            feedback="No results. Try searching with different keywords, like model title (S5MSB) or home appliance category (Laundry), or even product features!."
+                        />
+                        : null
+                }
+                {/* {
                     isDesktopSearchState.isSearchResults.length > 0 ? (
                         <div className={styles.desktopSearchPreviewWithResultsWrapper}>
                             <div className={styles.desktopSearchPreviewWithResultsInnerDiv}>
-                                {/* <p>{desktopSearchResultsCount} Results</p> */}
-                                <NavSearchPreviewCard products={isDesktopSearchState.isSearchResults && isDesktopSearchState.isSearchResults}/>
-                                {/* <SearchPreviewCard products={isDesktopSearchState.isSearchResults && isDesktopSearchState.isSearchResults} /> */}
+                             
+                                <NavSearchPreviewCard products={isDesktopSearchState.isSearchResults && isDesktopSearchState.isSearchResults} />
+                             
                             </div>
 
                         </div>
                     ) : null
-                }
-            </div>
+                } */}
+            </motion.div>
         );
     }
     // if (isHomepageSearchState.isHomepageSearch === true) {

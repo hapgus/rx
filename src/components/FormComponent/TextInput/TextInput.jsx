@@ -38,6 +38,7 @@ export const TextInput = ({
     errorText,
     validators,
     secondaryLabel,
+    secondaryLabelToolTip,
     iconType,
     onIconClick,
     onInput,
@@ -93,6 +94,7 @@ export const TextInput = ({
                 id={id}
                 labelName={labelName}
                 secondaryLabel={secondaryLabel}
+                secondaryLabelToolTip={secondaryLabelToolTip}
             >
                 <div className={styles.inputContainer}>
                     <input
@@ -105,6 +107,7 @@ export const TextInput = ({
                         // onBlur={touchHandler}
                         onBlur={noTouchValidation === true ? undefined : touchHandler}
                         className={styles.input}
+                  
                     />
                     {
                         iconType &&

@@ -13,10 +13,10 @@ import { Specifications } from '../../../components/ProductDetails/Specification
 import { VideoComponent } from '../../../components/ProductDetails/FeatureVideo/VideoComponent';
 import { MatchingProductComponent } from '../../../components/ProductDetails/MatchingProduct/MatchingProductComponent';
 import { ExternalSpecificationSheetComponent } from '../../../components/ProductDetails/ExternalSpecificationSheet/ExternalSpecificationSheetComponent.jsx'
-
+import { AnimatedComponent } from '../../../hooks/use-framer-motion.js';
 import { UpcCode } from '../../../components/ProductDetails/UpcCode/UpcCode.jsx';
 
-export const MobileAppliancePage = ({productId}) => {
+export const MobileAppliancePage = ({ productId }) => {
 
 
     const { publicProducts } = useProductsHook();
@@ -33,7 +33,7 @@ export const MobileAppliancePage = ({productId}) => {
     const matchingProducts = findMatchingProducts(relatedProducts, publicProducts)
 
     const videoList = productDetails.flatMap(product => product.videos);
-console.log(productObject)
+    console.log(productObject)
 
     return (
         <div className={styles.mobileAppliancePageContainer}>
@@ -49,9 +49,12 @@ console.log(productObject)
                             <div className={styles.gridItem1}>
                                 <div className={styles.mobileHeaderWrapper}>
 
-                                    <PageText type='productPageTitle'>{details.title}</PageText>
-
-                                    <PageText type='productPageSubtitle'>{details.subtitle}</PageText>
+                                    <AnimatedComponent type="bounceEffect">
+                                        <PageText type='productPageTitle'>{details.title}</PageText>
+                                    </AnimatedComponent>
+                                    <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.1}>
+                                        <PageText type='productPageSubtitle'>{details.subtitle}</PageText>
+                                    </AnimatedComponent>
 
 
                                 </div>
@@ -74,10 +77,11 @@ console.log(productObject)
                         </GridSystem>
 
                         <GridSystem
-                            containerPaddingTop='2rem'
-                            containerPaddingBottom='2rem'
+                            containerPaddingTop='3rem'
+                            containerPaddingBottom='3rem'
                             containerBorderBottom='1px solid #D0CBC1'
-                            containerBackgroundColor='#E6E1D6'
+                            containerBorderTop='1px solid #D0CBC1'
+                           containerBackgroundColor='#F6F3EB'
                         >
                             <div className={styles.gridItem1}>
                                 <Specifications product={details} />

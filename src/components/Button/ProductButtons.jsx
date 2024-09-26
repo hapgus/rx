@@ -8,68 +8,121 @@ import { logEvent } from "../../utils/google-analytics";
 import { useRoutingHook } from "../../hooks/routing-hook";
 import { useSearchHook } from "../../hooks/search-hook";
 
-export const AddToListButton = ({ product, iconButton = false }) => {
+export const AddToListButton = ({ product }) => {
 
     const { addProduct } = useBuilderHook();
     const { isDesktopSearchState, isMobileSearchState, isHomepageSearchState } = useSearchHook();
 
     const handleAddProductToList = () => {
 
-      
+        addProduct(product); // First, add the product to the list
+        //------------------------------
+        // FOR GA4
+        // ----------------------------- 
         const getSearchData = () => {
             if (Array.isArray(isHomepageSearchState.isSearchResults) && isHomepageSearchState.isSearchResults.length > 0) {
                 return {
                     searchQuery: isHomepageSearchState.isSearchInputValue,
-                    searchResultsCount: isHomepageSearchState.isSearchResults.length
+                    searchResultsCount: isHomepageSearchState.isSearchResults.length,
+                    searchType: 'Homepage_Search',
+                    searchedProduct: product.title,
+                    searchedProductCategory: product.category,
+                    searchedProductSubcategory: product.subcategory,
                 };
             } else if (Array.isArray(isMobileSearchState.isSearchResults) && isMobileSearchState.isSearchResults.length > 0) {
                 return {
                     searchQuery: isMobileSearchState.isSearchInputValue,
-                    searchResultsCount: isMobileSearchState.isSearchResults.length
+                    searchResultsCount: isMobileSearchState.isSearchResults.length,
+                    searchType: 'Nav_Search',
+                    searchedProduct: product.title,
+                    searchedProductCategory: product.category,
+                    searchedProductSubcategory: product.subcategory,
                 };
             } else if (Array.isArray(isDesktopSearchState.isSearchResults) && isDesktopSearchState.isSearchResults.length > 0) {
                 return {
                     searchQuery: isDesktopSearchState.isSearchInputValue,
-                    searchResultsCount: isDesktopSearchState.isSearchResults.length
+                    searchResultsCount: isDesktopSearchState.isSearchResults.length,
+                    searchType: 'Nav_Search',
+                    searchedProduct: product.title,
+                    searchedProductCategory: product.category,
+                    searchedProductSubcategory: product.subcategory,
                 };
             }
-            return {
-                searchQuery: 'na',
-                searchResultsCount: 'na'
-            };
+            return null; // No search data available
         };
-    
-        const { searchQuery, searchResultsCount } = getSearchData();
-    
+        const searchData = getSearchData();
+        // Only log event once, depending on whether search data exists
+        if (searchData) {
 
-        console.log('search query - btn', searchQuery)
-        console.log('search results count - btn', searchResultsCount)
+            logEvent('SEARCHED_PRODUCT_ADDED', {
+                productName: searchData.searchedProduct,
+                productCategory: searchData.searchedProductCategory,
+                productSubcategory: searchData.searchedProductSubcategory,
+                searchType: searchData.searchType,
+                searchQuery: searchData.searchQuery,
+                searchResultsCount: searchData.searchResultsCount,
+            });
+        }
+        else {
+            logEvent('PRODUCT_ADDED', {
+                productName: product.title,
+                productCategory: product.category,
+                productSubcategory: product.subcategory,
+            });
+        }
 
 
-        addProduct(product);
+    };
+    return (
+        // <Button
+        //     type="button"
+        //     buttonStyleType="primaryAction"
+        //     buttonTextType="action"
+        //     onClick={handleAddProductToList}
+            
+        // >
+        //     Add to list
 
-        logEvent('Add_Product_To_List', {
-            productName: product.title,
-            productCategory: product.category,
-            productSubcategory: product.subcategory,
-            searchQuery: searchQuery,
-            searchResultsCount: searchResultsCount,
-        });
+        // </Button>
 
-    }
+         <Button
+         type="button"
+         buttonStyleType="primaryAction"
+         buttonTextType="action"
+         onClick={handleAddProductToList}
+         animationType="bounceEffect"
+        //  icon
+        //  iconPosition="right"
+        //  iconType="greenCheckmark"
+     >
+         Add to list
 
-    return iconButton ? (
-        <IconComponent onClick={handleAddProductToList} iconStyleType='addProductIcon' iconType='cross' />
-    ) : (
-        <Button
-            type="button"
-            buttonStyleType="primaryAction"
-            buttonTextType="action"
-            onClick={handleAddProductToList}
-        >
-            Add to list
-        </Button>
+     </Button>
     );
+    // return iconButton ? (
+    //     <IconComponent onClick={handleAddProductToList} iconStyleType='addProductIcon' iconType='cross' />
+    // ) : (
+    //     <Button
+    //         type="button"
+    //         buttonStyleType="primaryAction"
+    //         buttonTextType="action"
+    //         onClick={handleAddProductToList}
+    //     >
+    //         Add to list
+    //     </Button>
+    // );
+    // return iconButton ? (
+    //     <IconComponent onClick={handleAddProductToList} iconStyleType='addProductIcon' iconType='cross' />
+    // ) : (
+    //     <Button
+    //         type="button"
+    //         buttonStyleType="primaryAction"
+    //         buttonTextType="action"
+    //         onClick={handleAddProductToList}
+    //     >
+    //         Add to list
+    //     </Button>
+    // );
 };
 
 // NOT USED
@@ -224,8 +277,6 @@ export const PrintProductsButton = () => {
             alert('no products to print')
             return setIsModal({
                 show: true,
-
-
                 title: 'You have no products in your list.',
                 message: 'Use search or explore home appliances to find products for your list so you can print!',
 
@@ -247,7 +298,7 @@ export const PrintProductsButton = () => {
                 cancelText: 'Keep my list',
                 confirmText: 'Clear my list',
                 onConfirm: () => {
-                    logEvent('Print_Product_List', {
+                    logEvent('LIST_PRINTED', {
                         productCount: productsInList.length,
                         productsInList: productListByTitle,
                         postPrintListAction: 'clearList',
@@ -257,7 +308,7 @@ export const PrintProductsButton = () => {
                     setClearAfterPrint(true); // Set flag to clear products after print
                 },
                 onCancel: () => {
-                    logEvent('Print_Product_List', {
+                    logEvent('LIST_PRINTED', {
                         productCount: productsInList.length,
                         productsInList: productListByTitle,
                         postPrintListAction: 'keepList',

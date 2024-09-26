@@ -17,12 +17,12 @@ import Loader from '../../components/Loader/Loader';
 import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
 import { ProductListDropdown } from '../../components/ProductList/ProductListDropdown';
 import { initializeGA, logPageView } from '../../utils/google-analytics';
+import { AnimatePresence } from 'framer-motion';
+import { AnimatedComponent } from '../../hooks/use-framer-motion';
 
 
 
 export default function Layout() {
-
-
 
     // const location = useLocation();
     const location = useCurrentLocation()
@@ -32,12 +32,13 @@ export default function Layout() {
 
 
     useEffect(() => {
-        initializeGA();  
-      
-    }, []); 
-    
+
+        initializeGA();
+        console.log('init ga from main useEffect')
+    }, []);
+
     useEffect(() => {
-        console.log(location)
+        console.log('log page view from main useEffect')
         logPageView(location);  // Pass the entire location object
     }, [location]);
 
@@ -116,15 +117,24 @@ export default function Layout() {
 
             {isRoutingState.isLoading && <Loader />}
             {isRoutingState.isShowScrollToTopButton && <ScrollToTop />}
-            {isRoutingState.isProductListDropdownOpen && <ProductListDropdown />}
-            {isAlert.show && (
-                <ProductGuideAlerts
-                    onClick={() => setIsAlert({ ...isAlert, show: false })}
-                    show={isAlert.show}
-                    alertMessage={isAlert.message}
-                    type={isAlert.type}
-                />
-            )}
+
+            <AnimatePresence>
+                {isRoutingState.isProductListDropdownOpen &&
+                    <ProductListDropdown />
+                }</AnimatePresence>
+            <AnimatePresence>
+                {
+                    isAlert.show && (
+
+                        <ProductGuideAlerts
+                            onClick={() => setIsAlert({ ...isAlert, show: false })}
+                            show={isAlert.show}
+                            alertMessage={isAlert.message}
+                            type={isAlert.type}
+                        />
+
+                    )}
+            </AnimatePresence>
             {isModal.show &&
                 <Modal
                     modalType={isModal.modalType}
@@ -147,9 +157,11 @@ export default function Layout() {
                 <div className={styles.mainLayoutNavWrapper}>
                     <MainNavigationComponent />
                 </div>
+                {/* <AnimatePresence mode='wait'> */}
                 <div className={styles.mainLayoutBodyWrapper}>
                     <Outlet />
                 </div>
+                {/* </AnimatePresence> */}
                 <div className={styles.mainLayoutFooterWrapper}>
                     <Footer />
 

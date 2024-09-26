@@ -11,13 +11,16 @@ import { RoutingProvider } from './context/RoutingContext';
 import { ProductProvider } from './context/ProductContext';
 import { BuilderProvider } from './context/BuilderContext';
 import { NotificationProvider } from './context/NotificationContext';
+import { DataProvider } from './context/DataContext';
 import { AuthProvider } from './context/AuthContext';
+import { LoadingProvider } from './context/LoadingContext';
 
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
+  <LoadingProvider>
     <NotificationProvider>
       <RetailerProvider>
         <RoutingProvider>
@@ -25,7 +28,10 @@ root.render(
             <ProductProvider>
               <BuilderProvider>
                 <SearchProvider>
-                  <App />
+                  <DataProvider>
+                   <App />  
+                  </DataProvider>
+                 
                 </SearchProvider>
               </BuilderProvider>
             </ProductProvider>
@@ -33,6 +39,7 @@ root.render(
         </RoutingProvider>
       </RetailerProvider>
     </NotificationProvider>
+    </LoadingProvider>
   </BrowserRouter>
 );
 

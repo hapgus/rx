@@ -24,11 +24,10 @@ const PortalDashboardPage = () => {
         <PortalPage
             pageTitle={`Welcome, ${decodedToken.firstName} ${decodedToken.lastName}`}
             pageDescription='LG Product Guide Administrator Portal'
-
             breadcrumb='Overview'
             breadcrumbDirectory="Dashboard"
             breadcrumbDirectoryLink="/portal/dashboard"
-            bodyTitle='Summary'
+            // bodyTitle='Summary'
         >
 
 

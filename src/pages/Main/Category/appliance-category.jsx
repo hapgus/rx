@@ -12,26 +12,54 @@ import { GridSystem } from '../../../components/GridSystem/GridSystem';
 import { ScrollingComponent } from '../../../components/ScrollingComponent/ScrollingComponent';
 import { useResponsiveStateHook } from '../../../hooks/responsive-hook';
 import { useResponsiveMediaStateHook } from '../../../hooks/responsive-hook';
-import { stepUpChartLinks } from '../../../utils/link-helper';
+
 import { LinkComponent } from '../../../components/Links/LinkComponent';
 import { sortProductsByMsrp } from '../../../utils/category-helper';
 import { sortProductsByTitle } from '../../../utils/category-helper';
 import { sortProductsByMsrpAndTitle } from '../../../utils/category-helper';
+import { useAnimation, AnimatedImage, AnimatedTitle } from '../../../hooks/use-framer-motion';
+import { ApplianceCategorySkeletonComponent } from './ApplianceCategoriesSkeleton';
+import NotFoundPage from '../Error/not-found';
+import { motion } from 'framer-motion';
 // import { InnerGridItem } from '../../../components/GridSystem/InnerGridItem';
+
+import { AnimatedComponent } from '../../../hooks/use-framer-motion';
+import { IconComponent } from '../../../components/Icon/IconComponent';
+import { stepUpChartLinks } from '../../../utils/link-config';
+
+
+const VALID_CATEGORIES = [
+    'air care',
+    'laundry',
+    'refrigeration',
+    'vacuums',
+    'signature',
+    'studio',
+    'cooking',
+    'dishwashers'
+];
+
+
 const ApplianceCategoryPage = () => {
     const { isMobile } = useResponsiveStateHook();
     const { isMediaMobile } = useResponsiveMediaStateHook();
     const { categoryId } = useParams();
 
+    const arrowBounceAnimation = useAnimation('bounceRightLoop');
     const { publicProducts } = useProductsHook();
     const normalizedCategoryId = NormalizeCategoryId(categoryId);
+
+    // Check against the static list of valid categories before product data
+    if (!VALID_CATEGORIES.includes(normalizedCategoryId)) {
+        return <NotFoundPage />;
+    }
     const backgroundColor = isMobile ? '#F6F3EB' : '#F0ECE4'
     const filteredProducts = FilterProductsByCategoryId(publicProducts, normalizedCategoryId);
     const reducedProducts = ListProductsByCategorySubcategory(filteredProducts);
     const transformedCategoryName = capitalizeFirstLetterEachWord(normalizedCategoryId);
 
     const subcategories = Object.values(reducedProducts);
-     // **Apply the sorting here** REPLACING SUBCATEGORIES WITH sortedSubcategories
+    // **Apply the sorting here** REPLACING SUBCATEGORIES WITH sortedSubcategories
     //  const sortedSubcategories = subcategories.map(subcategory => sortProductsByMsrp(subcategory));
     const sortedSubcategories = subcategories.map(subcategory => sortProductsByMsrpAndTitle(subcategory));
 
@@ -73,6 +101,7 @@ const ApplianceCategoryPage = () => {
             image: `${publicUrl}/assets/image/backgrounds/categories/cooking/cook.png`,
             backgroundPosition: 'center'
         },
+
         dishwashers: {
             image: `${publicUrl}/assets/image/backgrounds/categories/dishwasher/dish.png`,
             backgroundPosition: 'center'
@@ -84,101 +113,135 @@ const ApplianceCategoryPage = () => {
     const heroStyles = isMediaMobile
         ? {} // No background image on mobile
         : {
-            backgroundImage: `url(${backgroundImageData.image})`,
+            // backgroundImage: `url(${backgroundImageData.image})`,
+            background: `url(${backgroundImageData.image})`,
             backgroundPosition: backgroundImageData.backgroundPosition,
             backgroundSize: 'cover',
         };
+
     return (
         <>
-            <GridSystem
-                gridType='spread'
-            >
+            {
+                sortedSubcategories.length !== 0 && CATEGORY_SHAPED_IMAGE && stepUpChartCategoryLinks && CATEGORY_VERBIAGE && heroStyles ?
 
-                {
-                    CATEGORY_SHAPED_IMAGE && CATEGORY_VERBIAGE &&
-                    <div className={styles.heroContainer} style={heroStyles}>
-                        <div className={styles.heroWrapper}>
-                            <div className={styles.heroTextWrapper}>
-                                <div className={styles.heroTitle}>
-                                    <PageText type='pageTitle'>{CATEGORY_VERBIAGE[normalizedCategoryId].categoryHeadline}</PageText>
-                                    <PageText type='bodyDescriptionLarge'>{CATEGORY_VERBIAGE[normalizedCategoryId].categorySubheadline}</PageText>
-                                </div>
-                                <div className={styles.heroDescription}>
+                    <GridSystem gridType='spread' containerBackgroundColor="#F0ECE4">
+
+                        {
+                            CATEGORY_SHAPED_IMAGE && CATEGORY_VERBIAGE &&
+                            <div className={styles.heroContainer} style={heroStyles}>
+                                <div className={styles.heroWrapper}>
+                                    <div className={styles.heroTextWrapper}>
+                                        {/* <AnimatedTitle type='slideDown' delay={0.3}> */}
+
+                                        <div className={styles.heroTitle}>
+                                            <AnimatedComponent type="bounceEffect">
+                                                <PageText type='heroTitle'>{CATEGORY_VERBIAGE[normalizedCategoryId].categoryHeadline}</PageText>
+                                            </AnimatedComponent>
+                                            <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.1}>
+                                                <PageText type='heroDescription'>{CATEGORY_VERBIAGE[normalizedCategoryId].categorySubheadline}</PageText>
+                                            </AnimatedComponent>
+                                        </div>
+
+                                        {/* </AnimatedTitle> */}
+                                        {/* <div className={styles.heroDescription}>
                                     <PageText type='bodyDescriptionLarge'>{CATEGORY_VERBIAGE[normalizedCategoryId].categoryDescription1}</PageText>
                                     <PageText type='bodyDescriptionLarge'>{CATEGORY_VERBIAGE[normalizedCategoryId].categoryDescription2}</PageText>
-                                </div>
-                                <div className={styles.dStepUpLinksContainer}>
-                                <ul>
-                                    {stepUpChartCategoryLinks.map((link, index) => (
-                                        <li key={index}>
-                                            <PageText type='bodyDescriptionMedium'> See {``}
-                                                <span className={styles.dStepUpChartCalloutText}>
-                                                    <LinkComponent href={link.href}>{link.text}</LinkComponent>
-                                                </span>
-                                            </PageText>
-                                            {/* <LinkComponent href={link.href}>
-                                                    <Button buttonStyleType='primaryAction'>{link.text}</Button>
-                                                </LinkComponent> */}
-                                        </li>
-                                    ))}
-                                </ul>
-                                    {/* <ul>
-                                        {stepUpChartCategoryLinks.map((link, index) => (
-                                            <li key={index}>
-                                                <LinkComponent href={link.href}>
-                                                    <Button buttonStyleType='primaryAction'>{link.text}</Button>
-                                                </LinkComponent>
-                                            </li>
-                                        ))}
-                                    </ul> */}
-                                </div>
-                            </div>
-                            <div className={styles.heroImageWrapper}>
-                                <div className={styles.mobileImageGroup}>
-                                    <div className={styles.image1}>
-                                        <img
-                                            src={CATEGORY_SHAPED_IMAGE[normalizedCategoryId].imageShape1}
-                                            alt={`${CATEGORY_SHAPED_IMAGE[normalizedCategoryId]} image shapes`}
-                                            loading='lazy'
-                                        />
-                                    </div>
-                                    <div className={styles.image2}>
-                                        <img
-                                            src={CATEGORY_SHAPED_IMAGE[normalizedCategoryId].imageShape2}
-                                            alt={`${CATEGORY_SHAPED_IMAGE[normalizedCategoryId]} image shapes`}
-                                            loading='lazy'
-                                        />
-                                    </div>
-                                </div>
-                                <div className={styles.image3}>
-                                    <img
-                                        src={CATEGORY_SHAPED_IMAGE[normalizedCategoryId].imageShape3}
-                                        alt={`${CATEGORY_SHAPED_IMAGE[normalizedCategoryId]} image shapes`}
-                                        loading='lazy'
-                                    />
-                                </div>
-                            </div>
-                            <div className={styles.mStepUpLinksContainer}>
-                                <ul>
-                                    {stepUpChartCategoryLinks.map((link, index) => (
-                                        <li key={index}>
-                                            <PageText type='bodyDescriptionMedium'> See {``}
-                                                <span className={styles.stepUpChartCalloutText}>
-                                                    <LinkComponent href={link.href}>{link.text}</LinkComponent>
-                                                </span>
-                                            </PageText>
-                                            {/* <LinkComponent href={link.href}>
-                                                    <Button buttonStyleType='primaryAction'>{link.text}</Button>
-                                                </LinkComponent> */}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                }
+                                </div> */}
+                                        <div className={styles.dStepUpLinksContainer}>
+                                            <ul className={styles.list}>
+                                                {stepUpChartCategoryLinks.map((link, index) => (
+                                                    <motion.li
+                                                        whileHover="whileHover"  // Trigger hover animation on the entire li
+                                                        key={index} className={styles.stepUpChartLinkGroupWrapper}>
 
-            </GridSystem>
+                                                        {/* <PageText type='heroDescription'>See </PageText> */}
+
+                                                        <LinkComponent href={link.href}>
+                                                            <div className={styles.stepUpChartInnerLinkDivWrapper}>
+                                                                <div className={styles.dStepUpChartCalloutText}>
+                                                                    
+                                                                    <PageText type='heroDescription'>{link.text}</PageText>
+                                                                </div>
+                                                                <motion.div
+                                                                    {...arrowBounceAnimation}
+                                                                    className={styles.dStepUpChartCalloutIcon} >
+                                                                    <IconComponent iconType="whiteRightArrow" />
+                                                                </motion.div>
+                                                            </div>
+                                                        </LinkComponent>
+
+
+
+                                                    </motion.li>
+                                                ))}
+                                            </ul>
+
+                                        </div>
+                                    </div>
+                                    <div className={styles.heroImageWrapper}>
+                                        <div className={styles.mobileImageGroup}>
+                                            
+                                                <div className={styles.image1}>
+                                                <AnimatedImage
+                                                type="wipeEffect" directionStart='left' delay={.3}
+                                                // type='slideIn' delay={1.5}
+                                                src={CATEGORY_SHAPED_IMAGE[normalizedCategoryId].imageShape1}
+                                                alt={`${CATEGORY_SHAPED_IMAGE[normalizedCategoryId]} image shapes`}
+                                            />
+                                                   
+                                                </div>
+                                           
+                                           
+                                                <div className={styles.image2}>
+                                                <AnimatedImage
+                                                type="wipeEffect" directionStart='left' delay={.2}
+                                                // type='slideIn' delay={1.5}
+                                                src={CATEGORY_SHAPED_IMAGE[normalizedCategoryId].imageShape2}
+                                                alt={`${CATEGORY_SHAPED_IMAGE[normalizedCategoryId]} image shapes`}
+                                            />
+                                                    
+                                                </div>
+                                           
+                                        </div>
+                                        {/* <AnimatedTitle   type='slideIn' delay={2}> */}
+                                        <div className={styles.image3}>
+                                            <AnimatedImage
+                                                type="wipeEffect" directionStart='left' delay={1}
+                                                // type='slideIn' delay={1.5}
+                                                src={CATEGORY_SHAPED_IMAGE[normalizedCategoryId].imageShape3}
+                                                alt={`${CATEGORY_SHAPED_IMAGE[normalizedCategoryId]} image shapes`}
+                                            />
+                                            {/* <img
+                                                src={CATEGORY_SHAPED_IMAGE[normalizedCategoryId].imageShape3}
+                                                alt={`${CATEGORY_SHAPED_IMAGE[normalizedCategoryId]} image shapes`}
+                                                loading='lazy'
+                                            /> */}
+                                        </div>
+                                        {/* </AnimatedTitle> */}
+                                    </div>
+                                    <div className={styles.mStepUpLinksContainer}>
+                                        <ul>
+                                            {stepUpChartCategoryLinks.map((link, index) => (
+                                                <li key={index}>
+                                                    <PageText type='bodyDescriptionMedium'> See {``}
+                                                        <span className={styles.stepUpChartCalloutText}>
+                                                            <LinkComponent href={link.href}>{link.text}</LinkComponent>
+                                                        </span>
+                                                    </PageText>
+
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </GridSystem>
+                    : <ApplianceCategorySkeletonComponent />
+
+            }
+
             <section className={styles.productsContainer}>
                 {/* <ScrollingComponent processedProducts={subcategories} /> */}
                 <ScrollingComponent processedProducts={sortedSubcategories} />

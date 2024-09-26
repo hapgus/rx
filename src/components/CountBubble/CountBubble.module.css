@@ -7,9 +7,9 @@
     align-items: center;
     background-color: white;
     border-radius: 100rem;
-    border: 1px solid var(--color-gray-03);
+    /* border: 1px solid var(--color-red-02); */
     font-size: 1.4rem;
-    font-family: var(--lg-ei-text-regular);
+   
     /* transition: border-color 0.3s;
     position: relative; */
     /* overflow: hidden; */

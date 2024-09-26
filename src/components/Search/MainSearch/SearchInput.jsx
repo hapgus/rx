@@ -91,7 +91,7 @@ export const SearchInput = () => {
         return (
             <div className={styles.searchInputContainer}>
                 <div className={styles.searchInputHeaderText}>
-                    <PageText type='searchTitle'>Search LG Home Appliances</PageText>
+                    <PageText type='productCardSubtitle'>Search LG Home Appliances</PageText>
                     <h1></h1>
                 </div>
 

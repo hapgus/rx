@@ -5,14 +5,25 @@ import { LinkComponent } from '../../../Links/LinkComponent';
 import { PageText } from '../../../Text/Text';
 import { useAuthUser, useLogout, useAuth } from '../../../../hooks/auth-hook';
 import { useRoutingHook } from '../../../../hooks/routing-hook';
-import { portalAdminUserLinks, portalDashLinks, portalProductLinks, portalSuperAdminUserLinks, portalWebsiteLinks, RouteLinks } from '../../../../utils/link-helper';
+import { RouteLinks } from '../../../../utils/link-helper';
+import { portalAdminUserLinks, portalDashLinks, portalProductLinks, portalSuperAdminUserLinks, portalWebsiteLinks, } from '../../../../utils/link-config';
 import Overlay from '../../../Overlay/Overlay';
 import { GridSystem } from '../../../GridSystem/GridSystem';
 
 export const PortalPageTopNav = () => {
     const decodedToken = useAuthUser();
+
+    const authorizedUser = {
+        firstname: decodedToken.firstName,
+        lastname: decodedToken.lastName
+    }
+    console.log(authorizedUser)
+
     const { isSuperAdmin } = useAuth();
-    const logout = useLogout();
+
+    const handleLogoutAdmin = useLogout();
+
+
     const { setIsRoutingState, isRoutingState } = useRoutingHook();
 
     const handleToggleMobilePortalNavMenu = () => {
@@ -39,16 +50,30 @@ export const PortalPageTopNav = () => {
                     <LinkedLogo portalLogo={true} />
                 </div>
                 <div className={styles.iconsWrapper}>
-                    <div>
-                        <LinkComponent href={`/profile`}>
-                            <div >
-                                <div className={styles.icon}>
-                                    <IconComponent iconType='portalUser' />
-                                </div>
+
+                    <LinkComponent href={`/profile`}>
+                        <div className={styles.userAccountWrapper}>
+                            <div className={styles.userDetails}>
+                                <PageText type='footerMenuItem'>{authorizedUser.firstname}</PageText>
+                                <PageText type='footerMenuItem'>{authorizedUser.lastname}</PageText>
 
                             </div>
-                        </LinkComponent>
+                            <div className={styles.icon}>
+                                <IconComponent iconType='portalUser' />
+                            </div>
+
+                        </div>
+                    </LinkComponent>
+                    {/* <div className={styles.logoutDivider}>
+                        <PageText type='footerMenuItem'>{" | "}</PageText>
+                    </div> */}
+                    <div className={styles.logoutWrapper} onClick={handleLogoutAdmin}>
+                        <PageText type='footerMenuItem'>Logout</PageText>
+                        <div className={styles.logoutIconWrapper}>
+                            <IconComponent iconType='logout' />
+                        </div>
                     </div>
+
                     <div className={styles.portalBurgerWrapper} >
                         <div className={styles.icon}>
                             <IconComponent onClick={handleToggleMobilePortalNavMenu} iconType={isRoutingState.isPortalNavOpen === true ? 'xClose' : 'portalBurger'} />
@@ -135,7 +160,7 @@ export const PortalPageTopNav = () => {
 
                         </div>
                         <div className={styles.mobileMenuHeader} >
-                            <div onClick={logout} className={styles.headerText}>
+                            <div onClick={handleLogoutAdmin} className={styles.headerText}>
                                 <div className={styles.headerIconTextGroup}>
                                     <div className={styles.icon}>
                                         <IconComponent iconType='logout' />

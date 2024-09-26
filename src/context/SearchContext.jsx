@@ -12,6 +12,7 @@ export const SearchContext = createContext({
         isSearchInputValue: '',
         isSearchFocused: false,
         isSearchActive: false,
+        isSearchType: '',
         isSearchSubmitting: false,
     },
     setIsMobileSearchState: () => { },
@@ -33,6 +34,7 @@ export const SearchContext = createContext({
         isSearchInputValue: '',
         isSearchFocused: false,
         isSearchActive: false,
+        isSearchType: '',
         isSearchSubmitting: false,
     },
     setIsHomepageSearchState: () => { },
@@ -41,9 +43,9 @@ export const SearchContext = createContext({
 
 export const SearchProvider = ({ children }) => {
 
-    const { isRoutingState} = useRoutingHook();
+    const { isRoutingState } = useRoutingHook();
 
-   
+
     const initialMobileSearchState = {
         isMobileSearch: false,
         isSearchOverlayOpen: false,
@@ -51,6 +53,7 @@ export const SearchProvider = ({ children }) => {
         isSearchInputValue: '',
         isSearchFocused: false,
         isSearchActive: false,
+        isSearchType: '',
         isSearchSubmitting: false,
     }
     const [isMobileSearchState, setIsMobileSearchState] = useState(initialMobileSearchState);
@@ -72,6 +75,7 @@ export const SearchProvider = ({ children }) => {
         isSearchInputValue: '',
         isSearchFocused: false,
         isSearchActive: false,
+        isSearchType: '',
         isSearchSubmitting: false,
     }
     const [isHomepageSearchState, setIsHomepageSearchState] = useState(initialHomepageSearchState);
@@ -80,36 +84,83 @@ export const SearchProvider = ({ children }) => {
     useEffect(() => {
         if (isRoutingState.isNavLinkClicked === true)
 
-            setIsDesktopSearchState(prevState=>({
+            setIsDesktopSearchState(prevState => ({
                 ...prevState,
                 isSearchResults: [],
-                isSearchInputValue:[],
+                isSearchInputValue: [],
             }))
-            setIsMobileSearchState(prevState=>({
-                ...prevState,
-                isMobileSearch:false,
-                isSearchResults: [],
-                isSearchInputValue:'',
-                
-            }))
-            setIsHomepageSearchState(prevState=>({
-                ...prevState,
-                isSearchResults: [],
-                isSearchInputValue:[],
-            }))
-       
+        setIsMobileSearchState(prevState => ({
+            ...prevState,
+            isMobileSearch: false,
+            isSearchResults: [],
+            isSearchInputValue: '',
+            isSearchType: '',
+        }))
+        setIsHomepageSearchState(prevState => ({
+            ...prevState,
+            isSearchResults: [],
+            isSearchInputValue: [],
+            isSearchType: '',
+        }))
+
     }, [isRoutingState.isNavLinkClicked])
 
-    // useEffect(()=>{
-    //     if(isHomepageSearchState.isSearchFocused === true){
-    //         setIsDesktopSearchState(prevState=>({
-    //             ...prevState,
-    //             isSearchResults: [],
-    //             isSearchInputValue:[],
-    //         }))
-    //     }
-    // },[isHomepageSearchState.isSearchFocused])
-    
+    // CLOSE WHEN HOME SEARCH ACTIVE
+    useEffect(() => {
+        if (isHomepageSearchState.isSearchResults.length !== 0) {
+            if (isDesktopSearchState.isSearchResults !== 0) {
+                console.log('search effect - home results')
+                setIsDesktopSearchState(prevState => ({
+                    ...prevState,
+                    isSearchResults: [],
+                    isSearchInputValue: [],
+                    isSearchFocused: false
+                }))
+            } else if(isMobileSearchState.isSearchResults !== 0){
+                  console.log('search effect - desk results')
+                setIsMobileSearchState(prevState => ({
+                    ...prevState,
+                    isSearchResults: [],
+                    isSearchInputValue: [],
+                    isSearchFocused: false,
+                    isSearchOverlayOpen:false,
+                }))
+            }
+            // if () {
+              
+            // }
+        }
+        console.log('search effect end')
+    }, [isHomepageSearchState.isSearchResults])
+
+    // CLOSE WHEN DESKTOP ACTIVE
+    useEffect(() => {
+        if (isDesktopSearchState.isSearchResults.length !== 0) {
+            if (isHomepageSearchState.isSearchResults !== 0) {
+                console.log('search effect - Desk results')
+                setIsHomepageSearchState(prevState => ({
+                    ...prevState,
+                    isSearchResults: [],
+                    isSearchInputValue: [],
+                    isSearchFocused: false
+                }))
+            } else if(isMobileSearchState.isSearchResults !== 0){
+                  console.log('search effect - desk results')
+                setIsMobileSearchState(prevState => ({
+                    ...prevState,
+                    isSearchResults: [],
+                    isSearchInputValue: [],
+                    isSearchFocused: false,
+                    isSearchOverlayOpen:false,
+                }))
+            }
+            // if () {
+              
+            // }
+        }
+        console.log('search effect end')
+    }, [isDesktopSearchState.isSearchResults])
+
     // useEffect(()=>{
     //     if(isDesktopSearchState.isSearchFocused === true){
     //         setIsHomepageSearchState(prevState=>({
@@ -119,9 +170,9 @@ export const SearchProvider = ({ children }) => {
     //         }))
     //     }
     // },[isDesktopSearchState.isSearchFocused])
-// console.log('home page', isHomepageSearchState)
-// console.log('mobile', isMobileSearchState)
-// console.log('desktop',isDesktopSearchState, )
+    // console.log('home page', isHomepageSearchState)
+    // console.log('mobile', isMobileSearchState)
+    // console.log('desktop', isDesktopSearchState,)
     return (
         <SearchContext.Provider
             value={{

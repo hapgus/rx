@@ -1,7 +1,9 @@
 import { Chart } from 'react-google-charts';
+import { ChartWrapper } from './ChartWrapper';
 
 export const AreaChart = ({ data, options }) => {
   return (
+    <ChartWrapper>
     <Chart
       chartType="AreaChart"
       width="100%"
@@ -9,5 +11,6 @@ export const AreaChart = ({ data, options }) => {
       data={data}
       options={options}
     />
+    </ChartWrapper>
   );
 };

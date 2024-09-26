@@ -15,7 +15,8 @@ import { MatchingProductComponent } from '../../../components/ProductDetails/Mat
 
 import { UpcCode } from '../../../components/ProductDetails/UpcCode/UpcCode.jsx';
 import { GridSystem } from '../../../components/GridSystem/GridSystem.jsx';
-import {ExternalSpecificationSheetComponent} from '../../../components/ProductDetails/ExternalSpecificationSheet/ExternalSpecificationSheetComponent.jsx'
+import { ExternalSpecificationSheetComponent } from '../../../components/ProductDetails/ExternalSpecificationSheet/ExternalSpecificationSheetComponent.jsx'
+import { AnimatedComponent, AnimatedImage, AnimatedTitle } from '../../../hooks/use-framer-motion.js';
 
 export const DesktopAppliancePage = ({ productId }) => {
 
@@ -36,7 +37,8 @@ export const DesktopAppliancePage = ({ productId }) => {
 
     const videoList = productDetails.flatMap(product => product.videos);
 
-
+    console.log('specs array', specsArray)
+    console.log('products', relatedProducts)
     return (
 
         productDetails && productDetails.map((details, idx) => (
@@ -46,22 +48,31 @@ export const DesktopAppliancePage = ({ productId }) => {
                 <GridSystem >
                     <div className={styles.applianceHeaderWrapper}>
                         <div className={styles.applianceHeaderWrapperDiv1}>
-                            <PageText type='productPageTitle'>{details.title}</PageText>
-                            <PageText type='productPageSubtitle'>{details.subtitle}</PageText>
+                            <AnimatedComponent type="bounceEffect">
+                                <PageText type='productPageTitle'>{details.title}</PageText>
+                            </AnimatedComponent>
+                            <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.1}>
+                                <PageText type='productPageSubtitle'>{details.subtitle}</PageText>
+                            </AnimatedComponent>
                             <div className={styles.applianceHeaderWrapperDiv1BtnWrapper} >
-                                {isProductInList ? <RemoveFromListButton product={productObject} /> : <AddToListButton product={productObject} />}
+                                {
+                                    isProductInList
+                                        ? <RemoveFromListButton product={productObject} />
+                                        : <AddToListButton product={productObject} />
+                                }
                             </div>
                         </div>
                         <div className={styles.applianceHeaderWrapperDiv2}>
                             <div className={styles.imageShapeGroupWrapper}>
                                 <div className={styles.productImageForShape}>
                                     <div className={styles.productImage}>
-                                    <img loading='lazy' src={`${process.env.REACT_APP_AWS_URL}/${details.image}`} alt={`${details.title}`} />
+                                        <img loading='lazy' src={`${process.env.REACT_APP_AWS_URL}/${details.image}`} alt={`${details.title}`} />
                                     </div>
                                 </div>
                                 <ProductBackgroundShape className={styles.productBackgroundShapeContainer} />
                             </div>
                         </div>
+
                         <div className={styles.applianceHeaderWrapperDiv3}>
                             <ColorLegend colors={details.colors} />
                         </div>
@@ -71,8 +82,9 @@ export const DesktopAppliancePage = ({ productId }) => {
                 <GridSystem
                     containerPaddingTop='4rem'
                     containerPaddingBottom='4rem'
+                    containerBorderTop='1px solid #D0CBC1'
                     containerBorderBottom='1px solid #D0CBC1'
-                    containerBackgroundColor='#E6E1D6'
+                    containerBackgroundColor='#F6F3EB'
                 >
                     <div className={styles.applianceSpecsWrapper}>
                         <Specifications product={details} />
@@ -126,7 +138,7 @@ export const DesktopAppliancePage = ({ productId }) => {
                         containerBackgroundColor='#E6E1D6'
                     >
                         <div className={styles.sectionTextWrapper}>
-                            <PageText type='bodyTertiaryTitleBold'>Related Home Appliances</PageText>
+                            <PageText type='productPageSection'>Related Home Appliances</PageText>
                         </div>
                         <MatchingProductComponent product={matchingProducts} />
                     </GridSystem>

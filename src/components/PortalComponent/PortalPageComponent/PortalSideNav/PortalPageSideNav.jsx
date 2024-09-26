@@ -6,8 +6,9 @@ import { useAuth, useLogout } from '../../../../hooks/auth-hook';
 import { useCurrentLocation } from '../../../../hooks/location-hook';
 import { SidebarDropdownComponent } from '../../../PageComponent/DropdownComponent';
 import { useState } from 'react';
-import {
-    portalDashLinks,
+
+
+import {  portalDashLinks,
     portalFormLinks,
     portalTableLinks,
     superPortalTableLinks,
@@ -16,8 +17,7 @@ import {
     portalProductLinks,
 
     portalAdminUserLinks,
-    portalSuperAdminUserLinks
-} from "../../../../utils/link-helper";
+    portalSuperAdminUserLinks} from '../../../../utils/link-config';
 
 
 
@@ -28,7 +28,7 @@ export const PortalPageSideNav = () => {
     const location = useCurrentLocation();
 
     const { isSuperAdmin } = useAuth();
-    const logout = useLogout();
+   
     const [dropdownState, setDropdownState] = useState({
         dashboard: true,
         products: true,
@@ -147,7 +147,7 @@ export const PortalPageSideNav = () => {
 
 
                     <NavMenuHeader
-                        headerText='Website'
+                        headerText='Product Guide Websites'
                         iconType='portalWebsites'
                         iconStyleType='generalIcon'
                         onClick={handleDropdownClick}
@@ -155,7 +155,7 @@ export const PortalPageSideNav = () => {
                     />
                     {renderDropdown('Website', portalWebsiteLinks)}
 
-                    <div className={styles.logoutLinkWrapper} onClick={logout}>
+                    {/* <div className={styles.logoutLinkWrapper} onClick={logout}>
                         <div className={styles.logoutHeaderIconTextGroup}>
                             <div className={styles.icon}>
                                 <IconComponent iconType='logout' />
@@ -163,7 +163,7 @@ export const PortalPageSideNav = () => {
                             <div><PageText type='mobileNavTitle'>Logout</PageText></div>
 
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

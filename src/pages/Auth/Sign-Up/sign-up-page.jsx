@@ -19,7 +19,10 @@ const SignUpPage = () => {
                     </div>
                     <div className={styles.tertiaryTitle}>
                         <PageText>
-                            Create account 
+                            <span className={styles.spanText}>
+                                Create account
+                            </span>
+
                         </PageText>
                     </div>
                 </div>
@@ -29,11 +32,17 @@ const SignUpPage = () => {
                     </div>
                     <div className={styles.loginFooterDescription}>
                         <PageText>
-                            Already a member? <LinkComponent href={`../login`} linkText='login to your account' />
+                            <span className={styles.spanText}>
+                                Already a member? {" "}
+
+                            </span>
+                            <span className={styles.spanTextLink}>
+                                <LinkComponent href={`../login`} linkText='Sign in to your account.' />
+                            </span>
                         </PageText>
                     </div>
                 </div>
-                
+
             </>
 
         </AuthTemplate>

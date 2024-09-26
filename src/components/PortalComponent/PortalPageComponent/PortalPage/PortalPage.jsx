@@ -1,3 +1,4 @@
+import { AnimatedComponent } from '../../../../hooks/use-framer-motion';
 import { LinkComponent } from '../../../Links/LinkComponent';
 import { PageText } from '../../../Text/Text'
 import styles from './PortalPage.module.css'
@@ -37,16 +38,37 @@ export const PortalPage = ({
                     }
                     <div className={styles.headerText}>
 
-                        {pageTitle && <div className={styles.pageTitle}><PageText type='pageTitle'>{pageTitle}</PageText></div>}
-                        {pageDescription && <div className={styles.pageDescription}><PageText type='pageTertiaryTitle'>{pageDescription}</PageText></div>}
+                        {pageTitle &&
+                           <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.1}>
+                                <div className={styles.pageTitle}>
+                                    <PageText type='pageTitle'>
+                                        {pageTitle}
+                                    </PageText>
+                                </div>
+                            </AnimatedComponent>
+                        }
+                        {pageDescription &&
+                            <div className={styles.pageDescription}>
+                                <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.3}>
+
+
+                                    <PageText type='pageTertiaryTitle'>
+                                        {pageDescription}
+                                    </PageText>
+                                </AnimatedComponent>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
             <div className={styles.portalPageBodyWrapper}>
                 <div className={styles.portalPageBodyInnerDiv}>
-                    <div className={styles.bodyTitleWrapper}>
-                        <div className={styles.bodyTitle}> <PageText type='pageSubtitle'>{bodyTitle}</PageText></div>
-                    </div>
+                    {bodyTitle &&
+                        <div className={styles.bodyTitleWrapper}>
+                            <div className={styles.bodyTitle}> <PageText type='pageSubtitle'>{bodyTitle}</PageText></div>
+                        </div>
+                    }
+
                     <div className={styles.bodyContent}>
                         {children}
                     </div>

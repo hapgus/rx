@@ -1,0 +1,54 @@
+.collarContainer {
+    background: var(--color-gray-06);
+    padding: 1rem 0;
+    white-space: nowrap;
+    overflow: hidden; /* Hide overflowing content */
+    position: relative; /* Ensure the list scrolls under the header */
+}
+
+.collarWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: var(--color-gray-06);
+}
+
+.collarHeaderTextWrapper {
+    position: relative;
+    z-index: 2; /* Place the header above the scrolling list */
+}
+
+.collarHeaderText {
+    font-size: 2.4rem;
+    font-family: var(--text-semibold);
+    color: var(--color-gray-01);
+    border-right: 2px solid var(--color-red-02);
+    padding-right: 2rem;
+}
+
+.buttonListContainer {
+    overflow: hidden; /* Ensures that list items move offscreen seamlessly */
+    display: flex;
+    width: 100%;
+    position: relative;
+    z-index: 1; /* Place the list behind the header */
+}
+
+.buttonListWrapper {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: nowrap;
+    position: relative;
+    width: 100%;
+    justify-content: space-between;
+    padding-left: 4rem;
+}
+
+.collarListText {
+    font-size: 2rem;
+    color: var(--color-gray-02);
+}
+
+.buttonListWrapper li {
+    list-style: none;
+}

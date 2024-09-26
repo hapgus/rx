@@ -716,8 +716,8 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
             </FormSection>
 
             <FormSection
-                sectionTitle="Upload Spec Sheet Qrcode Image and link"
-                sectionDescription="Add product image files"
+                sectionTitle="Upload spec sheet QR code image and link"
+                 sectionDescription="Add QR code image files"
             >
                 <StaticImageUpload
                     iconType='qrCode'

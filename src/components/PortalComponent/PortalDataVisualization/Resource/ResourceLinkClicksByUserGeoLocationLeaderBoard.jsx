@@ -1,54 +1,46 @@
-import { useData } from "../../../../hooks/data-hook";
-import { transformWithSchema } from "../../../../utils/data-transformer";
-import { PageText } from "../../../Text/Text";
+import { useDataContext } from "../../../../hooks/data-hook";
 import { PortalLeaderBoard } from "../../PortalPageComponent/PortalLeaderBoard/PortalLeaderBoard";
 import { PortalLeaderBoardRow } from "../../PortalPageComponent/PortalLeaderBoard/PortalLeaderBoardRow";
-
-
-
+import Skeleton from 'react-loading-skeleton';
 
 export const ResourceLinkClicksByUserGeoLocationLeaderBoard = () => {
-    const { data } = useData('http://localhost:3005/data');
+    const { isDataState } = useDataContext(); // Access filtered data from context
+    const data = isDataState.resourceDataFilteredByDate; // Use filtered data for the date range
 
-    if (!data || !data.eventGeoLocationOverview) {
-        return <div>No data available</div>;
+    const targetEvents = ['RESOURCE_CLICKED'];
+
+    if (!data || !data.length) {
+        return <Skeleton height={200} width="100%" />;
     }
-    const targetEvents = ['Click_Resource_Link'];
 
+    // Step 1: Filter 'Click_Resource_Link' events
+    const filteredEvents = data.filter(event => targetEvents.includes(event.eventName));
 
-    const filteredEvents = data.eventGeoLocationOverview.filter(event => targetEvents.includes(event.eventName));
-
-
+    // Step 2: Aggregate eventCount by country and city
     const locationMap = new Map();
 
-    // Step 1: Aggregate sessions by city and country using a Map
-  filteredEvents.forEach((item) => {
+    filteredEvents.forEach(item => {
         const key = `${item.country}-${item.city}`;
+        const eventCount = Number(item.eventCount);
 
         if (!locationMap.has(key)) {
-            locationMap.set(key, {
-                country: item.country,
-                city: item.city,
-                eventCount: 0,
-            });
+            locationMap.set(key, { country: item.country, city: item.city, eventCount: 0 });
         }
-
-        const current = locationMap.get(key);
-        current.eventCount += Number(item.eventCount);
+        locationMap.get(key).eventCount += eventCount;
     });
 
-    // Step 2: Convert Map to array and sort by total sessions
-    const sortedEvents = Array.from(locationMap.values()).sort((a, b) => b.eventCount - a.eventCount);
-console.log(sortedEvents)
+    // Step 3: Sort the locations by eventCount
+    const sortedLocations = Array.from(locationMap.values()).sort((a, b) => b.eventCount - a.eventCount);
+
     return (
         <PortalLeaderBoard title="Geo Location of Users Clicking Resource Links">
             <ul>
-                {sortedEvents.map((location, idx) => (
+                {sortedLocations.map((location, idx) => (
                     <li key={idx}>
                         <PortalLeaderBoardRow
-                        rank={idx + 1}
-                        dimension={`${location.country}, ${location.city} `}
-                        metric={location.eventCount}
+                            rank={idx + 1}
+                            dimension={`${location.country}, ${location.city}`}
+                            metric={location.eventCount}
                         />
                     </li>
                 ))}

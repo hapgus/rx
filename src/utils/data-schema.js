@@ -1,107 +1,181 @@
 // dataSchema.js
 export const dataSchema = {
-    visitorSnapshot:{
-        headers: ['Date','Total Users', 'New Users'], // Column headers
-        fields: ['date','totalUsers', 'newUsers'],    // Fields in your data
+    visitorSnapshot: {
+        headers: ['Date', 'Total Users', 'New Users'], // Column headers
+        fields: ['date', 'totalUsers', 'newUsers'],    // Fields in your data
     },
-    searchTypeSnapshot:{
-        headers: ['Search Type','Count'], // Column headers
-        fields: ['searchEngine','searches'],    // Fields in your data
+    pageViewSnapshot: {
+        headers: ['Date', 'Total Page Views'], // Column headers
+        fields: ['date', 'screenPageViews'],    // Fields in your data
     },
-    productEventSnapShotPostPrintAction:{
-        headers: ['What they did after print','Count'], // Column headers
-        fields: ['postPrintListAction','eventCount'],    // Fields in your data
-    },
-    eventPageOverview:{
-        headers: ['Page','Count'], // Column headers
-        fields: ['pagePath','totalEventCount'],    // Fields in your data
-    },
-    eventPageOverviewForLineChart:{
-        headers: ['Date','Count'], // Column headers
-        fields: ['date','eventCount'],    // Fields in your data
-    },
-    eventPageOverviewForBarChart:{
-        headers: ['Page Type','Count'], // Column headers
-        fields: ['pageCategory','totalEventCount'],    // Fields in your data
-    },
-    visitorOverview:{
+    pageActivityOverview: {
         headers: [
-            'Date',
-            'Total Users', 
-            'New Users',
-            'Avg Session Duration',
-            'City',
-            'Country',
-            'Page',
-            'Page Views',
-            'Sessions',
-            'User Engagement Time'
-        
+            // 'Date',
+            // 'Country', 'City','Region',
+            // 'Total Users', 'New Users',
+            // 'Event Name', 'Event Count',
+            'Page', 'Page + Query String', 'Page Referrer', 'Page Views',
+            'Sessions', 'Avg Session Duration',
+
         ], // Column headers
         fields: [
+            // 'date',
+            // 'country', 'city','region',
+            // 'totalUsers', 'newUsers',
+            // 'eventName', 'eventCount',
+            'pagePath', 'landingPagePlusQueryString', 'pageReferrer', 'screenPageViews',
+            'sessions', 'averageSessionDuration',
+
+        ],
+    },
+    technicalActivityOverview: {
+        headers: [
+            'Date',
+            'Operating System', 'Screen Resolution', 'Device Branding', 'Device Model',
+            'Total Users', 'New Users',
+        ],
+        fields: [
             'date',
-            'totalUsers', 
-            'newUsers', 
-            'averageSessionDuration',
-            'city',
-            'country',
-            'pagePath',
-            'screenPageViews',
-            'sessions',
-            'userEngagement'
-        
-        ],  
+            'operatingSystem', 'screenResolution', 'mobileDeviceBranding', 'mobileDeviceModel',
+            'totalUsers', 'newUsers',
+        ],
     },
-    pageViewSnapshot:{
-        headers: ['Date','Total Page Views'], // Column headers
-        fields: ['date','screenPageViews'],    // Fields in your data
-    },
-    sessionSnapshot:{
-        headers: ['Date','Total Sessions'], // Column headers
-        fields: ['date','sessions'],    // Fields in your data
-    },
-    engagementTimeSnapshot:{
-        headers: ['Date','Total Sessions'], // Column headers
-        fields: ['date','userEngagementDuration'],    // Fields in your data
-    },
-    eventSnapshot:{
-        headers: ['Date','Count'], // Column headers
-        fields: ['date','eventCount'],    // Fields in your data
-    },
-    deviceSnapshot:{
-        headers: ['Device','Count'], // Column headers
-        fields: ['deviceCategory','totalUsers'],    // Fields in your data
-    },
+    searchActivityOverview: {
+        headers: [
+            'Date',
+            'Count',
+            'Event',
 
-    // timeSeriesPageData: {
-    //     headers: ['Date', 'Active Users', 'Total Users'], // Column headers
-    //     fields: ['date', 'activeUsers', 'totalUsers'],    // Fields in your data
-    //     // headers: ['Date', 'Page Path', 'Active Users', 'Total Users'], // Column headers
-    //     // fields: ['date', 'pagePath', 'activeUsers', 'totalUsers'], // Fields in your data
+            'Users',
+            'Product Category',
+            'Product Sub category',
+
+            "Product",
+            "Search Type",
+            "Resource Type",
+            "Destination Url"
+
+        ],
+        fields: [
+            'date',
+            'eventCount',
+            'eventName',
+            'totalUsers',
+            "customEvent:productCategory",
+            "customEvent:productSubcategory",
+            "customEvent:productName",
+            "customEvent:searchType",
+            "customEvent:resourceType",
+            "customEvent:destinationUrl",
+
+        ],
+    },
+    productActivityOverview: {
+        headers: [
+            'Date',
+            'Count',
+            'Event',
+
+            'Users',
+            'Product Category',
+            'Product Sub category',
+            "Product Name",
+
+            "Resource Type",
+            "Destination Url",
+            "Page Path"
+        ],
+        fields: [
+            'date',
+            'eventCount',
+            'eventName',
+            'totalUsers',
+            "customEvent:productCategory",
+            "customEvent:productSubcategory",
+            "customEvent:productName",
+
+            "customEvent:resourceType",
+            "customEvent:destinationUrl",
+            "pagePath"
+
+        ],
+    },
+    eventPageOverviewForLineChart: {
+        headers: ['Date', 'Count'], // Column headers
+        fields: ['date', 'eventCount'],    // Fields in your data
+    },
+    technicalActivityDeviceCategorySnapshot: {
+        headers: ['Device Category', 'Total Users'], // Adjust headers if needed
+        fields: ['deviceCategory', 'totalUsers'],    // The fields you're transforming
+    },
+    printActivityOverview: {
+        headers: ['Event', 'Count'],
+        fields: ["postPrintListAction", 'eventCount'],
+    },
+    searchTypeSnapshot: {
+        headers: ['Search Type', 'Count'], // Column headers
+        fields: ['searchEngine', 'searches'],    // Fields in your data
+    },
+    productDataOverview: {
+        headers: [
+            'Date',
+            'Count',
+            // 'Event',
+
+            // 'Users',
+            // 'Product Category',
+            // 'Product Sub category',
+            // "Product Name",
+
+            // "Resource Type",
+            // "Destination Url",
+            // "Page Path"
+        ],
+        fields: [
+            'date',
+            'eventCount',
+            // 'eventName',
+            // 'totalUsers',
+            // "customEvent:productCategory",
+            // "customEvent:productSubcategory",
+            // "customEvent:productName",
+
+            // "customEvent:resourceType",
+            // "customEvent:destinationUrl",
+            // "pagePath"
+
+        ],
+    },
+    // productActivityOverview: {
+    //     headers: [
+    //         'Date',
+    //         'Count',
+    //         'Event',
+
+    //         'Users',
+    //         'Product Category',
+    //         'Product Sub category',
+
+    //         "Product",
+    //         "Search Type",
+    //         "Resource Type",
+    //         "Destination Url"
+
+    //     ],
+    //     fields: [
+    //         'date',
+    //         'eventCount',
+    //         'eventName',
+    //         'totalUsers',
+    //         "customEvent:productCategory",
+    //         "customEvent:productSubcategory",
+    //         "customEvent:productName",
+    //         "customEvent:searchType",
+    //         "customEvent:resourceType",
+    //         "customEvent:destinationUrl",
+
+    //     ],
     // },
-    pageData: {
-
-        headers: ['Date', 'Active Users', 'Total Users'], // Column headers
-        fields: ['date', 'activeUsers', 'totalUsers'],    // Fields in your data
-
-        // WORKS FOR BAR CHART
-        // headers: ['Active Users', 'Total Users'], // Column headers
-        // fields: ['activeUsers', 'totalUsers'], // Fields in your data
-
-
-        // headers: ['Page Path', 'Active Users', 'Total Users'], // Column headers
-        // fields: ['pagePath', 'activeUsers', 'totalUsers'], // Fields in your data
-        // headers: ['Date', 'Page Path', 'Active Users', 'Total Users'], // Column headers
-        // fields: ['date', 'pagePath', 'activeUsers', 'totalUsers'], // Fields in your data
-    },
-    eventData: {
-        headers: ['Event Name', 'Count', 'Date'],
-        fields: ['eventName', 'eventCount', 'date'],
-    },
-    userData: {
-        headers: ['User Name', 'Sessions'],
-        fields: ['userName', 'sessionCount'],
-    },
 
 };
 

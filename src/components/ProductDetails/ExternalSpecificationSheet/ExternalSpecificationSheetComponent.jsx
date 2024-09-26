@@ -8,7 +8,7 @@ import { logEvent } from "../../../utils/google-analytics";
 export const ExternalSpecificationSheetComponent = ({ product }) => {
 
     const handleExternalLinkClick = () => {
-        logEvent('Click_Resource_Link', {
+        logEvent('RESOURCE_CLICKED', {
             productName: product.title,
             productCategory: product.category,
             productSubcategory: product.subcategory,
@@ -16,7 +16,6 @@ export const ExternalSpecificationSheetComponent = ({ product }) => {
             resourceType: 'Spec sheet',
         });
     }
-    console.log(product)
 
     return (
         <>
@@ -26,7 +25,7 @@ export const ExternalSpecificationSheetComponent = ({ product }) => {
                     <div className={styles.titleContainer}>
                         <PageText type='productPageSection'>External Resources</PageText>
                     </div>
-                    <div>
+                    <div className={styles.resourceButtonsWrapper}>
                         <div onClick={handleExternalLinkClick}>
                         <ExternalLinkButton linkText={`See ${product.title} Spec Sheet`} href={product.specSheetLink} />
                        </div>

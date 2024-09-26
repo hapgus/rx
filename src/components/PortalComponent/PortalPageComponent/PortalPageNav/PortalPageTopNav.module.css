@@ -14,20 +14,29 @@
     display: flex;
     flex-direction: row;
     gap: 1rem;
-
-    
  }
  .iconsWrapper{
     display: flex;
     flex-direction: row;
-    gap: 2.5rem;
+    gap: 3rem;
+    align-items: center;
  }
  .icon svg{
-    height: 2.4rem;
-    width: 2.4rem;
+    height: 3rem;
+    width: 3rem;
     display: flex;
  }
- 
+ .userAccountWrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: .5rem;
+    /* background-color: var(--color-gray-07);
+    padding: 1rem 2rem;
+    border: 1px solid var(--color-gray-05); */
+    /* border-radius: 4rem; */
+    color: var(--color-gray-01);
+ }
 
  .headerText {
     display: flex;
@@ -57,10 +66,51 @@
     list-style: none;
 }
 
+.logoutWrapper{
+   display: none;
+}
+/* .logoutDivider{
+   display: none;
+} */
 @media (min-width: 1440px) {
     .portalBurgerWrapper{
         display: none;
     }
+    .icon svg{
+        height: 3.5rem;
+        width: 3.5rem;
+        display: flex;
+     }
+     .userDetails{
+        display: flex;
+        flex-direction: row;
+        gap: .5rem;
+     }
+     .userAccountWrapper{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+     }
+     .logoutWrapper{
+   
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+      align-items: center;
+   }
+   .logoutIconWrapper{
+      height: 2rem;
+      width: 2rem;
+   }
+   .logoutIconWrapper svg {
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+   }
+   .logoutWrapper:hover{
+      cursor: pointer;
+   }
   
 }
 /* --------------------------------------------------------------------------------------- */

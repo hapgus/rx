@@ -6,9 +6,9 @@
     /* background-color: var(--color-gray-05); */
     /* background-color: #F0F2F5; */
     /* background-color: #FAFAFA; */
-    /* background-color: var(--color-gray-04); */
-    /* padding: 0 4rem; */
-    height: 100vh;  
+    /* background-color: var(--color-gray-06);
+    padding: 0 3rem 0 0; */
+    height: 100%;  
     /* padding-right: .1rem; */
 }
 
@@ -17,8 +17,8 @@
     grid-column: 1/-1;
 /* background-color: var(--color-gray-05); */
 background-color: var(--color-gray-06);
-height: 100vh;
-box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+/* height: 100vh; */
+/* box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); */
     /* background-color: aquamarine; */
 
     /* display: grid;
@@ -57,6 +57,9 @@ box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
     display: flex;
 
 }
+/* .icon:hover{
+    cursor: pointer;
+} */
 .dropdownList{
    
     /* background-color: white; */
@@ -65,7 +68,7 @@ box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
     /* gap: 1.5rem; */
 }
 .dropdownList li{
-    padding: 1.5rem 6rem;
+    padding: 1.2rem 6rem;
    
 }
 .dropdownList li:hover{
@@ -74,11 +77,11 @@ box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
 }
 .dropdownList a{
 text-decoration: none;
-color: black;
+color: var(--color-gray-02);
 
 
 }
 .dropdownList a:hover{
-    color: var(--color-red-01);
+    color: var(--color-red-02);
    
 }

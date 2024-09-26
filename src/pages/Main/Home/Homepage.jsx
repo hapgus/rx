@@ -8,8 +8,25 @@ import { categoryLinks } from '../../../utils/link-helper';
 import { LinkComponent } from '../../../components/Links/LinkComponent';
 import { Button } from '../../../components/Button/Button';
 import { IconComponent } from '../../../components/Icon/IconComponent';
-// import { useResponsiveMediaStateHook } from '../../../hooks/responsive-hook';
+import { useResponsiveMediaStateHook } from '../../../hooks/responsive-hook';
+import { Collar } from '../../../components/Collar/Collar';
+import { AnimatedComponent } from '../../../hooks/use-framer-motion';
+import { motion } from 'framer-motion';
 
+const listVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.1 // Adjust for timing between children
+        }
+    }
+};
+
+const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 }
+};
 
 
 const Homepage = () => {
@@ -64,19 +81,24 @@ const Homepage = () => {
         }
 
     ];
-  
+
 
     return (
         <>
-            <GridSystem gridType='spread' >
+
+            <GridSystem gridType='spread' containerBackgroundColor="#F0ECE4" >
 
                 <div className={styles.heroContainer}>
                     <div className={styles.contentWrapper}>
                         <div className={styles.heroWrapper}>
                             <div className={styles.heroHeader}>
+
                                 <div className={styles.title}>
-                                    <PageText type='pageTitle'>LG Product Guide</PageText>
+                                    <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.1}>
+                                        <PageText type='heroTitle'>LG Product Guide</PageText>
+                                    </AnimatedComponent>
                                 </div>
+
                                 {/* <div className={styles.subtitle}>
                                     <PageText type='pageSubtitle'>Find home appliances</PageText>
                                 </div> */}
@@ -96,21 +118,25 @@ const Homepage = () => {
 
                             <div>
                                 <div className={styles.footer}>
-                                    <PageText type='pageSubtitle'>Discover best-in-class products and accessories at the LG Product Guide</PageText>
+                                <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.3}>
+                                    <PageText type='heroSubtitle'>Discover best-in-class products and accessories at the LG Product Guide</PageText>
+                                </AnimatedComponent>
                                 </div>
                             </div>
-                           
+
                         </div>
                     </div>
                 </div>
             </GridSystem>
-            <div className={styles.collar}>
+
+            {/* <Collar/> */}
+
+
+            {/* <div className={styles.collar}>
                 <GridSystem gridType='spread'>
                     <div >
                         <ul className={styles.collarList}>
-                            {/* <div className={styles.exploreText}>
-                                <PageText type='mobileNavTitle'>Explore Categories </PageText>
-                            </div> */}
+                            
                             {categoryLinks.map((category, idx) => (
                                 <li key={idx}>
                                     <LinkComponent href={category.href}>
@@ -121,8 +147,10 @@ const Homepage = () => {
                         </ul>
                     </div>
                 </GridSystem>
-            </div>
-            <GridSystem gridType='spread' containerBackgroundColor='#E6E1D6'>
+            </div> */}
+            <GridSystem gridType='spread' 
+            containerBackgroundColor='#E6E1D6'
+            >
                 <div className={styles.contentWrapper}>
                     <div className={styles.introductionContainer}>
                         <div className={styles.textWrapper}>
@@ -153,11 +181,17 @@ const Homepage = () => {
                             <div className={styles.introDescriptionHeader}>
                                 <PageText type='pageSubtitle'>The LG Product Guide is your one-stop-shop for everything home appliance.</PageText>
                             </div>
-                            <div className={styles.benefitsList}>
+                            <motion.div 
+                             variants={listVariants}
+                             initial="hidden"
+                             animate="visible"
+                            className={styles.benefitsList}>
                                 {
                                     benefits.map((e, idx) => {
                                         return (
-                                            <div key={idx} className={styles.benefitCard}>
+                                            <motion.div 
+                                            variants={itemVariants}
+                                            key={idx} className={styles.benefitCard}>
                                                 <div className={styles.benefitCardCount}>
                                                     <div className={styles.iconWrapper}>
 
@@ -175,10 +209,10 @@ const Homepage = () => {
                                                     </div>
 
                                                 </div>
-                                            </div>
+                                            </motion.div>
                                         )
                                     })}
-                            </div>
+                            </motion.div>
                         </div>
 
                         <div className={styles.buttonWrapper}>
@@ -210,7 +244,7 @@ const Homepage = () => {
                                 <div key={idx} className={styles.qCard}>
                                     <div className={styles.qText}>
                                         <PageText type='pageSubtitle'>{e.title}</PageText>
-                                        <PageText type='bodyDescription'>{e.description}</PageText>
+                                        <PageText type='bodyDescriptionLarge'>{e.description}</PageText>
                                     </div>
                                     <div className={styles.qIcon}>
                                         <IconComponent iconType={e.icon} />

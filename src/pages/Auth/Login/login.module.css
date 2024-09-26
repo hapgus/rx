@@ -19,13 +19,13 @@
     color: var(--color-gray-0);
 }
 
-.tertiaryTitle{
+/* .tertiaryTitle{
 font-size: 2rem;
 color: var(--color-gray-01);
 }
 .tertiaryTitle a{
     color: var(--color-gray-01);
-}
+} */
 
 .formWrapper{
     /* padding-top: 2rem;
@@ -43,4 +43,11 @@ color: var(--color-gray-01);
 }
 .loginFooterDescription a{
     color: var(--color-gray-03);
+}
+.spanText{
+font-size: 2rem;
+}
+.spanTextLink a{
+    font-size: 2rem;
+    color: var(--color-red-03);
 }

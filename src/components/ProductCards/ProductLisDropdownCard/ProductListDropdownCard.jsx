@@ -33,19 +33,22 @@ export const ProductListDropdownCard = ({ product }) => {
                 {/* <RemoveFromListButtonIcon iconColor='white' iconSizeType='small' product={product} /> */}
             </div>
             <div className={styles.productBuilderListCardDiv1}>
-
-                <div className={styles.productBuilderListCardImageWrapper}>
-                    {/* <ImageComponent> */}
-                    <img
-                        loading='lazy'
-                        className={styles.productBuilderDropdownCardImage}
-                        src={`${process.env.REACT_APP_AWS_URL}/${image}`}
-                        alt={`product ${title}`}
-                    />
-                    {/* </ImageComponent> */}
-                </div>
+                <LinkComponent href={productURL}>
+                    <div className={styles.productBuilderListCardImageWrapper}>
+                        {/* <ImageComponent> */}
+                        <img
+                            loading='lazy'
+                            className={styles.productBuilderDropdownCardImage}
+                            src={`${process.env.REACT_APP_AWS_URL}/${image}`}
+                            alt={`product ${title}`}
+                        />
+                        {/* </ImageComponent> */}
+                    </div>
+                </LinkComponent>
                 <div className={styles.productBuilderListCardHeaderWrapper}>
-                    <PageText type='productSearchTitle'>{title}</PageText>
+                    <LinkComponent href={productURL}>
+                        <PageText type='productSearchTitle'>{title}</PageText>
+                    </LinkComponent>
                     <PageText type='productSearchSubtitle'>
                         <span className={styles.clampedSubtitleLong}>{subtitle}</span>{/* {TruncateText(subtitle)} */}
                     </PageText>

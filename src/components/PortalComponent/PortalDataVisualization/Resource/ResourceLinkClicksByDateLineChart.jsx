@@ -1,67 +1,68 @@
-import { useData } from "../../../../hooks/data-hook";
+import { useDataContext } from "../../../../hooks/data-hook";
 import { LineChart } from "../../PortalChartComponent/LineChart";
 import { useChartConfig } from "../../../../hooks/chart-config-hook";
 import { transformWithSchema } from "../../../../utils/data-transformer";
 import { PortalCard } from "../../PortalPageComponent/PortalCard/PortalCard";
-import { reduceEventsByDate } from "../../../../utils/text-help";
+import Skeleton from 'react-loading-skeleton';
 
 export const ResourceLinkClicksByDateLineChart = () => {
-    const { data } = useData('http://localhost:3005/data');
-    const { config: lineChartOptions } = useChartConfig('LineChart'); // Use LineChart config
+    const { isDataState } = useDataContext();  // Access filtered data from context
+    const data = isDataState.eventGeoLocationDataFilteredByDate;  // Use filtered page data
+    const { config: lineChartOptions } = useChartConfig('LineChart');  // Use LineChart config
 
-    const targetEvents = [
-        'Click_Resource_Link',
-    ];
+    const targetEvents = ['Click_Resource_Link'];
 
-    if (!data || !data.eventPageOverview) {
-        return <div>No data available</div>;
+    if (!data || !data.length) {
+        return <Skeleton height={200} width="100%" />;
     }
 
-  // Step 1: Filter eventPageOverview for target events
-  const filteredEvents = data.eventPageOverview.filter(event => targetEvents.includes(event.eventName));
+    // Step 1: Filter 'Click_Resource_Link' events
+    const filteredEvents = data.filter(event => targetEvents.includes(event.eventName));
 
-  // Step 2: Aggregate eventCount by date using reduce()
-  const eventCountsByDate = filteredEvents.reduce((acc, event) => {
-      const eventDate = event.date;
-      const eventCount = Number(event.eventCount);
+    // Step 2: Aggregate eventCount by date
+    const eventCountsByDate = filteredEvents.reduce((acc, event) => {
+        const eventDate = event.date;
+        const eventCount = Number(event.eventCount);
 
-      // Initialize the date if it doesn't exist
-      if (!acc[eventDate]) {
-          acc[eventDate] = 0;
-      }
+        if (!acc[eventDate]) {
+            acc[eventDate] = 0;
+        }
+        acc[eventDate] += eventCount;
+        return acc;
+    }, {});
 
-      // Add the eventCount for the current date
-      acc[eventDate] += eventCount;
-      return acc;
-  }, {});
-  console.log("Aggregated Data by Date:", eventCountsByDate);
-  // Step 3: Convert the aggregated data into a new array format
-  const newList = Object.keys(eventCountsByDate).map(date => ({
-      date,
-      eventCount: eventCountsByDate[date],
-  }));
+    // Step 3: Convert aggregated data into an array format
+    const newList = Object.keys(eventCountsByDate).map(date => ({
+        date,
+        eventCount: eventCountsByDate[date],
+    }));
 
-  console.log("Aggregated Data by Date:", newList);
+    // Step 4: Calculate total and average event count
+    const totalEventCount = newList.reduce((acc, curr) => acc + curr.eventCount, 0);
+    const avgEventCount = newList.length > 0 ? totalEventCount / newList.length : 0;
 
-  // Step 4: Transform the data for the Line Chart
-  let chartData = null;
-  if (newList.length > 0) {
-      try {
-          chartData = transformWithSchema(newList, 'eventPageOverviewForLineChart');
-      } catch (error) {
-          console.error(`Error transforming data: ${error.message}`);
-      }
-  } else {
-      console.warn('No events found', newList);
-  }
+    // Step 5: Transform data for the Line Chart
+    let chartData = null;
+    if (newList.length > 0) {
+        try {
+            chartData = transformWithSchema(newList, 'eventPageOverviewForLineChart');  // Use the correct schema
+        } catch (error) {
+            console.error(`Error transforming data: ${error.message}`);
+            return <div>Error loading data</div>;
+        }
+    }
 
-  return (
-      <PortalCard cardTitle="External Resource Link Clicks">
-          {chartData ? (
-              <LineChart data={chartData} options={lineChartOptions} />  // Use LineChart
-          ) : (
-              <div>No chart data available.</div>
-          )}
-      </PortalCard>
-  );
+    return (
+        <PortalCard 
+            cardTitle="External Resource Link Clicks"
+            cardData={`Total clicks: ${totalEventCount.toLocaleString()}`}
+            cardFooter={`Average clicks per day: ${avgEventCount.toFixed(2)}`}
+        >
+            {chartData ? (
+                <LineChart data={chartData} options={lineChartOptions} />
+            ) : (
+                <div>No chart data available.</div>
+            )}
+        </PortalCard>
+    );
 };

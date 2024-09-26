@@ -42,7 +42,7 @@ export const GetCategoryVerbiage = (category) => {
 
 export const NormalizeCategoryId = (categoryId) => {
   const adjustments = {
-    'air-care': 'air care'
+    'air-care': 'air care',
   };
   return adjustments[categoryId] || categoryId;
 };
@@ -91,12 +91,31 @@ export const consolidateSpecListsToArray = (productArray) => {
   return consolidatedList;
 };
 
+// export const extractProductNamesFromKeywords = (keywords) => {
+//   const productNames = [];
+//   const regex = /\(([^)]+)\)/;  // Regular expression to match content within brackets
+
+//   keywords.forEach(keyword => {
+//     if (keyword.toLowerCase().includes('optional')) {
+//       const match = keyword.match(regex);
+//       if (match && match[1]) {
+//         const names = match[1].split(',').map(name => name.trim());
+//         productNames.push(...names);
+//       }
+//     }
+//   });
+
+//   return productNames;
+// };
+
 export const extractProductNamesFromKeywords = (keywords) => {
   const productNames = [];
+  const targetKeywords = new Set(['optional', 'matching', 'accessories']);
   const regex = /\(([^)]+)\)/;  // Regular expression to match content within brackets
 
   keywords.forEach(keyword => {
-    if (keyword.toLowerCase().includes('optional')) {
+    const lowerCaseKeyword = keyword.toLowerCase();
+    if ([...targetKeywords].some(target => lowerCaseKeyword.includes(target))) {
       const match = keyword.match(regex);
       if (match && match[1]) {
         const names = match[1].split(',').map(name => name.trim());
@@ -107,7 +126,6 @@ export const extractProductNamesFromKeywords = (keywords) => {
 
   return productNames;
 };
-
 export const findMatchingProducts = (productNames, productList) => {
 
   if (!Array.isArray(productList)) {
@@ -212,6 +230,18 @@ export const sortProductsByMsrpAndTitle = (products) => {
     return products;
   }
 };
+
+
+// export const categoryTitleMap = {
+//   signature: 'SIGNATURE',
+//   studio: 'STUDIO',
+//   vacuums: 'Vacuums'
+// };
+
+// const getCategoryTitle = (category) => {
+//   return categoryTitleMap[category] || capitalizeFirstLetterEachWord(category);
+// };
+
 
 // export const Capt
 // export function capitalizeFirstLetter(text) {

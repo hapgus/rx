@@ -44,3 +44,10 @@ color: var(--color-gray-01);
 .loginFooterDescription a{
     color: var(--color-gray-03);
 }
+.spanText{
+    font-size: 2rem;
+    }
+    .spanTextLink a{
+        font-size: 2rem;
+        color: var(--color-red-03);
+    }

@@ -6,9 +6,10 @@ import { Button } from '../../Button/Button';
 // import { NavigationLink } from "../../NavigationComponent/NavigationLink";
 
 
-import { 
+import {
     // CapitalizeFirstLetter, 
-    capitalizeFirstLetterEachWord, TruncateText } from '../../../utils/text-help'
+    capitalizeFirstLetterEachWord, TruncateText
+} from '../../../utils/text-help'
 import { PageText } from '../../Text/Text';
 import { GenerateProductURL } from '../../../utils/link-helper';
 import { NavLink } from 'react-router-dom';
@@ -18,8 +19,22 @@ import { useState } from 'react';
 
 import { RemoveFromListButtonIcon } from '../../Button/ProductButtons';
 
+import { AnimatePresence, motion } from 'framer-motion';
 
+const listVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.1 // Adjust for timing between children
+        }
+    }
+};
 
+const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 }
+};
 
 const MobileProductBuilderPageCard = ({ product }) => {
     const publicUrl = process.env.PUBLIC_URL;
@@ -54,7 +69,7 @@ const MobileProductBuilderPageCard = ({ product }) => {
     }
 
     return (
-      
+
         <div className={styles.builderCardContainer}>
             {/* <div className={styles.builderCardWrapper}> */}
 
@@ -63,12 +78,15 @@ const MobileProductBuilderPageCard = ({ product }) => {
                 <div className={styles.builderCardHeaderTextWrapper}>
                     <div className={styles.headerText}>
                         {/* <ProductText type='builderProductCardTertiaryTitle'>{CapitalizeFirstLetter(availability)}</ProductText> */}
-                        <div className={styles.categoryTextWrapper}>
-                            <PageText type='productCardTertiaryTitle'>{capitalizeFirstLetterEachWord(category)}</PageText>
-                        </div>
-                        <div className={styles.titleTextWrapper}>
-                            <PageText type='productCardTitle'>{` ${title} `}</PageText>
-                        </div>
+                        <NavLink to={productURL}>
+                            <div className={styles.categoryTextWrapper}>
+                                <PageText type='productCardTertiaryTitle'>{capitalizeFirstLetterEachWord(category)}</PageText>
+                            </div>
+
+                            <div className={styles.titleTextWrapper}>
+                                <PageText type='productCardTitle'>{` ${title} `}</PageText>
+                            </div>
+                        </NavLink>
                         <div className={styles.subtitleTextWrapper}>
                             <PageText type='productCardSubtitle'>
                                 <span className={styles.clampedSubtitle}>{subtitle}</span>
@@ -77,14 +95,18 @@ const MobileProductBuilderPageCard = ({ product }) => {
                         </div>
                     </div>
                     <span className={styles.removeCardButton}>
-                        <RemoveFromListButtonIcon iconColor='white' iconSizeType='large' product={product} /></span>
+                        <RemoveFromListButtonIcon iconColor='white' iconSizeType='large' product={product} />
+                    </span>
                 </div>
 
                 <div className={styles.builderCardBodyWrapper}>
 
                     <div className={styles.builderCardImageButtonGroupItem1}>
+
                         <div className={styles.builderCardImage}>
-                            <img src={`${process.env.REACT_APP_AWS_URL}/${image}`} alt={`product ${title}`} />
+                            <NavLink to={productURL}>
+                                <img src={`${process.env.REACT_APP_AWS_URL}/${image}`} alt={`product ${title}`} />
+                            </NavLink>
                         </div>
 
                         <div className={styles.builderCardButton}>
@@ -111,17 +133,29 @@ const MobileProductBuilderPageCard = ({ product }) => {
                                             iconType='expand'
                                         />
                                     </div>
-                                    {showSpecs.specList1 && (
-                                        <div className={styles.specsDropdownBody}>
-                                            <ul className={styles.specListItem}>
-                                                {specList1.map((item, idx) => (
-                                                    <li key={idx}>
-                                                        <PageText type='productCardListText'>{item}</PageText>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                    )}
+                                    <AnimatePresence>
+                                        {showSpecs.specList1 && (
+                                            <div className={styles.specsDropdownBody}>
+
+                                                <motion.ul className={styles.specListItem}
+
+                                                    variants={listVariants}
+                                                    initial="hidden"
+                                                    animate="visible"
+                                                >
+
+                                                    {specList1.map((item, idx) => (
+                                                        <motion.li key={idx}
+                                                            variants={itemVariants}
+                                                        >
+                                                            <PageText type='productCardListText'>{item}</PageText>
+                                                        </motion.li>
+                                                    ))}
+
+                                                </motion.ul>
+                                            </div>
+                                        )}
+                                    </AnimatePresence>
                                 </div>
                             </>
                         ) : null}
@@ -137,17 +171,25 @@ const MobileProductBuilderPageCard = ({ product }) => {
                                         />
 
                                     </div>
-                                    {showSpecs.specList2 && (
-                                        <div className={styles.specsDropdownBody}>
-                                            <ul className={styles.specListItem}>
-                                                {specList2.map((item, idx) => (
-                                                    <li key={idx}>
-                                                        <PageText type='productCardListText'>{item}</PageText>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                    )}
+                                    <AnimatePresence>
+                                        {showSpecs.specList2 && (
+                                            <div className={styles.specsDropdownBody}>
+                                                <motion.ul
+                                                    variants={listVariants}
+                                                    initial="hidden"
+                                                    animate="visible"
+                                                    className={styles.specListItem}>
+                                                    {specList2.map((item, idx) => (
+                                                        <motion.li
+                                                            variants={itemVariants}
+                                                            key={idx}>
+                                                            <PageText type='productCardListText'>{item}</PageText>
+                                                        </motion.li>
+                                                    ))}
+                                                </motion.ul>
+                                            </div>
+                                        )}
+                                    </AnimatePresence>
                                 </div>
                             </>
                         ) : null}
@@ -163,17 +205,25 @@ const MobileProductBuilderPageCard = ({ product }) => {
                                             iconType='expand'
                                         />
                                     </div>
-                                    {showSpecs.specList3 && (
-                                        <div className={styles.specsDropdownBody}>
-                                            <ul className={styles.specListItem}>
-                                                {specList3.map((item, idx) => (
-                                                    <li key={idx}>
-                                                        <PageText type='productCardListText' >{item}</PageText>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                    )}
+                                    <AnimatePresence>
+                                        {showSpecs.specList3 && (
+                                            <div className={styles.specsDropdownBody}>
+                                                <motion.ul
+                                                    variants={listVariants}
+                                                    initial="hidden"
+                                                    animate="visible"
+                                                    className={styles.specListItem}>
+                                                    {specList3.map((item, idx) => (
+                                                        <motion.li
+                                                            variants={itemVariants}
+                                                            key={idx}>
+                                                            <PageText type='productCardListText' >{item}</PageText>
+                                                        </motion.li>
+                                                    ))}
+                                                </motion.ul>
+                                            </div>
+                                        )}
+                                    </AnimatePresence>
                                 </div>
                             </>
                         ) : null}
@@ -188,17 +238,25 @@ const MobileProductBuilderPageCard = ({ product }) => {
                                             iconType='expand'
                                         />
                                     </div>
-                                    {showSpecs.specList4 && (
-                                        <div className={styles.specsDropdownBody}>
-                                            <ul className={styles.specListItem}>
-                                                {specList4.map((item, idx) => (
-                                                    <li key={idx}>
-                                                        <PageText type='builderProductCardTertiaryTitle'>{item}</PageText>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                    )}
+                                    <AnimatePresence>
+                                        {showSpecs.specList4 && (
+                                            <div className={styles.specsDropdownBody}>
+                                                <motion.ul
+                                                    variants={listVariants}
+                                                    initial="hidden"
+                                                    animate="visible"
+                                                    className={styles.specListItem}>
+                                                    {specList4.map((item, idx) => (
+                                                        <motion.li
+                                                            variants={itemVariants}
+                                                            key={idx}>
+                                                            <PageText type='builderProductCardTertiaryTitle'>{item}</PageText>
+                                                        </motion.li>
+                                                    ))}
+                                                </motion.ul>
+                                            </div>
+                                        )}
+                                    </AnimatePresence>
                                 </div>
                             </>
                         ) : null}

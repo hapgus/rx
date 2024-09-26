@@ -9,7 +9,7 @@ export const StaticImageUpload = ({
     itemName = 'Media',
     previewUrl,
     // selectedFile,
-  
+
     handleFileChange,
 }) => {
 
@@ -20,9 +20,15 @@ export const StaticImageUpload = ({
     const pickImageHandler = () => {
         filePickerRef.current.click();
     }
-    
-    
 
+// TESTING
+ // Check if previewUrl includes valid image paths before rendering
+ const shouldRenderPreview = previewUrl && (
+    previewUrl.includes('/media/images/') ||
+    previewUrl.includes('/media/qrcodes/') ||
+    previewUrl.includes('blob')
+  );
+console.log(previewUrl)
     // console.log(previewUrl)
     return (
         <div className={styles.imageUploadContainer}>
@@ -38,10 +44,11 @@ export const StaticImageUpload = ({
 
             {
                 // previewUrl || selectedFile ? (
-                    previewUrl ? (
+                // previewUrl  ? (
+                    shouldRenderPreview ? (
                     <div className={styles.imageUploadBodyPreview}>
                         <div className={styles.imageWrapper}>
-                        <img alt='image preview' src={previewUrl} />
+                            <img alt='image preview' src={previewUrl} />
                             {/* <img alt='image dish' src={previewUrl ? previewUrl : selectedFile} /> */}
                         </div>
                         <div className={styles.imageUploadFooterPreview}>
@@ -53,7 +60,7 @@ export const StaticImageUpload = ({
                                     accept=".jpg, .png, .jpeg, .webp"
                                     onChange={handleFileChange} />
                                 <div className={styles.buttonWrapper}>
-                                    <Button onClick={pickImageHandler} buttonStyleType='secondary'>Chnage selection</Button>
+                                    <Button onClick={pickImageHandler} buttonStyleType='secondary'>Change selection</Button>
                                 </div>
                             </div>
                         </div>
@@ -85,7 +92,6 @@ export const StaticImageUpload = ({
                     </div>
                 )
             }
-
 
             <div className={styles.imageUploadFooter}>
 

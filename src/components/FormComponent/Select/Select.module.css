@@ -1,55 +1,66 @@
-/* SELECT MENU */
 .selectContainer {
-    position: relative;
- 
-    padding-bottom: 3.367rem;
-  }
-  .customSelect {
-    background-color: var(--color-gray-05);
-    color: var(--color-gray-01);
-    padding: 12px 20px;
-    cursor: pointer;
-    user-select: none;
-    font-size: 16px;
-    display: flex; /* Use flexbox to align text and icon */
-    justify-content: space-between; /* Space between text and icon */
-    align-items: center; /* Center items vertically */
-  }
-  
+  position: relative;
+  padding-bottom: 3.367rem;
+}
+.selectWrapper{
+  padding-top: .5rem;
+  /* background-color: var(--color-gray-04); */
 
-  .selectItems {
-    position: absolute;
-    background-color: var(--color-gray-07);
-    top: 100%;
-    left: 0;
-    right: 0;
-    z-index: 99;
-    display: block;
-  }
-  
-  .selectItems .selectOption {
-    color: black;
-    padding: 8px 16px;
-    cursor: pointer;
-    border-bottom: 1px solid var(--color-gray-04);
-    font-size: 1.6rem;
-  }
-  .selectItems .selectOption:hover, .selectItems .selectOption.active {
-    background-color: rgb(255, 221, 221);
-  }
-  .selectContainer .active {
-    border-color: var(--color-red-02); /* Style for active dropdown */
-    /* color: var(--color-red-02); */
-    /* font-weight: 400; */
-  }
-  
+}
+.customSelect {
+  background-color: var(--color-gray-06);
+  border: 1px solid var(--color-gray-04);
+  border-top-left-radius: .8rem;
+  border-top-right-radius: .8rem;
+  border-bottom-left-radius: .8rem;
+  border-bottom-right-radius: .8rem;
+  color: var(--color-gray-01);
+  padding: 12px 20px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 16px;
+  display: flex; /* Use flexbox to align text and icon */
+  justify-content: space-between; /* Space between text and icon */
+  align-items: center; /* Center items vertically */
+}
+.customSelect.active{
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.selectItems {
+  position: absolute;
+  background-color: white;
+  top: 65%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  display: block;
+  border-bottom-left-radius: .8rem;
+  border-bottom-right-radius: .8rem;
+
+}
+.selectItems .selectOption {
+  color: black;
+  padding: 8px 16px;
+  cursor: pointer;
+ 
+  font-size: 1.6rem; 
+}
+.selectOption{
+   border-bottom: 1px solid var(--color-gray-04);
+   border-left: 1px solid var(--color-gray-04);
+   border-right: 1px solid var(--color-gray-04);
+}
+.selectItems .selectOption:hover, .selectItems .selectOption.active {
+  background-color: rgb(255, 221, 221);
+}
 .labelWrapper{
-    display: flex;
+  
 }
 
 .label{
-    font-size: 1.6rem;
-    color: var(--color-gray-01);
-    padding: 0 0 .5rem 0;
+display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
-

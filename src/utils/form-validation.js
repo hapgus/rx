@@ -313,3 +313,13 @@ export const validateSaveListForm = (formState) => {
 
   return errorMessage;
 }
+
+export const validatePasswordResetEmailForms = (formState) => {
+  const errorMessage = [];
+  const processedEmail = trimAndNormalizeSpaces(formState.inputs.email.value);
+ 
+  errorMessage.push(...validateField(processedEmail, validationRules.email));
+
+  return errorMessage;
+
+}

@@ -1,20 +1,10 @@
 import styles from './RelatedProductCard.module.css';
-
-
 import { useBuilderHook } from '../../../hooks/builder-hook';
 import { Button } from '../../Button/Button';
-// import { NavigationLink } from "../../NavigationComponent/NavigationLink";
-
 import { capitalizeFirstLetterEachWord, TruncateText } from '../../../utils/text-help';
 import { PageText } from '../../Text/Text';
-
-
 import { GenerateProductURL } from '../../../utils/link-helper';
-
 import { AddToListButton, RemoveFromListButton } from '../../Button/ProductButtons';
-
-
-
 import { LinkComponent } from '../../Links/LinkComponent';
 
 
@@ -31,22 +21,27 @@ export const RelatedProductCard = ({ product }) => {
     return (
         <div className={styles.relatedProductContainer}>
             <LinkComponent href={productURL}>
-
                 <div className={styles.realtedProductImageWrapper}>
                     <img
                         loading='lazy'
                         className={styles.relatedProductImage} src={`${process.env.REACT_APP_AWS_URL}/${image}`} alt={`product ${title}`} />
                 </div>
-                <div className={styles.realtedProductTextWrapper}>
+                <div className={styles.relatedProductTextWrapper}>
                     {/* <ProductText type='relatedProductAvailability'>{CapitalizeFirstLetter(availability)}</ProductText> */}
-                    <PageText type='productSearchSubtitle'>{`${capitalizeFirstLetterEachWord(subcategory)}`}</PageText>
 
-                    <PageText type='productSearchTitle'>{`${capitalizeFirstLetterEachWord(category)} | ${title} `}</PageText>
+                    {/* <PageText type='productSearchSubtitle'>{`${capitalizeFirstLetterEachWord(subcategory)}`}</PageText> */}
 
-                    <PageText type='productSearchSubtitle'>
+                   
+                    <div className={styles.productText}>
+                        <PageText type='productCardTitle'>{`${title} | ${capitalizeFirstLetterEachWord(category)}`}</PageText>
+                    </div>
+                    <div className={styles.productText}>
+
+                    <PageText type='productCardSubtitle'>
                         <span className={styles.clampedSubtitle}>{subtitle}</span>
                         {TruncateText(subtitle)}
                     </PageText>
+                    </div>
                 </div>
 
             </LinkComponent>

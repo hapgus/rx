@@ -48,6 +48,7 @@ export const useHttpClient = () => {
       setIsModal(prevState => ({
         ...prevState,
         modalType: 'infoModal',
+        // iconType:'errorInfo',
         show: true,
         title: "Error",
         errorList: isModal.errorList,

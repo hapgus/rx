@@ -37,8 +37,7 @@ export const PageViewsCard = () => {
     const totalEventCount = targetedEvent.reduce((acc, curr) => acc + Number(curr.eventCount), 0);
     const avgEventCount = targetedEvent.length > 0 ? totalEventCount /targetedEvent.length : 0;
 
-    // const { config: lineChartOptions } = useChartConfig('LineChart');
-    const { config: barChartOptions } = useChartConfig('BarChart');
+    const { config: lineChartOptions } = useChartConfig('LineChart');
  
     let chartData = null;
 
@@ -55,13 +54,12 @@ export const PageViewsCard = () => {
 
     return (
         <PortalCard
-          toolTipText="Screen Page Views refers to the total number of pages viewed by users. Repeated views of a single page are counted each time the page is loaded."
             cardTitle='Page Views'
             cardData={ totalEventCount.toLocaleString()}
             cardFooter={`${parseInt(avgEventCount)} page views per day on average`}
         >
             {chartData ? (
-                <BarChart data={chartData} options={barChartOptions} />
+                <LineChart data={chartData} options={lineChartOptions} />
         
             ) : (
                 <div>No chart data available.</div>

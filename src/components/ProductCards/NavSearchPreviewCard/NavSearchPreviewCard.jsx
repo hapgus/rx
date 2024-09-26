@@ -17,36 +17,82 @@ export const NavSearchPreviewCard = ({ products }) => {
     const { isHomepageSearchState, isDesktopSearchState, isMobileSearchState } = useSearchHook();
 
 
-    let searchQuery = 'na';
-    let searchResultsCount = 'na';
+    // let searchQuery = 'na';
+    // let searchResultsCount = 'na';
 
-    // if (isDesktopSearchState.isSearchResults) {
+    // // if (isDesktopSearchState.isSearchResults) {
+    // //     searchQuery = isDesktopSearchState.isSearchInputValue;
+    // //     searchResultsCount = isDesktopSearchState.isSearchResults.length
+    // // }
+    // // Determine which search state is active
+    // if (Array.isArray(isHomepageSearchState.isSearchResults) && isHomepageSearchState.isSearchResults.length > 0) {
+    //     searchQuery = isHomepageSearchState.isSearchInputValue;
+    //     searchResultsCount = isHomepageSearchState.isSearchResults.length;
+    // } else if (Array.isArray(isMobileSearchState.isSearchResults) && isMobileSearchState.isSearchResults.length > 0) {
+    //     searchQuery = isMobileSearchState.isSearchInputValue;
+    //     searchResultsCount = isMobileSearchState.isSearchResults.length;
+    // } else if (Array.isArray(isDesktopSearchState.isSearchResults) && isDesktopSearchState.isSearchResults.length > 0) {
     //     searchQuery = isDesktopSearchState.isSearchInputValue;
-    //     searchResultsCount = isDesktopSearchState.isSearchResults.length
+    //     searchResultsCount = isDesktopSearchState.isSearchResults.length;
     // }
-    // Determine which search state is active
-    if (Array.isArray(isHomepageSearchState.isSearchResults) && isHomepageSearchState.isSearchResults.length > 0) {
-        searchQuery = isHomepageSearchState.isSearchInputValue;
-        searchResultsCount = isHomepageSearchState.isSearchResults.length;
-    } else if (Array.isArray(isMobileSearchState.isSearchResults) && isMobileSearchState.isSearchResults.length > 0) {
-        searchQuery = isMobileSearchState.isSearchInputValue;
-        searchResultsCount = isMobileSearchState.isSearchResults.length;
-    } else if (Array.isArray(isDesktopSearchState.isSearchResults) && isDesktopSearchState.isSearchResults.length > 0) {
-        searchQuery = isDesktopSearchState.isSearchInputValue;
-        searchResultsCount = isDesktopSearchState.isSearchResults.length;
-    }
 
 
 
 
-    const handleSelectProductFromSearch = () => {
-    console.log('search query nav', searchQuery)
-    console.log('search results nav', searchResultsCount)
-        logEvent('Select_Product_From_Search', {
-            productName: products.title,
-            productCategory: products.category,
-            productSubcategory: products.subcategory,
-            searchType: 'Nav_Search',
+    const handleSelectProductFromSearch = (product) => {
+
+        const getSearchData = () => {
+            if (Array.isArray(isHomepageSearchState.isSearchResults) && isHomepageSearchState.isSearchResults.length > 0) {
+                return {
+                    searchQuery: isHomepageSearchState.isSearchInputValue,
+                    searchResultsCount: isHomepageSearchState.isSearchResults.length,
+                    searchType: 'Homepage_Search',
+                    searchedProduct: product.title,
+                    searchedProductCategory: product.category,
+                    searchedProductSubcategory: product.subcategory,
+                };
+            } else if (Array.isArray(isMobileSearchState.isSearchResults) && isMobileSearchState.isSearchResults.length > 0) {
+                return {
+                    searchQuery: isMobileSearchState.isSearchInputValue,
+                    searchResultsCount: isMobileSearchState.isSearchResults.length,
+                    searchType: 'Nav_Search',
+                    searchedProduct: product.title,
+                    searchedProductCategory: product.category,
+                    searchedProductSubcategory: product.subcategory,
+                };
+            } else if (Array.isArray(isDesktopSearchState.isSearchResults) && isDesktopSearchState.isSearchResults.length > 0) {
+                return {
+                    searchQuery: isDesktopSearchState.isSearchInputValue,
+                    searchResultsCount: isDesktopSearchState.isSearchResults.length,
+                    searchType: 'Nav_Search',
+                    searchedProduct: product.title,
+                    searchedProductCategory: product.category,
+                    searchedProductSubcategory: product.subcategory,
+                };
+            }
+            return {
+                searchQuery: 'na',
+                searchResultsCount: 'na',
+                searchType: 'na',
+                searchedProduct: 'na',
+                searchedProductCategory: 'na',
+                searchedProductSubcategory: 'na'
+            };
+        };
+
+        const { searchQuery, searchResultsCount, searchType, searchedProduct, searchedProductCategory, searchedProductSubcategory } = getSearchData();
+
+        console.log('search query of selected', searchQuery)
+        console.log('search results count when selected', searchResultsCount)
+        console.log('search query nav', searchQuery)
+        console.log('search results nav', searchResultsCount)
+        console.log('search type', searchType)
+        console.log('search product', searchedProduct)
+        logEvent('SEARCHED_PRODUCT_SELECTED', {
+            productName: searchedProduct,
+            productCategory:searchedProductCategory,
+            productSubcategory: searchedProductSubcategory,
+            searchType: searchType,
             searchQuery: searchQuery,
             searchResultsCount: searchResultsCount,
         });
@@ -62,7 +108,8 @@ export const NavSearchPreviewCard = ({ products }) => {
             return (
                 <div key={idx} className={styles.searchResultsPreviewCardContainer}>
                     <LinkComponent
-                        linkOnClick={handleSelectProductFromSearch}
+                        // linkOnClick={handleSelectProductFromSearch}
+                        linkOnClick={() => handleSelectProductFromSearch(product)} 
                         href={productURL}
                     >
                         <div className={styles.searchResultsPreviewCardImageWrapper}>
@@ -77,7 +124,7 @@ export const NavSearchPreviewCard = ({ products }) => {
                     <div className={styles.searchResultsPreviewCardTextWrapper}>
                         <div >
                             <LinkComponent
-                                linkOnClick={handleSelectProductFromSearch}
+                               linkOnClick={() => handleSelectProductFromSearch(product)} 
                                 href={productURL}
                             >
                                 {/* <NavLink to={productURL} > */}

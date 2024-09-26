@@ -12,7 +12,7 @@ const UserDirectoryPage = () => {
             breadcrumbDirectory="Users"
             breadcrumbDirectoryLink="/portal/user-directory"
             breadcrumbLink="/portal/user-directory"
-            bodyTitle='User Management Table'
+            // bodyTitle='User Management Table'
         >
             <UserDirectoryTable />
         </PortalPage>

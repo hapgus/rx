@@ -1,6 +1,7 @@
 import { PortalPage } from "../../components/PortalComponent/PortalPageComponent/PortalPage/PortalPage";
 import { LandingPageSummaryTable } from "../../components/PortalComponent/PortalPageComponent/PortalDashboard/LandingPageSummaryTable";
 import { VisitorsAnalyticsBoard } from "../../components/PortalComponent/PortalDataVisualization/VisitorsAnalyticsBoard";
+import { AnalyticsDashboard } from "../../components/PortalComponent/PortalPageComponent/PortalDashboard/AnalyticsDashboard";
 const AnalyticsPage = () => {
 
    
@@ -16,11 +17,13 @@ const AnalyticsPage = () => {
         breadcrumbDirectory="Dashboard"
         breadcrumbDirectoryLink="/portal/dashboard"
         breadcrumbLink="/portal/analytics"
-        bodyTitle='Summary'
+        // bodyTitle='Summary'
     >
-        <VisitorsAnalyticsBoard/>
 
-        <LandingPageSummaryTable/>
+        <AnalyticsDashboard/>
+        {/* <VisitorsAnalyticsBoard/>
+
+        <LandingPageSummaryTable/> */}
 
     </PortalPage>
 

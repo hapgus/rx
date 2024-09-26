@@ -11,7 +11,7 @@ export const SessionsBoard = ({ title, toolTipText, footer }) => {
         title={title}
         toolTipText={toolTipText}
         footer={footer}
-        chart1={<SessionsCard />}
+        // chart1={<SessionsCard />}
         chart2={<SessionsByLocationLeaderBoard/>}
         />
     );

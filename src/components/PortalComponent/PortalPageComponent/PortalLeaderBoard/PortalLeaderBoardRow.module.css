@@ -1,6 +1,16 @@
 .rowContainer{
     display: flex;
     flex-direction: row;
+    align-items: center;
     gap: 1rem;
     padding-bottom: 1rem;
+    border-bottom: 1px solid var(--color-gray-05);
+}
+.dimensionText{
+    font-size: 1.6rem;
+    color: var(--color-gray-03);
+}
+ .metricText{
+    font-size: 1.6rem;
+    color: var(--color-gray-01);
 }

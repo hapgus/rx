@@ -1,10 +1,5 @@
-
-
 import { IconComponent } from "../Icon/IconComponent";
 import styles from "./ScrollToTop.module.css"
-
-
-
 
 const ScrollToTop = () => {
 
@@ -16,27 +11,11 @@ const ScrollToTop = () => {
     };
 
     return (
-
-
-        <div
-           
-            onClick={scrollToTop}
-            className={styles.scrollToTopcontainer}
-        >
-            <IconComponent iconType='upArrow'/>
-          
-                {/* <TheButton
-                    animated="true"
-                    icon
-                    buttonIcon ="true"
-                    iconName="caretUp"
-                    styleName="lightIconButton"
-                  
-                /> */}
-                {/* <Icon name="arrow-up" /> */}
-
-   
+       
+        <div onClick={scrollToTop} className={styles.scrollToTopcontainer}>
+                <IconComponent iconType='upArrow' />     
         </div>
+       
     )
 }
 

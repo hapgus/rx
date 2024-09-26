@@ -10,6 +10,7 @@ import { CountProductsInCategory } from '../../utils/category-helper';
 
 import { ScrollHeader } from './ScrollHeader';
 import { GridSystem } from '../GridSystem/GridSystem';
+import { ApplianceCategoriesSkeletonComponent } from '../../pages/Main/Appliance-Categories/ApplianceCategoriesSkeleton';
 
 export const ScrollingComponent = ({ processedProducts }) => {
     console.log(processedProducts)
@@ -19,7 +20,7 @@ export const ScrollingComponent = ({ processedProducts }) => {
     const [scrollDisabled, setScrollDisabled] = useState({});
     const [scrollProgress, setScrollProgress] = useState({});
 
-
+ 
     useEffect(() => {
         // Initialize the scrollDisabled state
         const initialState = {};
@@ -84,7 +85,12 @@ export const ScrollingComponent = ({ processedProducts }) => {
     let refIdx = 0; // Initialize refIdx outside to keep track of refs
     return (
         <>
-            {processedProducts.map((products, idx) => (
+
+            {
+            
+            processedProducts.length !== 0 ?
+            
+            processedProducts.map((products, idx) => (
                 <div key={`product-group-${idx}`}>
                     {Object.entries(products).map(([subcategory, items]) => {
                         const currentRefIdx = refIdx++;
@@ -148,7 +154,10 @@ export const ScrollingComponent = ({ processedProducts }) => {
                         );
                     })}
                 </div>
-            ))}
+            ))
+        : <ApplianceCategoriesSkeletonComponent/>
+        }
+            
         </>
     );
 };

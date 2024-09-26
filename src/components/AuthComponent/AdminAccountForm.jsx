@@ -13,6 +13,7 @@ import { useNavigate } from "react-router";
 import { VALIDATOR_REQUIRE } from "../../utils/validators";
 import { useState } from "react";
 import { Select } from "../FormComponent/Select/Select";
+import { capitalizeFirstLetterEachWord } from "../../utils/text-help";
 
 export const AdminAccountForm = () => {
 
@@ -52,17 +53,53 @@ export const AdminAccountForm = () => {
     };
     const handleHomeModalClick = () => {
         setIsModal(prevState => ({ ...prevState, show: false }))
-        redirect('/')
+        redirect('/portal/overview')
     }
     const handleCloseModalClick = () => {
         // resetForm();
-        redirect('/member/login')
+        redirect('/portal/admin-directory')
         setIsModal(prevState => ({ ...prevState, show: false }))
-        console.log('clicked')
+ 
 
     }
-    const submitForm = async (e) => {
+
+    const preFormSubmit = (e) => {
         e.preventDefault();
+          setIsModal(prevState => ({
+            ...prevState,
+            show: true,
+            modalType: 'infoModal',
+            title: "Confirmation Required",
+            message: `You are about to create a new ${capitalizeFirstLetterEachWord(formState.inputs.role.value)} user. This user will have elevated acceess to resources and actions. Please confirm to proceed.`,
+           
+            onConfirm: () => {
+                submitForm()
+                setIsModal({ show: false })
+            },
+            onCancel: () => setIsModal({ show: false }),
+            confirmText: `Create new ${capitalizeFirstLetterEachWord(formState.inputs.role.value)} User`,
+            cancelText: "Go back",
+
+        }));
+    }
+
+    const submitForm = async (e) => {
+      
+        // e.preventDefault();
+
+        setIsModal(prevState => ({
+            ...prevState,
+            show: true,
+            modalType: 'errorModal',
+            title: "Almost there",
+            message: "You need to fix the following errors to continue.",
+            errorList: errorMessage,
+            onConfirm: () => setIsModal({ show: false }),
+            onCancel: () => setIsModal({ show: false }),
+            confirmText: "Close",
+            cancelText: "Go back",
+
+        }));
 
 
         const errorMessage = validateAdminForm(formState)
@@ -71,7 +108,7 @@ export const AdminAccountForm = () => {
             setIsModal(prevState => ({
                 ...prevState,
                 show: true,
-                modalType: 'infoModal',
+                modalType: 'errorModal',
                 title: "Almost there",
                 message: "You need to fix the following errors to continue.",
                 errorList: errorMessage,
@@ -113,8 +150,8 @@ export const AdminAccountForm = () => {
                         errorList: errorMessage,
                         onConfirm: handleCloseModalClick,
                         onCancel: handleHomeModalClick,
-                        confirmText: "Close",
-                        cancelText: "Go to LG Product Guide",
+                        confirmText: "See Admin Users",
+                        cancelText: "Go Home",
 
                     }));
 
@@ -129,6 +166,8 @@ export const AdminAccountForm = () => {
         }
     };
 
+
+    
     console.log('sign up', formState)
     return (
         // <FormComponent onSubmit={submitForm}>
@@ -168,6 +207,7 @@ export const AdminAccountForm = () => {
                 id='role'
                 name="role"
                 labelName="Role"
+                 secondaryLabelToolTip="User role can be set to admin (Administrator), super admin (Super Administratory) or user. The super administrator role is given full access to all resources and actions across products and users. The administrator role is for users who require access to add, edit and delete products, as well as approving users. A user role receives no special access to the portal. A user can only access the public facing product guide website(s). "
                 // errorText='Please select a retailer'
                 validators={[]}
                 onInput={inputHandler}
@@ -182,6 +222,7 @@ export const AdminAccountForm = () => {
                 name="password"
                 labelName="Password"
                 // secondaryLabel=''
+                 secondaryLabelToolTip="Password must be at least eight characters in length and include a minimum of one uppercase letter, one number and one special character. "
                 errorText='Password required'
                 validators={[VALIDATOR_REQUIRE()]}
                 type={passwordInputType}
@@ -203,7 +244,10 @@ export const AdminAccountForm = () => {
 
 
 
-            <Button type='button' onClick={submitForm} buttonStyleType="primaryAction">Sumbit </Button>
+            <Button type='button' 
+            onClick={preFormSubmit} 
+            // onClick={submitForm} 
+            buttonStyleType="primaryAction">Sumbit </Button>
 
         </FormComponent>
     )

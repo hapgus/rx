@@ -4,11 +4,27 @@ import { PageText } from "../Text/Text";
 import { Specifications } from "../ProductDetails/Specifications/Specifications";
 import { TechnologyLogo } from "../ProductDetails/Technology/TechnologyLogo";
 import { Qrcode } from "../Qrcode/Qrcode";
+import { useRetailer } from "../../hooks/retailer-hook";
 
 export const PrintScreen = () => {
-    // const publicUrl = process.env.PUBLIC_URL;
+
     const { productsInList } = useBuilderHook();
-  
+    const { isHomeDepotApp } = useRetailer();
+
+    const branding = isHomeDepotApp && isHomeDepotApp.isHomeDepotActive === true
+
+        ? {
+            logoPath: "/assets/image/logos/lg-red-gray-home-depot.webp",
+            altText: "Home Depot Logo",
+            description: "The Home Depot / LG Home Appliances",
+        }
+
+        : {
+            logoPath: "/assets/image/logos/lg-logo.webp",
+            altText: "LG Logo",
+            description: "LG Home Appliances",
+        }
+
     if (productsInList) {
         return (
             <div className={styles.printScreenPage} >
@@ -16,15 +32,17 @@ export const PrintScreen = () => {
                     <div className={styles.printScreenCoverWrapper}>
                         <div className={styles.header}>
                             <div className={styles.headerContent}>
+                                <PageText type="coverSubtitle">My Product List</PageText>
                                 <PageText type="coverTitle">Product Guide Exclusive</PageText>
-                                <PageText type="pageTertiaryTitle">LG Home Appliance Product List</PageText>
+                                <PageText type="pageTertiaryTitle">{branding.description} </PageText>
                             </div>
                         </div>
                         <div className={styles.footer}>
                             <div className={styles.footerContent}>
                                 <PageText type="pageTertiaryTitle"></PageText>
                                 <div className={styles.logoWrapper}>
-                                    <img src={`/assets/image/logos/lg-logo.webp`} alt="LG Logo" />
+
+                                    <img src={branding.logoPath} alt={branding.altText} />
                                 </div>
                             </div>
                             <div className={styles.legalTextWrapper}>
@@ -42,20 +60,24 @@ export const PrintScreen = () => {
                     {productsInList.map((p, idx) => (
                         <div key={idx} className={styles.productPage}>
                             <div className={styles.productHeaderText}>
-                                <PageText type="pageTitle">{p.title}</PageText>
-                                <PageText type="pageSubtitle">{p.subtitle}</PageText>
+                                <div className={styles.productTitle}>
+                                    <PageText >{p.title}</PageText>
+                                </div>
+                                <div className={styles.productSubtitle}>
+                                <PageText>{p.subtitle}</PageText>
+                                </div>
                             </div>
                             <div className={styles.productImage}>
                                 <img src={`${process.env.REACT_APP_AWS_URL}/${p.image}`} alt="LG Logo" />
                             </div>
                             <div className={styles.productSpecs}>
-                                <Specifications product={p} />
+                                <Specifications product={p} print={true}/>
                             </div>
                             {
                                 p.specSheetQrcode &&
                                 <div className={styles.productQrcodes}>
                                     <Qrcode title='Scan Spec Sheet QR Code' imageUrl={`${process.env.REACT_APP_AWS_URL}/${p.resourceQrCodeImage}`} />
-                                    
+
                                 </div>
                             }
                             {
@@ -63,9 +85,9 @@ export const PrintScreen = () => {
                                     <div className={styles.qrcodeWrapper}>
                                         {
                                             p.sections.map((q) => (
-                                                <Qrcode 
-                                                title={`Scan qrcode ${q.resourceTitle}`}
-                                                imageUrl={`${process.env.REACT_APP_AWS_URL}/${q.resourceQrCodeImage}`} />
+                                                <Qrcode
+                                                    title={`Scan qrcode ${q.resourceTitle}`}
+                                                    imageUrl={`${process.env.REACT_APP_AWS_URL}/${q.resourceQrCodeImage}`} />
 
                                             ))
                                         }

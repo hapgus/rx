@@ -28,7 +28,7 @@ export const UsersByDeviceCard = () => {
         return acc;
     }, {});
 
-console.log('ag de',aggregatedData)
+
     const transformedData = Object.keys(aggregatedData).map(deviceCategory => ({
         deviceCategory,
         totalUsers: aggregatedData[deviceCategory],

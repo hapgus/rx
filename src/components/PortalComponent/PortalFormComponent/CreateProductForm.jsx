@@ -35,6 +35,8 @@ import { NumberInput } from "../../FormComponent/Number/NumberInput";
 import { StaticImageUpload } from "../../FormComponent/ImageUpload/StaticImageUpload";
 import { DynamicResourceFormSection } from "../../FormComponent/Dynamic/DynamicResourceFormSection";
 import { FormSection } from "../../FormComponent/FormSection/FormSection";
+import { FormWrapper } from "../../FormComponent/FormWrapper/FormWrapper";
+import { capitalizeFirstLetterEachWord } from "../../../utils/text-help";
 
 
 export const CreateProductForm = () => {
@@ -295,301 +297,341 @@ export const CreateProductForm = () => {
     return (
         // <FormComponent onSubmit={handleFormSubmit}>
         <FormComponent>
-            {/* MSRP + RETAILER + AVAILABILITY */}
-            <FormSection
-                sectionTitle="MSRP retailer and availability"
-                sectionDescription="Pick retailer"
-            >
-                <NumberInput
-                    id="msrp"
-                    name="msrp"
-                    validators={[]}
-                    value={values.msrp}
-                    onInput={inputHandler}
-                    labelName="MSRP"
-                />
-                <Select
-                    id='store'
-                    name="store"
-                    labelName="Retailer"
-                    // errorText='Please select a retailer'
-                    validators={[]}
-                    onInput={inputHandler}
-                    options={[
-                        { value: "LG US", label: "LG Generic" },
-                        { value: "hd", label: "Home Depot" }
-                    ]}
-                />
-                <Select
-                    id='availability'
-                    name="availability"
-                    labelName="Availability"
-                    // errorText='Please select a retailer'
-                    validators={[]}
-                    onInput={inputHandler}
-                    options={availabilityOptions}
-                />
-
-            </FormSection>
             {/* TITLE + SUBTITLE */}
             <FormSection
-                sectionTitle="Model name/title and subtitles"
-                sectionDescription="Add model name and subtitle"
+            // sectionTitle="Product Name"
+            // sectionDescription="Add model name and subtitle"
             >
-                <TextInput
-                    id="title"
-                    name="title"
-                    labelName="Model title"
-                    secondaryLabel='Special characters allowed ( / \ - _ )'
-                    errorText='Model title required'
-                    validators={[VALIDATOR_REQUIRE()]}
-                    onInput={inputHandler}
+                <FormWrapper>
 
-                />
-                <TextInput
-                    id="subtitle"
-                    name="subtitle"
-                    labelName="Sub-title"
-                    //  secondaryLabel='e.g. MXY8Z'
-                    errorText=' Subtitle required'
-                    validators={[VALIDATOR_REQUIRE()]}
-                    onInput={inputHandler}
-                />
+                    <TextInput
+                        id="title"
+                        name="title"
+                        labelName="Title"
+                        secondaryLabelToolTip='Special characters allowed ( / \ - _ )'
+                        errorText='Product title required'
+                        validators={[VALIDATOR_REQUIRE()]}
+                        onInput={inputHandler}
+
+                    />
+                    {/* <TextInput
+                        id="subtitle"
+                        name="subtitle"
+                        labelName="Subtitle"
+                        //  secondaryLabel='e.g. MXY8Z'
+                        errorText=' Subtitle required'
+                        validators={[VALIDATOR_REQUIRE()]}
+                        onInput={inputHandler}
+                    /> */}
+                    <TextArea
+                        id="subtitle"
+                        name="subtitle"
+                        labelName="Subtitle"
+                        rows={7}
+                        errorText=' Subtitle required'
+                        validators={[VALIDATOR_REQUIRE()]}
+                        onInput={inputHandler}
+                    />
+                    <Select
+                        id='store'
+                        name="store"
+                        labelName="Retailer"
+                        // errorText='Please select a retailer'
+                        validators={[]}
+                        onInput={inputHandler}
+                        options={[
+                            // { value: "", label: "Pick retailer", disabled: true },
+                            { value: "LG US", label: "LG Generic" },
+                            { value: "hd", label: "Home Depot" }
+                        ]}
+                    />
+                    <Select
+                        id='availability'
+                        name="availability"
+                        labelName="Availability"
+                        // errorText='Please select a retailer'
+                        validators={[]}
+                        onInput={inputHandler}
+                        options={availabilityOptions}
+                    />
+                    {/* <NumberInput
+                        id="msrp"
+                        name="msrp"
+                        secondaryLabelToolTip={"MSRP is optional and will be set to 0 when left blank. The MSRP is used to list products in order from lowest \"0\" to highest \"9999999\" when featured amongst other products in the respective product category page."}
+                        validators={[]}
+                        value={values.msrp}
+                        onInput={inputHandler}
+                        labelName="MSRP"
+                    /> */}
+                </FormWrapper>
 
             </FormSection>
+            {/* MSRP + RETAILER + AVAILABILITY */}
+            <FormSection
+            // sectionTitle="Set MSRP, Retailer, and Availability"
+            // sectionDescription="Pick retailer"
+            >
+                <FormWrapper>
+
+
+                </FormWrapper>
+            </FormSection>
+
             {/* CATEGORY + SUB CATEGORY + STYLE CATEGORY */}
             <FormSection
-                sectionTitle="Category"
+                sectionTitle="Category Selection"
                 sectionDescription="Pick category"
             >
-                <Select
-                    id='category'
-                    name="category"
-                    labelName="Category"
-                    onInput={inputHandler}
-                    validators={[]}
+                <FormWrapper>
+                    <Select
+                        id='category'
+                        name="category"
+                        labelName="Category"
+                        secondaryLabelToolTip={"Once a category is selected the sub category and style category fields will appear."}
+                        onInput={inputHandler}
+                        validators={[]}
 
-                    options={categoryOptions}
-                />
-                {formState.inputs.category.value && (
-                    <FormSection
-                        sectionTitle="Subcategory and style category"
-                        sectionDescription="Subcategory and style category"
-                    >
-                        <Select
-                            id='subcategory'
-                            name="subcategory"
-                            labelName="Subcategory"
-                            onInput={inputHandler}
-                            validators={[]}
-                            options={subcategoryOptions}
-                        />
-                        <TextInput
-                            id="stylecategory"
-                            name="stylecategory"
-                            labelName="Style category"
-                            secondaryLabel='Example, Front Load Washer'
-                            // errorText=' Style category error'
-                            noTouchValidation={true}
-                            validators={[]}
-                            onInput={inputHandler}
-                        />
-                    </FormSection>
-                )}
-            </FormSection>
-            {/* VIDEOS */}
-            <FormSection
-                sectionTitle="Youtube videos"
-                sectionDescription="Add feature videos"
-            >
-                <TextArea
-                    id="videos"
-                    name="videos"
-                    type="textarea"
-                    rows={10}
-                    onInput={inputHandler}
-                    validators={[]}
-                    labelName="Youtube videos"
-                    secondaryLabel='Optional'
-                    noTouchValidation={true}
-                />
+                        options={categoryOptions}
+                    />
+                    {formState.inputs.category.value && (
+                        <FormSection
+                        // sectionTitle="Subcategory and style category"
+                        // sectionDescription="Subcategory and style category"
+                        >
+                            <Select
+                                id='subcategory'
+                                name="subcategory"
+                                labelName="Subcategory"
+                                onInput={inputHandler}
+                                validators={[]}
+                                options={subcategoryOptions}
+                            />
+                            <TextInput
+                                id="stylecategory"
+                                name="stylecategory"
+                                labelName="Style category"
+                                secondaryLabel='Example, Front Load Washer'
+                                // errorText=' Style category error'
+                                noTouchValidation={true}
+                                validators={[]}
+                                onInput={inputHandler}
+                            />
+                        </FormSection>
+                    )}
+                </FormWrapper>
             </FormSection>
             {/* SPECIFICATIONS*/}
             <FormSection
                 sectionTitle="Specifications"
                 sectionDescription="Add specifcation details"
             >
-                <Select
-                    id="specTitle1"
-                    name="specTitle1"
-                    labelName="Column one title"
-                    // errorText='Please select a retailer'
-                    validators={[]}
-                    onInput={inputHandler}
-                    options={columnTitleOptions}
-                />
-                <TextArea
-                    id="specList1"
-                    name="specList1"
-                    type="textarea"
-                    rows={10}
-                    onInput={inputHandler}
-                    validators={[]}
-                    labelName="List One"
-                    noTouchValidation={true}
-                />
-                <Select
-                    id="specTitle2"
-                    name="specTitle2"
-                    labelName="Column two title"
-                    // errorText='Please select a retailer'
-                    validators={[]}
-                    onInput={inputHandler}
-                    options={columnTitleOptions}
-                />
-                <TextArea
-                    id="specList2"
-                    name="specList2"
-                    type="textarea"
-                    rows={10}
-                    onInput={inputHandler}
-                    validators={[]}
-                    labelName="List Two"
-                    noTouchValidation={true}
-                />
-                <Select
-                    id="specTitle3"
-                    name="specTitle3"
-                    labelName="Column three title"
-                    // errorText='Please select a retailer'
-                    validators={[]}
-                    onInput={inputHandler}
-                    options={columnTitleOptions}
-                />
-                <TextArea
-                    id="specList3"
-                    name="specList3"
-                    type="textarea"
-                    rows={10}
-                    onInput={inputHandler}
-                    validators={[]}
-                    labelName="List Three"
-                    noTouchValidation={true}
-                />
-                <Select
-                    id="specTitle4"
-                    name="specTitle4"
-                    labelName="Column four title"
-                    // errorText='Please select a retailer'
-                    validators={[]}
-                    onInput={inputHandler}
-                    options={columnTitleOptions}
-                />
-                <TextArea
-                    id="specList4"
-                    name="specList4"
-                    type="textarea"
-                    rows={10}
-                    onInput={inputHandler}
-                    validators={[]}
-                    labelName="List Four"
-                    noTouchValidation={true}
-                />
-
+                <FormWrapper>
+                    <Select
+                        id="specTitle1"
+                        name="specTitle1"
+                        labelName="(1) Column title"
+                        // errorText='Please select a retailer'
+                        validators={[]}
+                        onInput={inputHandler}
+                        options={columnTitleOptions}
+                    />
+                    <TextArea
+                        id="specList1"
+                        name="specList1"
+                        type="textarea"
+                        rows={10}
+                        onInput={inputHandler}
+                        validators={[]}
+                        labelName="(1) Column list"
+                        noTouchValidation={true}
+                    />
+                    <Select
+                        id="specTitle2"
+                        name="specTitle2"
+                        labelName="(2) Column title"
+                        // errorText='Please select a retailer'
+                        validators={[]}
+                        onInput={inputHandler}
+                        options={columnTitleOptions}
+                    />
+                    <TextArea
+                        id="specList2"
+                        name="specList2"
+                        type="textarea"
+                        rows={10}
+                        onInput={inputHandler}
+                        validators={[]}
+                        labelName="(2) Column list"
+                        noTouchValidation={true}
+                    />
+                    <Select
+                        id="specTitle3"
+                        name="specTitle3"
+                        labelName="(3) Column title"
+                        // errorText='Please select a retailer'
+                        validators={[]}
+                        onInput={inputHandler}
+                        options={columnTitleOptions}
+                    />
+                    <TextArea
+                        id="specList3"
+                        name="specList3"
+                        type="textarea"
+                        rows={10}
+                        onInput={inputHandler}
+                        validators={[]}
+                        labelName="(3) Column list"
+                        noTouchValidation={true}
+                    />
+                    <Select
+                        id="specTitle4"
+                        name="specTitle4"
+                        labelName="(4) Column title"
+                        // errorText='Please select a retailer'
+                        validators={[]}
+                        onInput={inputHandler}
+                        options={columnTitleOptions}
+                    />
+                    <TextArea
+                        id="specList4"
+                        name="specList4"
+                        type="textarea"
+                        rows={10}
+                        onInput={inputHandler}
+                        validators={[]}
+                        labelName="(4) Column list"
+                        noTouchValidation={true}
+                    />
+                </FormWrapper>
             </FormSection>
+            {/* VIDEOS */}
+            <FormSection
+                sectionTitle="Youtube videos"
+                sectionDescription="Add feature videos"
+            >
+                <FormWrapper>
+                    <TextArea
+                        id="videos"
+                        name="videos"
+                        type="textarea"
+                        rows={10}
+                        onInput={inputHandler}
+                        validators={[]}
+                        labelName="Youtube videos"
+                        secondaryLabel='Optional'
+                        noTouchValidation={true}
+                    />
+                </FormWrapper>
+            </FormSection>
+
             {/* COLORS*/}
             <FormSection
-                sectionTitle="Color Section"
+                sectionTitle="Color Selection"
                 sectionDescription="Pick colors"
             >
-                {colorOptions.map((e, index) => (
-                    <Checkbox
-                        key={index}
-                        id={e.color}
-                        labelName={e.color}
-                        value={e.color}
-                        onChange={handleColourChange}
-                        checked={selectedColors.includes(e.color)}
-                    />
-                ))}
+                <FormWrapper>
+                    {colorOptions.map((e, index) => (
+                        <Checkbox
+                            key={index}
+                            id={e.color}
+                            labelName={capitalizeFirstLetterEachWord(e.color)}
+                            value={e.color}
+                            onChange={handleColourChange}
+                            checked={selectedColors.includes(e.color)}
+                        />
+                    ))}
+                </FormWrapper>
             </FormSection>
             {/* LOGOS*/}
             <FormSection
-                sectionTitle="Technology logos"
+                sectionTitle="Technology Logos Selection"
                 sectionDescription="Pick retailer"
             >
-                {techLogoOptions.map((e, index) => (
-                    <Checkbox
-                        key={index}
-                        id={e.logo}
-                        labelName={e.logo}
-                        value={e.logo}
-                        onChange={handleLogoChange}
-                        checked={selectedLogos.includes(e.logo)}
-                    />
-                ))}
+                <FormWrapper>
+                    {techLogoOptions.map((e, index) => (
+                        <Checkbox
+                            key={index}
+                            id={e.logo}
+                            // labelName={capitalizeFirstLetterEachWord(e.logo)}
+                            labelName={e.logo}
+                            value={e.logo}
+                            onChange={handleLogoChange}
+                            checked={selectedLogos.includes(e.logo)}
+                        />
+                    ))}
+                </FormWrapper>
             </FormSection>
             {/* UPC CODES*/}
             <FormSection
                 sectionTitle="UPC Codes"
-                sectionDescription="Pick retailer"
             >
-                <TextArea
-                    id="upc"
-                    name="upc"
-                    type="textarea"
-                    rows={10}
-                    onInput={inputHandler}
-                    validators={[]}
-                    labelName="UPC Code"
-                    noTouchValidation={true}
-                />
+                <FormWrapper>
+                    <TextArea
+                        id="upc"
+                        name="upc"
+                        type="textarea"
+                        rows={10}
+                        onInput={inputHandler}
+                        validators={[]}
+                        labelName="UPC Code"
+                        noTouchValidation={true}
+                    />
+                </FormWrapper>
             </FormSection>
             {/* IMAGE UPLOAD*/}
             <FormSection
                 sectionTitle="Upload Product Image"
-                sectionDescription="Add product image files"
+            // sectionDescription="Add product image files"
             >
-                <StaticImageUpload
-                    iconType='imageFile'
-                    itemName='Image'
-                    previewUrl={previewUrl}
-                    selectedFile={selectedImage}
-                    handleFileChange={(e) => handleImageChange(e.target.files[0])}
+                <FormWrapper>
+                    <StaticImageUpload
+                        iconType='imageFile'
+                        itemName='Image'
+                        previewUrl={previewUrl}
+                        selectedFile={selectedImage}
+                        handleFileChange={(e) => handleImageChange(e.target.files[0])}
 
-                />
+                    />
+                </FormWrapper>
             </FormSection>
             {/* QR CODE SPEC IMAGE UPLOAD + SPEC LINK*/}
             <FormSection
-                sectionTitle="Upload Spec Sheet Qrcode Image and link"
-                sectionDescription="Add product image files"
+                sectionTitle="Upload spec sheet QR code image and link"
+                sectionDescription="Add QR code image files"
             >
-                <StaticImageUpload
-                    iconType='qrCode'
-                    itemName='Qrcode'
-                    previewUrl={previewQrcodeUrl}
-                    selectedFile={selectedQrcodeImage}
-                    handleFileChange={(e) => handleQrcodeImageChange(e.target.files[0])}
+                <FormWrapper>
+                    <StaticImageUpload
+                        iconType='qrCode'
+                        itemName='Qrcode'
+                        previewUrl={previewQrcodeUrl}
+                        selectedFile={selectedQrcodeImage}
+                        handleFileChange={(e) => handleQrcodeImageChange(e.target.files[0])}
 
-                />
-                <TextInput
-                    id="specSheetLink"
-                    name="specSheetLink"
-                    labelName="Specification Sheet Link"
-                    //  secondaryLabel='e.g. MXY8Z'
-                    // errorText=' Subtitle required'
-                    validators={[]}
-                    onInput={inputHandler}
-                />
+                    />
+                    <TextInput
+                        id="specSheetLink"
+                        name="specSheetLink"
+                        labelName="Specification Sheet Link"
+                        //  secondaryLabel='e.g. MXY8Z'
+                        // errorText=' Subtitle required'
+                        validators={[]}
+                        onInput={inputHandler}
+                    />
+                </FormWrapper>
             </FormSection>
             {/* DYNAMIC SECTIONS*/}
             <ResourceFormSection initialSections={[]} onSectionsChange={setSections} />
 
-            <div className={styles.formButtonWrapper}>
-                <Button onClick={handleFormSubmit} type="button" buttonStyleType="primaryAction">
-                    Add product
-                </Button>
-            </div>
+           
+                <div className={styles.formButtonWrapper}>
+                    <div>
+                        <Button onClick={handleFormSubmit} type="button" buttonStyleType="primaryAction">
+                            Add product
+                        </Button>
+                    </div>
+                </div>
+        
+
             {/* <section className={styles.section}>
                 <div className={styles.sectionHeader}>
                     <PageText type="pageTitle">Category</PageText>

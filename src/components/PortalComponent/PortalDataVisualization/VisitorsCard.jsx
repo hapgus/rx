@@ -6,17 +6,17 @@ import { AreaChart } from "../PortalChartComponent/AreaChart";
 
 
 export const VisitorsCard = () => {
-
     const { data } = useData('http://localhost:3005/data');
 
-    const validDays = data && data.visitorSnapshot
-        ? data.visitorSnapshot.filter(day => day.totalUsers && !isNaN(Number(day.totalUsers)))
-        : [];
-
-    const totalUserCount = validDays.reduce((acc, curr) => acc + Number(curr.totalUsers), 0);
-    const avgUserCount = validDays.length > 0 ? totalUserCount / validDays.length : 0;
+    
+    const totalUserCount = data && data.visitorSnapshot
+        ? data.visitorSnapshot.reduce((acc, curr) => acc + Number(curr.totalUsers), 0)
+        : 0;
+    const numberOfDays = data?.visitorSnapshot?.length || 0;
+    const avgUserCount = numberOfDays > 0 ? totalUserCount / numberOfDays : 0;
 
     const { config: areaChartOptions } = useChartConfig('AreaChart');
+
 
     let areaChartData = null;
 
@@ -31,7 +31,6 @@ export const VisitorsCard = () => {
     }
     return (
         <PortalCard
-        toolTipText="Total Users represents the unique number of users who have visited your website or app during a specified time period. Each user is counted only once, even if they visit multiple times."
             cardTitle='Total Visits'
             cardData={totalUserCount.toLocaleString()}
             cardFooter={`${parseInt(avgUserCount)} visits per day on average`}

@@ -1,5 +1,6 @@
 
-import { UpdateProductForm } from '../../components/PortalComponent/PortalFormComponent/UpdateProductForm';
+// import { UpdateProductForm } from '../../components/PortalComponent/PortalFormComponent/UpdateProductForm';
+import { UpdateProductForm } from '../../components/PortalComponent/PortalFormComponent/UpdateProduct/UpdateProductForm';
 // import { PortalPageHeader, PortalPageWrapper } from '../../components/PortalComponent/PortalPageComponent/PortalPageComponents';
 // import { PageText } from '../../components/Text/Text';
 import { useParams } from 'react-router-dom';
@@ -18,11 +19,11 @@ const AddProductTemplatePage = () => {
 
             breadcrumb='Create Products from Template'
             breadcrumbDirectory="Products"
-            bodyTitle="Product Management Form"
+        // bodyTitle="Product Management Form"
         >
-            <FormWrapper>
-                <UpdateProductForm productTemplate={true} productId={productId} />
-            </FormWrapper>
+
+            <UpdateProductForm productTemplate={true} productId={productId} />
+
         </PortalPage>
 
     );

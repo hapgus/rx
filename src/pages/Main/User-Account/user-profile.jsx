@@ -18,7 +18,8 @@ import { VALIDATOR_REQUIRE } from '../../../utils/validators';
 
 import { LinkComponent } from '../../../components/Links/LinkComponent';
 import { validateUserProfileForm } from '../../../utils/form-validation';
-
+import { FormWrapper } from '../../../components/FormComponent/FormWrapper/FormWrapper';
+import { AnimatedComponent } from '../../../hooks/use-framer-motion';
 
 const UserProfilePage = () => {
 
@@ -93,7 +94,7 @@ const UserProfilePage = () => {
                 errorList: errorMessage,
                 onConfirm: () => setIsModal({ show: false }),
                 onCancel: () => setIsModal({ show: false }),
-               
+
                 confirmText: "Close",
                 cancelText: "Go back",
 
@@ -106,8 +107,6 @@ const UserProfilePage = () => {
                 store: formState.inputs.store.value,
                 address: formState.inputs.address.value,
             }
-
-
 
             try {
                 const response = await sendRequest(` ${process.env.REACT_APP_BACKEND_URL}edit-profile/${decodedToken.userId}`,
@@ -132,135 +131,106 @@ const UserProfilePage = () => {
                         cancelText: "Go back",
 
                     }));
-
-
                 }
-
             } catch (err) {
 
                 console.log(err)
             }
-
-
-
         }
-
-
     }
     return (
-        <GridSystem containerBackgroundColor='#E6E1D6' containerPaddingTop='3rem' >
+        <GridSystem gridType='spread' containerBackgroundColor='#E6E1D6'>
             <div className={styles.contentWrapper}>
                 <div className={styles.sectionTitle}>
-                    <PageText type='pageTitle'>My Profile</PageText>
-                    <PageText type='pageSubtitle'>Manage your user account</PageText>
+                    <AnimatedComponent type="bounceEffect">
+                        <PageText type='pageTitle'>My Profile</PageText>
+                    </AnimatedComponent>
+                    <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.1}>
+                        <PageText type='pageSubtitle'>Manage your user account</PageText>
+                    </AnimatedComponent>
                 </div>
+                <FormComponent>
+                    <FormWrapper>
+                        <TextInput
+                            id="firstName"
+                            name="firstName"
+                            labelName="First name"
+                            // secondaryLabel=''
+                            errorText='First name required'
+                            validators={[VALIDATOR_REQUIRE()]}
+                            onInput={inputHandler}
+                            // initialValue={formState.inputs.title.value} 
+                            initialValue={formState.inputs.firstName.value}
+                            initialIsValid={formState.inputs.firstName.isValid}
 
-            </div>
+                        />
+                        <TextInput
+                            id="lastName"
+                            name="lastName"
+                            labelName="Last name"
+                            secondaryLabel='Optional'
+                            // errorText='Last name required'
+                            validators={[]}
+                            onInput={inputHandler}
+                            // initialValue={formState.inputs.title.value} 
+                            initialValue={formState.inputs.lastName.value}
+                            initialIsValid={formState.inputs.lastName.isValid}
 
-            <div className={styles.accountInformationWrapper}>
-                {/* <div>
-                    <div className={styles.sectionTitle}>
-                        <PageText type='bodyTertiaryTitle'>Account information</PageText>
-                    </div>
-                    <div className={styles.sectionDescription}>
-                        <PageText type='bodyDescription'>Edit your profile</PageText>
-                    </div>
+                        />
+                        <TextInput
+                            id="store"
+                            name="store"
+                            labelName="Retailer name"
+                            secondaryLabel="Ex. Jon's Appliance Store"
+                            errorText='Retailer name required'
+                            validators={[VALIDATOR_REQUIRE()]}
+                            onInput={inputHandler}
+                            // initialValue={formState.inputs.title.value} 
+                            initialValue={formState.inputs.store.value}
+                            initialIsValid={formState.inputs.store.isValid}
 
-                </div> */}
-                <div className={styles.row}>
-                    {/* <PageText type='bodyTertiaryTitle'>Account</PageText> */}
-                    {/* <div className={styles.description}>
-                        <PageText>{decodedToken ? decodedToken.role : `You're signed out and should not be seeing this`}</PageText>
-                    </div> */}
-                </div>
-                <div className={styles.formElements}>
-                    <TextInput
-                        id="firstName"
-                        name="firstName"
-                        labelName="First name"
-                        // secondaryLabel=''
-                        errorText='First name required'
-                        validators={[VALIDATOR_REQUIRE()]}
-                        onInput={inputHandler}
-                        // initialValue={formState.inputs.title.value} 
-                        initialValue={formState.inputs.firstName.value}
-                        initialIsValid={formState.inputs.firstName.isValid}
+                        />
+                        <TextInput
+                            id="address"
+                            name="adress"
+                            labelName="Retailer address"
+                            secondaryLabel='Optional'
+                            // errorText='Retailer  required'
+                            validators={[]}
+                            onInput={inputHandler}
+                            // initialValue={formState.inputs.title.value} 
+                            initialValue={formState.inputs.address.value}
+                            initialIsValid={formState.inputs.address.isValid}
 
-                    />
-                    <TextInput
-                        id="lastName"
-                        name="lastName"
-                        labelName="Last name"
-                        secondaryLabel='Optional'
-                        // errorText='Last name required'
-                        validators={[]}
-                        onInput={inputHandler}
-                        // initialValue={formState.inputs.title.value} 
-                        initialValue={formState.inputs.lastName.value}
-                        initialIsValid={formState.inputs.lastName.isValid}
+                        />
+                        <div className={styles.buttonWrapper}>
+                            <Button type='button' onClick={handleFormSubmit} buttonStyleType="primaryAction">Update my account </Button>
+                        </div>
+                        <div className={styles.actionButtonsWrapper}>
 
-                    />
-                    <TextInput
-                        id="store"
-                        name="store"
-                        labelName="Your retailer"
-                        secondaryLabel='E.g., Home Depot'
-                        errorText='Retailer name required'
-                        validators={[VALIDATOR_REQUIRE()]}
-                        onInput={inputHandler}
-                        // initialValue={formState.inputs.title.value} 
-                        initialValue={formState.inputs.store.value}
-                        initialIsValid={formState.inputs.store.isValid}
-
-                    />
-                    <TextInput
-                        id="address"
-                        name="adress"
-                        labelName="Your retailer address"
-                        secondaryLabel='Optional'
-                        // errorText='Retailer  required'
-                        validators={[]}
-                        onInput={inputHandler}
-                        // initialValue={formState.inputs.title.value} 
-                        initialValue={formState.inputs.address.value}
-                        initialIsValid={formState.inputs.address.isValid}
-
-                    />
-                    <div className={styles.buttonWrapper}>
-                        <Button type='button' onClick={handleFormSubmit} buttonStyleType="primaryAction">Update my account </Button>
-                    </div>
-                </div>
+                            <div className={styles.actionButton}>
+                                <PageText>
+                                    Delete my account
+                                </PageText>
+                            </div>
+                            <div className={styles.actionButton}>
+                                <LinkComponent href={`/member/forgot-password`}>
+                                    <PageText>Reset Password</PageText>
+                                </LinkComponent>
+                            </div>
 
 
-            </div>
-            <div className={styles.accountInformationWrapper}>
-                {/* <div className={styles.sectionTitle}>
-                    <PageText type='bodyTertiaryTitle'>Password</PageText>
-                </div> */}
-                <div className={styles.passwordReset}>
-                    <LinkComponent href={`/member/forgot-password`}>
-                        <PageText>Reset Password</PageText>
-                    </LinkComponent>
-                </div>
 
 
-            </div>
-            <div className={styles.accountInformationFooter}>
-                {/* <div className={styles.sectionTitle}>
-                    <PageText type='bodyTertiaryTitle'>Account status</PageText>
-                </div>
-                <div>
-                    <PageText type='bodyDescription'>{decodedToken ? decodedToken.status : `You're signed out and should not be seeing this`}</PageText>
-                </div> */}
-                <div>
-                    {/* <PageText type='bodyTertiaryTitle'>Deactivate</PageText> */}
-                    <div className={styles.deleteAccountWrapper}>
-                        <PageText>
-                            Delete my account
-                        </PageText>
-                        {/* <Button buttonStyleType='secondary'></Button> */}
-                    </div>
-                </div>
+                        </div>
+
+                    </FormWrapper>
+
+
+                </FormComponent>
+
+
+
 
             </div>
         </GridSystem>

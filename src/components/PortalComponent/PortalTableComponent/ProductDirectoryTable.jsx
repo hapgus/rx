@@ -13,35 +13,73 @@ import styles from './TableComponent.module.css'
 export const ProductDirectoryTable = () => {
 
     const redirect = useNavigate();
-    const { publicProducts } = useProductsHook();
+    // const { publicProducts,  fetchProducts } = useProductsHook();
+    const { allProducts,  fetchProducts } = useProductsHook();
     const { isModal, setIsModal } = useNotificationHook();
     const { authUserId } = useAuth();
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 10;
 
     const handleDeleteProduct = async (productId) => {
-        console.log('product to delete',productId)
-
-        try {
-            const response = await fetch(
-                `${process.env.REACT_APP_BACKEND_URL}delete-product/${productId}`,
-                {
-                    method: 'DELETE',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        adminId: authUserId,
-                    })
+        console.log('product to delete', productId)
+        setIsModal({
+            show: true,
+            modalType: 'infoModal',
+            title: 'Are You Sure You Want to Delete',
+            message: `You are about to permanently delete this product. This action cannot be undone. Are you sure you want to proceed?`,
+            confirmText: 'Delete product',
+            cancelText: 'Go back',
+            onConfirm: async () => {
+                try {
+                    const response = await fetch(
+                        `${process.env.REACT_APP_BACKEND_URL}delete-product/${productId}`,
+                        {
+                            method: 'DELETE',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                adminId: authUserId,
+                            })
+                        }
+                    )
+                    if (response.status === 200) {
+                        fetchProducts();
+                        alert('product delete')
+                         setIsModal({ show: false })
+                    }
+                    console.log('delete response', response)
+                } catch (err) {
+                    console.log('deletion', err)
                 }
-            )
-            if (response.status === 200) {
-                alert('product delete')
+
+                // setIsModal({ show: false })
+            },
+            onCancel: () => {
+                setIsModal({ show: false })
             }
-            console.log('delete response', response)
-        } catch (err) {
-            console.log('deletion', err)
-        }
+
+        })
+        // try {
+        //     const response = await fetch(
+        //         `${process.env.REACT_APP_BACKEND_URL}delete-product/${productId}`,
+        //         {
+        //             method: 'DELETE',
+        //             headers: {
+        //                 'Content-Type': 'application/json',
+        //             },
+        //             body: JSON.stringify({
+        //                 adminId: authUserId,
+        //             })
+        //         }
+        //     )
+        //     if (response.status === 200) {
+        //         alert('product delete')
+        //     }
+        //     console.log('delete response', response)
+        // } catch (err) {
+        //     console.log('deletion', err)
+        // }
 
     }
 
@@ -52,11 +90,11 @@ export const ProductDirectoryTable = () => {
         { key: 'category', title: 'Category' },
         { key: 'subcategory', title: 'Subcategory' },
         { key: 'msrp', title: 'MSRP' },
-        { 
-            key: 'updatedAt', 
+        {
+            key: 'updatedAt',
             title: 'Last Changed',
             render: row => (
-                <DateComponent 
+                <DateComponent
                     dateType="customFormat" // Or 'isoDate', 'fullDate', etc.
                     dateValue={row.updatedAt} // Pass the updatedAt date
                 />
@@ -77,22 +115,35 @@ export const ProductDirectoryTable = () => {
         }
         // { key: '', title: '' },
     ];
-console.log('table',publicProducts)
+    console.log('table', allProducts)
     return (
-        
-        publicProducts &&
+
+        allProducts &&
         <>
             <TableBody
                 columns={tableColumns}
-                data={publicProducts.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)}
+                data={allProducts.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)}
             />
             <TablePagination
                 itemsPerPage={itemsPerPage}
-                tableData={publicProducts}
+                tableData={allProducts}
                 setCurrentPage={setCurrentPage}
                 currentPage={currentPage}
             />
         </>
+        // publicProducts &&
+        // <>
+        //     <TableBody
+        //         columns={tableColumns}
+        //         data={publicProducts.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)}
+        //     />
+        //     <TablePagination
+        //         itemsPerPage={itemsPerPage}
+        //         tableData={publicProducts}
+        //         setCurrentPage={setCurrentPage}
+        //         currentPage={currentPage}
+        //     />
+        // </>
     )
 
 

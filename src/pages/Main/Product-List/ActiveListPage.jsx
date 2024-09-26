@@ -9,16 +9,34 @@ import { InnerGridItem } from '../../../components/GridSystem/InnerGridContentWr
 import { PrintProductsButton, RemoveAllFromListButton } from '../../../components/Button/ProductButtons';
 import { useAuthUser, useLogout, useAuth } from '../../../hooks/auth-hook';
 import { SaveListButton } from '../../../components/Button/SaveListButton';
+import { AnimatedComponent } from '../../../hooks/use-framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
+const listVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.1 // Adjust for timing between children
+        }
+    }
+};
+
+const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 }
+};
+
+
 
 export const ActiveListPage = ({ isEditing }) => {
 
     const { listCount, productsInList, productsInListSaved, savedListCount } = useBuilderHook();
     const decodedToken = useAuthUser();
     const logout = useLogout();
-  
+
     console.log(savedListCount)
 
-    const{isAuthenticated}=useAuth();
+    const { isAuthenticated } = useAuth();
 
     // Determine which data to use based on isEditing prop
     const currentListCount = isEditing ? savedListCount : listCount;
@@ -28,36 +46,50 @@ export const ActiveListPage = ({ isEditing }) => {
         currentProductsInList &&
         <div >
             <div className={styles.mobile}>
-                <GridSystem containerBackgroundColor='#F0ECE4'>
+                <GridSystem
+                // containerBackgroundColor="#F0ECE4"
+                >
                     <div className={styles.contentWrapper}>
                         <div className={styles.mobileHeader}>
-                            <div className={styles.subtitle}>
-                                <PageText type='pageTertiaryTitle'>Exclusive</PageText>
-                            </div>
-                            <div className={styles.title}>
-                                <PageText type='pageTitle'>LG Product List Builder</PageText>  
-                            </div>
-                            <div className={styles.subtitle}>
-                                <PageText type='pageSubtitle'>Create custom lists of LG home appliances  </PageText>
-                            </div>
-                          
+                            <AnimatedComponent type="bounceEffect">
+
+                                <div className={styles.subtitle}>
+                                    <PageText type='heroSubtitle'>Exclusive</PageText>
+                                </div>
+                            </AnimatedComponent>
+                            <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.1}>
+                                <div className={styles.headerTitle}>
+                                    <PageText type='heroTitle'>Product List Builder</PageText>
+                                </div>
+                            </AnimatedComponent>
+
+                            <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.3}>
+                                <div className={styles.headerDescription}>
+                                    <PageText type='bodyDescriptionLarge'>Create custom lists of LG home appliances  </PageText>
+                                </div>
+                            </AnimatedComponent>
+
                         </div>
 
                     </div>
                 </GridSystem>
                 <GridSystem
-                    containerBackgroundColor='#E6E1D6'
-                    containerBorderTop='1px solid #D0CBC1'
+                // containerBackgroundColor='#F0ECE4'
+                // containerBorderTop='1px solid #D0CBC1'
                 >
                     <div className={styles.listDetails}>
                         <div className={styles.countStatement}>
-                            <PageText type='bodyDescription'> You have</PageText>
+                            <PageText type='bodyDescriptionLarge'> You have</PageText>
                             <CountBubble itemCount={currentListCount} />
-                            <PageText type='bodyDescription'>  products in your list</PageText>
+                            <PageText type='bodyDescriptionLarge'>   products in your list</PageText>
                         </div>
-                        <div className={styles.description}>
-                            <PageText type='bodyDescription'> Click <span>“Print my list”</span> and follow the instructions in the print pop up on your device.</PageText>
-                        </div>
+                        <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.5}>
+                            <div className={styles.descriptionWrapper}>
+                                <div className={styles.description}>
+                                    <PageText type='bodyDescriptionLarge'>  Click <span>“Print my list”</span> and follow the instructions in the print pop up on your device.</PageText>
+                                </div>
+                            </div>
+                        </AnimatedComponent>
                     </div>
                     <div className={styles.buttonsWrapper}>
                         {/* <PrintProductsButton productsInList={listCount} /> */}
@@ -68,50 +100,69 @@ export const ActiveListPage = ({ isEditing }) => {
                     </div>
                 </GridSystem>
                 <GridSystem
-                    containerBackgroundColor='#F6F3EB'
-                    containerBorderTop='1px solid #D0CBC1'
-                    containerPaddingTop='3rem'
+                // containerBackgroundColor='#E6E1D6'
+                // containerBorderTop='1px solid #D0CBC1'
+                // containerPaddingTop='3rem'
                 >
-                    {
-                       currentProductsInList.length !== 0 && currentProductsInList.map((product, idx) =>
-                        (<div className={styles.bannerCardWrapper} key={idx}>
-                            <ProductBuilderPageCard product={product} index={idx} />
-                        </div>
-                        ))
-                    }
+
+                    <motion.div
+                        variants={listVariants}
+                        initial="hidden"
+                        animate="visible"
+                    >
+                        <AnimatePresence>
+                            {
+                                currentProductsInList.length !== 0 && currentProductsInList.map((product, idx) =>
+                                (
+                                    <motion.div
+                                        variants={itemVariants}
+                                        className={styles.bannerCardWrapper} key={idx}>
+                                        <ProductBuilderPageCard product={product} index={idx} />
+                                    </motion.div>
+                                ))
+                            }
+                        </AnimatePresence>
+                    </motion.div>
+
                 </GridSystem>
 
             </div>
             <div className={styles.desktop}>
                 <GridSystem
                     gridType='spread'
-                    containerBackgroundColor='#F0ECE4'
-                    containerPaddingTop='3rem'
+                // containerBackgroundColor='#F0ECE4'
+                // containerPaddingTop='3rem'
                 >
                     <InnerGridItem>
                         <div className={styles.contentWrapper}>
                             <div className={styles.desktopGridContainer}>
                                 <div className={styles.header}>
-                                    <div className={styles.subtitle}>
-                                        <PageText type='pageTertiaryTitle'>Exclusive</PageText>
-                                    </div>
-                                    <div className={styles.title}>
-                                        <PageText type='pageTitle'>LG Product List Builder</PageText>
-                                      
-                                        
-                                    </div>
-                                    <div className={styles.subtitle}>
-                                        <PageText type='pageSubtitle'>Create custom lists of LG home appliances  </PageText>
-                                    </div>
+                                    <AnimatedComponent type="bounceEffect">
+                                        <div className={styles.subtitle}>
+                                            <PageText type='heroSubtitle'>Exclusive</PageText>
+                                        </div>
+                                    </AnimatedComponent>
+                                    <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.1}>
+                                        <div className={styles.title}>
+                                            <PageText type='heroTitle'>LG Product List Builder</PageText>
+                                        </div>
+                                    </AnimatedComponent>
+                                    <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.3}>
+                                        <div className={styles.subtitle}>
+                                            <PageText type='heroSubtitle'>Create custom lists of LG home appliances  </PageText>
+                                        </div>
+                                    </AnimatedComponent>
                                     <div className={styles.desktopListDetails}>
                                         <div className={styles.countStatement}>
-                                            <PageText type='bodyDescription'> You have</PageText>
+                                            <PageText type='bodyDescriptionLarge'> You have</PageText>
                                             <CountBubble itemCount={currentListCount} />
                                             <PageText type='bodyDescription'>  products in your list</PageText>
                                         </div>
-                                        <div className={styles.description}>
-                                            <PageText type='bodyDescription'> Click <span>“Print my list”</span> and follow the instructions in the print pop up on your device.</PageText>
-                                        </div>
+                                        <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.3}>
+                                            <div className={styles.description}>
+                                                <PageText type='bodyDescriptionLarge'> Click <span>“Print my list”</span> and follow the instructions in the print pop up on your device.</PageText>
+                                            </div>
+                                        </AnimatedComponent>
                                     </div>
                                 </div>
 
@@ -120,34 +171,48 @@ export const ActiveListPage = ({ isEditing }) => {
                                     {/* <PrintProductsButton productsInList={listCount} /> */}
                                     <PrintProductsButton productsInList={currentListCount} />
                                     {/* { isAuthenticated === true &&<SaveListButton/> } */}
-                           
-                            
+
+
                                     <RemoveAllFromListButton />
-                                
+
                                 </div>
 
 
-                                <div className={styles.heroImage}>
+                                {/* <div className={styles.heroImage}>
                                     <div className={styles.imageWrapper}>
                                         <img src={`/assets/image/backgrounds/builder/lg-print-handoff.webp`} />
                                     </div>
                                     <PageText type='bodyDescription'>Registered users enjoy even more features benefits. Submit your request today.</PageText>
-                                </div>
+                                </div> */}
 
                             </div>
                         </div>
                     </InnerGridItem>
                 </GridSystem>
-                <GridSystem gridType='spread' containerBackgroundColor='#E6E1D6'>
-                    <GridSystem>
-                        {
-                            currentProductsInList.length !== 0 && currentProductsInList.map((product, idx) =>
-                            (<div className={styles.bannerCardWrapper} key={idx}>
-                                <ProductBuilderPageCard product={product} index={idx} />
-                            </div>
-                            ))
-                        }
-                    </GridSystem>
+                <GridSystem gridType='spread'
+                    containerBackgroundColor='#E6E1D6'
+                >
+                    <motion.div
+                        variants={listVariants}
+                        initial="hidden"
+                        animate="visible"
+                        className={styles.innerGridWrapper}
+                    >
+                        <GridSystem>
+                            <AnimatePresence>
+                                {
+                                    currentProductsInList.length !== 0 && currentProductsInList.map((product, idx) =>
+                                    (<motion.div
+                                        variants={itemVariants}
+                                        className={styles.bannerCardWrapper} key={idx}>
+                                        <ProductBuilderPageCard product={product} index={idx} />
+                                    </motion.div>
+                                    ))
+                                }
+
+                            </AnimatePresence>
+                        </GridSystem>
+                    </motion.div>
                 </GridSystem>
 
             </div>

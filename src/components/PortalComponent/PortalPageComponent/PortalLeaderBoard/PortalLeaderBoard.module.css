@@ -1,4 +1,11 @@
 .leaderBoardContainer{
     background-color: white;
     padding: 3rem;
+    border-radius: 1rem;
+    border: 1px solid var(--color-gray-05);
+}
+.leaderBoardTitle{
+    font-size: 1.8rem;
+    padding-bottom: 2rem;
+    color: var(--color-gray-01);
 }

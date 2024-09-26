@@ -1,0 +1,15 @@
+.retailerLogoWrapper{
+    background-color: aqua;
+    position: relative;
+}
+.retailerLogo{
+    
+    height: 5rem;
+    width: 5rem;
+    position: absolute;
+}
+.retailerLogo svg{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}

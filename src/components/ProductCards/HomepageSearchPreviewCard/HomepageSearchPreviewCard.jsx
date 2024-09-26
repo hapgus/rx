@@ -19,37 +19,78 @@ export const HomepageSearchPreviewCard = ({ products }) => {
     const { productsInList } = useBuilderHook();
     const { isHomepageSearchState, isDesktopSearchState, isMobileSearchState } = useSearchHook();
     
-    let searchQuery = 'na';
-    let searchResultsCount = 'na';
-    // if(isHomepageSearchState.isSearchResults){
-    //     searchQuery = isHomepageSearchState.isSearchInputValue;
-    //     searchResultsCount = isHomepageSearchState.isSearchResults.length
-    // }
- // Determine which search state is active
- if (Array.isArray(isHomepageSearchState.isSearchResults) && isHomepageSearchState.isSearchResults.length > 0) {
-    searchQuery = isHomepageSearchState.isSearchInputValue;
-    searchResultsCount = isHomepageSearchState.isSearchResults.length;
-} else if (Array.isArray(isMobileSearchState.isSearchResults) && isMobileSearchState.isSearchResults.length > 0) {
-    searchQuery = isMobileSearchState.isSearchInputValue;
-    searchResultsCount = isMobileSearchState.isSearchResults.length;
-} else if (Array.isArray(isDesktopSearchState.isSearchResults) && isDesktopSearchState.isSearchResults.length > 0) {
-    searchQuery = isDesktopSearchState.isSearchInputValue;
-    searchResultsCount = isDesktopSearchState.isSearchResults.length;
-}
+//     let searchQuery = 'na';
+//     let searchResultsCount = 'na';
+//     // if(isHomepageSearchState.isSearchResults){
+//     //     searchQuery = isHomepageSearchState.isSearchInputValue;
+//     //     searchResultsCount = isHomepageSearchState.isSearchResults.length
+//     // }
+//  // Determine which search state is active
+//  if (Array.isArray(isHomepageSearchState.isSearchResults) && isHomepageSearchState.isSearchResults.length > 0) {
+//     searchQuery = isHomepageSearchState.isSearchInputValue;
+//     searchResultsCount = isHomepageSearchState.isSearchResults.length;
+// } else if (Array.isArray(isMobileSearchState.isSearchResults) && isMobileSearchState.isSearchResults.length > 0) {
+//     searchQuery = isMobileSearchState.isSearchInputValue;
+//     searchResultsCount = isMobileSearchState.isSearchResults.length;
+// } else if (Array.isArray(isDesktopSearchState.isSearchResults) && isDesktopSearchState.isSearchResults.length > 0) {
+//     searchQuery = isDesktopSearchState.isSearchInputValue;
+//     searchResultsCount = isDesktopSearchState.isSearchResults.length;
+// }
 
 
 
 
-    const handleSelectProductFromSearch = () => {
-        console.log('search query',searchQuery)
-        console.log('search results count',searchResultsCount)
-        logEvent('Select_Product_From_Search', {
-            productName: products.title,
-            productCategory: products.category,
-            productSubcategory: products.subcategory,
-            searchType:'Homepage_Search',
-            searchQuery:searchQuery,
-            searchResultsCount:searchResultsCount,
+    const handleSelectProductFromSearch = (product) => {
+        console.log('fire', product)
+
+        const getSearchData = () => {
+            if (Array.isArray(isHomepageSearchState.isSearchResults) && isHomepageSearchState.isSearchResults.length > 0) {
+                return {
+                    searchQuery: isHomepageSearchState.isSearchInputValue,
+                    searchResultsCount: isHomepageSearchState.isSearchResults.length,
+                    searchType: 'Homepage_Search',
+                    searchedProduct: product.title,
+                    searchedProductCategory: product.category,
+                    searchedProductSubcategory: product.subcategory,
+                };
+            } else if (Array.isArray(isMobileSearchState.isSearchResults) && isMobileSearchState.isSearchResults.length > 0) {
+                return {
+                    searchQuery: isMobileSearchState.isSearchInputValue,
+                    searchResultsCount: isMobileSearchState.isSearchResults.length,
+                    searchType: 'Nav_Search',
+                    searchedProduct: product.title,
+                    searchedProductCategory: product.category,
+                    searchedProductSubcategory: product.subcategory,
+                };
+            } else if (Array.isArray(isDesktopSearchState.isSearchResults) && isDesktopSearchState.isSearchResults.length > 0) {
+                return {
+                    searchQuery: isDesktopSearchState.isSearchInputValue,
+                    searchResultsCount: isDesktopSearchState.isSearchResults.length,
+                    searchType: 'Nav_Search',
+                    searchedProduct: product.title,
+                    searchedProductCategory: product.category,
+                    searchedProductSubcategory: product.subcategory,
+                };
+            }
+            return {
+                searchQuery: '',
+                searchResultsCount: 'na',
+                searchType: 'na',
+                searchedProduct: 'na',
+                searchedProductCategory: 'na',
+                searchedProductSubcategory: 'na'
+            };
+        };
+
+        const { searchQuery, searchResultsCount, searchType, searchedProduct, searchedProductCategory, searchedProductSubcategory } = getSearchData();
+
+        logEvent('SEARCHED_PRODUCT_SELECTED', {
+            productName: searchedProduct,
+            productCategory:searchedProductCategory,
+            productSubcategory: searchedProductSubcategory,
+            searchType: searchType,
+            searchQuery: searchQuery,
+            searchResultsCount: searchResultsCount,
         });
     }
 
@@ -62,7 +103,7 @@ export const HomepageSearchPreviewCard = ({ products }) => {
 
             return (
                 < div key={idx} className={styles.searchResultsPreviewCardContainer} >
-                    <LinkComponent  linkOnClick={handleSelectProductFromSearch}  href={productURL}>
+                    <LinkComponent  linkOnClick={() => handleSelectProductFromSearch(product)}  href={productURL}>
                         <div className={styles.searchResultsPreviewCardImageWrapper}>
                             <img
                                 loading='lazy'
@@ -74,7 +115,7 @@ export const HomepageSearchPreviewCard = ({ products }) => {
                     </LinkComponent>
                     <div className={styles.searchResultsPreviewCardTextWrapper}>
                         <div >
-                            <LinkComponent  linkOnClick={handleSelectProductFromSearch} href={productURL}>
+                            <LinkComponent  linkOnClick={() => handleSelectProductFromSearch(product)}  href={productURL}>
 
                                 {/* <NavigationLink href={productURL}> */}
                                 <div className={styles.searchResultsPreviewCardText}>

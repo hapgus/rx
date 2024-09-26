@@ -4,13 +4,24 @@ import { PageText } from '../../Text/Text';
 import { capitalizeFirstLetterEachWord } from '../../../utils/text-help';
 
 
-export const Specifications = ({ product }) => {
+export const Specifications = ({ product, print=false }) => {
 
     function capitalizeFirstLetter(text) {
         text = text.toLowerCase();
         return text.charAt(0).toUpperCase() + text.slice(1);
     }
 
+    const specListStyles = print === true 
+    ? {
+        ulStyles:styles.printUl,
+        liStyles:styles.printLi,
+        liHeaderStyles:styles.liHeaderStyles,
+    }
+    : {
+        ulStyles:styles.specListWrapper,
+        liStyles:styles.specListItem,
+        liHeaderStyles:styles.liHeaderStyles,
+    }
 
     return (
 
@@ -19,9 +30,11 @@ export const Specifications = ({ product }) => {
                 {
                     product.specTitle1 && product.specList1 &&
                     <div>
+                        <div>
                         <PageText type='productPageSpecTitle'>{capitalizeFirstLetterEachWord(product.specTitle1)}</PageText>
-                        <ul className={styles.specListWrapper}>{product.specList1.map((e, idx) => (
-                            <li className={styles.specListItem} key={idx}>
+                        </div>
+                        <ul className={specListStyles.ulStyles}>{product.specList1.map((e, idx) => (
+                            <li className={specListStyles.liStyles} key={idx}>
                                 <PageText type='productPageSpecList'>{e}</PageText>
                             </li>
                         ))}
@@ -52,7 +65,7 @@ export const Specifications = ({ product }) => {
                 }
                 {product.specTitle4 && product.specList4 &&
                     <div>
-                         <PageText type='productPageSpecTitle'>{product.specTitle4}</PageText>
+                         <PageText type='productPageSpecTitle'>{capitalizeFirstLetter(product.specTitle4)}</PageText>
                         <ul className={styles.specListWrapper}>{product.specList4.map((e, idx) => (
                             <li className={styles.specListItem} key={idx}>
                                <PageText type='productPageSpecList'>{e}</PageText>

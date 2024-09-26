@@ -1,216 +1,185 @@
 import ReactDOM from "react-dom";
-import styles from './Modal.module.css'
+import styles from './Modal.module.css';
 import { PageText } from "../Text/Text";
 import { IconComponent } from "../Icon/IconComponent";
 import { Button } from "../Button/Button";
 import { LGComponent } from "../Character/LGComponent";
 import { useNotificationHook } from "../../hooks/notification-hook";
 import { SaveListForm } from "../AuthComponent/SaveListForm";
-
+import { AnimatePresence, motion } from "framer-motion";
+// import {NakedLoader}
 
 
 const ModalContent = props => {
-    const { isModal, setIsModal } = useNotificationHook();
 
+    const modalVariants = {
+        hidden: { opacity: 0, y: "100%" },
+        visible: { opacity: 1, y: "0%" },
+        exit: { opacity: 0, y: "100%" }
+    };
+    const { isModal } = useNotificationHook();
 
-    if (props.modalType && props.modalType === 'infoModal') {
-        const content = (
-            <>
-                {/* <Backdrop /> */}
-                <div className={styles.backdropContainer} />
-                <div className={styles.infoOverlayContainer}>
+    // Determine the icon based on modal type
+    const getIcon = (modalType) => {
+        switch (modalType) {
+            case 'warningModal':
+                return <IconComponent iconType='errorInfo' />;
+            case 'infoModal':
+                return <IconComponent iconType='errorInfo' />;
+            case 'errorModal':
+                return <IconComponent iconType='errorInfo' />;
+            case 'successModal':
+                return <IconComponent iconType='greenCheckmark' />;
+            default:
+                return <LGComponent type='girlHand' />;
+        }
+    };
 
-                    <div className={styles.infoModalContainer}>
-                        <div className={styles.infoModal}>
-                            <div className={styles.infoIconWrapper}>
-
-                                {
-                                    props.iconType === 'errorInfo'
-                                        ? <div className={styles.infoErrorIcon}>
-                                            <IconComponent iconType={props.iconType || 'errorInfo'} />
-                                        </div>
-                                        : <div className={styles.infoIcon}>
-                                            <IconComponent iconType={props.iconType || 'infoIcon'} />
-                                        </div>
-                                }
-
+    // Determine content based on modal type
+    const renderContent = () => {
+        switch (props.modalType) {
+            case 'infoModal':
+                return (
+                    <>
+                        <div className={styles.generalModalContainer}>
+                            <div className={styles.generalIconWrapper}>
+                                {getIcon(props.modalType)}
                             </div>
-                            <div className={styles.infoModalBodyWrapper}>
-                                <div className={styles.infoTitle}>
+                            <div className={styles.generalBodyWrapper}>
+                                <div className={styles.modalTitle}>
                                     <PageText type="modalTitle">{props.title}</PageText>
                                 </div>
-                                <div className={styles.infoMessage}>
+                                <div className={styles.modalDescription}>
                                     <PageText type="modalTertiaryTitle">{props.message}</PageText>
                                 </div>
-                                {/* {isModal.errorList > 0 &&  */}
+                                {/* {isModal?.errorList?.length > 0 && (
                                 <ul className={styles.errorList}>
-                                    {isModal?.errorList?.map((e, idx) => (
+                                    {isModal.errorList.map((error, idx) => (
                                         <li key={idx}>
-                                            <PageText>{e}</PageText>
+                                            <PageText>{error}</PageText>
                                         </li>
                                     ))}
                                 </ul>
-                                {/* } */}
-
-                                <div className={styles.infoButtonsWrapper}>
-                                    <Button
-                                        onClick={props.onCancel}
-                                        buttonTextType="action"
-                                        buttonStyleType="secondary"
-                                    >
-                                        {props.cancelText}
-                                    </Button>
-                                    {props.onConfirm &&
-                                        <Button
-                                            onClick={props.onConfirm}
-                                            buttonStyleType="primary">
-                                            {props.confirmText}
-                                        </Button>
-                                    }
-                                </div>
+                            )} */}
                             </div>
                         </div>
-                    </div>
-
-                </div>
-
-            </>
-        );
-
-        return ReactDOM.createPortal(content, document.getElementById('modal'))
-
-    } else if (props.modalType && props.modalType === 'successModal') {
-        const content = (
-            <>
-                {/* <Backdrop /> */}
-                <div className={styles.backdropContainer} />
-                <div className={styles.infoOverlayContainer}>
-
-                    <div className={styles.infoModalContainer}>
-                        <div className={styles.infoModal}>
-                            <div className={styles.infoIconWrapper}>
-                                <div className={styles.infoIconSuccess}>
-                                    <IconComponent iconType='greenCheckmark' />
-                                </div>
+                    </>
+                );
+            case 'errorModal':
+                return (
+                    <>
+                        <div className={styles.generalModalContainer}>
+                            <div className={styles.generalIconWrapper}>
+                                {getIcon(props.modalType)}
                             </div>
-                            <div className={styles.infoModalBodyWrapper}>
-                                <div className={styles.infoTitle}>
+                            <div className={styles.generalBodyWrapper}>
+                                <div className={styles.modalTitle}>
                                     <PageText type="modalTitle">{props.title}</PageText>
                                 </div>
-                                <div className={styles.infoMessage}>
+                                <div className={styles.modalDescription}>
                                     <PageText type="modalTertiaryTitle">{props.message}</PageText>
                                 </div>
-                                {/* {isModal.errorList > 0 &&  */}
-                                <ul>
-                                    {isModal.errorList.map((e, idx) => (
-                                        <li key={idx}>
-                                            <PageText>{e}</PageText>
-                                        </li>
-                                    ))}
-                                </ul>
-                                {/* } */}
-
-                                <div className={styles.infoButtonsWrapper}>
-                                    <Button
-                                        onClick={props.onCancel}
-                                        buttonTextType="action"
-                                        buttonStyleType="secondary"
-                                    >
-                                        {props.cancelText}
-                                    </Button>
-                                    {props.onConfirm &&
-                                        <Button
-                                            onClick={props.onConfirm}
-                                            buttonStyleType="primary">
-                                            {props.confirmText}
-                                        </Button>
-                                    }
-                                </div>
+                                {isModal?.errorList?.length > 0 && (
+                                    <ul className={styles.errorList}>
+                                        {isModal.errorList.map((error, idx) => (
+                                            <li key={idx}>
+                                                <PageText>{error}</PageText>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )}
                             </div>
                         </div>
-                    </div>
+                    </>
+                );
 
-                </div>
-
-            </>
-        );
-        return ReactDOM.createPortal(content, document.getElementById('modal'))
-
-    } else if (props.modalType && props.modalType === 'saveListModal') {
-
-        const content = (
-            <>
-                {/* <Backdrop /> */}
-                <div className={styles.backdropContainer} />
-                <div className={styles.overlayContainer}>
-                    <div className={styles.saveListModalContainer}>
-                        <div className={styles.saveListModalWrapper}>
-                            <div className={styles.imageWrapper}>
-                                <LGComponent type='girlHand' />
-                            </div><div className={styles.titleWrapper}>
+            case 'successModal':
+                return (
+                    <div className={styles.generalModalContainer}>
+                        <div className={styles.successIconWrapper}>
+                            {getIcon(props.modalType)}
+                        </div>
+                        <div className={styles.generalBodyWrapper}>
+                            <div className={styles.modalTitle}>
                                 <PageText type="modalTitle">{props.title}</PageText>
-
                             </div>
-                            <div className={styles.bodyWrapper}>
+                            <div className={styles.modalDescription}>
                                 <PageText type="modalTertiaryTitle">{props.message}</PageText>
-                                <div className={styles.formElementsWrapper}>
-                                    <SaveListForm />
-                                </div>
-                                {/* <div className={styles.buttonsWrapper}>
-                                {props.onConfirm && <Button onClick={props.onConfirm} buttonTextType="primaryAction" buttonStyleType="primary">{props.confirmText}</Button>}
-
-                                <Button onClick={props.onCancel} buttonTextType="action" buttonStyleType="secondary">{props.cancelText}</Button>
-                            </div> */}
                             </div>
+                         
                         </div>
                     </div>
-                </div>
-            </>
-        );
-        return ReactDOM.createPortal(content, document.getElementById('modal'))
-    } else {
-        const content = (
-            <>
-                {/* <Backdrop /> */}
-                <div className={styles.backdropContainer} />
-                <div className={styles.overlayContainer}>
-
-                    <div className={styles.modalContainer}>
-                        <div className={styles.imageWrapper}>
-                            <LGComponent type='girlHand' />
-                        </div><div className={styles.titleWrapper}>
-                            <PageText type="modalTitle">{props.title}</PageText>
-                            <IconComponent iconStyleType='' iconType='xClose' onClick={props.onCancel}></IconComponent>
-                        </div>
-
-                        <div className={styles.bodyWrapper}>
-                            <PageText type="modalTertiaryTitle">{props.message}</PageText>
-
-                            <div className={styles.buttonsWrapper}>
-                                {props.onConfirm && <Button onClick={props.onConfirm} buttonTextType="action" buttonStyleType="primary">{props.confirmText}</Button>}
-
-                                <Button onClick={props.onCancel} buttonTextType="action" buttonStyleType="secondary">{props.cancelText}</Button>
-                            </div>
-
-                        </div>
-
+                );
+            case 'saveListModal':
+                return (
+                    <div className={styles.saveListModalContainer}>
+                        <LGComponent type='girlHand' />
+                        <PageText type="modalTitle">{props.title}</PageText>
+                        <PageText type="modalTertiaryTitle">{props.message}</PageText>
+                        <SaveListForm />
                     </div>
+                );
+            default:
+                return (
+                    <div>
+                        <LGComponent type='girlHand' />
+                        <PageText type="modalTitle">{props.title}</PageText>
+                        <PageText type="modalTertiaryTitle">{props.message}</PageText>
+                    </div>
+                );
+        }
+    };
 
-                </div>
+    const content = (
 
-            </>
-        );
-        return ReactDOM.createPortal(content, document.getElementById('modal'))
-    }
+        <div className={styles.backdropContainer}>
+            <div className={styles.overlayContainer}>
 
+                <motion.div
+                    variants={modalVariants}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                    // transition={{ type: "spring", stiffness: 60 }}
+                    transition={{ duration: 0.5 }}
+                    className={styles.modalContainer}
+                >
+
+
+                    <div className={styles.modalWrapper}>
+                        {renderContent()}
+                        <div className={styles.buttonsWrapper}>
+                            {props.onCancel && (
+                                <Button
+                                    onClick={props.onCancel}
+                                    buttonTextType="action"
+                                    buttonStyleType="secondary"
+                                >
+                                    {props.cancelText}
+                                </Button>
+                            )}
+                            {props.onConfirm && (
+                                <Button
+                                    onClick={props.onConfirm}
+                                    buttonStyleType="primary"
+                                >
+                                    {props.confirmText}
+                                </Button>
+                            )}
+                        </div>
+                    </div>
+                </motion.div>
+
+            </div>
+        </div>
+
+    );
+
+    return ReactDOM.createPortal(content, document.getElementById('modal'));
 };
 
 const Modal = props => {
-
-    return (
-        <>
-            {props.show && <ModalContent {...props} />}
-        </>
-    )
+    return props.show ? <ModalContent {...props} /> : null;
 };
+
 export default Modal;

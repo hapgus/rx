@@ -1,4 +1,5 @@
 import { Chart } from 'react-google-charts';
+import { ChartWrapper } from './ChartWrapper';
 
 const defaultData = [
     ['Category', 'Value'],
@@ -21,12 +22,14 @@ const defaultOptions = {
 
 export const BarChart = ({ data = defaultData, options = defaultOptions }) => {
     return (
-        <Chart
-            chartType="BarChart"
-            width="100%"
-            height="400px"
-            data={data}
-            options={options}
-        />
+        <ChartWrapper>
+            <Chart
+                chartType="BarChart"
+                width="100%"
+                height="100%"
+                data={data}
+                options={options}
+            />
+        </ChartWrapper>
     );
 };
