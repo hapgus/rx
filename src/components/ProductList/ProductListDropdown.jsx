@@ -16,6 +16,7 @@ import { GridSystem } from "../GridSystem/GridSystem";
 import { LinkComponent } from "../Links/LinkComponent";
 import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
+import { AnimatedComponent } from "../../hooks/use-framer-motion";
 
 const listVariants = {
     hidden: { opacity: 0 },
@@ -28,6 +29,7 @@ const listVariants = {
 };
 
 const itemVariants = {
+    // hidden: { opacity: 0, y: 20 },
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 }
 };
@@ -50,25 +52,29 @@ const EmptyListScreen = () => {
                                     <IconComponent iconType='xClose' />
                                 </div>
                                 <div className={styles.mobileEmptyListHeaderText}>
-                                    <PageText type="searchTitle">You forgot to add products!</PageText>
-                                    <PageText type="searchSubtitle">Use search or explore appliance pages to find and add products to your list.</PageText>
+                                    {/* <AnimatedComponent type="bounceEffect"> */}
+                                        <PageText type="searchTitle">Get Started Adding Products!</PageText>
+                                    {/* </AnimatedComponent> */}
+                                    {/* <AnimatedComponent type="wipeEffect"> */}
+                                        <PageText type="searchSubtitle">Use search or explore appliance pages to find and add products to your list.</PageText>
+                                    {/* </AnimatedComponent> */}
                                 </div>
 
 
                                 <div className={styles.mobileEmptyListCharacterImage}>
                                     <LGComponent type='girlFull' />
                                 </div>
-                                <motion.div 
-                                variants={listVariants}
-                                initial="hidden"
-                                animate="visible"
-                                className={styles.buttonsWrapper}
-                                
+                                <motion.div
+                                    variants={listVariants}
+                                    initial="hidden"
+                                    animate="visible"
+                                    className={styles.buttonsWrapper}
+
                                 >
                                     {categoryLinks.map((link, idx) =>
-                                        <motion.span 
-                                        key={idx}
-                                        variants={itemVariants}
+                                        <motion.span
+                                            key={idx}
+                                            variants={itemVariants}
                                         >
                                             <LinkComponent href={link.href}>
                                                 <Button buttonStyleType="primary">{link.text}</Button>
@@ -120,7 +126,7 @@ const PopulatedListScreen = () => {
                         <div className={styles.listHeaderTitleContainer}>
                             <div className={styles.listHeaderTitle}>
                                 <PageText type="bodyTertiaryTitle">Get started with the Product list builder</PageText>
-                                <IconComponent iconType="rightArrow"/>
+                                <IconComponent iconType="rightArrow" />
                             </div>
 
                         </div>
@@ -128,17 +134,17 @@ const PopulatedListScreen = () => {
                 </div>
                 <div className={styles.populatedProductsList}>
 
-                    <motion.div 
-                     variants={listVariants}
-                     initial="hidden"
-                     animate="visible"
-                    className={styles.scrollProductList}
+                    <motion.div
+                        variants={listVariants}
+                        initial="hidden"
+                        animate="visible"
+                        className={styles.scrollProductList}
                     >
 
                         {productsInList && productsInList.map((product, idx) => (
-                            <motion.div 
-                            key={idx}
-                            variants={itemVariants}
+                            <motion.div
+                                key={idx}
+                                variants={itemVariants}
                             >
                                 <ProductListDropdownCard product={product} />
                             </motion.div>

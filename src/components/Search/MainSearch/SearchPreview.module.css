@@ -4,6 +4,11 @@
     height: 100vh;
     /* height: 90rem; */
     overflow-y: scroll;
+    background-color: var(--color-gray-07);
+    /* background-color: var(--color-gray-06); */
+    scrollbar-color: var(--color-gray-04) var(--color-gray-05);
+    scrollbar-width: thin;
+    scroll-behavior: smooth;
     padding-bottom: 4rem;
 }
 
@@ -11,7 +16,6 @@
     height: 1.6rem;
     width: 1.6rem;
     object-fit: contain;
-
 }
 
 .input {
@@ -59,7 +63,7 @@
 
 }
 
-.desktopSearchPreviewWithResultsInnerDiv > div {
+.desktopSearchPreviewWithResultsInnerDiv>div {
     /* scroll-snap-align: start; */
 
 }
@@ -105,8 +109,9 @@
 }
 
 .searchPreviewSectionTitleWraper {
-    border-top: 1px solid var(--color-gray-03);
-    margin-top: 2rem;
+    /* border-top: 1px solid var(--color-gray-03); */
+    /* margin-top: 2rem; */
+    /* margin-top: 5rem; */
     padding-top: 2rem;
     padding-bottom: 2rem;
     color: var(--color-gray-02);

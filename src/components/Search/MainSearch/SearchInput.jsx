@@ -3,6 +3,7 @@ import { useProductsHook } from '../../../hooks/product-hook';
 import { useSearchHook } from '../../../hooks/search-hook';
 import { IconComponent } from '../../Icon/IconComponent';
 import { PageText } from '../../Text/Text';
+import LinkedLogo from '../../Logo/LinkedLogo';
 
 export const SearchInput = () => {
 
@@ -24,53 +25,53 @@ export const SearchInput = () => {
             const query = event.target.value.toLowerCase();
 
             // if (isMobileSearchState.isMobileSearch === true) {
-                setIsMobileSearchState(prevState => ({ ...prevState, isSearchInputValue: query }));
+            setIsMobileSearchState(prevState => ({ ...prevState, isSearchInputValue: query }));
 
 
-                if (query) {
-                    const filteredResults = productDataSearch.filter((product) => {
-                        const matchesBasicFields = (product.title?.toLowerCase().includes(query) ?? false)
-                            || (product.subtitle?.toLowerCase().includes(query) ?? false)
-                            || (product.category?.toLowerCase().includes(query) ?? false);
-    
-                        const matchesSpecList = (list) => list?.some(spec => spec.toLowerCase().includes(query)) ?? false;
-                        const matchesSpecs = matchesSpecList(product.specList1)
-                            || matchesSpecList(product.specList2)
-                            || matchesSpecList(product.specList3)
-                            || matchesSpecList(product.specList4);
-    
-                        const matchesColors = product.colors?.some(color => color.includes(query)) ?? false;
-                        const matchesLogos = product.logos?.some(logo => logo.includes(query)) ?? false;
-    
-                        return matchesBasicFields || matchesSpecs || matchesColors || matchesLogos;
-                    });
-                    // const filteredResults = productDataSearch.filter((product) => {
-                    //     const matchesBasicFields =
-                    //         product.title.toLowerCase().includes(query)
-                    //         || product.subtitle.toLowerCase().includes(query)
-                    //         || product.category.toLowerCase().includes(query);
-                    //     const matchesSpecList = (list) => list.some(spec => spec.toLowerCase().includes(query));
-                    //     const matchesSpecs = matchesSpecList(product.specList1)
-                    //         || matchesSpecList(product.specList2)
-                    //         || matchesSpecList(product.specList3)
-                    //         || matchesSpecList(product.specList4);
-                    //     const matchesColors = product.colors.some(color => color.includes(query));
-                    //     const matchesLogos = product.logos.some(logo => logo.includes(query));
-                    //     return matchesBasicFields || matchesSpecs || matchesColors || matchesLogos;
-                    // });
-                    // if (query) {
-                    //     const filteredResults = productDataSearch.filter((product) =>
-                    //         // product.title.toLowerCase().includes(query)
-                    //         product.title.toLowerCase().includes(query)
-                    //         || product.subtitle.toLowerCase().includes(query)
-                    //         || product.category.toLowerCase().includes(query)
-                    //     );
-                    // setSearchResults(filteredResults);
-                    setIsMobileSearchState(prevState => ({ ...prevState, isSearchResults: filteredResults }));
-                } else {
-                    setIsMobileSearchState(prevState => ({ ...prevState, isSearchResults: [] }));
-                    // setSearchResults([]);
-                }
+            if (query) {
+                const filteredResults = productDataSearch.filter((product) => {
+                    const matchesBasicFields = (product.title?.toLowerCase().includes(query) ?? false)
+                        || (product.subtitle?.toLowerCase().includes(query) ?? false)
+                        || (product.category?.toLowerCase().includes(query) ?? false);
+
+                    const matchesSpecList = (list) => list?.some(spec => spec.toLowerCase().includes(query)) ?? false;
+                    const matchesSpecs = matchesSpecList(product.specList1)
+                        || matchesSpecList(product.specList2)
+                        || matchesSpecList(product.specList3)
+                        || matchesSpecList(product.specList4);
+
+                    const matchesColors = product.colors?.some(color => color.includes(query)) ?? false;
+                    const matchesLogos = product.logos?.some(logo => logo.includes(query)) ?? false;
+
+                    return matchesBasicFields || matchesSpecs || matchesColors || matchesLogos;
+                });
+                // const filteredResults = productDataSearch.filter((product) => {
+                //     const matchesBasicFields =
+                //         product.title.toLowerCase().includes(query)
+                //         || product.subtitle.toLowerCase().includes(query)
+                //         || product.category.toLowerCase().includes(query);
+                //     const matchesSpecList = (list) => list.some(spec => spec.toLowerCase().includes(query));
+                //     const matchesSpecs = matchesSpecList(product.specList1)
+                //         || matchesSpecList(product.specList2)
+                //         || matchesSpecList(product.specList3)
+                //         || matchesSpecList(product.specList4);
+                //     const matchesColors = product.colors.some(color => color.includes(query));
+                //     const matchesLogos = product.logos.some(logo => logo.includes(query));
+                //     return matchesBasicFields || matchesSpecs || matchesColors || matchesLogos;
+                // });
+                // if (query) {
+                //     const filteredResults = productDataSearch.filter((product) =>
+                //         // product.title.toLowerCase().includes(query)
+                //         product.title.toLowerCase().includes(query)
+                //         || product.subtitle.toLowerCase().includes(query)
+                //         || product.category.toLowerCase().includes(query)
+                //     );
+                // setSearchResults(filteredResults);
+                setIsMobileSearchState(prevState => ({ ...prevState, isSearchResults: filteredResults }));
+            } else {
+                setIsMobileSearchState(prevState => ({ ...prevState, isSearchResults: [] }));
+                // setSearchResults([]);
+            }
 
             // }
         }
@@ -88,11 +89,23 @@ export const SearchInput = () => {
             }))
 
         }
+
+
+        const searchCountStyles = isMobileSearchState && isMobileSearchState.isSearchResults.length === 0
+            ? styles.noResultsCount
+            : styles.activeResultsCount;
         return (
             <div className={styles.searchInputContainer}>
                 <div className={styles.searchInputHeaderText}>
-                    <PageText type='productCardSubtitle'>Search LG Home Appliances</PageText>
-                    <h1></h1>
+                    <div className={styles.headerLogo}>
+                        <LinkedLogo type='lgRedFaced' />
+                        {/* <IconComponent iconType="searchInput" /> */}
+                    </div>
+                    <div className={styles.headerText}>
+                        <PageText type='productCardSubtitle'>Search Home Appliances</PageText>
+                    </div>
+
+
                 </div>
 
                 <div className={styles.searchInputWrapper}>
@@ -109,7 +122,13 @@ export const SearchInput = () => {
                     />
                 </div>
                 <div className={styles.searchInputFooterText}>
-                    <PageText type='searchTertiaryTitle'> {`(`}{isMobileSearchState.isSearchResults.length}{`)`} Results</PageText>
+                    <PageText type='searchTertiaryTitle'>
+                        {`(`}{" "}
+                        <span className={searchCountStyles}>
+                            {isMobileSearchState.isSearchResults.length}
+                        </span>
+                       {" "} {`)`} Results
+                    </PageText>
 
                 </div>
 

@@ -43,7 +43,8 @@
 .mobileIconsWrapper {
     display: flex;
     flex-direction: row;
-    gap: 2.5rem;
+    /* gap: 2.5rem; */
+    gap: 3.5rem;
     align-items: center;
 }
 
