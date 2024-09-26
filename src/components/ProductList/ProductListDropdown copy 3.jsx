@@ -17,7 +17,6 @@ import { LinkComponent } from "../Links/LinkComponent";
 import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
 import { AnimatedComponent } from "../../hooks/use-framer-motion";
-import LinkedLogo from "../Logo/LinkedLogo";
 
 const listVariants = {
     hidden: { opacity: 0 },
@@ -54,10 +53,10 @@ const EmptyListScreen = () => {
                                 </div>
                                 <div className={styles.mobileEmptyListHeaderText}>
                                     {/* <AnimatedComponent type="bounceEffect"> */}
-                                    <PageText type="searchTitle">Get Started Adding Products!</PageText>
+                                        <PageText type="searchTitle">Get Started Adding Products!</PageText>
                                     {/* </AnimatedComponent> */}
                                     {/* <AnimatedComponent type="wipeEffect"> */}
-                                    <PageText type="searchSubtitle">Use search or explore appliance pages to find and add products to your list.</PageText>
+                                        <PageText type="searchSubtitle">Use search or explore appliance pages to find and add products to your list.</PageText>
                                     {/* </AnimatedComponent> */}
                                 </div>
 
@@ -109,16 +108,11 @@ const PopulatedListScreen = () => {
             <div className={styles.populatedListScreenContainer}>
                 {/* <GridSystem> */}
                 <div className={styles.populatedListHeader}>
-                    <div className={styles.listHeaderDiv}>
-                        <div className={styles.listLogo}>
-                            <LinkedLogo type="lgRedFaced" />
-                        </div>
-                        <div className={styles.populatedListBackIconWrapper}>
+                    <div className={styles.populatedListBackIconWrapper}>
 
-                            <IconComponent onClick={handleProductListDropdownIconClick} iconType='xClose' />
-                        </div>
-
+                        <IconComponent onClick={handleProductListDropdownIconClick} iconType='xClose' />
                     </div>
+
                     <div className={styles.productCountWrapper}>
                         <PageText type="bodySubtitleBold">Your Products</PageText>
                         <CountBubble
@@ -129,22 +123,14 @@ const PopulatedListScreen = () => {
                             itemCount={listCount} />
                     </div>
                     <LinkComponent href={`${publicUrl}/product-list-builder`}>
-                        <Button
-                            // icon
-                            // iconType='whiteRightArrow'
-                            // iconPosition="right"
-                            buttonStyleType="printDefault">Go to product list builder
-                        </Button>
-                    </LinkComponent>
-                    {/* <LinkComponent href={`${publicUrl}/product-list-builder`}>
                         <div className={styles.listHeaderTitleContainer}>
                             <div className={styles.listHeaderTitle}>
-                                <PageText>Go to product list builder</PageText>
+                                <PageText type="bodyTertiaryTitle">Get started with the Product list builder</PageText>
                                 <IconComponent iconType="rightArrow" />
                             </div>
 
                         </div>
-                    </LinkComponent> */}
+                    </LinkComponent>
                 </div>
                 <div className={styles.populatedProductsList}>
 
@@ -164,14 +150,14 @@ const PopulatedListScreen = () => {
                             </motion.div>
                         ))}
                         <div className={styles.listFooterWrapper}>
-                            {/* <LinkComponent href={`${publicUrl}/product-list-builder`}>
+                            <LinkComponent href={`${publicUrl}/product-list-builder`}>
                                 <Button
                                     // icon
                                     // iconType='whiteRightArrow'
                                     // iconPosition="right"
                                     buttonStyleType="printDefault">Go to product list builder
                                 </Button>
-                            </LinkComponent> */}
+                            </LinkComponent>
                         </div>
                     </motion.div>
 
