@@ -22,7 +22,7 @@ export const TechnologyLogo = ({ logos }) => {
                                 logoImage = `/assets/image/technology/worksWithHeyGoogle.png`;
                                 break;
                             case 'lgThinQ':
-                                logoImage = `/assets/image/technology/thinQ.svg`
+                                logoImage = `/assets/image/technology/thinq.svg`
                                 break;
                             case 'Ada':
                                 logoImage = `${path}ada.webp`
@@ -34,7 +34,7 @@ export const TechnologyLogo = ({ logos }) => {
                                 logoImage = `${path}counterDepthMax.svg`
                                 break;
                             case 'energyStar':
-                                logoImage = `/assets/image/technology/energyStar.svg`
+                                logoImage = `/assets/image/technology/energystar.svg`
                                 break;
                             case 'energyStarMostEfficient2023':
                                 logoImage = `${path}energyStarMostEfficient2023.webp`
