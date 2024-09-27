@@ -19,10 +19,10 @@ export const TechnologyLogo = ({ logos }) => {
                         const path = `/assets/image/technology/`
                         switch (e) {
                             case 'worksWithHeyGoogle':
-                                logoImage = `${path}worksWithHeyGoogle.png`;
+                                logoImage = `/assets/image/technology/worksWithHeyGoogle.png`;
                                 break;
                             case 'lgThinQ':
-                                logoImage = `${path}thinQ.svg`
+                                logoImage = `/assets/image/technology/thinQ.svg`
                                 break;
                             case 'Ada':
                                 logoImage = `${path}ada.webp`
@@ -34,7 +34,7 @@ export const TechnologyLogo = ({ logos }) => {
                                 logoImage = `${path}counterDepthMax.svg`
                                 break;
                             case 'energyStar':
-                                logoImage = `${path}energyStar.svg`
+                                logoImage = `/assets/image/technology/energyStar.svg`
                                 break;
                             case 'energyStarMostEfficient2023':
                                 logoImage = `${path}energyStarMostEfficient2023.webp`
