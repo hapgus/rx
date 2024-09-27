@@ -5,6 +5,7 @@ import { MobileAppliancePage } from './mobile-appliance.jsx';
 import { DesktopAppliancePage } from './desktop-appliance.jsx';
 import { useProductsHook } from '../../../hooks/product-hook.js';
 import NotFoundPage from '../Error/not-found.jsx';
+import { NormalizeSlugs } from '../../../utils/link-helper.js';
 
 const AppliancePage = () => {
   // const { productId } = useParams();
@@ -12,16 +13,14 @@ const AppliancePage = () => {
   const { publicProducts } = useProductsHook();
 
   // 404 LOGIC NEEDS TWEAKING
-  // // Fetch the product based on the categoryId and productId
-  // const product = publicProducts.find(
-  //   prod => prod.category === categoryId && prod.title === productId
-  // );
 
-
-  // // If the product doesn't exist, render the 404 page
-  // if (!product) {
-  //   return <NotFoundPage />;
-  // }
+  const product = publicProducts.find(
+    prod => NormalizeSlugs(prod.category) === categoryId && prod.title === productId
+  );
+  // If the product doesn't exist, render the 404 page
+  if (!product) {
+    return <NotFoundPage />;
+  }
 
   return (
     <>

@@ -9,7 +9,7 @@
    
     background-repeat: no-repeat;
     justify-content: center;
-    height: 50rem;
+    height: 30rem;
     /* overflow: hidden; */
     /* background-attachment: fixed; */
     /* margin-top: 4rem;
@@ -300,6 +300,9 @@
 }
 
 @media (min-width: 768px) {
+    .heroContainer{
+        height: 40rem;
+    }
     .contentWrapper {
         padding: 0rem 4rem 2rem 4rem;
     }
@@ -321,7 +324,9 @@
 }
 
 @media (min-width: 1024px) {
-
+    .heroContainer{
+        height: 50rem;
+    }
 
     .longBenefitText {
         display: flex;
@@ -554,7 +559,7 @@
 
 @media (min-width: 1920px) {
     .heroContainer{
-        height: 60rem;
+        height: 50rem;
     }
     .collarList {
         

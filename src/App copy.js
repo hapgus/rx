@@ -100,7 +100,7 @@ const App = () => {
   );
 
   return (
-    <Routes location={}>
+    <Routes >
       <Route path={baseUrl} element={<MainLayout />}>
         {renderMainRoutes()}
         {isAuthenticated && renderAccountRoutes()}

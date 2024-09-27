@@ -64,7 +64,7 @@ export const useCategoryOptions = () => {
             { value: "3-door french door", label: "3-door French Door" },
             { value: "under 33\" french door", label: "33\" and Under French Door" },
             { value: "side-by-side", label: "Side-by-Side" },
-            { value: "bottom and top freezer", label: "  Bottom and Top Freezer" },
+            { value: "bottom and top freezer", label: "Bottom and Top Freezer" },
             { value: "single door", label: "Single Door" },
         ],
         "dishwashers": [

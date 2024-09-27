@@ -115,7 +115,8 @@ export const ScrollingComponent = ({ processedProducts }) => {
                                                     leftDisabled={scrollDisabled[currentRefIdx]?.left}
                                                     rightDisabled={scrollDisabled[currentRefIdx]?.right}
                                                     itemCount={CountProductsInCategory(items)}
-                                                    headerText={capitalizeFirstLetterEachWord(subcategory)}
+                                                    headerText={subcategory}
+                                                    // headerText={capitalizeFirstLetterEachWord(subcategory)}
                                                     progress={scrollProgress[currentRefIdx]}
                                                 />
                                             </div>

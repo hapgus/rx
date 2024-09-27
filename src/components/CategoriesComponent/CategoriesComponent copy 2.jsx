@@ -9,7 +9,7 @@ import { PageText } from "../Text/Text";
 import styles from './CategoriesComponent.module.css'
 import { LinkComponent } from "../Links/LinkComponent";
 import { GridSystem } from "../GridSystem/GridSystem";
-import { SUBCATEGORY_NAMING_MAP } from "../../utils/category-config";
+
 
 const categoryTitleMap = {
     signature: 'LG SIGNATURE',
@@ -36,19 +36,19 @@ export const CategoriesComponent = () => {
 
     const categorizedProducts = ListProductsByCategorySubcategory(publicProducts);
 
-    // const CATEGORY_NAME_MAP = {
-    //     "stylers": "LG Styler",
-    //     "washtower":"WashTower",
-    //     "under 33\" french door":"33\" and Under French Door"
-       
-    //   };
+    const CATEGORY_NAME_MAP = {
+        "stylers": "LG Stylers",
+        "front load washers": "Front Load Washing Machines",
+        "front load dryers": "Front Load Dryers",
+        "WashTower":"WashTower"
+        // Add other necessary mappings here
+      };
  // Transform categorizedProducts with updated subcategory names
  const transformedCategories = Object.entries(categorizedProducts).reduce((acc, [categoryName, subcategories]) => {
     // Map through subcategories and rename as necessary
     const updatedSubcategories = Object.entries(subcategories).reduce((subAcc, [subName, products]) => {
         // Use mapped name or fallback to the original
-        // const updatedName = CATEGORY_NAME_MAP[subName] || subName;
-        const updatedName = SUBCATEGORY_NAMING_MAP[subName] || subName;
+        const updatedName = CATEGORY_NAME_MAP[subName] || subName;
         return { ...subAcc, [updatedName]: products };
     }, {});
 
@@ -61,69 +61,71 @@ console.log("Transformed Categories:", transformedCategories);
 
     const subcategoryProductImageMap = {
         signature: {
-            Laundry: 'WM9500HKA.webp',
-            // Accessories: 'WD205CK.webp',
-            Ranges: 'LUTD4919SN.webp',
-            Refrigeration: 'URETC1408N.webp',
-            Dishwashers: 'LUDP8908SN.webp',
+            laundry: 'WM9500HKA.webp',
+            accessories: 'WD205CK.webp',
+            ranges: 'LUTD4919SN.webp',
+            refrigeration: 'URETC1408N.webp',
+            dishwashers: 'LUDP8908SN.webp',
         },
         studio: {
-            Ranges: 'LSDS6338F.webp',
-            Refrigeration: 'SRFVC2416S.webp',
-            Laundry: 'SWWE50N3 SWWG50N3.webp',
-            Dishwashers: 'SDWD24P3.webp',
-            'Built-In Cooktops': 'CBGS3028S CBGS3628S.webp',
-            'Built-In Wall Ovens': 'WDES9428F.webp',
-            'Range Hoods': 'LSHD3080ST LSHD3680ST.webp',
-            Microwaves: 'MHES1738F.webp',
+            ranges: 'WCES6428F.webp',
+            refrigeration: 'SRFVC2416S.webp',
+            laundry: 'SWWE50N3 SWWG50N3.webp',
+            dishwashers: 'SDWD24P3.webp',
+            'built-in cooktops': 'WCES6428F.webp',
+            'built-in wall ovens': 'WCES6428F.webp',
+            'range hoods': 'WCES6428F.webp',
+            microwaves: 'MVEL2137_.webp',
+            stylers: 'S5MSB.webp',
+
 
         },
         vacuums: {
-            Vacuums: 'A925KSM.webp',
+            vacuums: 'A925KSM.webp',
         },
         refrigeration: {
-            '4-Door French Door': 'LF29S8365S.webp',
-            '3-Door French Door': 'LRYKC2606_.webp',
-            "33\" and Under French Door": 'LRFDS3016S.webp',
+            '4-door french door': 'LRYKC2606_.webp',
+            '3-door french door': 'LRYKC2606_.webp',
+            "under 33\" french door": 'LRYKC2606_.webp',
 
-            'Side-by-Side': 'LRSOS2706_.webp',
-            'Bottom and Top Freezer': 'LRDCS2603_.webp',
-            'Single Door': 'LRONC0605V.webp'
+            'side-by-side': 'LRSOS2706_.webp',
+            'bottom and top freezer': 'LBNC15231V.webp',
+            'single door': 'LRONC0605V.webp'
         },
         laundry: {
-            'All-In-One': 'WM3555H_A.webp',
-            Washers: 'WT8600CB.webp',
-            Dryers: 'DLHC1455W.webp',
-            WashTower: 'WKE100H_A WKG101H_A.webp',
-            Accessories: 'WD200CB.webp',
-            'Specialty Laundry': 'DLHC1455W.webp',
-            'Front Load Washers': 'WM8900HBA.webp',
-            'Top Load Washers': 'WT8400C_.webp',
-            'Front Load Dryers': 'DLEX5500_ DLGX5501_.webp',
-            'Top Load Dryers': 'DLE8400_E DLG8401_E.webp',
-            'LG Styler': 'S3RFBN S3WFBN S3MFBN.webp',
+            'all-in-one': 'WM3555H_A.webp',
+            washers: 'WT8600CB.webp',
+            dryers: 'DLHC1455W.webp',
+            washtower: 'WKHC252H_A.webp',
+            accessories: 'WD200CB.webp',
+            'specialty laundry': 'WD200CB.webp',
+            'front load washers': 'WD200CB.webp',
+            'top load washers': 'WD200CB.webp',
+            'front load dryers': 'WD200CB.webp',
+            'top load dryers': 'WD200CB.webp',
+            stylers: 'S5WBC.webp',
         },
         cooking: {
 
-            'Induction Ranges': 'LSIL6334FE.webp',
-            'Gas Ranges': 'LDG4313ST.webp',
-            'Electric Ranges': 'LDE4413ST.webp',
-            'Dual Fuel Ranges': 'LRGL5823_.webp',
-            'Built-In Wall Ovens': 'WSEP4723_.webp',
-            'Built-In Cooktops': 'LCE3010SB.webp',
-            'Range Hoods': 'HCED3015_ HCED3615_.webp',
-            'Over-The-Range Microwaves': 'MHEC1737_.webp',
-            'Countertop Microwaves': 'MSER1590S.webp',
+            'induction ranges': 'LSIL6334FE.webp',
+            'gas ranges': 'LTGL6937_.webp',
+            'electric ranges': 'LDE4413ST.webp',
+            'dual fuel ranges': 'LRGL5823_.webp',
+            'built-in wall ovens': 'WCEP6427F.webp',
+            'built-in cooktops': 'CBIH3613BE.webp',
+            'range hoods': 'HCED3015_ HCED3615_.webp',
+            'over-the-range microwaves': 'MHEC1737_.webp',
+            'countertop microwaves': 'LMC2075_.webp',
         },
         'air care': {
-            'Air Care': 'AS560DWR0.webp',
+            'air care': 'AS560DWR0.webp',
         },
         dishwashers: {
             // dishwasher: 'WM9500HKA.webp',
-            'Pocket Handle Dishwashers': 'LDFN4542_.webp',
-            'Towel Bar Handle Dishwashers': 'LDTH7972_.webp',
-            'Specialty Dishwashers': 'LDTH7972_.webp',
-            'Accessories': 'LDTH7972_.webp',
+            'pocket handle dishwashers': 'LDFN4542_.webp',
+            'towel bar handle dishwashers': 'LDTH7972_.webp',
+            'specialty dishwashers': 'WM9500HKA.webp',
+            'accessories': 'WM9500HKA.webp',
         }
         // dishwashers: {
         //     dishwasher: 'WM9500HKA.webp',
@@ -178,10 +180,8 @@ console.log("Transformed Categories:", transformedCategories);
 
                                 <ProductCategoryCard
                                     key={`subcategory-${category}-${subcategory}-${subcategoryIndex}`}
-                                    // subcategory={capitalizeFirstLetterEachWord(subcategory)}
-                                    subcategory={subcategory}
-                                    hashLinkPath={`${category}#${(subcategory)}`}
-                                    // hashLinkPath={`${category}#${NormalizeSlugs(subcategory)}`}
+                                    subcategory={capitalizeFirstLetterEachWord(subcategory)}
+                                    hashLinkPath={`${category}#${NormalizeSlugs(subcategory)}`}
                                     subcategoryImagePath={category && subcategoryProductImageMap[category][subcategory]}
                                 />
                             ))

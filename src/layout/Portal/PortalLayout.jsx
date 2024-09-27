@@ -6,11 +6,28 @@ import { PortalPageTopNav } from '../../components/PortalComponent/PortalPageCom
 import { PortalPageSideNav } from '../../components/PortalComponent/PortalPageComponent/PortalSideNav/PortalPageSideNav';
 import Loader from '../../components/Loader/Loader';
 import ProductGuideAlerts from '../../components/Alert/Alert';
-
-
+import { useRoutingHook } from '../../hooks/routing-hook';
+import { useEffect } from 'react';
 export default function PortalLayout() {
 
     const { isAlert, setIsAlert, isModal, setIsModal } = useNotificationHook();
+
+    const { isRoutingState } = useRoutingHook();
+
+    console.log('auth lay',isRoutingState)
+    
+        useEffect(()=> {
+            console.log('run effect')
+            if(isRoutingState.isMobilePortalNavOpen){
+                document.body.style.overflow = 'hidden';
+                console.log('run effect - on portal mobile nav')
+            }
+            return () => {
+                console.log('run effect - on portal mobile nav unset')
+                document.body.style.overflow = 'unset';
+            };
+            
+        },[isRoutingState.isMobilePortalNavOpen])
 
     return (
         <>

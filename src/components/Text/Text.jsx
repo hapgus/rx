@@ -129,8 +129,13 @@ export const PageText = ({ children, eventHandlers = {}, type = 'default' }) => 
         productCardTitle: styles.productCardTitle,
         productCardSubtitle: styles.productCardSubtitle,
         productCardTertiaryTitle: styles.productCardTertiaryTitle,
-
+        productBuilderTitle:styles.productBuilderTitle,
+        productBuilderSubtitle:styles.productBuilderSubtitle,
+        // productBuilderCategory:styles.productBuilderCategory,
+        productBuilderSpecTitle:styles.productBuilderSpecTitle,
+        productBuilderSpecList:styles.productBuilderSpecList,
         productCardListText: styles.productCardListText,
+        
 
         default: styles.defaultPageText,
     };

@@ -10,6 +10,7 @@ const AddProductPage = () => {
             pageDescription='Complete the form below to add a product'
             breadcrumb='Create Products'
             breadcrumbDirectory="Products"
+              breadcrumbDirectoryLink='/portal/product-directory'
             // bodyTitle="Product Management Form"
         >
 

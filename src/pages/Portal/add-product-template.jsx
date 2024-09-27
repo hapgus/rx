@@ -19,6 +19,7 @@ const AddProductTemplatePage = () => {
 
             breadcrumb='Create Products from Template'
             breadcrumbDirectory="Products"
+            breadcrumbDirectoryLink='/portal/product-directory'
         // bodyTitle="Product Management Form"
         >
 

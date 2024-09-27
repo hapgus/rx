@@ -628,6 +628,12 @@ const BackgroundShape = () => (
         <path d="M894.363 10.6373C928.528 24.8966 950.575 45.9764 966.656 79.7597C987.897 124.385 981.187 168.677 943.309 233.84C863.632 370.904 843.838 506.322 882.905 647.137C895.169 691.359 916.284 737.075 962.213 818.817C1004.35 893.823 963.465 992.047 880.875 1014.26C862.04 1019.33 777.385 1021.05 629.155 1019.38C410.842 1016.93 404.613 1016.47 352.51 998.965C267.931 970.543 210.37 934.746 148.568 872.118C49.0206 771.233 6.60263 674.078 0.776344 533.576C-3.50649 430.386 9.39067 367.306 53.074 277.708C80.231 222.012 95.054 201.891 148.193 148.625C201.207 95.4844 221.564 80.3847 277.192 52.9706C376.037 4.2543 405.294 0.149476 654.594 0.00362939C832.234 -0.0936009 872.99 1.71225 894.363 10.6373Z" fill="#F6F3EB" />
     </svg>
 )
+
+const RedCheckmark = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="5029" height="3892" viewBox="0 0 5029 3892" fill="none">
+        <path d="M4775.01 254L1201.52 3637.99L254 2643.1" stroke="#ED0602" strokeWidth="507.599" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+)
 const icons = {
 
     mobileNavMenu: MobileNavMenu,
@@ -676,7 +682,8 @@ const icons = {
     portalAppliances: PortalAppliances,
     toolTip: ToolTip,
     homeDepotLogoIcon: HomeDepotLogoIcon,
-    backgroundShape:BackgroundShape,
+    backgroundShape: BackgroundShape,
+    redCheckmark: RedCheckmark
 }
 
 const IconContainer = ({ onClick, children }) => (

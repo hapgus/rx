@@ -139,7 +139,7 @@ export const portalProductLinks = [
 // DEV SUPPORT
 
 export const devSupportFooter = [
-    // { href: `portal/dashboard`, text: 'Admin Portal' },
+    { href: `portal/dashboard`, text: 'Admin Portal' },
     { href: `/member/login`, text: 'Sign in' },
     // { href: `/member/sign-up`, text: 'Create account' },
     // { href: '/', text: 'Sign Out' },

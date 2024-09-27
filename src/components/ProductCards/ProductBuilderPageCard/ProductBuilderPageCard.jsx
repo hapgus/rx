@@ -79,16 +79,16 @@ const MobileProductBuilderPageCard = ({ product }) => {
                     <div className={styles.headerText}>
                         {/* <ProductText type='builderProductCardTertiaryTitle'>{CapitalizeFirstLetter(availability)}</ProductText> */}
                         <NavLink to={productURL}>
-                            <div className={styles.categoryTextWrapper}>
-                                <PageText type='productCardTertiaryTitle'>{capitalizeFirstLetterEachWord(category)}</PageText>
-                            </div>
+                            {/* <div className={styles.categoryTextWrapper}>
+                                <PageText type='productBuilderCategory'>{capitalizeFirstLetterEachWord(category)}</PageText>
+                            </div> */}
 
                             <div className={styles.titleTextWrapper}>
-                                <PageText type='productCardTitle'>{` ${title} `}</PageText>
+                                <PageText type='productBuilderTitle'>{` ${title} `}</PageText>
                             </div>
                         </NavLink>
                         <div className={styles.subtitleTextWrapper}>
-                            <PageText type='productCardSubtitle'>
+                            <PageText type='productBuilderSubtitle'>
                                 <span className={styles.clampedSubtitle}>{subtitle}</span>
                                 {TruncateText(subtitle)}
                             </PageText>
@@ -127,11 +127,12 @@ const MobileProductBuilderPageCard = ({ product }) => {
                             <>
                                 <div className={styles.specsDropdownWrapper}>
                                     <div className={styles.specsDropdownHeader}>
-
-                                        <PageText type='productCardTertiaryTitle'>{capitalizeFirstLetterEachWord(specTitle1)}</PageText>
-                                        <IconComponent onClick={() => handleClick('specList1')}
-                                            iconType='expand'
-                                        />
+                                        <div className={styles.toggleText}>
+                                            <PageText type='productBuilderSpecTitle'>{capitalizeFirstLetterEachWord(specTitle1)}</PageText>
+                                        </div>
+                                        <div className={styles.toggleIcon}>
+                                            <IconComponent onClick={() => handleClick('specList1')} iconType='expand' />
+                                        </div>
                                     </div>
                                     <AnimatePresence>
                                         {showSpecs.specList1 && (
@@ -148,7 +149,7 @@ const MobileProductBuilderPageCard = ({ product }) => {
                                                         <motion.li key={idx}
                                                             variants={itemVariants}
                                                         >
-                                                            <PageText type='productCardListText'>{item}</PageText>
+                                                            <PageText type='productBuilderSpecList'>{item}</PageText>
                                                         </motion.li>
                                                     ))}
 
@@ -163,12 +164,16 @@ const MobileProductBuilderPageCard = ({ product }) => {
                             <>
                                 <div className={styles.specsDropdownWrapper}>
                                     <div className={styles.specsDropdownHeader} >
+                                        <div className={styles.toggleText}>
 
-                                        <PageText type='productCardTertiaryTitle'>{capitalizeFirstLetterEachWord(specTitle2)}</PageText>
-                                        <IconComponent onClick={() => handleClick('specList2')}
-                                            iconStyleType='expand'
-                                            iconType='expand'
-                                        />
+                                            <PageText type='productBuilderSpecTitle'>{capitalizeFirstLetterEachWord(specTitle2)}</PageText>
+                                        </div>
+                                        <div className={styles.toggleIcon}>
+                                            <IconComponent onClick={() => handleClick('specList2')}
+                                                iconStyleType='expand'
+                                                iconType='expand'
+                                            />
+                                        </div>
 
                                     </div>
                                     <AnimatePresence>
@@ -183,7 +188,7 @@ const MobileProductBuilderPageCard = ({ product }) => {
                                                         <motion.li
                                                             variants={itemVariants}
                                                             key={idx}>
-                                                            <PageText type='productCardListText'>{item}</PageText>
+                                                            <PageText type='productBuilderSpecList'>{item}</PageText>
                                                         </motion.li>
                                                     ))}
                                                 </motion.ul>
@@ -197,13 +202,14 @@ const MobileProductBuilderPageCard = ({ product }) => {
                             <>
                                 <div className={styles.specsDropdown}>
                                     <div className={styles.specsDropdownHeader} >
-                                        <PageText type='productCardTertiaryTitle' >{capitalizeFirstLetterEachWord(specTitle3)}</PageText>
-
-
-                                        <IconComponent onClick={() => handleClick('specList3')}
-                                            iconStyleType='expand'
-                                            iconType='expand'
-                                        />
+                                        <div className={styles.toggleText}>
+                                            <PageText type='productBuilderSpecTitle' >{capitalizeFirstLetterEachWord(specTitle3)}</PageText>
+                                        </div>
+                                        <div className={styles.toggleIcon}>
+                                            <IconComponent onClick={() => handleClick('specList3')}
+                                                iconStyleType='expand'
+                                                iconType='expand'
+                                            /></div>
                                     </div>
                                     <AnimatePresence>
                                         {showSpecs.specList3 && (
@@ -217,7 +223,7 @@ const MobileProductBuilderPageCard = ({ product }) => {
                                                         <motion.li
                                                             variants={itemVariants}
                                                             key={idx}>
-                                                            <PageText type='productCardListText' >{item}</PageText>
+                                                            <PageText type='productBuilderSpecList' >{item}</PageText>
                                                         </motion.li>
                                                     ))}
                                                 </motion.ul>
@@ -231,12 +237,15 @@ const MobileProductBuilderPageCard = ({ product }) => {
                             <>
                                 <div className={styles.specsDropdown}>
                                     <div className={styles.specsDropdownHeader} >
-                                        <PageText type='productCardTertiaryTitle'>{capitalizeFirstLetterEachWord(specTitle4)}</PageText>
-
-                                        <IconComponent onClick={() => handleClick('specList4')}
-                                            iconStyleType='expand'
-                                            iconType='expand'
-                                        />
+                                        <div className={styles.toggleText}>
+                                            <PageText type='productBuilderSpecTitle'>{capitalizeFirstLetterEachWord(specTitle4)}</PageText>
+                                        </div>
+                                        <div className={styles.toggleIcon}>
+                                            <IconComponent onClick={() => handleClick('specList4')}
+                                                iconStyleType='expand'
+                                                iconType='expand'
+                                            />
+                                        </div>
                                     </div>
                                     <AnimatePresence>
                                         {showSpecs.specList4 && (
@@ -250,7 +259,7 @@ const MobileProductBuilderPageCard = ({ product }) => {
                                                         <motion.li
                                                             variants={itemVariants}
                                                             key={idx}>
-                                                            <PageText type='builderProductCardTertiaryTitle'>{item}</PageText>
+                                                            <PageText type='productBuilderSpecList'>{item}</PageText>
                                                         </motion.li>
                                                     ))}
                                                 </motion.ul>

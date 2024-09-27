@@ -13,6 +13,12 @@ const ApplianceCategories = () => {
 
     const { publicProducts } = useProductsHook();
     const categorizedProducts = ListProductsByCategorySubcategory(publicProducts);
+    console.log(categorizedProducts)
+
+
+
+ 
+
 
     const scrollToPosition = () => {
         window.scrollBy({
@@ -24,7 +30,7 @@ const ApplianceCategories = () => {
     return (
         <>
             <div>
-                <GridSystem gridType="spread">
+                <GridSystem gridType="spread" containerBackgroundColor="#F0ECE4">
                     <div className={styles.heroContainer}>
                         <div className={styles.heroTextWrapper}>
                             {/* <PageText type="pageTitle">America's Most Reliable Line of Home Appliances</PageText> */}
@@ -115,7 +121,9 @@ const ApplianceCategories = () => {
                 categorizedProducts.length !== 0 && publicProducts.length !== 0
                     ?
                     <div className={styles.categoriesComponentWrapper}>
-                        <CategoriesComponent products={categorizedProducts} />
+                         {/* <CategoriesComponent products={transformedCategories} /> */}
+                        {/* <CategoriesComponent products={categorizedProducts} /> */}
+                        <CategoriesComponent />
                     </div>
                     : <ApplianceCategoriesSkeletonComponent />
             }

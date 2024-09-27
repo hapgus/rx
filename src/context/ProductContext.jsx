@@ -124,7 +124,7 @@ export const ProductProvider = ({ children }) => {
         isLoading,    // Expose loading state
         error,        // Expose error state
     };
-    console.log('public products', publicProducts)
+    // console.log('public products', publicProducts)
     return (
         <ProductContext.Provider value={value}>
             {children}

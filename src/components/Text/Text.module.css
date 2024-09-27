@@ -131,8 +131,8 @@
 
 .productPageSpecTitle {
     font-size: 2rem;
-    font-family: var(--text-semibold);
-    color: var(--color-red-02);
+    /* font-family: var(--text-semibold); */
+    /* color: var(--color-red-02); */
 }
 
 .productPageSpecList {
@@ -159,10 +159,23 @@
 .productCardTitle {
     font-size: 1.6rem;
 }
-
+.productBuilderTitle {
+    font-size: 1.8rem;
+}
+.productBuilderSubtitle {
+    font-size: 2.3rem;
+}
+/* .productBuilderCategory {
+    font-size: 1.6rem;
+} */
+.productBuilderSpecTitle {
+    font-size: 2rem;
+}
+.productBuilderSpecList {
+    font-size: 1.6rem;
+}
 .productCardSubtitle {
     font-size: 2rem;
-
 }
 
 .productCardTertiaryTitle {
@@ -465,6 +478,22 @@
         font-size: 1.6rem;
         font-size: 1.8rem;
         /* font-family: var(--text-semibold); */
+    }
+
+    .productBuilderTitle {
+        font-size: 2.4rem;
+    }
+    .productBuilderSubtitle {
+        font-size: 3.2rem;
+    }
+    .productBuilderCategory {
+        font-size: 1.8rem;
+    }
+    .productBuilderSpecTitle {
+        font-size: 2rem;
+    }
+    .productBuilderSpecList {
+        font-size: 2rem;
     }
 
     /* --------------------------------------------------------------------------------------- */

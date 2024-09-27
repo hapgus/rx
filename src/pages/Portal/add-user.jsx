@@ -11,6 +11,8 @@ const AddUserPage = () => {
             pageDescription='Complete the form below to create a new administrator'
             breadcrumb='Create Admin User'
             breadcrumbDirectory="Users"
+            breadcrumbDirectoryLink='/portal/user-directory'
+            
             // bodyTitle='Create Admin User Form'
         >
             <FormWrapper>

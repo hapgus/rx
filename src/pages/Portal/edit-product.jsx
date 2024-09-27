@@ -14,6 +14,7 @@ const EditProductPage = () => {
             pageDescription='Complete the form below to Update your product'
             breadcrumb='Edit Products'
             breadcrumbDirectory="Products"
+            breadcrumbDirectoryLink='/portal/product-directory'
         >
             <UpdateProductForm productId={productId} />
         </PortalPage>

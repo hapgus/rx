@@ -12,6 +12,7 @@ import { useResponsiveMediaStateHook } from '../../../hooks/responsive-hook';
 import { Collar } from '../../../components/Collar/Collar';
 import { AnimatedComponent } from '../../../hooks/use-framer-motion';
 import { motion } from 'framer-motion';
+import { AnimatedCheckmark } from '../../../components/AnimatedCheckmark/AnimatedCheckmark';
 
 const listVariants = {
     hidden: { opacity: 0 },
@@ -95,7 +96,7 @@ const Homepage = () => {
 
                                 <div className={styles.title}>
                                     <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.1}>
-                                        <PageText type='heroTitle'>LG Product Guide</PageText>
+                                        <PageText type='heroTitle'>Find Home Appliances</PageText>
                                     </AnimatedComponent>
                                 </div>
 
@@ -118,9 +119,9 @@ const Homepage = () => {
 
                             <div>
                                 <div className={styles.footer}>
-                                <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.3}>
-                                    <PageText type='heroSubtitle'>Discover best-in-class products and accessories at the LG Product Guide</PageText>
-                                </AnimatedComponent>
+                                    <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.3}>
+                                        <PageText type='heroSubtitle'>Discover best-in-class products and accessories at the LG Product Guide</PageText>
+                                    </AnimatedComponent>
                                 </div>
                             </div>
 
@@ -148,8 +149,8 @@ const Homepage = () => {
                     </div>
                 </GridSystem>
             </div> */}
-            <GridSystem gridType='spread' 
-            containerBackgroundColor='#E6E1D6'
+            <GridSystem gridType='spread'
+                containerBackgroundColor='#E6E1D6'
             >
                 <div className={styles.contentWrapper}>
                     <div className={styles.introductionContainer}>
@@ -179,26 +180,32 @@ const Homepage = () => {
                         </div>
                         <div className={styles.introDescription}>
                             <div className={styles.introDescriptionHeader}>
+                               
+                               
                                 <PageText type='pageSubtitle'>The LG Product Guide is your one-stop-shop for everything home appliance.</PageText>
                             </div>
-                            <motion.div 
-                             variants={listVariants}
-                             initial="hidden"
-                             animate="visible"
-                            className={styles.benefitsList}>
+                            <motion.div
+                                variants={listVariants}
+                                initial="hidden"
+                                animate="visible"
+                                className={styles.benefitsList}>
                                 {
                                     benefits.map((e, idx) => {
                                         return (
-                                            <motion.div 
-                                            variants={itemVariants}
-                                            key={idx} className={styles.benefitCard}>
-                                                <div className={styles.benefitCardCount}>
+                                            <motion.div
+                                                variants={itemVariants}
+                                                key={idx} className={styles.benefitCard}>
+                                                <motion.div 
+                                                variants={itemVariants}
+                                                className={styles.benefitCardCount}>
                                                     <div className={styles.iconWrapper}>
-
-                                                        <IconComponent iconType='warranty' />
+                                                        
+                                                        {/* <IconComponent iconType='redCheckmark' /> */}
+                                                        {/* <IconComponent iconType='warranty' /> */}
+                                                        <AnimatedCheckmark/>
                                                     </div>
                                                     {/* <CountBubble itemCount={idx + 1} /> */}
-                                                </div>
+                                                </motion.div>
                                                 <div className={styles.benefitCardText}>
                                                     <PageText type='bodyBenefitTitle'>{e.title}</PageText>
                                                     <div className={styles.longBenefitText}>

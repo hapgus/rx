@@ -22,4 +22,7 @@
     /* list-style: ; */
 
 }
-
+.specListTitle{
+    color: var(--color-red-02);
+    font-family: var(--text-semibold);
+}

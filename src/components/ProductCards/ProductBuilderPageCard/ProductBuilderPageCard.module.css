@@ -3,7 +3,7 @@
     /* background-color: white; */
     margin-bottom: 2rem;
     border-radius: 4rem;
-    padding: 2rem 3rem;
+    padding: 4rem;
     border: 1px solid var(--color-gray-04);
 }
 
@@ -19,15 +19,16 @@
 .headerText {
     display: flex;
     flex-direction: column;
-    gap: .5rem;
+    gap: 1rem;
 }
 
 .categoryTextWrapper {
-    color: var(--color-red-03);
+    color: var(--color-gray-03);
+    padding-bottom: 1rem;
 }
 
 .titleTextWrapper {
-    color: var(--color-gray-01);
+    color: var(--color-gray-03);
 }
 
 .subtitleTextWrapper {
@@ -67,7 +68,7 @@
 }
 
 .builderCardSpecsWrapperItem2 {
-    padding: 2rem 0;
+    padding-top: 4rem;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -89,19 +90,28 @@
     align-items: center;
     border-bottom: 1px solid var(--color-gray-04);
     padding-bottom: 1rem;
+    justify-content: space-between;
     /* font-family: var(--text-semibold); */
 }
-
-.specsDropdownHeader p {
-
+.toggleIcon{
+    background-color: var(--color-gray-05);
+    background-color: white;
+    height: 5rem;
+    width: 5rem;
+    display: flex;
+    padding: 1.5rem;
+    border-radius: 40rem;
+    justify-content: center;
+    border: 1px solid var(--color-gray-04);
+}
+.toggleIcon svg{
+    height: 100%;
+    /* width: 100%; */
+    object-fit: contain;
+}
+.toggleText{
     color: var(--color-gray-02);
 }
-
-.specsDropdownHeader span {
-    margin-left: auto;
-    display: flex;
-}
-
 .specsDropdownBody {}
 
 .specListItem {
@@ -113,14 +123,11 @@
 
 
 @media (min-width: 430px) {
-    .builderCardContainer {
-
-        padding: 4rem 4rem 2rem 4rem;
-
-    }
+    
 
     .builderCardImage {
         height: 25rem;
+        padding: 4rem 0;
     }
 
 
@@ -133,6 +140,7 @@
         height: 30rem;
     }
 
+ 
     /* .builderCardButton {
         padding: 0 12rem;
      } */
@@ -142,7 +150,7 @@
     .builderCardHeaderTextWrapper {
         gap: 8rem;
         display: grid;
-        grid-template-columns: .6fr .4fr;
+        grid-template-columns: .5fr .5fr;
     }
 
     .removeCardButton {
@@ -156,8 +164,8 @@
 
     .builderCardBodyWrapper {
         display: grid;
-        grid-template-columns: .5fr 1fr;
-        gap: 4rem;
+        grid-template-columns: .5fr .5fr;
+        gap: 8rem;
     }
 
     .builderCardImageButtonGroupItem1 {

@@ -26,18 +26,19 @@ import { motion } from 'framer-motion';
 import { AnimatedComponent } from '../../../hooks/use-framer-motion';
 import { IconComponent } from '../../../components/Icon/IconComponent';
 import { stepUpChartLinks } from '../../../utils/link-config';
+import { NormalizeSlugs } from '../../../utils/link-helper';
+import { VALID_CATEGORIES, SUBCATEGORY_NAMING_MAP } from '../../../utils/category-config';
 
-
-const VALID_CATEGORIES = [
-    'air care',
-    'laundry',
-    'refrigeration',
-    'vacuums',
-    'signature',
-    'studio',
-    'cooking',
-    'dishwashers'
-];
+// const VALID_CATEGORIES = [
+//     'air-care',
+//     'laundry',
+//     'refrigeration',
+//     'vacuums',
+//     'signature',
+//     'studio',
+//     'cooking',
+//     'dishwashers'
+// ];
 
 
 const ApplianceCategoryPage = () => {
@@ -48,9 +49,12 @@ const ApplianceCategoryPage = () => {
     const arrowBounceAnimation = useAnimation('bounceRightLoop');
     const { publicProducts } = useProductsHook();
     const normalizedCategoryId = NormalizeCategoryId(categoryId);
-
+    const generateNormalizedSlug = NormalizeSlugs(normalizedCategoryId)
+    console.log(generateNormalizedSlug)
+    // console.log(normalizedCategoryId)
     // Check against the static list of valid categories before product data
-    if (!VALID_CATEGORIES.includes(normalizedCategoryId)) {
+    // if (!VALID_CATEGORIES.includes(normalizedCategoryId)) {
+    if (!VALID_CATEGORIES.includes(generateNormalizedSlug)) {
         return <NotFoundPage />;
     }
     const backgroundColor = isMobile ? '#F6F3EB' : '#F0ECE4'
@@ -119,6 +123,47 @@ const ApplianceCategoryPage = () => {
             backgroundSize: 'cover',
         };
 
+
+
+
+    // // Create an array to store transformed subcategories
+    // const transformedSubcategories = sortedSubcategories.map(subcategory => {
+    //     // Create a new transformed subcategory object
+    //     const transformed = {};
+
+    //     // Iterate over each key in the subcategory object
+    //     for (const subcategoryName in subcategory) {
+    //         // Get the updated name based on CATEGORY_NAME_MAP or default to original name
+    //         //   const updatedName = CATEGORY_NAME_MAP[subcategoryName] || subcategoryName;
+    //         const updatedName = SUBCATEGORY_NAMING_MAP[subcategoryName] || subcategoryName;
+    //         // Add the transformed name and products to the new object
+    //         transformed[updatedName] = subcategory[subcategoryName];
+    //     }
+
+    //     return transformed;
+    // });
+
+    // Create an array to store transformed and sorted subcategories
+const transformedSubcategories = sortedSubcategories.map(subcategory => {
+    const transformed = {};
+    
+    // Iterate and transform subcategory names
+    for (const subcategoryName in subcategory) {
+        const updatedName = SUBCATEGORY_NAMING_MAP[subcategoryName] || subcategoryName;
+        transformed[updatedName] = subcategory[subcategoryName];
+    }
+    
+    // Sort the subcategories alphabetically
+    const sortedTransformed = Object.keys(transformed)
+        .sort((a, b) => a.localeCompare(b))
+        .reduce((acc, key) => {
+            acc[key] = transformed[key];
+            return acc;
+        }, {});
+
+    return sortedTransformed;
+});
+
     return (
         <>
             {
@@ -159,7 +204,7 @@ const ApplianceCategoryPage = () => {
                                                         <LinkComponent href={link.href}>
                                                             <div className={styles.stepUpChartInnerLinkDivWrapper}>
                                                                 <div className={styles.dStepUpChartCalloutText}>
-                                                                    
+
                                                                     <PageText type='heroDescription'>{link.text}</PageText>
                                                                 </div>
                                                                 <motion.div
@@ -180,28 +225,28 @@ const ApplianceCategoryPage = () => {
                                     </div>
                                     <div className={styles.heroImageWrapper}>
                                         <div className={styles.mobileImageGroup}>
-                                            
-                                                <div className={styles.image1}>
+
+                                            <div className={styles.image1}>
                                                 <AnimatedImage
-                                                type="wipeEffect" directionStart='left' delay={.3}
-                                                // type='slideIn' delay={1.5}
-                                                src={CATEGORY_SHAPED_IMAGE[normalizedCategoryId].imageShape1}
-                                                alt={`${CATEGORY_SHAPED_IMAGE[normalizedCategoryId]} image shapes`}
-                                            />
-                                                   
-                                                </div>
-                                           
-                                           
-                                                <div className={styles.image2}>
+                                                    type="wipeEffect" directionStart='left' delay={.3}
+                                                    // type='slideIn' delay={1.5}
+                                                    src={CATEGORY_SHAPED_IMAGE[normalizedCategoryId].imageShape1}
+                                                    alt={`${CATEGORY_SHAPED_IMAGE[normalizedCategoryId]} image shapes`}
+                                                />
+
+                                            </div>
+
+
+                                            <div className={styles.image2}>
                                                 <AnimatedImage
-                                                type="wipeEffect" directionStart='left' delay={.2}
-                                                // type='slideIn' delay={1.5}
-                                                src={CATEGORY_SHAPED_IMAGE[normalizedCategoryId].imageShape2}
-                                                alt={`${CATEGORY_SHAPED_IMAGE[normalizedCategoryId]} image shapes`}
-                                            />
-                                                    
-                                                </div>
-                                           
+                                                    type="wipeEffect" directionStart='left' delay={.2}
+                                                    // type='slideIn' delay={1.5}
+                                                    src={CATEGORY_SHAPED_IMAGE[normalizedCategoryId].imageShape2}
+                                                    alt={`${CATEGORY_SHAPED_IMAGE[normalizedCategoryId]} image shapes`}
+                                                />
+
+                                            </div>
+
                                         </div>
                                         {/* <AnimatedTitle   type='slideIn' delay={2}> */}
                                         <div className={styles.image3}>
@@ -244,7 +289,8 @@ const ApplianceCategoryPage = () => {
 
             <section className={styles.productsContainer}>
                 {/* <ScrollingComponent processedProducts={subcategories} /> */}
-                <ScrollingComponent processedProducts={sortedSubcategories} />
+                {/* <ScrollingComponent processedProducts={sortedSubcategories} /> */}
+                <ScrollingComponent processedProducts={transformedSubcategories} />
             </section>
 
         </>

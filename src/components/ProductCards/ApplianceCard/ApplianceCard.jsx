@@ -11,7 +11,7 @@ import { PageText } from '../../Text/Text';
 import { TruncateText } from '../../../utils/text-help';
 
 
-import { GenerateProductURL } from '../../../utils/link-helper';
+import { GenerateProductURL, NormalizeSlugs } from '../../../utils/link-helper';
 
 import { AddToListButton, RemoveFromListButton } from '../../Button/ProductButtons';
 import { ProductImageComponent } from '../../ProductImageComponent/ProductImageComponent';
@@ -25,10 +25,12 @@ export const Card = ({ children }) => {
 //DYNAMIC ADD/REMOVE BUTTONS/ICONS --DONE
 export const ApplianceCard = ({ product }) => {
     const { isHomeDepotApp } = useRetailer();
-    const publicUrl = process.env.PUBLIC_URL;
+    // const publicUrl = process.env.PUBLIC_URL;
     const { title, subtitle, availability, image, category, store } = product;
-    const configuredProductURL = GenerateProductURL(category, title);
-    const productURL = `${publicUrl}${configuredProductURL}`;
+    // const configuredProductURL = GenerateProductURL(category, title);
+    const normalizedCategoryName = NormalizeSlugs(category)
+    // const productURL = `${publicUrl}${configuredProductURL}`;
+    const productURL = `/appliances/${normalizedCategoryName}/${title}`;
     const { productsInList } = useBuilderHook();
     const isProductInList = productsInList.some(p => p.title === product.title);
 
