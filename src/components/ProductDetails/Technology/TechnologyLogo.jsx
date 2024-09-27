@@ -19,10 +19,10 @@ export const TechnologyLogo = ({ logos }) => {
                         const path = `/assets/image/technology/`
                         switch (e) {
                             case 'worksWithHeyGoogle':
-                                logoImage = `/assets/image/technology/worksWithHeyGoogle.png`;
+                                logoImage = `${path}worksWithHeyGoogle.png`;
                                 break;
                             case 'lgThinQ':
-                                logoImage = `/assets/image/technology/thinq.svg`
+                                logoImage = `${path}thinq.svg`
                                 break;
                             case 'Ada':
                                 logoImage = `${path}ada.webp`
@@ -31,10 +31,10 @@ export const TechnologyLogo = ({ logos }) => {
                                 logoImage = `${path}doorInDoorWithCraftIce.svg`
                                 break;
                             case 'counterDepthMax':
-                                logoImage = `${path}counterDepthMax.svg`
+                                logoImage = `${path}counterDepthMax.webp`
                                 break;
                             case 'energyStar':
-                                logoImage = `/assets/image/technology/energystar.svg`
+                                logoImage = `${path}energystar.svg`
                                 break;
                             case 'energyStarMostEfficient2023':
                                 logoImage = `${path}energyStarMostEfficient2023.webp`
@@ -52,16 +52,16 @@ export const TechnologyLogo = ({ logos }) => {
                                 logoImage = `${path}kompressor.svg`
                                 break;
                             case 'rated1ElectricDryer':
-                                logoImage = `${path}rated1ElectricDryer.svg`
+                                logoImage = `${path}rated1ElectricDryer.webp`
                                 break;
                             case 'rated1FrenchDoorRefrigerator':
-                                logoImage = `${path}rated1FrenchDoorRefrigerator.svg`
+                                logoImage = `${path}rated1FrenchDoorRefrigerator.webp`
                                 break;
                             case 'rated1FrontLoadWasher':
-                                logoImage = `${path}rated1FrontLoadWasher.svg`
+                                logoImage = `${path}rated1FrontLoadWasher.webp`
                                 break;
                             case 'rated1TopLoadWasher':
-                                logoImage = `${path}rated1TopLoadWasher.svg`
+                                logoImage = `${path}rated1TopLoadWasher.webp`
                                 break;
                             case 'reddot':
                                 logoImage = `${path}reddot.svg`

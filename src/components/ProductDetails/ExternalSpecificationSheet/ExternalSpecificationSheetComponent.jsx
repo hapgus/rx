@@ -7,15 +7,30 @@ import { logEvent } from "../../../utils/google-analytics";
 
 export const ExternalSpecificationSheetComponent = ({ product }) => {
 
-    const handleExternalLinkClick = () => {
+    const handleExternalLinkClick = (url, title) => {
         logEvent('RESOURCE_CLICKED', {
             productName: product.title,
             productCategory: product.category,
             productSubcategory: product.subcategory,
-            destinationUrl: product.specSheetLink, 
-            resourceType: 'Spec sheet',
+            destinationUrl: url, 
+            resourceType: title,
         });
     }
+    // const handleExternalLinkClick = () => {
+    //     logEvent('RESOURCE_CLICKED', {
+    //         productName: product.title,
+    //         productCategory: product.category,
+    //         productSubcategory: product.subcategory,
+    //         destinationUrl: product.specSheetLink,
+    //         resourceType: 'Spec sheet',
+    //     });
+    // }
+
+    // Add specSheetLink as the first item in the sections array
+    const resources = [
+        { resourceTitle: `${product.title} Spec Sheet`, resourceUrl: product.specSheetLink },
+        ...product.sections,
+    ];
 
     return (
         <>
@@ -26,22 +41,27 @@ export const ExternalSpecificationSheetComponent = ({ product }) => {
                         <PageText type='productPageSection'>External Resources</PageText>
                     </div>
                     <div className={styles.resourceButtonsWrapper}>
-                        <div onClick={handleExternalLinkClick}>
-                        <ExternalLinkButton linkText={`See ${product.title} Spec Sheet`} href={product.specSheetLink} />
-                       </div>
-                        <ul>
+
+
+                        {/* <div onClick={handleExternalLinkClick}> */}
+                            {resources.map((e, idx) => (
+                                <span key={idx} onClick={() => handleExternalLinkClick(e.resourceUrl, e.resourceTitle)}>
+                                    <ExternalLinkButton linkText={`${e.resourceTitle}`} href={e.resourceUrl} />
+                                </span>
+                            ))}
+                            <ExternalLinkButton linkText={`See ${product.title} Spec Sheet`} href={product.specSheetLink} />
+                        {/* </div> */}
+                        {/* <ul>
                             {
                                 product.sections.map((e, idx) => (
                                     <>
-                                        <li  key={idx}>
+                                        <li key={idx}>
                                             <ExternalLinkButton linkText={`See ${e.resourceTitle}`} href={e.resourceUrl} />
                                         </li>
-                                        {/* <Qrcode
-                                            title={`Scan qrcode ${e.resourceTitle}`}
-                                            imageUrl={`${process.env.REACT_APP_AWS_URL}/${e.resourceQrCodeImage}`} /> */}
+                                        
                                     </>))
                             }
-                        </ul>
+                        </ul> */}
                     </div>
                 </>
             }
