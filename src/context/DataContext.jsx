@@ -59,7 +59,7 @@ export const DataProvider = ({ children, apiEndpoint }) => {
                 const response = await fetch(apiEndpoint || `${process.env.REACT_APP_BACKEND_URL}data`);
                 const result = await response.json();
 
-                console.log(result)
+                console.log('result',result)
 
                 // NEW DATA STREAMS
                 const parsedData = result.appDataOverview ? result.appDataOverview.map(item => ({
