@@ -346,7 +346,7 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
 
             if (productTemplate === true) {
                 try {
-                    const response = await sendRequest(`http://localhost:3005/copy-product`,
+                    const response = await sendRequest(`${process.env.REACT_APP_BACKEND_URL}copy-product`,
                         'POST',
                         formData
                     )

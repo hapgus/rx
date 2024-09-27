@@ -56,7 +56,7 @@ export const DataProvider = ({ children, apiEndpoint }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(apiEndpoint || "http://localhost:3005/data");
+                const response = await fetch(apiEndpoint || `${process.env.REACT_APP_BACKEND_URL}data`);
                 const result = await response.json();
 
                 console.log(result)
