@@ -23,6 +23,7 @@ import AddProductTemplatePage from "./pages/Portal/add-product-template";
 import LoginPage from "./pages/Auth/Login/login-page";
 import SignUpPage from "./pages/Auth/Sign-Up/sign-up-page";
 import ForgotPasswordPage from "./pages/Auth/Forgot-Password/forgot-password-page";
+import PasswordResetPage from "./pages/Auth/Password-Reset/password-reset-page";
 
 import UserProfilePage from "./pages/Main/User-Account/user-profile";
 import UserSavedListsPage from "./pages/Main/User-Account/user-saved-lists";
@@ -47,6 +48,7 @@ export const authRoutes = [
   { path: 'login', component: <LoginPage /> },
   { path: 'sign-up', component: <SignUpPage /> },
   { path: 'forgot-password', component: <ForgotPasswordPage /> },
+  { path: 'reset/:token', component: <PasswordResetPage /> },
 ];
 
 // Account Routes

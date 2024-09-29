@@ -26,6 +26,10 @@
 .productBuilderListCardImageWrapper{
 height: 20rem;
 width: auto;
+display: flex;
+justify-content: center;
+align-items: center;
+padding-bottom: 1rem;
 }
 
 .productBuilderListCardImageWrapper img{

@@ -62,8 +62,12 @@
     height: 100%;
     width: 100%;
 }
-
-.builderCardButton button {
+.builderCardButtonWrapper{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+.builderCardButton {
     width: 100%;
 }
 
@@ -109,6 +113,13 @@
     /* width: 100%; */
     object-fit: contain;
 }
+.toggleIcon:hover{
+    cursor: pointer;
+}
+.toggleText:hover{
+    cursor: pointer;
+}
+
 .toggleText{
     color: var(--color-gray-02);
 }
@@ -120,7 +131,10 @@
     gap: 1rem;
     padding-top: 1rem;
 }
-
+.listItem{
+   
+    color: var(--color-gray-03);
+}
 
 @media (min-width: 430px) {
     
@@ -136,6 +150,7 @@
 }
 
 @media (min-width: 768px) {
+   
     .builderCardImage {
         height: 30rem;
     }
@@ -164,8 +179,10 @@
 
     .builderCardBodyWrapper {
         display: grid;
+        /* grid-template-columns: .3fr .7fr; */
         grid-template-columns: .5fr .5fr;
         gap: 8rem;
+    
     }
 
     .builderCardImageButtonGroupItem1 {
@@ -184,7 +201,11 @@
 
 @media (min-width: 1024px) {}
 
-@media (min-width: 1280px) {}
+@media (min-width: 1280px) {
+    .builderCardContainer {
+        padding: 4rem 8rem;
+    }
+}
 
 @media (min-width: 1440px) {}
 

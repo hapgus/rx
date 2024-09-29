@@ -39,7 +39,9 @@
     color: var(--color-gray-03);
 }
 
-
+.actionButton:hover{
+    cursor: pointer;
+}
 .passwordReset a{
    
 }

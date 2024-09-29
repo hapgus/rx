@@ -221,8 +221,8 @@ export const CreateProductForm = () => {
 
 
             try {
-                const response = await sendRequest(`http://localhost:3005/add-product`,
-                    // const response = await sendRequest(` ${process.env.REACT_APP_BACKEND_URL}add-product`,
+                // const response = await sendRequest(`http://localhost:3005/add-product`,
+                    const response = await sendRequest(` ${process.env.REACT_APP_BACKEND_URL}add-product`,
                     'POST',
                     formData
                 )

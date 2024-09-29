@@ -8,11 +8,13 @@ import { useAuth } from "../../../../hooks/auth-hook";
 import { useForm } from "../../../../hooks/form-hook";
 
 import { useHttpClient } from "../../../../hooks/http-hook";
+import { useDataContext } from "../../../../hooks/data-hook";
 
 import { Select } from "../../../FormComponent/Select/Select";
 
 import { useRoutingHook } from "../../../../hooks/routing-hook";
 import { useProductsHook } from "../../../../hooks/product-hook";
+
 
 import { VALIDATOR_REQUIRE } from "../../../../utils/validators";
 import { TextArea } from "../../../FormComponent/TextArea/TextArea";
@@ -53,7 +55,8 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
     const { fetchProducts } = useProductsHook();
     const { setIsRoutingState } = useRoutingHook();
     const { isModal, setIsModal } = useNotificationHook();
-
+    const { isManagedDataState, setIsManagedDataState } = useDataContext();
+    console.log('managedData', isManagedDataState)
 
     const options = useCategoryOptions();
     const columnTitleOptions = useColumnTitles();
@@ -177,10 +180,11 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
     /* SET INITIAL FORM DATA*/
     /* --------------------------------------------------------------------------------------- */
     useEffect(() => {
-
+        setIsManagedDataState(prevState => ({ ...prevState, preloading: true }));
         if (productId) {
 
             const fetchProductData = async () => {
+
                 try {
                     const response = await sendRequest(` ${process.env.REACT_APP_BACKEND_URL}product/${productId}`);
 
@@ -190,7 +194,12 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
                     setLoadedProduct(productData);
                     setSelectedColors(productData?.colors || '')
                     setSelectedLogos(productData?.logos || '')
+                    setIsManagedDataState(prevState => ({
+                        ...prevState,
+                        data: productData,
+                        preLoading: false,
 
+                    }));
                     // Initialize sections with both the original file path and full preview URL
                     const initializedSections = (productData?.sections || []).map(section => ({
                         ...section,
@@ -216,7 +225,7 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
                         subtitle: { value: productData.subtitle, isValid: true },
                         specSheetLink: { value: productData.specSheetLink || '', isValid: true },
                         category: { value: productTemplate === true ? '' : productData.category, isValid: true },
-                        subcategory: { value: productTemplate === true ? '': productData.subcategory, isValid: true },
+                        subcategory: { value: productTemplate === true ? '' : productData.subcategory, isValid: true },
                         // category: { value: productData.category, isValid: true },
                         // subcategory: { value: productData.subcategory, isValid: true },
                         stylecategory: { value: productData.stylecategory || '', isValid: true },
@@ -252,6 +261,7 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
     /* --------------------------------------------------------------------------------------- */
 
     const handleFormSubmit = async (e) => {
+
         e.preventDefault();
 
 
@@ -263,7 +273,7 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
         // Combine all errors
         const errorMessage = [...formErrors];
         // const errorMessage = [...formErrors, ...formSectionErrors.map(error => `${error.section + 1}: ${error.message}`)];
-        console.log('err',errorMessage)
+        console.log('err', errorMessage)
         if (errorMessage.length !== 0) {
             // setIsModal(prevState => ({
             //     ...prevState, 
@@ -294,6 +304,7 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
             }));
 
         } else {
+            setIsManagedDataState(prevState => ({ ...prevState, loading: true }));
             const formData = new FormData();
             formData.append('image', selectedFile || loadedProduct.image)
             formData.append('qrcode', selectedQrcode || loadedProduct.qrcode)
@@ -352,6 +363,7 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
                     )
 
                     if (response.responseStatusCode === 201) {
+                        setIsManagedDataState(prevState => ({ ...prevState, loading: false }));
                         setIsRoutingState(prevState => ({ ...prevState, isLoading: false }));
 
                         setIsModal(prevState => ({
@@ -370,7 +382,7 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
                     }
 
                 } catch (err) {
-
+                    setIsManagedDataState(prevState => ({ ...prevState, loading: false }));
                     setIsModal(prevState => ({
                         ...prevState,
                         show: true,
@@ -390,10 +402,12 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
             } else {
                 try {
                     const response = await sendRequest(`${process.env.REACT_APP_BACKEND_URL}edit-product/${productId}`,
+                        // const response = await sendRequest(`http://localhost:3005/edit-product/${productId}`,
                         'PATCH',
                         formData
                     )
                     if (response.responseStatusCode === 201) {
+                        setIsManagedDataState(prevState => ({ ...prevState, loading: false }));
                         setIsRoutingState(prevState => ({ ...prevState, isLoading: false }));
 
                         setIsModal(prevState => ({
@@ -416,9 +430,24 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
                         }, 100);
                     }
 
-                } catch (err) {
+                } catch (error) {
+                    setIsManagedDataState(prevState => ({ ...prevState, loading: false }));
+                    console.log(error)
 
-                    console.log(err)
+                    const revisedErrorMessage = error.toString().replace(/^Error:\s*/, '');
+                    setIsManagedDataState(prevState => ({ ...prevState, loading: false }));
+                    setIsModal({
+                        show: true,
+                        iconType: 'errorInfo',
+                        modalType: 'infoModal',
+                        title: "Update Failed",
+                        message: revisedErrorMessage,
+                        // errorList: errorMessage,
+                        onConfirm: () => setIsModal({ show: false }),
+                        onCancel: () => setIsModal({ show: false }),
+                        confirmText: "Close",
+                        cancelText: "Try again",
+                    })
                 }
             }
 

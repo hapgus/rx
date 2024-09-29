@@ -30,19 +30,7 @@
         display: none;
     }
 }
-@keyframes gradientAnimation {
-    0% {
-        background-position: 0% 50%;
-    }
 
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
-}
 @media (min-width: 1024px) {
     .overlayContentWrapper{
         max-width: 50rem;

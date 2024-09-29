@@ -1,8 +1,16 @@
-import { ManageUserForm } from '../../components/AuthComponent/ManageUserForm';
+import { ManageUserForm } from '../../components/PortalComponent/PortalFormComponent/ManageUser/ManageUserForm';
 import { PortalPage } from '../../components/PortalComponent/PortalPageComponent/PortalPage/PortalPage';
 import { FormWrapper } from '../../components/FormComponent/FormWrapper/FormWrapper';
+import { useParams } from 'react-router';
+import { useAuth } from '../../hooks/auth-hook';
 
 const EditUserPage = () => {
+
+const {isAuthenticated, isSuperAdmin}= useAuth()
+
+const authUserTableBreadcrumbLink = isSuperAdmin && isAuthenticated 
+? "/portal/admin-directory" : "/member/login"
+
     return (
         <PortalPage
             pageTitle='Update User Access'
@@ -10,11 +18,11 @@ const EditUserPage = () => {
            
             breadcrumb='Edit User'
             breadcrumbDirectory="Users"
-            breadcrumbDirectoryLink='/portal/user-directory'
+            breadcrumbDirectoryLink={authUserTableBreadcrumbLink}
             // bodyTitle="User Management Form"
         >
             <FormWrapper>
-                <ManageUserForm />;
+                <ManageUserForm />
             </FormWrapper>
         </PortalPage>
     )

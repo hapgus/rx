@@ -84,8 +84,8 @@ export const inactivePublicAccountLinks = [
 
 
 export const portalDashLinks = [
-    { href: `dashboard`, text: 'Overview' },
-    { href: `analytics`, text: 'Analytics' },
+    { href: `/portal/dashboard`, text: 'Overview' },
+    { href: `/portal/analytics`, text: 'Analytics' },
 ]
 
 export const superPortalFormLinks = [
@@ -127,19 +127,19 @@ export const portalAdminUserLinks = [
 ]
 
 export const portalSuperAdminUserLinks = [
-    { href: `add-user`, text: 'Create User' },
-    { href: `user-directory`, text: 'See All Users' },
-    { href: `admin-directory`, text: 'See All Admins' },
+    { href: `/portal/add-user`, text: 'Create User' },
+    { href: `/portal/user-directory`, text: 'See All Users' },
+    { href: `/portal/admin-directory`, text: 'See All Admins' },
 ]
 export const portalProductLinks = [
-    { href: `product-directory`, text: 'See All Products' },
-    { href: `add-product`, text: 'Create Products' },
+    { href: `/portal/product-directory`, text: 'See All Products' },
+    { href: `/portal/add-product`, text: 'Create Products' },
 ]
 
 // DEV SUPPORT
 
 export const devSupportFooter = [
-    { href: `portal/dashboard`, text: 'Admin Portal' },
+    { href: `/portal/dashboard`, text: 'Admin Portal' },
     { href: `/member/login`, text: 'Sign in' },
     // { href: `/member/sign-up`, text: 'Create account' },
     // { href: '/', text: 'Sign Out' },

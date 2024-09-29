@@ -5,7 +5,7 @@ import { VALIDATOR_REQUIRE } from "../../../utils/validators";
 import { useCallback, useReducer, useState } from "react";
 import { FormComponent } from "../../FormComponent/FormComponent";
 import { Button } from "../../Button/Button";
-import { validateSiginForms } from "../../../utils/form-validation";
+import { validateSigninForms } from "../../../utils/form-validation";
 import { useNotificationHook } from "../../../hooks/notification-hook";
 import { useHttpClient } from "../../../hooks/http-hook";
 import { useNavigate } from "react-router";
@@ -38,12 +38,12 @@ export const LoginForm = () => {
 
         e.preventDefault()
 
-        const errorMessage = validateSiginForms(formState);
+        const errorMessage = validateSigninForms(formState);
         if (errorMessage.length !== 0) {
             setIsModal({
                 show: true,
                     modalType: 'errorModal',
-                    iconType:'errorInfo',
+                    // iconType:'errorInfo',
                     title: "Sign in failed",
                     message: "You need to fix the following errors to continue.",
                     errorList: errorMessage,
@@ -88,13 +88,15 @@ export const LoginForm = () => {
 
             } catch (error) {
                 console.log(error)
+                const revisedErrorMessage = error.toString().replace(/^Error:\s*/, '');
+
                 setIsModal({
                     show: true,
                     iconType:'errorInfo',
                     modalType: 'infoModal',
-                    title: "Signs in failed",
-                    message: `${error}`,
-                    errorList: errorMessage,
+                    title: "Sign in failed",
+                    message: revisedErrorMessage,
+                    // errorList: errorMessage,
                     onConfirm: () => setIsModal({ show: false }),
                     onCancel: () => setIsModal({ show: false }),
                     confirmText: "Close",

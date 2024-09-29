@@ -59,7 +59,8 @@ export const PortalPageTopNav = () => {
 
                             </div>
                             <div className={styles.icon}>
-                                <IconComponent iconType='portalUser' />
+                            <IconComponent iconType='redUser' />
+                                {/* <IconComponent iconType='portalUser' /> */}
                             </div>
 
                         </div>

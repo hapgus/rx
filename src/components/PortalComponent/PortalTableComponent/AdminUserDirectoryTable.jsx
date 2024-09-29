@@ -16,8 +16,16 @@ export const AdminUserDirectoryTable = () => {
     const tableColumns = [
         { key: 'firstName', title: 'Name' },
         // { key: 'lastName', title: 'Last Name' },
-        { key: 'email', title: 'Email' },
-        { key: 'role', title: 'Role' },
+        // { key: 'email', title: 'Email' },
+        {
+            key: 'role',
+            title: 'Role',
+            render: row => row.role === "superAdmin"
+                ? "Super Administrator"
+                : row.role === "admin" ? "Administrator"
+                    : row.role === "user" ? "User" : "Role Not Set"
+        },
+        // { key: 'role', title: 'Role' },
         // { key: 'status', title: 'Status' },
         { key: 'productsCreated', title: 'Products Created' },
         { key: 'productsUpdated', title: 'Products Updated' },

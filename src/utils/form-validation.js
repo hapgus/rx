@@ -85,8 +85,12 @@ const validationRules = {
     { rule: 'maxLength', value: 50, message: 'First name cannot be more than 50 characters.' },
   ],
   lastName: [
-    { rule: 'minLength', value: 2, message: 'First name must be at least 2 characters.' },
-    { rule: 'maxLength', value: 50, message: 'First name cannot be more than 50 characters.' },
+    { rule: 'required', message: 'Last name required.' },
+    { rule: 'minLength', value: 2, message: 'Last name must be at least 2 characters.' },
+    { rule: 'maxLength', value: 50, message: 'Last name cannot be more than 50 characters.' },
+  ],
+  signInPassword: [
+    { rule: 'required', message: 'Password required.' },
   ],
   password: [
     { rule: 'required', message: 'Password required.' },
@@ -103,7 +107,13 @@ const validationRules = {
   ],
   store: [
     { rule: 'required', message: 'Store required.' },
-    // { rule: 'minLength', value: 8, message: 'Password must be at least 8 characters long' },
+    { rule: 'minLength', value: 2, message: 'Store name must be at least 2 characters long' },
+    { rule: 'maxLength', value: 50, message: 'Store name cannot be more than 50 characters.' },
+  ],
+  address: [
+    { rule: 'required', message: 'Store address required.' },
+    { rule: 'minLength', value: 2, message: 'Store address must be at least 2 characters long' },
+    { rule: 'maxLength', value: 100, message: 'Store address cannot be more than 100 characters.' },
   ],
 
 
@@ -242,14 +252,18 @@ export const validateDynamicSections = (sections) => {
 
 export const validateSignupForms = (formState) => {
   const errorMessage = [];
+  
 
   const processedFirstName = trimAndNormalizeSpaces(formState.inputs.firstName.value);
+  const processedLastName = trimAndNormalizeSpaces(formState.inputs.lastName.value);
   const processedEmail = trimAndNormalizeSpaces(formState.inputs.email.value);
   const processedPassword = trimAndNormalizeSpaces(formState.inputs.password.value);
   const processedConfirmPassword = trimAndNormalizeSpaces(formState.inputs.confirmPassword.value); // NEW
   const processedStore = trimAndNormalizeSpaces(formState.inputs.store.value);
 
+  
   errorMessage.push(...validateField(processedFirstName, validationRules.firstName));
+  errorMessage.push(...validateField(processedLastName, validationRules.lastName));
   errorMessage.push(...validateField(processedEmail, validationRules.email));
   errorMessage.push(...validateField(processedPassword, validationRules.password));
   errorMessage.push(...validateField(processedConfirmPassword, validationRules.confirmPassword, formState)); // UPDATED
@@ -258,12 +272,12 @@ export const validateSignupForms = (formState) => {
   return errorMessage;
 }
 
-export const validateSiginForms = (formState) => {
+export const validateSigninForms = (formState) => {
   const errorMessage = [];
   const processedEmail = trimAndNormalizeSpaces(formState.inputs.email.value);
   const processedPassword = trimAndNormalizeSpaces(formState.inputs.password.value);
   errorMessage.push(...validateField(processedEmail, validationRules.email));
-  errorMessage.push(...validateField(processedPassword, validationRules.password));
+  errorMessage.push(...validateField(processedPassword, validationRules.signInPassword));
 
   return errorMessage;
 
@@ -292,15 +306,27 @@ export const validateAdminForm = (formState) => {
 
 export const validateUserProfileForm = (formState) => {
   const errorMessage = [];
+ 
   const processedFirstName = trimAndNormalizeSpaces(formState.inputs.firstName.value);
   const processedLastName = trimAndNormalizeSpaces(formState.inputs.lastName.value);
   const processedStore = trimAndNormalizeSpaces(formState.inputs.store.value);
+  const processedStoreAddress = trimAndNormalizeSpaces(formState.inputs.address.value);
+  
+   const processedValues = {
+    firstName:processedFirstName, 
+    lastName:processedLastName, 
+    store:processedStore, 
+    address:processedStoreAddress
+   };
+  console.log('pro store',processedStore)
 
   errorMessage.push(...validateField(processedFirstName, validationRules.firstName));
   errorMessage.push(...validateField(processedLastName, validationRules.lastName));
   errorMessage.push(...validateField(processedStore, validationRules.store));
+  errorMessage.push(...validateField(processedStoreAddress, validationRules.address));
+  
 
-  return errorMessage;
+  return {errorMessage, processedValues};
 }
 
 export const validateSaveListForm = (formState) => {

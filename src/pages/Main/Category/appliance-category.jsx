@@ -155,7 +155,7 @@ const transformedSubcategories = sortedSubcategories.map(subcategory => {
     
     // Sort the subcategories alphabetically
     const sortedTransformed = Object.keys(transformed)
-        .sort((a, b) => a.localeCompare(b))
+        .sort((b, a) => a.localeCompare(b))
         .reduce((acc, key) => {
             acc[key] = transformed[key];
             return acc;

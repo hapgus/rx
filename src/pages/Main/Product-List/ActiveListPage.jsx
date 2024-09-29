@@ -11,6 +11,8 @@ import { useAuthUser, useLogout, useAuth } from '../../../hooks/auth-hook';
 import { SaveListButton } from '../../../components/Button/SaveListButton';
 import { AnimatedComponent } from '../../../hooks/use-framer-motion';
 import { AnimatePresence, motion } from 'framer-motion';
+import { PrintButton } from '../../../components/Button/PrintButton';
+import { ClearProductListButton } from '../../../components/Button/ClearProductListButton';
 const listVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -93,8 +95,10 @@ export const ActiveListPage = ({ isEditing }) => {
                     </div>
                     <div className={styles.buttonsWrapper}>
                         {/* <PrintProductsButton productsInList={listCount} /> */}
-                        <PrintProductsButton productsInList={currentListCount} />
-                        <RemoveAllFromListButton />
+                        {/* <PrintProductsButton productsInList={currentListCount} /> */}
+                        <PrintButton  productsInList={currentListCount}/>
+                        {/* <RemoveAllFromListButton /> */}
+                        <ClearProductListButton/>
                         {/* {isAuthenticated === true &&<SaveListButton/>} */}
 
                     </div>
@@ -169,11 +173,12 @@ export const ActiveListPage = ({ isEditing }) => {
 
                                 <div className={styles.buttonsWrapper}>
                                     {/* <PrintProductsButton productsInList={listCount} /> */}
-                                    <PrintProductsButton productsInList={currentListCount} />
+                                    {/* <PrintProductsButton productsInList={currentListCount} /> */}
                                     {/* { isAuthenticated === true &&<SaveListButton/> } */}
 
-
-                                    <RemoveAllFromListButton />
+                                    <PrintButton  productsInList={currentListCount}/>
+                                    {/* <RemoveAllFromListButton /> */}
+                                    <ClearProductListButton/>
 
                                 </div>
 

@@ -35,12 +35,14 @@
 }
 
 .buttonWrapper button{
-max-width: max-content;
+    width: min-content;
+/* max-width: max-content; */
 }
-
+.deleteText:hover{
+     cursor: pointer;
+}
 .deleteAccountTitle{
     font-size: 1.8rem;
-
     padding: 1rem 0;
 }
 

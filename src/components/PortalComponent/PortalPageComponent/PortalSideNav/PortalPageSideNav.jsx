@@ -8,7 +8,8 @@ import { SidebarDropdownComponent } from '../../../PageComponent/DropdownCompone
 import { useState } from 'react';
 
 
-import {  portalDashLinks,
+import {
+    portalDashLinks,
     portalFormLinks,
     portalTableLinks,
     superPortalTableLinks,
@@ -17,7 +18,8 @@ import {  portalDashLinks,
     portalProductLinks,
 
     portalAdminUserLinks,
-    portalSuperAdminUserLinks} from '../../../../utils/link-config';
+    portalSuperAdminUserLinks
+} from '../../../../utils/link-config';
 
 
 
@@ -28,7 +30,7 @@ export const PortalPageSideNav = () => {
     const location = useCurrentLocation();
 
     const { isSuperAdmin } = useAuth();
-   
+
     const [dropdownState, setDropdownState] = useState({
         dashboard: true,
         products: true,
@@ -37,7 +39,7 @@ export const PortalPageSideNav = () => {
         // table: true,
         website: true,
     });
-
+    console.log(dropdownState)
     // ONE DROPDOWN OPEN AT ONCE
     // const handleDropdownClick = (headerText) => {
     //     setDropdownState(prevState => {
@@ -101,7 +103,9 @@ export const PortalPageSideNav = () => {
                             boxShadow: location.pathname === link.href ? '3px 0 #EA1917' : 'none',
                         }}>
                             <LinkComponent href={link.href}>
-                                <PageText type='footerMenuItem'>{link.text}</PageText>
+                                <PageText type='footerMenuItem'>
+                                    {link.text}
+                                </PageText>
                             </LinkComponent>
                         </li>
                     ))}

@@ -8,29 +8,35 @@ import Loader from '../../components/Loader/Loader';
 import ProductGuideAlerts from '../../components/Alert/Alert';
 import { useRoutingHook } from '../../hooks/routing-hook';
 import { useEffect } from 'react';
+import { useDataContext } from '../../hooks/data-hook';
+
+
+
 export default function PortalLayout() {
 
     const { isAlert, setIsAlert, isModal, setIsModal } = useNotificationHook();
-
+    const { isManagedDataState } = useDataContext()
     const { isRoutingState } = useRoutingHook();
 
-    console.log('auth lay',isRoutingState)
-    
-        useEffect(()=> {
-            console.log('run effect')
-            if(isRoutingState.isMobilePortalNavOpen){
-                document.body.style.overflow = 'hidden';
-                console.log('run effect - on portal mobile nav')
-            }
-            return () => {
-                console.log('run effect - on portal mobile nav unset')
-                document.body.style.overflow = 'unset';
-            };
-            
-        },[isRoutingState.isMobilePortalNavOpen])
+    console.log('auth lay', isRoutingState)
+
+    useEffect(() => {
+        console.log('run effect')
+        if (isRoutingState.isMobilePortalNavOpen) {
+            document.body.style.overflow = 'hidden';
+            console.log('run effect - on portal mobile nav')
+        }
+        return () => {
+            console.log('run effect - on portal mobile nav unset')
+            document.body.style.overflow = 'unset';
+        };
+
+    }, [isRoutingState.isMobilePortalNavOpen])
 
     return (
         <>
+            {isManagedDataState.loading === true && <Loader />}
+
             {isModal.show &&
 
                 <Modal
@@ -47,7 +53,7 @@ export default function PortalLayout() {
                 />
 
             }
-             {isAlert.show && (
+            {isAlert.show && (
                 <ProductGuideAlerts
                     onClick={() => setIsAlert({ ...isAlert, show: false })}
                     show={isAlert.show}

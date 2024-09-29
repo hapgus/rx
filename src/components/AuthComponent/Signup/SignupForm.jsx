@@ -74,10 +74,9 @@ export const SignupForm = () => {
         const errorMessage = validateSignupForms(formState)
         if (errorMessage.length !== 0) {
 
-            setIsModal(prevState => ({
-                ...prevState,
+            setIsModal( {
                 show: true,
-                modalType: 'infoModal',
+                modalType: 'errorModal',
                 title: "Almost there",
                 message: "You need to fix the following errors to continue.",
                 errorList: errorMessage,
@@ -86,7 +85,7 @@ export const SignupForm = () => {
                 confirmText: "Close",
                 cancelText: "Go back",
 
-            }));
+            });
         } else {
             const data = {
                 firstName: formState.inputs.firstName.value,
@@ -107,7 +106,7 @@ export const SignupForm = () => {
 
             try {
                 const response = await sendRequest(
-                    'http://localhost:3005/signup',
+                    `${process.env.REACT_APP_BACKEND_URL}signup`,
                     'POST',
                     JSON.stringify(data),{
                     'Content-Type': 'application/json',
@@ -121,13 +120,13 @@ export const SignupForm = () => {
                         ...prevState,
                         show: true,
                         modalType: 'successModal',
-                        title: "Signup Request Submitted!",
-                        message: "Thank you for signing up! We’re reviewing your request and will send you a confirmation email once it’s approved. While you wait, feel free to explore our Home Appliance Product Guide.",
+                        title: "Request Sent!",
+                        message: "Thank you for signing up! We’re reviewing your request and will send you a confirmation email once it’s approved. While you wait, feel free to explore our LG Home Appliance Product Guide.",
                         errorList: errorMessage,
                         onConfirm:handleCloseModalClick, 
                         onCancel: handleHomeModalClick,
                         confirmText: "Close",
-                        cancelText: "Go to the LG Product Guide",
+                        cancelText: "Explore",
 
                     }));
 
@@ -150,7 +149,7 @@ export const SignupForm = () => {
                 id="firstName"
                 name="firstName"
                 labelName="First name"
-                // secondaryLabel='Special characters allowed ( / \ - _ )'
+                 secondaryLabelToolTip='First name must be between 2 and 50 characters long'
                 errorText='First required'
                 validators={[VALIDATOR_REQUIRE()]}
                 onInput={inputHandler}
@@ -160,6 +159,7 @@ export const SignupForm = () => {
                 id="lastName"
                 name="lastName"
                 labelName="Last name"
+                 secondaryLabelToolTip='Last name must be between 2 and 50 characters long'
                 // secondaryLabel='Special characters allowed ( / \ - _ )'
                 errorText='Last name required'
                 validators={[VALIDATOR_REQUIRE()]}
@@ -180,9 +180,10 @@ export const SignupForm = () => {
                 id="store"
                 name="store"
                 labelName="Store"
-                secondaryLabel='The name of the retailer you work for. E.g.,The Home Depot'
-                errorText='store required'
-                validators={[VALIDATOR_REQUIRE()]}
+                secondaryLabelToolTip='The name of your retailer. Example, The Home Depot.'
+                // errorText='store required'
+                // validators={[VALIDATOR_REQUIRE()]}
+                validators={[]}
                 onInput={inputHandler}
 
             />
@@ -193,6 +194,7 @@ export const SignupForm = () => {
                 // secondaryLabel=''
                 errorText='Password required'
                 validators={[VALIDATOR_REQUIRE()]}
+                secondaryLabelToolTip='Password must be at least 8 characters long, with a least one number, one lowercase letter, one upper case letter, and one special character. Your password should not contain spaces.'
                 type={passwordInputType}
                 iconType={passwordInputType === "password" ? 'eyeClosed' : 'eyeOpened'}
                 onIconClick={togglePasswordVisibility}

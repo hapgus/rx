@@ -4,7 +4,7 @@ import { PageText } from '../../Text/Text';
 
 export const ColorLegend = ({colors}) =>{
 
-
+console.log(colors)
     const colorMapping = {
         [`black stainless steel`]: "#0D1115",  // Black Steel
         white: "#FFFFFF",

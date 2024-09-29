@@ -5,10 +5,12 @@ import { useNotificationHook } from "../../hooks/notification-hook";
 import { useRoutingHook } from "../../hooks/routing-hook";
 import styles from './AuthLayout.module.css';
 import { Outlet } from "react-router";
+import { useDataContext } from "../../hooks/data-hook";
 
 export default function AuthLayout() {
     const { isAlert, setIsAlert, isModal } = useNotificationHook();
     const { isRoutingState } = useRoutingHook();
+  
 
     return (
         <>

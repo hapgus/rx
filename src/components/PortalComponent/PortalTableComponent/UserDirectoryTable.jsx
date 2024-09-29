@@ -6,24 +6,58 @@ import { IconComponent } from "../../Icon/IconComponent";
 import { useNavigate } from "react-router";
 import { useRoutingHook } from "../../../hooks/routing-hook";
 
+
 export const UserDirectoryTable = () => {
 
     const redirect = useNavigate();
     const { setIsAdminRoutingState } = useRoutingHook();
 
     const [isUsers, setIsUsers] = useState(false);
-    
+
     const [currentPage, setCurrentPage] = useState(1);
-    
+
     const itemsPerPage = 10;
-    
+console.log(isUsers)
     const tableColumns = [
         { key: 'firstName', title: 'First Name' },
         { key: 'lastName', title: 'Last Name' },
         { key: 'email', title: 'Email' },
         { key: 'store', title: 'Store' },
-        { key: 'status', title: 'Status' },
-        { key: 'role', title: 'Role' },
+        {
+            key: 'status',
+            title: 'Status',
+            render: row => row.status === "approved" 
+            ? <div  onClick={
+                () => {
+                    setIsAdminRoutingState(row.userId)
+                    redirect(`/portal/edit-user/${row.userId}`)
+                }
+            } className={styles.greenPill}><span>Approved</span></div> 
+            : row.status === "notApproved" 
+            ?<div  onClick={
+                () => {
+                    setIsAdminRoutingState(row.userId)
+                    redirect(`/portal/edit-user/${row.userId}`)
+                }
+            } className={styles.redPill}><span>Not Approved</span></div>
+            :row.status === "pending"
+            ? <div  onClick={
+                () => {
+                    setIsAdminRoutingState(row.userId)
+                    redirect(`/portal/edit-user/${row.userId}`)
+                }
+            } className={styles.yellowPill}><span>Pending</span></div>
+            : "Status Not Set"
+
+        },
+        {
+            key: 'role',
+            title: 'Role',
+            render: row => row.role === "superAdmin"
+                ? "Super Administrator"
+                : row.role === "admin" ? "Administrator"
+                    : row.role === "user" ? "User" : "Role Not Set"
+        },
         {
             key: 'manage',
             title: 'Manage',
@@ -67,7 +101,7 @@ export const UserDirectoryTable = () => {
 
 
 
-console.log(isUsers)
+    console.log(isUsers)
 
     return (
         isUsers &&

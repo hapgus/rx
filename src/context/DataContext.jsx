@@ -3,6 +3,15 @@ import { parse, format, isBefore, isAfter, startOfMonth, subDays } from 'date-fn
 
 // Create the DataContext
 export const DataContext = createContext({
+    // NEW
+    isManagedDataState: {
+        preLoading:false,
+        loading: false,
+        error: null,
+        data: null
+    },
+    setIsManagedDataState: () => { },
+
     isDataState: {
         isData: null,
         isDataFilteredByDate: null,
@@ -30,6 +39,15 @@ export const DataContext = createContext({
 
 // Create the DataProvider component
 export const DataProvider = ({ children, apiEndpoint }) => {
+  // NEW
+    const initialManagedDataState = {
+        preLoading:false,
+        loading: false,
+        error: null,
+        data: null
+    }
+    const [isManagedDataState, setIsManagedDataState] = useState(initialManagedDataState);
+
     const initialDataState = {
         isData: null,
         isDataFilteredByDate: null,
@@ -59,7 +77,7 @@ export const DataProvider = ({ children, apiEndpoint }) => {
                 const response = await fetch(apiEndpoint || `${process.env.REACT_APP_BACKEND_URL}data`);
                 const result = await response.json();
 
-                console.log('result',result)
+                console.log('result', result)
 
                 // NEW DATA STREAMS
                 const parsedData = result.appDataOverview ? result.appDataOverview.map(item => ({
@@ -225,6 +243,10 @@ export const DataProvider = ({ children, apiEndpoint }) => {
     console.log({ isDataState, isDateRangeState, filteredData, retailer })
     return (
         <DataContext.Provider value={{
+
+            isManagedDataState,
+            setIsManagedDataState,
+
             isDataState,
             setIsDataState,
             isDateRangeState,

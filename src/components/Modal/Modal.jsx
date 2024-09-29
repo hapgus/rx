@@ -7,13 +7,15 @@ import { LGComponent } from "../Character/LGComponent";
 import { useNotificationHook } from "../../hooks/notification-hook";
 import { SaveListForm } from "../AuthComponent/SaveListForm";
 import { AnimatePresence, motion } from "framer-motion";
+import { LGGif } from "../Character/LGGif";
+import { AnimatedButton } from "../../hooks/use-framer-motion";
 // import {NakedLoader}
 
 
 const ModalContent = props => {
 
     const modalVariants = {
-        hidden: { opacity: 0, y: "100%" },
+        hidden: { opacity: 0, y: "-100%" },
         visible: { opacity: 1, y: "0%" },
         exit: { opacity: 0, y: "100%" }
     };
@@ -22,14 +24,18 @@ const ModalContent = props => {
     // Determine the icon based on modal type
     const getIcon = (modalType) => {
         switch (modalType) {
+            case 'confirmationModal':
+                return <IconComponent iconType='shield' />;
             case 'warningModal':
-                return <IconComponent iconType='errorInfo' />;
+                return <IconComponent iconType='cautionSymbol' />;
             case 'infoModal':
                 return <IconComponent iconType='errorInfo' />;
             case 'errorModal':
                 return <IconComponent iconType='errorInfo' />;
             case 'successModal':
                 return <IconComponent iconType='greenCheckmark' />;
+            case 'printModal':
+                return <LGGif type="armHeartGirl" />;
             default:
                 return <LGComponent type='girlHand' />;
         }
@@ -97,16 +103,19 @@ const ModalContent = props => {
                 return (
                     <div className={styles.generalModalContainer}>
                         <div className={styles.successIconWrapper}>
-                            {getIcon(props.modalType)}
+                            <div className={styles.successIcon}>
+                                {getIcon(props.modalType)}
+                            </div>
                         </div>
                         <div className={styles.generalBodyWrapper}>
-                            <div className={styles.modalTitle}>
-                                <PageText type="modalTitle">{props.title}</PageText>
+                            <div className={styles.printModalTextWrapper}>
+                                <div className={styles.printModalTitle}>
+                                    <PageText type="modalTitle">{props.title}</PageText>
+                                </div>
+                                <div className={styles.printModalDescription}>
+                                    <PageText type="modalTertiaryTitle">{props.message}</PageText>
+                                </div>
                             </div>
-                            <div className={styles.modalDescription}>
-                                <PageText type="modalTertiaryTitle">{props.message}</PageText>
-                            </div>
-                         
                         </div>
                     </div>
                 );
@@ -119,6 +128,102 @@ const ModalContent = props => {
                         <SaveListForm />
                     </div>
                 );
+            case 'printModal':
+                return (
+                    <div >
+                        <div >
+                            <div className={styles.printGifWrapper}>
+                                <div className={styles.gifImage}>
+                                    {getIcon(props.modalType)}
+                                </div>
+                            </div>
+                            <div className={styles.printModalTextWrapper}>
+                                <div className={styles.printModalTitle}>
+                                    <PageText type="modalTitle">{props.title}</PageText>
+                                </div>
+
+                                <div className={styles.printModalDescription}>
+                                    <PageText type="modalTertiaryTitle">{props.message}</PageText>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div className={styles.printButtonsWrapper} >
+                            {props.onCancel && (
+                                <AnimatedButton>
+                                    <Button
+                                        onClick={props.onCancel}
+                                        buttonTextType="action"
+                                        buttonStyleType="primary"
+                                    >
+                                        {props.cancelText}
+                                    </Button>
+                                </AnimatedButton>
+                            )}
+                            {props.onConfirm && (
+                                <AnimatedButton>
+                                    <Button
+                                        onClick={props.onConfirm}
+                                        buttonStyleType="secondary"
+                                    >
+                                        {props.confirmText}
+                                    </Button>
+                                </AnimatedButton>
+                            )}
+                        </div>
+                    </div>
+
+                );
+            case 'warningModal':
+                return (
+                    <>
+                        <div className={styles.generalModalContainer}>
+                            <div className={styles.warningIconWrapper}>
+                                <div className={styles.warningIcon}>
+                                    {getIcon(props.modalType)}
+                                </div>
+
+                            </div>
+                            <div className={styles.generalBodyWrapper}>
+                                <div className={styles.printModalTextWrapper}>
+                                    <div className={styles.printModalTitle}>
+                                        <PageText type="modalTitle">{props.title}</PageText>
+                                    </div>
+
+                                    <div className={styles.printModalDescription}>
+                                        <PageText type="modalTertiaryTitle">{props.message}</PageText>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </>
+                );
+                case 'confirmationModal':
+                    return (
+                        <>
+                            <div className={styles.generalModalContainer}>
+                                <div className={styles.confirmationIconWrapper}>
+                                    <div className={styles.confirmationIcon}>
+                                        {getIcon(props.modalType)}
+                                    </div>
+    
+                                </div>
+                                <div className={styles.generalBodyWrapper}>
+                                    <div className={styles.printModalTextWrapper}>
+                                        <div className={styles.printModalTitle}>
+                                            <PageText type="modalTitle">{props.title}</PageText>
+                                        </div>
+    
+                                        <div className={styles.printModalDescription}>
+                                            <PageText type="modalTertiaryTitle">{props.message}</PageText>
+                                        </div>
+    
+                                    </div>
+                                </div>
+                            </div>
+                        </>
+                    );
             default:
                 return (
                     <div>
@@ -146,28 +251,41 @@ const ModalContent = props => {
                 >
 
 
-                    <div className={styles.modalWrapper}>
-                        {renderContent()}
-                        <div className={styles.buttonsWrapper}>
-                            {props.onCancel && (
-                                <Button
-                                    onClick={props.onCancel}
-                                    buttonTextType="action"
-                                    buttonStyleType="secondary"
-                                >
-                                    {props.cancelText}
-                                </Button>
-                            )}
-                            {props.onConfirm && (
-                                <Button
-                                    onClick={props.onConfirm}
-                                    buttonStyleType="primary"
-                                >
-                                    {props.confirmText}
-                                </Button>
-                            )}
-                        </div>
-                    </div>
+                    {props.modalType !== 'printModal'
+                        ?
+                        (
+                            <div className={styles.renderModalContainer}>
+                                {renderContent()}
+                                <div className={styles.buttonsWrapper}>
+                                    {props.onCancel && (
+                                        <Button
+                                            onClick={props.onCancel}
+                                            buttonTextType="action"
+                                            buttonStyleType="secondary"
+                                        >
+                                            {props.cancelText}
+                                        </Button>
+                                    )}
+                                    {props.onConfirm && (
+                                        <Button
+                                            onClick={props.onConfirm}
+                                            buttonStyleType="primary"
+                                        >
+                                            {props.confirmText}
+                                        </Button>
+                                    )}
+                                </div>
+
+
+                            </div>
+                        )
+                        :
+                        (
+                            <div className={styles.printModalRenderedContainer}>
+                                {renderContent()}
+                            </div>
+                        )
+                    }
                 </motion.div>
 
             </div>

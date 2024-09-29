@@ -34,7 +34,8 @@ export const useAnimation = (type, delay = 0, directionStart) => {
                         rotateX: 0,  // Rotate back to 0
                         opacity: 1,
                         transition: {
-                            // duration: 0.6,
+                            delay,
+                            duration: 0.6,
                             ease: [0.6, -0.05, 0.01, 0.99], // Smooth ease for 3D rotation
                             // staggerChildren: 0.1,  // Stagger the appearance of child links
                             // delayChildren: 0.2     // Delay children by 0.2 seconds before stagger begins
@@ -435,7 +436,7 @@ export const AnimatedButton = ({
     return (
         <motion.div
             {...conditionalAnimation}
-
+style={{width:"100%"}}
         >
             {children}
         </motion.div>

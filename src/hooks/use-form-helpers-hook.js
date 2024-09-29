@@ -188,7 +188,7 @@ export const useColorOptions = () => {
             { color: 'black steel' },
             { color: 'graphite steel' },
             { color: 'middle black' },
-            { color: 'apline white' },
+            { color: 'alpine white' },
             { color: 'matte black' },
             { color: 'monochrome grey' },
             { color: 'candy apple red' },

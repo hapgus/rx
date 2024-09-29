@@ -1,3 +1,6 @@
+/* ---------------------------------------------------------- */
+/* MODAL CONTAINERS FOR ALL MODALS */
+/* ---------------------------------------------------------- */
 .backdropContainer {
     position: fixed;
     top: 0;
@@ -8,6 +11,7 @@
     background: rgba(0, 0, 0, 0.4);
     z-index: 1;
 }
+
 .overlayContainer {
     position: fixed;
     top: 0;
@@ -22,96 +26,298 @@
     /* width: 100%; */
 }
 
-
-.generalModalContainer{
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   align-items: center;
-}
-.modalBodyWrapper{
-    padding: 0 0 2rem 0;
-}
-.generalIconWrapper{
-    border-radius: 100rem;
-    padding: 0rem;
-    background-color: #FEE4E2;
-    border: #f8e2e1 .8rem solid ;
-    width: max-content;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.successIconWrapper{
-    border-radius: 100rem;
-    padding: 0rem;
-    background-color: #D1FADF;
-    border: #ECFDF3 .8rem solid ;
-    width: max-content;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.modalContainer{
-      /* background-color: var(--color-gray-04); */
-    /* background-color: aquamarine; */
+.modalContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: inherit;
 }
-.modalWrapper{
-    background-color: var(--color-gray-06);
+/* ---------------------------------------------------------- */
+/* CONFIRMATION MODAL */
+/* ---------------------------------------------------------- */
+.confirmationIconWrapper {
+    border-radius: 100rem;
+    padding: .5rem;
+    background-color: #f23030;
+    border: #fb1111 .8rem solid;
+    width: max-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.confirmationIcon {
+    height: 3.4rem;
+    width: 3.4rem;
+}
+
+.confirmationIcon svg {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+/* ---------------------------------------------------------- */
+/* SUCCESS MODAL */
+/* ---------------------------------------------------------- */
+.successIconWrapper {
+    border-radius: 100rem;
+    /* padding: .5rem; */
+    background-color: #D1FADF;
+    border: #ECFDF3 .8rem solid;
+    width: max-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.successIcon {
+    /* height: 2.4rem;
+    width: 2.4rem; */
+}
+
+.successIcon svg {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+/* ---------------------------------------------------------- */
+/* WARNING MODAL */
+/* ---------------------------------------------------------- */
+.warningIconWrapper {
+    border-radius: 100rem;
+    padding: .5rem;
+    background-color: #f9bb007a;
+    border: #e6db9f8a .8rem solid;
+    width: max-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.warningIcon {
+    height: 2.4rem;
+    width: 2.4rem;
+}
+
+.warningIcon svg {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+/* ---------------------------------------------------------- */
+/* PRINT MODAL */
+/* ---------------------------------------------------------- */
+.printModalRenderedContainer {
+    background-size: 400% 400%;
+    background-image: linear-gradient(45deg, #f78b8b, #ffb5b5, rgb(255, 224, 224), var(--color-gray-07), #ffb5b5, #f78b8b);
+    /* background-image: linear-gradient(45deg, #f78b8b, #ffb5b5, rgb(255, 224, 224), var(--color-gray-07), #ffb5b5, #f78b8b); */
+    animation: gradientAnimation 15s ease infinite;
     padding: 3rem;
     border-radius: 2rem;
-    min-width: 33rem;
-    width: max-content;
+    /* min-width: 33rem; */
+    width: 35rem;
+    /* width: max-content; */
 }
 
-.modalTitle{ 
-    /* background-color: aqua; */
-    padding-bottom: 1rem;
-    text-align: center;
-}
-.modalDescription{
-    text-align: center;
-    padding-bottom: 2rem;
-}
-
-.errorList{
+.printModalTextWrapper {
     display: flex;
     flex-direction: column;
-    gap: .2rem;
-    padding-bottom: 3rem;
+    align-items: center;
+    justify-content: center;
+    /* background-color: aqua; */
+    margin-bottom: 3rem;
+    text-align: center;
+    gap: .5rem;
 }
-.errorList li{
-    
-    font-size: 1.8rem;
+
+.printModalTitle {
+    color: var(--color-gray-01);
+    margin-bottom: 1rem;
+}
+
+.printModalDescription {
     color: var(--color-gray-02);
-    list-style: disc;
-    list-style-position: outside;
-    
 }
 
-
-
-.buttonsWrapper{
+.printButtonsWrapper {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 1rem;
-width: 100%;
+    margin-bottom: 1rem;
 }
 
-.buttonsWrapper button{
+.printGifWrapper {
+    /* background-color: aqua; */
+    display: flex;
+    justify-content: center;
+}
+
+.gifImage {
+    /* height: 30rem; */
+    width: 25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.gifImage img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+
+    /* background-color: aquamarine; */
+
+}
+
+/* ---------------------------------------------------------- */
+/* MODAL CONTAINER FOR ALL BUT PRINT MODALS */
+/* ---------------------------------------------------------- */
+.generalModalContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.renderModalContainer  {
+    background-color: var(--color-gray-05);
+    padding: 3.5rem;
+    border-radius: 2rem;
+    width: 33rem;
+    /* min-width: 33rem;
+    width: max-content; */
+}
+
+
+
+.printModalWrapper {
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+
+}
+
+
+.modalBodyWrapper {
+    padding: 0 0 2rem 0;
+}
+
+.generalIconWrapper {
+    border-radius: 100rem;
+    padding: 0rem;
+    background-color: #FEE4E2;
+    border: #f8e2e1 .8rem solid;
+    width: max-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.modalTitle {
+    /* background-color: aqua; */
+    padding-bottom: 1rem;
+    text-align: center;
+}
+
+.modalDescription {
+    text-align: center;
+    padding-bottom: 2rem;
+}
+
+.errorList {
+    display: flex;
+    flex-direction: column;
+    gap: .2rem;
+    padding-bottom: 3rem;
+}
+
+.errorList li {
+
+    font-size: 1.8rem;
+    color: var(--color-red-03);
+    list-style: disc;
+    list-style-position: outside;
+
+}
+
+
+
+.buttonsWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+.buttonsWrapper button {
     width: 100%;
 }
 
 
-@media (min-width: 768px) {
-    .modalWrapper{
-        width: 54rem;
-  }
+@media (min-width: 430px) {
+
+    /* ---------------------------------------------------------- */
+    /* GENERAL MODALS */
+    /* ---------------------------------------------------------- */
+   
+    .renderModalContainer {
+        width: 35rem;
+        
+    }
 }
+
+
+@media (min-width: 768px) {
+
+    /* ---------------------------------------------------------- */
+    /* PRINT MODAL */
+    /* ---------------------------------------------------------- */
+    .printModalRenderedContainer {
+        width: 40rem;
+    }
+    .renderModalContainer {
+        width: 44rem;
+        
+    }
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* --------------------------------------------------------------------------------------- */
+/* MEDIA QUERY REFERENCE */
+/* --------------------------------------------------------------------------------------- */
+/* 
+@media (min-width: 430px) {}
+@media (min-width: 768px) {}
+@media (min-width: 834px) {}
+@media (min-width: 1024px) {} - MOBILE / DESKTOP Breakpoint
+@media (min-width: 1280px) {}
+@media (min-width: 1440px) {}
+@media (min-width: 1920px) {} 
+*/

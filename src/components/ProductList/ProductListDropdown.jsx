@@ -16,8 +16,9 @@ import { GridSystem } from "../GridSystem/GridSystem";
 import { LinkComponent } from "../Links/LinkComponent";
 import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
-import { AnimatedComponent } from "../../hooks/use-framer-motion";
+import { AnimatedButton, AnimatedComponent } from "../../hooks/use-framer-motion";
 import LinkedLogo from "../Logo/LinkedLogo";
+import { LGGif } from "../Character/LGGif";
 
 const listVariants = {
     hidden: { opacity: 0 },
@@ -57,13 +58,14 @@ const EmptyListScreen = () => {
                                     <PageText type="searchTitle">Get Started Adding Products!</PageText>
                                     {/* </AnimatedComponent> */}
                                     {/* <AnimatedComponent type="wipeEffect"> */}
-                                    <PageText type="searchSubtitle">Use search or explore appliance pages to find and add products to your list.</PageText>
+                                    <PageText type="searchSubtitle">Use search or explore our home appliance pages to find and add products to your list.</PageText>
                                     {/* </AnimatedComponent> */}
                                 </div>
 
 
                                 <div className={styles.mobileEmptyListCharacterImage}>
                                     <LGComponent type='girlFull' />
+                                    {/* <LGGif type="armHeartGirl"/> */}
                                 </div>
                                 <motion.div
                                     variants={listVariants}
@@ -78,7 +80,10 @@ const EmptyListScreen = () => {
                                             variants={itemVariants}
                                         >
                                             <LinkComponent href={link.href}>
-                                                <Button buttonStyleType="primary">{link.text}</Button>
+
+                                                <AnimatedButton>
+                                                    <Button buttonStyleType="primary">{link.text}</Button>
+                                                </AnimatedButton>
                                             </LinkComponent>
                                         </motion.span>
                                     )};
@@ -133,7 +138,7 @@ const PopulatedListScreen = () => {
                             // icon
                             // iconType='whiteRightArrow'
                             // iconPosition="right"
-                            buttonStyleType="printDefault">Go to product list builder
+                            buttonStyleType="printDefault">Go to Product List Builder
                         </Button>
                     </LinkComponent>
                     {/* <LinkComponent href={`${publicUrl}/product-list-builder`}>

@@ -33,7 +33,7 @@ background-color: var(--color-gray-06);
     grid-column: 1/-1;
     grid-row: 3;
     display: flex;
-    gap: 1rem;
+    /* gap: 1rem; */
     flex-direction: column;
    margin-top: 6rem;
    padding-right: .2rem;
@@ -68,7 +68,7 @@ background-color: var(--color-gray-06);
     /* gap: 1.5rem; */
 }
 .dropdownList li{
-    padding: 1.2rem 6rem;
+    padding: 2.2rem 6rem;
    
 }
 .dropdownList li:hover{

@@ -1,0 +1,63 @@
+.sectionTitle{
+    font-size: 3rem;
+    color: var(--color-gray-01);
+   
+    
+}
+.sectionTitle2{
+    font-size: 3rem;
+    color: var(--color-gray-01);
+    /* padding-top: 2rem; */
+    
+}
+.infoWrapper{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    padding: 1rem 0;
+}
+.infoRow{
+    display: flex;
+    flex-direction: row;
+    gap: .5rem;
+    align-items: center;
+}
+.infoTitle{
+    font-size: 1.8rem;
+    color: var(--color-gray-01);
+}
+.infoData{
+    font-size: 1.8rem;
+    color: var(--color-red-03);
+}
+.formElements{
+    padding-bottom: 2rem;
+}
+
+.buttonWrapper button{
+    width: min-content;
+/* max-width: max-content; */
+}
+.deleteText:hover{
+     cursor: pointer;
+}
+.deleteAccountTitle{
+    font-size: 1.8rem;
+    padding: 1rem 0;
+}
+
+.userIntroWrapper{
+    padding-bottom: 3rem;
+}
+
+.actionButtonsWrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+.actionButtonsWrapper, a{
+     font-size: 1.6rem;
+    color: var(--color-gray-03);
+}
