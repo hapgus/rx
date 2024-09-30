@@ -5,20 +5,44 @@ import TableBody from "../../TableComponent/TableBody"
 import { useNavigate } from "react-router";
 import { useNotificationHook } from "../../../hooks/notification-hook";
 import TablePagination from "../../TableComponent/TablePagination";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from '../../../hooks/auth-hook';
 import { DateComponent } from "../../Date/DateComponent";
 import styles from './TableComponent.module.css'
+import { LinkComponent } from "../../Links/LinkComponent";
+
+import { SearchFilterInput } from "./SearchFilterInput";
 
 export const ProductDirectoryTable = () => {
-
-    const redirect = useNavigate();
-    // const { publicProducts,  fetchProducts } = useProductsHook();
-    const { allProducts,  fetchProducts } = useProductsHook();
-    const { isModal, setIsModal } = useNotificationHook();
     const { authUserId } = useAuth();
+    const redirect = useNavigate();
+    const { setIsModal } = useNotificationHook();
+
+    // const { publicProducts,  fetchProducts } = useProductsHook();
+    const { allProducts, fetchProducts } = useProductsHook();
+
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 10;
+
+    const [filteredProducts, setFilteredProducts] = useState(allProducts);
+    // const [searchField, setSearchField] = useState('');
+
+    // useEffect(() => {
+    //     if (searchField.length >= 2) {
+    //         const newFilteredProducts = allProducts.filter(product =>
+    //             product.title && product.title.toLowerCase().includes(searchField)
+    //         );
+    //         setFilteredProducts(newFilteredProducts);
+    //     } else {
+    //         setFilteredProducts(allProducts);
+    //     }
+    // }, [allProducts, searchField]);
+
+    // const onSearchChange = (event) => {
+    //     setSearchField(event.target.value.toLowerCase());
+    // };
+
+
 
     const handleDeleteProduct = async (productId) => {
         console.log('product to delete', productId)
@@ -46,7 +70,7 @@ export const ProductDirectoryTable = () => {
                     if (response.status === 200) {
                         fetchProducts();
                         alert('product delete')
-                         setIsModal({ show: false })
+                        setIsModal({ show: false })
                     }
                     console.log('delete response', response)
                 } catch (err) {
@@ -86,7 +110,13 @@ export const ProductDirectoryTable = () => {
 
 
     const tableColumns = [
-        { key: 'title', title: 'Model' },
+        {
+            key: 'title',
+            title: 'Model',
+            render: row => (
+                <span><LinkComponent href={`/appliances/${row.category}/${row.title}`}>{row.title}</LinkComponent></span>
+            )
+        },
         { key: 'category', title: 'Category' },
         { key: 'subcategory', title: 'Subcategory' },
         { key: 'msrp', title: 'MSRP' },
@@ -115,35 +145,33 @@ export const ProductDirectoryTable = () => {
         }
         // { key: '', title: '' },
     ];
+
+
     console.log('table', allProducts)
     return (
 
-        allProducts &&
+       allProducts &&
         <>
+            
+            <SearchFilterInput
+                data={allProducts}
+                setFilteredData={setFilteredProducts}
+                placeholder="Search products..."
+                searchBy={['category']} // Array of keys to search
+            />
             <TableBody
                 columns={tableColumns}
-                data={allProducts.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)}
+                data={filteredProducts.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)}
+            // data={allProducts.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)}
             />
             <TablePagination
                 itemsPerPage={itemsPerPage}
-                tableData={allProducts}
+                tableData={filteredProducts}
+                // tableData={allProducts}
                 setCurrentPage={setCurrentPage}
                 currentPage={currentPage}
             />
         </>
-        // publicProducts &&
-        // <>
-        //     <TableBody
-        //         columns={tableColumns}
-        //         data={publicProducts.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)}
-        //     />
-        //     <TablePagination
-        //         itemsPerPage={itemsPerPage}
-        //         tableData={publicProducts}
-        //         setCurrentPage={setCurrentPage}
-        //         currentPage={currentPage}
-        //     />
-        // </>
     )
 
 

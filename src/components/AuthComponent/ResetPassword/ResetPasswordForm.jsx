@@ -28,7 +28,7 @@ export const ResetPasswordForm = () => {
 
     const handleRedirect = () => {
         setIsModal({ show: false })
-        redirect('/')
+        redirect('/member/login')
     }
 
     const onPasswordResetSubmit = async (e) => {
@@ -73,7 +73,7 @@ export const ResetPasswordForm = () => {
                         message: "Congrats! Your password reset email has been sent. It is valid for 1hr. Check you spam or junk folder if the email is not found in your inbox.",
                         errorList: errorMessage,
                         onConfirm: handleRedirect,
-                        confirmText: "Close",
+                        confirmText: "Go to Sign In",
                     }));
 
                 }

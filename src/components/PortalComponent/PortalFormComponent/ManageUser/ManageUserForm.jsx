@@ -1,10 +1,8 @@
-
 import styles from '../PortalFormComponent.module.css'
 
 import { PageText } from '../../../../components/Text/Text';
 
 import { Button } from '../../../../components/Button/Button';
-
 
 import { useHttpClient } from '../../../../hooks/http-hook';
 import { useRoutingHook } from '../../../../hooks/routing-hook';
@@ -22,6 +20,8 @@ import { useNotificationHook } from '../../../../hooks/notification-hook';
 import { FormSkeleton } from '../../../Skeletons/FormSkeleton';
 
 import {  AnimatedComponent } from '../../../../hooks/use-framer-motion';
+
+
 export const ManageUserForm = () => {
 
     const { userId } = useParams();
@@ -31,6 +31,7 @@ export const ManageUserForm = () => {
     const { setIsRoutingState, isAdminRoutingState } = useRoutingHook();
     const { sendRequest } = useHttpClient();
     const { isManagedDataState, setIsManagedDataState } = useDataContext();
+
     console.log('managedData', isManagedDataState)
     const [userInfo, setUserInfo] = useState()
 
@@ -44,6 +45,24 @@ export const ManageUserForm = () => {
         status: { value: '', isValid: false },
     })
 
+     // HANDLE MODAL OPTIONS
+
+     const handleOnCancelRedirectDirectoy = () => {
+
+        console.log('handle',formState)
+        setIsModal({ show: false })
+        if(formState.inputs.role.value === "admin" || formState.inputs.role.value === "superAdmin" ){
+            redirect('/portal/admin-directory/')
+        } else{
+            redirect('/portal/user-directory/')
+        }
+        
+    }
+
+    const handleOnMainDash = () => {
+        setIsModal({ show: false })
+        redirect('/portal/dashboard')
+    }
 
     // POPULATE USER DATA
     useEffect(() => {
@@ -80,7 +99,7 @@ export const ManageUserForm = () => {
     }, [userId])
 
 
-    // DELETE ACCOUNT DATA
+    // HANDLE DELETE ACCOUNT DATA
     const handleDeleteUser = () => {
 
         if (userInfo.role === 'superAdmin' && !isSuperAdmin) {
@@ -127,10 +146,7 @@ export const ManageUserForm = () => {
                     message: `The user account has been successfully deleted.`,
                     confirmText: "Close",
                     cancelText: "View directory",
-                    onCancel: () => {
-                        setIsModal({ show: false });
-                        redirect('/portal/user-directory/');
-                    },
+                    onCancel: handleOnCancelRedirectDirectoy,
                     onConfirm:()=>{
                         setIsModal({ show: false });
                         redirect('/portal/dashboard/');
@@ -162,16 +178,10 @@ export const ManageUserForm = () => {
     };
 
 
-     // HANDLE MODAL OPTIONS
-    const handleOnCancel = () => {
-        setIsModal({ show: false })
-        redirect('/portal/user-directory/')
-    }
-    const handleOnMainDash = () => {
-        setIsModal({ show: false })
-        redirect('/portal/dashboard')
-    }
 
+
+
+    // HANDLE UPDATE USER
     const handlePreFormSubmit = (e) => {
 
         e.preventDefault();
@@ -187,7 +197,7 @@ export const ManageUserForm = () => {
                 show: true,
                 modalType: 'infoModal',
                 title: "Nothing to update",
-                message: "The user\'s information is unchanged. Please select a new status or role for this user and try again.",
+                message: "The user's information is unchanged. Please select a new status or role for this user and try again.",
                 errorList: [],
                 onConfirm: () => setIsModal({ show: false }),
                 // onCancel: handleOnCancel,
@@ -212,8 +222,6 @@ export const ManageUserForm = () => {
 
         }));
     }
-
-
 
     const handleFormSubmit = async (e) => {
         setIsManagedDataState(prevState => ({ ...prevState, loading: true }));
@@ -246,7 +254,7 @@ export const ManageUserForm = () => {
                     errorList: [],
                     // onConfirm: () => setIsModal({ show: false }),
                     onConfirm: handleOnMainDash,
-                    onCancel: handleOnCancel,
+                    onCancel: handleOnCancelRedirectDirectoy,
                     confirmText: "Close",
                     cancelText: "View directory",
 

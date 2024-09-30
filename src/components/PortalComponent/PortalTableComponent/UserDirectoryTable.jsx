@@ -17,7 +17,7 @@ export const UserDirectoryTable = () => {
     const [currentPage, setCurrentPage] = useState(1);
 
     const itemsPerPage = 10;
-console.log(isUsers)
+
     const tableColumns = [
         { key: 'firstName', title: 'First Name' },
         { key: 'lastName', title: 'Last Name' },

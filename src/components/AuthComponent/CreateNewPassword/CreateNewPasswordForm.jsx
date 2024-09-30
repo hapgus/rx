@@ -10,9 +10,9 @@ import { useHttpClient } from "../../../hooks/http-hook";
 import { useNavigate } from "react-router";
 import { useParams } from "react-router";
 import { useRoutingHook } from "../../../hooks/routing-hook";
-import { validatePasswordResetEmailForms } from "../../../utils/form-validation";
+import { validateNewPasswordForms } from "../../../utils/form-validation";
 
-export const PasswordResetForm = () => {
+export const CreateNewPasswordForm = () => {
     const { token } = useParams();
     
     const { setIsModal, isModal } = useNotificationHook();
@@ -52,8 +52,8 @@ export const PasswordResetForm = () => {
     useEffect(() => {
         const fetchUserId = async () => {
           try {
-            // const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/reset/${token}`);
-            const response = await fetch(`http://localhost:3005/reset/${token}`);
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}reset/${token}`);
+            // const response = await fetch(`http://localhost:3005/reset/${token}`);
             const data = await response.json();
     
             if (data.error) {
@@ -77,7 +77,7 @@ export const PasswordResetForm = () => {
     const onPasswordResetSubmit = async (e) => {
         e.preventDefault()
 
-        const errorMessage = validatePasswordResetEmailForms(formState);
+        const errorMessage = validateNewPasswordForms(formState);
 
         if (errorMessage.length !== 0) {
             setIsModal({
@@ -95,12 +95,16 @@ export const PasswordResetForm = () => {
 
         } else {
             const data = {
+                userId: userId,
                 password: formState.inputs.password.value,
+                passwordToken: token
+
             };
             try {
                 const { responseData, responseStatusCode } = await sendRequest(
 
-                    `${process.env.REACT_APP_BACKEND_URL}reset/${token}`,
+                    // `${process.env.REACT_APP_BACKEND_URL}reset/${token}`,
+                    `http://localhost:3005/new-password/`,
                     'POST',
                     JSON.stringify(data), {
                     'Content-Type': 'application/json',

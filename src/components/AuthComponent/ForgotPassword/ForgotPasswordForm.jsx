@@ -58,6 +58,7 @@ export const ForgotPasswordForm = () => {
                 const { responseData, responseStatusCode } = await sendRequest(
 
                     `${process.env.REACT_APP_BACKEND_URL}reset`,
+                    // `http://localhost:3005/reset`,
                     'POST',
                     JSON.stringify(data), {
                     'Content-Type': 'application/json',

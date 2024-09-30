@@ -16,7 +16,7 @@ export const AdminUserDirectoryTable = () => {
     const tableColumns = [
         { key: 'firstName', title: 'Name' },
         // { key: 'lastName', title: 'Last Name' },
-        // { key: 'email', title: 'Email' },
+        { key: 'email', title: 'Email' },
         {
             key: 'role',
             title: 'Role',

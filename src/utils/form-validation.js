@@ -349,3 +349,16 @@ export const validatePasswordResetEmailForms = (formState) => {
   return errorMessage;
 
 }
+
+
+export const validateNewPasswordForms = (formState) => {
+  const errorMessage = [];
+  const processedPassword = trimAndNormalizeSpaces(formState.inputs.password.value);
+  const processedConfirmPassword = trimAndNormalizeSpaces(formState.inputs.confirmPassword.value); // NEW
+
+  errorMessage.push(...validateField(processedPassword, validationRules.password));
+  errorMessage.push(...validateField(processedConfirmPassword, validationRules.confirmPassword, formState)); // UPDATED
+
+  return errorMessage;
+
+}

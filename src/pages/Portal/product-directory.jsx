@@ -16,6 +16,7 @@ const ProductDirectoryPage = () => {
             breadcrumbLink="/portal/product-directory"
             // bodyTitle='Product Management Table'
         >
+            
             <ProductDirectoryTable />
         </PortalPage>
 

@@ -6,7 +6,7 @@ import { LinkComponent } from '../../../components/Links/LinkComponent';
 import { AuthTemplate } from '../../../layout/Auth/AuthTemplate';
 import { PageText } from '../../../components/Text/Text';
 import styles from "./password-reset.module.css"
-import { PasswordResetForm } from '../../../components/AuthComponent/PasswordReset/PasswordResetForm';
+import { CreateNewPasswordForm, PasswordResetForm } from '../../../components/AuthComponent/CreateNewPassword/CreateNewPasswordForm';
 
 const PasswordResetPage = () => {
  
@@ -29,7 +29,8 @@ const PasswordResetPage = () => {
                 </div>
                 <div className={styles.formWrapper}>
                     <div className={styles.loginForm}>
-                        <PasswordResetForm/>
+                        <CreateNewPasswordForm/>
+                        {/* <PasswordResetForm/> */}
                     
                     </div>
                     {/* <div className={styles.loginFooterDescription}>

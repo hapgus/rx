@@ -132,6 +132,7 @@ export const AdminAccountForm = () => {
 
             try {
                 const response = await sendRequest(
+                    // ` http://localhost:3005/add-admin/`,
                     ` ${process.env.REACT_APP_BACKEND_URL}add-admin/`,
                     'POST',
                     JSON.stringify(data), {
