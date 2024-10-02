@@ -1,4 +1,4 @@
-
+import { splitToArrayOnLineBreak, trimAndNormalizeSpaces } from "./form-helpers";
 // Preprocessing functions
 const trimOnly = (value) => {
   return value.trim();
@@ -12,12 +12,12 @@ const trimAndLowercase = (value) => {
 //   return value.trim().replace(/\s+/g, ' ');
 // };
 
-const trimAndNormalizeSpaces = (value) => {
-  if (typeof value !== 'string') {
-    return ''; // Return an empty string if value is null, undefined, or not a string
-  }
-  return value.trim().replace(/\s+/g, ' ');
-};
+// const trimAndNormalizeSpaces = (value) => {
+//   if (typeof value !== 'string') {
+//     return ''; // Return an empty string if value is null, undefined, or not a string
+//   }
+//   return value.trim().replace(/\s+/g, ' ');
+// };
 
 const validationRules = {
   title: [
@@ -29,7 +29,7 @@ const validationRules = {
   ],
   subtitle: [
     { rule: 'required', message: 'Subtitle is missing.' },
-    { rule: 'minLength', value: 3, message: 'Subtitle cannot be less than 3 characters.' },
+    { rule: 'minLength', value: 8, message: 'Subtitle cannot be less than 8 characters.' },
     { rule: 'maxLength', value: 1000, message: 'Subtitle cannot be more than 1000 characters.' },
   ],
   category: [
@@ -45,6 +45,10 @@ const validationRules = {
     { rule: 'required', message: 'At least 1 list of specifications required.' },
     { rule: 'minLength', value: 3, message: 'Specification list one cannot be less than 3 characters.' },
     { rule: 'hasLetter', message: 'Specification list one must include at least 1 letter.' },
+  ],
+  specTitle1: [
+    { rule: 'required', message: 'Column title 1 is required.' },
+ 
   ],
   specSheetLink: [
     { rule: 'isUrl', message: 'Specification sheet link has an invalid URL format. Secure (Https) required' },
@@ -117,16 +121,16 @@ const validationRules = {
   ],
 
 
-    // SAVED LIST FORM
-    listName: [
-      { rule: 'required', message: 'List name required.' },
-      { rule: 'minLength', value: 2, message: 'List name must be at least 2 characters.' },
-      { rule: 'maxLength', value: 50, message: 'List name cannot be more than 50 characters.' },
-    ],
-    listNotes: [
-      { rule: 'maxLength', value: 100, message: 'List notes cannot exceed 50 characters.' },
-      
-    ],
+  // SAVED LIST FORM
+  listName: [
+    { rule: 'required', message: 'List name required.' },
+    { rule: 'minLength', value: 2, message: 'List name must be at least 2 characters.' },
+    { rule: 'maxLength', value: 50, message: 'List name cannot be more than 50 characters.' },
+  ],
+  listNotes: [
+    { rule: 'maxLength', value: 100, message: 'List notes cannot exceed 50 characters.' },
+
+  ],
 }
 const validateField = (value, rules, formState) => {
   const errors = [];
@@ -188,10 +192,85 @@ const validateField = (value, rules, formState) => {
   return errors;
 };
 
+// export const validateDynamicSections = (sections) => {
+//   const errors = [];
 
+//   sections.forEach((section, index) => {
+//     // Normalize and validate the resource title
+//     const processedResourceTitle = trimAndNormalizeSpaces(section.resourceTitle);
+//     validateField(processedResourceTitle, validationRules.resourceTitle).forEach((error) => {
+//       errors.push({ section: index + 1, field: 'resourceTitle', message: error });
+//     });
 
+//     // Normalize and validate the resource URL
+//     const processedResourceUrl = trimAndNormalizeSpaces(section.resourceUrl);
+//     validateField(processedResourceUrl, validationRules.resourceUrl).forEach((error) => {
+//       errors.push({ section: index + 1, field: 'resourceUrl', message: error });
+//     });
 
-export const validateProductForm = (formState, selectedImage, selectedQrcodeImage) => {
+//     // Validate the QR code image for each section
+//     const uploadedResourceQrCodeImage = section.resourceQrCodeImage instanceof File 
+//       ? section.resourceQrCodeImage 
+//       : section.resourceQrCodeImage; // Ensure string validation if it's not a file
+
+//     // Check if the QR code is required and validate accordingly
+//     validateField(uploadedResourceQrCodeImage, validationRules.resourceQrCodeImage).forEach((error) => {
+//       errors.push({ section: index + 1, field: 'resourceQrCodeImage', message: error });
+//     });
+//   });
+
+//   return errors;
+// };
+
+// THIS IS NEW - TURN OFF IF SKIP
+export const validateDynamicSections = (sections) => {
+  const errors = [];
+  const processedSections = [];
+
+  // Ensure sections is an array
+  if (!Array.isArray(sections) || sections.length === 0) {
+    return errors; // Return early if sections is not an array or is empty
+  }
+
+  sections.forEach((section, index) => {
+    // Normalize and validate the resource title
+    const processedResourceTitle = trimAndNormalizeSpaces(section.resourceTitle);
+    validateField(processedResourceTitle, validationRules.resourceTitle).forEach((error) => {
+      errors.push({ section: index + 1, field: 'resourceTitle', message: error });
+    });
+
+    // Normalize and validate the resource URL
+    const processedResourceUrl = trimAndNormalizeSpaces(section.resourceUrl);
+    validateField(processedResourceUrl, validationRules.resourceUrl).forEach((error) => {
+      errors.push({ section: index + 1, field: 'resourceUrl', message: error });
+    });
+
+    // Validate the QR code image for each section
+    const uploadedResourceQrCodeImage =
+      section.resourceQrCodeImage instanceof File
+        ? section.resourceQrCodeImage
+        : section.resourceQrCodeImage; // Ensure string validation if it's not a file
+
+    // Check if the QR code is required and validate accordingly
+    validateField(uploadedResourceQrCodeImage, validationRules.resourceQrCodeImage).forEach((error) => {
+      errors.push({ section: index + 1, field: 'resourceQrCodeImage', message: error });
+    });
+
+    // NEW 
+    // Store processed values
+    processedSections.push({
+      resourceTitle: processedResourceTitle,
+      resourceUrl: processedResourceUrl,
+      resourceQrCodeImage: uploadedResourceQrCodeImage
+    });
+  });
+
+  // return errors;
+  //NEW
+  return { errors, processedSections };
+};
+// export const validateProductForm = (formState, selectedImage, selectedQrcodeImage) => {
+export const validateProductForm = (formState, sections, selectedImage, selectedQrcodeImage) => {
   const errorMessage = [];
 
   // Apply preprocessing to title and subtitle
@@ -200,7 +279,13 @@ export const validateProductForm = (formState, selectedImage, selectedQrcodeImag
   const processedCategory = trimAndNormalizeSpaces(formState.inputs.category.value);
   const processedSubcategory = trimAndNormalizeSpaces(formState.inputs.subcategory.value);
   const processedStylecategory = trimAndNormalizeSpaces(formState.inputs.stylecategory.value);
-  const processedSpecList1 = trimAndNormalizeSpaces(formState.inputs.specList1.value);
+  const processedSpecTitle1 = trimAndNormalizeSpaces(formState.inputs.specTitle1.value);
+
+  // const processedSpecList1 = trimAndNormalizeSpaces(formState.inputs.specList1.value);
+   // Do not normalize spaces for specList1 since it needs line breaks intact
+   const processedSpecList1Array = splitToArrayOnLineBreak(formState.inputs.specList1.value); // Processed as an array
+   const processedSpecList1 = processedSpecList1Array.join('\n'); // Join back to a string for validation
+
   const processedSpecSheetLink = trimAndNormalizeSpaces(formState.inputs.specSheetLink.value);
   const processedVideos = trimAndNormalizeSpaces(formState.inputs.videos.value);
   // const uploadedProductImage = formState.inputs.image.value;
@@ -214,45 +299,74 @@ export const validateProductForm = (formState, selectedImage, selectedQrcodeImag
   errorMessage.push(...validateField(processedCategory, validationRules.category));
   errorMessage.push(...validateField(processedSubcategory, validationRules.subcategory));
   errorMessage.push(...validateField(processedStylecategory, validationRules.stylecategory));
-  errorMessage.push(...validateField(processedSpecList1, validationRules.specList1));
+
   errorMessage.push(...validateField(processedSpecSheetLink, validationRules.specSheetLink));
   errorMessage.push(...validateField(processedVideos, validationRules.videos));
   errorMessage.push(...validateField(uploadedProductImage, validationRules.image));
-  errorMessage.push(...validateField(uploadedQrcodeImage, validationRules.qrcode));
+  errorMessage.push(...validateField(uploadedQrcodeImage, validationRules.qrcode));  
+  
+  errorMessage.push(...validateField(processedSpecList1, validationRules.specList1));
+  errorMessage.push(...validateField(processedSpecTitle1, validationRules.specTitle1));
   // Add other validations here, with appropriate preprocessing
   // errorMessage.push(...validateField(trimAndLowercase(formState.inputs.category.value), validationRules.category));
 
-  return errorMessage;
-};
 
-
-export const validateDynamicSections = (sections) => {
-  const errors = [];
-
-  sections.forEach((section, index) => {
-    const processedResourceTitle = trimAndNormalizeSpaces(section.resourceTitle);
-    const processedResourceUrl = trimAndNormalizeSpaces(section.resourceUrl);
-    const uploadedResourceQrCodeImage = section.resourceQrCodeImage[0]?.file;
-
-
-    validateField(processedResourceTitle, validationRules.resourceTitle).forEach(error => {
-      errors.push({ section: index, field: 'resourceTitle', message: error });
-    });
-
-    validateField(processedResourceUrl, validationRules.resourceUrl).forEach(error => {
-      errors.push({ section: index, field: 'resourceUrl', message: error });
-    });
-
-    validateField(uploadedResourceQrCodeImage, validationRules.resourceQrCodeImage).forEach(error => {
-      errors.push({ section: index, field: 'resourceQrCodeImage', message: error });
-    });
+  // Validate dynamic sections
+  const sectionErrors = validateDynamicSections(sections);
+  sectionErrors.forEach((error) => {
+    errorMessage.push(`${error.section}: ${error.message}`);
   });
-  return errors;
+
+
+  // const { errors: sectionErrors, processedSections } = validateDynamicSections(sections);
+  // errors.push(...sectionErrors);
+
+
+  const processedValues = {
+    title: processedTitle,
+    subtitle: processedSubtitle,
+    category: processedCategory,
+    subcategory: processedSubcategory,
+    stylecategory: processedStylecategory,
+    specList1: processedSpecList1Array,
+    specSheetLink: processedSpecSheetLink,
+    videos: processedVideos,
+
+  }
+
+  console.log('err',errorMessage)
+
+  return { errorMessage, processedValues }
 };
+
+
+// export const validateDynamicSections = (sections) => {
+//   const errors = [];
+
+//   sections.forEach((section, index) => {
+//     const processedResourceTitle = trimAndNormalizeSpaces(section.resourceTitle);
+//     const processedResourceUrl = trimAndNormalizeSpaces(section.resourceUrl);
+//     const uploadedResourceQrCodeImage = section.resourceQrCodeImage[0]?.file;
+
+
+//     validateField(processedResourceTitle, validationRules.resourceTitle).forEach(error => {
+//       errors.push({ section: index, field: 'resourceTitle', message: error });
+//     });
+
+//     validateField(processedResourceUrl, validationRules.resourceUrl).forEach(error => {
+//       errors.push({ section: index, field: 'resourceUrl', message: error });
+//     });
+
+//     validateField(uploadedResourceQrCodeImage, validationRules.resourceQrCodeImage).forEach(error => {
+//       errors.push({ section: index, field: 'resourceQrCodeImage', message: error });
+//     });
+//   });
+//   return errors;
+// };
 
 export const validateSignupForms = (formState) => {
   const errorMessage = [];
-  
+
 
   const processedFirstName = trimAndNormalizeSpaces(formState.inputs.firstName.value);
   const processedLastName = trimAndNormalizeSpaces(formState.inputs.lastName.value);
@@ -261,7 +375,7 @@ export const validateSignupForms = (formState) => {
   const processedConfirmPassword = trimAndNormalizeSpaces(formState.inputs.confirmPassword.value); // NEW
   const processedStore = trimAndNormalizeSpaces(formState.inputs.store.value);
 
-  
+
   errorMessage.push(...validateField(processedFirstName, validationRules.firstName));
   errorMessage.push(...validateField(processedLastName, validationRules.lastName));
   errorMessage.push(...validateField(processedEmail, validationRules.email));
@@ -285,7 +399,7 @@ export const validateSigninForms = (formState) => {
 
 export const validateAdminForm = (formState) => {
   const errorMessage = [];
-  
+
   const processedFirstName = trimAndNormalizeSpaces(formState.inputs.firstName.value);
   const processedLastName = trimAndNormalizeSpaces(formState.inputs.firstName.value);
   const processedEmail = trimAndNormalizeSpaces(formState.inputs.email.value);
@@ -298,7 +412,7 @@ export const validateAdminForm = (formState) => {
   errorMessage.push(...validateField(processedEmail, validationRules.email));
   errorMessage.push(...validateField(processedPassword, validationRules.password));
   errorMessage.push(...validateField(processedConfirmPassword, validationRules.confirmPassword, formState)); // UPDATED
- 
+
 
   return errorMessage;
 }
@@ -306,34 +420,34 @@ export const validateAdminForm = (formState) => {
 
 export const validateUserProfileForm = (formState) => {
   const errorMessage = [];
- 
+
   const processedFirstName = trimAndNormalizeSpaces(formState.inputs.firstName.value);
   const processedLastName = trimAndNormalizeSpaces(formState.inputs.lastName.value);
   const processedStore = trimAndNormalizeSpaces(formState.inputs.store.value);
   const processedStoreAddress = trimAndNormalizeSpaces(formState.inputs.address.value);
-  
-   const processedValues = {
-    firstName:processedFirstName, 
-    lastName:processedLastName, 
-    store:processedStore, 
-    address:processedStoreAddress
-   };
-  console.log('pro store',processedStore)
+
+  const processedValues = {
+    firstName: processedFirstName,
+    lastName: processedLastName,
+    store: processedStore,
+    address: processedStoreAddress
+  };
+
 
   errorMessage.push(...validateField(processedFirstName, validationRules.firstName));
   errorMessage.push(...validateField(processedLastName, validationRules.lastName));
   errorMessage.push(...validateField(processedStore, validationRules.store));
   errorMessage.push(...validateField(processedStoreAddress, validationRules.address));
-  
 
-  return {errorMessage, processedValues};
+
+  return { errorMessage, processedValues };
 }
 
 export const validateSaveListForm = (formState) => {
   const errorMessage = [];
   const processedListName = trimAndNormalizeSpaces(formState.inputs.listName.value);
   const processedListNotes = trimAndNormalizeSpaces(formState.inputs.listNotes.value);
- 
+
   errorMessage.push(...validateField(processedListName, validationRules.listName));
   errorMessage.push(...validateField(processedListNotes, validationRules.listNotes));
 
@@ -343,7 +457,7 @@ export const validateSaveListForm = (formState) => {
 export const validatePasswordResetEmailForms = (formState) => {
   const errorMessage = [];
   const processedEmail = trimAndNormalizeSpaces(formState.inputs.email.value);
- 
+
   errorMessage.push(...validateField(processedEmail, validationRules.email));
 
   return errorMessage;

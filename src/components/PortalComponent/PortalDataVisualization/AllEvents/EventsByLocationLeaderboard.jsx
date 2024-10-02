@@ -49,7 +49,7 @@ export const EventsByLocationLeaderboard = () => {
                             <li key={idx}>
                                 <PortalLeaderBoardRow
                                     rank={idx + 1}
-                                    dimension={`${e.city}, ${e.region}. ${e.country}`} // Display city and country
+                                    dimension={`${e.country}, ${e.city}`} // Display city and country
                                     metric={e.totalEvents} // Display total page views
                                 />
                             </li>

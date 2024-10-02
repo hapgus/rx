@@ -19,19 +19,19 @@ export const PortalPage = ({
                     {breadcrumb &&
                         <div className={styles.breadcrumbs}>
                             <LinkComponent href='/portal/dashboard'>
-                                <PageText>Portal</PageText>
+                               <span className={styles.linkText}><PageText>Portal</PageText></span> 
                             </LinkComponent>
 
                             <span className={styles.slash1}>{`/`}</span>
 
                             <LinkComponent href={breadcrumbDirectoryLink}>
-                                <PageText>{breadcrumbDirectory}</PageText>
+                            <span className={styles.linkText}>   <PageText>{breadcrumbDirectory}</PageText></span>
                             </LinkComponent>
 
                             <span className={styles.slash2}>{`/`}</span>
                             <LinkComponent href={breadcrumbLink}>
                                 <div className={styles.currentPage}>
-                                    <PageText>{breadcrumb}</PageText>
+                                <span className={styles.linkText}><PageText>{breadcrumb}</PageText></span>
                                 </div>
                             </LinkComponent>
                         </div>

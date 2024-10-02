@@ -11,7 +11,7 @@ export const SearchTypePieChart = () => {
     const { isDataState } = useDataContext(); 
     const pieData = isDataState.searchDataFilteredByDate; 
     const { config: pieChartOptions } = useChartConfig(
-        'PieChart', 'Search Type'
+        'PieChart', ''
     );
   
     const targetEvents = ['Select_Product_From_Search'];
@@ -62,7 +62,9 @@ export const SearchTypePieChart = () => {
     return (
      
             <PortalCard 
-                toolTipText='Search type refers to the type of search used. Homepage search refers to the search bar on the homepage. Nav search refers to the search bar in the navigation.'
+            toolTipText="This chart breaks down user searches based on where they originated. 'Homepage Search' indicates searches conducted from the homepage search bar, while 'Nav Search' represents searches from the navigation bar. Understanding the distribution of search types provides insight into user behavior and their preferred search entry points."
+
+                // toolTipText='Search type refers to the type of search used. Homepage search refers to the search bar on the homepage. Nav search refers to the search bar in the navigation.'
                 cardTitle="Search by Search Type"
                 cardData={totalEvents}
                 cardFooter={`${percentage}% of users searched using the ${formatChartLabel(maxCategory)}.`} // Add footer insight

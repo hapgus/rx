@@ -67,7 +67,12 @@ color: var(--color-gray-03);
 
 @media (min-width: 430px) {}
 
-@media (min-width: 768px) {}
+@media (min-width: 768px) {
+    .contentWrapper{
+        padding: 3rem 4rem;
+    
+    }
+}
 
 @media (min-width: 834px) {}
 

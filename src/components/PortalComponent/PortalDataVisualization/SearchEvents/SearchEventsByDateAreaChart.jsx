@@ -66,8 +66,8 @@ export const SearchEventsByDateAreaChart = () => {
     // Step 10: Configure chart options for AreaChart
     const { config: areaChartOptions } = useChartConfig(
         'AreaChart',
-        'Search Events',
-        'Date', // Horizontal Axis Title
+        '',
+        '', // Horizontal Axis Title
         'Event Count', // Vertical Axis Title
         { minValue: 0 }, // Y Axis Range
         ['#3366CC'], // Colors
@@ -81,7 +81,9 @@ export const SearchEventsByDateAreaChart = () => {
     return (
         totalEventCount && avgEventCount && areaChartData.length > 1 ? (
             <PortalCard
-                cardTitle="Search Event Activity Over Time"
+            toolTipText="This chart represents the daily count of key search interactions within your application. These interactions include 'Products Selected from Search' and 'Products Added to List.' By visualizing these search events over time, you can gain insights into user behavior trends and search engagement."
+
+                cardTitle="Total Search Events"
                 cardData={totalEventCount.toLocaleString()}
                 cardFooter={`Average ${parseInt(avgEventCount)} search events per day`}
             >

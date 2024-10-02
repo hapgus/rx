@@ -13,7 +13,7 @@ export const PrintProductListLeaderBoard = ({ limit = 10 }) => {
 
     // Step 1: Filter 'Print_Product_List' events
     const printProductEvents = data.filter(event => 
-        event.eventName === 'Print_Product_List' && 
+        event.eventName === 'LIST_PRINTED' && 
         event['customEvent:productName'] !== '(not set)'
     );
 
@@ -39,7 +39,7 @@ export const PrintProductListLeaderBoard = ({ limit = 10 }) => {
         .slice(0, limit);
 
     return (
-        <PortalLeaderBoard title="Products in Printed List">
+        <PortalLeaderBoard title="Products with Highest Print Frequency">
             <ul>
                 {sortedProducts.map((product, idx) => (
                     <li key={idx}>

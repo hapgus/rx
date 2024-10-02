@@ -12,11 +12,14 @@
   width: 2rem;
   display: flex;
   margin-right: 1rem;
+  transform: scale(1);
+  transition: transform 0.1s ease, border-color 0.1s ease;
+  /* border-bottom: 1px solid transparent; */
 }
 
 .actionIconContainer svg:hover {
   cursor: pointer;
-  stroke: red;
+  transform: scale(1.05);
 
 }
 
@@ -56,4 +59,32 @@
 }
 .greenPill:hover, .redPill:hover, .yellowPill:hover{
 cursor: pointer;
+}
+
+.greenPill span,
+.redPill span,
+.yellowPill span{
+  transform: scale(1);
+  transition: transform 0.1s ease, border-color 0.1s ease;
+  border-bottom: 2px solid transparent;
+}
+
+.greenPill span:hover,
+.redPillspan:hover,
+.yellowPill span:hover{
+  transform: scale(1.01);
+  border-bottom: 2px solid var(--color-red-03);
+}
+
+
+/* TABLE LINK */
+
+.tableLink{
+  transform: scale(1);
+  transition: transform 0.1s ease, border-color 0.1s ease;
+  border-bottom: 1px solid transparent;
+}
+.tableLink:hover{
+  /* transform: scale(1.05); */
+  border-bottom: 2px solid var(--color-red-03);
 }

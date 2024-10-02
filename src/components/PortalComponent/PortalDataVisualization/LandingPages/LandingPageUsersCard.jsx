@@ -5,7 +5,7 @@ import { AreaChart } from "../../PortalChartComponent/AreaChart";
 import { useDataContext } from "../../../../hooks/data-hook";
 import { SkeletonComponent } from "../../../Skeletons/SkeletonComponent";
 
-export const LandingPageSessionsCard = () => {
+export const LandingPageUsersCard = () => {
     const { isDataState } = useDataContext();
     const data = isDataState.isDataFilteredByDate;
 
@@ -14,13 +14,13 @@ export const LandingPageSessionsCard = () => {
     const aggregatedData = isDataState && isDataState.isDataFilteredByDate && data 
     ? data.reduce((acc, curr) => {
         const date = curr.date; // Assuming the date is in the 'YYYYMMDD' format
-        const pageViews = Number(curr.sessions);
+        const pageViews = Number(curr.totalUsers);
 
         // If the date already exists, add the page views
         if (acc[date]) {
-            acc[date].sessions += pageViews;
+            acc[date].totalUsers += pageViews;
         } else {
-            acc[date] = { ...curr, sessions: pageViews };
+            acc[date] = { ...curr, totalUsers: pageViews };
         }
         return acc;
     }, {}):{}
@@ -36,18 +36,18 @@ export const LandingPageSessionsCard = () => {
     });
 
     // Step 4: Filter valid days where screenPageViews is a number
-    const validDays = sortedData.filter(day => day.sessions && !isNaN(Number(day.sessions)));
+    const validDays = sortedData.filter(day => day.totalUsers && !isNaN(Number(day.totalUsers)));
 
     // Step 5: Calculate total and average page view counts
-    const totalPageViewCount = validDays.reduce((acc, curr) => acc + Number(curr.sessions), 0);
+    const totalPageViewCount = validDays.reduce((acc, curr) => acc + Number(curr.totalUsers), 0);
     const avgPageViewCount = validDays.length > 0 ? totalPageViewCount / validDays.length : 0;
 
     // Step 6: Dynamically generate the Y-axis ticks
     const minValue = 0; // Ensure the ticks always start at 0
-    const maxValue = Math.ceil(Math.max(...validDays.map(day => Number(day.screenPageViews))) / 20) * 20;
-    const stepSize = 50; // Fixed step size
-    // const minValue = Math.floor(Math.min(...validDays.map(day => Number(day.sessions))) / 20) * 20;
-    // const maxValue = Math.ceil(Math.max(...validDays.map(day => Number(day.sessions))) / 20) * 20;
+    const maxValue = Math.ceil(Math.max(...validDays.map(day => Number(day.totalUsers))) / 20) * 20;
+    const stepSize = 10; // Fixed step size
+    // const minValue = Math.floor(Math.min(...validDays.map(day => Number(day.screenPageViews))) / 20) * 20;
+    // const maxValue = Math.ceil(Math.max(...validDays.map(day => Number(day.screenPageViews))) / 20) * 20;
     // const stepSize = 50; // Fixed step size
 
     // Generate ticks dynamically with a step size of 20
@@ -58,9 +58,9 @@ export const LandingPageSessionsCard = () => {
     // Step 7: Configure the chart options
     const { config: areaChartOptions } = useChartConfig(
         'AreaChart',
-        'Sessions',
+        '',
         '', // Horizontal Axis Title
-        '', // Vertical Axis Title
+        'Users', // Vertical Axis Title
         { minValue: 0 }, // Y Axis Range
         ['#3366CC'], // Colors
         false, // Show legend
@@ -83,10 +83,10 @@ export const LandingPageSessionsCard = () => {
     return (
         totalPageViewCount && avgPageViewCount && areaChartData !== null ? (
             <PortalCard
-                cardTitle='Total Sessions'
+                cardTitle='Total Users'
                 cardData={totalPageViewCount.toLocaleString()}
-                cardFooter={`${parseInt(avgPageViewCount)} sessions per day on average`}
-                toolTipText='A session is a group of user interactions with your website that take place within a given time frame. Sessions end after 30 minutes of inactivity.'
+                cardFooter={`${parseInt(avgPageViewCount)} users per day on average`}
+                toolTipText='The number of distinct users who have logged at least one event.'
             >
                 {areaChartData ? (
                     <AreaChart data={areaChartData} options={areaChartOptions} />

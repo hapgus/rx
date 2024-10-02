@@ -109,7 +109,7 @@ export const SearchProvider = ({ children }) => {
     useEffect(() => {
         if (isHomepageSearchState.isSearchResults.length !== 0) {
             if (isDesktopSearchState.isSearchResults !== 0) {
-                console.log('search effect - home results')
+                // console.log('search effect - home results')
                 setIsDesktopSearchState(prevState => ({
                     ...prevState,
                     isSearchResults: [],
@@ -117,7 +117,7 @@ export const SearchProvider = ({ children }) => {
                     isSearchFocused: false
                 }))
             } else if(isMobileSearchState.isSearchResults !== 0){
-                  console.log('search effect - desk results')
+                //   console.log('search effect - desk results')
                 setIsMobileSearchState(prevState => ({
                     ...prevState,
                     isSearchResults: [],
@@ -130,14 +130,14 @@ export const SearchProvider = ({ children }) => {
               
             // }
         }
-        console.log('search effect end')
+        // console.log('search effect end')
     }, [isHomepageSearchState.isSearchResults])
 
     // CLOSE WHEN DESKTOP ACTIVE
     useEffect(() => {
         if (isDesktopSearchState.isSearchResults.length !== 0) {
             if (isHomepageSearchState.isSearchResults !== 0) {
-                console.log('search effect - Desk results')
+                // console.log('search effect - Desk results')
                 setIsHomepageSearchState(prevState => ({
                     ...prevState,
                     isSearchResults: [],
@@ -145,7 +145,7 @@ export const SearchProvider = ({ children }) => {
                     isSearchFocused: false
                 }))
             } else if(isMobileSearchState.isSearchResults !== 0){
-                  console.log('search effect - desk results')
+                //   console.log('search effect - desk results')
                 setIsMobileSearchState(prevState => ({
                     ...prevState,
                     isSearchResults: [],
@@ -158,7 +158,7 @@ export const SearchProvider = ({ children }) => {
               
             // }
         }
-        console.log('search effect end')
+        // console.log('search effect end')
     }, [isDesktopSearchState.isSearchResults])
 
     // useEffect(()=>{

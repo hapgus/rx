@@ -29,6 +29,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: right;
     justify-content: center;
 }
 
@@ -65,15 +66,18 @@
 .mStepUpLinksContainer {
     display: block;
 }
+.mStepUpLinksContainer li {
+    list-style: none;
+}
 
 .stepUpChartCalloutText a {
-    color: var(--color-red-03);
+    color: var(--color-gray-03);
+    text-decoration:underline;
     font-family: var(--text-semibold);
 }
 
 
 @media(min-width: 430px) {
-
     .image1 {
         height: 15rem;
     }
@@ -84,7 +88,9 @@
 }
 
 @media(min-width: 640px) {
-
+    .mobileImageGroup {
+        justify-content: right;
+    }
     .heroContainer {
         /* padding-bottom: 4rem; */
     }
@@ -102,6 +108,7 @@
 
 @media (min-width: 768px) {
     .heroContainer {
+        padding: 3rem 4rem ;
         /* padding-top: 3rem; */
     }
 

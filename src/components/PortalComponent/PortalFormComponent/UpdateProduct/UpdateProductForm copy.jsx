@@ -438,8 +438,8 @@ const formTextElements = productTemplate === true
         }
 
     }
-// console.log('spec list 1 managed',isManagedDataState.data.specList1 )
-// console.log('spec list 1 form state',formState.inputs.specList1.value )
+console.log('spec list 1 managed',isManagedDataState.data.specList1 )
+console.log('spec list 1 form state',formState.inputs.specList1.value )
     const handleFormSubmit = async (e) => {
         let errors = [];
 
@@ -575,12 +575,12 @@ const formTextElements = productTemplate === true
             let response;
             if (productTemplate) {
                 // Create product using template
-                response = await sendRequest(`${process.env.REACT_APP_BACKEND_URL}copy-product`, 'POST', formData);
-                // response = await sendRequest(`http://localhost:3005/copy-product`, 'POST', formData);
+                // response = await sendRequest(`${process.env.REACT_APP_BACKEND_URL}copy-product`, 'POST', formData);
+                response = await sendRequest(`http://localhost:3005/copy-product`, 'POST', formData);
             } else {
                 // Update existing product
-                // response = await sendRequest(`http://localhost:3005/edit-product/${productId}`, 'PATCH', formData);
-                response = await sendRequest(`${process.env.REACT_APP_BACKEND_URL}edit-product/${productId}`, 'PATCH', formData);
+                response = await sendRequest(`http://localhost:3005/edit-product/${productId}`, 'PATCH', formData);
+                // response = await sendRequest(`${process.env.REACT_APP_BACKEND_URL}edit-product/${productId}`, 'PATCH', formData);
             }
 
             // Handle successful response

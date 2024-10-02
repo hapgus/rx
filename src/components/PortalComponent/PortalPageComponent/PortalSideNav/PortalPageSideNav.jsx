@@ -39,7 +39,7 @@ export const PortalPageSideNav = () => {
         // table: true,
         website: true,
     });
-    console.log(dropdownState)
+
     // ONE DROPDOWN OPEN AT ONCE
     // const handleDropdownClick = (headerText) => {
     //     setDropdownState(prevState => {
@@ -98,7 +98,9 @@ export const PortalPageSideNav = () => {
             conditionChildren={
                 <ul className={styles.dropdownList}>
                     {links.map(link => (
-                        <li key={link.href} style={{
+                        <li 
+                        
+                        key={link.href} style={{
                             backgroundColor: location.pathname === link.href ? '#ecc9c9' : 'transparent',
                             boxShadow: location.pathname === link.href ? '3px 0 #EA1917' : 'none',
                         }}>

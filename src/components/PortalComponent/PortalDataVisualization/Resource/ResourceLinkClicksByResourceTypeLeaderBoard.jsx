@@ -35,7 +35,7 @@ console.log(filteredEvents)
         .slice(0, limit);
 
     return (
-        <PortalLeaderBoard title="Top Resources by Click Count">
+        <PortalLeaderBoard title="Resources with Highest Click Frequency">
             <ul>
                 {sortedResources.map((resource, idx) => (
                     <li key={idx}>

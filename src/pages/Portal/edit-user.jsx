@@ -8,6 +8,7 @@ const EditUserPage = () => {
 
 const {isAuthenticated, isSuperAdmin}= useAuth()
 
+
 const authUserTableBreadcrumbLink = isSuperAdmin && isAuthenticated 
 ? "/portal/admin-directory" : "/member/login"
 

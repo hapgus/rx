@@ -66,9 +66,9 @@ export const PrintEventsByDateAreaChart = () => {
     // Step 10: Configure chart options for AreaChart
     const { config: areaChartOptions } = useChartConfig(
         'AreaChart',
-        'List Printed',
-        'Date', // Horizontal Axis Title
-        'Clicks', // Vertical Axis Title
+        '',
+        '', // Horizontal Axis Title
+        'List Printed', // Vertical Axis Title
         { minValue: 0 }, // Y Axis Range
         ['#3366CC'], // Colors
         false, // Show legend
@@ -81,9 +81,12 @@ export const PrintEventsByDateAreaChart = () => {
     return (
         totalEventCount && avgEventCount && areaChartData.length > 1 ? (
             <PortalCard
-                cardTitle="Product List Print Activity Over Time"
-                cardData={totalEventCount.toLocaleString()}
-                cardFooter={`Average ${parseInt(avgEventCount)} product list print events per day on average`}
+            cardTitle="Product List Print Trends Over Time"
+            toolTipText="This chart displays the trend of print events for product lists over a specified time period. It provides insights into when users are most actively printing product lists."
+            cardFooter={`On average, ${parseInt(avgEventCount)} product list print events occur each day.`}
+                // cardTitle="Product List Print Activity Over Time"
+                // cardData={totalEventCount.toLocaleString()}
+                // cardFooter={`Average ${parseInt(avgEventCount)} product list print events per day on average`}
             >
                 {areaChartData ? (
                     <AreaChart data={areaChartData} options={areaChartOptions} />

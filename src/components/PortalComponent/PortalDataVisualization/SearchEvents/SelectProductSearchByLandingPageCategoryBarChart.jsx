@@ -10,7 +10,15 @@ import Skeleton from 'react-loading-skeleton';
 export const SelectProductSearchByLandingPageCategoryBarChart = () => {
     const { isDataState } = useDataContext(); 
     const data = isDataState.searchDataFilteredByDate; // Use filtered search data
-    const { config: barChartOptions } = useChartConfig('BarChart', 'Page Group', 'Event Count'); 
+    const { config: barChartOptions } = useChartConfig('ColumnChart', 
+        '', 
+        '',
+        'Event Count',
+        { minValue: 0 },
+        ['#3366CC'],
+        false, // Show legend
+        true, // Show X-axis labels
+        true,); 
 
     const targetEvents = ['SEARCHED_PRODUCT_SELECTED'];
 
@@ -51,8 +59,8 @@ export const SelectProductSearchByLandingPageCategoryBarChart = () => {
 
     return (
         <PortalCard 
-            cardTitle="Page type users was on when selecting product to visit from search"
-            toolTipText="Page categories based on user search."
+            cardTitle="Page Types Driving Product Selections from Search"
+            toolTipText="This chart displays the pages where users initiated a search and then proceeded to select a product. It provides insights into which pages are most effective at leading users to explore products from search results."
             // cardData={totalEventCount}
             cardFooter={`Total events: ${totalEventCount.toLocaleString()}, Avg events per page: ${avgEventCount.toFixed(2)}`}
         >

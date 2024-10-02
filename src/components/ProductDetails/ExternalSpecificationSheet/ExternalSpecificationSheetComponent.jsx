@@ -49,7 +49,7 @@ export const ExternalSpecificationSheetComponent = ({ product }) => {
                                     <ExternalLinkButton linkText={`${e.resourceTitle}`} href={e.resourceUrl} />
                                 </span>
                             ))}
-                            <ExternalLinkButton linkText={`See ${product.title} Spec Sheet`} href={product.specSheetLink} />
+                            {/* <ExternalLinkButton linkText={`See ${product.title} Spec Sheet`} href={product.specSheetLink} /> */}
                         {/* </div> */}
                         {/* <ul>
                             {

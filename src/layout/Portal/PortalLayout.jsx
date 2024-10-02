@@ -9,33 +9,61 @@ import ProductGuideAlerts from '../../components/Alert/Alert';
 import { useRoutingHook } from '../../hooks/routing-hook';
 import { useEffect } from 'react';
 import { useDataContext } from '../../hooks/data-hook';
-
-
+import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
+import { useCurrentLocation } from '../../hooks/location-hook';
 
 export default function PortalLayout() {
 
     const { isAlert, setIsAlert, isModal, setIsModal } = useNotificationHook();
     const { isManagedDataState } = useDataContext()
-    const { isRoutingState } = useRoutingHook();
+    const { isRoutingState,setIsRoutingState } = useRoutingHook();
 
-    console.log('auth lay', isRoutingState)
+    const location = useCurrentLocation()
 
     useEffect(() => {
-        console.log('run effect')
+        
         if (isRoutingState.isMobilePortalNavOpen) {
             document.body.style.overflow = 'hidden';
-            console.log('run effect - on portal mobile nav')
+        
         }
         return () => {
-            console.log('run effect - on portal mobile nav unset')
+         
             document.body.style.overflow = 'unset';
         };
 
     }, [isRoutingState.isMobilePortalNavOpen])
 
+
+
+    useEffect(() => {
+        // window.scrollTo(0, 0);
+        window.scrollTo({
+            top: 0,
+            // top: 0,
+            behavior: 'smooth'
+        });
+    }, [location]);
+
+    // TOTOPBUTTON
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.pageYOffset > 800) {
+                setIsRoutingState(prevState => ({ ...prevState, isShowScrollToTopButton: true }))
+            } else {
+                setIsRoutingState(prevState => ({ ...prevState, isShowScrollToTopButton: false }))
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, [location]);
     return (
         <>
             {isManagedDataState.loading === true && <Loader />}
+            {isRoutingState.isShowScrollToTopButton && <ScrollToTop />}
 
             {isModal.show &&
 

@@ -11,10 +11,11 @@ export const PrintProductListPostActionPieChart = () => {
     const { isDataState } = useDataContext(); 
     const pieData = isDataState.printDataFilteredByDate; 
     const { config: pieChartOptions } = useChartConfig(
-        'PieChart', 'Actions after printing the product list'
+        'PieChart', 
+        ''
     );
 
-    const targetEvents = ['Print_Product_List'];
+    const targetEvents = ['LIST_PRINTED'];
 
     if (!pieData || !pieData.length) {
         return <Skeleton height={200} width='100%' />;
@@ -65,7 +66,9 @@ export const PrintProductListPostActionPieChart = () => {
     return (
         <PortalCard 
             cardTitle="Post Print List Actions"
-            toolTipText="This chart shows the actions taken after printing a product list."
+              toolTipText="This chart illustrates the distribution of actions users take after printing a product list."
+            //  toolTipText="This chart illustrates the distribution of actions users take after printing a product list. It provides insights into common next steps, such as viewing, sharing, or saving the list."
+            // toolTipText="This chart shows the actions taken after printing a product list."
             cardFooter={`${percentage}% of users took the action "${formatChartLabel(maxCategory)}" after printing the product list`}
         >
             {chartData ? (

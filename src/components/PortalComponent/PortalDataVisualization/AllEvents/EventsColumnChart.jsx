@@ -10,8 +10,14 @@ export const EventsColumnChart = () => {
 
     const { config: barChartOptions } = useChartConfig(
         'ColumnChart', 
-        'Page Path', 
-        'Page Views'
+        '', 
+        'Event Type',
+        'Event Count',
+        { minValue: 0 },
+        ['#3366CC'],
+        false, // Show legend
+        true, // Show X-axis labels
+        true,
     ); // Set up BarChart options
 
     if (!data || !data.length) {
@@ -55,11 +61,14 @@ export const EventsColumnChart = () => {
 
     // Step 5: Identify the most popular page by page views
     const mostPopularEvent =  sortedEvents[0] ?  sortedEvents[0].event : 'Unknown Event';
-    const mostPopularEventCount =  sortedEvents[0] ?  sortedEvents[0].event : 0;
+    const mostPopularEventCount =  sortedEvents[0] ?  sortedEvents[0].totalEvents : 0;
+    console.log(sortedEvents)
 
     return (
         <PortalCard 
-            cardTitle="Popular Events"
+        toolTipText="This chart breaks down the key user interactions within the application. Events include: 'SEARCHED_PRODUCT_SELECTED' (products selected from a search), 'SEARCHED_PRODUCT_ADDED' (products added to the list from a search), 'LIST_PRINTED' (when a user prints their product list), 'RESOURCE_CLICKED' (resource links clicked by users), and 'PRODUCT_ADDED' (products added to a list). Each event provides valuable insights into user behavior and engagement with the application."
+
+            cardTitle="Key Events Breakdown"
             cardFooter={`Most popular events: "${mostPopularEvent}" with ${mostPopularEventCount.toLocaleString()} views.`}
         >
             {chartData.length > 1 ? (

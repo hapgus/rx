@@ -1,11 +1,12 @@
+import styles from "../AuthPageStyles.module.css"
 
-import styles from './sign-up.module.css';
 import { SignupForm } from '../../../components/AuthComponent/Signup/SignupForm';
 import { LinkComponent } from '../../../components/Links/LinkComponent';
 import { PageText } from '../../../components/Text/Text';
 import { AuthTemplate } from '../../../layout/Auth/AuthTemplate';
+
+
 const SignUpPage = () => {
-    const publicUrl = process.env.PUBLIC_URL;
 
     return (
         <AuthTemplate>

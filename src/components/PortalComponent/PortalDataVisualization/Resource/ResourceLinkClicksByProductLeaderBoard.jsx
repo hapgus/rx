@@ -35,7 +35,7 @@ export const ResourceLinkClicksByProductLeaderBoard = ({ limit = 10 }) => {
         .slice(0, limit);
 
     return (
-        <PortalLeaderBoard title="Top Product Pages for Resource Clicks">
+        <PortalLeaderBoard title="Most Clicked Resource Links by Product">
             <ul>
                 {sortedProducts.map((product, idx) => (
                     <li key={idx}>

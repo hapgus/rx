@@ -66,8 +66,8 @@ export const SelectProductSearchEventsByDateAreaChart = () => {
     // Step 10: Configure chart options for AreaChart
     const { config: areaChartOptions } = useChartConfig(
         'AreaChart',
-        'Selecting products to visit from search',
-        'Date', // Horizontal Axis Title
+        '',
+        '', // Horizontal Axis Title
         'Event Count', // Vertical Axis Title
         { minValue: 0 }, // Y Axis Range
         ['#3366CC'], // Colors
@@ -81,9 +81,12 @@ export const SelectProductSearchEventsByDateAreaChart = () => {
     return (
         totalEventCount && avgEventCount && areaChartData.length > 1 ? (
             <PortalCard
+            toolTipText="This chart visualizes the daily count of products viewed after being selected from search results. It helps you track how often users are navigating to product details from search, providing insights into search behavior and user interest in specific products."
+
                 cardTitle="Using Search to visit Products"
                 cardData={totalEventCount.toLocaleString()}
                 cardFooter={`Average ${parseInt(avgEventCount)} products visited from search per day`}
+
             >
                 {areaChartData ? (
                     <AreaChart data={areaChartData} options={areaChartOptions} />

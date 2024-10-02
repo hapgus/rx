@@ -77,7 +77,7 @@ export const DataProvider = ({ children, apiEndpoint }) => {
                 const response = await fetch(apiEndpoint || `${process.env.REACT_APP_BACKEND_URL}data`);
                 const result = await response.json();
 
-                console.log('result', result)
+                // console.log('result', result)
 
                 // NEW DATA STREAMS
                 const parsedData = result.appDataOverview ? result.appDataOverview.map(item => ({
@@ -163,16 +163,31 @@ export const DataProvider = ({ children, apiEndpoint }) => {
     };
 
     // Filter data based on retailer selection
-    const filterDataByRetailer = (data, retailer) => {
-        if (!data) return [];
-        return data.filter(item => {
-            // Ensure item.pagePath exists before calling .includes()
-            if (!item.pagePath) return false;
-            return retailer === 'Home Depot'
-                ? item.pagePath.includes('/home-depot/')
-                : !item.pagePath.includes('/home-depot/');
-        });
-    };
+      // Filter data based on retailer selection
+      const filterDataByRetailer = useMemo(() => {
+        return (data) => {
+            if (!data) return [];
+
+            return data.filter(item => {
+                if (!item.pagePath) return false;
+                const normalizedPath = item.pagePath.toLowerCase();
+                return retailer === 'Home Depot'
+                    ? normalizedPath.includes('home-depot')
+                    : !normalizedPath.includes('home-depot');
+            });
+        };
+    }, [retailer]);
+    // const filterDataByRetailer = (data, retailer) => {
+    //     if (!data) return [];
+    //     return data.filter(item => {
+    //         // Ensure item.pagePath exists before calling .includes()
+    //         if (!item.pagePath) return false;
+    //         return retailer === 'Home Depot'
+    //               ? item.pagePath.includes('/home-depot/')
+    //             : !item.pagePath.includes('/home-depot/');
+                
+    //     });
+    // };
 
     // Memoize and filter both datasets by date and retailer
     const filteredData = useMemo(() => {
@@ -240,7 +255,7 @@ export const DataProvider = ({ children, apiEndpoint }) => {
         }));
     }, [filteredData]);
 
-    console.log({ isDataState, isDateRangeState, filteredData, retailer })
+    // console.log({ isDataState, isDateRangeState, filteredData, retailer })
     return (
         <DataContext.Provider value={{
 

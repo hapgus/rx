@@ -38,7 +38,7 @@ export const SearchQueriesUsedWhenProductSelectedLeaderBoard = ({ limit = 10 }) 
     .slice(0, limit);
 
     return (
-        <PortalLeaderBoard title="What they searched when selecting product to visit">
+        <PortalLeaderBoard title="Top Search Queries Leading to Product Visits">
             <ul>
                 {sortedProducts.map((product, idx) => (
                     <li key={idx}>

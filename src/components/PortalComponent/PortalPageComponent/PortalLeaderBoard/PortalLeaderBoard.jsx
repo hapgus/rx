@@ -9,7 +9,7 @@ export const PortalLeaderBoard = ({title, children}) => {
                     <PageText>{title}</PageText>
                 </div>
             </div>
-            <div>
+            <div className={styles.leaderBoardChildren}>
                 {children}
             </div>
         </div>

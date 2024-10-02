@@ -9,7 +9,16 @@ import Skeleton from "react-loading-skeleton";
 export const SelectProductSearchByLandingPageBarChart = () => {
     const { isDataState } = useDataContext(); 
     const data = isDataState.searchDataFilteredByDate; // Use filtered search data
-    const { config: barChartOptions } = useChartConfig('BarChart', 'Page Path', 'Webpage '); 
+    const { config: barChartOptions } = useChartConfig( 'ColumnChart', 
+        '', 
+        'Landing Page',
+        'Event Count',
+        { minValue: 0 },
+        ['#3366CC'],
+        false, // Show legend
+        true, // Show X-axis labels
+        true,
+    );
 
     const targetEvents = ['SEARCHED_PRODUCT_SELECTED'];
 
@@ -55,9 +64,9 @@ export const SelectProductSearchByLandingPageBarChart = () => {
 
     return (
         <PortalCard
-        toolTipText="The page a user was on when they used the search engine to find a product and navigate to the product detail page." 
-            cardTitle="Eaxct page user was on when they selected a product to visit from search results"
-            cardFooter={`Total events: ${totalEventCount.toLocaleString()}, Avg events per page: ${avgEventCount.toFixed(2)}. Most popular page: "${mostPopularPage}" with ${mostPopularPageEvents.toLocaleString()} events.`}
+        toolTipText="This chart displays the pages where users initiated a search and then proceeded to select a product. It provides insights into which pages are most effective at leading users to explore products from search results." 
+            cardTitle="Landing Pages Driving Product Selections from Search"
+            cardFooter={`Most popular page: "${mostPopularPage}" with ${mostPopularPageEvents.toLocaleString()} events.`}
         >
             {chartData.length > 1 ? (
                 // <BarChart data={chartData} options={barChartOptions} />  

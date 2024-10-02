@@ -6,7 +6,7 @@ import { formatDate } from '../components/Date/DateComponent';
 
 export const transformWithSchema = (data, schemaKey) => {
     const schema = dataSchema[schemaKey];
-    console.log('schema',schema)
+  
 
     if (!schema) {
         throw new Error(`No schema defined for dataset: ${schemaKey}`);

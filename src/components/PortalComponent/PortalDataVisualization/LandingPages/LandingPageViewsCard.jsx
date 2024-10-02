@@ -5,7 +5,7 @@ import { AreaChart } from "../../PortalChartComponent/AreaChart";
 import { useDataContext } from "../../../../hooks/data-hook";
 import { SkeletonComponent } from "../../../Skeletons/SkeletonComponent";
 
-export const LandingPageUsersCard = () => {
+export const LandingPageViewsCard = () => {
     const { isDataState } = useDataContext();
     const data = isDataState.isDataFilteredByDate;
 
@@ -14,13 +14,13 @@ export const LandingPageUsersCard = () => {
     const aggregatedData = isDataState && isDataState.isDataFilteredByDate && data 
     ? data.reduce((acc, curr) => {
         const date = curr.date; // Assuming the date is in the 'YYYYMMDD' format
-        const pageViews = Number(curr.totalUsers);
+        const pageViews = Number(curr.screenPageViews);
 
         // If the date already exists, add the page views
         if (acc[date]) {
-            acc[date].totalUsers += pageViews;
+            acc[date].screenPageViews += pageViews;
         } else {
-            acc[date] = { ...curr, totalUsers: pageViews };
+            acc[date] = { ...curr, screenPageViews: pageViews };
         }
         return acc;
     }, {}):{}
@@ -36,16 +36,16 @@ export const LandingPageUsersCard = () => {
     });
 
     // Step 4: Filter valid days where screenPageViews is a number
-    const validDays = sortedData.filter(day => day.totalUsers && !isNaN(Number(day.totalUsers)));
+    const validDays = sortedData.filter(day => day.screenPageViews && !isNaN(Number(day.screenPageViews)));
 
     // Step 5: Calculate total and average page view counts
-    const totalPageViewCount = validDays.reduce((acc, curr) => acc + Number(curr.totalUsers), 0);
+    const totalPageViewCount = validDays.reduce((acc, curr) => acc + Number(curr.screenPageViews), 0);
     const avgPageViewCount = validDays.length > 0 ? totalPageViewCount / validDays.length : 0;
 
     // Step 6: Dynamically generate the Y-axis ticks
     const minValue = 0; // Ensure the ticks always start at 0
-    const maxValue = Math.ceil(Math.max(...validDays.map(day => Number(day.totalUsers))) / 20) * 20;
-    const stepSize = 10; // Fixed step size
+    const maxValue = Math.ceil(Math.max(...validDays.map(day => Number(day.screenPageViews))) / 20) * 20;
+    const stepSize = 100; // Fixed step size
     // const minValue = Math.floor(Math.min(...validDays.map(day => Number(day.screenPageViews))) / 20) * 20;
     // const maxValue = Math.ceil(Math.max(...validDays.map(day => Number(day.screenPageViews))) / 20) * 20;
     // const stepSize = 50; // Fixed step size
@@ -58,9 +58,9 @@ export const LandingPageUsersCard = () => {
     // Step 7: Configure the chart options
     const { config: areaChartOptions } = useChartConfig(
         'AreaChart',
-        'Users',
+        '',// Chart title
         '', // Horizontal Axis Title
-        '', // Vertical Axis Title
+        'Views', // Vertical Axis Title
         { minValue: 0 }, // Y Axis Range
         ['#3366CC'], // Colors
         false, // Show legend
@@ -83,10 +83,10 @@ export const LandingPageUsersCard = () => {
     return (
         totalPageViewCount && avgPageViewCount && areaChartData !== null ? (
             <PortalCard
-                cardTitle='Total Users'
+                cardTitle='Total Page Views'
                 cardData={totalPageViewCount.toLocaleString()}
-                cardFooter={`${parseInt(avgPageViewCount)} users per day on average`}
-                toolTipText='The number of distinct users who have logged at least one event, regardless of whether the site or app was in use when that event was logged.'
+                cardFooter={`${parseInt(avgPageViewCount)} page views per day on average`}
+                toolTipText='The number of web pages your users viewed. Repeated views of a single page or screen are counted.'
             >
                 {areaChartData ? (
                     <AreaChart data={areaChartData} options={areaChartOptions} />

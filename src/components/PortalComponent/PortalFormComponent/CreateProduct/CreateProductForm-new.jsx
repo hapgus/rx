@@ -1,69 +1,71 @@
 import { useNavigate } from "react-router";
-import { useForm } from "../../../hooks/form-hook";
-
-import { useHttpClient } from "../../../hooks/http-hook";
-import { VALIDATOR_REQUIRE } from "../../../utils/validators";
-import { TextInput } from "../../FormComponent/TextInput/TextInput";
-import { TextArea } from "../../FormComponent/TextArea/TextArea";
-import { Select } from "../../FormComponent/Select/Select";
-import styles from './PortalForm.module.css'
-import { FormComponent } from "../../FormComponent/FormComponent";
-import { useRoutingHook } from "../../../hooks/routing-hook";
-import { Button } from "../../Button/Button";
-import { appendFormDataWithLineBreak } from "../../../utils/form-helpers";
-import { validateProductForm, validateDynamicSections } from "../../../utils/form-validation";
 import { useState, useEffect } from "react";
-import { PageText } from "../../Text/Text";
-import { Checkbox } from "../../FormComponent/Checkbox/Checkbox";
-// import ImageUpload from "../../FormComponent/ImageUpload/ImageUpload";
-// import { DynamicSections } from "../../FormComponent/DynamicSectionsFormElement";
-import { useNotificationHook } from "../../../hooks/notification-hook";
-import { useProductsHook } from "../../../hooks/product-hook";
-import { useAuth } from "../../../hooks/auth-hook";
-import { ResourceFormSection } from "../../FormComponent/Dynamic/ResourceFormSection";
+import { PageText } from "../../../Text/Text";
+import styles from "../PortalForm.module.css";
+import { Button } from "../../../Button/Button";
 
-import {
-    useCategoryOptions,
-    useColumnTitles,
-    useYearHelper,
-    useColorOptions,
-    useLogoOptions,
-    useCategories
-} from "../../../hooks/use-form-helpers-hook";
-import { useDynamicForm } from "../../../hooks/use-dynamic-form-hook";
-import { NumberInput } from "../../FormComponent/Number/NumberInput";
-import { StaticImageUpload } from "../../FormComponent/ImageUpload/StaticImageUpload";
-import { DynamicResourceFormSection } from "../../FormComponent/Dynamic/DynamicResourceFormSection";
-import { FormSection } from "../../FormComponent/FormSection/FormSection";
-import { FormWrapper } from "../../FormComponent/FormWrapper/FormWrapper";
-import { capitalizeFirstLetterEachWord } from "../../../utils/text-help";
+import { useAuth } from "../../../../hooks/auth-hook";
+import { useForm } from "../../../../hooks/form-hook";
+
+import { useHttpClient } from "../../../../hooks/http-hook";
+
+import { Select } from "../../../FormComponent/Select/Select";
+
+import { useProductsHook } from "../../../../hooks/product-hook";
+
+import { useRoutingHook } from "../../../../hooks/routing-hook";
+
+import { VALIDATOR_REQUIRE } from "../../../../utils/validators";
+import { TextArea } from "../../../FormComponent/TextArea/TextArea";
+import { Checkbox } from "../../../FormComponent/Checkbox/Checkbox";
+import { FormComponent } from "../../../FormComponent/FormComponent";
+
+import { TextInput } from "../../../FormComponent/TextInput/TextInput";
+import { NumberInput } from "../../../FormComponent/Number/NumberInput";
+import { validateProductForm } from "../../../../utils/form-validation";
+import { useDynamicForm } from "../../../../hooks/use-dynamic-form-hook";
+import { useNotificationHook } from "../../../../hooks/notification-hook";
+import { capitalizeFirstLetterEachWord } from "../../../../utils/text-help";
+import { FormWrapper } from "../../../FormComponent/FormWrapper/FormWrapper";
+import { FormSection } from "../../../FormComponent/FormSection/FormSection";
+import { useDataContext } from "../../../../hooks/data-hook";
+import { appendFormDataWithLineBreak } from "../../../../utils/form-helpers";
+import { ResourceFormSection } from "../../../FormComponent/Dynamic/ResourceFormSection";
+import { StaticImageUpload } from "../../../FormComponent/ImageUpload/StaticImageUpload";
+
+import { useCategories, useCategoryOptions, useColorOptions, useLogoOptions, useColumnTitles, useYearHelper } from "../../../../hooks/use-form-helpers-hook";
 
 
 export const CreateProductForm = () => {
 
+
+
+
     const redirect = useNavigate();
-    const { sendRequest } = useHttpClient();
-    const { setPublicProducts } = useProductsHook();
-    const { authUserId } = useAuth();
-    const { isModal, setIsModal } = useNotificationHook();
-    const { setIsRoutingState } = useRoutingHook();
+    const { authUserId, isAdmin, isSuperAdmin } = useAuth();
 
     const options = useCategoryOptions();
-    const columnTitleOptions = useColumnTitles();
     const colorOptions = useColorOptions();
-    const techLogoOptions = useLogoOptions();
+    const { sendRequest } = useHttpClient();
     const categoryOptions = useCategories();
-    const { availabilityOptions } = useYearHelper();
-
-    const [subcategoryOptions, setSubcategoryOptions] = useState([]);
-    const [selectedColors, setSelectedColors] = useState([]);
-    const [selectedLogos, setSelectedLogos] = useState([]);
+    const techLogoOptions = useLogoOptions();
+    const { fetchProducts } = useProductsHook();
+    const columnTitleOptions = useColumnTitles();
     const [sections, setSections] = useState([]);
+    const { setIsRoutingState } = useRoutingHook();
 
+    const { availabilityOptions } = useYearHelper();
+    const { isModal, setIsModal } = useNotificationHook();
+    const [selectedLogos, setSelectedLogos] = useState([]);
+    const [selectedColors, setSelectedColors] = useState([]);
+    const [subcategoryOptions, setSubcategoryOptions] = useState([]);
+    const { setIsManagedDataState } = useDataContext();
     const { handleSectionChange, handleChange, values } = useDynamicForm({ sections: [] });
 
+
     const [formState, inputHandler] = useForm({
-        msrp: { value: '', isValid: false },
+        // msrp: { value: '', isValid: false },
+        msrp: { value: 0, isValid: false },
         // image: { value: null, isValid: false },
         // qrcode: { value: null, isValid: false },
         title: { value: '', isValid: false },
@@ -86,6 +88,10 @@ export const CreateProductForm = () => {
         specList4: { value: '', isValid: false },
     })
 
+    /* --------------------------------------------------------------------------------------- */
+    /* SET SUBCATEGORY OPTIONS */
+    /* --------------------------------------------------------------------------------------- */
+
     useEffect(() => {
         if (formState.inputs.category.value) {
             setSubcategoryOptions(options[formState.inputs.category.value.toLowerCase()] || []);
@@ -95,7 +101,9 @@ export const CreateProductForm = () => {
     }, [formState.inputs.category.value]);
 
 
-
+    /* --------------------------------------------------------------------------------------- */
+    /* HANDLE COLOUR CHANGE */
+    /* --------------------------------------------------------------------------------------- */
     const handleColourChange = (value, isChecked) => {
         let newSelectedColours;
         if (isChecked) {
@@ -106,6 +114,9 @@ export const CreateProductForm = () => {
         setSelectedColors(newSelectedColours);
     };
 
+    /* --------------------------------------------------------------------------------------- */
+    /* HANDLE LOGO CHANGE */
+    /* --------------------------------------------------------------------------------------- */
     const handleLogoChange = (value, isChecked) => {
         if (isChecked) {
             setSelectedLogos([...selectedLogos, value]);
@@ -114,6 +125,9 @@ export const CreateProductForm = () => {
         }
     };
 
+    /* --------------------------------------------------------------------------------------- */
+    /* HANDLE IMAGE AND PREVIEW*/
+    /* --------------------------------------------------------------------------------------- */
     const [selectedImage, setSelectedImage] = useState(null);
     const [previewUrl, setPreviewUrl] = useState('');
 
@@ -122,6 +136,9 @@ export const CreateProductForm = () => {
         setPreviewUrl(URL.createObjectURL(file));
     };
 
+    /* --------------------------------------------------------------------------------------- */
+    /* HANDLE QR CODE IMAGE AND PREVIEW*/
+    /* --------------------------------------------------------------------------------------- */
     const [selectedQrcodeImage, setSelectedQrcodeImage] = useState(null);
     const [previewQrcodeUrl, setPreviewQrcodeUrl] = useState('');
 
@@ -130,100 +147,112 @@ export const CreateProductForm = () => {
         setPreviewQrcodeUrl(URL.createObjectURL(file));
     };
 
+    /* --------------------------------------------------------------------------------------- */
+    /* HANDLE POST SUBMIT REDIRECTS*/
+    /* --------------------------------------------------------------------------------------- */
     const handleProductDirectoryModalClick = () => {
+        fetchProducts();
         setIsModal(prevState => ({ ...prevState, show: false }))
         redirect('/portal/product-directory')
     }
 
+    /* --------------------------------------------------------------------------------------- */
+    /* HANDLE FORM SUBMIT*/
+    /* --------------------------------------------------------------------------------------- */
 
-    console.log(values)
+
+    const handleFormPreSubmit = async (e) => {
+        e.preventDefault();
+        if (!isAdmin || !isSuperAdmin) {
+            setIsModal({
+                show: true,
+                modalType: 'confirmationModal',
+                title: "Error",
+                message: `WePlease contact an administrator.`,
+                confirmText: 'Confirm update',
+                onConfirm: () => {
+                    handleFormSubmit();
+                },
+                cancelText: "Go back",
+                onCancel: () => setIsModal({ show: false }),
+            })
+        } else {
+            setIsModal({
+                show: true,
+                modalType: 'confirmationModal',
+                title: "Confirm product creation",
+                message: `You are about to create a new product. Please confirm if you wish to proceed.`,
+                confirmText: 'Confirm creation',
+                onConfirm: () => {
+                    handleFormSubmit();
+                },
+                cancelText: "Go back",
+                onCancel: () => setIsModal({ show: false }),
+            })
+
+        }
+    }
 
     const handleFormSubmit = async (e) => {
-        e.preventDefault();
 
-        const formErrors = validateProductForm(formState, selectedImage, selectedQrcodeImage)
 
-        // Validate the dynamic sections
-        // const formSectionErrors = validateDynamicSections(values.sections);
 
-        // Combine all errors
-        const errorMessage = [...formErrors];
-        // const errorMessage = [...formErrors, ...formSectionErrors.map(error => `${error.section + 1}: ${error.message}`)];
-        console.log(errorMessage)
-        if (errorMessage.length !== 0) {
-            // setIsModal(prevState => ({
-            //     ...prevState, 
-            //     errorList: errorMessage,
-            // }));
-            setIsModal(prevState => ({
-                ...prevState,
+        // const formErrors = validateProductForm(formState, selectedImage, selectedQrcodeImage)
+        
+        const {errorMessage, processedValuese} = validateProductForm(formState, selectedImage, selectedQrcodeImage)
+        // const errorMessages = [...formErrors];
+        const errorMessages = [...errorMessage];
+
+        if (errorMessages.length !== 0) {
+
+            setIsModal({
+
                 show: true,
-                modalType: 'infoModal',
+                // modalType: 'infoModal',
+                modalType: 'errorModal',
                 title: "Almost there",
                 iconType: 'errorInfo',
                 message: "You need to fix the following errors to continue.",
-                errorList: errorMessage,
+                errorList: errorMessages,
                 onConfirm: () => setIsModal({ show: false }),
                 onCancel: () => setIsModal({ show: false }),
                 confirmText: "Close",
                 cancelText: "Go back",
 
-            }));
+            });
         } else {
+
             const formData = new FormData();
-            // formData.append('image', formState.inputs.image.value)
-            formData.append('image', selectedImage)
-            formData.append('qrcode', selectedQrcodeImage)
-
-            // formData.append('qrcode', formState.inputs.qrcode.value)
-            formData.append('title', formState.inputs.title.value)
-            formData.append('msrp', formState.inputs.msrp.value)
-            formData.append('subtitle', formState.inputs.subtitle.value)
-            formData.append('specSheetLink', formState.inputs.specSheetLink.value)
-            formData.append('category', formState.inputs.category.value)
-            formData.append('subcategory', formState.inputs.subcategory.value)
-            formData.append('stylecategory', formState.inputs.stylecategory.value)
-            formData.append('store', formState.inputs.store.value)
-            formData.append('availability', formState.inputs.availability.value)
-
+            formData.append('image', selectedImage);
+            formData.append('qrcode', selectedQrcodeImage);
+            formData.append('msrp', formState.inputs.msrp.value || 0);
+            // formData.append('msrp', formState.inputs.msrp.value);
+            formData.append('store', formState.inputs.store.value);
+            formData.append('title', formState.inputs.title.value);
+            formData.append('category', formState.inputs.category.value);
+            formData.append('subtitle', formState.inputs.subtitle.value);
+            formData.append('specTitle1', formState.inputs.specTitle1.value);
+            formData.append('specTitle2', formState.inputs.specTitle2.value);
+            formData.append('specTitle3', formState.inputs.specTitle3.value);
+            formData.append('specTitle4', formState.inputs.specTitle4.value);
+            formData.append('subcategory', formState.inputs.subcategory.value);
+            formData.append('availability', formState.inputs.availability.value);
+            formData.append('specSheetLink', formState.inputs.specSheetLink.value);
+            formData.append('stylecategory', formState.inputs.stylecategory.value);
             appendFormDataWithLineBreak(formData, 'upc', formState.inputs.upc.value);
             appendFormDataWithLineBreak(formData, 'videos', formState.inputs.videos.value);
-
-            formData.append('specTitle1', formState.inputs.specTitle1.value)
-            formData.append('specTitle2', formState.inputs.specTitle2.value)
-            formData.append('specTitle3', formState.inputs.specTitle3.value)
-            formData.append('specTitle4', formState.inputs.specTitle4.value)
             appendFormDataWithLineBreak(formData, 'specList1', formState.inputs.specList1.value);
             appendFormDataWithLineBreak(formData, 'specList2', formState.inputs.specList2.value);
             appendFormDataWithLineBreak(formData, 'specList3', formState.inputs.specList3.value);
             appendFormDataWithLineBreak(formData, 'specList4', formState.inputs.specList4.value);
 
-            // Object.keys(values).forEach(key => {
-            //     if (key !== 'sections') {
-            //         formData.append(key, values[key]);
-            //     }
-            // });
 
-            // values.sections.forEach((section, index) => {
-            //     formData.append(`sections[${index}][resourceTitle]`, section.resourceTitle);
-            //     formData.append(`sections[${index}][resourceUrl]`, section.resourceUrl);
-            //     if (section.resourceQrCodeImage.length > 0) {
-            //         formData.append(`sections[${index}][resourceQrCodeImage]`, section.resourceQrCodeImage[0].file);
-            //     }
-            // });
             sections.forEach((section, index) => {
                 formData.append(`sections[${index}][resourceTitle]`, section.resourceTitle);
                 formData.append(`sections[${index}][resourceUrl]`, section.resourceUrl);
                 if (section.resourceQrCodeImage instanceof File) {
                     formData.append(`sections[${index}][resourceQrCodeImage]`, section.resourceQrCodeImage);
                 }
-                // Check if resourceQrCodeImage is a valid string and not null or empty
-                // if (section.resourceQrCodeImage) {
-                //     formData.append(`sections[${index}][resourceQrCodeImage]`, section.resourceQrCodeImage);
-                // }
-                // if (section.resourceQrCodeImage.length > 0) {
-                //     formData.append(`sections[${index}][resourceQrCodeImage]`, section.resourceQrCodeImage[0].file);
-                // }
             });
             for (const logo of selectedLogos) {
                 formData.append('logos', logo);
@@ -233,38 +262,37 @@ export const CreateProductForm = () => {
             }
             formData.append('creator', authUserId);
 
-
             try {
+                setIsManagedDataState(prevState => ({ ...prevState, loading: true }));
+
                 const response = await sendRequest(`http://localhost:3005/add-product`,
-                    // const response = await sendRequest(` ${process.env.REACT_APP_BACKEND_URL}add-product`,
+                // const response = await sendRequest(` ${process.env.REACT_APP_BACKEND_URL}add-product`,
                     'POST',
                     formData
                 )
-                console.log(response)
+
                 if (response.responseStatusCode === 201) {
+                    setIsManagedDataState(prevState => ({ ...prevState, loading: false }));
                     // setPublicProducts(prevProducts => [
                     //     ...prevProducts,
                     //     response.responseData.product
                     // ]);
 
                     setIsRoutingState(prevState => ({ ...prevState, isLoading: false }));
-                    // setPublicProducts(prevProducts => [
-                    //     ...prevProducts, // Spread the existing products
-                    //     response.responseData.product // Append the new product
-                    // ]);
-                    setIsModal(prevState => ({
-                        ...prevState,
+
+                    setIsModal({
+                     
                         show: true,
                         modalType: 'successModal',
                         title: "Success",
                         message: "Congrats! The product was added successfully.",
                         errorList: errorMessage,
-                        onConfirm: () => setIsModal({ show: false }),
+                        // onConfirm: () => setIsModal({ show: false }),
                         onCancel: handleProductDirectoryModalClick,
-                        confirmText: "Close",
+                        // confirmText: "Close",
                         cancelText: "Go to product directory",
 
-                    }));
+                    });
 
                     // THIS MIGHT NOT BE NEEDED
                     setTimeout(() => {
@@ -272,10 +300,10 @@ export const CreateProductForm = () => {
                     }, 100);
                 }
             } catch (err) {
-
+                setIsManagedDataState(prevState => ({ ...prevState, loading: false }));
                 console.log(err, 'error catch')
-                setIsModal(prevState => ({
-                    ...prevState,
+                setIsModal({
+
                     show: true,
                     modalType: 'infoModal',
                     iconType: 'errorInfo',
@@ -287,46 +315,36 @@ export const CreateProductForm = () => {
                     confirmText: "Close",
                     cancelText: "Go back",
 
-                }));
+                });
             }
-            console.log('is modal', isModal)
+
 
         }
 
     }
+
+
     return (
-        // <FormComponent onSubmit={handleFormSubmit}>
         <FormComponent>
-            {/* TITLE + SUBTITLE */}
             <FormSection
-            // sectionTitle="Product Name"
-            // sectionDescription="Add model name and subtitle"
+                sectionTitle="Define your product"
+                sectionDescription="Get started by adding the headline text and retailer information."
             >
                 <FormWrapper>
-
                     <TextInput
                         id="title"
                         name="title"
                         labelName="Title"
-                        secondaryLabelToolTip='Special characters allowed ( / \ - _ )'
+                        secondaryLabelToolTip='Title must be between 3 and 100 characters. Special characters allowed ( / - _ )'
                         errorText='Product title required'
                         validators={[VALIDATOR_REQUIRE()]}
                         onInput={inputHandler}
-
                     />
-                    {/* <TextInput
-                        id="subtitle"
-                        name="subtitle"
-                        labelName="Subtitle"
-                        //  secondaryLabel='e.g. MXY8Z'
-                        errorText=' Subtitle required'
-                        validators={[VALIDATOR_REQUIRE()]}
-                        onInput={inputHandler}
-                    /> */}
                     <TextArea
                         id="subtitle"
                         name="subtitle"
                         labelName="Subtitle"
+                        secondaryLabelToolTip='Subtitle min 8 max 300 characters'
                         rows={7}
                         errorText=' Subtitle required'
                         validators={[VALIDATOR_REQUIRE()]}
@@ -341,7 +359,7 @@ export const CreateProductForm = () => {
                         onInput={inputHandler}
                         options={[
                             // { value: "", label: "Pick retailer", disabled: true },
-                            { value: "LG US", label: "LG Generic" },
+                            { value: "LG US", label: "LG Exclusive" },
                             { value: "hd", label: "Home Depot" }
                         ]}
                     />
@@ -354,33 +372,12 @@ export const CreateProductForm = () => {
                         onInput={inputHandler}
                         options={availabilityOptions}
                     />
-                    {/* <NumberInput
-                        id="msrp"
-                        name="msrp"
-                        secondaryLabelToolTip={"MSRP is optional and will be set to 0 when left blank. The MSRP is used to list products in order from lowest \"0\" to highest \"9999999\" when featured amongst other products in the respective product category page."}
-                        validators={[]}
-                        value={values.msrp}
-                        onInput={inputHandler}
-                        labelName="MSRP"
-                    /> */}
-                </FormWrapper>
-
-            </FormSection>
-            {/* MSRP + RETAILER + AVAILABILITY */}
-            <FormSection
-            // sectionTitle="Set MSRP, Retailer, and Availability"
-            // sectionDescription="Pick retailer"
-            >
-                <FormWrapper>
-
-
                 </FormWrapper>
             </FormSection>
 
-            {/* CATEGORY + SUB CATEGORY + STYLE CATEGORY */}
             <FormSection
-                sectionTitle="Category Selection"
-                sectionDescription="Pick category"
+                sectionTitle="Choose a category"
+                sectionDescription="When your select a category, the sub category options will appear. The style category field is optional. A category and subcategory is required to complete this step. "
             >
                 <FormWrapper>
                     <Select
@@ -420,10 +417,26 @@ export const CreateProductForm = () => {
                     )}
                 </FormWrapper>
             </FormSection>
-            {/* SPECIFICATIONS*/}
+
             <FormSection
-                sectionTitle="Specifications"
-                sectionDescription="Add specifcation details"
+                sectionTitle="Upload the product image"
+                sectionDescription="Add a product image that meets the required criteria"
+            >
+                <FormWrapper>
+                    <StaticImageUpload
+                        iconType='imageFile'
+                        itemName='Image'
+                        previewUrl={previewUrl}
+                        selectedFile={selectedImage}
+                        handleFileChange={(e) => handleImageChange(e.target.files[0])}
+
+                    />
+                </FormWrapper>
+            </FormSection>
+
+            <FormSection
+                sectionTitle="Add specs a related products to showcase"
+                sectionDescription="Select a column title and add a list of relevant specifications. Insert brackets around the title of the accessory you want to feature as a related product. Example. Matching washer (WX8MZ_)"
             >
                 <FormWrapper>
                     <Select
@@ -441,9 +454,10 @@ export const CreateProductForm = () => {
                         type="textarea"
                         rows={10}
                         onInput={inputHandler}
-                        validators={[]}
+                        validators={[VALIDATOR_REQUIRE()]}
                         labelName="(1) Column list"
-                        noTouchValidation={true}
+                        // noTouchValidation={true}
+                        errorText='Minimum of 1 list item required.'
                     />
                     <Select
                         id="specTitle2"
@@ -504,10 +518,10 @@ export const CreateProductForm = () => {
                     />
                 </FormWrapper>
             </FormSection>
-            {/* VIDEOS */}
+
             <FormSection
-                sectionTitle="Youtube videos"
-                sectionDescription="Add feature videos"
+                sectionTitle="Include feature videos"
+                sectionDescription="Add a url to showcase feature innovation videos on the product page. Video urls must be in the required formats for YouTube or Vimeo. "
             >
                 <FormWrapper>
                     <TextArea
@@ -518,18 +532,20 @@ export const CreateProductForm = () => {
                         onInput={inputHandler}
                         validators={[]}
                         labelName="Youtube videos"
-                        secondaryLabel='Optional'
+                        secondaryLabel='Only secure protocol (https) Youtube or Vimeo videos allowed. Example https://www.youtube.com/watch?v=Baj92O7Y6Rs.'
                         noTouchValidation={true}
                     />
                 </FormWrapper>
             </FormSection>
 
-            {/* COLORS*/}
             <FormSection
-                sectionTitle="Color Selection"
-                sectionDescription="Pick colors"
+                sectionTitle="Pick color finishes and technology "
+                sectionDescription="Add colors the product is available in. Select related technology and innovation brands. Include relevant upc codes."
             >
                 <FormWrapper>
+                    <div className={styles.colorSectionTitle}>
+                        <PageText type="pageSubtitle">Colors Logos</PageText>
+                    </div>
                     {colorOptions.map((e, index) => (
                         <Checkbox
                             key={index}
@@ -540,64 +556,29 @@ export const CreateProductForm = () => {
                             checked={selectedColors.includes(e.color)}
                         />
                     ))}
-                </FormWrapper>
-            </FormSection>
-            {/* LOGOS*/}
-            <FormSection
-                sectionTitle="Technology Logos Selection"
-                sectionDescription="Pick retailer"
-            >
-                <FormWrapper>
+
+                    <div className={styles.logoSectionTitle}>
+                        <PageText type="pageSubtitle">Tech Logos</PageText>
+                    </div>
                     {techLogoOptions.map((e, index) => (
                         <Checkbox
                             key={index}
                             id={e.logo}
                             // labelName={capitalizeFirstLetterEachWord(e.logo)}
-                            labelName={e.logo}
+                            // labelName={e.logo}
+                            labelName={e.label}
                             value={e.logo}
                             onChange={handleLogoChange}
                             checked={selectedLogos.includes(e.logo)}
                         />
                     ))}
                 </FormWrapper>
-            </FormSection>
-            {/* UPC CODES*/}
-            <FormSection
-                sectionTitle="UPC Codes"
-            >
-                <FormWrapper>
-                    <TextArea
-                        id="upc"
-                        name="upc"
-                        type="textarea"
-                        rows={10}
-                        onInput={inputHandler}
-                        validators={[]}
-                        labelName="UPC Code"
-                        noTouchValidation={true}
-                    />
-                </FormWrapper>
-            </FormSection>
-            {/* IMAGE UPLOAD*/}
-            <FormSection
-                sectionTitle="Upload Product Image"
-            // sectionDescription="Add product image files"
-            >
-                <FormWrapper>
-                    <StaticImageUpload
-                        iconType='imageFile'
-                        itemName='Image'
-                        previewUrl={previewUrl}
-                        selectedFile={selectedImage}
-                        handleFileChange={(e) => handleImageChange(e.target.files[0])}
 
-                    />
-                </FormWrapper>
             </FormSection>
-            {/* QR CODE SPEC IMAGE UPLOAD + SPEC LINK*/}
+
             <FormSection
-                sectionTitle="Upload spec sheet QR code image and link"
-                sectionDescription="Add QR code image files"
+                sectionTitle="Add a specificiation resource group"
+                sectionDescription="Upload the relevant qr code image file so it shows on printed product list. Add the full webpage url of the product specification sheet. "
             >
                 <FormWrapper>
                     <StaticImageUpload
@@ -606,8 +587,8 @@ export const CreateProductForm = () => {
                         previewUrl={previewQrcodeUrl}
                         selectedFile={selectedQrcodeImage}
                         handleFileChange={(e) => handleQrcodeImageChange(e.target.files[0])}
-
                     />
+
                     <TextInput
                         id="specSheetLink"
                         name="specSheetLink"
@@ -618,93 +599,48 @@ export const CreateProductForm = () => {
                         onInput={inputHandler}
                     />
                 </FormWrapper>
-            </FormSection>
-            {/* DYNAMIC SECTIONS*/}
-            <ResourceFormSection initialSections={[]} onSectionsChange={setSections} />
 
-           
-                <div className={styles.formButtonWrapper}>
-                    <div>
-                        <Button onClick={handleFormSubmit} type="button" buttonStyleType="primaryAction">
-                            Add product
+            </FormSection>
+
+            <FormSection
+                sectionTitle="Generate custom resource groups"
+                sectionDescription="Create a title and add the full webpage url of resource you want to link. Upload the relevant qr code image file so it shows on printed product list."
+            >
+                <ResourceFormSection initialSections={[]} onSectionsChange={setSections} />
+            </FormSection>
+            <FormSection
+                sectionTitle="Position with MSRP"
+                sectionDescription="The MSRP is used to determine where your new product will show up in relation to other products in the same category. The product with the highest MSRP will show first. MSRP is optional and will be set to 0 when left blank."
+            >
+                <NumberInput
+                    id="msrp"
+                    name="msrp"
+                    secondaryLabelToolTip={"MSRP is optional and will be set to 0 when left blank. The MSRP is used to list products in order from lowest \"0\" to highest \"9999999\" when featured amongst other products in the respective product category page."}
+                    validators={[]}
+                    value={values.msrp}
+                    onInput={inputHandler}
+                    labelName="MSRP"
+                />
+            </FormSection>
+            <div className={styles.formFooter}>
+                <FormSection
+                    sectionTitle="Add your product!"
+                    sectionDescription="Confirm product details are in the required formats. Visit the product details page after your submit to review the new product listing"
+                >
+                    {/* <FormWrapper> */}
+                    <div className={styles.footerButtonWrapper}>
+                        {/* <Button onClick={handleFormSubmit} type="button" buttonStyleType="primaryAction"> */}
+                        <Button onClick={handleFormPreSubmit} type="button" buttonStyleType="primaryAction">
+                            Add your new product
                         </Button>
                     </div>
-                </div>
-        
+                    {/* </FormWrapper> */}
 
-            {/* <section className={styles.section}>
-                <div className={styles.sectionHeader}>
-                    <PageText type="pageTitle">Category</PageText>
-                    <PageText type="pageTertiaryTitle">Pick category</PageText>
-                </div>
-                <div className={styles.sectionContent}>
-                    <Select
-                        id='category'
-                        name="category"
-                        labelName="Category"
-                        onInput={inputHandler}
-                        validators={[]}
-
-                        options={categoryOptions}
-                    />
-                    {formState.inputs.category.value && (
-
-                        <div>
-                            <div className={styles.sectionHeader}>
-                                <PageText type="pageTitle">Subcategory and style category</PageText>
-                                <PageText type="pageTertiaryTitle">Subcategory and style category</PageText>
-
-                            </div>
-                            <div className={styles.dualRow}>
-                                <Select
+                </FormSection>
 
 
-                                    id='subcategory'
-                                    name="subcategory"
-                                    labelName="Subcategory"
-                                    onInput={inputHandler}
-                                    validators={[]}
-                                    options={subcategoryOptions}
-                                />
-                                <TextInput
-                                    id="stylecategory"
-                                    name="stylecategory"
-                                    labelName="Style category"
-                                    secondaryLabel='Example, Front Load Washer'
-                                    // errorText=' Style category error'
-                                    noTouchValidation={true}
-                                    validators={[]}
-                                    onInput={inputHandler}
-                                />
-                            </div>
-                        </div>
+            </div>
 
-                    )}
-                </div>
-            </section> */}
-            {/* <section className={styles.section}>
-              
-                <div className={styles.sectionContent}>
-
-                   
-                    <StaticImageUpload
-                        iconType='qrCode'
-                        itemName='Qrcode'
-                        previewUrl={previewQrcodeUrl}
-                        selectedFile={selectedQrcodeImage}
-                        handleFileChange={(e) => handleQrcodeImageChange(e.target.files[0])}
-
-                    />
-                </div>
-            </section> */}
-            {/* <section className={styles.section}>
-                <div className={styles.sectionHeader}>
-                    <PageText type="pageTitle">Resource Links</PageText>
-                    <PageText type="pageTertiaryTitle">Build links to external resources</PageText>
-                </div>
-                <ResourceFormSection initialSections={[]} onSectionsChange={setSections} />
-               
-            </section> */}
         </FormComponent>
     )
 }

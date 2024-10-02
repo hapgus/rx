@@ -6,6 +6,15 @@
 }
 .leaderBoardTitle{
     font-size: 1.8rem;
+    /* font-family: var(--text-semibold); */
     padding-bottom: 2rem;
     color: var(--color-gray-01);
+}
+.leaderBoardChildren{
+    background-color: rgba(247, 248, 249, 0.507);
+    padding: 2rem 3rem;
+}
+
+.leaderBoardChildren li{
+    list-style: none;
 }

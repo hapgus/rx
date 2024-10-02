@@ -32,10 +32,10 @@ export const ManageUserForm = () => {
     const { sendRequest } = useHttpClient();
     const { isManagedDataState, setIsManagedDataState } = useDataContext();
 
-    console.log('managedData', isManagedDataState)
+ 
     const [userInfo, setUserInfo] = useState()
 
-    console.log('admin routing', isAdminRoutingState)
+   
     const decodedToken = useAuthUser();
     const { authUserId, isSuperAdmin } = useAuth();
 
@@ -49,7 +49,7 @@ export const ManageUserForm = () => {
 
      const handleOnCancelRedirectDirectoy = () => {
 
-        console.log('handle',formState)
+      
         setIsModal({ show: false })
         if(formState.inputs.role.value === "admin" || formState.inputs.role.value === "superAdmin" ){
             redirect('/portal/admin-directory/')

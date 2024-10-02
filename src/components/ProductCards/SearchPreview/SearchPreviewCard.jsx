@@ -127,7 +127,7 @@ export const SearchPreviewCard = ({ products }) => {
                                 <LinkComponent href={productURL}>
 
                                     <Button buttonStyleType="secondary" buttonTextType="action">
-                                        See detailss
+                                        See details
                                     </Button>
 
                                 </LinkComponent>

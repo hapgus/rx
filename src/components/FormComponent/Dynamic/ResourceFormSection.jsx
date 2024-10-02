@@ -8,7 +8,7 @@ import { CountBubble } from '../../CountBubble/CountBubble';
 import { FormSection } from '../FormSection/FormSection';
 
 const sectionReducer = (state, action) => {
-    console.log(state, action)
+   
     switch (action.type) {
         case 'INITIALIZE_SECTIONS':
             return action.sections.map(section => ({
@@ -73,7 +73,7 @@ export const ResourceFormSection = ({ initialSections = [], onSectionsChange }) 
             dispatch({ type: 'INITIALIZE_SECTIONS', sections: mappedSections });
         }
     }, [initialSections]);
-    console.log('resource form', initialSections)
+
     // useEffect(() => {
     //     if (initialSections.length > 0) {
     //         dispatch({ type: 'INITIALIZE_SECTIONS', sections: initialSections });

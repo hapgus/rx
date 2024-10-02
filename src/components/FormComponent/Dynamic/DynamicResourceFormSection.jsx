@@ -4,7 +4,7 @@ import { TextInput } from "../TextInput/TextInput"
 import styles from './DynamicResourceFormSection.module.css';
 import { CountBubble } from "../../CountBubble/CountBubble";
 import { StaticImageUpload } from "../ImageUpload/StaticImageUpload";
-import { FormElement } from "../FormElement";
+
 import { DynamicTextInput } from "../TextInput/DynamicTextInput";
 
 export const DynamicResourceFormSection = ({ sections, onChange }) => {

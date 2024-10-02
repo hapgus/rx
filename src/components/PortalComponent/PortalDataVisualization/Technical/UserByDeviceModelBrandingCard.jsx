@@ -13,13 +13,22 @@ export const UserByDeviceModelBrandingCard = () => {
     const singleColor = '#3366CC'; // Define a single color for all columns
 
     const { config: barChartOptions } = useChartConfig(
-        'BarChart',
-        'Device Branding',
+        'BarChart', 
+        '', 
         'Users',
         '',
         { minValue: 0 },
-        [singleColor],
-        false
+        ['#3366CC'],
+        false, // Show legend
+        true, // Show X-axis labels
+        true,
+        // 'BarChart',
+        // 'Device Branding',
+        // 'Users',
+        // '',
+        // { minValue: 0 },
+        // [singleColor],
+        // false
     );
 
     if (!data || !data.length) {
@@ -52,9 +61,10 @@ export const UserByDeviceModelBrandingCard = () => {
 
     return (
         <PortalCard
-            cardTitle="Device Model Branding"
-            toolTipText="Manufacturer or branded name (examples: Samsung, HTC, Verizon, T-Mobile)."
-        cardFooter='Footer text here ---'
+            cardTitle="User Distribution by Device Brand"
+           toolTipText="This chart displays the number of users categorized by the branding of their devices, providing insights into which device brands are most commonly used to access your application."
+            // toolTipText="Manufacturer or branded name (examples: Samsung, HTC, Verizon, T-Mobile)."
+       
         >
             {chartData ? (
                 <BarChart data={chartData} options={barChartOptions} />

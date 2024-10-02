@@ -14,7 +14,7 @@ export const UserByDeviceModelCard = () => {
 
     const { config: barChartOptions } = useChartConfig(
         'BarChart',
-        'Device Model',
+        '',
         'Users',
         '',
         { minValue: 0 },
@@ -52,9 +52,9 @@ export const UserByDeviceModelCard = () => {
 
     return (
         <PortalCard
-            cardTitle="Device Model"
-            toolTipText="The mobile device model name (examples: iPhone X or SM-G950F)."
-       cardFooter='Footer text here ---'
+            cardTitle="User Distribution by Device Model"
+    toolTipText="This chart displays the number of users segmented by their mobile device models, such as 'iPhone X', 'Samsung Galaxy S21', or other device types. Understanding which devices are most common helps optimize your application for those devices."
+     
        >
             {chartData ? (
                 <BarChart data={chartData} options={barChartOptions} />

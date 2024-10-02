@@ -23,6 +23,17 @@
     grid-template-rows: repeat(2, auto);
 }
 
+.linkText p{
+   
+    transform: scale(1);
+    transition: transform 0.1s ease, border-color 0.1s ease;
+    border-bottom: 2px solid transparent;
+    display: inline-flex;
+}
+.linkText p:hover{
+    transform: scale(1.01);
+    border-bottom: 2px solid var(--color-red-03);
+}
 .breadcrumbs {
     grid-row: 1;
     grid-column: 2/12;
@@ -33,6 +44,7 @@
     /* padding-bottom: 2rem;
     margin-bottom: 2rem; */
     /* border-bottom: 1px solid var(--color-gray-04); */
+    
 }
 .breadcrumbs a{
     color: var(--color-gray-03);

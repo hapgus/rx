@@ -11,7 +11,7 @@ export const PortalCard = ({
     children,
     cardFooter
 }) =>
-    <HashLink to={linkToAnalytics}>
+    // <HashLink to={linkToAnalytics}>
         <div className={styles.cardContainer}>
 
 
@@ -53,4 +53,4 @@ export const PortalCard = ({
 
 
         </div>
-    </HashLink>
+    // </HashLink>

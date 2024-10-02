@@ -1,26 +1,23 @@
-import { useDataContext } from '../../../../hooks/data-hook';
+
 import { PortalDataFilterBar } from '../PortalDataFilter/PortalDataFilterBar';
 
 import styles from './PortalDashboard.module.css'
 
-import { LandingPageViewsCard } from '../../PortalDataVisualization/LandingPage/LandingPageViewsCard';
+import { LandingPageViewsCard } from '../../PortalDataVisualization/LandingPages/LandingPageViewsCard';
 
 import { PortalBanner } from '../PortalBanner/PortalBanner';
 
-import { LandingPageSessionsCard } from '../../PortalDataVisualization/LandingPage/LandingPageSessionsCard';
-import { LandingPageUsersCard } from '../../PortalDataVisualization/LandingPage/LandingPageUsersCard';
-import { LandingPageEventsCard } from '../../PortalDataVisualization/LandingPage/LandingPageEventsCard';
+import { LandingPageSessionsCard } from '../../PortalDataVisualization/LandingPages/LandingPageSessionsCard';
+import { LandingPageUsersCard } from '../../PortalDataVisualization/LandingPages/LandingPageUsersCard';
+import { LandingPageEventsCard } from '../../PortalDataVisualization/LandingPages/LandingPageEventsCard';
 
-import { LandingPageViewsByGeoLocationLeaderBoard } from '../../PortalDataVisualization/LandingPage/LandingPageByGeolocationLeaderboard';
-import { LandingPageCategoryByPageViewsBarChart } from '../../PortalDataVisualization/LandingPage/LandingPageCategoryByPageViewsBarChart';
+import { LandingPageViewsByGeoLocationLeaderBoard } from '../../PortalDataVisualization/LandingPages/LandingPageByGeolocationLeaderboard';
+import { LandingPageCategoryByPageViewsBarChart } from '../../PortalDataVisualization/LandingPages/LandingPageCategoryByPageViewsBarChart';
 
 import { EventsColumnChart } from '../../PortalDataVisualization/AllEvents/EventsColumnChart';
 import { EventsByLocationLeaderboard } from '../../PortalDataVisualization/AllEvents/EventsByLocationLeaderboard';
 
 export const PortalDashboard = () => {
-    const { isDateRangeState, isDataState } = useDataContext();
-    console.log('date range', isDateRangeState);
-    console.log('data state', isDataState);
 
 
     return (
@@ -46,7 +43,7 @@ export const PortalDashboard = () => {
                 row2Chart2={
                     <>
                         <EventsColumnChart />
-                        <EventsByLocationLeaderboard />
+                        <EventsByLocationLeaderboard  limit={10}/>
                     </>
                 }
 

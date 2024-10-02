@@ -162,7 +162,6 @@ export const CreateProductForm = () => {
 
 
     const handleFormPreSubmit = async (e) => {
-        console.log('fire')
         e.preventDefault();
         if (!isAdmin || !isSuperAdmin) {
             setIsModal({
@@ -197,28 +196,30 @@ export const CreateProductForm = () => {
     const handleFormSubmit = async (e) => {
 
 
-        console.log('fire a')
+
         // const formErrors = validateProductForm(formState, selectedImage, selectedQrcodeImage)
         
-        const {errorMessage, processedValues} = validateProductForm(formState, selectedImage, selectedQrcodeImage)
+        const {errorMessage} = validateProductForm(formState, selectedImage, selectedQrcodeImage)
         // const errorMessages = [...formErrors];
         const errorMessages = [...errorMessage];
-console.log(errorMessage)
+
         if (errorMessages.length !== 0) {
 
             setIsModal({
+
                 show: true,
+                // modalType: 'infoModal',
                 modalType: 'errorModal',
                 title: "Almost there",
                 iconType: 'errorInfo',
                 message: "You need to fix the following errors to continue.",
-                errorList: errorMessages, // Show all combined errors
+                errorList: errorMessages,
                 onConfirm: () => setIsModal({ show: false }),
                 onCancel: () => setIsModal({ show: false }),
                 confirmText: "Close",
                 cancelText: "Go back",
+
             });
-            return; // Stop execution if errors are found
         } else {
 
             const formData = new FormData();
@@ -264,8 +265,8 @@ console.log(errorMessage)
             try {
                 setIsManagedDataState(prevState => ({ ...prevState, loading: true }));
 
-                // const response = await sendRequest(`http://localhost:3005/add-product`,
-                const response = await sendRequest(` ${process.env.REACT_APP_BACKEND_URL}add-product`,
+                const response = await sendRequest(`http://localhost:3005/add-product`,
+                // const response = await sendRequest(` ${process.env.REACT_APP_BACKEND_URL}add-product`,
                     'POST',
                     formData
                 )
@@ -285,7 +286,7 @@ console.log(errorMessage)
                         modalType: 'successModal',
                         title: "Success",
                         message: "Congrats! The product was added successfully.",
-                      
+                        errorList: errorMessage,
                         // onConfirm: () => setIsModal({ show: false }),
                         onCancel: handleProductDirectoryModalClick,
                         // confirmText: "Close",
@@ -334,7 +335,7 @@ console.log(errorMessage)
                         id="title"
                         name="title"
                         labelName="Title"
-                        secondaryLabelToolTip='Title must be between 3 and 100 characters. Special characters allowed ( / - _ )'
+                        secondaryLabelToolTip='Special characters allowed ( / \ - _ )'
                         errorText='Product title required'
                         validators={[VALIDATOR_REQUIRE()]}
                         onInput={inputHandler}
@@ -531,7 +532,7 @@ console.log(errorMessage)
                         onInput={inputHandler}
                         validators={[]}
                         labelName="Youtube videos"
-                        secondaryLabelToolTip='Only secure protocol (https) Youtube or Vimeo videos allowed. Example https://www.youtube.com/watch?v=Baj92O7Y6Rs.'
+                        secondaryLabel='Optional'
                         noTouchValidation={true}
                     />
                 </FormWrapper>
@@ -563,25 +564,14 @@ console.log(errorMessage)
                         <Checkbox
                             key={index}
                             id={e.logo}
-                            
+                            // labelName={capitalizeFirstLetterEachWord(e.logo)}
+                            // labelName={e.logo}
                             labelName={e.label}
                             value={e.logo}
                             onChange={handleLogoChange}
                             checked={selectedLogos.includes(e.logo)}
                         />
                     ))}
-                     <TextArea
-                        id="upc"
-                        name="upc"
-                        labelName="UPC Codes"
-                        secondaryLabelToolTip="Other than brackets () no special characters allowed."
-                        rows={7}
-                        // errorText=' required'
-                     
-                        validators={[]}
-                      
-                        onInput={inputHandler}
-                    />
                 </FormWrapper>
 
             </FormSection>

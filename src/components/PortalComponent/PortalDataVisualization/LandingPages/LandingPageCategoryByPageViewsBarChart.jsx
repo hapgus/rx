@@ -10,7 +10,17 @@ import Skeleton from 'react-loading-skeleton';
 export const LandingPageCategoryByPageViewsBarChart = () => {
     const { isDataState } = useDataContext();
     const data = isDataState.isDataFilteredByDate;  // Use filtered search data from context
-    const { config: barChartOptions } = useChartConfig('BarChart', 'Page Category', 'Page Views');
+    const { config: barChartOptions } = useChartConfig(
+        'ColumnChart', 
+        '', 
+        'Landing Page Type',
+        'Views',
+        { minValue: 0 },
+        ['#3366CC'],
+        false, // Show legend
+        true, // Show X-axis labels
+        true,
+    );
 
     if (!data || !data.length) {
         return <Skeleton height={200} width="100%" />; // Skeleton for loading state
@@ -55,8 +65,11 @@ export const LandingPageCategoryByPageViewsBarChart = () => {
     return (
 
         <PortalCard
-            cardTitle="Popular Pages"
-            cardFooter={`Total views: ${totalPageViewCount.toLocaleString()}, Avg views per category: ${avgPageViewCount.toFixed(2)}. Most popular category: "${mostPopularCategory}" with ${mostPopularCategoryViews.toLocaleString()} views.`}
+        toolTipText="This chart displays the most viewed types of pages on your site, categorized by their purpose. These include 'Homepage', 'All Category Pages', 'Category Pages', 'Product Pages', 'Resource Pages', 'Step-Up Charts', and 'Product List Builder'. Each category represents a different area of user interest and engagement on your site."
+
+
+            cardTitle="Popular Types of Pages"
+            cardFooter={ `Most popular page type: "${mostPopularCategory}" with ${mostPopularCategoryViews.toLocaleString()} views.`}
         >
             {
                 chartData.length > 1 ? (

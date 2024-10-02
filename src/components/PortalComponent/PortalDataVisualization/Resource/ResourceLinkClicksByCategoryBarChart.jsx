@@ -11,7 +11,15 @@ export const ResourceLinkClicksByCategoryBarChart = () => {
     const { isDataState } = useDataContext(); // Access context data
     const data = isDataState.resourceDataFilteredByDate; // Filtered product data
     console.log('RESO',data)
-    const { config: barChartOptions } = useChartConfig('BarChart', 'Category', 'Event Count'); // BarChart config
+    const { config: barChartOptions } = useChartConfig('BarChart', 
+        '', 
+        'Resource Clicks',
+        '',
+        { minValue: 0 },
+        ['#3366CC'],
+        false, // Show legend
+        true, // Show X-axis labels
+        true,); // BarChart config
 
     const targetEvents = ['RESOURCE_CLICKED'];
 
@@ -54,8 +62,10 @@ export const ResourceLinkClicksByCategoryBarChart = () => {
 
     return (
         <PortalCard
-            cardTitle="Clicks on Resource Links by Category"
-            cardFooter={`Total events: ${totalEventCount.toLocaleString()}, Avg events: ${avgEventCount.toFixed(2)}, Most popular: "${mostPopularCategory}" (${mostPopularCategoryEvents.toLocaleString()} events)`}
+            cardTitle="Resource Link Clicks Grouped by Page Types"
+             toolTipText="This chart highlights how often users clicked resource links based on different page types. It helps identify which page types have the highest user engagement through resource links."
+            cardFooter={` Most popular page type: "${mostPopularCategory}" (${mostPopularCategoryEvents.toLocaleString()} events)`}
+            // cardFooter={`The category with the most resource link clicks is "${mostPopularCategory}", with a total of ${mostPopularCategoryEvents.toLocaleString()} events. The average number of clicks across all categories is ${avgEventCount.toFixed(2)}.`}
         >
             {chartData.length > 1 ? (
                 <BarChart data={chartData} options={barChartOptions} />

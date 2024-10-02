@@ -28,8 +28,7 @@ export const StaticImageUpload = ({
     previewUrl.includes('/media/qrcodes/') ||
     previewUrl.includes('blob')
   );
-console.log(previewUrl)
-    // console.log(previewUrl)
+
     return (
         <div className={styles.imageUploadContainer}>
             <div className={styles.imageUploadHeader}>

@@ -11,7 +11,17 @@ import Skeleton from 'react-loading-skeleton';
 export const AddToListProductSearchByLandingPageCategoryBarChart = () => {
     const { isDataState } = useDataContext(); 
     const data = isDataState.searchDataFilteredByDate; // Use filtered search data
-    const { config: barChartOptions } = useChartConfig('BarChart', 'Page Group', 'Event Count'); 
+    const { config: barChartOptions } = useChartConfig( 
+        'ColumnChart', 
+        '', 
+        '',
+        'Event Count',
+        { minValue: 0 },
+        ['#3366CC'],
+        false, // Show legend
+        true, // Show X-axis labels
+        true,
+    );
 
     const targetEvents = ['SEARCHED_PRODUCT_ADDED'];
 
@@ -53,8 +63,8 @@ export const AddToListProductSearchByLandingPageCategoryBarChart = () => {
     return (
         <PortalCard 
         
-            cardTitle="Page type user was on when adding product to list from search"
-            toolTipText="The type of page the user was on when they searched for a product and added it to their list."
+            cardTitle="Page Types Driving Product Additions from Search"
+            toolTipText="This chart breaks down the types of pages where users searched for and added products to their list. Understanding these page categories helps identify the context in which users are most likely to add products, offering insights into their browsing behavior."
             // cardData={totalEventCount}
             cardFooter={`Total events: ${totalEventCount.toLocaleString()}, Avg events per page: ${avgEventCount.toFixed(2)}`}
         >

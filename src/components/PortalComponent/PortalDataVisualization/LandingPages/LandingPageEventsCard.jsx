@@ -68,9 +68,9 @@ console.log(aggregatedDataArray)
     // Step 7: Configure the chart options
     const { config: areaChartOptions } = useChartConfig(
         'AreaChart',
-        'Events',
+        '',
         '', // Horizontal Axis Title
-        '', // Vertical Axis Title
+        'Events', // Vertical Axis Title
         { minValue: 0 }, // Y Axis Range
         ['#3366CC'], // Colors
         false, // Show legend
@@ -96,7 +96,8 @@ console.log(aggregatedDataArray)
                 cardTitle='Total Key Events'
                 cardData={totalPageViewCount.toLocaleString()}
                 cardFooter={`${parseInt(avgPageViewCount)} key events per day on average`}
-                toolTipText='The number of web pages your users viewed. Repeated views of a single page or screen are counted.'
+                toolTipText="This metric reflects the number of key user interactions within the application. These interactions include 'List Printed', 'Resource Links Clicked', 'Products Added to List', and 'Products Selected from Search.' Each event provides insight into how users are engaging with the application's core features."
+    
             >
                 {areaChartData ? (
                     <AreaChart data={areaChartData} options={areaChartOptions} />

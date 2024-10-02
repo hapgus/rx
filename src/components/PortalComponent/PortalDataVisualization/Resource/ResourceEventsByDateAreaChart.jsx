@@ -47,7 +47,7 @@ export const ResourceEventsByDateAreaChart = () => {
     // Step 8: Dynamically generate the Y-axis ticks
     const minValue = 0; // Ensure the ticks always start at 0
     const maxValue = Math.ceil(Math.max(...validDays.map(day => Number(day.totalEventCount))) / 20) * 20;
-    const stepSize = 10; // Fixed step size for now
+    const stepSize = 2; // Fixed step size for now
 
     const vAxisTicks = [];
     for (let i = minValue; i <= maxValue; i += stepSize) {
@@ -66,9 +66,9 @@ export const ResourceEventsByDateAreaChart = () => {
     // Step 10: Configure chart options for AreaChart
     const { config: areaChartOptions } = useChartConfig(
         'AreaChart',
-        'Product Resource Click Events',
-        'Date', // Horizontal Axis Title
-        'Clicks', // Vertical Axis Title
+        '',
+        '', // Horizontal Axis Title
+        'Resource Clicks', // Vertical Axis Title
         { minValue: 0 }, // Y Axis Range
         ['#3366CC'], // Colors
         false, // Show legend
@@ -81,8 +81,9 @@ export const ResourceEventsByDateAreaChart = () => {
     return (
         totalEventCount && avgEventCount && areaChartData.length > 1 ? (
             <PortalCard
+            toolTipText="This chart displays the number of times users clicked on resource links over a specific period. It helps identify trends in user engagement with resources provided on product pages."
                 cardTitle="Resource Event Activity Over Time"
-                cardData={totalEventCount.toLocaleString()}
+                // cardData={totalEventCount.toLocaleString()}
                 cardFooter={`Average ${parseInt(avgEventCount)} resource link(s) click from product pages per day`}
             >
                 {areaChartData ? (

@@ -14,6 +14,7 @@ import { VALIDATOR_REQUIRE } from "../../utils/validators";
 import { useState } from "react";
 import { Select } from "../FormComponent/Select/Select";
 import { capitalizeFirstLetterEachWord } from "../../utils/text-help";
+import { AnimatedComponent } from "../../hooks/use-framer-motion";
 
 export const AdminAccountForm = () => {
 
@@ -59,19 +60,19 @@ export const AdminAccountForm = () => {
         // resetForm();
         redirect('/portal/admin-directory')
         setIsModal(prevState => ({ ...prevState, show: false }))
- 
+
 
     }
 
     const preFormSubmit = (e) => {
         e.preventDefault();
-          setIsModal(prevState => ({
+        setIsModal(prevState => ({
             ...prevState,
             show: true,
             modalType: 'infoModal',
             title: "Confirmation Required",
             message: `You are about to create a new ${capitalizeFirstLetterEachWord(formState.inputs.role.value)} user. This user will have elevated acceess to resources and actions. Please confirm to proceed.`,
-           
+
             onConfirm: () => {
                 submitForm()
                 setIsModal({ show: false })
@@ -84,7 +85,7 @@ export const AdminAccountForm = () => {
     }
 
     const submitForm = async (e) => {
-      
+
         // e.preventDefault();
 
         setIsModal(prevState => ({
@@ -168,88 +169,98 @@ export const AdminAccountForm = () => {
     };
 
 
-    
+
     console.log('sign up', formState)
     return (
         // <FormComponent onSubmit={submitForm}>
         <FormComponent >
+            <AnimatedComponent type='3dRoationDropdownEffects' delay={.5}>
+                <TextInput
+                    id="firstName"
+                    name="firstName"
+                    labelName="First name"
+                    // secondaryLabel='Special characters allowed ( / \ - _ )'
+                    errorText='First required'
+                    validators={[VALIDATOR_REQUIRE()]}
+                    onInput={inputHandler}
+                    value={formState.inputs.firstName.value}
+                />
+            </AnimatedComponent>
+            <AnimatedComponent type='3dRoationDropdownEffects' delay={.5}>
+                <TextInput
+                    id="lastName"
+                    name="lastName"
+                    labelName="Last name"
+                    // secondaryLabel='Special characters allowed ( / \ - _ )'
+                    errorText='Last name required'
+                    validators={[VALIDATOR_REQUIRE()]}
+                    onInput={inputHandler}
 
-            <TextInput
-                id="firstName"
-                name="firstName"
-                labelName="First name"
-                // secondaryLabel='Special characters allowed ( / \ - _ )'
-                errorText='First required'
-                validators={[VALIDATOR_REQUIRE()]}
-                onInput={inputHandler}
-                value={formState.inputs.firstName.value}
-            />
-            <TextInput
-                id="lastName"
-                name="lastName"
-                labelName="Last name"
-                // secondaryLabel='Special characters allowed ( / \ - _ )'
-                errorText='Last name required'
-                validators={[VALIDATOR_REQUIRE()]}
-                onInput={inputHandler}
+                />
+            </AnimatedComponent>
+            <AnimatedComponent type='3dRoationDropdownEffects' delay={.5}>
+                <TextInput
+                    id="email"
+                    name="email"
+                    labelName="Email"
+                    // secondaryLabel=''
+                    errorText='Email required'
+                    validators={[VALIDATOR_REQUIRE()]}
+                    onInput={inputHandler}
 
-            />
-            <TextInput
-                id="email"
-                name="email"
-                labelName="Email"
-                // secondaryLabel=''
-                errorText='Email required'
-                validators={[VALIDATOR_REQUIRE()]}
-                onInput={inputHandler}
+                />
+            </AnimatedComponent>
+            <AnimatedComponent type='3dRoationDropdownEffects' delay={.5}>
+                <Select
+                    id='role'
+                    name="role"
+                    labelName="Role"
+                    secondaryLabelToolTip="User role can be set to admin (Administrator), super admin (Super Administratory) or user. The super administrator role is given full access to all resources and actions across products and users. The administrator role is for users who require access to add, edit and delete products, as well as approving users. A user role receives no special access to the portal. A user can only access the public facing product guide website(s). "
+                    // errorText='Please select a retailer'
+                    validators={[]}
+                    onInput={inputHandler}
+                    options={[
+                        { value: "admin", label: "Administrator" },
+                        { value: "superAdmin", label: "Super Administrator" }
+                    ]}
+                />
+            </AnimatedComponent>
+            <AnimatedComponent type='3dRoationDropdownEffects' delay={.5}>
+                <TextInput
+                    id="password"
+                    name="password"
+                    labelName="Password"
+                    // secondaryLabel=''
+                    secondaryLabelToolTip="Password must be at least eight characters in length and include a minimum of one uppercase letter, one number and one special character. "
+                    errorText='Password required'
+                    validators={[VALIDATOR_REQUIRE()]}
+                    type={passwordInputType}
+                    iconType={passwordInputType === "password" ? 'eyeClosed' : 'eyeOpened'}
+                    onIconClick={togglePasswordVisibility}
+                    onInput={inputHandler}
+                />
+            </AnimatedComponent>
 
-            />
-            <Select
-                id='role'
-                name="role"
-                labelName="Role"
-                 secondaryLabelToolTip="User role can be set to admin (Administrator), super admin (Super Administratory) or user. The super administrator role is given full access to all resources and actions across products and users. The administrator role is for users who require access to add, edit and delete products, as well as approving users. A user role receives no special access to the portal. A user can only access the public facing product guide website(s). "
-                // errorText='Please select a retailer'
-                validators={[]}
-                onInput={inputHandler}
-                options={[
-                    { value: "admin", label: "Administrator" },
-                    { value: "superAdmin", label: "Super Administrator" }
-                ]}
-            />
+            <AnimatedComponent type='3dRoationDropdownEffects' delay={.5}>
+                <TextInput
+                    id='confirmPassword'
+                    labelName='Confirm Password'
+                    errorText='Password confirmation required'
+                    validators={[VALIDATOR_REQUIRE()]}
+                    onInput={inputHandler}
+                    type={confirmPasswordInputType}
+                    iconType={confirmPasswordInputType === "password" ? 'eyeClosed' : 'eyeOpened'}
+                    onIconClick={toggleConfirmPasswordVisibility}
+                // secondaryLabel='optional'
+                />
+            </AnimatedComponent>
 
-            <TextInput
-                id="password"
-                name="password"
-                labelName="Password"
-                // secondaryLabel=''
-                 secondaryLabelToolTip="Password must be at least eight characters in length and include a minimum of one uppercase letter, one number and one special character. "
-                errorText='Password required'
-                validators={[VALIDATOR_REQUIRE()]}
-                type={passwordInputType}
-                iconType={passwordInputType === "password" ? 'eyeClosed' : 'eyeOpened'}
-                onIconClick={togglePasswordVisibility}
-                onInput={inputHandler}
-            />
-            <TextInput
-                id='confirmPassword'
-                labelName='Confirm Password'
-                errorText='Password confirmation required'
-                validators={[VALIDATOR_REQUIRE()]}
-                onInput={inputHandler}
-                type={confirmPasswordInputType}
-                iconType={confirmPasswordInputType === "password" ? 'eyeClosed' : 'eyeOpened'}
-                onIconClick={toggleConfirmPasswordVisibility}
-            // secondaryLabel='optional'
-            />
-
-
-
-            <Button type='button' 
-            onClick={preFormSubmit} 
-            // onClick={submitForm} 
-            buttonStyleType="primaryAction">Sumbit </Button>
-
+            <AnimatedComponent type='3dRoationDropdownEffects' delay={.5}>
+                <Button type='button'
+                    onClick={preFormSubmit}
+                    // onClick={submitForm} 
+                    buttonStyleType="primaryAction">Sumbit </Button>
+            </AnimatedComponent>
         </FormComponent>
     )
 }

@@ -38,7 +38,7 @@ console.log(filteredEvents)
     .slice(0, limit);
 
     return (
-        <PortalLeaderBoard title="Products Added to List from Search">
+        <PortalLeaderBoard title="Frequently Added Products from Search">
             <ul>
                 {sortedProducts.map((product, idx) => (
                     <li key={idx}>

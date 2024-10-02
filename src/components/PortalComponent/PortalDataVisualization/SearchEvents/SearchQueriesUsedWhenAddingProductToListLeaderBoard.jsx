@@ -38,7 +38,7 @@ console.log(filteredEvents)
     .slice(0, limit);
 
     return (
-        <PortalLeaderBoard title="What they searched when adding products to list">
+        <PortalLeaderBoard title="Top Search Queries Resulting in Products Added to List">
             <ul>
                 {sortedProducts.map((product, idx) => (
                     <li key={idx}>

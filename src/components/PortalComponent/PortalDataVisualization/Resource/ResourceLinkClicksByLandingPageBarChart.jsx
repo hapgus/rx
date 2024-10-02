@@ -7,7 +7,17 @@ import Skeleton from "react-loading-skeleton";
 export const ResourceLinkClicksByLandingPageBarChart = () => {
     const { isDataState } = useDataContext(); 
     const data = isDataState.resourceDataFilteredByDate; // Use filtered product data from context
-    const { config: barChartOptions } = useChartConfig('BarChart', 'Page Path', 'Event Count'); // Use BarChart config
+    const { config: barChartOptions } = useChartConfig(
+        'BarChart', 
+        '', 
+        'Resource Clicks',
+        '',
+        { minValue: 0 },
+        ['#3366CC'],
+        false, // Show legend
+        true, // Show X-axis labels
+        true,
+    ); // Use BarChart config
 
     const targetEvents = ['RESOURCE_CLICKED'];
 
@@ -52,8 +62,10 @@ export const ResourceLinkClicksByLandingPageBarChart = () => {
 
     return (
         <PortalCard 
+        toolTipText="This chart displays the number of times users clicked on resource links on different product pages. It helps to understand which pages drive the most engagement with resources."
             cardTitle="Resource Link Clicks by Landing Page"
-            cardFooter={`Total events: ${totalEventCount.toLocaleString()}, Avg events per page: ${avgEventCount.toFixed(2)}. Most popular page: "${mostPopularPage}" with ${mostPopularPageEvents.toLocaleString()} events.`}
+            cardFooter={`Most popular page: "${mostPopularPage}" with ${mostPopularPageEvents.toLocaleString()} events.`}
+            // cardFooter={`Total events: ${totalEventCount.toLocaleString()}, Avg events per page: ${avgEventCount.toFixed(2)}. Most popular page: "${mostPopularPage}" with ${mostPopularPageEvents.toLocaleString()} events.`}
         >
             {chartData.length > 1 ? (
                 <BarChart data={chartData} options={barChartOptions} />  // Use BarChart

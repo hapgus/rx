@@ -90,7 +90,7 @@ const Footer = () => {
                             {footerExternalLinks('Support', externalLinks,)}
 
                             {footerEmailLinks('Contact Us', nativeEmailLinks)}
-                            {footerColumn('Account (Dev)', devSupportFooter)}
+                            {/* {footerColumn('Account (Dev)', devSupportFooter)} */}
                         </div>
                     </div>
                 </div>

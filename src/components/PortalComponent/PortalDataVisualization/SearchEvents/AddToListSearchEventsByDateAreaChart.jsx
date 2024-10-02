@@ -66,8 +66,8 @@ export const AddToListSearchEventsByDateAreaChart = () => {
     // Step 10: Configure chart options for AreaChart
     const { config: areaChartOptions } = useChartConfig(
         'AreaChart',
-        'Adding to List from search',
-        'Date', // Horizontal Axis Title
+        '',
+        '', // Horizontal Axis Title
         'Event Count', // Vertical Axis Title
         { minValue: 0 }, // Y Axis Range
         ['#3366CC'], // Colors
@@ -81,6 +81,8 @@ export const AddToListSearchEventsByDateAreaChart = () => {
     return (
         totalEventCount && avgEventCount && areaChartData.length > 1 ? (
             <PortalCard
+            toolTipText="This chart shows the daily count of products added to the list directly from search results. It provides insight into how often users are utilizing the search feature to find and add products to their lists, helping you track the search-to-list conversion."
+
                 cardTitle="Using Search to Add Products"
                 cardData={totalEventCount.toLocaleString()}
                 cardFooter={`Average ${parseInt(avgEventCount)} products added from search per day`}

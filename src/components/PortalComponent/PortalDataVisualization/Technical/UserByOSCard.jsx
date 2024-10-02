@@ -13,12 +13,14 @@ export const UserByOSCard = () => {
 
     const { config: barChartOptions } = useChartConfig(
         'BarChart',
-        'Operating System (OS)',
+        '',
         'Users',
         '',
         { minValue: 0 },
-        [singleColor],
-        false
+        ['#3366CC'],
+        false, // Show legend
+        true, // Show X-axis labels
+        true,
     );
 
     if (!data || !data.length) {
@@ -51,9 +53,9 @@ export const UserByOSCard = () => {
 
     return (
         <PortalCard
-            cardTitle="Operating System by Users"
-            toolTipText="The operating systems used by visitors to your app or website. Includes desktop and mobile operating systems such as Windows and Android."
-            cardFooter='Footer text here ---'
+            cardTitle="User Distribution by Operating System"
+            toolTipText="This chart shows the number of users categorized by the operating systems they use, including both desktop and mobile platforms like Windows, macOS, iOS, and Android. Understanding user OS distribution helps tailor your app's experience across these platforms."
+          
        >
             {chartData ? (
                 <BarChart data={chartData} options={barChartOptions} />

@@ -14,7 +14,7 @@ export const UsersByDeviceCategoryPieChart = () => {
 
     const { config: pieChartOptions } = useChartConfig(
         'PieChart',
-        'Devices used to visit the website'
+        ''
     );
 
     if (!pieData || !pieData.length) {
@@ -61,9 +61,9 @@ export const UsersByDeviceCategoryPieChart = () => {
 
     return (
         <PortalCard 
-            cardTitle='Total Users by Device Category'
-            toolTipText='The type of device: Desktop, Tablet, or Mobile.'
-            cardFooter={`${percentage}% of users visit from ${formatChartLabel(maxCategory)}`}
+        cardTitle="User Distribution by Device Category"
+        toolTipText="This chart categorizes users based on the type of device they use to visit your site, such as Desktop, Tablet, or Mobile. Understanding the breakdown helps optimize the user experience for each device type."
+        // cardFooter={`${percentage}% of users visit via ${formatChartLabel(maxCategory)} devices.`}
         >
             {chartData ? (
                 <PieChart data={chartData} options={pieChartOptions} />

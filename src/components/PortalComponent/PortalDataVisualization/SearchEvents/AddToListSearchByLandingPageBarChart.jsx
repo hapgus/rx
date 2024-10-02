@@ -9,7 +9,16 @@ import Skeleton from "react-loading-skeleton";
 export const AddToListSearchByLandingPageBarChart = () => {
     const { isDataState } = useDataContext(); 
     const data = isDataState.searchDataFilteredByDate; // Use filtered search data
-    const { config: barChartOptions } = useChartConfig('BarChart', 'Page Path', 'Event Count'); 
+    const { config: barChartOptions } = useChartConfig( 'ColumnChart', 
+        '', 
+        'Landing Page',
+        'Event Count',
+        { minValue: 0 },
+        ['#3366CC'],
+        false, // Show legend
+        true, // Show X-axis labels
+        true,
+    );
 
     const targetEvents = ['SEARCHED_PRODUCT_ADDED'];
 
@@ -49,13 +58,17 @@ export const AddToListSearchByLandingPageBarChart = () => {
 
     // Step 6: Format the data for BarChart
     const chartData = [
-        ['Page Path', 'Event Count'], 
+        ['Page Path', 
+            'Event Count'
+
+        ], 
         ...sortedPages.map(item => [item.pagePath, item.totalEventCount])
     ];
 
     return (
         <PortalCard 
-            cardTitle="Exact page user was on when they added a product to list from search"
+        toolTipText="This chart displays the pages where users added products to their list directly from search results. The data provides insights into which pages drive users to add products, helping to understand their behavior and interests."
+            cardTitle="Landing Pages Driving Product Additions from Search"
             cardFooter={`Total events: ${totalEventCount.toLocaleString()}, Avg events per page: ${avgEventCount.toFixed(2)}. Most popular page: "${mostPopularPage}" with ${mostPopularPageEvents.toLocaleString()} events.`}
         >
             {chartData.length > 1 ? (

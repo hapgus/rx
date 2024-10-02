@@ -113,6 +113,19 @@
     list-style: none;
 }
 
+
+
+@media (min-width: 430px) {}
+@media (min-width: 768px) {
+    .mobileNavWrapper {
+        padding: 2rem 4rem;
+    }
+
+}
+@media (min-width: 834px) {}
+@media (min-width: 1024px) {}
+
+
 /* --------------------------------------------------------------------------------------- */
 /* DESKTOP NAV */
 /* --------------------------------------------------------------------------------------- */
@@ -144,7 +157,7 @@
     .desktopNavWrapper {
         display: block;
         /* padding: 1rem 2rem; */
-        padding: 0 2rem;
+        /* padding: 0 2rem; */
     }
 
     .desktopNavContainer {
@@ -296,7 +309,7 @@ z-index: -10;
 @media (min-width: 1440px) {
     .desktopNavWrapper {
         /* padding: 1rem 4rem; */
-        padding: 0rem 4rem;
+        /* padding: 0rem 4rem; */
     }
 }
 
