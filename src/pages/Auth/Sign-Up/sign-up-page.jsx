@@ -10,10 +10,14 @@ const SignUpPage = () => {
 
     return (
         <AuthTemplate>
-            <>
-                <div className={styles.logo}>
-                    <img src={`/assets/image/gif/dance-black.gif`} />
-                </div>
+             <div className={styles.pageContainer}>
+             <div className={styles.logoWrapper}>
+                        
+                        <div className={styles.logo}>
+                            <img src={`/assets/image/logos/lg-logo.webp`} />
+                        </div>
+
+                    </div>
                 <div className={styles.headerText}>
                     <div className={styles.title}>
                         <PageText type='pageTitle'>LG Product Guide</PageText>
@@ -44,7 +48,7 @@ const SignUpPage = () => {
                     </div>
                 </div>
 
-            </>
+            </div>
 
         </AuthTemplate>
 

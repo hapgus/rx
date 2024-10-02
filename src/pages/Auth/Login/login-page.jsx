@@ -22,6 +22,7 @@ const LoginPage = () => {
             <>
                 <div className={styles.pageContainer}>
                     <div className={styles.logoWrapper}>
+
                         <div className={styles.logo}>
                             <img src={`/assets/image/logos/lg-logo.webp`} />
                         </div>
@@ -31,16 +32,21 @@ const LoginPage = () => {
 
                     <div className={styles.headerText}>
                         <div className={styles.title}>
-                            <PageText>Home Appliances Product Guide</PageText>
+                            <PageText>LG Product Guide</PageText>
                         </div>
                         <div className={styles.tertiaryTitle}>
+                        <PageText>
+                            <span className={styles.spanText}>
+                                Create account
+                            </span>
 
-                            {/* <PageText>
+                        </PageText>
+                            <PageText>
                                 <span className={styles.spanText}>
                                     Not a member? {" "}
                                 </span>
                                 <span className={styles.spanTextLink}> <LinkComponent href={`../sign-up`}  >Sign up today!</LinkComponent></span>
-                            </PageText> */}
+                            </PageText>
                         </div>
                     </div>
                     <div className={styles.formWrapper}>

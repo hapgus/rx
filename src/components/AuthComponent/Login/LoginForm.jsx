@@ -2,7 +2,7 @@
 import { useForm } from "../../../hooks/form-hook";
 import { TextInput } from "../../FormComponent/TextInput/TextInput";
 import { VALIDATOR_REQUIRE } from "../../../utils/validators";
-import { useCallback, useReducer, useState } from "react";
+import { useState } from "react";
 import { FormComponent } from "../../FormComponent/FormComponent";
 import { Button } from "../../Button/Button";
 import { validateSigninForms } from "../../../utils/form-validation";
@@ -118,9 +118,9 @@ export const LoginForm = () => {
                 // }));
             }
         }
-        console.log(formState.inputs)
+
     }
-console.log(isModal)
+
     return (
         <>
             <FormComponent>
