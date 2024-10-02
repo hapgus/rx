@@ -103,8 +103,9 @@ export const CreateNewPasswordForm = () => {
             try {
                 const { responseData, responseStatusCode } = await sendRequest(
 
-                    `${process.env.REACT_APP_BACKEND_URL}reset/${token}`,
-                 
+                    // `${process.env.REACT_APP_BACKEND_URL}reset/${token}`,
+                       `${process.env.REACT_APP_BACKEND_URL}new-password/`,
+                    // `http://localhost:3005/new-password/`,
                     'POST',
                     JSON.stringify(data), {
                     'Content-Type': 'application/json',
@@ -142,9 +143,9 @@ export const CreateNewPasswordForm = () => {
                 })
             }
         }
-       
+        console.log(formState.inputs)
     }
-
+    console.log(isModal)
     return (
             <FormComponent>
                <TextInput
