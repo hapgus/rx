@@ -109,7 +109,7 @@ export const ForgotPasswordForm = () => {
                     iconType='email'
                     required
                 />
-                  <Button type='button' buttonStyleType="primaryAction" onClick={onPasswordResetSubmit}>Sign in</Button>
+                  <Button type='button' buttonStyleType="primaryAction" onClick={onPasswordResetSubmit}>Get reset link</Button>
             </FormComponent>
     
     );
