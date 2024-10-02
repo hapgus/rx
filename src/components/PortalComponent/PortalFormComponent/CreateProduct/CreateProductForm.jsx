@@ -38,9 +38,6 @@ import { useCategories, useCategoryOptions, useColorOptions, useLogoOptions, use
 
 export const CreateProductForm = () => {
 
-
-
-
     const redirect = useNavigate();
     const { authUserId, isAdmin, isSuperAdmin } = useAuth();
 
@@ -55,19 +52,16 @@ export const CreateProductForm = () => {
     const { setIsRoutingState } = useRoutingHook();
 
     const { availabilityOptions } = useYearHelper();
-    const { isModal, setIsModal } = useNotificationHook();
+    const { setIsModal } = useNotificationHook();
     const [selectedLogos, setSelectedLogos] = useState([]);
     const [selectedColors, setSelectedColors] = useState([]);
     const [subcategoryOptions, setSubcategoryOptions] = useState([]);
     const { setIsManagedDataState } = useDataContext();
-    const { handleSectionChange, handleChange, values } = useDynamicForm({ sections: [] });
+    const { values } = useDynamicForm({ sections: [] });
 
 
     const [formState, inputHandler] = useForm({
-        // msrp: { value: '', isValid: false },
         msrp: { value: 0, isValid: false },
-        // image: { value: null, isValid: false },
-        // qrcode: { value: null, isValid: false },
         title: { value: '', isValid: false },
         subtitle: { value: '', isValid: false },
         specSheetLink: { value: '', isValid: false },
@@ -91,7 +85,6 @@ export const CreateProductForm = () => {
     /* --------------------------------------------------------------------------------------- */
     /* SET SUBCATEGORY OPTIONS */
     /* --------------------------------------------------------------------------------------- */
-
     useEffect(() => {
         if (formState.inputs.category.value) {
             setSubcategoryOptions(options[formState.inputs.category.value.toLowerCase()] || []);
@@ -162,31 +155,27 @@ export const CreateProductForm = () => {
 
 
     const handleFormPreSubmit = async (e) => {
-        console.log('fire')
+
         e.preventDefault();
         if (!isAdmin || !isSuperAdmin) {
+
             setIsModal({
                 show: true,
                 modalType: 'confirmationModal',
                 title: "Error",
-                message: `WePlease contact an administrator.`,
-                confirmText: 'Confirm update',
-                onConfirm: () => {
-                    handleFormSubmit();
-                },
-                cancelText: "Go back",
+                message: `Please contact an administrator.`,
+                cancelText: "Close",
                 onCancel: () => setIsModal({ show: false }),
             })
         } else {
+
             setIsModal({
                 show: true,
-                modalType: 'confirmationModal',
-                title: "Confirm product creation",
-                message: `You are about to create a new product. Please confirm if you wish to proceed.`,
-                confirmText: 'Confirm creation',
-                onConfirm: () => {
-                    handleFormSubmit();
-                },
+                modalType: 'productConfirmationModal',
+                title: "Confirmation Required",
+                message: `You are about to create a new product. This product will be featured on the public website. Please confirm if you wish to continue.`,
+                confirmText: 'Create new product',
+                onConfirm: () => { handleFormSubmit(); },
                 cancelText: "Go back",
                 onCancel: () => setIsModal({ show: false }),
             })
@@ -199,11 +188,11 @@ export const CreateProductForm = () => {
 
         console.log('fire a')
         // const formErrors = validateProductForm(formState, selectedImage, selectedQrcodeImage)
-        
-        const {errorMessage, processedValues} = validateProductForm(formState, selectedImage, selectedQrcodeImage)
+
+        const { errorMessage, processedValues } = validateProductForm(formState, selectedImage, selectedQrcodeImage)
         // const errorMessages = [...formErrors];
         const errorMessages = [...errorMessage];
-console.log(errorMessage)
+        console.log(errorMessage)
         if (errorMessages.length !== 0) {
 
             setIsModal({
@@ -264,8 +253,8 @@ console.log(errorMessage)
             try {
                 setIsManagedDataState(prevState => ({ ...prevState, loading: true }));
 
-                // const response = await sendRequest(`http://localhost:3005/add-product`,
-                const response = await sendRequest(` ${process.env.REACT_APP_BACKEND_URL}add-product`,
+                const response = await sendRequest(`http://localhost:3005/add-product`,
+                    // const response = await sendRequest(` ${process.env.REACT_APP_BACKEND_URL}add-product`,
                     'POST',
                     formData
                 )
@@ -280,12 +269,12 @@ console.log(errorMessage)
                     setIsRoutingState(prevState => ({ ...prevState, isLoading: false }));
 
                     setIsModal({
-                     
+
                         show: true,
                         modalType: 'successModal',
                         title: "Success",
                         message: "Congrats! The product was added successfully.",
-                      
+
                         // onConfirm: () => setIsModal({ show: false }),
                         onCancel: handleProductDirectoryModalClick,
                         // confirmText: "Close",
@@ -306,9 +295,9 @@ console.log(errorMessage)
                     show: true,
                     modalType: 'infoModal',
                     iconType: 'errorInfo',
-                    // title: "Almost there",
-                    // message: "You need to fix the following errors to continue.",
-                    // errorList: errorMessage,
+                    title: "Something went wrong",
+                    message: `${err.message}`,
+                    errorList: [],
                     onConfirm: () => setIsModal({ show: false }),
                     onCancel: () => setIsModal({ show: false }),
                     confirmText: "Close",
@@ -543,7 +532,7 @@ console.log(errorMessage)
             >
                 <FormWrapper>
                     <div className={styles.colorSectionTitle}>
-                        <PageText type="pageSubtitle">Colors Logos</PageText>
+                        <PageText type="pageTitle">Colors</PageText>
                     </div>
                     {colorOptions.map((e, index) => (
                         <Checkbox
@@ -557,29 +546,32 @@ console.log(errorMessage)
                     ))}
 
                     <div className={styles.logoSectionTitle}>
-                        <PageText type="pageSubtitle">Tech Logos</PageText>
+                        <PageText type="pageTitle">Tech Logos</PageText>
                     </div>
                     {techLogoOptions.map((e, index) => (
                         <Checkbox
                             key={index}
                             id={e.logo}
-                            
+
                             labelName={e.label}
                             value={e.logo}
                             onChange={handleLogoChange}
                             checked={selectedLogos.includes(e.logo)}
                         />
                     ))}
-                     <TextArea
+                    <div className={styles.logoSectionTitle}>
+                        <PageText type="pageTitle">UPC</PageText>
+                    </div>
+                    <TextArea
                         id="upc"
                         name="upc"
                         labelName="UPC Codes"
                         secondaryLabelToolTip="Other than brackets () no special characters allowed."
                         rows={7}
                         // errorText=' required'
-                     
+
                         validators={[]}
-                      
+
                         onInput={inputHandler}
                     />
                 </FormWrapper>
@@ -632,21 +624,20 @@ console.log(errorMessage)
                     labelName="MSRP"
                 />
             </FormSection>
-            <div className={styles.formFooter}>
-                <FormSection
-                    sectionTitle="Add your product!"
-                    sectionDescription="Confirm product details are in the required formats. Visit the product details page after your submit to review the new product listing"
-                >
-                    {/* <FormWrapper> */}
-                    <div className={styles.footerButtonWrapper}>
-                        {/* <Button onClick={handleFormSubmit} type="button" buttonStyleType="primaryAction"> */}
-                        <Button onClick={handleFormPreSubmit} type="button" buttonStyleType="primaryAction">
-                            Add your new product
-                        </Button>
-                    </div>
-                    {/* </FormWrapper> */}
 
-                </FormSection>
+            <div className={styles.formFooter}>
+                <div className={styles.footerSectionTitle}>
+                    <PageText type="pageTitle">Add your product!</PageText>
+                    <PageText type="pageSubtitle">Confirm product details are in the required formats. Visit the product details page after your submit to review the new product listing</PageText>
+                </div>
+                <div className={styles.footerButtonWrapper}>
+
+                    <Button onClick={handleFormPreSubmit} type="button" buttonStyleType="primaryAction">
+                        Add new product
+                    </Button>
+                </div>
+
+
 
 
             </div>

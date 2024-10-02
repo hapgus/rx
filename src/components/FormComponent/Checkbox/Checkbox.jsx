@@ -15,7 +15,6 @@ export const Checkbox = ({id, name, value, checked, labelName, onChange}) => {
             <input
                 type="checkbox"
                 id={id}
-
                 name={name}
                 value={value}
                 checked={checked}

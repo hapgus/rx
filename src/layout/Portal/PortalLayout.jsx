@@ -7,67 +7,74 @@ import { PortalPageSideNav } from '../../components/PortalComponent/PortalPageCo
 import Loader from '../../components/Loader/Loader';
 import ProductGuideAlerts from '../../components/Alert/Alert';
 import { useRoutingHook } from '../../hooks/routing-hook';
-import { useEffect } from 'react';
+import React, { useEffect, useCallback, useRef } from 'react';
 import { useDataContext } from '../../hooks/data-hook';
 import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
 import { useCurrentLocation } from '../../hooks/location-hook';
+import { PortalFooter } from '../../components/PortalComponent/PortalPageComponent/PortalFooter/PortalFooter';
+
+// Memoize components like Modal or Alert if necessary
+const MemoizedModal = React.memo(Modal);
+const MemoizedProductGuideAlerts = React.memo(ProductGuideAlerts);
 
 export default function PortalLayout() {
+    const { isAlert, setIsAlert, isModal } = useNotificationHook();
+    const { isManagedDataState } = useDataContext();
+    const { isRoutingState, setIsRoutingState } = useRoutingHook();
 
-    const { isAlert, setIsAlert, isModal, setIsModal } = useNotificationHook();
-    const { isManagedDataState } = useDataContext()
-    const { isRoutingState,setIsRoutingState } = useRoutingHook();
+    const location = useCurrentLocation();
 
-    const location = useCurrentLocation()
+    // Cache the original overflow style
+    const overflowRef = useRef(document.body.style.overflow);
 
+    // Optimized useEffect to handle body overflow
     useEffect(() => {
-        
         if (isRoutingState.isMobilePortalNavOpen) {
+            overflowRef.current = document.body.style.overflow;
             document.body.style.overflow = 'hidden';
-        
         }
         return () => {
-         
-            document.body.style.overflow = 'unset';
+            document.body.style.overflow = overflowRef.current;
         };
+    }, [isRoutingState.isMobilePortalNavOpen]);
 
-    }, [isRoutingState.isMobilePortalNavOpen])
-
-
-
+    // Debounced scroll-to-top
     useEffect(() => {
-        // window.scrollTo(0, 0);
-        window.scrollTo({
-            top: 0,
-            // top: 0,
-            behavior: 'smooth'
-        });
+        const timeoutId = setTimeout(() => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth',
+            });
+        }, 100);
+
+        return () => clearTimeout(timeoutId);
     }, [location]);
 
-    // TOTOPBUTTON
+    // Optimize scroll listener to avoid adding/removing it on every location change
     useEffect(() => {
         const handleScroll = () => {
-            if (window.pageYOffset > 800) {
-                setIsRoutingState(prevState => ({ ...prevState, isShowScrollToTopButton: true }))
-            } else {
-                setIsRoutingState(prevState => ({ ...prevState, isShowScrollToTopButton: false }))
-            }
+            setIsRoutingState(prevState => ({
+                ...prevState,
+                isShowScrollToTopButton: window.pageYOffset > 800,
+            }));
         };
 
-        window.addEventListener("scroll", handleScroll);
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []); // Attach the scroll listener only once on mount
 
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
-    }, [location]);
+    // Memoize the alert click handler to avoid unnecessary re-creation
+    const handleAlertClick = useCallback(() => {
+        setIsAlert({ ...isAlert, show: false });
+    }, [isAlert, setIsAlert]);
+
     return (
         <>
-            {isManagedDataState.loading === true && <Loader />}
+            {isManagedDataState.loading && <Loader />}
             {isRoutingState.isShowScrollToTopButton && <ScrollToTop />}
 
-            {isModal.show &&
-
-                <Modal
+            {isModal.show && (
+                <MemoizedModal
                     modalType={isModal.modalType}
                     iconType={isModal.iconType}
                     errorList={isModal.errorList}
@@ -79,16 +86,17 @@ export default function PortalLayout() {
                     onConfirm={isModal.onConfirm}
                     onCancel={isModal.onCancel}
                 />
+            )}
 
-            }
             {isAlert.show && (
-                <ProductGuideAlerts
-                    onClick={() => setIsAlert({ ...isAlert, show: false })}
+                <MemoizedProductGuideAlerts
+                    onClick={handleAlertClick}
                     show={isAlert.show}
                     alertMessage={isAlert.message}
                     type={isAlert.type}
                 />
             )}
+
             <div className={styles.portalContainer}>
                 <div className={styles.portalWrapper}>
                     <div className={styles.portalTopNavWrapper}>
@@ -98,12 +106,15 @@ export default function PortalLayout() {
                         <PortalPageSideNav />
                     </div>
                     <main className={styles.portalLayoutChildrenWrapper}>
-                        <Outlet />
+                        <div>
+                             <Outlet />
+                        </div>           
                     </main>
+                    <div className={styles.portalFooterWrapper}>
+                        <PortalFooter />
+                    </div>
                 </div>
             </div>
-
         </>
     );
 }
-

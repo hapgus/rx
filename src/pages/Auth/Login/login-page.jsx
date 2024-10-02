@@ -35,12 +35,12 @@ const LoginPage = () => {
                             <PageText>LG Product Guide</PageText>
                         </div>
                         <div className={styles.tertiaryTitle}>
-                        <PageText>
+                        {/* <PageText>
                             <span className={styles.spanText}>
-                                Create account
+                               Sign in
                             </span>
 
-                        </PageText>
+                        </PageText> */}
                             <PageText>
                                 <span className={styles.spanText}>
                                     Not a member? {" "}

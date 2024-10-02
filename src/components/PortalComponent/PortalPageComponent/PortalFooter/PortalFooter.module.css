@@ -1,0 +1,11 @@
+.portalFooterContainer{
+    background-color: var(--color-gray-05);
+    border-top: 1px solid var(--color-gray-04);
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.portalFooterText{
+    color: var(--color-gray-03);
+}

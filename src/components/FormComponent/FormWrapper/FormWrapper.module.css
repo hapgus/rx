@@ -1,10 +1,29 @@
 .formWrapperContainer{
     width: 100%; 
-   
 }
-@media (min-width: 1440px) {
-    .formWrapperContainer{
-        width: 50%;
+
+@media (min-width: 430px) {
+    /* .formWrapperContainer{
+        width: 70%;
        
-    }
+    } */
 }
+@media (min-width: 1240px) {
+    /* .formWrapperContainer{
+        width: 80%;
+       
+    } */
+}
+
+/* --------------------------------------------------------------------------------------- */
+/* MEDIA QUERY REFERENCE */
+/* --------------------------------------------------------------------------------------- */
+/* 
+@media (min-width: 430px) {}
+@media (min-width: 768px) {}
+@media (min-width: 834px) {}
+@media (min-width: 1024px) {} - MOBILE / DESKTOP Breakpoint
+@media (min-width: 1280px) {}
+@media (min-width: 1440px) {}
+@media (min-width: 1920px) {} 
+*/

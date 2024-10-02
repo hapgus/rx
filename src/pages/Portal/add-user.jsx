@@ -1,5 +1,5 @@
 
-import { AdminAccountForm } from "../../components/AuthComponent/AdminAccountForm";
+import { AdminAccountForm } from "../../components/PortalComponent/PortalFormComponent/CreateUser/AdminAccountForm";
 import { PortalPage } from "../../components/PortalComponent/PortalPageComponent/PortalPage/PortalPage";
 import { FormWrapper } from "../../components/FormComponent/FormWrapper/FormWrapper";
 

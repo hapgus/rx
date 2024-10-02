@@ -1,6 +1,7 @@
 .selectContainer {
   position: relative;
-  padding-bottom: 3.367rem;
+  /* padding-bottom: 3.367rem; */
+  padding-bottom: 4.367rem;
 }
 .selectWrapper{
   padding-top: .5rem;
@@ -55,7 +56,7 @@
   background-color: rgb(255, 221, 221);
 }
 .labelWrapper{
-  
+  margin-bottom: 1rem;
 }
 
 .label{

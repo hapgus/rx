@@ -3,13 +3,12 @@
     position: relative; */
 }
 .filterWrapper{
-    position: sticky;
-    top: 0;
+  
     background-color: var(--color-gray-06);
     border-top: 1px solid var(--color-gray-05);
     border-bottom: 1px solid var(--color-gray-05);
     padding: 2rem 3rem;
-    z-index: 1;
+    
 }
 .cardRow{
    background-color: var(--color-gray-06);
@@ -19,3 +18,24 @@
     gap: 1rem;
     flex-wrap: wrap;
 }
+
+@media (min-width: 1440px) {
+    .filterWrapper{
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+}
+
+/* --------------------------------------------------------------------------------------- */
+/* MEDIA QUERY REFERENCE */
+/* --------------------------------------------------------------------------------------- */
+/* 
+@media (min-width: 430px) {}
+@media (min-width: 768px) {}
+@media (min-width: 834px) {}
+@media (min-width: 1024px) {} - MOBILE / DESKTOP Breakpoint
+@media (min-width: 1280px) {}
+@media (min-width: 1440px) {}
+@media (min-width: 1920px) {} 
+*/

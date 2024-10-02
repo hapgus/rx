@@ -26,28 +26,28 @@ export const UserDirectoryTable = () => {
         {
             key: 'status',
             title: 'Status',
-            render: row => row.status === "approved" 
-            ? <div  onClick={
-                () => {
-                    setIsAdminRoutingState(row.userId)
-                    redirect(`/portal/edit-user/${row.userId}`)
-                }
-            } className={styles.greenPill}><span>Approved</span></div> 
-            : row.status === "notApproved" 
-            ?<div  onClick={
-                () => {
-                    setIsAdminRoutingState(row.userId)
-                    redirect(`/portal/edit-user/${row.userId}`)
-                }
-            } className={styles.redPill}><span>Not Approved</span></div>
-            :row.status === "pending"
-            ? <div  onClick={
-                () => {
-                    setIsAdminRoutingState(row.userId)
-                    redirect(`/portal/edit-user/${row.userId}`)
-                }
-            } className={styles.yellowPill}><span>Pending</span></div>
-            : "Status Not Set"
+            render: row => row.status === "approved"
+                ? <div onClick={
+                    () => {
+                        setIsAdminRoutingState(row.userId)
+                        redirect(`/portal/edit-user/${row.userId}`)
+                    }
+                } className={styles.greenPill}><span>Approved</span></div>
+                : row.status === "notApproved"
+                    ? <div onClick={
+                        () => {
+                            setIsAdminRoutingState(row.userId)
+                            redirect(`/portal/edit-user/${row.userId}`)
+                        }
+                    } className={styles.redPill}><span>Not Approved</span></div>
+                    : row.status === "pending"
+                        ? <div onClick={
+                            () => {
+                                setIsAdminRoutingState(row.userId)
+                                redirect(`/portal/edit-user/${row.userId}`)
+                            }
+                        } className={styles.yellowPill}><span>Pending</span></div>
+                        : "Status Not Set"
 
         },
         {
@@ -106,16 +106,18 @@ export const UserDirectoryTable = () => {
     return (
         isUsers &&
         <>
-            <TableBody
-                columns={tableColumns}
-                data={isUsers.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)}
-            />
-            <TablePagination
-                itemsPerPage={itemsPerPage}
-                tableData={isUsers}
-                setCurrentPage={setCurrentPage}
-                currentPage={currentPage}
-            />
+            <div className={styles.tableContainer}>
+                <TableBody
+                    columns={tableColumns}
+                    data={isUsers.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)}
+                />
+                <TablePagination
+                    itemsPerPage={itemsPerPage}
+                    tableData={isUsers}
+                    setCurrentPage={setCurrentPage}
+                    currentPage={currentPage}
+                />
+            </div>
         </>
     )
 

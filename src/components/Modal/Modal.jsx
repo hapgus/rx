@@ -9,7 +9,7 @@ import { SaveListForm } from "../AuthComponent/SaveListForm";
 import { AnimatePresence, motion } from "framer-motion";
 import { LGGif } from "../Character/LGGif";
 import { AnimatedButton } from "../../hooks/use-framer-motion";
-// import {NakedLoader}
+
 
 
 const ModalContent = props => {
@@ -26,6 +26,10 @@ const ModalContent = props => {
         switch (modalType) {
             case 'confirmationModal':
                 return <IconComponent iconType='shield' />;
+            case 'productConfirmationModal':
+                return <IconComponent iconType='portalAppliances' />;
+                case 'userConfirmationModal':
+                return <IconComponent iconType='portalUsers' />;
             case 'warningModal':
                 return <IconComponent iconType='cautionSymbol' />;
             case 'infoModal':
@@ -199,11 +203,61 @@ const ModalContent = props => {
                         </div>
                     </>
                 );
-                case 'confirmationModal':
+            case 'confirmationModal':
+                return (
+                    <>
+                        <div className={styles.generalModalContainer}>
+                            <div className={styles.confirmationIconWrapper}>
+                                <div className={styles.confirmationIcon}>
+                                    {getIcon(props.modalType)}
+                                </div>
+
+                            </div>
+                            <div className={styles.generalBodyWrapper}>
+                                <div className={styles.printModalTextWrapper}>
+                                    <div className={styles.printModalTitle}>
+                                        <PageText type="modalTitle">{props.title}</PageText>
+                                    </div>
+
+                                    <div className={styles.printModalDescription}>
+                                        <PageText type="modalTertiaryTitle">{props.message}</PageText>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </>
+                );
+                case 'productConfirmationModal':
+                return (
+                    <>
+                        <div className={styles.generalModalContainer}>
+                            <div className={styles.productConfirmationIconWrapper}>
+                                <div className={styles.confirmationIcon}>
+                                    {getIcon(props.modalType)}
+                                </div>
+
+                            </div>
+                            <div className={styles.generalBodyWrapper}>
+                                <div className={styles.printModalTextWrapper}>
+                                    <div className={styles.printModalTitle}>
+                                        <PageText type="modalTitle">{props.title}</PageText>
+                                    </div>
+
+                                    <div className={styles.printModalDescription}>
+                                        <PageText type="modalTertiaryTitle">{props.message}</PageText>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </>
+                );
+                case 'userConfirmationModal':
                     return (
                         <>
                             <div className={styles.generalModalContainer}>
-                                <div className={styles.confirmationIconWrapper}>
+                                <div className={styles.productConfirmationIconWrapper}>
                                     <div className={styles.confirmationIcon}>
                                         {getIcon(props.modalType)}
                                     </div>
@@ -269,7 +323,7 @@ const ModalContent = props => {
                                     {props.onConfirm && (
                                         <Button
                                             onClick={props.onConfirm}
-                                            buttonStyleType="primary"
+                                            buttonStyleType="primaryAction"
                                         >
                                             {props.confirmText}
                                         </Button>

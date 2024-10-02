@@ -34,6 +34,21 @@
     height: inherit;
 }
 /* ---------------------------------------------------------- */
+/* PRODUCT CONFIRMATION MODAL */
+/* ---------------------------------------------------------- */
+.productConfirmationIconWrapper {
+    border-radius: 100rem;
+    padding: .5rem;
+    background-color: var(--color-gray-06);
+    border: var(--color-gray-06) .8rem solid;
+    width: max-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+/* ---------------------------------------------------------- */
 /* CONFIRMATION MODAL */
 /* ---------------------------------------------------------- */
 .confirmationIconWrapper {

@@ -88,3 +88,27 @@ cursor: pointer;
   /* transform: scale(1.05); */
   border-bottom: 2px solid var(--color-red-03);
 }
+
+.tableContainer{
+  margin-bottom: 30rem;
+  overflow-x: auto;
+}
+
+@media (min-width: 768px) {
+  .tableContainer{
+    margin-bottom: 20rem;
+ 
+  }
+}
+/* --------------------------------------------------------------------------------------- */
+/* MEDIA QUERY REFERENCE */
+/* --------------------------------------------------------------------------------------- */
+/* 
+@media (min-width: 430px) {}
+@media (min-width: 768px) {}
+
+@media (min-width: 1024px) {} - MOBILE / DESKTOP Breakpoint
+@media (min-width: 1280px) {}
+@media (min-width: 1440px) {}
+@media (min-width: 1920px) {} 
+*/

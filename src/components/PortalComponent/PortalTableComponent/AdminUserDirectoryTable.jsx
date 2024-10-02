@@ -10,8 +10,8 @@ export const AdminUserDirectoryTable = () => {
 
     const redirect = useNavigate();
 
-    const [isUsers, setIsUsers]=useState(false);
-     const [currentPage, setCurrentPage] = useState(1);
+    const [isUsers, setIsUsers] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 10;
     const tableColumns = [
         { key: 'firstName', title: 'Name' },
@@ -38,13 +38,13 @@ export const AdminUserDirectoryTable = () => {
             title: 'Manage',
             render: row => (
                 <div className={styles.actionIconContainer}>
-                    <IconComponent onClick={()=> redirect(`/portal/edit-user/${row.userId}`)} iconType='edit' />
+                    <IconComponent onClick={() => redirect(`/portal/edit-user/${row.userId}`)} iconType='edit' />
                 </div>
             )
         }
     ];
     const fetchUsers = async () => {
-       
+
         try {
             const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}admin-users`);
             if (!response.ok) {
@@ -54,7 +54,7 @@ export const AdminUserDirectoryTable = () => {
             // console.log('data',data)
             setIsUsers(data.users);
         } catch (err) {
-        console.log(`error ${err}`)
+            console.log(`error ${err}`)
         }
     };
 
@@ -62,26 +62,28 @@ export const AdminUserDirectoryTable = () => {
         fetchUsers();
     }, []);
 
-   
-   
+
+
 
     console.log('dir', isUsers)
 
-;
+        ;
 
     return (
         isUsers &&
         <>
-            <TableBody
-                columns={tableColumns}
-                data={isUsers.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)}
-            />
-            <TablePagination
-                itemsPerPage={itemsPerPage}
-                tableData={isUsers}
-                setCurrentPage={setCurrentPage}
-                currentPage={currentPage}
-            />
+            <div className={styles.tableContainer}>
+                <TableBody
+                    columns={tableColumns}
+                    data={isUsers.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)}
+                />
+                <TablePagination
+                    itemsPerPage={itemsPerPage}
+                    tableData={isUsers}
+                    setCurrentPage={setCurrentPage}
+                    currentPage={currentPage}
+                />
+            </div>
         </>
     )
 

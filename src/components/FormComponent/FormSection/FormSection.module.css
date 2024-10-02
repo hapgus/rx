@@ -1,18 +1,60 @@
 .formSectionContainer{
+    /* background-color: var(--color-gray-06); */
     /* background-color: var(--color-gray-05);
     padding: 3rem 4rem;
     margin-bottom: 3rem; */
 }
+.formSectionHeaderWrapper{
+    margin-bottom: 2rem;
+    /* background-color: aqua; */
+    border-bottom: 1px solid var(--color-gray-04);
+    padding-bottom: 2rem;
+}
 .formSectionHeader{
-    padding: 1rem 0 2rem 0;
+    /* background-color: rgb(253, 234, 136); */
+    /* padding: 1rem 0 2rem 0; */
+}
+.formSectionTitleWrapper{
+  /* background-color: aqua; */
 }
 .formSectionTitle{
-    border-bottom: 1px solid var(--color-gray-04);
+    /* border-bottom: 1px solid var(--color-gray-04); */
     /* border-top: 1px solid var(--color-gray-04); */
     margin-top: 2rem;
-    margin-bottom: 2rem; 
-    padding-bottom: 2rem;
+    /* margin-bottom: 1rem; 
+    padding-bottom: 1rem; */
+    color: var(--color-gray-01);
+   
 }
 .formSectionDescription{
 color: var(--color-gray-03);
+}
+
+.formSectionBodyWrapper{
+    /* background-color: red; */
+}
+.formSectionBody{
+
+    /* background-color: rgb(59, 29, 135); */
+    /* border: 2px solid var(--color-gray-05); */
+    /* background-color: var(--color-gray-05); */
+    /* padding: 3rem; */
+    border-radius: 1rem;
+}
+
+@media (min-width: 430px) {
+    /* .formWrapperContainer{
+        width: 70%;
+       
+    } */
+}
+@media (min-width: 1024px) {
+    .formSectionContainer{
+        width: 70rem;
+    }
+}
+@media (min-width: 1280px) {
+    /* .formSectionContainer{
+        width: 50%;
+    } */
 }
