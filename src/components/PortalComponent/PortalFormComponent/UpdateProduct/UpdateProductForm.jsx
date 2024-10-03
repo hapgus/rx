@@ -482,15 +482,18 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
         if (productTemplate === true) {
             if (processedValues.title === isManagedDataState.data.title) {
                 const duplicateTitleError = 'Title cannot be the same as the original product';
+               
                 errors.push(duplicateTitleError); // Add duplicate error to errors array
             }
             if (!processedValues.category) {
                 const noCategoryError = 'Category selection required';
-                errors.push(noCategoryError); // Add duplicate error to errors array
+                //TURNED OFF BECAUSE OF ERROR DUPLICATION- TESTING
+                // errors.push(noCategoryError); // Add duplicate error to errors array
             }
             if (!processedValues.subcategory) {
                 const noSubcategoryError = 'Sub category selection required';
-                errors.push(noSubcategoryError); // Add duplicate error to errors array
+                //TURNED OFF BECAUSE OF ERROR DUPLICATION- TESTING
+                // errors.push(noSubcategoryError); // Add duplicate error to errors array
             }
         }
         // Combine errors from duplicate check and form validation
@@ -549,7 +552,8 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
         formData.append('image', selectedFile || loadedProduct.image);
         formData.append('qrcode', selectedQrcode || loadedProduct.qrcode);
         // formData.append('title', formState.inputs.title.value);
-        formData.append('msrp', formState.inputs.msrp.value);
+        // formData.append('msrp', formState.inputs.msrp.value);
+        formData.append('msrp', formState.inputs.msrp.value || 0 );
         // formData.append('subtitle', formState.inputs.subtitle.value);
         // formData.append('specSheetLink', formState.inputs.specSheetLink.value);
         // formData.append('category', formState.inputs.category.value);
@@ -597,12 +601,12 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
             let response;
             if (productTemplate) {
                 // Create product using template
-                response = await sendRequest(`${process.env.REACT_APP_BACKEND_URL}copy-product`, 'POST', formData);
-                // response = await sendRequest(`http://localhost:3005/copy-product`, 'POST', formData);
+                // response = await sendRequest(`${process.env.REACT_APP_BACKEND_URL}copy-product`, 'POST', formData);
+                response = await sendRequest(`http://localhost:3005/copy-product`, 'POST', formData);
             } else {
                 // Update existing product
-                // response = await sendRequest(`http://localhost:3005/edit-product/${productId}`, 'PATCH', formData);
-                response = await sendRequest(`${process.env.REACT_APP_BACKEND_URL}edit-product/${productId}`, 'PATCH', formData);
+                response = await sendRequest(`http://localhost:3005/edit-product/${productId}`, 'PATCH', formData);
+                // response = await sendRequest(`${process.env.REACT_APP_BACKEND_URL}edit-product/${productId}`, 'PATCH', formData);
             }
 
             // Handle successful response
