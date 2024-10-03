@@ -116,7 +116,7 @@ export const ManageUserForm = () => {
 
         setIsModal({
             show: true,
-            modalType: 'infoModal',
+            modalType: 'confirmationModal',
             title: 'Are You Sure You Want to Delete?',
             message: `You are about to permanently delete this user account. This action cannot be undone.`,
             confirmText: 'Delete account',
@@ -147,10 +147,10 @@ export const ManageUserForm = () => {
                     confirmText: "Close",
                     cancelText: "View directory",
                     onCancel: handleOnCancelRedirectDirectoy,
-                    onConfirm:()=>{
-                        setIsModal({ show: false });
-                        redirect('/portal/dashboard/');
-                    }
+                    // onConfirm:()=>{
+                    //     setIsModal({ show: false });
+                    //     redirect('/portal/dashboard/');
+                    // }
                 });
             } else {
                 console.error('User not deleted');
@@ -160,17 +160,18 @@ export const ManageUserForm = () => {
                     modalType: 'errorModal',
                     title: 'Something Went Wrong!',
                     message: `Something went wrong while deleting the user. Please try again later.`,
-                    confirmText: 'Close',
+                    confirmText: 'Try again',
                     onConfirm: () => setIsModal({ show: false }),
                 });
             }
         } catch (err) {
+            setIsManagedDataState(prevState => ({ ...prevState, loading: false }));
             console.error('Error deleting user:', err);
             setIsModal({
                 show: true,
                 modalType: 'errorModal',
                 title: 'Error Deleting User',
-                message: `Something went wrong while deleting the user. Please try again later.`,
+                message: `Something went wrong while deleting the user. Please try again later. ${err.message}`,
                 confirmText: 'Close',
                 onConfirm: () => setIsModal({ show: false }),
             });
@@ -195,32 +196,29 @@ export const ManageUserForm = () => {
             setIsModal({
                
                 show: true,
-                modalType: 'infoModal',
+                modalType: 'userConfirmationModal',
                 title: "Nothing to update",
                 message: "The user's information is unchanged. Please select a new status or role for this user and try again.",
                 errorList: [],
-                onConfirm: () => setIsModal({ show: false }),
+                onCancel: () => setIsModal({ show: false }),
                 // onCancel: handleOnCancel,
-                confirmText: "Try Again",
+                cancelText: "Try Again",
                 // cancelText: "Go back to all users tables",
 
             });
             return
         }
 
-        setIsModal(prevState => ({
-            ...prevState,
+        setIsModal({
             show: true,
             modalType: 'confirmationModal',
             title: "Confirmation Required",
             message: `You are about to update this user access. Please confirm to proceed.`,
-            errorList: [],
             onConfirm: () => handleFormSubmit(),
             confirmText: 'Update user',
             onCancel: () => setIsModal({ show: false }),
             cancelText: "Go back",
-
-        }));
+        });
     }
 
     const handleFormSubmit = async (e) => {
@@ -253,9 +251,9 @@ export const ManageUserForm = () => {
                     message: "Congrats! The user has been updated.",
                     errorList: [],
                     // onConfirm: () => setIsModal({ show: false }),
-                    onConfirm: handleOnMainDash,
+                    // onConfirm: handleOnMainDash,
                     onCancel: handleOnCancelRedirectDirectoy,
-                    confirmText: "Close",
+                    // confirmText: "Close",
                     cancelText: "View directory",
 
                 });
@@ -263,7 +261,7 @@ export const ManageUserForm = () => {
 
         } catch (error) {
 
-            console.log(error)
+           
                 const revisedErrorMessage = error.toString().replace(/^Error:\s*/, '');
                 setIsManagedDataState(prevState => ({ ...prevState, loading: false }));
                 setIsModal({
