@@ -192,8 +192,8 @@ export const ManageUserForm = () => {
         )
 
         if (!hasChanges) {
-            setIsModal(prevState => ({
-                ...prevState,
+            setIsModal({
+               
                 show: true,
                 modalType: 'infoModal',
                 title: "Nothing to update",
@@ -204,7 +204,7 @@ export const ManageUserForm = () => {
                 confirmText: "Try Again",
                 // cancelText: "Go back to all users tables",
 
-            }));
+            });
             return
         }
 
@@ -245,8 +245,8 @@ export const ManageUserForm = () => {
                 setIsRoutingState(prevState => ({ ...prevState, isLoading: false }));
                 setIsManagedDataState(prevState => ({ ...prevState, loading: false }));
 
-                setIsModal(prevState => ({
-                    ...prevState,
+                setIsModal({
+                    
                     show: true,
                     modalType: 'successModal',
                     title: "Success",
@@ -258,7 +258,7 @@ export const ManageUserForm = () => {
                     confirmText: "Close",
                     cancelText: "View directory",
 
-                }));
+                });
             }
 
         } catch (error) {

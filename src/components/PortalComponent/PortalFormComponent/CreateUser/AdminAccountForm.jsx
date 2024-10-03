@@ -16,9 +16,11 @@ import { Select } from "../../../FormComponent/Select/Select";
 import { capitalizeFirstLetterEachWord } from "../../../../utils/text-help";
 import { AnimatedComponent } from "../../../../hooks/use-framer-motion";
 import { FormSection } from "../../../FormComponent/FormSection/FormSection";
+import { useDataContext } from "../../../../hooks/data-hook";
 
 export const AdminAccountForm = () => {
 
+    const { isManagedDataState, setIsManagedDataState } = useDataContext();
     const { setIsModal, isModal } = useNotificationHook();
     const { setIsRoutingState } = useRoutingHook();
     const { sendRequest } = useHttpClient();
@@ -61,8 +63,6 @@ export const AdminAccountForm = () => {
         // resetForm();
         redirect('/portal/admin-directory')
         setIsModal(prevState => ({ ...prevState, show: false }))
-
-
     }
 
     const preFormSubmit = (e) => {
@@ -128,6 +128,7 @@ export const AdminAccountForm = () => {
 
 
             try {
+                setIsManagedDataState(prevState => ({ ...prevState, loading: true }));
                 const response = await sendRequest(
                     // ` http://localhost:3005/add-admin/`,
                     ` ${process.env.REACT_APP_BACKEND_URL}add-admin/`,
@@ -138,15 +139,15 @@ export const AdminAccountForm = () => {
                 )
                 if (response.responseStatusCode === 201) {
                     // setIsRoutingState(prevState => ({ ...prevState, isLoading: false }));
-
+                    setIsManagedDataState(prevState => ({ ...prevState, loading: false }));
                     setIsModal({
 
                         show: true,
                         modalType: 'successModal',
                         title: "Success",
-                        message: "The new admin account has been created",
-                        onConfirm: handleHomeModalClick,
-                        confirmText: "See Admin Users",
+                        message: "The new account has been created. A confirmation notice will be sent to the email address used to create this account.",
+                        onCancel: handleCloseModalClick,
+                        cancelText: "View admin directory",
                         // onConfirm: handleCloseModalClick,
                         // onCancel: handleHomeModalClick,
                         // cancelText: "See Admin Users",
@@ -158,21 +159,23 @@ export const AdminAccountForm = () => {
                         // alert('Product updated successfully');
                     }, 100);
                 }
-            } catch (err) {
+            } catch (error) {
+                // const revisedErrorMessage = error.toString().replace(/^Error:\s*/, '');
+                setIsManagedDataState(prevState => ({ ...prevState, loading: false }));
                 setIsModal({
                
                     show: true,
                     modalType: 'errorModal',
                     title: "Something went wrong",
-                    message: `Error: ${err}`,
+                    message: error.message,
                     // errorList: errorMessage,
                     // onConfirm: () => setIsModal({ show: false }),
                     onCancel: () => setIsModal({ show: false }),
-                    confirmText: "Close",
-                    // cancelText: "Go back",
+                    // confirmText: "Close",
+                    cancelText: "Go back",
     
                 });
-                console.log(err)
+             
             }
         }
     };
