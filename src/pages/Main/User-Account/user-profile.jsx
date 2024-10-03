@@ -22,6 +22,7 @@ import { FormWrapper } from '../../../components/FormComponent/FormWrapper/FormW
 import { AnimatedComponent } from '../../../hooks/use-framer-motion';
 import { useDataContext } from '../../../hooks/data-hook';
 import { FormSkeleton } from '../../../components/Skeletons/FormSkeleton';
+import { FormSection } from '../../../components/FormComponent/FormSection/FormSection';
 
 
 const UserProfilePage = () => {
@@ -31,7 +32,7 @@ const UserProfilePage = () => {
 
     const { setIsModal, isModal } = useNotificationHook();
     const { isAuthenticated, isSuperAdmin, isAdmin } = useAuth();
-    const {logout}=useAuthHook()
+    const { logout } = useAuthHook()
     const { setIsRoutingState } = useRoutingHook();
     const { sendRequest } = useHttpClient();
 
@@ -98,9 +99,9 @@ const UserProfilePage = () => {
 
         setIsModal({
             show: true,
-            modalType: 'infoModal',
+            modalType: 'confirmationModal',
             title: 'Are You Sure You Want to Delete?',
-            message: `You are about to permanently delete you user account. This action cannot be undone. Please confirm to continue`,
+            message: `You are about to permanently delete you account. This action cannot be undone. Please confirm to continue`,
             confirmText: 'Delete account',
             cancelText: 'Go back',
             onConfirm: handleConfirmDeleteUser,
@@ -146,6 +147,7 @@ const UserProfilePage = () => {
             }
         } catch (err) {
             console.error('Error deleting user:', err);
+            setIsManagedDataState(prevState => ({ ...prevState, loading: false }));
             setIsModal({
                 show: true,
                 modalType: 'errorModal',
@@ -193,7 +195,7 @@ const UserProfilePage = () => {
             setIsModal(prevState => ({
                 ...prevState,
                 show: true,
-                modalType: 'infoModal',
+                modalType: 'userConfirmationModal',
                 title: "Nothing to update",
                 message: "Your information has not been changed. You must first change your account information before you can submit updates.",
                 errorList: [],
@@ -286,8 +288,7 @@ const UserProfilePage = () => {
                 setIsManagedDataState(prevState => ({ ...prevState, loading: false }));
                 setIsModal({
                     show: true,
-                    iconType: 'errorInfo',
-                    modalType: 'infoModal',
+                    modalType: 'errorModal',
                     title: "Something went wrong",
                     message: revisedErrorMessage,
                     // errorList: errorMessage,
@@ -306,111 +307,112 @@ const UserProfilePage = () => {
                     && isManagedDataState && isManagedDataState.data
                     ? (
                         <div className={styles.contentWrapper}>
-                            <div className={styles.sectionTitle}>
-                                <AnimatedComponent type="bounceEffect">
-                                    <PageText type='pageTitle'>My Profile</PageText>
-                                </AnimatedComponent>
-                                <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.1}>
-                                    <PageText type='pageSubtitle'>Manage your user account</PageText>
-                                </AnimatedComponent>
-                            </div>
-                            <FormComponent>
-                                <FormWrapper>
-                                    <AnimatedComponent type='3dRoationDropdownEffects' delay={.3}>
-                                        <TextInput
-                                            id="firstName"
-                                            name="firstName"
-                                            labelName="First name"
-                                            // secondaryLabel=''
-                                            errorText='First name required'
-                                            validators={[VALIDATOR_REQUIRE()]}
-                                            onInput={inputHandler}
-                                            // initialValue={formState.inputs.title.value} 
-                                            initialValue={formState.inputs.firstName.value}
-                                            initialIsValid={formState.inputs.firstName.isValid}
-
-                                        />
+                            <FormSection>
+                                <div className={styles.sectionTitle}>
+                                    <AnimatedComponent type="bounceEffect">
+                                        <PageText type='pageTitle'>My Profile</PageText>
                                     </AnimatedComponent>
-                                    <AnimatedComponent type='3dRoationDropdownEffects' delay={.3}>
-                                        <TextInput
-                                            id="lastName"
-                                            name="lastName"
-                                            labelName="Last name"
-                                            // secondaryLabel='Optional'
-                                            errorText='Last name required'
-                                            validators={[VALIDATOR_REQUIRE()]}
-                                            onInput={inputHandler}
-                                            // initialValue={formState.inputs.title.value} 
-                                            initialValue={formState.inputs.lastName.value}
-                                            initialIsValid={formState.inputs.lastName.isValid}
-
-                                        />
+                                    <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.1}>
+                                        <PageText type='pageSubtitle'>Manage your user account</PageText>
                                     </AnimatedComponent>
-                                    <AnimatedComponent type='3dRoationDropdownEffects' delay={.3}>
-                                        <TextInput
-                                            id="store"
-                                            name="store"
-                                            labelName="Retailer name"
-                                            secondaryLabel="Ex. Jon's Appliance Store"
-                                            errorText='Retailer name required'
-                                            validators={[VALIDATOR_REQUIRE()]}
-                                            onInput={inputHandler}
-                                            // initialValue={formState.inputs.title.value} 
-                                            initialValue={formState.inputs.store.value}
-                                            initialIsValid={formState.inputs.store.isValid}
-
-                                        />
-                                    </AnimatedComponent>
-                                    <AnimatedComponent type='3dRoationDropdownEffects' delay={.3}>
-                                        <TextInput
-                                            id="address"
-                                            name="adress"
-                                            labelName="Retailer address"
-                                            secondaryLabel='Optional'
-                                            errorText='Retailer  required'
-                                            validators={[VALIDATOR_REQUIRE()]}
-                                            onInput={inputHandler}
-                                            // initialValue={formState.inputs.title.value} 
-                                            initialValue={formState.inputs.address.value}
-                                            initialIsValid={formState.inputs.address.isValid}
-
-                                        />
-                                    </AnimatedComponent>
-
-                                    <div className={styles.buttonWrapper}>
+                                </div>
+                                <FormComponent>
+                                    <FormWrapper>
                                         <AnimatedComponent type='3dRoationDropdownEffects' delay={.3}>
-                                            <Button type='button' onClick={handlePreFormSubmit} buttonStyleType="primaryAction">Update my account </Button>
+                                            <TextInput
+                                                id="firstName"
+                                                name="firstName"
+                                                labelName="First name"
+                                                // secondaryLabel=''
+                                                errorText='First name required'
+                                                validators={[VALIDATOR_REQUIRE()]}
+                                                onInput={inputHandler}
+                                                // initialValue={formState.inputs.title.value} 
+                                                initialValue={formState.inputs.firstName.value}
+                                                initialIsValid={formState.inputs.firstName.isValid}
+
+                                            />
                                         </AnimatedComponent>
-                                    </div>
-                                    <div className={styles.actionButtonsWrapper}>
+                                        <AnimatedComponent type='3dRoationDropdownEffects' delay={.3}>
+                                            <TextInput
+                                                id="lastName"
+                                                name="lastName"
+                                                labelName="Last name"
+                                                // secondaryLabel='Optional'
+                                                errorText='Last name required'
+                                                validators={[VALIDATOR_REQUIRE()]}
+                                                onInput={inputHandler}
+                                                // initialValue={formState.inputs.title.value} 
+                                                initialValue={formState.inputs.lastName.value}
+                                                initialIsValid={formState.inputs.lastName.isValid}
 
-                                        <div onClick={handleDeleteUser} className={styles.actionButton}>
-                                            <AnimatedComponent type='wipeEffect' delay={.3}>
-                                                <PageText>
-                                                    Delete my account
-                                                </PageText>
+                                            />
+                                        </AnimatedComponent>
+                                        <AnimatedComponent type='3dRoationDropdownEffects' delay={.3}>
+                                            <TextInput
+                                                id="store"
+                                                name="store"
+                                                labelName="Retailer name"
+                                                secondaryLabel="Ex. Jon's Appliance Store"
+                                                errorText='Retailer name required'
+                                                validators={[VALIDATOR_REQUIRE()]}
+                                                onInput={inputHandler}
+                                                // initialValue={formState.inputs.title.value} 
+                                                initialValue={formState.inputs.store.value}
+                                                initialIsValid={formState.inputs.store.isValid}
+
+                                            />
+                                        </AnimatedComponent>
+                                        <AnimatedComponent type='3dRoationDropdownEffects' delay={.3}>
+                                            <TextInput
+                                                id="address"
+                                                name="adress"
+                                                labelName="Retailer address"
+                                                secondaryLabel='Optional'
+                                                errorText='Retailer  required'
+                                                validators={[VALIDATOR_REQUIRE()]}
+                                                onInput={inputHandler}
+                                                // initialValue={formState.inputs.title.value} 
+                                                initialValue={formState.inputs.address.value}
+                                                initialIsValid={formState.inputs.address.isValid}
+
+                                            />
+                                        </AnimatedComponent>
+
+                                        <div className={styles.buttonWrapper}>
+                                            <AnimatedComponent type='3dRoationDropdownEffects' delay={.3}>
+                                                <Button type='button' onClick={handlePreFormSubmit} buttonStyleType="primaryAction">Update my account </Button>
                                             </AnimatedComponent>
                                         </div>
-                                        <div className={styles.actionButton}>
-                                        <AnimatedComponent type='wipeEffect' delay={.3}>
-                                            <LinkComponent href={`/member/forgot-password`}>
-                                                <PageText>Reset Password</PageText>
-                                            </LinkComponent>
-                                            </AnimatedComponent>
+                                        <div className={styles.actionButtonsWrapper}>
+
+                                            <div onClick={handleDeleteUser} className={styles.actionButton}>
+                                                <AnimatedComponent type='wipeEffect' delay={.3}>
+                                                    <PageText>
+                                                        Delete my account
+                                                    </PageText>
+                                                </AnimatedComponent>
+                                            </div>
+                                            <div className={styles.actionButton}>
+                                                <AnimatedComponent type='wipeEffect' delay={.3}>
+                                                    <LinkComponent href={`/member/forgot-password`}>
+                                                        <PageText>Reset Password</PageText>
+                                                    </LinkComponent>
+                                                </AnimatedComponent>
+                                            </div>
+
+
+
+
                                         </div>
 
+                                    </FormWrapper>
 
 
-
-                                    </div>
-
-                                </FormWrapper>
+                                </FormComponent>
 
 
-                            </FormComponent>
-
-
-
+                            </FormSection>
 
                         </div>
                     )
