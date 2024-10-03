@@ -48,7 +48,7 @@ const validationRules = {
   ],
   specTitle1: [
     { rule: 'required', message: 'Column title 1 is required.' },
- 
+
   ],
   specSheetLink: [
     { rule: 'isUrl', message: 'Specification sheet link has an invalid URL format. Secure (Https) required' },
@@ -226,7 +226,7 @@ const validateField = (value, rules, formState) => {
 export const validateDynamicSections = (sections) => {
   const errors = [];
   const processedSections = [];
-
+  console.log(sections)
   // Ensure sections is an array
   if (!Array.isArray(sections) || sections.length === 0) {
     return errors; // Return early if sections is not an array or is empty
@@ -271,6 +271,7 @@ export const validateDynamicSections = (sections) => {
 };
 // export const validateProductForm = (formState, selectedImage, selectedQrcodeImage) => {
 export const validateProductForm = (formState, sections, selectedImage, selectedQrcodeImage) => {
+
   const errorMessage = [];
 
   // Apply preprocessing to title and subtitle
@@ -282,9 +283,9 @@ export const validateProductForm = (formState, sections, selectedImage, selected
   const processedSpecTitle1 = trimAndNormalizeSpaces(formState.inputs.specTitle1.value);
 
   // const processedSpecList1 = trimAndNormalizeSpaces(formState.inputs.specList1.value);
-   // Do not normalize spaces for specList1 since it needs line breaks intact
-   const processedSpecList1Array = splitToArrayOnLineBreak(formState.inputs.specList1.value); // Processed as an array
-   const processedSpecList1 = processedSpecList1Array.join('\n'); // Join back to a string for validation
+  // Do not normalize spaces for specList1 since it needs line breaks intact
+  const processedSpecList1Array = splitToArrayOnLineBreak(formState.inputs.specList1.value); // Processed as an array
+  const processedSpecList1 = processedSpecList1Array.join('\n'); // Join back to a string for validation
 
   const processedSpecSheetLink = trimAndNormalizeSpaces(formState.inputs.specSheetLink.value);
   const processedVideos = trimAndNormalizeSpaces(formState.inputs.videos.value);
@@ -303,21 +304,26 @@ export const validateProductForm = (formState, sections, selectedImage, selected
   errorMessage.push(...validateField(processedSpecSheetLink, validationRules.specSheetLink));
   errorMessage.push(...validateField(processedVideos, validationRules.videos));
   errorMessage.push(...validateField(uploadedProductImage, validationRules.image));
-  errorMessage.push(...validateField(uploadedQrcodeImage, validationRules.qrcode));  
-  
+  errorMessage.push(...validateField(uploadedQrcodeImage, validationRules.qrcode));
+
   errorMessage.push(...validateField(processedSpecList1, validationRules.specList1));
   errorMessage.push(...validateField(processedSpecTitle1, validationRules.specTitle1));
   // Add other validations here, with appropriate preprocessing
   // errorMessage.push(...validateField(trimAndLowercase(formState.inputs.category.value), validationRules.category));
 
 
-  // Validate dynamic sections
-  const sectionErrors = validateDynamicSections(sections);
+
+  const { errors: sectionErrors, processedSections } = validateDynamicSections(sections);
+
+  // Push errors to errorMessage array
   sectionErrors.forEach((error) => {
     errorMessage.push(`${error.section}: ${error.message}`);
-  });
-
-
+  })
+  // Validate dynamic sections
+  // const sectionErrors = validateDynamicSections(sections);
+  // sectionErrors.forEach((error) => {
+  //   errorMessage.push(`${error.section}: ${error.message}`);
+  // });
   // const { errors: sectionErrors, processedSections } = validateDynamicSections(sections);
   // errors.push(...sectionErrors);
 
@@ -334,7 +340,7 @@ export const validateProductForm = (formState, sections, selectedImage, selected
 
   }
 
-  console.log('err',errorMessage)
+  console.log('err', errorMessage)
 
   return { errorMessage, processedValues }
 };

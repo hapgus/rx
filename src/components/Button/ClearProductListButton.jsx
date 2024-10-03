@@ -32,9 +32,9 @@ export const ClearProductListButton = () => {
                 cancelText: 'Go back',
             });
         } else {
-            setIsModal(prevState => ({
-                ...prevState,
-                modalType: 'warningModal',
+            setIsModal({
+            
+                modalType: 'productConfirmationModal',
                 show: true,
                 title: 'Are You Sure You Want to Proceed?',
                 message: 'This will remove all products from your list. Would you like to continue?',
@@ -47,7 +47,7 @@ export const ClearProductListButton = () => {
                 },
                 cancelText: 'Go back',
                 confirmText: 'Clear list'
-            }))
+            })
 
         }
 

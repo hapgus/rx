@@ -17,7 +17,7 @@ export const PortalPageTopNav = () => {
         firstname: decodedToken.firstName,
         lastname: decodedToken.lastName
     }
-    console.log(authorizedUser)
+    
 
     const { isSuperAdmin } = useAuth();
 

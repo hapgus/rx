@@ -85,26 +85,25 @@ export const AdminAccountForm = () => {
 
         // e.preventDefault();
 
-        setIsModal(prevState => ({
-            ...prevState,
-            show: true,
-            modalType: 'errorModal',
-            title: "Almost there",
-            message: "You need to fix the following errors to continue.",
-            errorList: errorMessage,
-            onConfirm: () => setIsModal({ show: false }),
-            onCancel: () => setIsModal({ show: false }),
-            confirmText: "Close",
-            cancelText: "Go back",
+        // setIsModal({
+        //     show: true,
+        //     modalType: 'errorModal',
+        //     title: "Almost there",
+        //     message: "You need to fix the following errors to continue.",
+        //     errorList: errorMessage,
+        //     onConfirm: () => setIsModal({ show: false }),
+        //     onCancel: () => setIsModal({ show: false }),
+        //     confirmText: "Close",
+        //     cancelText: "Go back",
 
-        }));
+        // });
 
 
         const errorMessage = validateAdminForm(formState)
         if (errorMessage.length !== 0) {
 
-            setIsModal(prevState => ({
-                ...prevState,
+            setIsModal({
+               
                 show: true,
                 modalType: 'errorModal',
                 title: "Almost there",
@@ -115,7 +114,7 @@ export const AdminAccountForm = () => {
                 confirmText: "Close",
                 cancelText: "Go back",
 
-            }));
+            });
         } else {
 
             const data = {
@@ -140,19 +139,19 @@ export const AdminAccountForm = () => {
                 if (response.responseStatusCode === 201) {
                     // setIsRoutingState(prevState => ({ ...prevState, isLoading: false }));
 
-                    setIsModal(prevState => ({
-                        ...prevState,
+                    setIsModal({
+
                         show: true,
                         modalType: 'successModal',
                         title: "Success",
                         message: "The new admin account has been created",
-                        errorList: errorMessage,
-                        onConfirm: handleCloseModalClick,
-                        onCancel: handleHomeModalClick,
+                        onConfirm: handleHomeModalClick,
                         confirmText: "See Admin Users",
-                        cancelText: "Go Home",
+                        // onConfirm: handleCloseModalClick,
+                        // onCancel: handleHomeModalClick,
+                        // cancelText: "See Admin Users",
 
-                    }));
+                    });
 
                     // THIS MIGHT NOT BE NEEDED
                     setTimeout(() => {
@@ -160,14 +159,24 @@ export const AdminAccountForm = () => {
                     }, 100);
                 }
             } catch (err) {
+                setIsModal({
+               
+                    show: true,
+                    modalType: 'errorModal',
+                    title: "Something went wrong",
+                    message: `Error: ${err}`,
+                    // errorList: errorMessage,
+                    // onConfirm: () => setIsModal({ show: false }),
+                    onCancel: () => setIsModal({ show: false }),
+                    confirmText: "Close",
+                    // cancelText: "Go back",
+    
+                });
                 console.log(err)
             }
         }
     };
 
-
-
-    console.log('sign up', formState)
     return (
         // <FormComponent onSubmit={submitForm}>
         <FormComponent >

@@ -70,8 +70,8 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
     const [initialSections, setInitialSections] = useState([]);
     const [loadedProduct, setLoadedProduct] = useState();
 
-const formTextElements = productTemplate === true 
-? { buttonText:'Create new product' } : { buttonText:'Update product' }
+    const formTextElements = productTemplate === true
+        ? { buttonText: 'Create new product' } : { buttonText: 'Update product' }
 
     const [formState, inputHandler, setFormData] = useForm({
         msrp: { value: 0, isValid: false },
@@ -276,10 +276,14 @@ const formTextElements = productTemplate === true
                 cancelText: "Go back",
                 onCancel: () => setIsModal({ show: false }),
             })
+            return
         }
 
 
+        // IF EDITING PRODUCT
         if (productTemplate === false) {
+
+
 
             const normalizeString = (value) => value.trim().toLowerCase();
 
@@ -315,13 +319,13 @@ const formTextElements = productTemplate === true
                 if (!newValues && !originalValues) return false;
 
                 const normalizedNewValues = newValues
-                ? normalizeAndSortArray(newValues).join('\n')
-                : '';
-            const normalizedOriginalValues = originalValues
-                ? normalizeAndSortArray(originalValues).join('\n')
-                : '';
-    
-            return normalizedNewValues !== normalizedOriginalValues;
+                    ? normalizeAndSortArray(newValues).join('\n')
+                    : '';
+                const normalizedOriginalValues = originalValues
+                    ? normalizeAndSortArray(originalValues).join('\n')
+                    : '';
+
+                return normalizedNewValues !== normalizedOriginalValues;
                 // // Normalize arrays by trimming and converting to lowercase
                 // const normalizedNewValues = newValues ? newValues.map(value => normalizeString(value)).join('\n') : '';
                 // const normalizedOriginalValues = originalValues ? originalValues.map(value => normalizeString(value)).join('\n') : '';
@@ -331,6 +335,7 @@ const formTextElements = productTemplate === true
 
             // CHECK IF SECTION VALUES CHANGED
             const hasSectionChanged = (newSection, originalSection) => {
+                console.log(newSection, originalSection)
                 // Compare resourceTitle and resourceUrl
                 if (
                     normalizeString(newSection.resourceTitle) !== normalizeString(originalSection.resourceTitle) ||
@@ -393,22 +398,36 @@ const formTextElements = productTemplate === true
             );
 
             if (hasChanges === false) {
+
                 setIsModal({
+
                     show: true,
-                    modalType: 'confirmationModal',
-                    title: "Nothing to updated",
-                    message: `Nothing to updated`,
-                    // confirmText: 'Confirm update',
-                    // onConfirm: () => {
-                    //     handleFormSubmit();
-                    // },
+                    modalType: 'productConfirmationModal',
+                    title: "Confirmation Required",
+                    message: `You are about to change a product. The updated product will be featured on the public website. Please confirm if you wish to continue.`,
+                    confirmText: 'Update product',
                     cancelText: "Go back",
+                    onConfirm: () => handleFormSubmit(),
                     onCancel: () => setIsModal({ show: false }),
+
+
+                });
+                setIsModal({
+
+                    show: true,
+                    modalType: 'productConfirmationModal',
+                    title: "Nothing to update",
+                    message: `You must change something before you can submit an update. Please make changes and try again`,
+                    confirmText: 'Update product',
+
+
+                    onCancel: () => setIsModal({ show: false }),
+                    cancelText: "Go back",
                 })
             } else {
                 setIsModal({
                     show: true,
-                    modalType: 'confirmationModal',
+                    modalType: 'productConfirmationModal',
                     title: "Confirm product updates",
                     message: `You are about to change this product. Please confirm if you wish to proceed.`,
                     confirmText: 'Confirm update',
@@ -420,11 +439,12 @@ const formTextElements = productTemplate === true
                 })
             }
         }
+
         if (productTemplate === true) {
             setIsModal({
                 show: true,
-                modalType: 'confirmationModal',
-                title: "Confirm product copy",
+                modalType: 'productConfirmationModal',
+                title: "Confirm product duplicate",
                 message: `You are about to create a new product via an existing product as a template. Please confirm if you wish to proceed.`,
                 confirmText: 'Confirm product',
                 onConfirm: () => {
@@ -438,8 +458,10 @@ const formTextElements = productTemplate === true
         }
 
     }
-// console.log('spec list 1 managed',isManagedDataState.data.specList1 )
-// console.log('spec list 1 form state',formState.inputs.specList1.value )
+    // console.log('spec list 1 managed',isManagedDataState.data.specList1 )
+    // console.log('spec list 1 form state',formState.inputs.specList1.value )
+    
+    
     const handleFormSubmit = async (e) => {
         let errors = [];
 
@@ -1168,13 +1190,13 @@ const formTextElements = productTemplate === true
             <div className={styles.formFooter}>
                 <FormSection
                     sectionTitle="Ready to update your product?"
-                    sectionDescription="Confirm product details are in the required formats. Visit the product details page after your submit to review the new product listing"
+                    sectionDescription="Confirm product details are in the required formats. Visit the product details page after your submit to review the updated product listing"
                 >
                     <FormWrapper>
                         {/* <Button onClick={handleFormSubmit} type="button" buttonStyleType="primaryAction"> */}
                         <Button onClick={handlePreFormSubmit} type="button" buttonStyleType="primaryAction">
                             {formTextElements.buttonText}
-                           
+
                         </Button>
 
                     </FormWrapper>

@@ -103,7 +103,7 @@ export const ProductProvider = ({ children }) => {
 
     useEffect(() => {
         fetchProducts();
-        console.log('fetch hd')
+       
     }, [isHomeDepotApp.isHomeDepotActive]); // Re-fetch or re-filter when the active retailer changes
 
     useEffect(() => {
