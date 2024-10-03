@@ -601,12 +601,12 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
             let response;
             if (productTemplate) {
                 // Create product using template
-                // response = await sendRequest(`${process.env.REACT_APP_BACKEND_URL}copy-product`, 'POST', formData);
-                response = await sendRequest(`http://localhost:3005/copy-product`, 'POST', formData);
+                response = await sendRequest(`${process.env.REACT_APP_BACKEND_URL}copy-product`, 'POST', formData);
+                // response = await sendRequest(`http://localhost:3005/copy-product`, 'POST', formData);
             } else {
                 // Update existing product
-                response = await sendRequest(`http://localhost:3005/edit-product/${productId}`, 'PATCH', formData);
-                // response = await sendRequest(`${process.env.REACT_APP_BACKEND_URL}edit-product/${productId}`, 'PATCH', formData);
+                // response = await sendRequest(`http://localhost:3005/edit-product/${productId}`, 'PATCH', formData);
+                response = await sendRequest(`${process.env.REACT_APP_BACKEND_URL}edit-product/${productId}`, 'PATCH', formData);
             }
 
             // Handle successful response
