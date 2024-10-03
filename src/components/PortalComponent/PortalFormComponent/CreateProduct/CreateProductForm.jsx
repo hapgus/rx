@@ -191,6 +191,8 @@ export const CreateProductForm = () => {
         // const formErrors = validateProductForm(formState, selectedImage, selectedQrcodeImage)
 
         const { errorMessage, processedValues } = validateProductForm(formState, selectedImage, selectedQrcodeImage)
+        // sectionError.map - triggered in above - add section to param like below
+        // const { errorMessage, processedValues } = validateProductForm(formState, sections,selectedImage, selectedQrcodeImage)
         // const errorMessages = [...formErrors];
         const errorMessages = [...errorMessage];
         console.log(errorMessage)

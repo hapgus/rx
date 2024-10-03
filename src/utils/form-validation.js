@@ -312,13 +312,14 @@ export const validateProductForm = (formState, sections, selectedImage, selected
   // errorMessage.push(...validateField(trimAndLowercase(formState.inputs.category.value), validationRules.category));
 
 
+  // REMOVE UNTIL READY TO VALIDATE SECTIONS
+  // const { errors: sectionErrors, processedSections } = validateDynamicSections(sections);
 
-  const { errors: sectionErrors, processedSections } = validateDynamicSections(sections);
-
+  // REMOVE UNTIL READY TO VALIDATE SECTIONS
   // Push errors to errorMessage array
-  sectionErrors.forEach((error) => {
-    errorMessage.push(`${error.section}: ${error.message}`);
-  })
+  // sectionErrors.forEach((error) => {
+  //   errorMessage.push(`${error.section}: ${error.message}`);
+  // })
   // Validate dynamic sections
   // const sectionErrors = validateDynamicSections(sections);
   // sectionErrors.forEach((error) => {
