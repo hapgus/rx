@@ -10,7 +10,7 @@ import { useRoutingHook } from '../../../hooks/routing-hook';
 import { FormComponent } from '../../../components/FormComponent/FormComponent';
 import { useForm } from '../../../hooks/form-hook';
 import { TextInput } from '../../../components/FormComponent/TextInput/TextInput';
-import { useAuthHook, useAuthUser, useAuth, useLogout } from '../../../hooks/auth-hook';
+import { useAuthHook, useAuthUser, useAuth } from '../../../hooks/auth-hook';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 
@@ -44,20 +44,15 @@ const UserProfilePage = () => {
         store: { value: '', isValid: false },
         address: { value: '', isValid: false },
     })
-    /* --------------------------------------------------------------------------------------- */
-    /* HANDLE NO AUTH REDIRECTS*/
-    /* --------------------------------------------------------------------------------------- */
-    const handleUnAuthorizedAccess = () => {
-        logout();
-        setIsModal({ show: false })
-    }
 
+  
     // POPULATE USER DATA
     useEffect(() => {
+
+
         setIsManagedDataState(prevState => ({ ...prevState, preLoading: true }));
 
-        // if (decodedToken) {
-        if (isAuthenticated && decodedToken.status === 'approved') {
+        if (decodedToken) {
             const fetchProductData = async () => {
                 try {
                     const { responseData } = await sendRequest(` ${process.env.REACT_APP_BACKEND_URL}user-profile/${decodedToken.userId}`);
@@ -85,16 +80,6 @@ const UserProfilePage = () => {
             };
 
             fetchProductData();
-        } else {
-            setIsModal({
-                show: true,
-                modalType: 'confirmationModal',
-                title: "Error",
-                message: `Please contact an administrator.`,
-                cancelText: "Close",
-                onCancel: handleUnAuthorizedAccess,
-
-            })
         }
     }, [decodedToken, sendRequest, setFormData])
 
@@ -103,15 +88,15 @@ const UserProfilePage = () => {
     const handleDeleteUser = () => {
 
         // if (!isAuthenticated && !decodedToken) {
-        if (decodedToken.userId !== isManagedDataState.data.userId) {
+            if (!isAuthenticated && !decodedToken) {
             setIsModal({
                 show: true,
-                modalType: 'confirmationModal',
-                title: "Error",
-                message: `Please contact an administrator.`,
-                cancelText: "Close",
-                onCancel: handleUnAuthorizedAccess,
-            })
+                modalType: 'errorModal',
+                title: 'Permission Denied',
+                message: `You cannot delete this user.`,
+                confirmText: 'Go back',
+                onConfirm: () => setIsModal({ show: false }),
+            });
             return;
         }
 
@@ -180,10 +165,10 @@ const UserProfilePage = () => {
 
     // HANDLE MODAL OPTIONS
     const authUserGoBackDestination = isSuperAdmin && isAuthenticated
+    ? "/portal/overview"
+    : isAdmin && isAuthenticated
         ? "/portal/overview"
-        : isAdmin && isAuthenticated
-            ? "/portal/overview"
-            : "/"
+        : "/"
     // const authUserGoBackDestination = isSuperAdmin && isAuthenticated
     //     ? "/portal/dashboard"
     //     : isAdmin && isAuthenticated
@@ -196,8 +181,8 @@ const UserProfilePage = () => {
     }
 
     const handleConfirm = () => {
-        setIsModal({ show: false })
         redirect(authUserGoBackDestination)
+        setIsModal({ show: false })
     }
 
     const handlePreFormSubmit = (e) => {
@@ -217,8 +202,8 @@ const UserProfilePage = () => {
         )
 
         if (!hasChanges) {
-            setIsModal({
-              
+            setIsModal(prevState => ({
+                ...prevState,
                 show: true,
                 modalType: 'userConfirmationModal',
                 title: "Nothing to update",
@@ -229,28 +214,28 @@ const UserProfilePage = () => {
                 confirmText: "Try Again",
                 // cancelText: "Go back to all users tables",
 
-            });
+            }));
             return
         }
-        setIsModal({
-          
+        setIsModal(prevState => ({
+            ...prevState,
             show: true,
-            modalType: 'userConfirmationModal',
+            modalType: 'confirmationModal',
             title: "Confirmation Required",
-            message: `You are about to update your account information. Please confirm to continue.`,
-          
+            message: `You are update your account information. Please confirm to continue.`,
+            errorList: [],
             onConfirm: () => handleFormSubmit(),
             confirmText: 'Update my account',
             onCancel: () => setIsModal({ show: false }),
             cancelText: "Go back",
 
-        });
+        }));
     }
 
     const handleFormSubmit = async (e) => {
 
 
-      
+        console.log(formState)
         const { errorMessage, processedValues } = validateUserProfileForm(formState)
 
         if (errorMessage.length !== 0) {
@@ -293,8 +278,8 @@ const UserProfilePage = () => {
                 if (response.responseStatusCode === 201) {
                     setIsRoutingState(prevState => ({ ...prevState, isLoading: false }));
                     setIsManagedDataState(prevState => ({ ...prevState, loading: false }));
-                    setIsModal({
-                        
+                    setIsModal(prevState => ({
+                        ...prevState,
                         show: true,
                         modalType: 'successModal',
                         title: "Success",
@@ -305,7 +290,7 @@ const UserProfilePage = () => {
                         confirmText: "Close",
                         cancelText: "Go back",
 
-                    });
+                    }));
                 }
             } catch (error) {
 

@@ -12,14 +12,14 @@ import { useForm } from '../../../../hooks/form-hook';
 
 
 import { Select } from '../../../FormComponent/Select/Select';
-import { useAuthUser, useAuth } from '../../../../hooks/auth-hook';
+import { useAuthUser, useAuth, useLogout } from '../../../../hooks/auth-hook';
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router';
 import { useNotificationHook } from '../../../../hooks/notification-hook';
 
 import { FormSkeleton } from '../../../Skeletons/FormSkeleton';
 
-import {  AnimatedComponent } from '../../../../hooks/use-framer-motion';
+import { AnimatedComponent } from '../../../../hooks/use-framer-motion';
 
 
 export const ManageUserForm = () => {
@@ -32,12 +32,13 @@ export const ManageUserForm = () => {
     const { sendRequest } = useHttpClient();
     const { isManagedDataState, setIsManagedDataState } = useDataContext();
 
- 
+
     const [userInfo, setUserInfo] = useState()
 
-   
+
     const decodedToken = useAuthUser();
-    const { authUserId, isSuperAdmin } = useAuth();
+    const { authUserId, isSuperAdmin,  } = useAuth();
+    const logout = useLogout();
 
     const [formState, inputHandler, setFormData] = useForm({
 
@@ -45,23 +46,32 @@ export const ManageUserForm = () => {
         status: { value: '', isValid: false },
     })
 
-     // HANDLE MODAL OPTIONS
+    // HANDLE MODAL OPTIONS
 
-     const handleOnCancelRedirectDirectoy = () => {
+    const handleOnCancelRedirectDirectoy = () => {
 
-      
+
         setIsModal({ show: false })
-        if(formState.inputs.role.value === "admin" || formState.inputs.role.value === "superAdmin" ){
+        if (formState.inputs.role.value === "admin" || formState.inputs.role.value === "superAdmin") {
             redirect('/portal/admin-directory/')
-        } else{
+        } else {
             redirect('/portal/user-directory/')
         }
-        
+
     }
 
     const handleOnMainDash = () => {
         setIsModal({ show: false })
         redirect('/portal/dashboard')
+    }
+
+    /* --------------------------------------------------------------------------------------- */
+    /* HANDLE NO AUTH REDIRECTS*/
+    /* --------------------------------------------------------------------------------------- */
+    const handleUnAuthorizedAccess = () => {
+
+        logout();
+        setIsModal({ show: false })
     }
 
     // POPULATE USER DATA
@@ -101,6 +111,8 @@ export const ManageUserForm = () => {
 
     // HANDLE DELETE ACCOUNT DATA
     const handleDeleteUser = () => {
+
+
 
         if (userInfo.role === 'superAdmin' && !isSuperAdmin) {
             setIsModal({
@@ -153,7 +165,7 @@ export const ManageUserForm = () => {
                     // }
                 });
             } else {
-                console.error('User not deleted');
+                // console.error('User not deleted');
                 setIsManagedDataState(prevState => ({ ...prevState, preloading: false }));
                 setIsModal({
                     show: true,
@@ -166,7 +178,7 @@ export const ManageUserForm = () => {
             }
         } catch (err) {
             setIsManagedDataState(prevState => ({ ...prevState, loading: false }));
-            console.error('Error deleting user:', err);
+            // console.error('Error deleting user:', err);
             setIsModal({
                 show: true,
                 modalType: 'errorModal',
@@ -194,7 +206,7 @@ export const ManageUserForm = () => {
 
         if (!hasChanges) {
             setIsModal({
-               
+
                 show: true,
                 modalType: 'userConfirmationModal',
                 title: "Nothing to update",
@@ -244,7 +256,7 @@ export const ManageUserForm = () => {
                 setIsManagedDataState(prevState => ({ ...prevState, loading: false }));
 
                 setIsModal({
-                    
+
                     show: true,
                     modalType: 'successModal',
                     title: "Success",
@@ -261,22 +273,22 @@ export const ManageUserForm = () => {
 
         } catch (error) {
 
-           
-                const revisedErrorMessage = error.toString().replace(/^Error:\s*/, '');
-                setIsManagedDataState(prevState => ({ ...prevState, loading: false }));
-                setIsModal({
-                    show: true,
-                    iconType:'errorInfo',
-                    modalType: 'infoModal',
-                    title: "Update Failed",
-                    message: revisedErrorMessage,
-                    // errorList: errorMessage,
-                    onConfirm: () => setIsModal({ show: false }),
-                    onCancel: () => setIsModal({ show: false }),
-                    confirmText: "Close",
-                    cancelText: "Try again",
-                })
-            }
+
+            const revisedErrorMessage = error.toString().replace(/^Error:\s*/, '');
+            setIsManagedDataState(prevState => ({ ...prevState, loading: false }));
+            setIsModal({
+                show: true,
+                iconType: 'errorInfo',
+                modalType: 'infoModal',
+                title: "Update Failed",
+                message: revisedErrorMessage,
+                // errorList: errorMessage,
+                onConfirm: () => setIsModal({ show: false }),
+                onCancel: () => setIsModal({ show: false }),
+                confirmText: "Close",
+                cancelText: "Try again",
+            })
+        }
     }
 
     return (
@@ -314,27 +326,27 @@ export const ManageUserForm = () => {
                         <div className={styles.formElements}>
 
                             {
-                                isSuperAdmin && 
+                                isSuperAdmin &&
                                 <AnimatedComponent type='3dRoationDropdownEffects' delay={.5}>
-                                <Select
-                                    id='role'
-                                    name="role"
-                                    labelName="User Role"
-                                    secondaryLabelToolTip="User role can be set to admin (Administrator), super admin (Super Administratory) or user. The super administrator role is given full access to all resources and actions across products and users. The administrator role is for users who require access to add, edit and delete products, as well as approving users. A user role receives no special access to the portal. A user can only access the public facing product guide website(s). "
-                                    // errorText='Please select a retailer'
-                                    validators={[]}
-                                    onInput={inputHandler}
-                                    initialValue={formState.inputs.role.value}
-                                    initialIsValid={formState.inputs.role.isValid}
-                                    options={[
-                                        { value: "user", label: "User" },
-                                        { value: "admin", label: "Administrator" },
-                                        { value: "superAdmin", label: "Super Administrator" }
-                                    ]}
-                                />
-                            </AnimatedComponent>
+                                    <Select
+                                        id='role'
+                                        name="role"
+                                        labelName="User Role"
+                                        secondaryLabelToolTip="User role can be set to admin (Administrator), super admin (Super Administratory) or user. The super administrator role is given full access to all resources and actions across products and users. The administrator role is for users who require access to add, edit and delete products, as well as approving users. A user role receives no special access to the portal. A user can only access the public facing product guide website(s). "
+                                        // errorText='Please select a retailer'
+                                        validators={[]}
+                                        onInput={inputHandler}
+                                        initialValue={formState.inputs.role.value}
+                                        initialIsValid={formState.inputs.role.isValid}
+                                        options={[
+                                            { value: "user", label: "User" },
+                                            { value: "admin", label: "Administrator" },
+                                            { value: "superAdmin", label: "Super Administrator" }
+                                        ]}
+                                    />
+                                </AnimatedComponent>
                             }
-                           
+
                             <AnimatedComponent
                                 delay={.5}
                                 type='3dRoationDropdownEffects'

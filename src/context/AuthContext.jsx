@@ -101,7 +101,8 @@ export const AuthProvider = ({ children }) => {
         if (logoutTimer) {
             clearTimeout(logoutTimer);
         }
-        redirect('/member/login');
+        // redirect('/member/login');
+        redirect('/login/');
     }, [redirect, currentUserId]);
 
 

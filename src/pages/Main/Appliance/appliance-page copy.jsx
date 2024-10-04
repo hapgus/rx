@@ -18,9 +18,9 @@ const AppliancePage = () => {
     prod => NormalizeSlugs(prod.category) === categoryId && prod.title === productId
   );
   // If the product doesn't exist, render the 404 page
-  if (!product) {
-    return <NotFoundPage />;
-  }
+  // if (!product) {
+  //   return <NotFoundPage />;
+  // }
 
   return (
     <>

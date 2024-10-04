@@ -26,9 +26,15 @@ a {
   font-size: var(--footer-list-item-font-size);
   color: var(--color-gray-01);
 }
-.active {
+
+.defaultText{
+ 
+}
+.active  {
   border-bottom: 2px solid var(--color-red-03);
 }
+
 .defaultText > li{
   list-style-type: none;
 }
+

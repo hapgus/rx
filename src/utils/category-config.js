@@ -1,3 +1,68 @@
+export const CATEGORY_SUBCATEGORY_ORDER = {
+    "air care": [
+        "air care"
+    ],
+    cooking: [
+        'induction ranges',
+        'electric ranges',
+        'gas ranges',
+        "over-the-range microwaves",
+        "countertop microwaves",
+        "built-in wall ovens",
+        "built-in cooktops",
+        "range hoods",
+        "dual fuel ranges"
+    ],
+    laundry: [
+        "washtower",
+        "front load washers",
+        "front load dryers",
+        "top load washers",
+        "top load dryers",
+        "all-in-one",
+        "specialty laundry",
+        "stylers",
+        "accessories",
+    ],
+    refrigeration: [
+        "4-door french door",
+        "3-door french door",
+        "under 33\" french door",
+        "side-by-side",
+        "bottom and top freezer",
+        "single door",
+    ],
+    signature: [
+        "laundry",
+        "ranges",
+        "refrigeration",
+        "dishwashers",
+        "accessories",
+    ],
+    studio: [
+        "laundry",
+        "ranges",
+        "refrigeration",
+
+        "dishwashers",
+        "microwaves",
+
+        "built-in wall ovens",
+        "built-in cooktops",
+        "range hoods",
+    ],
+    vacuums: [
+        'vacuums'
+    ],
+    dishwashers: [
+        "pocket handle dishwashers",
+        "towel bar handle dishwashers",
+        "specialty dishwashers",
+    ],
+
+};
+
+
 export const SUBCATEGORY_NAMING_MAP = {
     // AIR CARE
     "air care": "Air Care",

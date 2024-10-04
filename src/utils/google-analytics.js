@@ -5,12 +5,8 @@ import ReactGA from 'react-ga4';
 export const initializeGA = () => {
     try {
         ReactGA.initialize('G-SCG6TQW9TN');
-        // ReactGA.initialize('G-SCG6TQW9TN',{
-        //     debug_mode: true, 
-        //     parameter_name: 'value' 
-        //     // gtagOptions: { debug_mode: true }
-        // });
-        console.log('GA Initialized');
+      
+        // console.log('GA Initialized');
     } catch (error) {
         console.error('Error initializing GA', error);
     }
@@ -80,7 +76,6 @@ export const logPageView = (location) => {
 export const logEvent = (eventName, parameters = {}) => {
     try {
         ReactGA.event(eventName, parameters);
-        console.log('LOGGED EVENT', eventName, parameters)
     } catch (error) {
         console.error('Error logging event', error);
     }

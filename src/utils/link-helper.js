@@ -3,7 +3,7 @@ import { LinkComponent } from "../components/Links/LinkComponent";
 import { Button } from "../components/Button/Button";
 import { motion } from "framer-motion";
 import { useRetailerLinks } from "../hooks/retailer-hook";
-
+import styles from './link-helper-styles.module.css'
 
 
 
@@ -94,6 +94,7 @@ export function RouteLinks(links) {
             animate="visible"        // Animate to visible when the dropdown is open
             exit="exit"              // Animate out when the dropdown closes
         // transition={{ delay: index * 0.1 }}  // Add a delay based on the index (staggering effect)
+        className={styles.routeLinkListItem}
         >
             <LinkComponent
                 type='trackedLink'

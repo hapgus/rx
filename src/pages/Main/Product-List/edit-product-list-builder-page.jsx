@@ -48,7 +48,7 @@ const EditProductListBuilderPage = () => {
             fetchProductData();
         }
     }, [authUserId, listId, sendRequest, publicProducts, setProductsInListSaved]);
-  console.log(isSavedList)
+
 
     if (productsInListSaved.length !== 0) {
         return (

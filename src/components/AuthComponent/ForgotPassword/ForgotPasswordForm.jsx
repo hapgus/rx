@@ -80,7 +80,7 @@ export const ForgotPasswordForm = () => {
                 }
 
             } catch (error) {
-                console.log(error)
+         
                 setIsModal({
                     show: true,
                     modalType: 'errorModal',
@@ -94,9 +94,9 @@ export const ForgotPasswordForm = () => {
                 })
             }
         }
-        console.log(formState.inputs)
+  
     }
-    console.log(isModal)
+
     return (
             <FormComponent>
                 <TextInput

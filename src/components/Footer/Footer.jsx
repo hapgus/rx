@@ -19,13 +19,14 @@ export function footerColumn(title, data = []) {
             {/* <p className={styles.columnTitle}>{title}</p> */}
             <ul className={styles.columnList}>
                 {data.length > 0 ? data.map(link => (
-                    <li key={link.href}>
+                    <li key={link.href} >
                         <LinkComponent
                             href={link.href}
+                            linkText={link.text}
                             type='trackedLinks'
                         >
 
-                            <PageText type='footerMenuItem' className={styles.columnListMenuItem}>{link.text}</PageText>
+                            {/* <PageText type='footerMenuItem' className={styles.columnListMenuItem}>{link.text}</PageText> */}
                             {/* </NavLink> */}
                         </LinkComponent>
                         {/* <LinkComponent

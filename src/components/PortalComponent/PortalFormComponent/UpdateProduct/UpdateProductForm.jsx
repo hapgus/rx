@@ -4,7 +4,7 @@ import { PageText } from "../../../Text/Text";
 import styles from "../PortalForm.module.css";
 import { Button } from "../../../Button/Button";
 
-import { useAuth } from "../../../../hooks/auth-hook";
+import { useAuth, useLogout } from "../../../../hooks/auth-hook";
 import { useForm } from "../../../../hooks/form-hook";
 
 import { useHttpClient } from "../../../../hooks/http-hook";
@@ -49,6 +49,7 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
 
     const redirect = useNavigate();
     const { authUserId, isAdmin, isSuperAdmin, isAuthenticated } = useAuth();
+    const logout = useLogout();
 
     const { sendRequest } = useHttpClient();
     const { fetchProducts } = useProductsHook();
@@ -176,6 +177,15 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
 
 
     /* --------------------------------------------------------------------------------------- */
+    /* HANDLE NO AUTH REDIRECTS*/
+    /* --------------------------------------------------------------------------------------- */
+    const handleUnAuthorizedAccess = () => {
+
+        logout();
+        setIsModal({ show: false })
+    }
+
+    /* --------------------------------------------------------------------------------------- */
     /* SET INITIAL FORM DATA*/
     /* --------------------------------------------------------------------------------------- */
     useEffect(() => {
@@ -189,7 +199,7 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
 
                     const productData = await response.responseData.product;
 
-                    console.log('product', productData)
+
                     setLoadedProduct(productData);
                     setSelectedColors(productData?.colors || '')
                     setSelectedLogos(productData?.logos || '')
@@ -254,27 +264,26 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
         }
     }, [productId, sendRequest, setFormData]);
 
-    console.log(isManagedDataState)
+
     /* --------------------------------------------------------------------------------------- */
     /* HANDLE FORM SUBMIT*/
     /* --------------------------------------------------------------------------------------- */
-
+    console.log(isAdmin, isSuperAdmin)
     const handlePreFormSubmit = async (e) => {
-
 
         e.preventDefault();
 
-        console.log('product template =', productTemplate)
-
-        if (!isAdmin || !isSuperAdmin) {
-
+        // if (isAdmin || !isSuperAdmin) {
+        if (!(isAdmin || isSuperAdmin)) {
+     
             setIsModal({
                 show: true,
                 modalType: 'confirmationModal',
                 title: "Error",
                 message: `Please contact an administrator.`,
-                cancelText: "Go back",
-                onCancel: () => setIsModal({ show: false }),
+                cancelText: "Close",
+                onCancel: handleUnAuthorizedAccess,
+
             })
             return
         }
@@ -335,7 +344,7 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
 
             // CHECK IF SECTION VALUES CHANGED
             const hasSectionChanged = (newSection, originalSection) => {
-                console.log(newSection, originalSection)
+
                 // Compare resourceTitle and resourceUrl
                 if (
                     normalizeString(newSection.resourceTitle) !== normalizeString(originalSection.resourceTitle) ||
@@ -369,7 +378,7 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
             // Convert msrp values to string
             const currentMsrp = String(formState.inputs.msrp.value).trim();
             const originalMsrp = String(loadedProduct.msrp).trim();
-            console.log(formState.inputs.upc.value, isManagedDataState.data.upc)
+
 
             const hasChanges = (
                 normalizeString(formState.inputs.title.value) !== normalizeString(isManagedDataState.data.title) ||
@@ -460,8 +469,8 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
     }
     // console.log('spec list 1 managed',isManagedDataState.data.specList1 )
     // console.log('spec list 1 form state',formState.inputs.specList1.value )
-    
-    
+
+
     const handleFormSubmit = async (e) => {
         let errors = [];
 
@@ -476,13 +485,13 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
         // Step 2: Validate the form based on productTemplate
         // const formValidationErrors = validateProductForm(formState, sections);
         const { errorMessage, processedValues } = validateProductForm(formState, sections);
-        console.log(errorMessage, processedValues)
+
 
         // Step 1: Check for duplicate title if productTemplate is true
         if (productTemplate === true) {
             if (processedValues.title === isManagedDataState.data.title) {
                 const duplicateTitleError = 'Title cannot be the same as the original product';
-               
+
                 errors.push(duplicateTitleError); // Add duplicate error to errors array
             }
             if (!processedValues.category) {
@@ -553,7 +562,7 @@ export const UpdateProductForm = ({ productId, productTemplate = false }) => {
         formData.append('qrcode', selectedQrcode || loadedProduct.qrcode);
         // formData.append('title', formState.inputs.title.value);
         // formData.append('msrp', formState.inputs.msrp.value);
-        formData.append('msrp', formState.inputs.msrp.value || 0 );
+        formData.append('msrp', formState.inputs.msrp.value || 0);
         // formData.append('subtitle', formState.inputs.subtitle.value);
         // formData.append('specSheetLink', formState.inputs.specSheetLink.value);
         // formData.append('category', formState.inputs.category.value);

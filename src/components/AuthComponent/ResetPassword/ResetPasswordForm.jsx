@@ -93,9 +93,9 @@ export const ResetPasswordForm = () => {
                 })
             }
         }
-        console.log(formState.inputs)
+    
     }
-    console.log(isModal)
+  
     return (
             <FormComponent>
                 <TextInput

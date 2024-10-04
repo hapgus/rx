@@ -6,7 +6,7 @@ import { useRetailerLinks } from "../../hooks/retailer-hook";
 
 
 export const LinkComponent = ({
-    type = 'default',
+    // type,
     linkText,
     href,
     linkOnClick,
@@ -19,30 +19,35 @@ export const LinkComponent = ({
     const handleLinkClick = () => {
         setIsRoutingState(prevState => ({ ...prevState, isNavLinkClicked: true }));
     }
+    // console.log('link component',linkText, href)
+    // Dynamically generate the href based on the retailer context
+    const generatedHref = generateLink(href);
+    // console.log('link component ref',generatedHref)
+    // const isActive = useActiveLink(href);
 
-     // Dynamically generate the href based on the retailer context
-     const generatedHref = generateLink(href);
+    // const linkTypes = {
+    //     trackedLinks: styles.trackedLinks,
+    //     default: styles.defaultText,
+    // };
 
-    const isActive = useActiveLink(href);
-
-    const linkTypes = {
-        trackedLinks: styles.trackedLinks,
-        default: styles.defaultText,
-    };
-
-    const textType = linkTypes[type] || linkTypes.default;
+    // const textType = linkTypes[type] || linkTypes.default;
 
 
-;
+    // const linkStyles = type && type === 'trackedLinks' ? styles.active : styles.notActive;
 
     return (
         <NavLink
-        to={generatedHref} // Use the dynamically generated href
-            // to={href}
-            className={`${textType} ${isActive && type === 'trackedLinks' ? styles.active : ''}`}
+            to={generatedHref}
+            className={styles.navLink}
+            // style={({ isActive }) => ({
+            //     borderBottom: isActive ? '2px solid red' : 'none',
+            //     color: isActive ? "#262626" : undefined,
+            // })}
+            end // React Router v6 equivalent of exact
             onClick={handleLinkClick}
         >
-            <span onClick={linkOnClick} >{linkText}{children}</span>
+            <span onClick={linkOnClick}>{linkText}{children}</span>
         </NavLink>
+       
     );
 };

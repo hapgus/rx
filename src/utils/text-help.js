@@ -174,7 +174,7 @@ export const categorizePagePath = (pagePath) => {
   }
 
   // Fallback for unknown pages
-  console.log('home depot unknown',pagePath);
+
   return 'Unknown Page';
 };
 

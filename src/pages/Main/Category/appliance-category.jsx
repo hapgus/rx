@@ -27,18 +27,9 @@ import { AnimatedComponent } from '../../../hooks/use-framer-motion';
 import { IconComponent } from '../../../components/Icon/IconComponent';
 import { stepUpChartLinks } from '../../../utils/link-config';
 import { NormalizeSlugs } from '../../../utils/link-helper';
-import { VALID_CATEGORIES, SUBCATEGORY_NAMING_MAP } from '../../../utils/category-config';
+import { VALID_CATEGORIES, SUBCATEGORY_NAMING_MAP, CATEGORY_SUBCATEGORY_ORDER } from '../../../utils/category-config';
 
-// const VALID_CATEGORIES = [
-//     'air-care',
-//     'laundry',
-//     'refrigeration',
-//     'vacuums',
-//     'signature',
-//     'studio',
-//     'cooking',
-//     'dishwashers'
-// ];
+
 
 
 const ApplianceCategoryPage = () => {
@@ -50,7 +41,7 @@ const ApplianceCategoryPage = () => {
     const { publicProducts } = useProductsHook();
     const normalizedCategoryId = NormalizeCategoryId(categoryId);
     const generateNormalizedSlug = NormalizeSlugs(normalizedCategoryId)
-    console.log(generateNormalizedSlug)
+
     // console.log(normalizedCategoryId)
     // Check against the static list of valid categories before product data
     // if (!VALID_CATEGORIES.includes(normalizedCategoryId)) {
@@ -144,26 +135,32 @@ const ApplianceCategoryPage = () => {
     // });
 
     // Create an array to store transformed and sorted subcategories
-const transformedSubcategories = sortedSubcategories.map(subcategory => {
-    const transformed = {};
+    const transformedSubcategories = sortedSubcategories.map(subcategory => {
+        // Extract the subcategory names before transforming them
+        const originalSubcategoryNames = Object.keys(subcategory);
     
-    // Iterate and transform subcategory names
-    for (const subcategoryName in subcategory) {
-        const updatedName = SUBCATEGORY_NAMING_MAP[subcategoryName] || subcategoryName;
-        transformed[updatedName] = subcategory[subcategoryName];
-    }
+        // Retrieve the order for the current category from CATEGORY_SUBCATEGORY_ORDER
+        const order = CATEGORY_SUBCATEGORY_ORDER[normalizedCategoryId] || [];
     
-    // Sort the subcategories alphabetically
-    const sortedTransformed = Object.keys(transformed)
-        .sort((b, a) => a.localeCompare(b))
-        .reduce((acc, key) => {
-            acc[key] = transformed[key];
-            return acc;
-        }, {});
-
-    return sortedTransformed;
-});
-
+        // Sort the subcategories based on the order before transforming
+        const orderedSubcategories = originalSubcategoryNames.sort((a, b) => {
+            // Use the index in the order array to determine sorting
+            const indexA = order.indexOf(a);
+            const indexB = order.indexOf(b);
+    
+            // If the index is not found, default to the end of the list
+            return (indexA !== -1 ? indexA : order.length) - (indexB !== -1 ? indexB : order.length);
+        });
+    
+        // Create the transformed object in the correct order
+        const transformed = {};
+        orderedSubcategories.forEach(subcategoryName => {
+            const updatedName = SUBCATEGORY_NAMING_MAP[subcategoryName] || subcategoryName;
+            transformed[updatedName] = subcategory[subcategoryName];
+        });
+    
+        return transformed;
+    });
     return (
         <>
             {
@@ -291,6 +288,7 @@ const transformedSubcategories = sortedSubcategories.map(subcategory => {
                 {/* <ScrollingComponent processedProducts={subcategories} /> */}
                 {/* <ScrollingComponent processedProducts={sortedSubcategories} /> */}
                 <ScrollingComponent processedProducts={transformedSubcategories} />
+                {/* <ScrollingComponent processedProducts={orderedSubcategories} /> */}
             </section>
 
         </>

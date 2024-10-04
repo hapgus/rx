@@ -4,7 +4,7 @@ import { PageText } from "../../../Text/Text";
 import styles from "../PortalForm.module.css";
 import { Button } from "../../../Button/Button";
 
-import { useAuth } from "../../../../hooks/auth-hook";
+import { useAuth, useLogout } from "../../../../hooks/auth-hook";
 import { useForm } from "../../../../hooks/form-hook";
 
 import { useHttpClient } from "../../../../hooks/http-hook";
@@ -58,6 +58,7 @@ export const CreateProductForm = () => {
     const [subcategoryOptions, setSubcategoryOptions] = useState([]);
     const { setIsManagedDataState } = useDataContext();
     const { values } = useDynamicForm({ sections: [] });
+    const logout = useLogout();
 
 
     const [formState, inputHandler] = useForm({
@@ -149,6 +150,15 @@ export const CreateProductForm = () => {
         redirect('/portal/product-directory')
     }
 
+       /* --------------------------------------------------------------------------------------- */
+    /* HANDLE NO AUTH REDIRECTS*/
+    /* --------------------------------------------------------------------------------------- */
+    const handleUnAuthorizedAccess = () => {
+
+        logout();
+        setIsModal({ show: false })
+    }
+
     /* --------------------------------------------------------------------------------------- */
     /* HANDLE FORM SUBMIT*/
     /* --------------------------------------------------------------------------------------- */
@@ -157,15 +167,14 @@ export const CreateProductForm = () => {
     const handleFormPreSubmit = async (e) => {
 
         e.preventDefault();
-        if (!isAdmin || !isSuperAdmin) {
-
+        if (!(isAdmin || isSuperAdmin)) {
             setIsModal({
                 show: true,
                 modalType: 'confirmationModal',
                 title: "Error",
                 message: `Please contact an administrator.`,
                 cancelText: "Close",
-                onCancel: () => setIsModal({ show: false }),
+                onCancel: handleUnAuthorizedAccess,
             })
         } else {
            
@@ -187,7 +196,7 @@ export const CreateProductForm = () => {
     const handleFormSubmit = async (e) => {
 
 
-        console.log('fire a')
+    
         // const formErrors = validateProductForm(formState, selectedImage, selectedQrcodeImage)
 
         const { errorMessage, processedValues } = validateProductForm(formState, selectedImage, selectedQrcodeImage)

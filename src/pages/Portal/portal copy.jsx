@@ -81,7 +81,7 @@ const PortalDashboardPage = () => {
     };
 
 
-    console.log(sections)
+
 
     return (
 

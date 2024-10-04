@@ -40,14 +40,22 @@ color: var(--color-gray-03);
 }
 .columnList li{
     list-style: none;
+    
 }
 .columnList li a{
     color: var(--color-gray-03);
+    transform: scale(1);
+    transition: transform 0.1s ease, color 0.1s ease;
+   /* color: var(--color-gray-01); */
+    display: inline-flex;
 }
 .columnList li:first-child {
     padding-top: .5rem;
 }
-
+.columnList li a:hover{
+    transform: scale(1.0);
+    color: var(--color-red-03);
+}
 
 @media (min-width: 390px) {
 

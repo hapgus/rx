@@ -129,7 +129,7 @@ export const CreateNewPasswordForm = () => {
                 }
 
             } catch (error) {
-                console.log(error)
+             
                 setIsModal({
                     show: true,
                     modalType: 'errorModal',
@@ -143,9 +143,9 @@ export const CreateNewPasswordForm = () => {
                 })
             }
         }
-        console.log(formState.inputs)
+    
     }
-    console.log(isModal)
+
     return (
             <FormComponent>
                <TextInput

@@ -11,12 +11,14 @@ import { useHttpClient } from "../../../hooks/http-hook";
 import { useNavigate } from "react-router";
 import { useRoutingHook } from "../../../hooks/routing-hook";
 import { useAuthHook } from "../../../hooks/auth-hook";
+import { jwtDecode } from "jwt-decode"
+
 
 export const LoginForm = () => {
 
     const { setIsModal, isModal } = useNotificationHook();
     const { setIsRoutingState } = useRoutingHook();
-    const { sendRequest} = useHttpClient();
+    const { sendRequest } = useHttpClient();
     const { login } = useAuthHook();
 
 
@@ -42,15 +44,15 @@ export const LoginForm = () => {
         if (errorMessage.length !== 0) {
             setIsModal({
                 show: true,
-                    modalType: 'errorModal',
-                    // iconType:'errorInfo',
-                    title: "Sign in failed",
-                    message: "You need to fix the following errors to continue.",
-                    errorList: errorMessage,
-                    onConfirm: () => setIsModal({ show: false }),
-                    onCancel: () => setIsModal({ show: false }),
-                    confirmText: "Close",
-                    cancelText: "Go back",
+                modalType: 'errorModal',
+                // iconType:'errorInfo',
+                title: "Sign in failed",
+                message: "You need to fix the following errors to continue.",
+                errorList: errorMessage,
+                onConfirm: () => setIsModal({ show: false }),
+                onCancel: () => setIsModal({ show: false }),
+                confirmText: "Close",
+                cancelText: "Go back",
             })
             // setIsModal(prevState => ({
             //     ...prevState,
@@ -70,7 +72,7 @@ export const LoginForm = () => {
             const data = { email: formState.inputs.email.value, password: formState.inputs.password.value, };
             try {
                 const { responseData, responseStatusCode } = await sendRequest(
-                   
+
                     `${process.env.REACT_APP_BACKEND_URL}signin`,
                     // `http://localhost:3005/signin/`,
                     'POST',
@@ -84,17 +86,28 @@ export const LoginForm = () => {
                     const expirationTime = new Date(new Date().getTime() + 1000 * 60 * 60);
                     login(activeUser.token, expirationTime.toISOString());
                     setIsRoutingState(prevState => ({ ...prevState, isLoading: false }));
-                    redirect('/portal/dashboard');
+                 
+                    // redirect('/portal/dashboard');
+                    // NEW
+
+                    const { role, status } = jwtDecode(activeUser.token); // Extract role and status
+                    // console.log(role, status)
+                    if (role === 'user' && status === 'approved') {
+                        redirect('/');
+                    } else if ((role === 'admin' || role === 'superAdmin') && status === 'approved') {
+                        redirect('/portal/overview');
+                    }
+                    // redirect('/portal/overview');
                 }
 
             } catch (error) {
-                console.log(error)
+              
                 const revisedErrorMessage = error.toString().replace(/^Error:\s*/, '');
 
                 setIsModal({
                     show: true,
-                    iconType:'errorInfo',
-                    modalType: 'infoModal',
+                   
+                    modalType: 'errorModal',
                     title: "Sign in failed",
                     message: revisedErrorMessage,
                     // errorList: errorMessage,

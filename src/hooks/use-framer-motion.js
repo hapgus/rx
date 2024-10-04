@@ -43,7 +43,7 @@ export const useAnimation = (type, delay = 0, directionStart) => {
                     },
                     exit: {
                         rotateX: -90,  // Rotate back out of view
-                        opacity: 1,
+                           opacity: 1,
                         transition: {
                             // duration: 0.4, 
                             ease: "easeInOut"

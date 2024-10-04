@@ -6,7 +6,7 @@ import { useNavigate } from "react-router";
 import { useNotificationHook } from "../../../hooks/notification-hook";
 import TablePagination from "../../TableComponent/TablePagination";
 import { useState } from "react";
-import { useAuth } from '../../../hooks/auth-hook';
+import { useAuth, useLogout } from '../../../hooks/auth-hook';
 import { DateComponent } from "../../Date/DateComponent";
 import styles from './TableComponent.module.css'
 import { LinkComponent } from "../../Links/LinkComponent";
@@ -16,6 +16,7 @@ import { useDataContext } from "../../../hooks/data-hook";
 
 export const ProductDirectoryTable = () => {
     const { authUserId, isSuperAdmin, isAdmin } = useAuth();
+    const logout = useLogout();
     const redirect = useNavigate();
     const { setIsModal } = useNotificationHook();
     const { isManagedDataState, setIsManagedDataState } = useDataContext();
@@ -27,22 +28,28 @@ export const ProductDirectoryTable = () => {
     const itemsPerPage = 10;
     // const [filteredProducts, setFilteredProducts] = useState(allProducts);
 
-    // HANDLE MODAL OPTIONS
+    /* --------------------------------------------------------------------------------------- */
+    /* HANDLE NO AUTH REDIRECTS*/
+    /* --------------------------------------------------------------------------------------- */
+    const handleUnAuthorizedAccess = () => {
 
+        logout();
+        setIsModal({ show: false })
+    }
 
 
 
     const handleDeleteProduct = async (productId) => {
-        if (!isSuperAdmin || !isAdmin) {
+        if (!(isSuperAdmin || isAdmin)) {
             setIsModal({
                 show: true,
-                modalType: 'errorModal',
+                modalType: 'confirmationModal',
                 title: "Error",
-                message: `We cannot let you delete products at this time. Please contact the administrator.`,
-                onCancel: () => setIsModal({ show: false }),
+                message: `Please contact an administrator.`,
                 cancelText: "Close",
-            });
-
+                onCancel: handleUnAuthorizedAccess,
+            })
+            return
         }
         if (isSuperAdmin || isAdmin) {
 
@@ -102,7 +109,7 @@ export const ProductDirectoryTable = () => {
 
 
                 },
-               
+
             });
         }
         // console.log('product to delete', productId)
@@ -208,7 +215,7 @@ export const ProductDirectoryTable = () => {
     ];
 
 
-    console.log('table', allProducts)
+    // console.log('table', allProducts)
     return (
 
         allProducts &&

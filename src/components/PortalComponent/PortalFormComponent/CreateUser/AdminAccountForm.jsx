@@ -1,7 +1,7 @@
 
 // import { useForm } from "../../hooks/use-form-hook"
 import { FormComponent } from "../../../FormComponent/FormComponent"
-import { useAuth } from '../../../../hooks/auth-hook';
+
 import { Button } from '../../../Button/Button';
 import { useForm } from "../../../../hooks/form-hook";
 import { TextInput } from "../../../FormComponent/TextInput/TextInput";
@@ -17,6 +17,7 @@ import { capitalizeFirstLetterEachWord } from "../../../../utils/text-help";
 import { AnimatedComponent } from "../../../../hooks/use-framer-motion";
 import { FormSection } from "../../../FormComponent/FormSection/FormSection";
 import { useDataContext } from "../../../../hooks/data-hook";
+import { useAuth, useLogout } from '../../../../hooks/auth-hook';
 
 export const AdminAccountForm = () => {
 
@@ -24,9 +25,9 @@ export const AdminAccountForm = () => {
     const { setIsModal, isModal } = useNotificationHook();
     const { setIsRoutingState } = useRoutingHook();
     const { sendRequest } = useHttpClient();
-    const { authUserId } = useAuth();
+    const { authUserId, isSuperAdmin } = useAuth();
     const redirect = useNavigate();
-
+    const logout = useLogout();
 
 
 
@@ -65,8 +66,33 @@ export const AdminAccountForm = () => {
         setIsModal(prevState => ({ ...prevState, show: false }))
     }
 
+
+    /* --------------------------------------------------------------------------------------- */
+    /* HANDLE NO AUTH REDIRECTS*/
+    /* --------------------------------------------------------------------------------------- */
+    const handleUnAuthorizedAccess = () => {
+
+        logout();
+        setIsModal({ show: false })
+    }
+
+
+
+
     const preFormSubmit = (e) => {
         e.preventDefault();
+        if (!isSuperAdmin) {
+            setIsModal({
+                show: true,
+                modalType: 'confirmationModal',
+                title: "Error",
+                message: `Please contact an administrator.`,
+                cancelText: "Close",
+                onCancel: handleUnAuthorizedAccess,
+            })
+            return
+        }
+
 
         setIsModal({
             show: true,
@@ -103,7 +129,7 @@ export const AdminAccountForm = () => {
         if (errorMessage.length !== 0) {
 
             setIsModal({
-               
+
                 show: true,
                 modalType: 'errorModal',
                 title: "Almost there",
@@ -163,7 +189,7 @@ export const AdminAccountForm = () => {
                 // const revisedErrorMessage = error.toString().replace(/^Error:\s*/, '');
                 setIsManagedDataState(prevState => ({ ...prevState, loading: false }));
                 setIsModal({
-               
+
                     show: true,
                     modalType: 'errorModal',
                     title: "Something went wrong",
@@ -173,9 +199,9 @@ export const AdminAccountForm = () => {
                     onCancel: () => setIsModal({ show: false }),
                     // confirmText: "Close",
                     cancelText: "Go back",
-    
+
                 });
-             
+
             }
         }
     };

@@ -55,8 +55,8 @@ export const nativeEmailLinks = [
 ];
 
 export const accountLinks = [
-    { href: `/portal/overview`, text: 'Admin Portal' },
-    // { href: `/portal/dashboard`, text: 'Admin Portal' },
+
+    { href: `/portal/dashboard`, text: 'Admin Portal' },
     { href: `/saved-lists`, text: 'My saved lists' },
     { href: `/profile`, text: 'My account' },
   
@@ -84,8 +84,7 @@ export const inactivePublicAccountLinks = [
 
 
 export const portalDashLinks = [
-    { href: `/portal/overview`, text: 'Overview' },
-    // { href: `/portal/dashboard`, text: 'Overview' },
+    { href: `/portal/dashboard`, text: 'Overview' },
     { href: `/portal/analytics`, text: 'Analytics' },
 ]
 
