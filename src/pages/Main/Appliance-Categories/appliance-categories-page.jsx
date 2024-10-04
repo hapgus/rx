@@ -13,7 +13,7 @@ const ApplianceCategories = () => {
 
     const { publicProducts } = useProductsHook();
     const categorizedProducts = ListProductsByCategorySubcategory(publicProducts);
-    console.log(categorizedProducts)
+ 
 
 
 

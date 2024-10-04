@@ -87,7 +87,7 @@ export const UserDirectoryTable = () => {
                 throw new Error('Network response was not ok');
             }
             const data = await response.json();
-            // console.log('data',data)
+            console.log('data',data)
             setIsUsers(data.users);
         } catch (err) {
             console.log(`error ${err}`)

@@ -377,7 +377,7 @@ export const CreateProductForm = () => {
 
             <FormSection
                 sectionTitle="Choose a category"
-                sectionDescription="When your select a category, the sub category options will appear. The style category field is optional. A category and subcategory is required to complete this step. "
+                sectionDescription="A category is required to complete this step. "
             >
                 <FormWrapper>
                     <Select
