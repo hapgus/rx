@@ -152,7 +152,7 @@ const Homepage = () => {
             {/* <Collar/> */}
 
 
-            <div className={styles.collar}>
+            {/* <div className={styles.collar}>
                 <GridSystem gridType='spread'>
                     <div >
                         <div className={styles.collarList}>
@@ -170,7 +170,7 @@ const Homepage = () => {
                         </div>
                     </div>
                 </GridSystem>
-            </div>
+            </div> */}
             <GridSystem gridType='spread'
                 containerBackgroundColor='#E6E1D6'
             >
