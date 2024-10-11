@@ -4,10 +4,11 @@ import { PageText } from '../../../components/Text/Text';
 
 import { SearchComponent } from '../../../components/Search/SearchComponent/SearchComponent';
 import { useSearchHook } from '../../../hooks/use-search-hooks';
+// import { useRetailer } from '../../../hooks/use-routing-hooks';
 
 import { Button } from '../../../components/Button/Button';
 import { IconComponent } from '../../../components/Icon/IconComponent';
-import { LinkComponent } from '../../../components/Links/LinkComponent';
+
 
 // import { Collar } from '../../../components/Collar/Collar';
 import { AnimatedComponent } from '../../../hooks/use-framer-motion';
@@ -15,7 +16,8 @@ import { motion } from 'framer-motion';
 import { AnimatedCheckmark } from '../../../components/AnimatedCheckmark/AnimatedCheckmark';
 import { useEffect, useState } from 'react';
 import { HomePageSkeletonComponent } from './HomePageSkeleton';
-import { useLinkConfig } from '../../../hooks/use-link-config-hooks';
+import { LinkComponent } from '../../../components/Links/LinkComponent';
+// import { useLinkConfig } from '../../../hooks/use-link-config-hooks';
 
 const listVariants = {
     hidden: { opacity: 0 },
@@ -35,7 +37,7 @@ const itemVariants = {
 
 const Homepage = () => {
 
-    const {categoryLinks} = useLinkConfig();
+    // const {categoryLinks} = useLinkConfig();
     const { setIsHomepageSearchState, setIsMobileSearchState } = useSearchHook();
 
     const [isLoading, setIsLoading] = useState(true);
@@ -43,12 +45,12 @@ const Homepage = () => {
     useEffect(() => {
         // Set a timer for 1 second to handle the loading state
         const timer = setTimeout(() => {
-          setIsLoading(false);
+            setIsLoading(false);
         }, 700);
-    
+
         // Cleanup the timer on component unmount
         return () => clearTimeout(timer);
-      }, []);
+    }, []);
 
     const handleHomepageSearchClick = () => {
         setIsHomepageSearchState(prevState => ({ ...prevState, isHomepageSearch: true }))
@@ -58,7 +60,7 @@ const Homepage = () => {
         setIsMobileSearchState(prevState => ({ ...prevState, isMobileSearch: true }))
     }
 
-  
+
 
     const benefits = [
         {
@@ -98,10 +100,10 @@ const Homepage = () => {
 
     ];
 
- // Check if still loading, display the skeleton loader
- if (isLoading) {
-    return <HomePageSkeletonComponent />;
-  }
+    // Check if still loading, display the skeleton loader
+    if (isLoading) {
+        return <HomePageSkeletonComponent />;
+    }
 
     return (
         <>
@@ -192,11 +194,11 @@ const Homepage = () => {
                         <div className={styles.imageWrapper}>
                             <div className={styles.headImageGroup}>
                                 <div className={styles.headImage1}>
-                                    <img src={`/assets/image/backgrounds/builder/lg-customer.webp`} />
+                                    <img alt="LG customer on her phone looking at Home Appliance Product List" src={`/assets/image/backgrounds/builder/lg-customer.webp`} />
                                 </div>
                                 <div className={styles.headImage2}>
-                                    <img className={styles.rep1} src={`/assets/image/backgrounds/builder/lg-rep.webp`} />
-                                    <img className={styles.rep2} src={`/assets/image/backgrounds/builder/lg-rep-bottom.webp`} />
+                                    <img alt="LG rep on his tablet creating the LG Home Appliance Product List" className={styles.rep1} src={`/assets/image/backgrounds/builder/lg-rep.webp`} />
+                                    <img alt="Bottom view of LG rep on his tablet creating the LG Home Appliance Product List" className={styles.rep2} src={`/assets/image/backgrounds/builder/lg-rep-bottom.webp`} />
                                 </div>
                             </div>
                         </div>
@@ -245,50 +247,52 @@ const Homepage = () => {
                         </div>
 
                         <div className={styles.buttonWrapper}>
-                            <Button buttonStyleType='primaryAction'>Explore Home Appliances</Button>
+                            <LinkComponent href='/appliances/' >
+                                <Button buttonStyleType='primaryAction'>Explore Home Appliances</Button>
+                            </LinkComponent>
                         </div>
                     </div>
                 </div>
             </GridSystem>
-            
-                <GridSystem
-                    gridType='spread'
-                    // containerBorderTop="1px solid #D0CBC1"
-                // containerBackgroundColor='#F6F3EB'
-                // containerPaddingTop='4rem'
-                // containerPaddingBottom='4rem'
-                >
 
-                    <div className={styles.contentWrapper}>
-                        <div className={styles.sectionHeader}>
-                            <div className={styles.sectionTitle}>
-                                <PageText type='bodyTitle'>Resources</PageText>
-                            </div>
-                            <div className={styles.sectionSubtitle}>
-                                <PageText type='bodySubtitle'>Your hub for product knowledge and support</PageText>
-                            </div>
+            <GridSystem
+                gridType='spread'
+            // containerBorderTop="1px solid #D0CBC1"
+            // containerBackgroundColor='#F6F3EB'
+            // containerPaddingTop='4rem'
+            // containerPaddingBottom='4rem'
+            >
 
+                <div className={styles.contentWrapper}>
+                    <div className={styles.sectionHeader}>
+                        <div className={styles.sectionTitle}>
+                            <PageText type='bodyTitle'>Resources</PageText>
                         </div>
-                        <div className={styles.qCardWrapper}>
-                            {resourcesCallout.map((e, idx) => {
-                                return (
-                                    <div key={idx} className={styles.qCard}>
-                                        <div className={styles.qText}>
-                                            <PageText type='bodyCalloutTitle'>{e.title}</PageText>
-                                            <PageText type='bodyCallout'>{e.description}</PageText>
-                                        </div>
-                                        <div className={styles.qIcon}>
-                                            <IconComponent iconType={e.icon} />
-                                        </div>
-                                    </div>
-                                )
-                            })}
+                        <div className={styles.sectionSubtitle}>
+                            <PageText type='bodySubtitle'>Your hub for product knowledge and support</PageText>
                         </div>
+
                     </div>
+                    <div className={styles.qCardWrapper}>
+                        {resourcesCallout.map((e, idx) => {
+                            return (
+                                <div key={idx} className={styles.qCard}>
+                                    <div className={styles.qText}>
+                                        <PageText type='bodyCalloutTitle'>{e.title}</PageText>
+                                        <PageText type='bodyCallout'>{e.description}</PageText>
+                                    </div>
+                                    <div className={styles.qIcon}>
+                                        <IconComponent iconType={e.icon} />
+                                    </div>
+                                </div>
+                            )
+                        })}
+                    </div>
+                </div>
 
-                </GridSystem>
-    
-        
+            </GridSystem>
+
+
 
 
         </>

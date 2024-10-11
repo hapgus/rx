@@ -45,11 +45,18 @@ const ApplianceCategories = () => {
 
                             {/* <PageText type="bodyDescriptionLarge">Step into a world where cutting-edge technology meets elegant design. From intuitive kitchen appliances that make cooking a breeze to advanced laundry solutions that care for your clothes, LG brings you a range of home appliances engineered for the way you live today. Experience the perfect blend of form and function, crafted to elevate every moment at home.</PageText> */}
 
-                            <div className={styles.heroDescription}>
+                            <div className={styles.heroDescriptionShort}>
                                 {/* <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.3}> */}
                                     <PageText type="heroDescription">
                                         LG brings you a range of home appliances engineered for the way you live today.
-                                        <span className={styles.headerDescriptionLong}> Experience the perfect blend of form and function, crafted to elevate every moment at home.</span>
+                                       
+                                    </PageText>
+                                {/* </AnimatedComponent> */}
+                            </div>
+                            <div className={styles.heroDescriptionLong}>
+                                {/* <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.3}> */}
+                                    <PageText type="heroDescription">
+                                        LG brings you a range of home appliances engineered for the way you live today. Experience the perfect blend of form and function, crafted to elevate every moment at home.
                                     </PageText>
                                 {/* </AnimatedComponent> */}
                             </div>

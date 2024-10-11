@@ -23,10 +23,12 @@
     color: var(--color-gray-02);
 }
 
-.heroDescription {
-    color: var(--color-gray-03);
+.heroDescriptionShort{
+    display: flex;
 }
-
+.heroDescriptionLong{
+    display: none;
+}
 .image0 {
     height: auto;
     width: auto;
@@ -43,10 +45,6 @@
 .image2,
 .image3,
 .image4 {
-    display: none;
-}
-
-.headerDescriptionLong {
     display: none;
 }
 
@@ -122,9 +120,12 @@
         grid-column: 1;
         grid-row: 1;
     }
+    .heroDescriptionShort{
+        display: none;
+    }
 
-    .headerDescriptionLong {
-        display: inline;
+    .heroDescriptionLong {
+        display: flex;
     }
 
     .image0 {
