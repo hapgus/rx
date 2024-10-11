@@ -1,9 +1,9 @@
 import styles from './RelatedProductCard.module.css';
-import { useBuilderHook } from '../../../hooks/builder-hook';
+import { useBuilderHook } from '../../../hooks/use-builder-hooks';
 import { Button } from '../../Button/Button';
-import { capitalizeFirstLetterEachWord, TruncateText } from '../../../utils/text-help';
+import { capitalizeFirstLetterEachWord, TruncateText, GenerateProductURL } from '../../../utils/helper-functions';
 import { PageText } from '../../Text/Text';
-import { GenerateProductURL } from '../../../utils/link-helper';
+
 import { AddToListButton, RemoveFromListButton } from '../../Button/ProductButtons';
 import { LinkComponent } from '../../Links/LinkComponent';
 

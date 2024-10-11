@@ -85,7 +85,7 @@
     object-fit: contain;
 }
 
-.specsDropdownWrapper {}
+
 
 .specsDropdownHeader {
 
@@ -179,8 +179,9 @@
 
     .builderCardBodyWrapper {
         display: grid;
+        grid-template-columns: .3fr 1fr;
         /* grid-template-columns: .3fr .7fr; */
-        grid-template-columns: .5fr .5fr;
+        /* grid-template-columns: .5fr .5fr; */
         gap: 8rem;
     
     }

@@ -2,12 +2,12 @@
 // import { NavLink } from 'react-router-dom';
 import { PageText } from '../../Text/Text';
 import styles from './NavSearchPreviewCard.module.css';
-import { useBuilderHook } from '../../../hooks/builder-hook';
-import { GenerateProductURL } from '../../../utils/link-helper';
+import { useBuilderHook } from '../../../hooks/use-builder-hooks';
+import { GenerateProductURL } from '../../../utils/helper-functions';
 import { AddToListButton, RemoveFromListButton } from '../../Button/ProductButtons'
 import { LinkComponent } from '../../Links/LinkComponent';
 import { logEvent } from '../../../utils/google-analytics';
-import { useSearchHook } from '../../../hooks/search-hook';
+import { useSearchHook } from '../../../hooks/use-search-hooks';
 
 
 export const NavSearchPreviewCard = ({ products }) => {
@@ -15,28 +15,6 @@ export const NavSearchPreviewCard = ({ products }) => {
 
     const { productsInList } = useBuilderHook();
     const { isHomepageSearchState, isDesktopSearchState, isMobileSearchState } = useSearchHook();
-
-
-    // let searchQuery = 'na';
-    // let searchResultsCount = 'na';
-
-    // // if (isDesktopSearchState.isSearchResults) {
-    // //     searchQuery = isDesktopSearchState.isSearchInputValue;
-    // //     searchResultsCount = isDesktopSearchState.isSearchResults.length
-    // // }
-    // // Determine which search state is active
-    // if (Array.isArray(isHomepageSearchState.isSearchResults) && isHomepageSearchState.isSearchResults.length > 0) {
-    //     searchQuery = isHomepageSearchState.isSearchInputValue;
-    //     searchResultsCount = isHomepageSearchState.isSearchResults.length;
-    // } else if (Array.isArray(isMobileSearchState.isSearchResults) && isMobileSearchState.isSearchResults.length > 0) {
-    //     searchQuery = isMobileSearchState.isSearchInputValue;
-    //     searchResultsCount = isMobileSearchState.isSearchResults.length;
-    // } else if (Array.isArray(isDesktopSearchState.isSearchResults) && isDesktopSearchState.isSearchResults.length > 0) {
-    //     searchQuery = isDesktopSearchState.isSearchInputValue;
-    //     searchResultsCount = isDesktopSearchState.isSearchResults.length;
-    // }
-
-
 
 
     const handleSelectProductFromSearch = (product) => {
@@ -82,12 +60,7 @@ export const NavSearchPreviewCard = ({ products }) => {
 
         const { searchQuery, searchResultsCount, searchType, searchedProduct, searchedProductCategory, searchedProductSubcategory } = getSearchData();
 
-        console.log('search query of selected', searchQuery)
-        console.log('search results count when selected', searchResultsCount)
-        console.log('search query nav', searchQuery)
-        console.log('search results nav', searchResultsCount)
-        console.log('search type', searchType)
-        console.log('search product', searchedProduct)
+      
         logEvent('SEARCHED_PRODUCT_SELECTED', {
             productName: searchedProduct,
             productCategory:searchedProductCategory,

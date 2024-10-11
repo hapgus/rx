@@ -3,9 +3,9 @@ import { LinkComponent } from '../../Links/LinkComponent';
 import { PageText } from '../../Text/Text';
 import { Button } from '../../Button/Button';
 import styles from './SearchPreviewCard.module.css';
-import { useSearchHook } from '../../../hooks/search-hook';
-import { useBuilderHook } from '../../../hooks/builder-hook';
-import { GenerateProductURL } from '../../../utils/link-helper';
+import { useSearchHook } from '../../../hooks/use-search-hooks';
+import { useBuilderHook } from '../../../hooks/use-builder-hooks';
+import { GenerateProductURL } from '../../../utils/helper-functions';
 import { AddToListButton, RemoveFromListButton } from '../../Button/ProductButtons'
 import { logEvent } from '../../../utils/google-analytics';
 

@@ -2,9 +2,9 @@ import { useDataContext } from "../../../../hooks/data-hook";
 import { BarChart } from "../../PortalChartComponent/BarChart";
 import { useChartConfig } from "../../../../hooks/chart-config-hook";
 import { PortalCard } from "../../PortalPageComponent/PortalCard/PortalCard";
-import { categorizeAppliancePath } from "../../../../utils/text-help";  
+import { categorizeAppliancePath } from "../../../../utils/helper-functions";  
 import Skeleton from 'react-loading-skeleton';
-import { ColumnChart } from "../../PortalChartComponent/ColumnChart";
+
 
 
 export const ResourceLinkClicksByCategoryBarChart = () => {

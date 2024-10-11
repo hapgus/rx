@@ -8,7 +8,7 @@ import Skeleton from 'react-loading-skeleton';
 export const EventsCard = () => {
     const { isDataState } = useDataContext();  // Access filtered data from context
     const data = isDataState.isDataFilteredByDate;  // Use the filtered event data
-    console.log(data)
+
     const { config: lineChartOptions } = useChartConfig(
         'LineChart',
     'Key Engagement Events',

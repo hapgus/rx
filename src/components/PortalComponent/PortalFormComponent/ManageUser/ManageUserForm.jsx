@@ -5,21 +5,22 @@ import { PageText } from '../../../../components/Text/Text';
 import { Button } from '../../../../components/Button/Button';
 
 import { useHttpClient } from '../../../../hooks/http-hook';
-import { useRoutingHook } from '../../../../hooks/routing-hook';
+import { useRoutingHook } from '../../../../hooks/use-routing-hooks';
 import { useDataContext } from '../../../../hooks/data-hook';
 
 import { useForm } from '../../../../hooks/form-hook';
 
 
 import { Select } from '../../../FormComponent/Select/Select';
-import { useAuthUser, useAuth, useLogout } from '../../../../hooks/auth-hook';
+import { useAuth, useLogout } from '../../../../hooks/use-auth-hooks';
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router';
-import { useNotificationHook } from '../../../../hooks/notification-hook';
+import { useNotificationHook } from '../../../../hooks/use-notification-hooks';
 
 import { FormSkeleton } from '../../../Skeletons/FormSkeleton';
 
 import { AnimatedComponent } from '../../../../hooks/use-framer-motion';
+import { FormSection } from '../../../FormComponent/FormSection/FormSection';
 
 
 export const ManageUserForm = () => {
@@ -36,7 +37,7 @@ export const ManageUserForm = () => {
     const [userInfo, setUserInfo] = useState()
 
 
-    const decodedToken = useAuthUser();
+  
     const { authUserId, isSuperAdmin,  } = useAuth();
     const logout = useLogout();
 
@@ -60,19 +61,19 @@ export const ManageUserForm = () => {
 
     }
 
-    const handleOnMainDash = () => {
-        setIsModal({ show: false })
-        redirect('/portal/dashboard')
-    }
+    // const handleOnMainDash = () => {
+    //     setIsModal({ show: false })
+    //     redirect('/portal/dashboard')
+    // }
 
     /* --------------------------------------------------------------------------------------- */
     /* HANDLE NO AUTH REDIRECTS*/
     /* --------------------------------------------------------------------------------------- */
-    const handleUnAuthorizedAccess = () => {
+    // const handleUnAuthorizedAccess = () => {
 
-        logout();
-        setIsModal({ show: false })
-    }
+    //     logout();
+    //     setIsModal({ show: false })
+    // }
 
     // POPULATE USER DATA
     useEffect(() => {
@@ -159,10 +160,7 @@ export const ManageUserForm = () => {
                     confirmText: "Close",
                     cancelText: "View directory",
                     onCancel: handleOnCancelRedirectDirectoy,
-                    // onConfirm:()=>{
-                    //     setIsModal({ show: false });
-                    //     redirect('/portal/dashboard/');
-                    // }
+                   
                 });
             } else {
                 // console.error('User not deleted');
@@ -301,7 +299,9 @@ export const ManageUserForm = () => {
                     && userInfo.firstName !== '' && userInfo.email !== ''
                     && userInfo.role !== '' && userInfo.status !== ''
 
-                    ? <div className={styles.accountInformationWrapper}>
+                    ? 
+                    <FormSection>
+                    <div className={styles.accountInformationWrapper}>
 
                         <div className={styles.userIntroWrapper}>
 
@@ -324,10 +324,11 @@ export const ManageUserForm = () => {
 
 
                         <div className={styles.formElements}>
+                            
 
                             {
                                 isSuperAdmin &&
-                                <AnimatedComponent type='3dRoationDropdownEffects' delay={.5}>
+                                // <AnimatedComponent type='3dRoationDropdownEffects' delay={.5}>
                                     <Select
                                         id='role'
                                         name="role"
@@ -344,13 +345,13 @@ export const ManageUserForm = () => {
                                             { value: "superAdmin", label: "Super Administrator" }
                                         ]}
                                     />
-                                </AnimatedComponent>
+                                // </AnimatedComponent>
                             }
 
-                            <AnimatedComponent
+                            {/* <AnimatedComponent
                                 delay={.5}
                                 type='3dRoationDropdownEffects'
-                            >
+                            > */}
                                 <Select
                                     id='status'
                                     name='status'
@@ -367,17 +368,17 @@ export const ManageUserForm = () => {
                                         { value: "notApproved", label: "Not Approved" }
                                     ]}
                                 />
-                            </AnimatedComponent>
+                            {/* </AnimatedComponent> */}
 
                             <div className={styles.buttonWrapper}>
-                                <AnimatedComponent
+                                {/* <AnimatedComponent
                                     delay={.5}
-                                    type='3dRoationDropdownEffects'>
+                                    type='3dRoationDropdownEffects'> */}
 
                                     <Button type='button' onClick={handlePreFormSubmit} buttonStyleType="primaryAction">
                                         Sumbit
                                     </Button>
-                                </AnimatedComponent>
+                                {/* </AnimatedComponent> */}
                             </div>
 
 
@@ -402,7 +403,7 @@ export const ManageUserForm = () => {
 
                         </div>
 
-                    </div>
+                    </div></FormSection>
                     : <FormSkeleton />
             }
 

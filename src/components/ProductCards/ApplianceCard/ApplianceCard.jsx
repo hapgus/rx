@@ -1,21 +1,21 @@
 import styles from './ApplianceCard.module.css';
 
 
-import { useBuilderHook } from '../../../hooks/builder-hook';
+import { useBuilderHook } from '../../../hooks/use-builder-hooks';
 import { Button } from '../../Button/Button';
 import { LinkComponent } from '../../Links/LinkComponent';
-import { useRetailer } from '../../../hooks/retailer-hook';
+import { useRetailer } from '../../../hooks/use-routing-hooks';
 
 
 import { PageText } from '../../Text/Text';
-import { TruncateText } from '../../../utils/text-help';
+import { TruncateText, NormalizeSlugs } from '../../../utils/helper-functions';
 
 
-import { GenerateProductURL, NormalizeSlugs } from '../../../utils/link-helper';
+
 
 import { AddToListButton, RemoveFromListButton } from '../../Button/ProductButtons';
 import { ProductImageComponent } from '../../ProductImageComponent/ProductImageComponent';
-import { IconComponent } from '../../Icon/IconComponent';
+
 import { RetailerLogo } from '../../Logo/RetalierLogo';
 
 export const Card = ({ children }) => {
@@ -39,11 +39,14 @@ export const ApplianceCard = ({ product }) => {
             <div key={title} className={styles.productCardContainer}>
                 <div className={styles.productCardWrapper}>
 
-                   <RetailerLogo store={store}/>
-                  
+                    <RetailerLogo store={store} />
+
                     {/* <ProductImageComponent className={styles.productCardImage} src={`${publicUrl}/assets/image/products/${image}`} alt={`product ${title}`} /> */}
-                    <ProductImageComponent className={styles.productCardImage} src={`${process.env.REACT_APP_AWS_URL}/${image}`} alt={`product ${title}`} />
-                    
+                    {/* <div className={styles.linkWrappedProductImage}>
+                        <LinkComponent href={productURL}> */}
+                            <ProductImageComponent className={styles.productCardImage} src={`${process.env.REACT_APP_AWS_URL}/${image}`} alt={`product ${title}`} />
+                        {/* </LinkComponent>
+                    </div> */}
                     <PageText type='productCardTitle'>{title}</PageText>
                     <PageText type='productCardSubtitle'>
                         <span className={styles.clampedSubtitle}>{subtitle}</span>
@@ -57,12 +60,12 @@ export const ApplianceCard = ({ product }) => {
                                 See details
                             </Button>
                         </LinkComponent>
- 
+
 
                     </div>
                 </div>
             </div>
-            
+
         </Card>
     );
 }

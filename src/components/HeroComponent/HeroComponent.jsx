@@ -1,12 +1,13 @@
 import { GridSystem } from "../GridSystem/GridSystem";
 import styles from "./HeroComponent.module.css";
-import { capitalizeFirstLetterEachWord } from "../../utils/text-help";
+
 import { PageText } from "../Text/Text";
-import { AnimatedImage } from "../../hooks/use-framer-motion";
-import { AnimatedComponent } from "../../hooks/use-framer-motion";
+import { AnimatedImage, AnimatedComponent} from "../../hooks/use-framer-motion";
+
 import { LinkComponent } from "../Links/LinkComponent";
-import { ExternalLink } from "../../utils/link-helper";
-import { IconComponent } from "../Icon/IconComponent";
+import { capitalizeFirstLetterEachWord  } from "../../utils/helper-functions";
+import { ExternalLink } from "../Links/ExternalLink";
+
 
 export const HeroComponent = ({
     subtitle,
@@ -30,22 +31,36 @@ export const HeroComponent = ({
                         <div className={styles.heroGridWrapper}>
 
                             <div className={styles.gridItem1}>
-                                <AnimatedComponent type="bounceEffect">
-                                    <div className={styles.title}>
-                                        <PageText type="heroTitle">{title && capitalizeFirstLetterEachWord(title)}</PageText>
+                                <div className={styles.gridItem1TextWrapper}>
+                                    <div className={styles.headlineTitles}>
+                                        {
+                                            subtitle &&
+                                            <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.2}>
+                                                <div className={styles.subtitle}>
+                                                    <PageText type="heroSubtitle">{subtitle}</PageText>
+                                                </div>
+                                            </AnimatedComponent>
+                                        }
+                                        {
+                                            title &&
+                                            <AnimatedComponent type="bounceEffect">
+                                                <div className={styles.title}>
+                                                    <PageText type="heroTitle">{title && capitalizeFirstLetterEachWord(title)}</PageText>
+                                                </div>
+                                            </AnimatedComponent>
+                                        }
                                     </div>
-                                </AnimatedComponent>
-                                <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.2}>
-                                    <div className={styles.subtitle}>
-                                        <PageText type="heroSubtitle">{subtitle}</PageText>
-                                    </div>
-                                </AnimatedComponent>
-                                <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.5}>
-                                    <div className={styles.description}>
-                                        <PageText type="heroDescription">{description}</PageText>
+                                    {
+                                        description &&
+                                        <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.5}>
+                                            <div className={styles.description}>
+                                                <PageText type="heroDescription">{description}</PageText>
 
-                                    </div>
-                                </AnimatedComponent>
+                                            </div>
+                                        </AnimatedComponent>
+                                    }
+                                </div>
+
                                 <div className={styles.heroCallout}>
                                     <PageText type="bodySubtitle">
                                         {calloutText}

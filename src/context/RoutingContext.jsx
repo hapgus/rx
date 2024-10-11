@@ -1,204 +1,136 @@
-import { createContext, useEffect, useState } from "react";
-
-
-
+import { createContext, useState, useMemo, useEffect } from "react";
 
 export const RoutingContext = createContext({
-
-    isRoutingState: {
-        isNavLinkClicked: false,
-
-        isProductListDropdownOpen: false,
-
-        isMobileNavOpen: false,
-        isMobileCategoriesMenuOpen: false,
-        isMobileResourcesMenuOpen: false,
-        isMobileStepUpChartsMenuOpen: false,
-        isMobileExclusiveMenuOpen: false,
-
-        isMobileAccountMenuOpen: false,
-        isMobileBuilderDropdownOpen: false,
-
-        isCategoriesMenuOpen: false,
-        isResourcesMenuOpen: false,
-        isStepUpChartsMenuOpen: false,
-        isExclusiveMenuOpen: false,
-
-        isAccountMenuOpen: false,
-        isBuilderDropdownOpen: false,
-
-        isLoading: false,
-
-        isShowScrollToTopButton: false,
-
-
-        isMobilePortalNavOpen:false,
-        isMobilePortalNavOverviewMenuOpen:false,
-        isMobilePortalNavProductsMenuOpen:false,
-        isMobilePortalNavUsersMenuOpen:false,
-        isMobilePortalNavWebsitesMenuOpen:false,
-
-        isMobilePortalNavAccountMenuOpen:false,
-    },
-    setIsRoutingState: () => { },
-
-
-    isAdminRoutingState: {
-        isUserToEdit: null
-    },
-    setIsAdminRoutingState: () => { },
-
-
+  isRoutingState: {
+    isNavLinkClicked: false,
+    isProductListDropdownOpen: false,
+    isMobileNavOpen: false,
+    isMobileCategoriesMenuOpen: false,
+    isMobileResourcesMenuOpen: false,
+    isMobileStepUpChartsMenuOpen: false,
+    isMobileExclusiveMenuOpen: false,
+    isMobileAccountMenuOpen: false,
+    isMobileBuilderDropdownOpen: false,
+    isCategoriesMenuOpen: false,
+    isResourcesMenuOpen: false,
+    isStepUpChartsMenuOpen: false,
+    isExclusiveMenuOpen: false,
+    isAccountMenuOpen: false,
+    isBuilderDropdownOpen: false,
+    isLoading: false,
+    isShowScrollToTopButton: false,
+    isMobilePortalNavOpen: false,
+    isMobilePortalNavOverviewMenuOpen: false,
+    isMobilePortalNavProductsMenuOpen: false,
+    isMobilePortalNavUsersMenuOpen: false,
+    isMobilePortalNavWebsitesMenuOpen: false,
+    isMobilePortalNavAccountMenuOpen: false,
+  },
+  setIsRoutingState: () => {},
+  isAdminRoutingState: {
+    isUserToEdit: null,
+  },
+  setIsAdminRoutingState: () => {},
 });
 
 export const RoutingProvider = ({ children }) => {
+  // Initialize state only once
+  const initialRoutingState = useMemo(() => ({
+    isNavLinkClicked: false,
+    isProductListDropdownOpen: false,
+    isMobileNavOpen: false,
+    isMobileCategoriesMenuOpen: false,
+    isMobileResourcesMenuOpen: false,
+    isMobileStepUpChartsMenuOpen: false,
+    isMobileExclusiveMenuOpen: false,
+    isMobileAccountMenuOpen: false,
+    isMobileBuilderDropdownOpen: false,
+    isCategoriesMenuOpen: false,
+    isResourcesMenuOpen: false,
+    isStepUpChartsMenuOpen: false,
+    isExclusiveMenuOpen: false,
+    isAccountMenuOpen: false,
+    isBuilderDropdownOpen: false,
+    isLoading: false,
+    isShowScrollToTopButton: false,
+    isMobilePortalNavOpen: false,
+    isMobilePortalNavOverviewMenuOpen: false,
+    isMobilePortalNavProductsMenuOpen: false,
+    isMobilePortalNavUsersMenuOpen: false,
+    isMobilePortalNavWebsitesMenuOpen: false,
+    isMobilePortalNavAccountMenuOpen: false,
+  }), []);
 
+  const [isRoutingState, setIsRoutingState] = useState(initialRoutingState);
 
-    const initialRoutingState = {
-        isNavLinkClicked: false,
-        isProductListDropdownOpen: false,
+  const initialAdminRoutingState = useMemo(() => ({
+    isUserToEdit: null,
+  }), []);
+  
+  const [isAdminRoutingState, setIsAdminRoutingState] = useState(initialAdminRoutingState);
 
+  // Effect to handle nav link click events
+  useEffect(() => {
+    if (isRoutingState.isNavLinkClicked) {
+      setIsRoutingState(prevState => ({
+        ...prevState,
         isMobileNavOpen: false,
         isMobileCategoriesMenuOpen: false,
         isMobileResourcesMenuOpen: false,
-        isMobileExclusiveMenuOpen: false,
-
         isMobileAccountMenuOpen: false,
         isMobileBuilderDropdownOpen: false,
-
+        isMobileExclusiveMenuOpen: false,
         isCategoriesMenuOpen: false,
         isResourcesMenuOpen: false,
         isExclusiveMenuOpen: false,
-
         isAccountMenuOpen: false,
         isBuilderDropdownOpen: false,
+        isProductListDropdownOpen: false,
+        isMobilePortalNavOpen: false,
+        isMobilePortalNavOverviewMenuOpen: false,
+        isMobilePortalNavProductsMenuOpen: false,
+        isMobilePortalNavUsersMenuOpen: false,
+        isMobilePortalNavWebsitesMenuOpen: false,
+      }));
 
-        isLoading: false,
+      // Reset isNavLinkClicked to allow subsequent clicks
+      const resetNavClick = setTimeout(() => {
+        setIsRoutingState(prevState => ({
+          ...prevState,
+          isNavLinkClicked: false,
+        }));
+      }, 100);
 
-        isShowScrollToTopButton: false,
-        
-        isMobilePortalNavOpen:false,
-        isMobilePortalNavOverviewMenuOpen:false,
-        isMobilePortalNavProductsMenuOpen:false,
-        isMobilePortalNavUsersMenuOpen:false,
-        isMobilePortalNavWebsitesMenuOpen:false,
-        isMobilePortalNavAccountMenuOpen:false,
+      return () => clearTimeout(resetNavClick);
     }
-    const [isRoutingState, setIsRoutingState] = useState(initialRoutingState);
+  }, [isRoutingState.isNavLinkClicked]);
 
-    const initialAdminRoutingState = {
-        isUserToEdit: null
+  // Effect to handle mobile nav close actions
+  useEffect(() => {
+    if (!isRoutingState.isMobileNavOpen) {
+      setIsRoutingState(prevState => ({
+        ...prevState,
+        isMobileCategoriesMenuOpen: false,
+        isMobileResourcesMenuOpen: false,
+        isMobileAccountMenuOpen: false,
+        isMobileBuilderDropdownOpen: false,
+      }));
     }
-    const [isAdminRoutingState, setIsAdminRoutingState] = useState(initialAdminRoutingState);
+  }, [isRoutingState.isMobileNavOpen]);
 
-    useEffect(() => {
-        if (isRoutingState.isNavLinkClicked) {
-            setIsRoutingState(prevState => ({
-                ...prevState,
-                isMobileNavOpen: false,
-                isMobileCategoriesMenuOpen: false,
-                isMobileResourcesMenuOpen: false,
-                isMobileAccountMenuOpen: false,
-                isMobileBuilderDropdownOpen: false,
-                isMobileExclusiveMenuOpen: false,
-
-                isCategoriesMenuOpen: false,
-                isResourcesMenuOpen: false,
-                isExclusiveMenuOpen: false,
-                isAccountMenuOpen: false,
-                isBuilderDropdownOpen: false,
-                isProductListDropdownOpen: false,
-
-                isMobilePortalNavOpen:false,
-                isMobilePortalNavOverviewMenuOpen:false,
-                isMobilePortalNavProductsMenuOpen:false,
-                isMobilePortalNavUsersMenuOpen:false,
-                isMobilePortalNavWebsitesMenuOpen:false,
-            }))
-
-            // Reset isNavLinkClicked to allow subsequent clicks
-            setTimeout(() => {
-                setIsRoutingState(prevState => ({
-                    ...prevState,
-                    isNavLinkClicked: false
-                }));
-            }, 100); // Adjust the delay as needed
-        }
-    }, [isRoutingState.isNavLinkClicked])
-
-
-    useEffect(() => {
-        if (!isRoutingState.isMobileNavOpen) {
-
-            setIsRoutingState(prevState => ({
-                ...prevState,
-                isMobileCategoriesMenuOpen: false,
-                isMobileResourcesMenuOpen: false,
-                isMobileAccountMenuOpen: false,
-                isMobileBuilderDropdownOpen: false,
-            }))
-        }
-        // else if (isRoutingState.isMobileNavOpen) {
-        //     document.body.style.overflow = 'hidden';
-        // }
-        // return () => {document.body.style.overflow = 'unset';}
-    }, [isRoutingState.isMobileNavOpen])
+  // Memoize context value to prevent unnecessary re-renders
+  const contextValue = useMemo(() => ({
+    isRoutingState,
+    setIsRoutingState,
+    isAdminRoutingState,
+    setIsAdminRoutingState,
+  }), [isRoutingState, isAdminRoutingState]);
 
 
 
-    // useEffect(() => {
-    //     if (isRoutingState.isBuilderDropdownOpen ||
-    //         isRoutingState.isMobileBuilderDropdownOpen ||
-    //         isRoutingState.isMobileNavOpen
-    //     ) {
-    //         document.body.style.overflow = 'hidden';
-    //     }
-    //     return () => {
-    //         document.body.style.overflow = 'unset';
-    //     }
-
-    // }, [
-    //     isRoutingState.isBuilderDropdownOpen,
-    //     isRoutingState.isMobileBuilderDropdownOpen,
-    //     isRoutingState.isMobileNavOpen
-    // ])
-    // useEffect(() => {
-    //     if (isRoutingState.isProductListDropdownOpen ||
-    //         isRoutingState.isMobileBuilderDropdownOpen ||
-    //         isRoutingState.isMobileNavOpen
-    //     ) {
-    //         document.body.style.overflow = 'hidden';
-    //     }
-    //     return () => {
-    //         document.body.style.overflow = 'unset';
-    //     }
-
-    // }, [
-    //     isRoutingState.isBuilderDropdownOpen,
-    //     isRoutingState.isMobileBuilderDropdownOpen,
-    //     isRoutingState.isMobileNavOpen
-    // ])
-
-    // useEffect(() => {
-    //     if (isRoutingState.isBuilderDropdownOpen && isRoutingState.isNavLinkClicked) {
-    //         setIsRoutingState(prevState => ({
-    //             ...prevState,
-    //             isBuilderDropdownOpen: false,
-    //         }))
-    //     } 
-    // }, [isRoutingState.isNavLinkClicked])
-
-
-    return (
-        <RoutingContext.Provider
-            value={{
-                isRoutingState,
-                setIsRoutingState,
-                isAdminRoutingState,
-                setIsAdminRoutingState
-            }}
-        >
-            {children}
-        </RoutingContext.Provider>
-    );
-}
+  return (
+    <RoutingContext.Provider value={contextValue}>
+      {children}
+    </RoutingContext.Provider>
+  );
+};

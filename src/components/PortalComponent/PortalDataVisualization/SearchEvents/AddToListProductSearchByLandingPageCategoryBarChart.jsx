@@ -1,11 +1,11 @@
 import { useDataContext } from "../../../../hooks/data-hook";
-import { BarChart } from "../../PortalChartComponent/BarChart";
+
 import { ColumnChart } from "../../PortalChartComponent/ColumnChart";
 
 import { useChartConfig } from "../../../../hooks/chart-config-hook";
-import { transformWithSchema } from "../../../../utils/data-transformer";
+
 import { PortalCard } from "../../PortalPageComponent/PortalCard/PortalCard";
-import { categorizePagePath } from "../../../../utils/text-help";
+import { categorizePagePath } from "../../../../utils/helper-functions";
 import Skeleton from 'react-loading-skeleton';
 
 export const AddToListProductSearchByLandingPageCategoryBarChart = () => {

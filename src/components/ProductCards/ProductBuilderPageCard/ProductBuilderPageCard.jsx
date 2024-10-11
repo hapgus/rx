@@ -1,26 +1,17 @@
 import styles from './ProductBuilderPageCard.module.css';
-
-
-
 import { Button } from '../../Button/Button';
-// import { NavigationLink } from "../../NavigationComponent/NavigationLink";
 
-
-import {
-    // CapitalizeFirstLetter, 
-    capitalizeFirstLetterEachWord, TruncateText
-} from '../../../utils/text-help'
+import {capitalizeFirstLetterEachWord, TruncateText, GenerateProductURL} from '../../../utils/helper-functions'
 import { PageText } from '../../Text/Text';
-import { GenerateProductURL } from '../../../utils/link-helper';
+
 import { NavLink } from 'react-router-dom';
 import { IconComponent } from '../../Icon/IconComponent';
 import { useState } from 'react';
 
-
-import { RemoveAllFromListButton, RemoveFromListButton, RemoveFromListButtonIcon } from '../../Button/ProductButtons';
+import { RemoveFromListButton, RemoveFromListButtonIcon } from '../../Button/ProductButtons';
 
 import { AnimatePresence, motion } from 'framer-motion';
-import { AnimatedButton } from '../../../hooks/use-framer-motion';
+// import { AnimatedButton } from '../../../hooks/use-framer-motion';
 
 const listVariants = {
     hidden: { opacity: 0 },
@@ -143,18 +134,15 @@ const MobileProductBuilderPageCard = ({ product }) => {
                                     <AnimatePresence>
                                         {showSpecs.specList1 && (
                                             <div className={styles.specsDropdownBody}>
-
-                                                <motion.ul className={styles.specListItem}
+                                                <motion.ul 
+                                                className={styles.specListItem}
                                                     variants={listVariants}
                                                     initial="hidden"
                                                     animate="visible"
                                                 >
 
                                                     {specList1.map((item, idx) => (
-                                                        <motion.li key={idx}
-                                                            variants={itemVariants}
-                                                            className={styles.listItem}
-                                                        >
+                                                        <motion.li key={idx} variants={itemVariants} className={styles.listItem}>
                                                             <PageText type='productBuilderSpecList'>{item}</PageText>
                                                         </motion.li>
                                                     ))}
@@ -171,14 +159,10 @@ const MobileProductBuilderPageCard = ({ product }) => {
                                 <div className={styles.specsDropdownWrapper}>
                                     <div className={styles.specsDropdownHeader} >
                                         <div onClick={() => handleClick('specList2')} className={styles.toggleText}>
-
                                             <PageText type='productBuilderSpecTitle'>{capitalizeFirstLetterEachWord(specTitle2)}</PageText>
                                         </div>
                                         <div onClick={() => handleClick('specList2')} className={styles.toggleIcon}>
-                                            <IconComponent
-                                                iconStyleType='expand'
-                                                iconType='expand'
-                                            />
+                                        <IconComponent iconType='expand' />
                                         </div>
 
                                     </div>
@@ -192,7 +176,7 @@ const MobileProductBuilderPageCard = ({ product }) => {
                                                     className={styles.specListItem}>
                                                     {specList2.map((item, idx) => (
                                                         <motion.li
-                                                        className={styles.specListItem}
+                                                        className={styles.listItem}
                                                             variants={itemVariants}
                                                             key={idx}>
                                                             <PageText type='productBuilderSpecList'>{item}</PageText>
@@ -228,7 +212,7 @@ const MobileProductBuilderPageCard = ({ product }) => {
                                                     className={styles.specListItem}>
                                                     {specList3.map((item, idx) => (
                                                         <motion.li
-                                                        className={styles.specListItem}
+                                                        className={styles.listItem}
                                                             variants={itemVariants}
                                                             key={idx}>
                                                             <PageText type='productBuilderSpecList' >{item}</PageText>
@@ -267,7 +251,7 @@ const MobileProductBuilderPageCard = ({ product }) => {
                                                     className={styles.specListItem}>
                                                     {specList4.map((item, idx) => (
                                                         <motion.li
-                                                        className={styles.specListItem}
+                                                        className={styles.listItem}
                                                             variants={itemVariants}
                                                             key={idx}>
                                                             <PageText type='productBuilderSpecList'>{item}</PageText>

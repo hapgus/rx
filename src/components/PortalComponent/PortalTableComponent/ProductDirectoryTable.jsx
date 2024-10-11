@@ -1,16 +1,17 @@
 
-import { useProductsHook } from "../../../hooks/product-hook";
+import { useProductsHook } from "../../../hooks/use-product-hooks";
 import { IconComponent } from "../../Icon/IconComponent";
 import TableBody from "../../TableComponent/TableBody"
 import { useNavigate } from "react-router";
-import { useNotificationHook } from "../../../hooks/notification-hook";
+import { useNotificationHook } from "../../../hooks/use-notification-hooks";
 import TablePagination from "../../TableComponent/TablePagination";
 import { useState } from "react";
-import { useAuth, useLogout } from '../../../hooks/auth-hook';
+import { useAuth, useLogout } from '../../../hooks/use-auth-hooks';
 import { DateComponent } from "../../Date/DateComponent";
 import styles from './TableComponent.module.css'
 import { LinkComponent } from "../../Links/LinkComponent";
 import { useDataContext } from "../../../hooks/data-hook";
+import { NormalizeSlugs } from "../../../utils/helper-functions";
 
 // import { SearchFilterInput } from "./SearchFilterInput";
 
@@ -38,6 +39,8 @@ export const ProductDirectoryTable = () => {
     }
 
 
+
+    
 
     const handleDeleteProduct = async (productId) => {
         if (!(isSuperAdmin || isAdmin)) {
@@ -112,77 +115,30 @@ export const ProductDirectoryTable = () => {
 
             });
         }
-        // console.log('product to delete', productId)
-        // setIsModal({
-        //     show: true,
-        //     modalType: 'infoModal',
-        //     title: 'Are You Sure You Want to Delete',
-        //     message: `You are about to permanently delete this product. This action cannot be undone. Are you sure you want to proceed?`,
-        //     confirmText: 'Delete product',
-        //     cancelText: 'Go back',
-        //     onConfirm: async () => {
-        //         try {
-        //             const response = await fetch(
-        //                 `${process.env.REACT_APP_BACKEND_URL}delete-product/${productId}`,
-        //                 {
-        //                     method: 'DELETE',
-        //                     headers: {
-        //                         'Content-Type': 'application/json',
-        //                     },
-        //                     body: JSON.stringify({
-        //                         adminId: authUserId,
-        //                     })
-        //                 }
-        //             )
-        //             if (response.status === 200) {
-        //                 fetchProducts();
-        //                 alert('product delete')
-        //                 setIsModal({ show: false })
-        //             }
-        //             console.log('delete response', response)
-        //         } catch (err) {
-        //             console.log('deletion', err)
-        //         }
-
-        //         // setIsModal({ show: false })
-        //     },
-        //     onCancel: () => {
-        //         setIsModal({ show: false })
-        //     }
-
-        // })
-        // try {
-        //     const response = await fetch(
-        //         `${process.env.REACT_APP_BACKEND_URL}delete-product/${productId}`,
-        //         {
-        //             method: 'DELETE',
-        //             headers: {
-        //                 'Content-Type': 'application/json',
-        //             },
-        //             body: JSON.stringify({
-        //                 adminId: authUserId,
-        //             })
-        //         }
-        //     )
-        //     if (response.status === 200) {
-        //         alert('product delete')
-        //     }
-        //     console.log('delete response', response)
-        // } catch (err) {
-        //     console.log('deletion', err)
-        // }
-
     }
-
-
 
     const tableColumns = [
         {
             key: 'title',
             title: 'Model',
-            render: row => (
-                <span className={styles.tableLink} ><LinkComponent href={`/appliances/${row.category}/${row.title}`}>{row.title}</LinkComponent></span>
-            )
+            render: row => {
+                // Use normalizeSlug to normalize the category
+                const normalizedCategory = row && NormalizeSlugs(row.category);
+    
+                return (
+                    <span className={styles.tableLink}>
+                        <LinkComponent
+                            href={
+                                row && row.store === 'hd'
+                                    ? `/home-depot/appliances/${normalizedCategory}/${row.title}`
+                                    : `/appliances/${normalizedCategory}/${row.title}`
+                            }
+                        >
+                            {row.title}
+                        </LinkComponent>
+                    </span>
+                );
+            }
         },
         { key: 'category', title: 'Category' },
         { key: 'subcategory', title: 'Subcategory' },
@@ -202,10 +158,8 @@ export const ProductDirectoryTable = () => {
             title: 'Actions',
             render: row => (
                 <div className={styles.actionIconContainer}>
-
                     <IconComponent onClick={() => redirect(`/portal/edit-product/${row._id}`)} iconType='edit' />
                     <IconComponent onClick={() => redirect(`/portal/add-template-product/${row._id}`)} iconType='copy' />
-
                     <IconComponent onClick={() => handleDeleteProduct(row._id)} iconType='trash' />
                 </div>
             )

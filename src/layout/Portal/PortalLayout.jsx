@@ -1,16 +1,21 @@
 import { Outlet } from 'react-router';
 import styles from './PortalLayout.module.css';
 import Modal from '../../components/Modal/Modal';
-import { useNotificationHook } from '../../hooks/notification-hook';
+
+import { useRoutingHook,  useCurrentLocation} from '../../hooks/use-routing-hooks';
+import React, { useEffect, useCallback, useRef } from 'react';
+import ProductGuideAlerts from '../../components/Alert/Alert';
+import { useNotificationHook } from '../../hooks/use-notification-hooks';
+
 import { PortalPageTopNav } from '../../components/PortalComponent/PortalPageComponent/PortalPageNav/PortalPageTopNav';
 import { PortalPageSideNav } from '../../components/PortalComponent/PortalPageComponent/PortalSideNav/PortalPageSideNav';
 import Loader from '../../components/Loader/Loader';
-import ProductGuideAlerts from '../../components/Alert/Alert';
-import { useRoutingHook } from '../../hooks/routing-hook';
-import React, { useEffect, useCallback, useRef } from 'react';
+
+
+
 import { useDataContext } from '../../hooks/data-hook';
 import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
-import { useCurrentLocation } from '../../hooks/location-hook';
+
 import { PortalFooter } from '../../components/PortalComponent/PortalPageComponent/PortalFooter/PortalFooter';
 
 // Memoize components like Modal or Alert if necessary

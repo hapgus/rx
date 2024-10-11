@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import styles from './TableComponent.module.css'
 import { IconComponent } from "../../Icon/IconComponent";
 import { useNavigate } from "react-router";
-import { useRoutingHook } from "../../../hooks/routing-hook";
+import { useRoutingHook } from "../../../hooks/use-routing-hooks";
 
 
 export const UserDirectoryTable = () => {

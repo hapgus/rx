@@ -12,12 +12,20 @@ export const Qrcode = ({ imageUrl, title, subtitle, description }) => {
                     <div className={styles.title}>
                         <PageText>{title}</PageText>
                     </div>
-                    <div className={styles.subtitle}>
-                        <PageText>{subtitle}</PageText>
-                    </div>
-                    <div className={styles.description}>
-                        <PageText>{description}</PageText>
-                    </div>
+                    {
+                        subtitle &&
+                        <div className={styles.subtitle}>
+                            <PageText>{subtitle}</PageText>
+                        </div>
+                    }
+
+                    {
+                        description &&
+                        <div className={styles.description}>
+                            <PageText>{description}</PageText>
+                        </div>
+                    }
+
                 </div>
             }
 

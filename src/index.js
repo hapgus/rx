@@ -1,27 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
 
-import { SearchProvider } from './context/SearchContext';
+import { NotificationProvider } from './context/NotificationContext';
 import { RetailerProvider } from './context/RetailerContext';
 import { RoutingProvider } from './context/RoutingContext';
-import { ProductProvider } from './context/ProductContext';
-import { BuilderProvider } from './context/BuilderContext';
-import { NotificationProvider } from './context/NotificationContext';
-import { DataProvider } from './context/DataContext';
-import { AuthProvider } from './context/AuthContext';
-import { LoadingProvider } from './context/LoadingContext';
+import {AuthProvider} from "./context/AuthContext";
+import {SearchProvider} from "./context/SearchContext";
+import {BuilderProvider} from "./context/BuilderContext"
+import {ProductProvider} from "./context/ProductContext";
+import {DataProvider} from './context/DataContext';
 
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+  
   <BrowserRouter>
-  <LoadingProvider>
-    <NotificationProvider>
+  
+  <NotificationProvider>
       <RetailerProvider>
         <RoutingProvider>
           <AuthProvider>
@@ -39,8 +39,10 @@ root.render(
         </RoutingProvider>
       </RetailerProvider>
     </NotificationProvider>
-    </LoadingProvider>
+
   </BrowserRouter>
+
+
 );
 
 // If you want to start measuring performance in your app, pass a function

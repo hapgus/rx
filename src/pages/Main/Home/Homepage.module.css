@@ -23,9 +23,6 @@
 .longHeroSubtitle {
     display: none;
 }
-
-.heroWrapper {}
-
 .heroHeader {
     display: flex;
     flex-direction: column;
@@ -34,7 +31,6 @@
 
 }
 
-.heroSearch {}
 
 .footer {
     padding-top: 2rem;
@@ -264,6 +260,11 @@
 }
 
 
+
+.ft{
+
+   
+}
 @media (min-width: 430px) {
 
     .imageWrapper {
@@ -562,8 +563,6 @@
         height: 50rem;
     }
     .collarList {
-        
-     
         padding: 1.5rem 0;
         justify-content: space-between;
     }

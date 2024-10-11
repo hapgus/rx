@@ -4,21 +4,17 @@ import useIntersectionObserver from '../../hooks/use-intersection-observer';
 
 import { PageText } from '../Text/Text';
 
-import { capitalizeFirstLetterEachWord } from '../../utils/text-help';
+import { capitalizeFirstLetterEachWord } from '../../utils/helper-functions';
 import { GridSystem } from '../GridSystem/GridSystem';
 
 export const StickyNavigationBar = ({ data }) => {
   const [activeSection, setActiveSection] = useState(null);
 
   useIntersectionObserver(setActiveSection);
-  // useIntersectionObserver(setActiveSection, {
-  //   root: null,
-  //   rootMargin: '0px',
-  //   threshold: 0.5, 
-  // });
+
 
   const handleClick = (event, categoryIndex) => {
-console.log(categoryIndex)
+
     event.preventDefault();
     const targetElement = document.getElementById(`category-${categoryIndex}`);
     if (targetElement) {
@@ -27,8 +23,7 @@ console.log(categoryIndex)
         behavior: 'smooth'
       });
     }
-    console.log('active section',activeSection)
-    console.log('target section',targetElement)
+
   };
   const activeStyle = {
     fontWeight: '600',
@@ -39,7 +34,7 @@ console.log(categoryIndex)
     
      borderBottom:'3px solid #EA1917',
   };
-console.log(data)
+
   return (
     <GridSystem 
     gridType='spread'

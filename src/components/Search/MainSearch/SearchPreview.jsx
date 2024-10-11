@@ -1,14 +1,14 @@
 import styles from './SearchPreview.module.css';
 import { LinkComponent } from '../../Links/LinkComponent';
-// import { useProductsHook } from '../../../hooks/product-hook';
-import { useSearchHook } from '../../../hooks/search-hook';
+
+import { useSearchHook } from '../../../hooks/use-search-hooks';
 
 import { SearchPreviewCard } from '../../ProductCards/SearchPreview/SearchPreviewCard';
 import { PageText } from '../../Text/Text';
 import { Button } from '../../Button/Button';
 import { NavSearchPreviewCard } from '../../ProductCards/NavSearchPreviewCard/NavSearchPreviewCard';
 
-import { categoryLinks } from '../../../utils/link-config';
+import { useLinkConfig } from '../../../hooks/use-link-config-hooks';
 import { SearchFeedback } from './SearchFeedback';
 import { motion } from 'framer-motion';
 
@@ -30,6 +30,7 @@ const itemVariants = {
 
 export const SearchPreview = () => {
 
+    const {categoryLinks}=useLinkConfig()
 
     // const { publicProducts } = useProductsHook();
     const { isMobileSearchState,

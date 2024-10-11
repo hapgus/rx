@@ -1,34 +1,33 @@
-import { createContext, useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { createContext } from "react";
+
+import { useCurrentLocation } from "../hooks/use-routing-hooks";
+
+import { useMemo } from 'react';
 
 export const RetailerContext = createContext({
     isHomeDepotApp: {
         isHomeDepotActive: false,
-        isHomeDepotPrefix: null,
+        isHomeDepotPrefix: '',
     },
     setIsHomeDepotApp: () => { },
 });
 
+
 export const RetailerProvider = ({ children }) => {
+    const location = useCurrentLocation();
 
-    const initialHomeDepotState = { isHomeDepotActive: false, isHomeDepotPrefix: null };
-    const [isHomeDepotApp, setIsHomeDepotApp] = useState(initialHomeDepotState);
-
-    const location = useLocation();
-    const isHomeDepot = location.pathname.startsWith('/home-depot');
-    const homeDepotPrefix = isHomeDepot ? '/home-depot' : '';
-
-    useEffect(() => {
-        setIsHomeDepotApp({
+    const isHomeDepotApp = useMemo(() => {
+        const isHomeDepot = location.pathname.startsWith('/home-depot');
+        return {
             isHomeDepotActive: isHomeDepot,
-            isHomeDepotPrefix: homeDepotPrefix
-        });
-    }, [location, isHomeDepot, homeDepotPrefix]);
+            isHomeDepotPrefix: isHomeDepot ? '/home-depot' : '',
+        };
+    }, [location]);
 
-
+    console.log('Retailer Context Provider', isHomeDepotApp);
 
     return (
-        <RetailerContext.Provider value={{ isHomeDepotApp, setIsHomeDepotApp}}>
+        <RetailerContext.Provider value={{ isHomeDepotApp }}>
             {children}
         </RetailerContext.Provider>
     );

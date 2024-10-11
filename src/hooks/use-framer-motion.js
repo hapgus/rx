@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { useResponsiveStateHook } from "./responsive-hook";
 
+
 export const useAnimation = (type, delay = 0, directionStart) => {
     return useMemo(() => {
         switch (type) {

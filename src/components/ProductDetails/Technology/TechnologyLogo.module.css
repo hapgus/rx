@@ -34,3 +34,33 @@
       
     }
 }
+
+@media print {
+    .techLogoTitle{
+        display: none;
+    }
+    .logosList{
+        /* column-gap: 20rem;
+        row-gap: 50rem; */
+        /* justify-content: center;
+        align-items: center; */
+        padding: 0;
+        margin: 0;
+        column-gap: 3rem;
+     
+    }
+  
+    .logoImageWrapper{
+        height: 100%;
+        width: 100%;
+        background-color: none;
+        border-radius: 0;
+        padding: 0;
+        margin: 0;
+    }
+    .logoImage{
+    height: 5rem;
+    width: 7rem;
+    object-fit: contain;
+  }
+}

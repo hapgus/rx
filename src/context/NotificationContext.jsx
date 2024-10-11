@@ -56,7 +56,7 @@ export const NotificationProvider = ({ children }) => {
 
     const [isModal, setIsModal] = useState(initialModalState);
     const [isAlert, setIsAlert] = useState(initialAlertState);
-
+console.log('Notification Provider', isModal, isAlert);
     return (
         <NotificationContext.Provider value={{
             isModal,

@@ -1,4 +1,4 @@
-// import { useRetailer } from "../../hooks/retailer-hook"
+
 import styles from './RetailerDataToggle.module.css';
 import { useDataContext } from '../../hooks/data-hook';
 import { PageText } from '../Text/Text';

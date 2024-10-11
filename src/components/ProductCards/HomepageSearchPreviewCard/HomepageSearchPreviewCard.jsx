@@ -1,17 +1,14 @@
 import { PageText } from '../../Text/Text';
 import styles from './HomepageSearchPreviewCard.module.css';
-import { useBuilderHook } from '../../../hooks/builder-hook';
+import { useBuilderHook } from '../../../hooks/use-builder-hooks';
 import { logEvent } from '../../../utils/google-analytics';
-
-import { capitalizeFirstLetterEachWord } from '../../../utils/text-help';
-
-import { GenerateProductURL } from '../../../utils/link-helper';
+import { capitalizeFirstLetterEachWord, GenerateProductURL } from '../../../utils/helper-functions';
 
 import { AddToListButton, RemoveFromListButton } from '../../Button/ProductButtons';
 
 import { LinkComponent } from '../../Links/LinkComponent';
 
-import { useSearchHook } from '../../../hooks/search-hook';
+import { useSearchHook } from '../../../hooks/use-search-hooks';
 
 
 export const HomepageSearchPreviewCard = ({ products }) => {
@@ -19,29 +16,12 @@ export const HomepageSearchPreviewCard = ({ products }) => {
     const { productsInList } = useBuilderHook();
     const { isHomepageSearchState, isDesktopSearchState, isMobileSearchState } = useSearchHook();
     
-//     let searchQuery = 'na';
-//     let searchResultsCount = 'na';
-//     // if(isHomepageSearchState.isSearchResults){
-//     //     searchQuery = isHomepageSearchState.isSearchInputValue;
-//     //     searchResultsCount = isHomepageSearchState.isSearchResults.length
-//     // }
-//  // Determine which search state is active
-//  if (Array.isArray(isHomepageSearchState.isSearchResults) && isHomepageSearchState.isSearchResults.length > 0) {
-//     searchQuery = isHomepageSearchState.isSearchInputValue;
-//     searchResultsCount = isHomepageSearchState.isSearchResults.length;
-// } else if (Array.isArray(isMobileSearchState.isSearchResults) && isMobileSearchState.isSearchResults.length > 0) {
-//     searchQuery = isMobileSearchState.isSearchInputValue;
-//     searchResultsCount = isMobileSearchState.isSearchResults.length;
-// } else if (Array.isArray(isDesktopSearchState.isSearchResults) && isDesktopSearchState.isSearchResults.length > 0) {
-//     searchQuery = isDesktopSearchState.isSearchInputValue;
-//     searchResultsCount = isDesktopSearchState.isSearchResults.length;
-// }
 
 
 
 
     const handleSelectProductFromSearch = (product) => {
-        console.log('fire', product)
+ 
 
         const getSearchData = () => {
             if (Array.isArray(isHomepageSearchState.isSearchResults) && isHomepageSearchState.isSearchResults.length > 0) {

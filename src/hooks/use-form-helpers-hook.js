@@ -263,7 +263,8 @@ export const useLogoOptions = () => {
             { logo: 'ThinQ Up',label:"ThinQ Up" },
             { logo: 'washerDryerAllOneCombo',label:"Washer Dryer All-In-One Combo" },
             { logo: 'lGWashTowerWithCenterControl',label:"LG WashTower Center Control" },
-            { logo: 'worksWithAlexa',label:"Works With Alexa" }
+            { logo: 'worksWithAlexa',label:"Works With Alexa" },
+            { logo: 'worksWithHeyGoogle',label:"Works With Google" }
         ];
     }, []);
 };

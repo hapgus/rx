@@ -1,8 +1,7 @@
 import { IconComponent } from '../Icon/IconComponent';
 // import { ButtonText } from '../TextComponent/TextComponent';
 import styles from './Button.module.css';
-import { useResponsiveStateHook } from '../../hooks/responsive-hook';
-import { AnimatedButton, useAnimation } from '../../hooks/use-framer-motion';
+
 
 export const Button = ({
   children,

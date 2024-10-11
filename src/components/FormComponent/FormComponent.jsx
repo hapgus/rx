@@ -1,7 +1,7 @@
-import styles from './FormComponent.module.css'
+
 
 const Form = ({ eventHandlers = {}, children, onSubmit }) => (
-    <form className={styles.formContainer} {...eventHandlers} onSubmit={onSubmit}>
+    <form {...eventHandlers} onSubmit={onSubmit}>
         {children}
     </form>
 );

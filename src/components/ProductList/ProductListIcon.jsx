@@ -1,33 +1,29 @@
 import { IconComponent } from "../Icon/IconComponent";
-import { useRoutingHook } from "../../hooks/routing-hook";
-import { useBuilderHook } from "../../hooks/builder-hook";
+import { useRoutingHook } from "../../hooks/use-routing-hooks";
+import { useBuilderHook } from "../../hooks/use-builder-hooks";
 import styles from './ProductListIcon.module.css';
-import { AnimatedComponent } from "../../hooks/use-framer-motion";
+import { useCallback, memo } from 'react';
 
-export const ProductListIcon = () => {
+export const ProductListIcon = memo(() => {
     const { listCount } = useBuilderHook();
     const { setIsRoutingState } = useRoutingHook();
-    console.log('re render product list')
 
-    const handleIconClick = () => setIsRoutingState(
-        prevState => ({
+
+
+    const handleIconClick = useCallback(() => {
+        setIsRoutingState(prevState => ({
             ...prevState,
             isProductListDropdownOpen: true,
             isMobileNavOpen: false,
-
-        }))
+        }));
+    }, [setIsRoutingState]);
 
     return (
-
         <div onClick={handleIconClick} className={styles.iconContainer}>
             {listCount !== 0 && (
-                // <AnimatedComponent type="bounceEffect">
-                    <span className={styles.listCountBubble}>{listCount}</span>
-                // </AnimatedComponent>
+                <span className={styles.listCountBubble}>{listCount}</span>
             )}
             <IconComponent iconType='productList' />
-
         </div>
-
-    )
-}
+    );
+});

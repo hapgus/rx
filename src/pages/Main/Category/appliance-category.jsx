@@ -1,23 +1,23 @@
 import styles from './ApplianceCategory.module.css';
-import { useProductsHook } from '../../../hooks/product-hook';
+import { useProductsHook } from '../../../hooks/use-product-hooks';
 import { useParams } from 'react-router';
 import { PageText } from '../../../components/Text/Text';
-import { FilterProductsByCategoryId, ListProductsByCategorySubcategory, NormalizeCategoryId } from '../../../utils/category-helper';
-import { capitalizeFirstLetterEachWord } from '../../../utils/text-help';
+import { FilterProductsByCategoryId, ListProductsByCategorySubcategory, NormalizeCategoryId,  NormalizeSlugs, sortProductsByMsrpAndTitle} from '../../../utils/helper-functions'
+
 
 import { CATEGORY_VERBIAGE } from '../../../data/CATEGORY_VERBIAGE';
 import { CATEGORY_SHAPED_IMAGE } from '../../../data/CATEGORY_SHAPED_IMAGERY';
-import { Button } from '../../../components/Button/Button';
+
 import { GridSystem } from '../../../components/GridSystem/GridSystem';
-import { ScrollingComponent } from '../../../components/ScrollingComponent/ScrollingComponent';
-import { useResponsiveStateHook } from '../../../hooks/responsive-hook';
+
+import { ScrollingComponent } from '../../../components/ScrollingComponent/ScrollContainer/ScrollingComponent';
+
 import { useResponsiveMediaStateHook } from '../../../hooks/responsive-hook';
 
 import { LinkComponent } from '../../../components/Links/LinkComponent';
-import { sortProductsByMsrp } from '../../../utils/category-helper';
-import { sortProductsByTitle } from '../../../utils/category-helper';
-import { sortProductsByMsrpAndTitle } from '../../../utils/category-helper';
-import { useAnimation, AnimatedImage, AnimatedTitle } from '../../../hooks/use-framer-motion';
+
+
+import { useAnimation, AnimatedImage } from '../../../hooks/use-framer-motion';
 import { ApplianceCategorySkeletonComponent } from './ApplianceCategoriesSkeleton';
 import NotFoundPage from '../Error/not-found';
 import { motion } from 'framer-motion';
@@ -25,15 +25,16 @@ import { motion } from 'framer-motion';
 
 import { AnimatedComponent } from '../../../hooks/use-framer-motion';
 import { IconComponent } from '../../../components/Icon/IconComponent';
-import { stepUpChartLinks } from '../../../utils/link-config';
-import { NormalizeSlugs } from '../../../utils/link-helper';
-import { VALID_CATEGORIES, SUBCATEGORY_NAMING_MAP, CATEGORY_SUBCATEGORY_ORDER } from '../../../utils/category-config';
+
+import { useLinkConfig } from '../../../hooks/use-link-config-hooks';
+
+import { VALID_CATEGORIES, SUBCATEGORY_NAMING_MAP, CATEGORY_SUBCATEGORY_ORDER } from '../../../hooks/use-category-config';
 
 
 
 
 const ApplianceCategoryPage = () => {
-    const { isMobile } = useResponsiveStateHook();
+ 
     const { isMediaMobile } = useResponsiveMediaStateHook();
     const { categoryId } = useParams();
 
@@ -41,21 +42,20 @@ const ApplianceCategoryPage = () => {
     const { publicProducts } = useProductsHook();
     const normalizedCategoryId = NormalizeCategoryId(categoryId);
     const generateNormalizedSlug = NormalizeSlugs(normalizedCategoryId)
+    const {stepUpChartLinks}=useLinkConfig()
 
-    // console.log(normalizedCategoryId)
+   
     // Check against the static list of valid categories before product data
     // if (!VALID_CATEGORIES.includes(normalizedCategoryId)) {
     if (!VALID_CATEGORIES.includes(generateNormalizedSlug)) {
         return <NotFoundPage />;
     }
-    const backgroundColor = isMobile ? '#F6F3EB' : '#F0ECE4'
+
     const filteredProducts = FilterProductsByCategoryId(publicProducts, normalizedCategoryId);
     const reducedProducts = ListProductsByCategorySubcategory(filteredProducts);
-    const transformedCategoryName = capitalizeFirstLetterEachWord(normalizedCategoryId);
-
+    // const transformedCategoryName = capitalizeFirstLetterEachWord(normalizedCategoryId);
     const subcategories = Object.values(reducedProducts);
-    // **Apply the sorting here** REPLACING SUBCATEGORIES WITH sortedSubcategories
-    //  const sortedSubcategories = subcategories.map(subcategory => sortProductsByMsrp(subcategory));
+   
     const sortedSubcategories = subcategories.map(subcategory => sortProductsByMsrpAndTitle(subcategory));
 
     const publicUrl = process.env.PUBLIC_URL;
@@ -66,39 +66,38 @@ const ApplianceCategoryPage = () => {
 
     const stepUpChartCategoryLinks = getStepUpChartLinksByCategory(normalizedCategoryId);
 
-
     const backgroundImageMap = {
         'air care': {
-            image: `${publicUrl}/assets/image/backgrounds/categories/air-care/air.png`,
+            image: `${publicUrl}/assets/image/backgrounds/categories/air-care/air.webp`,
             backgroundPosition: 'center'
         },
         laundry: {
-            image: `${publicUrl}/assets/image/backgrounds/categories/laundry/laundry.png`,
+            image: `${publicUrl}/assets/image/backgrounds/categories/laundry/laundry.webp`,
             backgroundPosition: 'center'
         },
         refrigeration: {
-            image: `${publicUrl}/assets/image/backgrounds/categories/refrigerator/fridge.png`,
+            image: `${publicUrl}/assets/image/backgrounds/categories/refrigerator/fridge.webp`,
             backgroundPosition: 'center'
         },
         vacuums: {
-            image: `${publicUrl}/assets/image/backgrounds/categories/vacuum/vac.png`,
+            image: `${publicUrl}/assets/image/backgrounds/categories/vacuum/vac.webp`,
             backgroundPosition: 'center'
         },
         signature: {
-            image: `${publicUrl}/assets/image/backgrounds/categories/signature/sig.png`,
+            image: `${publicUrl}/assets/image/backgrounds/categories/signature/sig.webp`,
             backgroundPosition: 'center'
         },
         studio: {
-            image: `${publicUrl}/assets/image/backgrounds/categories/studio/studio.png`,
+            image: `${publicUrl}/assets/image/backgrounds/categories/studio/studio.webp`,
             backgroundPosition: 'center'
         },
         cooking: {
-            image: `${publicUrl}/assets/image/backgrounds/categories/cooking/cook.png`,
+            image: `${publicUrl}/assets/image/backgrounds/categories/cooking/cook.webp`,
             backgroundPosition: 'center'
         },
 
         dishwashers: {
-            image: `${publicUrl}/assets/image/backgrounds/categories/dishwasher/dish.png`,
+            image: `${publicUrl}/assets/image/backgrounds/categories/dishwasher/dish.webp`,
             backgroundPosition: 'center'
         },
     }
@@ -113,26 +112,6 @@ const ApplianceCategoryPage = () => {
             backgroundPosition: backgroundImageData.backgroundPosition,
             backgroundSize: 'cover',
         };
-
-
-
-
-    // // Create an array to store transformed subcategories
-    // const transformedSubcategories = sortedSubcategories.map(subcategory => {
-    //     // Create a new transformed subcategory object
-    //     const transformed = {};
-
-    //     // Iterate over each key in the subcategory object
-    //     for (const subcategoryName in subcategory) {
-    //         // Get the updated name based on CATEGORY_NAME_MAP or default to original name
-    //         //   const updatedName = CATEGORY_NAME_MAP[subcategoryName] || subcategoryName;
-    //         const updatedName = SUBCATEGORY_NAMING_MAP[subcategoryName] || subcategoryName;
-    //         // Add the transformed name and products to the new object
-    //         transformed[updatedName] = subcategory[subcategoryName];
-    //     }
-
-    //     return transformed;
-    // });
 
     // Create an array to store transformed and sorted subcategories
     const transformedSubcategories = sortedSubcategories.map(subcategory => {
@@ -232,8 +211,6 @@ const ApplianceCategoryPage = () => {
                                                 />
 
                                             </div>
-
-
                                             <div className={styles.image2}>
                                                 <AnimatedImage
                                                     type="wipeEffect" directionStart='left' delay={.2}
@@ -281,14 +258,9 @@ const ApplianceCategoryPage = () => {
 
                     </GridSystem>
                     : <ApplianceCategorySkeletonComponent />
-
             }
-
             <section className={styles.productsContainer}>
-                {/* <ScrollingComponent processedProducts={subcategories} /> */}
-                {/* <ScrollingComponent processedProducts={sortedSubcategories} /> */}
                 <ScrollingComponent processedProducts={transformedSubcategories} />
-                {/* <ScrollingComponent processedProducts={orderedSubcategories} /> */}
             </section>
 
         </>

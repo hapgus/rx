@@ -1,14 +1,14 @@
 .pageHeaderContainer {
     padding:  0;
     background-color: var(--color-gray-06);
+    border-top: 1px solid var(--color-gray-04);
     z-index: 0;
+    /* background: var(--color-gray-01); */
 }
 .heroGridContainer{
-    /* background-color: aqua; */
     display: grid;
     grid-template-columns: repeat(12,auto);
     grid-template-rows: 1fr;
-    /* background-color: aqua; */
 }
 
 .contentWrapper {
@@ -18,7 +18,7 @@
 .heroGridWrapper {
     grid-row: 1;
     grid-column: 1/-1;
-    min-height: 20rem;
+    /* min-height: 20rem; */
     display: flex;
     align-items: center;
     z-index: 1;
@@ -28,24 +28,35 @@
 .gridItem1 {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    
+    /* gap: 1rem; */
+}
+.gridItem1TextWrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;  
+   
+}
+.headlineTitles{
+   line-height: 1.5;
+   letter-spacing: .5px;
 }
 .gridItem2 {
 
     display: none;
 }
 .title {
-    color: var(--color-gray-01);
+    color: black; 
 }
 
 .subtitle {
-    color: var(--color-red-02);
+    color: black; 
 }
 
 
 .description {
-    color: var(--color-gray-02);
-    margin-top: 2rem;
+    color: var(--color-gray-01);
+    /* margin-top: 2rem; */
 }
 .heroCallout{
     color:var(--color-gray-03);

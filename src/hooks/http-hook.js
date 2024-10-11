@@ -1,6 +1,6 @@
 import { useState, useCallback, useRef, useEffect } from "react";
-import { useNotificationHook } from "./notification-hook";
-import { useRoutingHook } from "./routing-hook";
+import { useNotificationHook } from "./use-notification-hooks";
+import { useRoutingHook } from "./use-routing-hooks";
 
 export const useHttpClient = () => {
 
@@ -43,12 +43,12 @@ export const useHttpClient = () => {
     } catch (err) {
       console.log(err)
       setError(err.message);
-      console.log('httpclient', isModal)
+  
 
       setIsModal(prevState => ({
         ...prevState,
         modalType: 'infoModal',
-        // iconType:'errorInfo',
+
         show: true,
         title: "Error",
         errorList: isModal.errorList,
@@ -59,18 +59,7 @@ export const useHttpClient = () => {
         cancelText: "Go back",
 
       }))
-      // setIsModal ({
-      //   modalType:'infoModal',
-      //   show: true,
-      //   title: "Error",
-      //   errorList:isModal.errorList,
-      //   message: err.message || "Something went wrong!",
-      //   onConfirm: () => setIsModal({ show: false }),
-      //   onCancel: () => setIsModal({ show: false }),
-      //   confirmText: "Close",
-      //   cancelText: "Go back",
-
-      // });
+    
 
       setIsRoutingState(prevState => ({ ...prevState, isLoading: false }))
       console.error('Error from hook:', err.message);
@@ -92,3 +81,6 @@ export const useHttpClient = () => {
   // return { isLoading, error, sendRequest, clearError };
   return { error, sendRequest, clearError };
 }
+
+
+console.log('http hook')

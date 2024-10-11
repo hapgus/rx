@@ -1,8 +1,10 @@
 import styles from './VideoComponent.module.css';
-import { GenericScrollHeader } from '../../ScrollingComponent/GenericScrollHeader';
+
+import {GenericScrollHeader} from "../../ScrollingComponent/Header/GenericScrollHeader";
 import { useState, useEffect, useRef } from 'react';
 import { GridSystem } from '../../GridSystem/GridSystem';
 import { useResponsiveStateHook } from '../../../hooks/responsive-hook';
+import { PageText } from '../../Text/Text';
 
 
 const MobileVideoComponent = ({ videos }) => {
@@ -66,11 +68,14 @@ const MobileVideoComponent = ({ videos }) => {
     return (
         <section className={styles.applianceSectionContainer3}>
             <GridSystem
-             containerPaddingTop='2rem'
-             containerPaddingBottom='2rem'
-             containerBorderBottom='1px solid #D0CBC1'
-             containerBackgroundColor='#E6E1D6'
+                containerPaddingTop='2rem'
+                containerPaddingBottom='2rem'
+                containerBorderBottom='1px solid #D0CBC1'
+                containerBackgroundColor='#E6E1D6'
             >
+                <div>
+                    <PageText type='bodyTitle'>Feature Innovation</PageText>
+                </div>
                 {/* <div className={styles.videosHeaderWrapper}> */}
                 <div className={styles.videosScrollHeader}>
                     <GenericScrollHeader
@@ -152,12 +157,14 @@ const DesktopVideoComponent = ({ videos }) => {
 
     return (
         <GridSystem
-        containerPaddingTop='2rem'
-             containerPaddingBottom='2rem'
-             containerBorderBottom='1px solid #D0CBC1'
-               containerBackgroundColor='#E6E1D6'
+            containerPaddingTop='2rem'
+            containerPaddingBottom='2rem'
+            containerBorderBottom='1px solid #D0CBC1'
+            containerBackgroundColor='#E6E1D6'
         >
-
+            <div>
+                    <PageText type='bodyTitle'>Feature Innovation</PageText>
+                </div>
             <div className={styles.videosScrollHeader}>
                 <GenericScrollHeader
                     // headerText='Feature Innovation'

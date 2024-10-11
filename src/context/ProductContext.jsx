@@ -1,6 +1,6 @@
 import { createContext, useEffect, useReducer } from "react";
-import { PRODUCT_DATA } from "../data/PRODUCT_DATA";
-import { useRetailer } from "../hooks/retailer-hook";
+// import { PRODUCT_DATA } from "../data/PRODUCT_DATA";
+import { useRetailer } from "../hooks/use-routing-hooks";
 
 export const ProductContext = createContext({
     publicProducts: [],

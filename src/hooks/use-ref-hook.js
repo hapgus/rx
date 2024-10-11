@@ -9,3 +9,5 @@ export const useScrollableRefs = (length) => {
     // console.log('refs current',refs.current)
     return refs.current;
 };
+
+console.log('use scrollable ref')

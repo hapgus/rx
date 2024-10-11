@@ -28,8 +28,8 @@
     gap: 1rem;
 }
 .categoryTitle a{
-/* color: var(--color-gray-01); */
-color: var(--color-red-02);
+color: var(--color-gray-01);
+/* color: var(--color-red-02); */
 font-family: var(--text-semibold);
 }
 .categoryHeadline{

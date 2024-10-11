@@ -6,12 +6,13 @@ import { useState } from "react";
 import { FormComponent } from "../../FormComponent/FormComponent";
 import { Button } from "../../Button/Button";
 import { validateSigninForms } from "../../../utils/form-validation";
-import { useNotificationHook } from "../../../hooks/notification-hook";
+import { useNotificationHook } from "../../../hooks/use-notification-hooks";
 import { useHttpClient } from "../../../hooks/http-hook";
 import { useNavigate } from "react-router";
-import { useRoutingHook } from "../../../hooks/routing-hook";
-import { useAuthHook } from "../../../hooks/auth-hook";
+import { useRoutingHook } from "../../../hooks/use-routing-hooks";
+import { useAuthHook } from "../../../hooks/use-auth-hooks";
 import { jwtDecode } from "jwt-decode"
+import { AnimatedComponent } from "../../../hooks/use-framer-motion";
 
 
 export const LoginForm = () => {
@@ -86,7 +87,7 @@ export const LoginForm = () => {
                     const expirationTime = new Date(new Date().getTime() + 1000 * 60 * 60);
                     login(activeUser.token, expirationTime.toISOString());
                     setIsRoutingState(prevState => ({ ...prevState, isLoading: false }));
-                 
+
                     // redirect('/portal/dashboard');
                     // NEW
 
@@ -101,12 +102,12 @@ export const LoginForm = () => {
                 }
 
             } catch (error) {
-              
+
                 const revisedErrorMessage = error.toString().replace(/^Error:\s*/, '');
 
                 setIsModal({
                     show: true,
-                   
+
                     modalType: 'errorModal',
                     title: "Sign in failed",
                     message: revisedErrorMessage,
@@ -137,32 +138,36 @@ export const LoginForm = () => {
     return (
         <>
             <FormComponent>
-
-                <TextInput
-                    id='email'
-                    labelName='Email'
-                    errorText='Email required'
-                    validators={[VALIDATOR_REQUIRE()]}
-                    onInput={inputHandler}
+                <AnimatedComponent type='3dRoationDropdownEffects' delay={.3}>
+                    <TextInput
+                        id='email'
+                        labelName='Email'
+                        errorText='Email required'
+                        validators={[VALIDATOR_REQUIRE()]}
+                        onInput={inputHandler}
+                        // secondaryLabel='optional'
+                        iconType='email'
+                        required
+                    />
+                </AnimatedComponent>
+                <AnimatedComponent type='3dRoationDropdownEffects' delay={.3}>
+                    <TextInput
+                        id='password'
+                        labelName='Password'
+                        errorText='Password required'
+                        validators={[VALIDATOR_REQUIRE()]}
+                        onInput={inputHandler}
+                        type={passwordInputType}
+                        iconType={passwordInputType === "password" ? 'eyeClosed' : 'eyeOpened'}
+                        onIconClick={togglePasswordVisibility}
                     // secondaryLabel='optional'
-                    iconType='email'
-                    required
-                />
-                <TextInput
-                    id='password'
-                    labelName='Password'
-                    errorText='Password required'
-                    validators={[VALIDATOR_REQUIRE()]}
-                    onInput={inputHandler}
-                    type={passwordInputType}
-                    iconType={passwordInputType === "password" ? 'eyeClosed' : 'eyeOpened'}
-                    onIconClick={togglePasswordVisibility}
-                // secondaryLabel='optional'
-                />
-
+                    />
+                </AnimatedComponent>
                 <div>
-                    <Button type='button' buttonStyleType="primaryAction" onClick={onSigninSubmit}>Sign in</Button>
-                    {/* <button disabled={!formState.isValid}>Submit</button> */}
+                    <AnimatedComponent type='3dRoationDropdownEffects' delay={.3}>
+                        <Button type='button' buttonStyleType="primaryAction" onClick={onSigninSubmit}>Sign in</Button>
+                        {/* <button disabled={!formState.isValid}>Submit</button> */}
+                    </AnimatedComponent>
                 </div>
 
             </FormComponent>

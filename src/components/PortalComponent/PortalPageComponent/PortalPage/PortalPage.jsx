@@ -18,7 +18,7 @@ export const PortalPage = ({
                 <div className={styles.portalPageHeaderInnerDiv}>
                     {breadcrumb &&
                         <div className={styles.breadcrumbs}>
-                            <LinkComponent href='/portal/dashboard'>
+                            <LinkComponent href='/portal/overview'>
                                <span className={styles.linkText}><PageText>Portal</PageText></span> 
                             </LinkComponent>
 

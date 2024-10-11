@@ -3,7 +3,7 @@ import { PieChart } from "../../PortalChartComponent/PieChart";
 import { useChartConfig } from "../../../../hooks/chart-config-hook";
 import { transformWithSchema } from "../../../../utils/data-transformer";
 import { PortalCard } from "../../PortalPageComponent/PortalCard/PortalCard";
-import { formatChartLabel } from "../../../../utils/text-help";
+import { formatChartLabel } from "../../../../utils/helper-functions";
 
 
 export const SearchTypePieChart = () => {

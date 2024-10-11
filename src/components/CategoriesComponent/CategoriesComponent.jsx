@@ -1,15 +1,16 @@
-import { useProductsHook } from "../../hooks/product-hook";
+import { useProductsHook } from "../../hooks/use-product-hooks";
+import { useRetailer } from "../../hooks/use-routing-hooks";
 
-import { GetCategoryVerbiage, ListProductsByCategorySubcategory } from "../../utils/category-helper";
+
 import { ProductCategoryCard } from "../ProductCards/ProductCategoryCard/ProductCategoryCard";
-import { capitalizeFirstLetterEachWord } from "../../utils/text-help";
-import { NormalizeSlugs } from "../../utils/link-helper";
+
+import { NormalizeSlugs, capitalizeFirstLetterEachWord, GetCategoryVerbiage, ListProductsByCategorySubcategory } from "../../utils/helper-functions";
 
 import { PageText } from "../Text/Text";
 import styles from './CategoriesComponent.module.css'
 import { LinkComponent } from "../Links/LinkComponent";
 import { GridSystem } from "../GridSystem/GridSystem";
-import { SUBCATEGORY_NAMING_MAP } from "../../utils/category-config";
+import { SUBCATEGORY_NAMING_MAP } from "../../hooks/use-category-config";
 
 const categoryTitleMap = {
     signature: 'LG SIGNATURE',
@@ -18,8 +19,8 @@ const categoryTitleMap = {
 };
 
 const categoryComponentStyleMap = {
-    dishwashers:  styles.dishCategoryCardsWrapper,
-    'air-care':  styles.singleCategoryCardsWrapper,
+    dishwashers: styles.dishCategoryCardsWrapper,
+    'air-care': styles.singleCategoryCardsWrapper,
     vacuums: styles.singleCategoryCardsWrapper
 }
 
@@ -27,37 +28,33 @@ const getCategoryTitle = (category) => {
     return categoryTitleMap[category] || capitalizeFirstLetterEachWord(category);
 };
 
-const getCategoryComponent = (category)=>{
+const getCategoryComponent = (category) => {
     return categoryComponentStyleMap[category] || styles.categoryCardsWrapper
 }
 
 export const CategoriesComponent = () => {
+    
     const { publicProducts } = useProductsHook();
+    const { isHomeDepotApp  } = useRetailer();
 
     const categorizedProducts = ListProductsByCategorySubcategory(publicProducts);
 
-    // const CATEGORY_NAME_MAP = {
-    //     "stylers": "LG Styler",
-    //     "washtower":"WashTower",
-    //     "under 33\" french door":"33\" and Under French Door"
-       
-    //   };
- // Transform categorizedProducts with updated subcategory names
- const transformedCategories = Object.entries(categorizedProducts).reduce((acc, [categoryName, subcategories]) => {
-    // Map through subcategories and rename as necessary
-    const updatedSubcategories = Object.entries(subcategories).reduce((subAcc, [subName, products]) => {
-        // Use mapped name or fallback to the original
-        // const updatedName = CATEGORY_NAME_MAP[subName] || subName;
-        const updatedName = SUBCATEGORY_NAMING_MAP[subName] || subName;
-        return { ...subAcc, [updatedName]: products };
+    const categoryPagePath = isHomeDepotApp && isHomeDepotApp.isHomeDepotActive === true ? '/appliances/' : null;
+
+    // Transform categorizedProducts with updated subcategory names
+    const transformedCategories = Object.entries(categorizedProducts).reduce((acc, [categoryName, subcategories]) => {
+        // Map through subcategories and rename as necessary
+        const updatedSubcategories = Object.entries(subcategories).reduce((subAcc, [subName, products]) => {
+            // Use mapped name or fallback to the original
+            // const updatedName = CATEGORY_NAME_MAP[subName] || subName;
+            const updatedName = SUBCATEGORY_NAMING_MAP[subName] || subName;
+            return { ...subAcc, [updatedName]: products };
+        }, {});
+
+        // Add updated subcategories to the accumulated result
+        acc[categoryName] = updatedSubcategories;
+        return acc;
     }, {});
-
-    // Add updated subcategories to the accumulated result
-    acc[categoryName] = updatedSubcategories;
-    return acc;
-}, {});
-
-console.log("Transformed Categories:", transformedCategories);
 
     const subcategoryProductImageMap = {
         signature: {
@@ -125,21 +122,15 @@ console.log("Transformed Categories:", transformedCategories);
             'Specialty Dishwashers': 'LDTH7972_.webp',
             'Accessories': 'LDTH7972_.webp',
         }
-        // dishwashers: {
-        //     dishwasher: 'WM9500HKA.webp',
-        //     'pocket handle dishwashers': 'WM9500HKA.webp',
-        //     'towel bar handle dishwashers': 'WM9500HKA.webp',
-        //     'specialty dishwashers': 'WM9500HKA.webp',
-        //     'accessories': 'WM9500HKA.webp',
-        // }
-
     }
 
 
-    // return Object.entries(categorizedProducts).map(([category, subcategories], categoryIndex) => {
-        return Object.entries(transformedCategories).map(([category, subcategories], categoryIndex) => {
 
+    return Object.entries(transformedCategories).map(([category, subcategories], categoryIndex) => {
+       
         const verbiage = GetCategoryVerbiage(category);
+        const pagePath = '/appliances/'
+       
         return (
             <div key={`category-${categoryIndex}`} className={styles.categoryCardsContainer}>
                 <GridSystem gridType="spread">
@@ -147,31 +138,36 @@ console.log("Transformed Categories:", transformedCategories);
                         <div className={styles.categorySectionHeaderWrapper}>
                             <div className={styles.categoryTitleWrapper}>
                                 <div className={styles.categoryTitle}>
-                                    <LinkComponent href={`${NormalizeSlugs(category)}`}>
-                                    <PageText type="bodyTertiaryTitle">{getCategoryTitle(category)}</PageText>
+                                    
+                                    <LinkComponent 
+                                   href={`${isHomeDepotApp && isHomeDepotApp.isHomeDepotActive 
+                                        ? `/appliances/${NormalizeSlugs(category)}` 
+                                        : NormalizeSlugs(category)                
+                                    }`
+                                }>
+                                  
+                                        <PageText type="bodyTitle">{getCategoryTitle(category)}</PageText>
                                         {/* <PageText type="bodyTertiaryTitle">{capitalizeFirstLetterEachWord(category)}</PageText> */}
                                     </LinkComponent>
                                 </div>
                                 <div className={styles.categoryHeadline}>
-                                    <PageText type="bodyFeatureSectionTitle">{verbiage.allCategoriesHeadline}</PageText>
+                                    <PageText type="bodyCalloutTitle">{verbiage.allCategoriesHeadline}</PageText>
                                 </div>
                                 {/* <PageText type="pageSubtitle">{verbiage.allCategoriesSubheadline}</PageText> */}
                             </div>
                             <div className={styles.categoryDescriptionWrapper}>
                                 <div className={styles.categoryDescriptionShort}>
-                                    <PageText type="bodyDescriptionLarge">{verbiage.allCategoriesDescriptionShort}</PageText>
+                                    <PageText type="bodyCallout">{verbiage.allCategoriesDescriptionShort}</PageText>
                                 </div>
                                 <div className={styles.categoryDescriptionLong}>
-                                    <PageText type="bodyDescriptionLarge">{verbiage.allCategoriesDescriptionLong}</PageText>
+                                    <PageText type="bodyCallout">{verbiage.allCategoriesDescriptionLong}</PageText>
                                 </div>
                             </div>
-                            {/* <PageText type="pageHeaderDescription">{verbiage.description1}</PageText> */}
                         </div>
                     </div>
                 </GridSystem>
                 <GridSystem gridType="spread">
                     <div className={styles.contentWrapper}>
-                        {/* <div className={styles.categoryCardsWrapper}> */}
                         <div className={getCategoryComponent(category)}>
 
                             {Object.entries(subcategories)?.map(([subcategory, subcategoryIndex]) => (
@@ -184,8 +180,7 @@ console.log("Transformed Categories:", transformedCategories);
                                     // hashLinkPath={`${category}#${NormalizeSlugs(subcategory)}`}
                                     subcategoryImagePath={category && subcategoryProductImageMap[category][subcategory]}
                                 />
-                            ))
-                            }
+                            ))}
                         </div>
                     </div>
                 </GridSystem>

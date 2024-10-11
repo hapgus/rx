@@ -15,7 +15,7 @@ export const FormSection = ({ sectionTitle, sectionDescription, children }) => {
                             sectionTitle &&
                             <div className={styles.formSectionTitleWrapper}>
                                 <div className={styles.formSectionTitle}>
-                                    <PageText type='pageTitle'>{sectionTitle}</PageText>
+                                    <PageText type='bodyTitle'>{sectionTitle}</PageText>
                                 </div>
                             </div>
                         }

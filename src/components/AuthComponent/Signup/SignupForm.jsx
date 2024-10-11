@@ -5,13 +5,14 @@ import { FormComponent } from "../../FormComponent/FormComponent"
 import { Button } from '../../Button/Button';
 import { useForm } from "../../../hooks/form-hook";
 import { TextInput } from "../../FormComponent/TextInput/TextInput";
-import { useNotificationHook } from "../../../hooks/notification-hook";
+import { useNotificationHook } from "../../../hooks/use-notification-hooks";
 import { validateSignupForms } from "../../../utils/form-validation";
 import { useHttpClient } from "../../../hooks/http-hook";
-import { useRoutingHook } from "../../../hooks/routing-hook";
+import { useRoutingHook } from "../../../hooks/use-routing-hooks";
 import { useNavigate } from "react-router";
 import { VALIDATOR_REQUIRE } from "../../../utils/validators";
 import { useState } from "react";
+import { AnimatedComponent } from "../../../hooks/use-framer-motion";
 
 export const SignupForm = () => {
 
@@ -61,11 +62,11 @@ export const SignupForm = () => {
     }
     const handleCloseModalClick = () => {
         // resetForm();
-         redirect('/member/login') 
-         setIsModal(prevState => ({ ...prevState, show: false }))
-      
-        console.log('clicked')
-      
+        redirect('/login')
+        setIsModal(prevState => ({ ...prevState, show: false }))
+
+
+
     }
     const submitForm = async (e) => {
         e.preventDefault();
@@ -74,7 +75,7 @@ export const SignupForm = () => {
         const errorMessage = validateSignupForms(formState)
         if (errorMessage.length !== 0) {
 
-            setIsModal( {
+            setIsModal({
                 show: true,
                 modalType: 'errorModal',
                 title: "Almost there",
@@ -108,9 +109,9 @@ export const SignupForm = () => {
                 const response = await sendRequest(
                     `${process.env.REACT_APP_BACKEND_URL}signup`,
                     'POST',
-                    JSON.stringify(data),{
+                    JSON.stringify(data), {
                     'Content-Type': 'application/json',
-                    }
+                }
                     // formData
                 )
                 if (response.responseStatusCode === 201) {
@@ -123,7 +124,7 @@ export const SignupForm = () => {
                         title: "Request Sent!",
                         message: "Thank you for signing up! We’re reviewing your request and will send you a confirmation email once it’s approved. While you wait, feel free to explore our LG Home Appliance Product Guide.",
                         errorList: errorMessage,
-                        onConfirm:handleCloseModalClick, 
+                        onConfirm: handleCloseModalClick,
                         onCancel: handleHomeModalClick,
                         confirmText: "Close",
                         cancelText: "Explore",
@@ -144,78 +145,89 @@ export const SignupForm = () => {
     return (
         // <FormComponent onSubmit={submitForm}>
         <FormComponent >
-           
-            <TextInput
-                id="firstName"
-                name="firstName"
-                labelName="First name"
-                 secondaryLabelToolTip='First name must be between 2 and 50 characters long'
-                errorText='First required'
-                validators={[VALIDATOR_REQUIRE()]}
-                onInput={inputHandler}
-                value={formState.inputs.firstName.value}
-            />
-            <TextInput
-                id="lastName"
-                name="lastName"
-                labelName="Last name"
-                 secondaryLabelToolTip='Last name must be between 2 and 50 characters long'
-                // secondaryLabel='Special characters allowed ( / \ - _ )'
-                errorText='Last name required'
-                validators={[VALIDATOR_REQUIRE()]}
-                onInput={inputHandler}
+            <AnimatedComponent type='3dRoationDropdownEffects' delay={.3}>
+                <TextInput
+                    id="firstName"
+                    name="firstName"
+                    labelName="First name"
+                    secondaryLabelToolTip='First name must be between 2 and 50 characters long'
+                    errorText='First required'
+                    validators={[VALIDATOR_REQUIRE()]}
+                    onInput={inputHandler}
+                    value={formState.inputs.firstName.value}
+                />
+            </AnimatedComponent>
+            <AnimatedComponent type='3dRoationDropdownEffects' delay={.3}>
+                <TextInput
+                    id="lastName"
+                    name="lastName"
+                    labelName="Last name"
+                    secondaryLabelToolTip='Last name must be between 2 and 50 characters long'
+                    // secondaryLabel='Special characters allowed ( / \ - _ )'
+                    errorText='Last name required'
+                    validators={[VALIDATOR_REQUIRE()]}
+                    onInput={inputHandler}
 
-            />
-            <TextInput
-                id="email"
-                name="email"
-                labelName="Email"
-                // secondaryLabel=''
-                errorText='Email required'
-                validators={[VALIDATOR_REQUIRE()]}
-                onInput={inputHandler}
+                />
+            </AnimatedComponent>
+            <AnimatedComponent type='3dRoationDropdownEffects' delay={.3}>
+                <TextInput
+                    id="email"
+                    name="email"
+                    labelName="Email"
+                    // secondaryLabel=''
+                    errorText='Email required'
+                    validators={[VALIDATOR_REQUIRE()]}
+                    onInput={inputHandler}
 
-            />
-            <TextInput
-                id="store"
-                name="store"
-                labelName="Store"
-                secondaryLabelToolTip='The name of your retailer. Example, The Home Depot.'
-                // errorText='store required'
-                // validators={[VALIDATOR_REQUIRE()]}
-                validators={[]}
-                onInput={inputHandler}
+                />
+            </AnimatedComponent>
+            <AnimatedComponent type='3dRoationDropdownEffects' delay={.3}>
+                <TextInput
+                    id="store"
+                    name="store"
+                    labelName="Store"
+                    secondaryLabelToolTip='The name of your retailer. Example, The Home Depot.'
+                    // errorText='store required'
+                    // validators={[VALIDATOR_REQUIRE()]}
+                    validators={[]}
+                    onInput={inputHandler}
 
-            />
-            <TextInput
-                id="password"
-                name="password"
-                labelName="Password"
-                // secondaryLabel=''
-                errorText='Password required'
-                validators={[VALIDATOR_REQUIRE()]}
-                secondaryLabelToolTip='Password must be at least 8 characters long, with a least one number, one lowercase letter, one upper case letter, and one special character. Your password should not contain spaces.'
-                type={passwordInputType}
-                iconType={passwordInputType === "password" ? 'eyeClosed' : 'eyeOpened'}
-                onIconClick={togglePasswordVisibility}
-                onInput={inputHandler}
-            />
-            <TextInput
-                id='confirmPassword'
-                labelName='Confirm Password'
-                errorText='Password confirmation required'
-                validators={[VALIDATOR_REQUIRE()]}
-                onInput={inputHandler}
-                type={confirmPasswordInputType}
-                iconType={confirmPasswordInputType === "password" ? 'eyeClosed' : 'eyeOpened'}
-                onIconClick={toggleConfirmPasswordVisibility}
-            // secondaryLabel='optional'
-            />
+                />
+            </AnimatedComponent>
+            <AnimatedComponent type='3dRoationDropdownEffects' delay={.3}>
+                <TextInput
+                    id="password"
+                    name="password"
+                    labelName="Password"
+                    // secondaryLabel=''
+                    errorText='Password required'
+                    validators={[VALIDATOR_REQUIRE()]}
+                    secondaryLabelToolTip='Password must be at least 8 characters long, with a least one number, one lowercase letter, one upper case letter, and one special character. Your password should not contain spaces.'
+                    type={passwordInputType}
+                    iconType={passwordInputType === "password" ? 'eyeClosed' : 'eyeOpened'}
+                    onIconClick={togglePasswordVisibility}
+                    onInput={inputHandler}
+                />
+            </AnimatedComponent>
+            <AnimatedComponent type='3dRoationDropdownEffects' delay={.3}>
+                <TextInput
+                    id='confirmPassword'
+                    labelName='Confirm Password'
+                    errorText='Password confirmation required'
+                    validators={[VALIDATOR_REQUIRE()]}
+                    onInput={inputHandler}
+                    type={confirmPasswordInputType}
+                    iconType={confirmPasswordInputType === "password" ? 'eyeClosed' : 'eyeOpened'}
+                    onIconClick={toggleConfirmPasswordVisibility}
+                // secondaryLabel='optional'
+                />
+            </AnimatedComponent>
 
 
-
-            <Button type='button' onClick={submitForm} buttonStyleType="primaryAction">Sign up</Button>
-
+            <AnimatedComponent type='3dRoationDropdownEffects' delay={.3}>
+                <Button type='button' onClick={submitForm} buttonStyleType="primaryAction">Sign up</Button>
+            </AnimatedComponent>
         </FormComponent>
     )
 }

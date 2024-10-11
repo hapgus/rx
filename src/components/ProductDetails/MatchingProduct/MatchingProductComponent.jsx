@@ -1,8 +1,9 @@
-import { GenericScrollHeader } from "../../ScrollingComponent/GenericScrollHeader";
+
+import { GenericScrollHeader } from "../../ScrollingComponent/Header/GenericScrollHeader";
 import { RelatedProductCard } from "../../ProductCards/RelatedProductCard/RelatedProductCard";
-import { useResponsiveStateHook } from "../../../hooks/responsive-hook";
+
 import { useState, useEffect, useRef } from "react";
-import { GridSystem } from "../../GridSystem/GridSystem";
+
 import styles from './MatchingProductComponent.module.css'
 export const MatchingProductComponent = ({ product }) => {
 
@@ -30,7 +31,7 @@ export const MatchingProductComponent = ({ product }) => {
 
     const scroll = (direction) => {
         if (scrollRef.current) {
-            const scrollAmount = 300; // Adjust this value as needed
+            const scrollAmount = 315; // Adjust this value as needed
             if (direction === 'left') {
                 scrollRef.current.scrollLeft -= scrollAmount;
             } else {

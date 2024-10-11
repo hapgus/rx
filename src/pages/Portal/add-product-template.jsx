@@ -1,12 +1,11 @@
 
-// import { UpdateProductForm } from '../../components/PortalComponent/PortalFormComponent/UpdateProductForm';
+
 import { UpdateProductForm } from '../../components/PortalComponent/PortalFormComponent/UpdateProduct/UpdateProductForm';
-// import { PortalPageHeader, PortalPageWrapper } from '../../components/PortalComponent/PortalPageComponent/PortalPageComponents';
-// import { PageText } from '../../components/Text/Text';
+
 import { useParams } from 'react-router-dom';
-// import { PRODUCT_DATA } from '../../data/PRODUCT_DATA';
+
 import { PortalPage } from '../../components/PortalComponent/PortalPageComponent/PortalPage/PortalPage';
-import { FormWrapper } from '../../components/FormComponent/FormWrapper/FormWrapper';
+
 
 const AddProductTemplatePage = () => {
     const { productId } = useParams();

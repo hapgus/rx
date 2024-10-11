@@ -1,13 +1,12 @@
 import styles from './ProductListDropdownCard.module.css';
 import { Button } from '../../Button/Button';
-// import { NavigationLink } from "../../NavigationComponent/NavigationLink";
-// import { ImageComponent } from '../../ImageComponent/ImageComponent';
+
 
 import { PageText } from '../../Text/Text';
-import { GenerateProductURL } from '../../../utils/link-helper';
+import { GenerateProductURL } from '../../../utils/helper-functions';
 
-import { useRoutingHook } from '../../../hooks/routing-hook';
-import { NavLink } from 'react-router-dom';
+import { useRoutingHook } from '../../../hooks/use-routing-hooks';
+
 import { LinkComponent } from '../../Links/LinkComponent';
 import { RemoveFromListButton } from '../../Button/ProductButtons';
 

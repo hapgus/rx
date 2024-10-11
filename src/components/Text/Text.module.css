@@ -1,121 +1,101 @@
 /* --------------------------------------------------------------------------------------- */
-/* PORTAL */
-/* --------------------------------------------------------------------------------------- */
-.smallPortalTitle {
-    font-size: 1.8rem;
-    /* color: var(--color-gray-01) */
-}
-
-
-/* --------------------------------------------------------------------------------------- */
 /* PAGE HERO */
 /* --------------------------------------------------------------------------------------- */
 .heroTitle {
-    font-family: var(--headline-light);
-    font-weight: 600;
-    font-size: 3.2rem;
-    /* color: var(--color-gray-01) */
-}
-.smallHeroTitle {
-    font-family: var(--headline-light);
-    font-weight: 600;
-    font-size: 3.2rem;
-    /* color: var(--color-gray-01) */
-}
-.heroSubtitle {
-    font-size: 2.4rem;
-    /* color: var(--color-gray-02); */
+    display: inline-flex;
+    font-family: var(--headline-semibold);
+
+    /* font-family: var(--headline-regular);
+    font-weight: 600; */
+    font-size: 2.8rem;
+    /* letter-spacing: 1px; */
 }
 
-.heroTertiaryTitle {
-    /* color: var(--color-gray-03); */
-    font-size: 1.8rem;
+.heroSubtitle {
+    display: inline-flex;
+    font-size: 1.6rem;
+    font-weight: 600;
 }
 
 .heroDescription {
-    /* color: var(--color-gray-03); */
+    display: inline-flex;
+    font-size: 1.4rem;
+    /* font-size: 1.6rem; */
+}
+
+
+/* OLD EXTRAS */
+.heroTertiaryTitle {
+    font-size: 1.8rem;
+}
+
+.heroSubtitle {
+    font-size: 2.4rem;
+}
+
+/* --------------------------------------------------------------------------------------- */
+/* PAGE BODY */
+/* --------------------------------------------------------------------------------------- */
+.bodyTitle {
+    display: inline-flex;
+    /* font-family: var(--headline-regular);
+     font-weight: 600; */
+    font-family: var(--headline-semibold);
+    font-size: 2.8rem;
+
+    /* letter-spacing: 1px; */
+}
+
+.bodySubtitle {
+    display: inline-flex;
+    font-size: 1.6rem;
+
+    /* font-family: var(--text-semibold);
+    font-size: 2.2rem; */
+}
+
+.bodyDescription {
+    display: inline-flex;
+    font-size: 1.4rem;
+
+}
+
+.bodyCallout {
+    display: inline-flex;
+    font-size: 1.4rem;
+}
+
+.bodyCalloutTitle {
+    font-family: var(--text-semibold);
+    display: inline-flex;
     font-size: 1.6rem;
 }
 
-
-.pageTitle {
-    font-family: var(--headline-light);
-    font-weight: 600;
-    font-size: 3.2rem;
-    /* color: var(--color-gray-01) */
+.bodyCountTitle {
+    font-family: var(--text-semibold);
+    display: inline-flex;
+    font-size: 1.4rem;
 }
+
+/* OLD EXTRAS */
 
 .pageSubtitle {
-    font-size: 2rem;
-    /* color: var(--color-gray-02); */
+    font-size: 2.4rem;
 }
+
 
 .pageTertiaryTitle {
-    /* color: var(--color-gray-03); */
-    font-size: 1.6rem;
+    font-size: 2.2rem;
 }
 
-
-/* --------------------------------------------------------------------------------------- */
-/* FORMS */
-/* --------------------------------------------------------------------------------------- */
-
-.formSectionTitle {
-    font-size: 2.6rem;
-    color: var(--color-gray-01);
-    font-family: var(--headline-semibold);
-}
-
-.formLabel {
-    font-size: 1.8rem;
-    color: var(--color-gray-02);
-    font-family: var(--text-semibold);
-}
-
-.formSecondaryLabel {
-    font-size: 1.8rem;
-    color: var(--color-gray-03);
-    font-family: var(--text-regular);
-}
-
-.toolTip {
-    font-size: 1.4rem;
-    color: var(--color-gray-03);
-    font-family: var(--text-regular);
-}
-
-
-/* --------------------------------------------------------------------------------------- */
-/* NAVIGATION + FOOTER */
-/* --------------------------------------------------------------------------------------- */
-
-.navTitleText {
-    font-size: 2rem;
-    font-size: 1.8rem;
-    /* font-family: var(--text-semibold); */
-}
-
-.stickyNavTitleText {
-    font-size: 1.6rem;
-    /* font-family: var(--text-semibold); */
-}
-
-.mobileNavTitle {
-    font-size: 2rem;
-}
-
-.footerTitle {
-    font-size: 1.8rem;
-    font-family: var(--text-semibold);
-}
-
-.footerMenuItem {
-    font-size: 1.6rem;
-}
-
+/* EXTRAS  */
 /* --------------------------------------------------------------------------------------- */
 /* PRODUCT
 /* --------------------------------------------------------------------------------------- */
+.productPageTitle {
+    font-size: 2rem;
+    color: var(--color-gray-03);
+}
 
 .productPageSubtitle {
     font-family: var(--headline-light);
@@ -124,194 +104,25 @@
     color: var(--color-gray-01);
 }
 
-.productPageTitle {
-    font-size: 2rem;
-    color: var(--color-gray-03);
-}
-
 .productPageSpecTitle {
-    font-size: 2rem;
-    /* font-family: var(--text-semibold); */
-    /* color: var(--color-red-02); */
+    font-size: 1.8rem;
+    /* font-size: 2rem; */
 }
 
 .productPageSpecList {
     font-size: 1.6rem;
-    color: var(--color-gray-03);
+    /* color: var(--color-gray-03); */
 }
 
-.productPageTertiary {
-    font-size: 1.8rem;
-    color: var(--color-gray-03);
-}
-
-.productPageSection {
-    font-size: 2rem;
-    font-family: var(--text-semibold);
-    color: var(--color-gray-02);
-}
-
-
-/* --------------------------------------------------------------------------------------- */
-/* PRODUCT CARD*/
-/* --------------------------------------------------------------------------------------- */
 
 .productCardTitle {
     font-size: 1.6rem;
 }
-.productBuilderTitle {
-    font-size: 1.8rem;
-}
-.productBuilderSubtitle {
-    font-size: 2.3rem;
-}
-/* .productBuilderCategory {
-    font-size: 1.6rem;
-} */
-.productBuilderSpecTitle {
-    font-size: 2rem;
-}
-.productBuilderSpecList {
-    font-size: 1.6rem;
-}
+
 .productCardSubtitle {
     font-size: 2rem;
 }
 
-.productCardTertiaryTitle {
-    font-size: 1.4rem;
-}
-
-.productCardListText {
-    font-size: 1.2rem;
-}
-
-/* --------------------------------------------------------------------------------------- */
-/* PRINT MODE */
-/* --------------------------------------------------------------------------------------- */
-.coverTitle {
-    font-size: 6rem;
-    font-family: var(--headline-regular);
-    font-weight: 600;
-}
-
-.coverSubtitle {
-    font-size: 3.5rem;
-}
-
-/* --------------------------------------------------------------------------------------- */
-/* MODALS + ALERTS */
-/* --------------------------------------------------------------------------------------- */
-.alertTitle {
-    font-size: 1.6rem;
-    font-family: var(--text-semibold);
-}
-
-.modalTitle {
-    font-size: 3rem;
-    font-family: var(--headline-regular);
-}
-
-.modalSubtitle {}
-
-.modalTertiaryTitle {
-    font-size: 2rem;
-}
-
-
-
-/* --------------------------------------------------------------------------------------- */
-/* PAGE BODY */
-/* --------------------------------------------------------------------------------------- */
-
-.bodyTitle {}
-
-.bodySubtitle {
-    font-size: 2.2rem;
-}
-
-.bodySubtitleBold {
-    font-family: var(--text-semibold);
-    font-size: 2.2rem;
-}
-
-.bodyTertiaryTitle {
-    font-size: 1.8rem;
-}
-
-.bodyTertiaryTitleBold {
-    font-size: 1.8rem;
-    font-family: var(--text-semibold);
-}
-
-.bodyDescription {
-    font-size: 1.4rem;
-}
-
-.bodyDescriptionMedium {
-    font-size: 1.6rem;
-}
-
-.bodyDescriptionLarge {
-    font-size: 1.8rem;
-}
-
-.bodyFeatureSectionTitle {
-    font-family: var(--headline-regular);
-    /* font-weight: 600; */
-    font-size: 2.8rem;
-}
-
-.bodyBenefitTitle {
-    font-size: 2.2rem;
-
-}
-
-.bodyBenefitDescription {
-    font-size: 1.8rem;
-    color: var(--color-gray-02);
-}
-
-/* --------------------------------------------------------------------------------------- */
-/* NAVIGATION + FOOTER */
-/* --------------------------------------------------------------------------------------- */
-/* 
-.navTitleText {
-    font-size: 2rem;
-    font-family: var(--text-semibold);
-}
-
-.mobileNavTileText {
-    font-size: 2.4rem;
-}
-
-.footerTitle {
-    font-size: 1.8rem;
-    font-family: var(--text-semibold);
-
-}
-
-.footerMenuItem {
-    font-size: 1.6rem;
-} */
-
-/* --------------------------------------------------------------------------------------- */
-/* SEARCH */
-/* --------------------------------------------------------------------------------------- */
-
-.searchTitle {
-    font-size: 2.4rem;
-    font-family: var(--text-semibold);
-}
-
-.searchTertiaryTitle {
-    font-size: 1.6rem;
-}
-
-.searchSubtitle {
-    font-size: 2rem;
-    /* font-family: var(--text-semibold); */
-}
 
 .productSearchTitle {
     font-size: 1.6rem;
@@ -332,7 +143,175 @@
 }
 
 
+.productBuilderTitle {
+    font-size: 1.8rem;
+}
 
+.productBuilderSubtitle {
+    font-size: 2.3rem;
+}
+
+/* .productBuilderCategory {
+    font-size: 1.6rem;
+} */
+.productBuilderSpecTitle {
+    font-size: 2rem;
+}
+
+.productBuilderSpecList {
+    font-size: 1.6rem;
+}
+
+
+/* EXTRAS */
+
+.productPageTertiary {
+    font-size: 1.8rem;
+    color: var(--color-gray-03);
+}
+
+.productPageSection {
+    font-size: 2rem;
+    font-family: var(--text-semibold);
+    color: var(--color-gray-02);
+}
+
+.productCardTertiaryTitle {
+    font-size: 1.4rem;
+}
+
+.productCardListText {
+    font-size: 1.2rem;
+}
+
+/* --------------------------------------------------------------------------------------- */
+/* NAVIGATION + FOOTER */
+/* --------------------------------------------------------------------------------------- */
+.navTitleText {
+    font-size: 2rem;
+
+}
+
+.stickyNavTitleText {
+    font-size: 1.6rem;
+    /* font-family: var(--text-semibold); */
+}
+
+.mobileNavTitle {
+    font-size: 2rem;
+}
+
+.footerTitle {
+    font-size: 1.8rem;
+    /* font-size: 1.6rem; */
+    /* font-family: var(--text-semibold); */
+}
+
+/* EXTRAS */
+.footerMenuItem {
+    font-size: 1.6rem;
+}
+
+/* --------------------------------------------------------------------------------------- */
+/* FORMS */
+/* --------------------------------------------------------------------------------------- */
+
+.formSectionTitle {
+    font-size: 2.6rem;
+    /* color: var(--color-gray-01);
+    font-family: var(--headline-semibold); */
+}
+
+.formLabel {
+    font-size: 1.8rem;
+    color: var(--color-gray-02);
+    font-family: var(--text-regular);
+}
+
+.formSecondaryLabel {
+    font-size: 1.8rem;
+    color: var(--color-gray-03);
+    font-family: var(--text-regular);
+}
+
+.toolTip {
+    font-size: 1.4rem;
+    color: var(--color-gray-03);
+    font-family: var(--text-regular);
+}
+
+/* --------------------------------------------------------------------------------------- */
+/* MODALS + ALERTS */
+/* --------------------------------------------------------------------------------------- */
+.alertTitle {
+    font-size: 1.6rem;
+    font-family: var(--text-semibold);
+}
+
+.modalTitle {
+    font-size: 3rem;
+    font-family: var(--headline-regular);
+}
+
+
+.modalTertiaryTitle {
+    font-size: 2rem;
+}
+
+
+/* --------------------------------------------------------------------------------------- */
+/* PORTAL */
+/* --------------------------------------------------------------------------------------- */
+.smallPortalTitle {
+    font-size: 1.8rem;
+    /* color: var(--color-gray-01) */
+}
+
+/* --------------------------------------------------------------------------------------- */
+/* PRINT MODE */
+/* --------------------------------------------------------------------------------------- */
+.coverTitle {
+    font-size: 6rem;
+    font-family: var(--headline-regular);
+    font-weight: 600;
+}
+
+.coverSubtitle {
+    font-size: 3.5rem;
+}
+
+/* --------------------------------------------------------------------------------------- */
+/* SEARCH */
+/* --------------------------------------------------------------------------------------- */
+/* EXTRAS */
+.searchTitle {
+    font-size: 2.4rem;
+    font-family: var(--text-semibold);
+}
+
+.searchTertiaryTitle {
+    font-size: 1.6rem;
+}
+
+.searchSubtitle {
+    font-size: 2rem;
+}
+
+.productSearchTitle {
+    font-size: 1.6rem;
+}
+
+.productSearchSubtitle {
+    font-size: 1.6rem;
+}
+
+.productSearchNavTitle {
+    font-size: 1.4rem;
+}
+
+.productSearchNavSubtitle {
+    font-size: 1.4rem;
+}
 
 
 @media (min-width: 430px) {
@@ -340,13 +319,12 @@
     /* --------------------------------------------------------------------------------------- */
     /* PAGE HERO */
     /* --------------------------------------------------------------------------------------- */
-    /* .pageTitle {
-        font-size: 3.6rem;
-    } */
+  /* EXTRAS */
 
     .pageSubtitle {
         font-size: 2.4rem;
     }
+
     .heroSubtitle {
         font-size: 2.4rem;
     }
@@ -356,54 +334,39 @@
     }
 
 }
-
 @media (min-width: 768px) {
-    /* --------------------------------------------------------------------------------------- */
-    /* PAGE HERO */
-    /* --------------------------------------------------------------------------------------- */
-
-    /* .pageSubtitle {
-    font-size: 2rem;
-   
-}
-
-.pageTertiaryTitle {
-    font-size: 2rem;
-} */
-
     /* --------------------------------------------------------------------------------------- */
     /* PRODUCT
 /* --------------------------------------------------------------------------------------- */
 
+    /* EXTRAS */
     .productPageSubtitle {
-        font-size: 2.8rem;
         font-size: 3rem;
     }
 
     .productPageTitle {
-        font-size: 2rem;
         font-size: 2.2rem;
     }
 
     .productPageSpecTitle {
-        font-size: 2rem;
         font-size: 2.2rem;
     }
 
     .productPageSpecList {
-        font-size: 1.6rem;
         font-size: 1.8rem;
     }
 
     .productPageTertiary {
-        font-size: 1.8rem;
         font-size: 2rem;
     }
 
     .productPageSection {
-        font-size: 2rem;
         font-size: 2.2rem;
     }
+
+}
+
+@media (min-width: 834px) {
 
     /* --------------------------------------------------------------------------------------- */
     /* PAGE HERO */
@@ -412,157 +375,189 @@
         font-size: 4.4rem;
     }
 
-    .pageTitle {
-        font-size: 4.4rem;
+    .heroSubtitle {
+        font-size: 2rem;
     }
 
-    /* .pageSubtitle {
-      font-size: 3.2rem;
-  }
+    .heroDescription {
+        font-size: 1.8rem;
+    }
 
-  .pageTertiaryTitle {
-      font-size: 2.4rem;
-  } */
     /* --------------------------------------------------------------------------------------- */
     /* PAGE BODY */
     /* --------------------------------------------------------------------------------------- */
-
-    .pageFeatureSectionTitle {
-        font-size: 3.2rem;
-    }
-}
-
-@media (min-width: 834px) {}
-
-@media (min-width: 1024px) {
-    /* --------------------------------------------------------------------------------------- */
-    /* PRODUCT
-/* --------------------------------------------------------------------------------------- */
-
-    .productPageSubtitle {
-        font-size: 2.8rem;
-        font-size: 3rem;
-        font-size: 3.2rem;
+    .bodyTitle {
+        font-size: 3.6rem;
     }
 
-    .productPageTitle {
-        font-size: 2rem;
-        font-size: 2.2rem;
-        font-size: 2.4rem;
+    .bodySubtitle {
+        font-size: 1.8rem;
+    }
+
+    .bodyDescription {
+        font-size: 1.6rem;
+    }
+
+    .bodyCalloutTitle {
+        font-size: 1.8rem;
+    }
+
+    .bodyCallout {
+        display: inline-flex;
+        font-size: 1.6rem;
+    }
+
+    .bodyCountTitle {
+        font-size: 1.6rem;
     }
 
     .productPageSpecTitle {
         font-size: 2rem;
-        font-size: 2.2rem;
-        font-size: 2.4rem;
+
     }
 
-    .productPageSpecList {
-        font-size: 1.6rem;
-        font-size: 2rem;
-    }
+    /* --------------------------------------------------------------------------------------- */
+    /* PRODUCT
+/* --------------------------------------------------------------------------------------- */
+    .productPageTitle {
 
-    .productPageTertiary {
-        font-size: 1.8rem;
-        font-size: 2rem;
         font-size: 2.2rem;
     }
 
-    .productPageSection {
-        font-size: 2rem;
-        font-size: 2.2rem;
-        font-size: 2.4rem;
-    }
+}
 
-    .stickyNavTitleText {
-        font-size: 1.6rem;
-        font-size: 1.8rem;
-        /* font-family: var(--text-semibold); */
-    }
 
-    .productBuilderTitle {
-        font-size: 2.4rem;
-    }
-    .productBuilderSubtitle {
-        font-size: 3.2rem;
-    }
-    .productBuilderCategory {
-        font-size: 1.8rem;
-    }
-    .productBuilderSpecTitle {
-        font-size: 2rem;
-    }
-    .productBuilderSpecList {
-        font-size: 2rem;
-    }
+@media (min-width: 1024px) {
 
     /* --------------------------------------------------------------------------------------- */
     /* PAGE HERO */
     /* --------------------------------------------------------------------------------------- */
-    /* .pageTitle {
-        font-size: 7rem;
+    .heroTitle {
+        font-size: 5.6rem;
     }
 
-    .pageSubtitle {
-        font-size: 3.6rem;
+    .heroDescription {
+        font-size: 2.4rem;
     }
 
-    .pageTertiaryTitle {
-        font-size: 3rem;
-    } */
-
-
-    .bodyBenefitTitle {
-        font-size: 3rem;
+    /* --------------------------------------------------------------------------------------- */
+    /* PAGE BODY */
+    /* --------------------------------------------------------------------------------------- */
+    .bodyTitle {
+        font-size: 4.4rem;
     }
 
-    .bodyBenefitDescription {
+    .bodyDescription {
+        font-size: 1.8rem;
+    }
+
+    .bodyCallout {
+        font-size: 1.8rem;
+    }
+
+    .bodyCalloutTitle {
         font-size: 2rem;
     }
+
+    .bodyCountTitle {
+        font-size: 1.8rem;
+    }
+
+    /* --------------------------------------------------------------------------------------- */
+    /* PRODUCT
+/* --------------------------------------------------------------------------------------- */
+    .productPageTitle {
+        font-size: 2.4rem;
+    }
+
+    .productPageSubtitle {
+        font-size: 3.2rem;
+    }
+
+    .productPageSpecTitle {
+        /* NEW */
+        /* font-size: 2rem; */
+        font-size: 2.4rem;
+    }
+
+    .productPageSpecList {
+        /* NEW */
+        /* font-size: 1.8rem; */
+        font-size: 2rem;
+        /* color: var(--color-gray-03); */
+    }
+
+    .productBuilderTitle {
+        font-size: 2.4rem;
+        /* font-size: 1.8rem; */
+    }
+
+    .productBuilderSubtitle {
+        font-size: 3.2rem;
+        /* font-size: 2.3rem; */
+    }
+
+
+
+    .productBuilderSpecTitle {
+        font-size: 2rem;
+    }
+
+    .productBuilderSpecList {
+        /* NEW */
+        /* font-size: 2rem; */
+        font-size: 1.6rem;
+    }
+
+
+    /* EXTRAS */
+    .productPageTertiary {
+        font-size: 2.2rem;
+    }
+
+    .productPageSection {
+
+        font-size: 2.4rem;
+    }
+
+    /* --------------------------------------------------------------------------------------- */
+    /* NAVIGATION + FOOTER */
+    /* --------------------------------------------------------------------------------------- */
+
+    .stickyNavTitleText {
+        font-size: 1.8rem;
+    }
+
 }
+
+
 
 @media (min-width: 1280px) {
 
-    .productPageSubtitle {
+    .productPageTitle {
         font-size: 2.8rem;
-        font-size: 3rem;
-        font-size: 3.2rem;
+    }
+
+    .productPageSubtitle {
         font-size: 3.6rem;
     }
-
-    .productPageTitle {
-        font-size: 2rem;
-        font-size: 2.2rem;
-        font-size: 2.4rem;
-        font-size: 2.8rem;
-    }
-
 }
 
 @media (min-width: 1440px) {
 
-    .productPageSubtitle {
-        font-size: 2.8rem;
-        font-size: 3rem;
-        font-size: 3.2rem;
-        font-size: 3.6rem;
-        font-size: 4.4rem;
-    }
-
     .productPageTitle {
-        font-size: 2rem;
-        font-size: 2.2rem;
-        font-size: 2.4rem;
-        font-size: 2.8rem;
         font-size: 3.6rem
     }
 
     .stickyNavTitleText {
-        font-size: 1.6rem;
-        font-size: 1.8rem;
         font-size: 2rem;
-        /* font-family: var(--text-semibold); */
+
     }
+
+    .productPageSubtitle {
+        font-size: 4.4rem;
+    }
+
 
 }
 
@@ -589,16 +584,3 @@
 
 
 }
-
-/* --------------------------------------------------------------------------------------- */
-/* MEDIA QUERY REFERENCE */
-/* --------------------------------------------------------------------------------------- */
-/* 
-@media (min-width: 430px) {}
-@media (min-width: 768px) {}
-@media (min-width: 834px) {}
-@media (min-width: 1024px) {} - MOBILE / DESKTOP Breakpoint
-@media (min-width: 1280px) {}
-@media (min-width: 1440px) {}
-@media (min-width: 1920px) {} 
-*/

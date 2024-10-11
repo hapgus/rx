@@ -1,7 +1,7 @@
 import styles from './Specifications.module.css';
 // import { ProductText } from '../TextComponent/TextComponent';
 import { PageText } from '../../Text/Text';
-import { capitalizeFirstLetterEachWord } from '../../../utils/text-help';
+import { capitalizeFirstLetterEachWord } from '../../../utils/helper-functions';
 
 
 export const Specifications = ({ product, print = false }) => {
@@ -10,11 +10,12 @@ export const Specifications = ({ product, print = false }) => {
         text = text.toLowerCase();
         return text.charAt(0).toUpperCase() + text.slice(1);
     }
-console.log('from spec',product)
+
     const specListStyles = print === true
         ? {
             ulStyles: styles.printUl,
             liStyles: styles.printLi,
+
             liHeaderStyles: styles.liHeaderStyles,
         }
         : {
@@ -28,10 +29,11 @@ console.log('from spec',product)
         <>
             <div className={styles.specificationComponentContainer}>
                 {
-                    // product.specTitle1 && product.specList1 &&
-                    product.specList1 &&
+                    product.specTitle1 && product.specList1 &&
                     <div>
+                        <span className={styles.printSpecListTitle}>{capitalizeFirstLetterEachWord(product.specTitle1)}</span>
                         <div className={styles.specListTitle}>
+
                             <PageText type='productPageSpecTitle'>{capitalizeFirstLetterEachWord(product.specTitle1)}</PageText>
                         </div>
                         <ul className={specListStyles.ulStyles}>{product.specList1.map((e, idx) => (
@@ -43,9 +45,11 @@ console.log('from spec',product)
                         </ul>
                     </div>
                 }
-                {product.specList2 &&
+                {product.specTitle2 && product.specList2 &&
                     <div>
+                        <span className={styles.printSpecListTitle}>{capitalizeFirstLetterEachWord(product.specTitle2)}</span>
                         <div className={styles.specListTitle}>
+
                             <PageText type='productPageSpecTitle'>{capitalizeFirstLetter(product.specTitle2)}</PageText>
                         </div>
                         <ul className={specListStyles.ulStyles}>{product.specList2.map((e, idx) => (
@@ -56,9 +60,11 @@ console.log('from spec',product)
                         </ul>
                     </div>
                 }
-                {product.specList3 &&
+                {product.specTitle3 && product.specList3 &&
                     <div>
+                        <span className={styles.printSpecListTitle}>{capitalizeFirstLetterEachWord(product.specTitle3)}</span>
                         <div className={styles.specListTitle}>
+
                             <PageText type='productPageSpecTitle'>{capitalizeFirstLetter(product.specTitle3)}</PageText>
                         </div>
                         <ul className={specListStyles.ulStyles}>{product.specList3.map((e, idx) => (
@@ -69,9 +75,11 @@ console.log('from spec',product)
                         </ul>
                     </div>
                 }
-                {product.specList4 &&
+                {product.specTitle4 && product.specList4 &&
                     <div>
+                        <span className={styles.printSpecListTitle}>{capitalizeFirstLetterEachWord(product.specTitle4)}</span>
                         <div className={styles.specListTitle}>
+
                             <PageText type='productPageSpecTitle'>{capitalizeFirstLetter(product.specTitle4)}</PageText>
                         </div>
                         <ul className={specListStyles.ulStyles}>{product.specList4.map((e, idx) => (

@@ -4,16 +4,16 @@ import { PageText } from "../../../Text/Text";
 import styles from "../PortalForm.module.css";
 import { Button } from "../../../Button/Button";
 
-import { useAuth, useLogout } from "../../../../hooks/auth-hook";
+import { useAuth, useLogout } from "../../../../hooks/use-auth-hooks";
 import { useForm } from "../../../../hooks/form-hook";
 
 import { useHttpClient } from "../../../../hooks/http-hook";
 
 import { Select } from "../../../FormComponent/Select/Select";
 
-import { useProductsHook } from "../../../../hooks/product-hook";
+import { useProductsHook } from "../../../../hooks/use-product-hooks";
 
-import { useRoutingHook } from "../../../../hooks/routing-hook";
+import { useRoutingHook } from "../../../../hooks/use-routing-hooks";
 
 import { VALIDATOR_REQUIRE } from "../../../../utils/validators";
 import { TextArea } from "../../../FormComponent/TextArea/TextArea";
@@ -24,12 +24,12 @@ import { TextInput } from "../../../FormComponent/TextInput/TextInput";
 import { NumberInput } from "../../../FormComponent/Number/NumberInput";
 import { validateProductForm } from "../../../../utils/form-validation";
 import { useDynamicForm } from "../../../../hooks/use-dynamic-form-hook";
-import { useNotificationHook } from "../../../../hooks/notification-hook";
-import { capitalizeFirstLetterEachWord } from "../../../../utils/text-help";
+import { useNotificationHook } from "../../../../hooks/use-notification-hooks";
+
 import { FormWrapper } from "../../../FormComponent/FormWrapper/FormWrapper";
 import { FormSection } from "../../../FormComponent/FormSection/FormSection";
 import { useDataContext } from "../../../../hooks/data-hook";
-import { appendFormDataWithLineBreak } from "../../../../utils/form-helpers";
+import { appendFormDataWithLineBreak, capitalizeFirstLetterEachWord } from "../../../../utils/helper-functions";
 import { ResourceFormSection } from "../../../FormComponent/Dynamic/ResourceFormSection";
 import { StaticImageUpload } from "../../../FormComponent/ImageUpload/StaticImageUpload";
 
@@ -150,7 +150,7 @@ export const CreateProductForm = () => {
         redirect('/portal/product-directory')
     }
 
-       /* --------------------------------------------------------------------------------------- */
+    /* --------------------------------------------------------------------------------------- */
     /* HANDLE NO AUTH REDIRECTS*/
     /* --------------------------------------------------------------------------------------- */
     const handleUnAuthorizedAccess = () => {
@@ -177,8 +177,8 @@ export const CreateProductForm = () => {
                 onCancel: handleUnAuthorizedAccess,
             })
         } else {
-           
-    
+
+
             setIsModal({
                 show: true,
                 modalType: 'productConfirmationModal',
@@ -196,7 +196,7 @@ export const CreateProductForm = () => {
     const handleFormSubmit = async (e) => {
 
 
-    
+
         // const formErrors = validateProductForm(formState, selectedImage, selectedQrcodeImage)
 
         const { errorMessage, processedValues } = validateProductForm(formState, selectedImage, selectedQrcodeImage)
@@ -266,7 +266,7 @@ export const CreateProductForm = () => {
                 setIsManagedDataState(prevState => ({ ...prevState, loading: true }));
 
                 // const response = await sendRequest(`http://localhost:3005/add-product`,
-                    const response = await sendRequest(` ${process.env.REACT_APP_BACKEND_URL}add-product`,
+                const response = await sendRequest(` ${process.env.REACT_APP_BACKEND_URL}add-product`,
                     'POST',
                     formData
                 )
@@ -328,14 +328,14 @@ export const CreateProductForm = () => {
         <FormComponent>
             <FormSection
                 sectionTitle="Define your product"
-                sectionDescription="Get started by adding the headline text and retailer information."
+                sectionDescription="Get started by adding headlines and retailer information."
             >
                 <FormWrapper>
                     <TextInput
                         id="title"
                         name="title"
                         labelName="Title"
-                        secondaryLabelToolTip='Title must be between 3 and 100 characters. Special characters allowed ( / - _ )'
+                        secondaryLabelToolTip='Title must be between 3 and 100 characters. Special characters allowed ( / - _ ). Use a dash between two product names, when necessary ie. DLE7000W-DLG7001W. '
                         errorText='Product title required'
                         validators={[VALIDATOR_REQUIRE()]}
                         onInput={inputHandler}
@@ -344,7 +344,7 @@ export const CreateProductForm = () => {
                         id="subtitle"
                         name="subtitle"
                         labelName="Subtitle"
-                        secondaryLabelToolTip='Subtitle min 8 max 300 characters'
+                        secondaryLabelToolTip='Subtitle must be between 8 and 1000 characters. Please note, the ampersand symbole (&) will replaced with (and) if used in the product subtitle.'
                         rows={7}
                         errorText=' Subtitle required'
                         validators={[VALIDATOR_REQUIRE()]}
@@ -354,7 +354,7 @@ export const CreateProductForm = () => {
                         id='store'
                         name="store"
                         labelName="Retailer"
-                        // errorText='Please select a retailer'
+                        secondaryLabelToolTip="LG Exclusive is selected by default."
                         validators={[]}
                         onInput={inputHandler}
                         options={[
@@ -367,6 +367,7 @@ export const CreateProductForm = () => {
                         id='availability'
                         name="availability"
                         labelName="Availability"
+                        secondaryLabelToolTip="Availability applies to the general release of a product, not specific to an individual store inventory."
                         // errorText='Please select a retailer'
                         validators={[]}
                         onInput={inputHandler}
@@ -407,7 +408,8 @@ export const CreateProductForm = () => {
                                 id="stylecategory"
                                 name="stylecategory"
                                 labelName="Style category"
-                                secondaryLabel='Example, Front Load Washer'
+                                secondaryLabelToolTip='Style category cannot exceed 100 characters. Special characters allowed ( / - _ ). ie. Front Load Washer Special.'
+                                // secondaryLabel='Example, Front Load Washer'
                                 // errorText=' Style category error'
                                 noTouchValidation={true}
                                 validators={[]}
@@ -419,8 +421,8 @@ export const CreateProductForm = () => {
             </FormSection>
 
             <FormSection
-                sectionTitle="Upload the product image"
-                sectionDescription="Add a product image that meets the required criteria"
+                sectionTitle="Add the product image"
+                sectionDescription="Upload the front facing product image with transparent background. File format should be a WEBP (preferred) or PNG, max 2MB). The file name should match the product title (ie. LRSXS2706_.webp )."
             >
                 <FormWrapper>
                     <StaticImageUpload
@@ -435,14 +437,15 @@ export const CreateProductForm = () => {
             </FormSection>
 
             <FormSection
-                sectionTitle="Add specs a related products to showcase"
-                sectionDescription="Select a column title and add a list of relevant specifications. Insert brackets around the title of the accessory you want to feature as a related product. Example. Matching washer (WX8MZ_)"
+                sectionTitle="Add specs and related products to showcase"
+                sectionDescription="Select a column title and add a list of relevant specifications. To populate a product's 'Related Products' carousel, use special keyword(s) 'optional', 'matching', and/or 'accessories', and wrap the target product(s) in brackets. Insert brackets around the title of the accessory you want to feature as a related product. ie. Matching washer (WM6998H_A), Optional (WM9500HKA,WD205CK, LUWM101HWA), Accessories (SWWE50N3 SWWG50N3, DLEX9500K / DLGX9501K, DLEX4000_ DLGX4001_)."
             >
                 <FormWrapper>
                     <Select
                         id="specTitle1"
                         name="specTitle1"
                         labelName="(1) Column title"
+
                         // errorText='Please select a retailer'
                         validators={[]}
                         onInput={inputHandler}
@@ -454,6 +457,7 @@ export const CreateProductForm = () => {
                         type="textarea"
                         rows={10}
                         onInput={inputHandler}
+                        secondaryLabelToolTip="At least one list item with a minimum of three characters, including one letter, is required. One item per line, type enter to go to next line."
                         validators={[VALIDATOR_REQUIRE()]}
                         labelName="(1) Column list"
                         // noTouchValidation={true}
@@ -476,6 +480,7 @@ export const CreateProductForm = () => {
                         onInput={inputHandler}
                         validators={[]}
                         labelName="(2) Column list"
+                        secondaryLabelToolTip="One item per line, type enter to go to next line."
                         noTouchValidation={true}
                     />
                     <Select
@@ -495,6 +500,7 @@ export const CreateProductForm = () => {
                         onInput={inputHandler}
                         validators={[]}
                         labelName="(3) Column list"
+                        secondaryLabelToolTip="One item per line, type enter to go to next line."
                         noTouchValidation={true}
                     />
                     <Select
@@ -514,14 +520,15 @@ export const CreateProductForm = () => {
                         onInput={inputHandler}
                         validators={[]}
                         labelName="(4) Column list"
+                           secondaryLabelToolTip="One item per line, type enter to go to next line."
                         noTouchValidation={true}
                     />
                 </FormWrapper>
             </FormSection>
 
             <FormSection
-                sectionTitle="Include feature videos"
-                sectionDescription="Add a url to showcase feature innovation videos on the product page. Video urls must be in the required formats for YouTube or Vimeo. "
+                sectionTitle="Include product videos"
+                sectionDescription="Add YouTube or Vimeo URLs to showcase training, marketing and feature innovation videos. Only secure URLs permitted. Video URLs must be in the required formats for YouTube or Vimeo. "
             >
                 <FormWrapper>
                     <TextArea
@@ -531,20 +538,20 @@ export const CreateProductForm = () => {
                         rows={10}
                         onInput={inputHandler}
                         validators={[]}
-                        labelName="Youtube videos"
-                        secondaryLabelToolTip='Only secure protocol (https) Youtube or Vimeo videos allowed. Example https://www.youtube.com/watch?v=Baj92O7Y6Rs.'
+                        labelName="Product videos"
+                        secondaryLabelToolTip='Only secure protocol (https) Youtube or Vimeo videos allowed. Example https://www.youtube.com/watch?v=Baj92O7Y6Rs. One URL per line, type enter to go to next line'
                         noTouchValidation={true}
                     />
                 </FormWrapper>
             </FormSection>
 
             <FormSection
-                sectionTitle="Pick color finishes and technology "
-                sectionDescription="Add colors the product is available in. Select related technology and innovation brands. Include relevant upc codes."
+                sectionTitle="Colors and technology"
+                sectionDescription="Select available colors and technology logos. Include relevant UPC codes."
             >
                 <FormWrapper>
                     <div className={styles.colorSectionTitle}>
-                        <PageText type="pageTitle">Colors</PageText>
+                        <PageText type="bodyTitle">Colors</PageText>
                     </div>
                     {colorOptions.map((e, index) => (
                         <Checkbox
@@ -558,7 +565,7 @@ export const CreateProductForm = () => {
                     ))}
 
                     <div className={styles.logoSectionTitle}>
-                        <PageText type="pageTitle">Tech Logos</PageText>
+                        <PageText type="bodyTitle">Technology logos</PageText>
                     </div>
                     {techLogoOptions.map((e, index) => (
                         <Checkbox
@@ -572,18 +579,16 @@ export const CreateProductForm = () => {
                         />
                     ))}
                     <div className={styles.logoSectionTitle}>
-                        <PageText type="pageTitle">UPC</PageText>
+                        <PageText type="bodyTitle">UPC codes</PageText>
                     </div>
                     <TextArea
                         id="upc"
                         name="upc"
                         labelName="UPC Codes"
-                        secondaryLabelToolTip="Other than brackets () no special characters allowed."
+                        secondaryLabelToolTip="Other than brackets () and trademarks, no special characters allowed. One UPC code per line, type enter to go to next line."
                         rows={7}
                         // errorText=' required'
-
                         validators={[]}
-
                         onInput={inputHandler}
                     />
                 </FormWrapper>
@@ -592,7 +597,7 @@ export const CreateProductForm = () => {
 
             <FormSection
                 sectionTitle="Add a specificiation resource group"
-                sectionDescription="Upload the relevant qr code image file so it shows on printed product list. Add the full webpage url of the product specification sheet. "
+                sectionDescription="Upload a QR code image file so it shows on printed product list. Add the full webpage url of the product specification sheet."
             >
                 <FormWrapper>
                     <StaticImageUpload
@@ -607,8 +612,8 @@ export const CreateProductForm = () => {
                         id="specSheetLink"
                         name="specSheetLink"
                         labelName="Specification Sheet Link"
-                        //  secondaryLabel='e.g. MXY8Z'
-                        // errorText=' Subtitle required'
+                        secondaryLabelToolTip="Specification Sheet Link must be valid HTTPS URL from the domain lg.widen.net'."
+
                         validators={[]}
                         onInput={inputHandler}
                     />
@@ -617,42 +622,43 @@ export const CreateProductForm = () => {
             </FormSection>
 
             <FormSection
-                sectionTitle="Generate custom resource groups"
-                sectionDescription="Create a title and add the full webpage url of resource you want to link. Upload the relevant qr code image file so it shows on printed product list."
+                sectionTitle="Add external resources"
+                sectionDescription="Add a custom resource by adding a new group. It must contain the title, URL and QR code. Title is what will show on button, ie. Owner’s Manual or Accessory Guide. QR code file must be a JPEG, PNG or WEBP, max size 2MB."
             >
                 <ResourceFormSection initialSections={[]} onSectionsChange={setSections} />
             </FormSection>
             <FormSection
-                sectionTitle="Position with MSRP"
+                sectionTitle="Set the MSRP to determine product order"
                 sectionDescription="The MSRP is used to determine where your new product will show up in relation to other products in the same category. The product with the highest MSRP will show first. MSRP is optional and will be set to 0 when left blank."
             >
                 <NumberInput
                     id="msrp"
                     name="msrp"
-                    secondaryLabelToolTip={"MSRP is optional and will be set to 0 when left blank. The MSRP is used to list products in order from lowest \"0\" to highest \"9999999\" when featured amongst other products in the respective product category page."}
+                    secondaryLabelToolTip={"MSRP is optional and will be set to 0 when left blank. The MSRP is used to list products in order from lowest \"0\" to highest \"100000\"."}
                     validators={[]}
                     value={values.msrp}
                     onInput={inputHandler}
                     labelName="MSRP"
                 />
             </FormSection>
-
             <div className={styles.formFooter}>
-                <div className={styles.footerSectionTitle}>
-                    <PageText type="pageTitle">Add your product!</PageText>
-                    <PageText type="pageSubtitle">Confirm product details are in the required formats. Visit the product details page after your submit to review the new product listing</PageText>
-                </div>
-                <div className={styles.footerButtonWrapper}>
+                <FormSection
+                    sectionTitle="Finalize and submit"
+                    sectionDescription="Ensure all details meet format requirements before submitting. Visit the product page after submission to review the listing."
+                >
+                    <FormWrapper>
+                        {/* <Button onClick={handleFormSubmit} type="button" buttonStyleType="primaryAction"> */}
+                        <Button onClick={handleFormPreSubmit} type="button" buttonStyleType="primaryAction">
+                            Add new product
+                        </Button>
 
-                    <Button onClick={handleFormPreSubmit} type="button" buttonStyleType="primaryAction">
-                        Add new product
-                    </Button>
-                </div>
+                    </FormWrapper>
 
-
+                </FormSection>
 
 
             </div>
+
 
         </FormComponent>
     )

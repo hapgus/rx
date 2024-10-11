@@ -3,14 +3,16 @@ import LinkedLogo from '../../../Logo/LinkedLogo';
 import { IconComponent } from '../../../Icon/IconComponent';
 import { LinkComponent } from '../../../Links/LinkComponent';
 import { PageText } from '../../../Text/Text';
-import { useAuthUser, useLogout, useAuth } from '../../../../hooks/auth-hook';
-import { useRoutingHook } from '../../../../hooks/routing-hook';
-import { RouteLinks } from '../../../../utils/link-helper';
-import { portalAdminUserLinks, portalDashLinks, portalProductLinks, portalSuperAdminUserLinks, portalWebsiteLinks, } from '../../../../utils/link-config';
+import { useAuthUser, useLogout, useAuth } from '../../../../hooks/use-auth-hooks';
+import { useRoutingHook } from '../../../../hooks/use-routing-hooks';
+import { RouteLinks } from '../../../../utils/helper-functions';
+
 import Overlay from '../../../Overlay/Overlay';
 import { GridSystem } from '../../../GridSystem/GridSystem';
+import { useLinkConfig } from '../../../../hooks/use-link-config-hooks';
 
 export const PortalPageTopNav = () => {
+    const {portalAdminUserLinks, portalDashLinks, portalProductLinks, portalSuperAdminUserLinks, portalWebsiteLinks} = useLinkConfig();
     const decodedToken = useAuthUser();
 
     const authorizedUser = {

@@ -2,32 +2,21 @@ import styles from './PortalPageSideNav.module.css';
 
 import { LinkComponent } from '../../../Links/LinkComponent';
 import { PageText } from '../../../Text/Text';
-import { useAuth, useLogout } from '../../../../hooks/auth-hook';
-import { useCurrentLocation } from '../../../../hooks/location-hook';
+import { useAuth } from '../../../../hooks/use-auth-hooks';
+import { useCurrentLocation } from '../../../../hooks/use-routing-hooks';
+
 import { SidebarDropdownComponent } from '../../../PageComponent/DropdownComponent';
 import { useState } from 'react';
 
 
-import {
-    portalDashLinks,
-    portalFormLinks,
-    portalTableLinks,
-    superPortalTableLinks,
-    portalWebsiteLinks,
-    superPortalFormLinks,
-    portalProductLinks,
 
-    portalAdminUserLinks,
-    portalSuperAdminUserLinks
-} from '../../../../utils/link-config';
-
-
-
+import { useLinkConfig } from '../../../../hooks/use-link-config-hooks';
 import { NavMenuHeader } from '../PortalNavMenuHeader/PortalNavMenuHeader';
-import { IconComponent } from '../../../Icon/IconComponent';
+
 export const PortalPageSideNav = () => {
 
     const location = useCurrentLocation();
+    const { portalDashLinks, portalWebsiteLinks, portalProductLinks, portalAdminUserLinks, portalSuperAdminUserLinks} = useLinkConfig();
 
     const { isSuperAdmin } = useAuth();
 
@@ -58,40 +47,16 @@ export const PortalPageSideNav = () => {
             [headerText.toLowerCase()]: !prevState[headerText.toLowerCase()]
         }));
     };
-    const handleLinkClick = () => {
-        setDropdownState({
-            dashboard: false,
-            form: false,
-            table: false,
-            website: false,
-        });
-    };
+    // const handleLinkClick = () => {
+    //     setDropdownState({
+    //         dashboard: false,
+    //         form: false,
+    //         table: false,
+    //         website: false,
+    //     });
+    // };
 
-    // const renderDropdown = (headerText, links) => (
-    //     <SidebarDropdownComponent
-    //         condition={dropdownState[headerText.toLowerCase()]}
-    //         conditionChildren={
-    //             <ul className={styles.dropdownList}>
-    //                 {links.map(link => {
-    //                     console.log(link.href)
-    //                     return (
-    //                         <li key={link.href} style={{
-    //                             backgroundColor: location.pathname === link.href ? '#ecc9c9' : 'transparent',
-    //                             boxShadow: location.pathname === link.href ? '3px 0 #EA1917' : 'none', // Conditional box shadow
-    //                         }}>
-    //                             <LinkComponent href={link.href}>
-    //                                 <PageText type='footerMenuItem' >{link.text}</PageText>
-    //                             </LinkComponent>
-
-
-    //                         </li>
-    //                     )
-
-    //                 })}
-    //             </ul >
-    //         }
-    //     />
-    // );
+ 
     const renderDropdown = (headerText, links) => (
         <SidebarDropdownComponent
             condition={dropdownState[headerText.toLowerCase()]} // This checks the state for the dropdown
@@ -116,8 +81,7 @@ export const PortalPageSideNav = () => {
         />
     );
 
-    const formLinks = isSuperAdmin === true ? superPortalFormLinks : portalFormLinks;
-    const tableLinks = isSuperAdmin === true ? superPortalTableLinks : portalTableLinks;
+   
 
     const portalUserLink = isSuperAdmin === true ? portalSuperAdminUserLinks : portalAdminUserLinks
 
@@ -161,15 +125,7 @@ export const PortalPageSideNav = () => {
                     />
                     {renderDropdown('Website', portalWebsiteLinks)}
 
-                    {/* <div className={styles.logoutLinkWrapper} onClick={logout}>
-                        <div className={styles.logoutHeaderIconTextGroup}>
-                            <div className={styles.icon}>
-                                <IconComponent iconType='logout' />
-                            </div>
-                            <div><PageText type='mobileNavTitle'>Logout</PageText></div>
-
-                        </div>
-                    </div> */}
+                  
                 </div>
             </div>
         </div>

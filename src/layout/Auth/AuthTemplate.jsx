@@ -1,5 +1,7 @@
 import styles from './AuthTemplate.module.css';
-import { ExternalLink, homeLink } from '../../utils/link-helper';
+import {  homeLink } from '../../utils/helper-functions';
+import { ExternalLink } from '../../components/Links/ExternalLink';
+
 import { LinkComponent } from '../../components/Links/LinkComponent';
 import { GridSystem } from '../../components/GridSystem/GridSystem';
 

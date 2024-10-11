@@ -3,14 +3,15 @@ import { useForm } from "../../../hooks/form-hook";
 import { FormComponent } from "../../FormComponent/FormComponent";
 import { TextInput } from "../../FormComponent/TextInput/TextInput";
 import { Button } from "../../Button/Button";
-import { useNotificationHook } from "../../../hooks/notification-hook";
+import { useNotificationHook } from "../../../hooks/use-notification-hooks";
 
 import { useHttpClient } from "../../../hooks/http-hook";
 
 import { useNavigate } from "react-router";
 
-import { useRoutingHook } from "../../../hooks/routing-hook";
+import { useRoutingHook } from "../../../hooks/use-routing-hooks";
 import { validatePasswordResetEmailForms } from "../../../utils/form-validation";
+import { AnimatedComponent } from "../../../hooks/use-framer-motion";
 
 export const ForgotPasswordForm = () => {
 
@@ -80,7 +81,7 @@ export const ForgotPasswordForm = () => {
                 }
 
             } catch (error) {
-         
+
                 setIsModal({
                     show: true,
                     modalType: 'errorModal',
@@ -94,11 +95,12 @@ export const ForgotPasswordForm = () => {
                 })
             }
         }
-  
+
     }
 
     return (
-            <FormComponent>
+        <FormComponent>
+            <AnimatedComponent type='3dRoationDropdownEffects' delay={.3}>
                 <TextInput
                     id='email'
                     labelName='Email'
@@ -109,8 +111,11 @@ export const ForgotPasswordForm = () => {
                     iconType='email'
                     required
                 />
-                  <Button type='button' buttonStyleType="primaryAction" onClick={onPasswordResetSubmit}>Get reset link</Button>
-            </FormComponent>
-    
+            </AnimatedComponent>
+            <AnimatedComponent type='3dRoationDropdownEffects' delay={.3}>
+                <Button type='button' buttonStyleType="primaryAction" onClick={onPasswordResetSubmit}>Get reset link</Button>
+            </AnimatedComponent>
+        </FormComponent>
+
     );
 }

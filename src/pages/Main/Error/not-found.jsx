@@ -15,9 +15,9 @@ const NotFoundPage = () => {
                     {/* <ImageComponent position='center'> */}
                         <img src={`/assets/image/gif/look-around-white.gif`} alt='lg white logo looking around' className={styles.gifLogo} />
                     {/* </ImageComponent> */}
-                    <PageText color='white'type='pageTitle'>404 Page Not Found</PageText>
-                    <PageText color='white'type='pageTitle'>Looks like something went wrong</PageText>
-                    <PageText color='white'type='bodySubtitle'>Go back to the  <LinkComponent href={publicUrl}>Product Guide</LinkComponent> </PageText>
+                    <PageText color='white'type='heroTitle'>404 Page Not Found</PageText>
+                    <PageText color='white'type='bodyTitle'>Looks like something went wrong</PageText>
+                    {/* <PageText color='white'type='bodySubtitle'>Go back to the  <LinkComponent href={publicUrl}>Product Guide</LinkComponent> </PageText> */}
                     {/* <NavigationLink href='/'>
                         <BodyText type='b0' color='white' >Go back to the Product Guide</BodyText>
                     </NavigationLink> */}

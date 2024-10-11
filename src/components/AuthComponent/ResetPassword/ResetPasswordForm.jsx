@@ -11,6 +11,7 @@ import { useNavigate } from "react-router";
 
 import { useRoutingHook } from "../../../hooks/routing-hook";
 import { validatePasswordResetEmailForms } from "../../../utils/form-validation";
+import { AnimatedComponent } from "../../../hooks/use-framer-motion";
 
 export const ResetPasswordForm = () => {
 
@@ -93,11 +94,12 @@ export const ResetPasswordForm = () => {
                 })
             }
         }
-    
+
     }
-  
+
     return (
-            <FormComponent>
+        <FormComponent>
+          <AnimatedComponent type='3dRoationDropdownEffects' delay={.3}>
                 <TextInput
                     id='email'
                     labelName='Email'
@@ -108,8 +110,9 @@ export const ResetPasswordForm = () => {
                     iconType='email'
                     required
                 />
-                  <Button type='button' buttonStyleType="primaryAction" onClick={onPasswordResetSubmit}>Sign in</Button>
-            </FormComponent>
-    
+            </AnimatedComponent>
+            <Button type='button' buttonStyleType="primaryAction" onClick={onPasswordResetSubmit}>Sign in</Button>
+        </FormComponent>
+
     );
 }

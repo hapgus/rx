@@ -1,4 +1,4 @@
-import { ToolTip } from "../../ToolTip/ToolTip";
+
 import { useState } from "react";
 import { PageText } from "../../Text/Text";
 import styles from "./SearchFeedback.module.css"

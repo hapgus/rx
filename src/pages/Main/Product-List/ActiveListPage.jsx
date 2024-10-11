@@ -1,18 +1,18 @@
 import styles from './ActiveListPage.module.css';
-import { useBuilderHook } from '../../../hooks/builder-hook';
+import { useBuilderHook } from '../../../hooks/use-builder-hooks';
 import { GridSystem } from '../../../components/GridSystem/GridSystem';
 import { PageText } from '../../../components/Text/Text';
 import { CountBubble } from '../../../components/CountBubble/CountBubble';
-import { Button } from '../../../components/Button/Button';
+
 import { ProductBuilderPageCard } from '../../../components/ProductCards/ProductBuilderPageCard/ProductBuilderPageCard';
 import { InnerGridItem } from '../../../components/GridSystem/InnerGridContentWrapper';
-import { PrintProductsButton, RemoveAllFromListButton } from '../../../components/Button/ProductButtons';
-import { useAuthUser, useLogout, useAuth } from '../../../hooks/auth-hook';
-import { SaveListButton } from '../../../components/Button/SaveListButton';
-import { AnimatedComponent } from '../../../hooks/use-framer-motion';
+
+import { AnimatedComponent, AnimatedImage } from '../../../hooks/use-framer-motion';
 import { AnimatePresence, motion } from 'framer-motion';
 import { PrintButton } from '../../../components/Button/PrintButton';
 import { ClearProductListButton } from '../../../components/Button/ClearProductListButton';
+
+
 const listVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -28,18 +28,8 @@ const itemVariants = {
     visible: { opacity: 1, y: 0 }
 };
 
-
-
 export const ActiveListPage = ({ isEditing }) => {
-
     const { listCount, productsInList, productsInListSaved, savedListCount } = useBuilderHook();
-    const decodedToken = useAuthUser();
-    const logout = useLogout();
-
-    console.log(savedListCount)
-
-    const { isAuthenticated } = useAuth();
-
     // Determine which data to use based on isEditing prop
     const currentListCount = isEditing ? savedListCount : listCount;
     const currentProductsInList = isEditing ? productsInListSaved : productsInList;
@@ -67,12 +57,10 @@ export const ActiveListPage = ({ isEditing }) => {
 
                             <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.3}>
                                 <div className={styles.headerDescription}>
-                                    <PageText type='bodyDescriptionLarge'>Create custom lists of LG home appliances  </PageText>
+                                    <PageText type='heroDescription'>Create custom lists of LG home appliances  </PageText>
                                 </div>
                             </AnimatedComponent>
-
                         </div>
-
                     </div>
                 </GridSystem>
                 <GridSystem
@@ -81,34 +69,34 @@ export const ActiveListPage = ({ isEditing }) => {
                 >
                     <div className={styles.listDetails}>
                         <div className={styles.countStatement}>
-                            <PageText type='bodyDescriptionLarge'> You have</PageText>
+                            <PageText type='bodyCalloutTitle'> You have</PageText>
                             <CountBubble itemCount={currentListCount} />
-                            <PageText type='bodyDescriptionLarge'>   products in your list</PageText>
+                            <PageText type='bodyCalloutTitle'>   products in your list</PageText>
                         </div>
                         <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.5}>
                             <div className={styles.descriptionWrapper}>
                                 <div className={styles.description}>
-                                    <PageText type='bodyDescriptionLarge'>  Click <span>“Print my list”</span> and follow the instructions in the print pop up on your device.</PageText>
+                                    <PageText type='bodyCallout'>
+                                        Click “Print my list” and follow the instructions in the print pop up on your device.
+                                    </PageText>
+
                                 </div>
                             </div>
                         </AnimatedComponent>
                     </div>
                     <div className={styles.buttonsWrapper}>
-                        {/* <PrintProductsButton productsInList={listCount} /> */}
-                        {/* <PrintProductsButton productsInList={currentListCount} /> */}
-                        <PrintButton  productsInList={currentListCount}/>
-                        {/* <RemoveAllFromListButton /> */}
-                        <ClearProductListButton/>
+                        <PrintButton productsInList={currentListCount} />
+                        <ClearProductListButton />
                         {/* {isAuthenticated === true &&<SaveListButton/>} */}
-
                     </div>
+
+
                 </GridSystem>
                 <GridSystem
                 // containerBackgroundColor='#E6E1D6'
                 // containerBorderTop='1px solid #D0CBC1'
                 // containerPaddingTop='3rem'
                 >
-
                     <motion.div
                         variants={listVariants}
                         initial="hidden"
@@ -127,9 +115,7 @@ export const ActiveListPage = ({ isEditing }) => {
                             }
                         </AnimatePresence>
                     </motion.div>
-
                 </GridSystem>
-
             </div>
             <div className={styles.desktop}>
                 <GridSystem
@@ -153,43 +139,34 @@ export const ActiveListPage = ({ isEditing }) => {
                                     </AnimatedComponent>
                                     <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.3}>
                                         <div className={styles.subtitle}>
-                                            <PageText type='heroSubtitle'>Create custom lists of LG home appliances  </PageText>
+                                            <PageText type='heroDescription'>Create custom lists of LG home appliances  </PageText>
                                         </div>
                                     </AnimatedComponent>
                                     <div className={styles.desktopListDetails}>
                                         <div className={styles.countStatement}>
-                                            <PageText type='bodyDescriptionLarge'> You have</PageText>
+                                            <PageText type='bodyCalloutTitle'> You have</PageText>
                                             <CountBubble itemCount={currentListCount} />
-                                            <PageText type='bodyDescription'>  products in your list</PageText>
+                                            <PageText type='bodyCalloutTitle'>  products in your list</PageText>
                                         </div>
                                         <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.3}>
                                             <div className={styles.description}>
-                                                <PageText type='bodyDescriptionLarge'> Click <span>“Print my list”</span> and follow the instructions in the print pop up on your device.</PageText>
+                                                <PageText type='heroDescription'> Click “Print my list” and follow the instructions in the print pop up on your device.</PageText>
                                             </div>
                                         </AnimatedComponent>
                                     </div>
                                 </div>
-
-
                                 <div className={styles.buttonsWrapper}>
-                                    {/* <PrintProductsButton productsInList={listCount} /> */}
-                                    {/* <PrintProductsButton productsInList={currentListCount} /> */}
-                                    {/* { isAuthenticated === true &&<SaveListButton/> } */}
-
-                                    <PrintButton  productsInList={currentListCount}/>
-                                    {/* <RemoveAllFromListButton /> */}
-                                    <ClearProductListButton/>
-
+                                    <PrintButton productsInList={currentListCount} />
+                                    <ClearProductListButton />
                                 </div>
 
-
-                                {/* <div className={styles.heroImage}>
-                                    <div className={styles.imageWrapper}>
-                                        <img src={`/assets/image/backgrounds/builder/lg-print-handoff.webp`} />
-                                    </div>
-                                    <PageText type='bodyDescription'>Registered users enjoy even more features benefits. Submit your request today.</PageText>
-                                </div> */}
-
+                                <div className={styles.lgManImageWrapper}>
+                                    <div className={styles.lgManImage}>
+                                        <AnimatedImage
+                                            // type="wipeEffect" directionStart='left' delay={.3}
+                                            src={`/assets/image/backgrounds/builder/lg-print-handoff.webp`} />
+                                    </div >
+                                </div>
                             </div>
                         </div>
                     </InnerGridItem>
@@ -214,14 +191,11 @@ export const ActiveListPage = ({ isEditing }) => {
                                     </motion.div>
                                     ))
                                 }
-
                             </AnimatePresence>
                         </GridSystem>
                     </motion.div>
                 </GridSystem>
-
             </div>
-
         </div>
     )
 }

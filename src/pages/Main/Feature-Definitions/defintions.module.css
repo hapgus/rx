@@ -1,5 +1,11 @@
-.featureDefinitionsPageContainer {}
-
+.featureDefinitionsPageContainer {
+    /* background-color: var(--color-gray-07); */
+    background-color: white;
+    border-radius: 2rem;
+}
+.featureDef{
+    padding: 2rem 3rem;
+}
 .pageHeaderContainer {
     padding: 0;
 }
@@ -13,7 +19,7 @@
 }
 
 .contentWrapper {
-    padding: 0rem 2rem 2rem 2rem;
+    padding: 2rem;
 }
 
 .heroGridWrapper {
@@ -33,26 +39,36 @@
 }
 
 .categoryTitleWrapper {
-    font-family: var(--headline-regular);
-    color: var(--color-gray-01);
-    padding-top: 2rem;
+    font-family: var(--text-semibold);
+    color: black;
+    padding-bottom: 1rem;
 }
 
 .featureTitleWrapper {
-    /* font-family: var(--text-semibold); */
-    color: var(--color-gray-02);
-    padding-bottom: .5rem;
+    font-family: var(--text-semibold);
+    color: var(--color-red-02);
+    padding-bottom: 1rem;
 }
-
-.featureDescriptionWrapper {
-    color: var(--color-gray-03);
+.featureDescriptionWrapper{
+    margin-bottom: 1rem;
+    color: var(--color-gray-01);
 }
-
-
-.definitionWrapper:not(:last-child) {
+.featureDescriptionWrapper:not(:last-child){
+   
+}
+.definitionWrapper:not(:last-child) { 
     border-bottom: 1px solid var(--color-gray-04);
-    padding: 1rem 0;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
 }
+/* }
+ */
+
+/* .definitionWrapper:not(:last-child) { */
+/* .definitionWrapper{
+    border-bottom: 1px solid var(--color-gray-04);
+  
+} */
 
 .definitionWrapper:last-child {
     /* padding-bottom: 4rem; */
@@ -80,8 +96,9 @@
 }
 
 @media (min-width: 768px) {
-    .pageHeaderContainer {
-        /* padding: 4rem 0; */
+    .featureDef{
+        padding: 4rem 8rem;
+        margin-top: 4rem;
     }
 }
 
@@ -185,6 +202,10 @@
         height: 70rem;
     }
     
+    .featureDef{
+        padding: 4rem 8rem;
+        margin-top: 4rem;
+    }
 }
 
 /* --------------------------------------------------------------------------------------- */

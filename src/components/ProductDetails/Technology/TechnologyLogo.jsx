@@ -4,15 +4,16 @@ import { PageText } from '../../Text/Text';
 
 
 export const TechnologyLogo = ({ logos }) => {
-    const publicUrl = process.env.PUBLIC_URL;
+
 
     return (
 
         logos &&
         <div className={styles.techLogosContainer}>
             <div className={styles.logosWrapper}>
-                {/* <PageText type='productPageSectionText'>Technology</PageText> */}
-
+                <div className={styles.techLogoTitle}>
+                    <PageText type='bodyTitle'>Technology</PageText>
+                </div>
                 <ul className={styles.logosList}>
                     {logos.map((e, idx) => {
                         let logoImage;

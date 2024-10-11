@@ -1,5 +1,14 @@
-@media print{
-    #main{
+@media print {
+    #main {
         display: none;
     }
+}
+
+.mainLayouContainer{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.mainLayoutFooterWrapper{
+    margin-top: auto;
 }

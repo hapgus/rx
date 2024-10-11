@@ -1,6 +1,5 @@
 import { PortalPage } from "../../components/PortalComponent/PortalPageComponent/PortalPage/PortalPage";
 
-import { PortalPageBody, PortalPageWrapper } from "../../components/PortalComponent/PortalPageComponent/PortalPageComponents";
 
 import { ProductDirectoryTable } from "../../components/PortalComponent/PortalTableComponent/ProductDirectoryTable";
 const ProductDirectoryPage = () => {

@@ -1,5 +1,5 @@
 .mainContainer{
-    height: 100vh;
+    height: 100%;
     display: grid;
     grid-template-columns: repeat(12,1fr);
    grid-template-rows: 1fr auto;
@@ -58,10 +58,11 @@ max-width: 100rem;
     color: var(--color-gray-03);
     text-decoration: underline;
 }
-@media (min-width: 430px) {
-
+@media (min-width: 1024px) {
+ .mainContainer{
+        height: 100%;
+    }
 }
-
 
 
 /* --------------------------------------------------------------------------------------- */

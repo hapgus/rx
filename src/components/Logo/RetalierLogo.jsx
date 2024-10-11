@@ -1,4 +1,4 @@
-import { useRetailer } from "../../hooks/retailer-hook";
+import { useRetailer } from "../../hooks/use-routing-hooks";
 import { IconComponent } from '../Icon/IconComponent';
 import styles from "./RetailerLogo.module.css"
 

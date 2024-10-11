@@ -1,27 +1,23 @@
 import styles from "./defintions.module.css";
-
-
 import { FEATURE_DEFINITIONS_DATA } from "../../../data/STATIC_DATA";
-import { capitalizeFirstLetterEachWord } from "../../../utils/text-help";
-import { GroupDataByCategory } from "../../../utils/category-helper";
 
-
+import { GroupDataByCategory, capitalizeFirstLetterEachWord} from "../../../utils/helper-functions";
 import { PageText } from "../../../components/Text/Text";
 import { StickyNavigationBar } from "../../../components/Navigation/StickyNavigationBar";
 import { GridSystem } from "../../../components/GridSystem/GridSystem";
 import { HeroComponent } from "../../../components/HeroComponent/HeroComponent";
-// import { ImageComponent } from "../../components/ImageComponent/ImageComponent";
+
 import { useResponsiveStateHook } from "../../../hooks/responsive-hook";
 
 const FeatureDefinitionsPage = () => {
-    const publicUrl = process.env.PUBLIC_URL
+
     const { isMobile } = useResponsiveStateHook();
     const groupedData = GroupDataByCategory(FEATURE_DEFINITIONS_DATA);
 
     const description = isMobile
         ? "This is your go-to destination for a quick and informative overview of LG's cutting-edge technology and innovations."
         : "This is your go-to destination for a quick and informative overview of LG's cutting-edge technology and innovations. You play a pivotal role in guiding customers through our range of products, and we're here to equip you with the knowledge you need to provide exceptional customer experiences. Explore our intuitive and advanced features such as AIDD™, QuadWash® Pro and more."
-    console.log('group', groupedData)
+
     return (
         <div className={styles.featureDefinitionsPageContainer}>
             <HeroComponent
@@ -31,38 +27,7 @@ const FeatureDefinitionsPage = () => {
                 imgAlt="lg mom and daughter"
                 imgSrc="/assets/image/backgrounds/resources/lg-mom-shape.webp"
             />
-            {/* <div className={styles.pageHeaderContainer}>
-                <GridSystem gridType="spread" >
-                    <div className={styles.contentWrapper}>
-                        <div className={styles.heroGridContainer}>
-                            <div className={styles.heroGridWrapper}>
-                                <div className={styles.gridItem1}>
-                                    <div className={styles.subtitle}>
-                                        <PageText type="pageSubtitle">Resources</PageText>
-                                    </div>
-                                    <div className={styles.title}>
-                                        <PageText type="pageTitle">Feature Definitions</PageText>
-                                    </div>
-                                    <div className={styles.description}>
-                                        <div className={styles.shortDescription}>
-                                            <PageText type="bodySubtitle">This is your go-to destination for a quick and informative overview of LG's cutting-edge technology and innovations. </PageText>
-                                        </div>
-                                        <div className={styles.longDescription}>
-                                            <PageText type="bodySubtitle">This is your go-to destination for a quick and informative overview of LG's cutting-edge technology and innovations. You play a pivotal role in guiding customers through our range of products, and we're here to equip you with the knowledge you need to provide exceptional customer experiences. Explore our intuitive and advanced features such as AIDD™, QuadWash® Pro and more.</PageText>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className={styles.gridItem2}>
-                                    <div className={styles.gridItem2Image}>
-                                        <img alt="lg mom and daughter" src={`/assets/image/backgrounds/resources/lg-mom-shape.webp`} />
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </GridSystem>
-            </div> */}
+         
 
 
             <div className={styles.stickyNavContainer}>
@@ -76,20 +41,22 @@ const FeatureDefinitionsPage = () => {
                         <div className={styles.contentWrapper}>
 
                             <div className={styles.featureDefinitionsPageContainer} data-section id={`category-${categoryIndex}`}>
-                                <div className={styles.categoryTitleWrapper}>
-                                    <PageText type="bodyFeatureSectionTitle">{capitalizeFirstLetterEachWord(category)}</PageText>
-                                </div>
-                                <div>
-                                    {groupedData[category].map((item, itemIndex) => (
-                                        <div className={styles.definitionWrapper} key={itemIndex}>
-                                            <div className={styles.featureTitleWrapper}>
-                                                <PageText type="bodyTertiaryTitleBold">{item.feature}</PageText>
+                                <div className={styles.featureDef}>
+                                    <div className={styles.categoryTitleWrapper}>
+                                        <PageText  type='bodyTitle'>{capitalizeFirstLetterEachWord(category)}</PageText>
+                                    </div>
+                                    <div>
+                                        {groupedData[category].map((item, itemIndex) => (
+                                            <div className={styles.definitionWrapper} key={itemIndex}>
+                                                <div className={styles.featureTitleWrapper}>
+                                                    <PageText type="bodySubtitle">{item.feature}</PageText>
+                                                </div>
+                                                <div className={styles.featureDescriptionWrapper}>
+                                                    <PageText type="bodyDescription">{item.definition}</PageText>
+                                                </div>
                                             </div>
-                                            <div className={styles.featureDescriptionWrapper}>
-                                                <PageText type="bodyDescriptionMedium">{item.definition}</PageText>
-                                            </div>
-                                        </div>
-                                    ))}
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
                         </div>

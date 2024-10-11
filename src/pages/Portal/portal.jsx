@@ -1,15 +1,6 @@
 import { PortalPage } from "../../components/PortalComponent/PortalPageComponent/PortalPage/PortalPage";
-import { useAuthUser } from "../../hooks/auth-hook";
-import { useHttpClient } from "../../hooks/http-hook";
-import { useEffect } from "react";
-import { Chart } from 'react-google-charts';
-import { useData } from "../../hooks/data-hook";
-import { useChartConfig } from "../../hooks/chart-config-hook";
-import { BarChart } from "../../components/PortalComponent/PortalChartComponent/BarChart";
-import { transformWithSchema } from "../../utils/data-transformer";
-import { NewVsTotalUsersBarChart } from "../../components/PortalComponent/PortalPageComponent/PortalDashboard/UserVisualization";
-import { PageViewsLinChart } from "../../components/PortalComponent/PortalPageComponent/PortalDashboard/PageDataVisualizations";
-import { DashboardSkeleton } from "../../components/Skeletons/DashboardSkeleton";
+import { useAuthUser } from "../../hooks/use-auth-hooks";
+
 import { PortalDashboard } from "../../components/PortalComponent/PortalPageComponent/PortalDashboard/PortalDashboard";
 
 
@@ -26,7 +17,7 @@ const PortalDashboardPage = () => {
             pageDescription='LG Product Guide Administrator Portal'
             breadcrumb='Overview'
             breadcrumbDirectory="Dashboard"
-            breadcrumbDirectoryLink="/portal/dashboard"
+            breadcrumbDirectoryLink="/portal/overview"
             // bodyTitle='Summary'
         >
 

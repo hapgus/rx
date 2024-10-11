@@ -2,12 +2,11 @@ import { PageText } from '../../../components/Text/Text';
 import styles from './EmptyListPage.module.css';
 import { CountBubble } from '../../../components/CountBubble/CountBubble';
 import { LGComponent } from '../../../components/Character/LGComponent';
-import { FeatureButtons } from '../../../components/Button/FeatureButtons';
-import { categoryLinks } from '../../../utils/link-helper';
+
 import { Button } from '../../../components/Button/Button';
 import { GridSystem } from '../../../components/GridSystem/GridSystem';
 import { motion } from "framer-motion";
-import { AnimatedComponent } from '../../../hooks/use-framer-motion';
+import { AnimatedComponent, AnimatedImage } from '../../../hooks/use-framer-motion';
 import { LinkComponent } from '../../../components/Links/LinkComponent';
 
 const listVariants = {
@@ -218,7 +217,7 @@ export const EmptyListPage = () => {
                                                     <CountBubble backgroundColor='white' color='black' itemCount={idx + 1} />
                                                 </div>
                                                 <div className={styles.stepDescription}>
-                                                    <PageText type='bodyDescriptionLarge'>{e.descriptionLong}</PageText>
+                                                    <PageText type='bodyCallout'>{e.descriptionLong}</PageText>
                                                 </div>
                                             </motion.div>
                                         );
@@ -231,7 +230,10 @@ export const EmptyListPage = () => {
                             </div>
                             <div className={styles.lgMan}>
                                 <div className={styles.lgGirl}>
-                                    <img src={`/assets/image/backgrounds/builder/lg-print-handoff.webp`} />
+                                    <AnimatedImage
+                                        type="wipeEffect" directionStart='left' delay={.3}
+                                        src={`/assets/image/backgrounds/builder/lg-print-handoff.webp`} />
+                                    {/* <img alt='LG rep handing off printed home appliance product list' src={`/assets/image/backgrounds/builder/lg-print-handoff.webp`} /> */}
                                 </div>
                                 {/* <div className={styles.lgManImageWrapper}>
                                     <img src={`/assets/image/backgrounds/builder/lg-print-handoff.webp`} />

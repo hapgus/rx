@@ -1,10 +1,10 @@
-import { useBuilderHook } from "../../hooks/builder-hook";
+import { useBuilderHook } from "../../hooks/use-builder-hooks";
 import styles from './PrintScreen.module.css';
 import { PageText } from "../Text/Text";
 import { Specifications } from "../ProductDetails/Specifications/Specifications";
 import { TechnologyLogo } from "../ProductDetails/Technology/TechnologyLogo";
 import { Qrcode } from "../Qrcode/Qrcode";
-import { useRetailer } from "../../hooks/retailer-hook";
+import { useRetailer } from "../../hooks/use-routing-hooks";
 
 export const PrintScreen = () => {
 
@@ -39,7 +39,7 @@ export const PrintScreen = () => {
                         </div>
                         <div className={styles.footer}>
                             <div className={styles.footerContent}>
-                                <PageText type="pageTertiaryTitle"></PageText>
+                                {/* <PageText type="pageTertiaryTitle"></PageText> */}
                                 <div className={styles.logoWrapper}>
 
                                     <img src={branding.logoPath} alt={branding.altText} />
@@ -59,50 +59,89 @@ export const PrintScreen = () => {
                 <div className={styles.printScreenBodyContainer}>
                     {productsInList.map((p, idx) => (
                         <div key={idx} className={styles.productPage}>
+                            {/* <div>
+                                <div className={styles.productPageTitleWrapper}>
+                                    <div className={styles.productPageTitle}>
+                                        <PageText ></PageText>
+                                    </div>
+                                </div>
+                            </div> */}
                             <div className={styles.productHeaderText}>
                                 <div className={styles.productTitle}>
                                     <PageText >{p.title}</PageText>
                                 </div>
                                 <div className={styles.productSubtitle}>
-                                <PageText>{p.subtitle}</PageText>
+                                    <PageText>{p.subtitle}</PageText>
                                 </div>
                             </div>
                             <div className={styles.productImage}>
                                 <img src={`${process.env.REACT_APP_AWS_URL}/${p.image}`} alt="LG Logo" />
                             </div>
                             <div className={styles.productSpecs}>
-                                <Specifications product={p} print={true}/>
+                                <Specifications product={p} print={true} />
                             </div>
-                            {
-                                p.qrcode &&
-                                <div className={styles.productQrcodes}>
-                                    <Qrcode title='Scan Spec Sheet QR Code' imageUrl={`${process.env.REACT_APP_AWS_URL}/${p.qrcode}`} />
 
-                                </div>
+
+                            {
+                                p.qrcode || p.sections.length !== 0 && p.sections.resourceQrCodeImage !== '' ?
+                                    <>
+                                        <div className={styles.qrCodeSection}>
+                                            <div className={styles.qrCodeSectionTitleWrapper}>
+                                                <div className={styles.qrCodeSectionTitle}>
+                                                    <span className={styles.resourceTitle}> <PageText>Additional Resources </PageText></span>
+                                                    <PageText>Scan QR Codes for specification sheets and additional resources</PageText>
+                                                </div>
+                                            </div>
+                                            <div className={styles.productQrcodes}>
+                                                <div className={styles.qrCodesContainerWrapper}>
+                                                    {/* <div className={styles.qrCodesrWrapper}>
+                                                        <div className={styles.qrCodeTitle}>
+                                                            <PageText>Specification Sheets</PageText>
+                                                        </div>
+                                                        <div className={styles.qrCodeItems}>
+                                                            {
+                                                                p.resourceQrCodeImage !== '' && <Qrcode imageUrl={`${process.env.REACT_APP_AWS_URL}/${p.qrcode}`} />
+                                                            }
+                                                        </div>
+
+                                                    </div> */}
+                                                    <div>
+                                                        <div className={styles.qrCodesrWrapper}>
+                                                            {/* <div className={styles.qrCodeTitle}>
+                                                                <PageText>QR Codes </PageText>
+                                                            </div> */}
+                                                            <div className={styles.qrCodeItems}>
+                                                                {
+                                                                    p.resourceQrCodeImage !== '' && <Qrcode title="Specification sheet" imageUrl={`${process.env.REACT_APP_AWS_URL}/${p.qrcode}`} />
+                                                                }
+                                                                {
+                                                                    p.sections.length !== 0 && p.sections.resourceQrCodeImage !== '' ?
+                                                                        p.sections.map((q) => (
+                                                                            <Qrcode
+                                                                                title={q.resourceTitle}
+                                                                                imageUrl={`${process.env.REACT_APP_AWS_URL}/${q.resourceQrCodeImage}`} />
+                                                                        ))
+                                                                        : null
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </> : null
                             }
-                            {
-                                p.sections.length !== 0 && p.sections.resourceQrCodeImage !== '' ?
-                                    <div className={styles.qrcodeWrapper}>
-                                        {
-                                            p.sections.map((q) => (
-                                                <Qrcode
-                                                    title={`Scan qrcode ${q.resourceTitle}`}
-                                                    imageUrl={`${process.env.REACT_APP_AWS_URL}/${q.resourceQrCodeImage}`} />
-
-                                            ))
-                                        }
-                                    </div>
-                                    : null
-                            }
-
 
                             {
-                                p.logos &&
+                                p.logos.length !== 0 &&
                                 <div className={styles.productTechLogos}>
+                                    <div className={styles.qrCodeSectionTitle}>
+                                        <span className={styles.resourceTitle}> <PageText>Innovation </PageText></span>
+                                        <PageText>Feature Technology</PageText>
+                                    </div>
                                     <TechnologyLogo logos={p.logos} />
                                 </div>
                             }
-
                         </div>
                     ))}
 

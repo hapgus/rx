@@ -1,50 +1,52 @@
-import { STEP_UP_CHART_CATEGORIES } from "../../../data/STATIC_DATA";
-import { CATEGORY_VERBIAGE } from "../../../data/CATEGORY_VERBIAGE";
-import { useParams } from "react-router";
 import styles from './modelTransitionsPage.module.css'
 import { GridSystem } from "../../../components/GridSystem/GridSystem";
-import { PageText } from "../../../components/Text/Text";
-import { ExternalLink } from "../../../utils/link-helper";
-import { capitalizeFirstLetterEachWord } from "../../../utils/text-help";
+import { useEffect, useState } from "react";
 import { HeroComponent } from "../../../components/HeroComponent/HeroComponent";
+import { ImageWithSkeleton } from '../../../components/Skeletons/ImageSkeleton';
 
 const ModelTransitionsPage = () => {
 
-    // const { categoryId } = useParams();
-    // const currentCategory = STEP_UP_CHART_CATEGORIES[categoryId];
-    // const categoryVerbiage = CATEGORY_VERBIAGE[categoryId]
+    const [isHeroLoading, setIsHeroLoading] = useState(true);  // Track loading state for hero section
 
-    // const stepUpCharts = currentCategory.charts;
-    // const stepUpChartCTA = currentCategory.ctaText;
-    // const stepUpChartURL = currentCategory.ctaUrl;
-    // const heroImage = currentCategory.hero;
+    // Function to simulate checking when the page's assets are loaded
+    const handleAssetLoad = () => {
+        setIsHeroLoading(false);  // Set to false once assets are loaded
+    };
 
-    // const categoryHeroVerbiage = {
-    //     headline: categoryVerbiage.lineLogicHeadline,
-    //     subHeadline: categoryVerbiage.lineLogicSubheadline,
-    //     description: categoryVerbiage.lineLogicDescription,
-    // }
-    // const publicUrl = process.env.PUBLIC_URL
+    useEffect(() => {
+        // Example of waiting for all assets (could include custom fonts, images, etc.)
+        const timeout = setTimeout(() => {
+            handleAssetLoad();
+        }, 1000);  // Simulate loading delay
+
+        return () => clearTimeout(timeout);  // Clean up on unmount
+    }, []);
+
     return (
         <>
-        <HeroComponent
-         title="Model Transitions"
-         subtitle="Resources"
-         description={'Review model transition charts for Q3 2024'}
-         imgAlt="lg mom and daughter"
-         imgSrc="/assets/image/backgrounds/resources/transition-hero.png"
-        />
-            
-          
+            <HeroComponent
+                title="Model Transitions"
+                subtitle="Resources"
+                description={'Review model transition charts for Q3 2024'}
+                imgAlt="lg mom and daughter"
+                imgSrc="/assets/image/backgrounds/resources/transition-hero.png"
+            />
+
+
 
 
             <GridSystem gridType="spread" containerBackgroundColor='#E6E1D6' >
                 <div className={styles.contentWrapper}>
                     <div className={styles.chartBodyContainer}>
-                    <div className={styles.chartImageWrapper}>
-                                <img loading='lazy' src='/assets/image/model-transitions/transition-chart-q3.webp' alt={`Comparison`} />
-                            </div>
-                       
+                        <div className={styles.chartImageWrapper}>
+                            <ImageWithSkeleton
+                                src='/assets/image/model-transitions/transition-chart-q3.webp'
+                                alt={`Model Transitions q3`}
+                                skeletonHeight="500px"
+                            />
+
+                        </div>
+
                     </div>
                 </div>
             </GridSystem>

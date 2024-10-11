@@ -55,6 +55,7 @@
 
 .warrantyCard {
     background-color: var(--color-gray-07);
+    /* background-color: white; */
     display: flex;
     flex-direction: column;
     /* padding: 4rem 6rem; */
@@ -64,8 +65,12 @@
 }
 
 .warrantyCardTitle {
-    padding-bottom: 1rem;
-    color: var(--color-gray-01);
+    padding-bottom: .5rem;
+    color: black;
+    font-family: var(--text-semibold);
+}
+.warrantyItem{
+    color: var(--color-gray-02);
 }
 
 .warrantiesSection {}
@@ -74,12 +79,10 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    color: var(--color-gray-02);
+    color: var(--color-gray-01);
 }
 
-.warrantyItemListWrapper li {
-    list-style: none;
-}
+
 .bodySection {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(32rem, 1fr));

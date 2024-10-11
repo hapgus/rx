@@ -1,6 +1,6 @@
 import styles from './HomepageSearchPreview.module.css';
 // import { useProductsHook } from '../../../hooks/product-hook';
-import { useSearchHook } from '../../../hooks/search-hook';
+import { useSearchHook } from '../../../hooks/use-search-hooks';
 import { useResponsiveStateHook } from '../../../hooks/responsive-hook';
 
 import { HomepageSearchPreviewCard } from '../../ProductCards/HomepageSearchPreviewCard/HomepageSearchPreviewCard';

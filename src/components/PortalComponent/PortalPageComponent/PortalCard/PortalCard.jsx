@@ -1,7 +1,7 @@
 import { PageText } from '../../../Text/Text';
 import { ToolTip } from '../../../ToolTip/ToolTip';
 import styles from './PortalCard.module.css';
-import { HashLink } from 'react-router-hash-link';
+
 
 export const PortalCard = ({
     cardTitle,

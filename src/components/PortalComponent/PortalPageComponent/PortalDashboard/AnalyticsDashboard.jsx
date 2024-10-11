@@ -1,6 +1,5 @@
 import styles from './PortalDashboard.module.css'
 
-import { useDataContext } from '../../../../hooks/data-hook';
 
 
 import { PortalDataFilterBar } from '../PortalDataFilter/PortalDataFilterBar';
@@ -130,18 +129,6 @@ export const AnalyticsDashboard = () => {
                     </>
                 }
             />
-
-            {/* <PortalBanner
-                title='Product Interaction Overview'
-                row1={
-                    <>
-                        <AddToProductListByLandingPageBarChart />
-                        <AddToProductListByLandingPageCategoryBarChart />
-                        <AddToProductListByUserGeoLocationLeaderBoard />
-                        <AddToProductListLeaderBoard />
-                    </>
-                }
-            /> */}
         </div>
 
     );

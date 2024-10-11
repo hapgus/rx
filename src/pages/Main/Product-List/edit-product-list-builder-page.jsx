@@ -6,7 +6,7 @@ import { PrintScreen } from '../../../components/Print/PrintScreen';
 import { useHttpClient } from '../../../hooks/http-hook';
 import { EmptyListPage } from './EmptyListPage';
 import { ActiveListPage } from './ActiveListPage';
-import { useParams, useNavigate } from 'react-router';
+import { useParams} from 'react-router';
 import { useAuth } from '../../../hooks/auth-hook';
 import { useEffect, useState } from "react";
 const EditProductListBuilderPage = () => {
@@ -19,7 +19,7 @@ const EditProductListBuilderPage = () => {
     const { authUserId } = useAuth();
 
 
-    const [isSavedList, setIsSavedList] = useState([]);
+    const [setIsSavedList] = useState([]);
 
     useEffect(() => {
         if (authUserId) {

@@ -2,22 +2,17 @@
 import styles from './ApplianceCategories.module.css';
 import { PageText } from "../../../components/Text/Text";
 import { Button } from "../../../components/Button/Button";
-import { useProductsHook } from "../../../hooks/product-hook";
+import { useProductsHook } from "../../../hooks/use-product-hooks";
 import { GridSystem } from "../../../components/GridSystem/GridSystem";
-import { ListProductsByCategorySubcategory } from "../../../utils/category-helper";
+import { ListProductsByCategorySubcategory } from "../../../utils/helper-functions";
 import { CategoriesComponent } from "../../../components/CategoriesComponent/CategoriesComponent";
 import { ApplianceCategoriesSkeletonComponent } from './ApplianceCategoriesSkeleton';
-import { AnimatedTitle, AnimatedComponent, AnimatedImage } from '../../../hooks/use-framer-motion';
+import { AnimatedComponent, AnimatedImage } from '../../../hooks/use-framer-motion';
 
 const ApplianceCategories = () => {
 
     const { publicProducts } = useProductsHook();
     const categorizedProducts = ListProductsByCategorySubcategory(publicProducts);
- 
-
-
-
- 
 
 
     const scrollToPosition = () => {
@@ -38,13 +33,13 @@ const ApplianceCategories = () => {
 
                             <div className={styles.heroTitle}>
                                 <AnimatedComponent type="bounceEffect">
-                                    <PageText type="pageTitle">Innovation that elevates your home</PageText>
+                                    <PageText type="heroTitle">Innovation that elevates your home</PageText>
                                 </AnimatedComponent>
                             </div>
 
                             <div className={styles.heroSubtitle}>
                                 <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.1}>
-                                    <PageText type="pageSubtitle">Discover a smarter, more stylish way to live</PageText>
+                                    <PageText type="heroSubtitle">Discover a smarter, more stylish way to live</PageText>
                                 </AnimatedComponent>
                             </div>
 
@@ -52,7 +47,7 @@ const ApplianceCategories = () => {
 
                             <div className={styles.heroDescription}>
                                 {/* <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.3}> */}
-                                    <PageText type="bodyDescriptionLarge">
+                                    <PageText type="heroDescription">
                                         LG brings you a range of home appliances engineered for the way you live today.
                                         <span className={styles.headerDescriptionLong}> Experience the perfect blend of form and function, crafted to elevate every moment at home.</span>
                                     </PageText>
@@ -121,8 +116,7 @@ const ApplianceCategories = () => {
                 categorizedProducts.length !== 0 && publicProducts.length !== 0
                     ?
                     <div className={styles.categoriesComponentWrapper}>
-                         {/* <CategoriesComponent products={transformedCategories} /> */}
-                        {/* <CategoriesComponent products={categorizedProducts} /> */}
+                      
                         <CategoriesComponent />
                     </div>
                     : <ApplianceCategoriesSkeletonComponent />

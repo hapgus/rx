@@ -3,9 +3,9 @@ import { RetailerContext } from '../../context/RetailerContext';
 
 import styles from "./Logo.module.css";
 import { LinkComponent } from '../Links/LinkComponent';
-import { useRetailerLinks } from '../../hooks/retailer-hook';
 
-const LinkedLogo = ({ type = 'lgDefault', style = 'lgDefault', portalLogo = false }) => {
+
+export const LinkedLogo = ({ type = 'lgDefault', style = 'lgDefault', portalLogo = false }) => {
   
     const { isHomeDepotApp } = useContext(RetailerContext);
   
@@ -48,8 +48,8 @@ const LinkedLogo = ({ type = 'lgDefault', style = 'lgDefault', portalLogo = fals
     // const renderLink = isHomeDepotApp.isHomeDepotActive ? 'home-depot':'/';
     const renderLink = '/'
     
-    // const logoLink = portalLogo === true ? '/portal/dashboard' : renderLink
-    const logoLink = portalLogo === true ? '/portal/dashboard' : renderLink
+  
+    const logoLink = portalLogo === true ? '/portal/overview' : renderLink
    
     return (
         <LinkComponent href={logoLink}>

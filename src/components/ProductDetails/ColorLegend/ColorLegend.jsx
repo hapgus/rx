@@ -65,7 +65,7 @@ console.log(colors)
                 style={{ backgroundColor: swatchColor }}
               />
 
-              <PageText type='productPageTertiary'>{formatColorName(e)}</PageText>
+              <PageText type='bodyCallout'>{formatColorName(e)}</PageText>
             </div>
           );
         })}

@@ -3,14 +3,14 @@ import { PortalCard } from "../../PortalPageComponent/PortalCard/PortalCard";
 import { transformWithSchema } from "../../../../utils/data-transformer";
 import { useDataContext } from "../../../../hooks/data-hook"; 
 import { useChartConfig } from "../../../../hooks/chart-config-hook";
-import { formatChartLabel } from "../../../../utils/text-help";
+import { formatChartLabel } from "../../../../utils/helper-functions";
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css'; 
 
 export const UsersByDeviceCategoryPieChart = () => {
     const { isDataState } = useDataContext(); 
     const pieData = isDataState.technicalDataFilteredByDate; 
-    console.log(pieData)
+  
 
     const { config: pieChartOptions } = useChartConfig(
         'PieChart',

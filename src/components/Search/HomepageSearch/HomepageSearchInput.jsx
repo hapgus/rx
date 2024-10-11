@@ -1,6 +1,6 @@
 import styles from './HomepageSearchInput.module.css';
-import { useProductsHook } from '../../../hooks/product-hook';
-import { useSearchHook } from '../../../hooks/search-hook';
+import { useProductsHook } from '../../../hooks/use-product-hooks';
+import { useSearchHook } from '../../../hooks/use-search-hooks';
 import { IconComponent } from '../../Icon/IconComponent';
 import { useResponsiveStateHook } from '../../../hooks/responsive-hook';
 

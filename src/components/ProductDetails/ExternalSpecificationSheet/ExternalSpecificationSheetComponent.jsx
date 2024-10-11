@@ -1,6 +1,7 @@
 
-import { ExternalLinkButton } from "../../../utils/link-helper";
-import { Qrcode } from "../../Qrcode/Qrcode";
+
+
+import { ExternalLinkButton } from "../../Button/ExternalLinkButton";
 import { PageText } from "../../Text/Text";
 import styles from './ExternalSpecificationSheet.module.css';
 import { logEvent } from "../../../utils/google-analytics";
@@ -16,16 +17,7 @@ export const ExternalSpecificationSheetComponent = ({ product }) => {
             resourceType: title,
         });
     }
-    // const handleExternalLinkClick = () => {
-    //     logEvent('RESOURCE_CLICKED', {
-    //         productName: product.title,
-    //         productCategory: product.category,
-    //         productSubcategory: product.subcategory,
-    //         destinationUrl: product.specSheetLink,
-    //         resourceType: 'Spec sheet',
-    //     });
-    // }
-
+   
     // Add specSheetLink as the first item in the sections array
     const resources = [
         { resourceTitle: `${product.title} Spec Sheet`, resourceUrl: product.specSheetLink },
@@ -38,7 +30,7 @@ export const ExternalSpecificationSheetComponent = ({ product }) => {
                 product.specSheetLink &&
                 <>
                     <div className={styles.titleContainer}>
-                        <PageText type='productPageSection'>External Resources</PageText>
+                        <PageText type='bodyTitle'>External Resources</PageText>
                     </div>
                     <div className={styles.resourceButtonsWrapper}>
 

@@ -4,31 +4,40 @@ import { SignupForm } from '../../../components/AuthComponent/Signup/SignupForm'
 import { LinkComponent } from '../../../components/Links/LinkComponent';
 import { PageText } from '../../../components/Text/Text';
 import { AuthTemplate } from '../../../layout/Auth/AuthTemplate';
+import { AnimatedImage, AnimatedComponent } from "../../../hooks/use-framer-motion";
 
 
 const SignUpPage = () => {
 
     return (
         <AuthTemplate>
-             <div className={styles.pageContainer}>
-             <div className={styles.logoWrapper}>
-                        
-                        <div className={styles.logo}>
-                            <img src={`/assets/image/logos/lg-logo.webp`} />
-                        </div>
+            <div className={styles.pageContainer}>
+                <div className={styles.logoWrapper}>
+                    <div className={styles.logo}>
+                        <AnimatedImage
 
+                            type="bounceEffect" delay={.3}
+                            src={`/assets/image/logos/lg-logo.webp`}
+                            alt='LG Logo in heritage red and gray'
+                        />
+                        {/* <img src={`/assets/image/logos/lg-logo.webp`} /> */}
                     </div>
+                </div>
                 <div className={styles.headerText}>
                     <div className={styles.title}>
-                        <PageText type='pageTitle'>LG Product Guide</PageText>
+                        <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.1}>
+                            <PageText type='pageTitle'>LG Product Guide</PageText>
+                        </AnimatedComponent>
                     </div>
                     <div className={styles.tertiaryTitle}>
-                        <PageText>
-                            <span className={styles.spanText}>
-                                Create account
-                            </span>
+                        <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.1}>
+                            <PageText>
+                                <span className={styles.spanText}>
+                                    Sign up for an account
+                                </span>
 
-                        </PageText>
+                            </PageText>
+                        </AnimatedComponent>
                     </div>
                 </div>
                 <div className={styles.formWrapper}>
@@ -36,15 +45,17 @@ const SignUpPage = () => {
                         <SignupForm />
                     </div>
                     <div className={styles.loginFooterDescription}>
-                        <PageText>
-                            <span className={styles.spanText}>
-                                Already a member? {" "}
+                        <AnimatedComponent type='3dRoationDropdownEffects' delay={.3}>
+                            <PageText>
+                                <span className={styles.spanText}>
+                                    Already a member? {" "}
 
-                            </span>
-                            <span className={styles.spanTextLink}>
-                                <LinkComponent href={`../login`} linkText='Sign in to your account.' />
-                            </span>
-                        </PageText>
+                                </span>
+                                <span className={styles.spanTextLink}>
+                                    <LinkComponent href={`../login`} linkText='Sign in to your account.' />
+                                </span>
+                            </PageText>
+                        </AnimatedComponent>
                     </div>
                 </div>
 

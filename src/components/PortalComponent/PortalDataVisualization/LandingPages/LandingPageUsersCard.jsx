@@ -79,6 +79,7 @@ export const LandingPageUsersCard = () => {
     } else {
         console.warn('No pageViewSnapshot found in data', data);
     }
+    console.log('area',areaChartData, areaChartOptions)
 
     return (
         totalPageViewCount && avgPageViewCount && areaChartData !== null ? (

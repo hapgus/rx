@@ -3,14 +3,14 @@ import styles from './UserProfile.module.css'
 import { PageText } from '../../../components/Text/Text';
 import { GridSystem } from '../../../components/GridSystem/GridSystem';
 import { Button } from '../../../components/Button/Button';
-import { FormElement } from '../../../components/FormComponent/FormElement';
-import { useNotificationHook } from '../../../hooks/notification-hook';
+
+import { useNotificationHook } from '../../../hooks/use-notification-hooks';
 import { useHttpClient } from '../../../hooks/http-hook';
-import { useRoutingHook } from '../../../hooks/routing-hook';
+import { useRoutingHook } from '../../../hooks/use-routing-hooks';
 import { FormComponent } from '../../../components/FormComponent/FormComponent';
 import { useForm } from '../../../hooks/form-hook';
 import { TextInput } from '../../../components/FormComponent/TextInput/TextInput';
-import { useAuthHook, useAuthUser, useAuth, useLogout } from '../../../hooks/auth-hook';
+import { useAuthHook, useAuthUser, useAuth } from '../../../hooks/use-auth-hooks';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 

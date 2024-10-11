@@ -1,30 +1,29 @@
-import { MainNavigationComponent } from '../../components/Navigation/NavigationComponent';
-import styles from './MainLayout.module.css'
 import { Outlet } from 'react-router';
-import { useSearchHook } from '../../hooks/search-hook';
-import { useRoutingHook } from '../../hooks/routing-hook';
-import { useNotificationHook } from '../../hooks/notification-hook';
-import { SearchComponent } from '../../components/Search/SearchComponent/SearchComponent';
-import ProductGuideAlerts from '../../components/Alert/Alert';
-import Modal from '../../components/Modal/Modal';
-import { useCurrentLocation } from '../../hooks/location-hook';
 
-import { useEffect } from 'react';
+import styles from './MainLayout.module.css';
+import { AnimatePresence } from 'framer-motion';
+import Modal from '../../components/Modal/Modal';
+
 import Footer from '../../components/Footer/Footer';
-import { PrintScreen } from '../../components/Print/PrintScreen';
-import Loader from '../../components/Loader/Loader';
-// import { useLocation } from "react-router-dom";
-import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
+import { useSearchHook } from '../../hooks/use-search-hooks';
+import { useRoutingHook } from '../../hooks/use-routing-hooks';
+import { useNotificationHook } from '../../hooks/use-notification-hooks';
+import { Navigation } from '../../components/Navigation/Navigation';
+import ProductGuideAlerts from '../../components/Alert/Alert';
+
 import { ProductListDropdown } from '../../components/ProductList/ProductListDropdown';
 import { initializeGA, logPageView } from '../../utils/google-analytics';
-import { AnimatePresence } from 'framer-motion';
-import { AnimatedComponent } from '../../hooks/use-framer-motion';
 
+import { SearchComponent } from '../../components/Search/SearchComponent/SearchComponent';
+import { PrintScreen } from '../../components/Print/PrintScreen';
+import Loader from '../../components/Loader/Loader';
 
+import { useEffect } from 'react';
+import { useCurrentLocation } from '../../hooks/use-routing-hooks';
 
+import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
 export default function Layout() {
 
-    // const location = useLocation();
     const location = useCurrentLocation()
     const { isAlert, setIsAlert, isModal } = useNotificationHook();
     const { isMobileSearchState, isDesktopSearchState, isHomepageSearchState } = useSearchHook();
@@ -110,8 +109,6 @@ export default function Layout() {
         };
     }, [location]);
 
-
-
     return (
         <>
             <PrintScreen />
@@ -156,19 +153,20 @@ export default function Layout() {
             }
             <div id={styles.main} className={styles.mainLayouContainer}>
                 <div className={styles.mainLayoutNavWrapper}>
-                    <MainNavigationComponent />
+                    <Navigation />
                 </div>
-                {/* <AnimatePresence mode='wait'> */}
+
                 <div className={styles.mainLayoutBodyWrapper}>
                     <Outlet />
                 </div>
-                {/* </AnimatePresence> */}
                 <div className={styles.mainLayoutFooterWrapper}>
                     <Footer />
-
                 </div>
 
             </div>
+
         </>
-    );
+
+    )
+
 }

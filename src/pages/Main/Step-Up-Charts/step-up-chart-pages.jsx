@@ -4,11 +4,10 @@ import { useParams } from "react-router";
 import { useEffect, useState } from "react";
 import styles from './StepUpChartPages.module.css'
 import { GridSystem } from "../../../components/GridSystem/GridSystem";
-import { PageText } from "../../../components/Text/Text";
-import { ExternalLink } from "../../../utils/link-helper";
-import { capitalizeFirstLetterEachWord } from "../../../utils/text-help";
+
+import { capitalizeFirstLetterEachWord } from "../../../utils/helper-functions";
 import { ImageWithSkeleton } from "../../../components/Skeletons/ImageSkeleton";
-import { HeroSkeleton } from "../../../components/Skeletons/SkeletonComponents";
+
 import { HeroComponent } from "../../../components/HeroComponent/HeroComponent";
 
 const StepUpChartPage = () => {
@@ -55,58 +54,7 @@ const StepUpChartPage = () => {
            calloutLinkText="LG Line Logic."
            calloutLinkUrl={stepUpChartURL}
            />
-            {/* <div className={styles.pageHeaderContainer}>
-                <GridSystem gridType="spread" >
-                    <div className={styles.contentWrapper}>
-                        <div className={styles.heroGridContainer}>
-                            <div className={styles.heroGridWrapper}>
-
-                                <div className={styles.gridItem1}>
-                                    {
-                                        isHeroLoading
-                                            ? <HeroSkeleton />
-                                            :
-                                            (
-                                                <>
-                                                    <div className={styles.subtitle}>
-                                                        <PageText type="pageTertiaryTitle">Step Up Charts</PageText>
-                                                    </div>
-                                                    <div className={styles.title}>
-                                                        <PageText type="pageTitle">{capitalizeFirstLetterEachWord(categoryId)}</PageText>
-                                                    </div>
-                                                    <div className={styles.description}>
-                                                        <PageText type="bodyDescriptionMedium">{categoryHeroVerbiage.description}</PageText>
-                                                    </div>
-                                                    <div className={styles.heroCallout}>
-                                                        <PageText type="bodyDescriptionMedium">
-                                                            {`${stepUpChartCTA} `}
-                                                            <span className={styles.ctaLinkText}>
-                                                                <ExternalLink href={stepUpChartURL}>LG Line Logic.</ExternalLink>
-                                                            </span>
-                                                        </PageText>
-
-                                                    </div>
-                                                </>
-                                            )
-                                    }
-
-                                </div>
-                                <div className={styles.gridItem2}>
-                                    <div className={styles.gridItem2Image}>
-
-                                        <img alt={`${categoryId} appliance lifestyle view`} src={heroImage} />
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </GridSystem>
-            </div>
-            */}
-         
-
-
+    
             <GridSystem gridType="spread" containerBackgroundColor='#E6E1D6' >
                 <div className={styles.contentWrapper}>
                     <div className={styles.chartBodyContainer}>

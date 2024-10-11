@@ -5,19 +5,19 @@ import { FormComponent } from "../../../FormComponent/FormComponent"
 import { Button } from '../../../Button/Button';
 import { useForm } from "../../../../hooks/form-hook";
 import { TextInput } from "../../../FormComponent/TextInput/TextInput";
-import { useNotificationHook } from "../../../../hooks/notification-hook";
+import { useNotificationHook } from "../../../../hooks/use-notification-hooks";
 import { validateAdminForm } from "../../../../utils/form-validation";
 import { useHttpClient } from "../../../../hooks/http-hook";
-import { useRoutingHook } from "../../../../hooks/routing-hook";
+import { useRoutingHook } from "../../../../hooks/use-routing-hooks";
 import { useNavigate } from "react-router";
 import { VALIDATOR_REQUIRE } from "../../../../utils/validators";
 import { useState } from "react";
 import { Select } from "../../../FormComponent/Select/Select";
-import { capitalizeFirstLetterEachWord } from "../../../../utils/text-help";
+import { capitalizeFirstLetterEachWord } from "../../../../utils/helper-functions";
 import { AnimatedComponent } from "../../../../hooks/use-framer-motion";
 import { FormSection } from "../../../FormComponent/FormSection/FormSection";
 import { useDataContext } from "../../../../hooks/data-hook";
-import { useAuth, useLogout } from '../../../../hooks/auth-hook';
+import { useAuth, useLogout } from '../../../../hooks/use-auth-hooks';
 
 export const AdminAccountForm = () => {
 
@@ -210,7 +210,7 @@ export const AdminAccountForm = () => {
         // <FormComponent onSubmit={submitForm}>
         <FormComponent >
             <FormSection>
-                <AnimatedComponent type='3dRoationDropdownEffects' delay={.5}>
+                {/* <AnimatedComponent type='3dRoationDropdownEffects' delay={.5}> */}
                     <TextInput
                         id="firstName"
                         name="firstName"
@@ -221,8 +221,8 @@ export const AdminAccountForm = () => {
                         onInput={inputHandler}
                         value={formState.inputs.firstName.value}
                     />
-                </AnimatedComponent>
-                <AnimatedComponent type='3dRoationDropdownEffects' delay={.5}>
+                {/* </AnimatedComponent>
+                <AnimatedComponent type='3dRoationDropdownEffects' delay={.5}> */}
                     <TextInput
                         id="lastName"
                         name="lastName"
@@ -233,8 +233,8 @@ export const AdminAccountForm = () => {
                         onInput={inputHandler}
 
                     />
-                </AnimatedComponent>
-                <AnimatedComponent type='3dRoationDropdownEffects' delay={.5}>
+                {/* </AnimatedComponent>
+                <AnimatedComponent type='3dRoationDropdownEffects' delay={.5}> */}
                     <TextInput
                         id="email"
                         name="email"
@@ -245,8 +245,8 @@ export const AdminAccountForm = () => {
                         onInput={inputHandler}
 
                     />
-                </AnimatedComponent>
-                <AnimatedComponent type='3dRoationDropdownEffects' delay={.5}>
+                {/* </AnimatedComponent>
+                <AnimatedComponent type='3dRoationDropdownEffects' delay={.5}> */}
                     <Select
                         id='role'
                         name="role"
@@ -260,8 +260,8 @@ export const AdminAccountForm = () => {
                             { value: "superAdmin", label: "Super Administrator" }
                         ]}
                     />
-                </AnimatedComponent>
-                <AnimatedComponent type='3dRoationDropdownEffects' delay={.5}>
+                {/* </AnimatedComponent>
+                <AnimatedComponent type='3dRoationDropdownEffects' delay={.5}> */}
                     <TextInput
                         id="password"
                         name="password"
@@ -275,9 +275,9 @@ export const AdminAccountForm = () => {
                         onIconClick={togglePasswordVisibility}
                         onInput={inputHandler}
                     />
-                </AnimatedComponent>
+                {/* </AnimatedComponent>
 
-                <AnimatedComponent type='3dRoationDropdownEffects' delay={.5}>
+                <AnimatedComponent type='3dRoationDropdownEffects' delay={.5}> */}
                     <TextInput
                         id='confirmPassword'
                         labelName='Confirm Password'
@@ -289,14 +289,14 @@ export const AdminAccountForm = () => {
                         onIconClick={toggleConfirmPasswordVisibility}
                     // secondaryLabel='optional'
                     />
-                </AnimatedComponent>
+                {/* </AnimatedComponent>
 
-                <AnimatedComponent type='3dRoationDropdownEffects' delay={.5}>
+                <AnimatedComponent type='3dRoationDropdownEffects' delay={.5}> */}
                     <Button type='button'
                         onClick={preFormSubmit}
                         // onClick={submitForm} 
                         buttonStyleType="primaryAction">Sumbit </Button>
-                </AnimatedComponent>
+                {/* </AnimatedComponent> */}
             </FormSection>
         </FormComponent>
     )

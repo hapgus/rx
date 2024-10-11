@@ -1,11 +1,11 @@
 import Loader from "../../components/Loader/Loader";
 import Modal from "../../components/Modal/Modal";
 import ProductGuideAlerts from "../../components/Alert/Alert";
-import { useNotificationHook } from "../../hooks/notification-hook";
-import { useRoutingHook } from "../../hooks/routing-hook";
+import { useNotificationHook } from "../../hooks/use-notification-hooks";
+import { useRoutingHook } from "../../hooks/use-routing-hooks";
 import styles from './AuthLayout.module.css';
 import { Outlet } from "react-router";
-import { useDataContext } from "../../hooks/data-hook";
+
 
 export default function AuthLayout() {
     const { isAlert, setIsAlert, isModal } = useNotificationHook();

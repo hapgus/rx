@@ -4,9 +4,9 @@ import { PageText } from "../Text/Text";
 import { IconComponent } from "../Icon/IconComponent";
 import { Button } from "../Button/Button";
 import { LGComponent } from "../Character/LGComponent";
-import { useNotificationHook } from "../../hooks/notification-hook";
+import { useNotificationHook } from "../../hooks/use-notification-hooks";
 import { SaveListForm } from "../AuthComponent/SaveListForm";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { LGGif } from "../Character/LGGif";
 import { AnimatedButton } from "../../hooks/use-framer-motion";
 

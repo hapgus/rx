@@ -1,7 +1,7 @@
 
 
 import { ForgotPasswordForm } from '../../../components/AuthComponent/ForgotPassword/ForgotPasswordForm';
-
+import { AnimatedComponent, AnimatedImage } from '../../../hooks/use-framer-motion';
 import { LinkComponent } from '../../../components/Links/LinkComponent';
 import { AuthTemplate } from '../../../layout/Auth/AuthTemplate';
 import { PageText } from '../../../components/Text/Text';
@@ -15,13 +15,20 @@ const ForgotPasswordPage = () => {
                 <div className={styles.logoWrapper}>
 
                     <div className={styles.logo}>
-                        <img src={`/assets/image/logos/lg-logo.webp`} />
+                        <AnimatedImage
+
+                            type="bounceEffect" delay={.3}
+                            src={`/assets/image/logos/lg-logo.webp`}
+                            alt='LG Logo in heritage red and gray'
+                        />
                     </div>
 
                 </div>
                 <div className={styles.headerText}>
                     <div className={styles.title}>
-                        <PageText type='pageTitle'>Password Reset</PageText>
+                        <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.1}>
+                            <PageText type='pageTitle'>Get a password reset link</PageText>
+                        </AnimatedComponent>
                     </div>
                     {/* <div className={styles.tertiaryTitle}>
                         <PageText>
@@ -34,10 +41,19 @@ const ForgotPasswordPage = () => {
                     <div className={styles.loginForm}>
                         <ForgotPasswordForm />
                     </div>
+
                     <div className={styles.loginFooterDescription}>
-                        <PageText>
-                            Not a member? <LinkComponent href={`../sign-up`} linkText='Sign up today!' />
-                        </PageText>
+                        <AnimatedComponent type='3dRoationDropdownEffects' delay={.3}>
+                            <PageText>
+                                <span className={styles.spanText}>
+                                    Not a member?  {" "}
+                                </span>
+                                <span className={styles.spanTextLink}>
+                                    <LinkComponent href={`../sign-up`} linkText='Sign up today!' />
+                                </span>
+
+                            </PageText>
+                        </AnimatedComponent>
                     </div>
                 </div>
                 {/* <PageText type='pageTitle'>Forgot your password?</PageText>

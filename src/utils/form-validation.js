@@ -1,12 +1,6 @@
-import { splitToArrayOnLineBreak, trimAndNormalizeSpaces } from "./form-helpers";
-// Preprocessing functions
-const trimOnly = (value) => {
-  return value.trim();
-};
 
-const trimAndLowercase = (value) => {
-  return value.trim().toLowerCase();
-};
+import { splitToArrayOnLineBreak, trimAndNormalizeSpaces } from "./helper-functions";
+
 
 // const trimAndNormalizeSpaces = (value) => {
 //   return value.trim().replace(/\s+/g, ' ');

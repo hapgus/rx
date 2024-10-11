@@ -1,6 +1,6 @@
 import { PortalPage } from '../../components/PortalComponent/PortalPageComponent/PortalPage/PortalPage';
 import { UpdateProductForm } from '../../components/PortalComponent/PortalFormComponent/UpdateProduct/UpdateProductForm';
-// import { UpdateProductForm } from '../../components/PortalComponent/PortalFormComponent/UpdateProductForm';
+
 
 import { useParams } from 'react-router-dom';
 

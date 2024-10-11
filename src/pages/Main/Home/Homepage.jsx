@@ -3,16 +3,19 @@ import { GridSystem } from "../../../components/GridSystem/GridSystem";
 import { PageText } from '../../../components/Text/Text';
 
 import { SearchComponent } from '../../../components/Search/SearchComponent/SearchComponent';
-import { useSearchHook } from '../../../hooks/search-hook';
-import { categoryLinks } from '../../../utils/link-helper';
-import { LinkComponent } from '../../../components/Links/LinkComponent';
+import { useSearchHook } from '../../../hooks/use-search-hooks';
+
 import { Button } from '../../../components/Button/Button';
 import { IconComponent } from '../../../components/Icon/IconComponent';
-import { useResponsiveMediaStateHook } from '../../../hooks/responsive-hook';
-import { Collar } from '../../../components/Collar/Collar';
+import { LinkComponent } from '../../../components/Links/LinkComponent';
+
+// import { Collar } from '../../../components/Collar/Collar';
 import { AnimatedComponent } from '../../../hooks/use-framer-motion';
 import { motion } from 'framer-motion';
 import { AnimatedCheckmark } from '../../../components/AnimatedCheckmark/AnimatedCheckmark';
+import { useEffect, useState } from 'react';
+import { HomePageSkeletonComponent } from './HomePageSkeleton';
+import { useLinkConfig } from '../../../hooks/use-link-config-hooks';
 
 const listVariants = {
     hidden: { opacity: 0 },
@@ -32,7 +35,20 @@ const itemVariants = {
 
 const Homepage = () => {
 
+    const {categoryLinks} = useLinkConfig();
     const { setIsHomepageSearchState, setIsMobileSearchState } = useSearchHook();
+
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        // Set a timer for 1 second to handle the loading state
+        const timer = setTimeout(() => {
+          setIsLoading(false);
+        }, 700);
+    
+        // Cleanup the timer on component unmount
+        return () => clearTimeout(timer);
+      }, []);
 
     const handleHomepageSearchClick = () => {
         setIsHomepageSearchState(prevState => ({ ...prevState, isHomepageSearch: true }))
@@ -42,8 +58,7 @@ const Homepage = () => {
         setIsMobileSearchState(prevState => ({ ...prevState, isMobileSearch: true }))
     }
 
-    // const { isMediaMobile } = useResponsiveMediaStateHook();
-    // const introStyles = isMediaMobile? {}: 'spread'
+  
 
     const benefits = [
         {
@@ -83,6 +98,10 @@ const Homepage = () => {
 
     ];
 
+ // Check if still loading, display the skeleton loader
+ if (isLoading) {
+    return <HomePageSkeletonComponent />;
+  }
 
     return (
         <>
@@ -133,22 +152,25 @@ const Homepage = () => {
             {/* <Collar/> */}
 
 
-            {/* <div className={styles.collar}>
+            <div className={styles.collar}>
                 <GridSystem gridType='spread'>
                     <div >
-                        <ul className={styles.collarList}>
+                        <div className={styles.collarList}>
                             
                             {categoryLinks.map((category, idx) => (
-                                <li key={idx}>
+                                <span key={idx}>
+                                    
                                     <LinkComponent href={category.href}>
+                                  
                                         <PageText type='mobileNavTitle'> {category.text}</PageText>
+                                     
                                     </LinkComponent>
-                                </li>
+                                </span>
                             ))}
-                        </ul>
+                        </div>
                     </div>
                 </GridSystem>
-            </div> */}
+            </div>
             <GridSystem gridType='spread'
                 containerBackgroundColor='#E6E1D6'
             >
@@ -157,10 +179,10 @@ const Homepage = () => {
                         <div className={styles.textWrapper}>
                             <div className={styles.introTitle}>
                                 <div className={styles.introTitleText}>
-                                    <PageText type='pageTitle'>Welcome to the LG Product Guide</PageText>
+                                    <PageText type='bodyTitle'>Welcome to the LG Product Guide</PageText>
                                 </div>
                                 <div className={styles.longSubtitle}>
-                                    <PageText type='pageSubtitle'>Your gateway to mastering LG's line of best-in-class home appliances is here. The LG Product Guide is your one-stop-shop for everything home appliance. </PageText>
+                                    <PageText type='bodySubtitle'>Your gateway to mastering LG's line of best-in-class home appliances is here. The LG Product Guide is your one-stop-shop for everything home appliance. </PageText>
                                 </div>
                                 <div className={styles.shortSubtitle}>
                                     <PageText type='pageSubtitle'>Your gateway to mastering LG's line of best-in-class home appliances </PageText>
@@ -180,8 +202,8 @@ const Homepage = () => {
                         </div>
                         <div className={styles.introDescription}>
                             <div className={styles.introDescriptionHeader}>
-                               
-                               
+
+
                                 <PageText type='pageSubtitle'>The LG Product Guide is your one-stop-shop for everything home appliance.</PageText>
                             </div>
                             <motion.div
@@ -195,24 +217,24 @@ const Homepage = () => {
                                             <motion.div
                                                 variants={itemVariants}
                                                 key={idx} className={styles.benefitCard}>
-                                                <motion.div 
-                                                variants={itemVariants}
-                                                className={styles.benefitCardCount}>
+                                                <motion.div
+                                                    variants={itemVariants}
+                                                    className={styles.benefitCardCount}>
                                                     <div className={styles.iconWrapper}>
-                                                        
+
                                                         {/* <IconComponent iconType='redCheckmark' /> */}
                                                         {/* <IconComponent iconType='warranty' /> */}
-                                                        <AnimatedCheckmark/>
+                                                        <AnimatedCheckmark />
                                                     </div>
                                                     {/* <CountBubble itemCount={idx + 1} /> */}
                                                 </motion.div>
                                                 <div className={styles.benefitCardText}>
-                                                    <PageText type='bodyBenefitTitle'>{e.title}</PageText>
+                                                    <PageText type='bodyCalloutTitle'>{e.title}</PageText>
                                                     <div className={styles.longBenefitText}>
-                                                        <PageText type='bodyBenefitDescription'>{e.description}</PageText>
+                                                        <PageText type='bodyCallout'>{e.description}</PageText>
                                                     </div>
                                                     <div className={styles.shortBenefitText}>
-                                                        <PageText type='bodyBenefitDescription'>{e.shortDescription}</PageText>
+                                                        <PageText type='bodyCallout'>{e.shortDescription}</PageText>
                                                     </div>
 
                                                 </div>
@@ -228,40 +250,45 @@ const Homepage = () => {
                     </div>
                 </div>
             </GridSystem>
-            <GridSystem
-                gridType='spread'
-                containerBorderTop="1px solid #D0CBC1"
-                containerBackgroundColor='#F6F3EB'
-            // containerPaddingTop='4rem'
-            // containerPaddingBottom='4rem'
-            >
-                <div className={styles.contentWrapper}>
-                    <div className={styles.sectionHeader}>
-                        <div className={styles.sectionTitle}>
-                            <PageText type='pageTitle'>Resources</PageText>
-                        </div>
-                        <div className={styles.sectionSubtitle}>
-                            <PageText type='pageTertiaryTitle'>Your hub for product knowledge and support</PageText>
-                        </div>
+            
+                <GridSystem
+                    gridType='spread'
+                    // containerBorderTop="1px solid #D0CBC1"
+                // containerBackgroundColor='#F6F3EB'
+                // containerPaddingTop='4rem'
+                // containerPaddingBottom='4rem'
+                >
 
-                    </div>
-                    <div className={styles.qCardWrapper}>
-                        {resourcesCallout.map((e, idx) => {
-                            return (
-                                <div key={idx} className={styles.qCard}>
-                                    <div className={styles.qText}>
-                                        <PageText type='pageSubtitle'>{e.title}</PageText>
-                                        <PageText type='bodyDescriptionLarge'>{e.description}</PageText>
+                    <div className={styles.contentWrapper}>
+                        <div className={styles.sectionHeader}>
+                            <div className={styles.sectionTitle}>
+                                <PageText type='bodyTitle'>Resources</PageText>
+                            </div>
+                            <div className={styles.sectionSubtitle}>
+                                <PageText type='bodySubtitle'>Your hub for product knowledge and support</PageText>
+                            </div>
+
+                        </div>
+                        <div className={styles.qCardWrapper}>
+                            {resourcesCallout.map((e, idx) => {
+                                return (
+                                    <div key={idx} className={styles.qCard}>
+                                        <div className={styles.qText}>
+                                            <PageText type='bodyCalloutTitle'>{e.title}</PageText>
+                                            <PageText type='bodyCallout'>{e.description}</PageText>
+                                        </div>
+                                        <div className={styles.qIcon}>
+                                            <IconComponent iconType={e.icon} />
+                                        </div>
                                     </div>
-                                    <div className={styles.qIcon}>
-                                        <IconComponent iconType={e.icon} />
-                                    </div>
-                                </div>
-                            )
-                        })}
+                                )
+                            })}
+                        </div>
                     </div>
-                </div>
-            </GridSystem>
+
+                </GridSystem>
+    
+        
 
 
         </>
