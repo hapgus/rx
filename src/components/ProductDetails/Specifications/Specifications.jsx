@@ -10,7 +10,7 @@ export const Specifications = ({ product, print = false }) => {
         text = text.toLowerCase();
         return text.charAt(0).toUpperCase() + text.slice(1);
     }
-
+console.log('from spec',product)
     const specListStyles = print === true
         ? {
             ulStyles: styles.printUl,
@@ -28,7 +28,8 @@ export const Specifications = ({ product, print = false }) => {
         <>
             <div className={styles.specificationComponentContainer}>
                 {
-                    product.specTitle1 && product.specList1 &&
+                    // product.specTitle1 && product.specList1 &&
+                    product.specList1 &&
                     <div>
                         <div className={styles.specListTitle}>
                             <PageText type='productPageSpecTitle'>{capitalizeFirstLetterEachWord(product.specTitle1)}</PageText>
@@ -42,7 +43,7 @@ export const Specifications = ({ product, print = false }) => {
                         </ul>
                     </div>
                 }
-                {product.specTitle2 && product.specList2 &&
+                {product.specList2 &&
                     <div>
                         <div className={styles.specListTitle}>
                             <PageText type='productPageSpecTitle'>{capitalizeFirstLetter(product.specTitle2)}</PageText>
@@ -55,7 +56,7 @@ export const Specifications = ({ product, print = false }) => {
                         </ul>
                     </div>
                 }
-                {product.specTitle3 && product.specList3 &&
+                {product.specList3 &&
                     <div>
                         <div className={styles.specListTitle}>
                             <PageText type='productPageSpecTitle'>{capitalizeFirstLetter(product.specTitle3)}</PageText>
@@ -68,7 +69,7 @@ export const Specifications = ({ product, print = false }) => {
                         </ul>
                     </div>
                 }
-                {product.specTitle4 && product.specList4 &&
+                {product.specList4 &&
                     <div>
                         <div className={styles.specListTitle}>
                             <PageText type='productPageSpecTitle'>{capitalizeFirstLetter(product.specTitle4)}</PageText>

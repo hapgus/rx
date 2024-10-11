@@ -74,9 +74,9 @@ export const PrintScreen = () => {
                                 <Specifications product={p} print={true}/>
                             </div>
                             {
-                                p.specSheetQrcode &&
+                                p.qrcode &&
                                 <div className={styles.productQrcodes}>
-                                    <Qrcode title='Scan Spec Sheet QR Code' imageUrl={`${process.env.REACT_APP_AWS_URL}/${p.resourceQrCodeImage}`} />
+                                    <Qrcode title='Scan Spec Sheet QR Code' imageUrl={`${process.env.REACT_APP_AWS_URL}/${p.qrcode}`} />
 
                                 </div>
                             }
