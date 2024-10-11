@@ -6,7 +6,6 @@ import { useRoutingHook } from "../../hooks/use-routing-hooks";
 import styles from './AuthLayout.module.css';
 import { Outlet } from "react-router";
 
-
 export default function AuthLayout() {
     const { isAlert, setIsAlert, isModal } = useNotificationHook();
     const { isRoutingState } = useRoutingHook();
