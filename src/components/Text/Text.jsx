@@ -1,10 +1,5 @@
 import styles from './Text.module.css';
 
-
-
-
-
-
 export const PageText = ({ children, eventHandlers = {}, type = 'default' }) => {
 
     const textStyles = {
@@ -71,12 +66,12 @@ export const PageText = ({ children, eventHandlers = {}, type = 'default' }) => 
         productPageSection: styles.productPageSection,
 
         productCardTertiaryTitle: styles.productCardTertiaryTitle,
-        productBuilderTitle: styles.productBuilderTitle,
-        productBuilderSubtitle: styles.productBuilderSubtitle,
+      // productBuilderTitle: styles.productBuilderTitle,
+        // productBuilderSubtitle: styles.productBuilderSubtitle,
 
-        productBuilderSpecTitle: styles.productBuilderSpecTitle,
-        productBuilderSpecList: styles.productBuilderSpecList,
-        productCardListText: styles.productCardListText,
+        // productBuilderSpecTitle: styles.productBuilderSpecTitle,
+        // productBuilderSpecList: styles.productBuilderSpecList,
+        // productCardListText: styles.productCardListText,
 
 
         /* --------------------------------------------------------------------------------------- */
@@ -144,27 +139,19 @@ export const PageText = ({ children, eventHandlers = {}, type = 'default' }) => 
         searchTertiaryTitle: styles.searchTertiaryTitle,
 
 
-        productSearchTitle: styles.productSearchTitle,
-        productSearchSubtitle: styles.productSearchSubtitle,
+        // productSearchTitle: styles.productSearchTitle,
+        // productSearchSubtitle: styles.productSearchSubtitle,
 
-        productSearchNavTitle: styles.productSearchNavTitle,
-        productSearchNavSubtitle: styles.productSearchNavSubtitle,
+        // productSearchNavTitle: styles.productSearchNavTitle,
+        // productSearchNavSubtitle: styles.productSearchNavSubtitle,
 
         default: styles.defaultPageText,
     };
 
-
     const textStyle = textStyles[type] || textStyles.default;
-
-
     return (
-        <p
-            className={textStyle}
-            {...eventHandlers}
-        >
-
+        <p className={textStyle} {...eventHandlers}>
             {children}
-
         </p>
     )
 };

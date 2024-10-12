@@ -140,8 +140,9 @@ const Homepage = () => {
 
                             <div>
                                 <div className={styles.footer}>
+
                                     <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.3}>
-                                        <PageText type='heroSubtitle'>Discover best-in-class products and accessories at the LG Product Guide</PageText>
+                                        <PageText type='heroDescription'>Discover best-in-class products and accessories at the LG Product Guide</PageText>
                                     </AnimatedComponent>
                                 </div>
                             </div>
@@ -167,7 +168,7 @@ const Homepage = () => {
 
                             <span className={styles.collarText} key={idx}>
                                 <LinkComponent href={category.href}>
-                                     {category.text}
+                                    {category.text}
                                 </LinkComponent>
                             </span>
                         ))}
@@ -185,11 +186,13 @@ const Homepage = () => {
                                 <div className={styles.introTitleText}>
                                     <PageText type='bodyTitle'>Welcome to the LG Product Guide</PageText>
                                 </div>
-                                <div className={styles.longSubtitle}>
-                                    <PageText type='bodySubtitle'>Your gateway to mastering LG's line of best-in-class home appliances is here. The LG Product Guide is your one-stop-shop for everything home appliance. </PageText>
-                                </div>
-                                <div className={styles.shortSubtitle}>
-                                    <PageText type='pageSubtitle'>Your gateway to mastering LG's line of best-in-class home appliances </PageText>
+                                <div className={styles.introTitleDescription}>
+                                    <div className={styles.longSubtitle}>
+                                        <PageText type='bodySubtitle'>Your gateway to mastering LG's line of best-in-class home appliances is here. The LG Product Guide is your one-stop-shop for everything home appliance. </PageText>
+                                    </div>
+                                    <div className={styles.shortSubtitle}>
+                                        <PageText type='pageSubtitle'>Your gateway to mastering LG's line of best-in-class home appliances </PageText>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -206,8 +209,6 @@ const Homepage = () => {
                         </div>
                         <div className={styles.introDescription}>
                             <div className={styles.introDescriptionHeader}>
-
-
                                 <PageText type='pageSubtitle'>The LG Product Guide is your one-stop-shop for everything home appliance.</PageText>
                             </div>
                             <motion.div
@@ -223,14 +224,12 @@ const Homepage = () => {
                                                 key={idx} className={styles.benefitCard}>
                                                 <motion.div
                                                     variants={itemVariants}
-                                                    className={styles.benefitCardCount}>
-                                                    <div className={styles.iconWrapper}>
+                                                    className={styles.iconWrapper}>
+                                                   
 
-                                                        {/* <IconComponent iconType='redCheckmark' /> */}
-                                                        {/* <IconComponent iconType='warranty' /> */}
                                                         <AnimatedCheckmark />
-                                                    </div>
-                                                    {/* <CountBubble itemCount={idx + 1} /> */}
+                                                
+                                                  
                                                 </motion.div>
                                                 <div className={styles.benefitCardText}>
                                                     <PageText type='bodyCalloutTitle'>{e.title}</PageText>

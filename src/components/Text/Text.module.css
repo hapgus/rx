@@ -62,13 +62,13 @@
 
 .bodyCallout {
     display: inline-flex;
-    font-size: 1.4rem;
+    font-size: 1.8rem;
 }
 
 .bodyCalloutTitle {
     font-family: var(--text-semibold);
     display: inline-flex;
-    font-size: 1.6rem;
+    font-size: 2rem;
 }
 
 .bodyCountTitle {
