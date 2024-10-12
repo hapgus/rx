@@ -17,7 +17,7 @@ import { AnimatedCheckmark } from '../../../components/AnimatedCheckmark/Animate
 import { useEffect, useState } from 'react';
 import { HomePageSkeletonComponent } from './HomePageSkeleton';
 import { LinkComponent } from '../../../components/Links/LinkComponent';
-// import { useLinkConfig } from '../../../hooks/use-link-config-hooks';
+import { useLinkConfig } from '../../../hooks/use-link-config-hooks';
 
 const listVariants = {
     hidden: { opacity: 0 },
@@ -37,7 +37,7 @@ const itemVariants = {
 
 const Homepage = () => {
 
-    // const {categoryLinks} = useLinkConfig();
+    const { categoryLinks } = useLinkConfig();
     const { setIsHomepageSearchState, setIsMobileSearchState } = useSearchHook();
 
     const [isLoading, setIsLoading] = useState(true);
@@ -154,25 +154,27 @@ const Homepage = () => {
             {/* <Collar/> */}
 
 
-            {/* <div className={styles.collar}>
+            <div className={styles.collar}>
                 <GridSystem gridType='spread'>
-                    <div >
-                        <div className={styles.collarList}>
-                            
-                            {categoryLinks.map((category, idx) => (
-                                <span key={idx}>
-                                    
-                                    <LinkComponent href={category.href}>
-                                  
-                                        <PageText type='mobileNavTitle'> {category.text}</PageText>
-                                     
-                                    </LinkComponent>
-                                </span>
-                            ))}
+                    {/* <div className={styles.collarHeaderWrapper}>
+                        <div className={styles.collarHeaderText}>
+                            <PageText type='heroSubtitle'>Browse</PageText>
                         </div>
+                    </div> */}
+
+                    <div className={styles.collarList}>
+                        {categoryLinks.map((category, idx) => (
+
+                            <span className={styles.collarText} key={idx}>
+                                <LinkComponent href={category.href}>
+                                     {category.text}
+                                </LinkComponent>
+                            </span>
+                        ))}
                     </div>
+
                 </GridSystem>
-            </div> */}
+            </div>
             <GridSystem gridType='spread'
                 containerBackgroundColor='#E6E1D6'
             >

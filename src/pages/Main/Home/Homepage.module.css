@@ -6,7 +6,7 @@
         url('/public/assets/image/backgrounds/main/studio-kitchen-01.webp');
     background-size: cover;
     background-position: center;
-   
+
     background-repeat: no-repeat;
     justify-content: center;
     height: 30rem;
@@ -23,6 +23,7 @@
 .longHeroSubtitle {
     display: none;
 }
+
 .heroHeader {
     display: flex;
     flex-direction: column;
@@ -31,11 +32,9 @@
 
 }
 
-
 .footer {
     padding-top: 2rem;
 }
-
 
 .title,
 .subtitle,
@@ -44,6 +43,7 @@
 }
 
 .collar {
+
     background-color: var(--color-gray-07);
     /* overflow-x: auto; */
     /* border-top: 1px solid var(--color-gray-04);
@@ -56,24 +56,54 @@
 
 .collarList {
     display: flex;
-    /* flex-direction: row-reverse; */
+    flex-direction: row-reverse;
     gap: 2rem;
-    padding: 1.5rem 2rem;
+    /* padding: 1.5rem 2rem; */
     justify-content: space-between;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+padding: 2rem;
+    
 }
 
-.collar::-webkit-scrollbar {
+.collarList::-webkit-scrollbar {
     width: 1rem;
 }
 
-.collar::-webkit-scrollbar-track {
+.collarList::-webkit-scrollbar-track {
     background-color: var(--color-gray-07);
 }
 
-.collar::-webkit-scrollbar-thumb {
+.collarList::-webkit-scrollbar-thumb {
     background-color: var(--color-gray-06);
     border-radius: 10px;
     border: 1px solid var(--color-gray-04);
+}
+
+.collarList::-webkit-scrollbar-thumb:hover {
+    background: var(--color-red-02);
+}
+.collarHeaderWrapper{
+    padding-top: 1.5rem;
+    padding-left: 2rem;
+/* padding: 1rem 2rem 0 2rem; */
+}
+.collarHeaderText{
+    color: var(--color-gray-01);
+    /* padding-bottom: rem; */
+}
+.collarText{
+    padding-left: 2rem;
+}
+.collarText a {
+    font-size: 1.8rem;
+ color: var(--color-gray-03);
+    border-bottom: 2px solid transparent;
+}
+.collarText a:hover{
+    color: black;
+    border-bottom: 2px solid red;
 }
 
 .exploreText {
@@ -83,9 +113,7 @@
     color: var(--color-gray-01);
 }
 
-.collar a {
-    color: var(--color-gray-01);
-}
+
 
 .desktopHomeSearchWrapper {
     display: none;
@@ -126,19 +154,22 @@
     grid-column: 1;
     /* background-color: rgb(6, 57, 57); */
 }
-.rep2{
+
+.rep2 {
     display: none;
 }
-.headImage1{
+
+.headImage1 {
     height: 10rem;
     width: auto;
 }
-.headImage2{
+
+.headImage2 {
     height: 20rem;
     width: auto;
 }
 
-.headImageGroup{
+.headImageGroup {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -251,7 +282,7 @@
     padding: 1rem 0 2rem 0;
 }
 
-.sectionHeader{
+.sectionHeader {
     display: flex;
     flex-direction: column;
     padding-top: 3rem;
@@ -261,10 +292,8 @@
 
 
 
-.ft{
+.ft {}
 
-   
-}
 @media (min-width: 430px) {
 
     .imageWrapper {
@@ -272,10 +301,12 @@
         /* justify-content: flex-start; */
         /* justify-content: center; */
     }
-    .headImage1{
+
+    .headImage1 {
         height: 12rem;
     }
-    .headImage2{
+
+    .headImage2 {
         height: 24rem;
     }
 
@@ -293,17 +324,19 @@
         align-items: center;
         padding-bottom: 2rem;
     }
+
     .qCard {
-    
+
         gap: 8rem;
-      
+
     }
 }
 
 @media (min-width: 768px) {
-    .heroContainer{
+    .heroContainer {
         height: 40rem;
     }
+
     .contentWrapper {
         padding: 0rem 4rem 2rem 4rem;
     }
@@ -311,21 +344,23 @@
     /* .imageWrapper {
         height: 40rem;
     } */
-    .headImage1{
+    .headImage1 {
         height: 20rem;
     }
-    .headImage2{
+
+    .headImage2 {
         height: 40rem;
     }
+
     .qIcon {
         height: 5rem;
         width: 5rem;
     }
-    
+
 }
 
 @media (min-width: 1024px) {
-    .heroContainer{
+    .heroContainer {
         height: 50rem;
     }
 
@@ -360,21 +395,27 @@
         /* height: 40rem; */
         width: auto;
     }
-    .rep1{
+
+    .rep1 {
         display: none;
     }
-    .rep2{
+
+    .rep2 {
         display: flex;
     }
-    .headImageGroup{
+
+    .headImageGroup {
         flex-direction: column;
     }
-    .headImage1{
+
+    .headImage1 {
         height: 20rem;
     }
-    .headImage2{
+
+    .headImage2 {
         height: 40rem;
     }
+
     .textWrapper {
         grid-column: 1/6;
         grid-row: 1;
@@ -432,7 +473,7 @@
     .qCard {
         /* width: 48.5rem;
         height: 17.7rem; */
-       
+
         gap: 4rem;
         border-radius: 2rem;
         padding: 2rem 3rem;
@@ -517,68 +558,84 @@
     }
 }
 
-@media(min-width:1280px){
+@media(min-width:1280px) {
     .imageWrapper {
         height: 50rem;
     }
-  
+
     .qIcon {
         height: 7rem;
         width: 7rem;
         align-self: center;
     }
+
     .qCard {
         width: 48.5rem;
         height: 17.7rem;
-       
-     
+    }
+    .collarList{
+        justify-content: center;
     }
 
+
 }
-@media(min-width:1440px){
+
+@media(min-width:1440px) {
     .introductionContainer {
-       
+
         padding: 4rem 0;
-       
+
     }
-    .rep1{
+
+    .rep1 {
         display: flex;
     }
-    .rep2{
+
+    .rep2 {
         display: none;
     }
-    .headImageGroup{
+
+    .headImageGroup {
         flex-direction: row;
     }
-    .headImage1{
+
+    .headImage1 {
         height: 25rem;
     }
-    .headImage2{
+
+    .headImage2 {
         height: 50rem;
     }
+  
+
 }
 
 @media (min-width: 1920px) {
-    .heroContainer{
+    .heroContainer {
         height: 50rem;
     }
-    .collarList {
+
+    /* .collarList {
         padding: 1.5rem 0;
         justify-content: space-between;
-    }
-    .headImage1{
+    } */
+    .headImage1 {
         height: 27rem;
     }
-    .headImage2{
+
+    .headImage2 {
         height: 54rem;
     }
-    .introductionContainer {
-       
-        padding: 8rem 2rem;
-       
-    }
 
-} 
+    .introductionContainer {
+
+        padding: 8rem 2rem;
+
+    }
+  
+
+}
+
 /* --------------------------------------------------------------------------------------- */
 /* MEDIA QUERY REFERENCE */
 /* --------------------------------------------------------------------------------------- */
