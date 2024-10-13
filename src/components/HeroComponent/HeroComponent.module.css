@@ -38,24 +38,24 @@
    
 }
 .headlineTitles{
-   line-height: 1.5;
-   letter-spacing: .5px;
+   /* line-height: 1.5;
+   letter-spacing: .5px; */
 }
 .gridItem2 {
 
     display: none;
 }
 .title {
-    color: black; 
+    color: var(--color-gray-01); 
 }
 
 .subtitle {
-    color: black; 
+   color: var(--color-gray-03);
 }
 
 
 .description {
-    color: var(--color-gray-01);
+    color: var(--color-gray-02);
     /* margin-top: 2rem; */
 }
 .heroCallout{
@@ -89,6 +89,7 @@
 .ctaLinkText a{
     color: var(--color-red-03);
     font-weight: 600;
+    padding-left: .7rem;
 }
 @media (min-width: 430px) {
     .chartBodyContainer {
@@ -149,9 +150,7 @@
     .contentWrapper {
         padding: 0 4rem;
     }
-    .contentWrapper {
-        /* padding: 1rem 4rem 4rem 4rem; */
-    }
+  
 
     .gridItem1 {
         grid-column: 1/6;
@@ -175,6 +174,7 @@
     .gridItem2Image {
         height: 50rem;
         width: auto;
+        padding: 3rem 0;
     }
 
     .gridItem2Image img {

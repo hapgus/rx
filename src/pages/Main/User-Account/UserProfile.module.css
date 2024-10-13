@@ -34,16 +34,13 @@
     padding-top: 3rem;
     padding-bottom: 3rem;
 }
-.actionButtonsWrapper, a{
+.actionButtonsWrapper a{
      font-size: 1.6rem;
     color: var(--color-gray-03);
 }
 
 .actionButton:hover{
     cursor: pointer;
-}
-.passwordReset a{
-   
 }
 
 .deleteAccountWrapper{

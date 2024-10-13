@@ -109,55 +109,61 @@ const Homepage = () => {
         <>
 
             <GridSystem gridType='spread' containerBackgroundColor="#F0ECE4" >
-
-                <div className={styles.heroContainer}>
-                    <div className={styles.contentWrapper}>
-                        <div className={styles.heroWrapper}>
-                            <div className={styles.heroHeader}>
-                                <div className={styles.title}>
-                                    <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.1}>
-                                        <PageText type='heroSubtitle'>LG Product Guide</PageText>
-                                    </AnimatedComponent>
-                                </div>
-                                <div className={styles.title}>
-                                    <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.1}>
-                                        <PageText type='heroTitle'>Explore home appliances</PageText>
-                                    </AnimatedComponent>
-                                </div>
-                                <div className={styles.subtitle}>
+          
+               
+                    <div className={styles.heroContainer}>
+                        <div className={styles.contentWrapper}>
+                            <div className={styles.heroWrapper}>
+                                <div className={styles.heroHeader}>
+                                    <div className={styles.title}>
+                                        <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.5}>
+                                            <PageText type='heroSubtitle'>LG Product Guide</PageText>
+                                        </AnimatedComponent>
+                                    </div>
+                                    <div className={styles.title}>
+                                        <AnimatedComponent type="wipeEffect" directionStart='left' delay={1}>
+                                            <PageText type='heroTitle'>Explore LG home appliances</PageText>
+                                        </AnimatedComponent>
+                                    </div>
+                                    {/* <div className={styles.subtitle}>
                                     <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.3}>
                                         <PageText type='heroDescription'>Discover best-in-class products and accessories at the LG Product Guide</PageText>
                                     </AnimatedComponent>
-                                </div>
-                                {/* <div className={styles.subtitle}>
+                                </div> */}
+                                    {/* <div className={styles.subtitle}>
                                     <PageText type='pageSubtitle'>Find home appliances</PageText>
                                 </div> */}
-                            </div>
-                            <div className={styles.heroSearch}>
-                                <div className={styles.desktopHomeSearchWrapper}>
-                                    <div onClick={handleHomepageSearchClick} className={styles.desktopHomeSearchInputWrapper}>
-                                        <SearchComponent type='homepage' />
+                                </div>
+                                <div className={styles.heroSearch}>
+                                    <div className={styles.desktopHomeSearchWrapper}>
+                                        <div onClick={handleHomepageSearchClick} className={styles.desktopHomeSearchInputWrapper}>
+
+                                            <SearchComponent type='homepage' />
+
+                                        </div>
+                                    </div>
+                                    <div className={styles.mobileHomeSearchWrapper}>
+                                        <div onClick={handleHomepageMobileSearchClick} className={styles.mobileHomeSearchInputWrapper}>
+
+                                            <SearchComponent type='homepage' />
+
+                                        </div>
                                     </div>
                                 </div>
-                                <div className={styles.mobileHomeSearchWrapper}>
-                                    <div onClick={handleHomepageMobileSearchClick} className={styles.mobileHomeSearchInputWrapper}>
-                                        <SearchComponent type='homepage' />
+
+                                <div>
+                                    <div className={styles.footer}>
+
+                                        <AnimatedComponent type="wipeEffect" directionStart='left' delay={1}>
+                                            <PageText type='heroDescription'>Discover best-in-class products and accessories at the LG Product Guide</PageText>
+                                        </AnimatedComponent>
                                     </div>
                                 </div>
+
                             </div>
-
-                            <div>
-                                <div className={styles.footer}>
-
-                                    {/* <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.3}>
-                                        <PageText type='heroDescription'>Discover best-in-class products and accessories at the LG Product Guide</PageText>
-                                    </AnimatedComponent> */}
-                                </div>
-                            </div>
-
                         </div>
                     </div>
-                </div>
+          
             </GridSystem>
 
             {/* <Collar/> */}
@@ -199,7 +205,7 @@ const Homepage = () => {
                                         <PageText type='bodySubtitle'>Your gateway to mastering LG's line of best-in-class home appliances is here. The LG Product Guide is your one-stop-shop for everything home appliance. </PageText>
                                     </div>
                                     <div className={styles.shortSubtitle}>
-                                        <PageText type='pageSubtitle'>Your gateway to mastering LG's line of best-in-class home appliances </PageText>
+                                        <PageText type='pageSubtitle'>Your gateway to mastering LG's line of best-in-class home appliances.</PageText>
                                     </div>
                                 </div>
                             </div>
@@ -273,6 +279,7 @@ const Homepage = () => {
             >
 
                 <div className={styles.contentWrapper}>
+                  
                     <div className={styles.sectionHeader}>
                         <div className={styles.sectionTitle}>
                             <PageText type='bodyTitle'>Resources</PageText>
@@ -298,7 +305,6 @@ const Homepage = () => {
                         })}
                     </div>
                 </div>
-
             </GridSystem>
 
 

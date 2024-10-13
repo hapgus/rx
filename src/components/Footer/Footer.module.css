@@ -39,6 +39,7 @@ color: var(--color-gray-03);
     gap: .5rem;
 }
 .columnList li{
+    font-size: 1.4rem;
     list-style: none;
     
 }
@@ -87,6 +88,9 @@ color: var(--color-gray-03);
 @media (min-width: 834px) {}
 
 @media (min-width: 1024px) {
+    .contentWrapper{
+        padding: 2rem 4rem;
+    }
 /* 
     .footerContainer {
         display: grid;
@@ -131,7 +135,7 @@ color: var(--color-gray-03);
         grid-column: 1 / -1;
         display: grid;
         grid-template-columns: repeat(6, 1fr);
-        gap: 4rem;
+        gap: 3rem;
     }
 
     .section2 {
@@ -150,22 +154,9 @@ color: var(--color-gray-03);
 
 }
 
-@media (min-width: 1280px) {
-    .contentWrapper{
-        padding: 2rem;
-        /* padding: 3rem 4rem 0 4rem; */
-    }
-    .contentWrapperBase{
-        padding: 2rem 4rem 2rem 4rem;
-   
-    }
-  
-}
 
 @media (min-width: 1440px) {
-    .contentWrapper{
-        padding: 2rem 4rem;
-    }
+   
     .section1 {
         grid-column: 2 / 12;
     }

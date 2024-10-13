@@ -1,4 +1,12 @@
+/* .heroImageGridContainer{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+} */
 .heroContainer {
+    /* grid-row: 1/-1;
+    grid-column: 1/-1; */
+
     display: flex;
     flex-direction: column;
     background:
@@ -16,9 +24,17 @@
     /* margin-top: 4rem;
     margin-bottom: 4rem; */
 }
+.heroImage{
+    grid-row: 1/-1;
+    grid-column: 1/-1;  
+    z-index: 0;
+}
 
 .contentWrapper {
     padding: 0rem 2rem 2rem 2rem;
+}
+.heroWrapper{
+    max-width: 60rem;
 }
 
 .longHeroSubtitle {
@@ -36,6 +52,7 @@
 
 .footer {
     padding-top: 2rem;
+ 
 }
 
 .title,
@@ -386,7 +403,9 @@
     .heroContainer {
         height: 50rem;
     }
-
+    .heroWrapper{
+        max-width: 60rem;
+    }
     .longBenefitText {
         display: flex;
     }
@@ -648,12 +667,19 @@
 @media (min-width: 1920px) {
     .heroContainer {
         height: 50rem;
+        padding: 0 4rem;
     }
 
-    /* .collarList {
+    .collarList {
         padding: 1.5rem 0;
-        justify-content: space-between;
-    } */
+        /* justify-content: space-between; */
+    }
+    .sectionHeader{
+        padding-top: 4rem;
+    }
+    .qCardWrapper{
+        padding-bottom: 4rem;
+    }
     .headImage1 {
         height: 27rem;
     }
@@ -664,10 +690,12 @@
 
     .introductionContainer {
 
-        padding: 8rem 2rem;
+        padding: 8rem 0rem;
 
     }
-
+.contentWrapper{
+    padding: 0;
+}
 
 }
 

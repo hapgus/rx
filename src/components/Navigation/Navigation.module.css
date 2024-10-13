@@ -2,8 +2,8 @@
 /* MAIN NAV */
 /* --------------------------------------------------------------------------------------- */
 .mainNavComponentContainer {
-    background-color: var(--color-gray-07);
-    border-bottom: 1px solid var(--color-gray-07);
+    background-color: var(--color-gray-06);
+    border-bottom: 1px solid transparent;
     /* padding: 1.5rem 2rem; */
 
     /* border-bottom: 1px solid var(--color-gray-04); */
@@ -196,7 +196,14 @@
         flex-direction: row;
         gap: 1rem;
         padding: 1.5rem 2rem;
+        color: var(--color-gray-02);
+    }
+    .desktopNavMenuHeader p {
+        border-bottom: 2px solid transparent;
+    }
+    .desktopNavMenuHeader p:hover {
         color: var(--color-gray-01);
+        border-bottom: 2px solid var(--color-red-03);
     }
 
     .desktopNavSearchWrapper {
@@ -267,7 +274,7 @@
     .dropdownContent {
         position: relative;
         /* Change to relative if width adjustments didn't work */
-        background-color: var(--color-gray-07);
+        background-color: var(--color-gray-06);
         padding: 3rem 4rem;
         /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
         /* Add shadow for a subtle 3D effect */
@@ -275,6 +282,7 @@
         /* Add rounding for a modern look */
         width: 100%;
         /* Ensure it takes the full width of dropdownWrapper */
+        margin-top: .6rem;
         border-bottom-left-radius: 2rem;
         border-bottom-right-radius: 2rem;
         border-left: 1px solid var(--color-gray-04);
@@ -310,7 +318,9 @@
 }
 
 @media (min-width: 1920px) {
-
+    .desktopNavContainer {
+        padding: 0.55rem 0rem;
+    }
     .desktopNavWrapper {
         padding: 0;
     }

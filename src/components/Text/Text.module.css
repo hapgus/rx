@@ -190,7 +190,7 @@
 /* NAVIGATION + FOOTER */
 /* --------------------------------------------------------------------------------------- */
 .navTitleText {
-    font-size: 2rem;
+    font-size: 1.8rem;
 
 }
 
@@ -204,14 +204,14 @@
 }
 
 .footerTitle {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     /* font-size: 1.6rem; */
     /* font-family: var(--text-semibold); */
 }
 
 /* EXTRAS */
 .footerMenuItem {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
 }
 
 /* --------------------------------------------------------------------------------------- */
@@ -321,19 +321,20 @@
     /* --------------------------------------------------------------------------------------- */
     /* PAGE HERO */
     /* --------------------------------------------------------------------------------------- */
-    /* EXTRAS */
-
-    .pageSubtitle {
-        font-size: 2.4rem;
-    }
-
+ 
+    .heroTitle {
+        font-size: 3.6rem;
+    }   
     .heroSubtitle {
-        font-size: 2.4rem;
+        font-size: 2rem;
     }
-
-    .pageTertiaryTitle {
-        font-size: 2.2rem;
+    .heroDescription {
+        font-size: 2rem;
     }
+    .heroTertiaryTitle {
+        font-size: 2rem;
+    }
+  
 
 }
 
@@ -377,15 +378,10 @@
     .heroTitle {
         font-size: 4.4rem;
     }
+   
+ 
 
-    .heroSubtitle {
-        font-size: 2rem;
-    }
-
-    .heroDescription {
-        font-size: 1.8rem;
-    }
-
+    
     /* --------------------------------------------------------------------------------------- */
     /* PAGE BODY */
     /* --------------------------------------------------------------------------------------- */
@@ -438,7 +434,12 @@
     .heroTitle {
         font-size: 5.6rem;
     }
-
+.heroSubtitle{
+    font-size: 2.2rem;
+}
+.heroTertiaryTitle{
+    font-size: 2.2rem;
+}
     .heroDescription {
         font-size: 2.4rem;
     }
@@ -572,7 +573,7 @@
     /* .heroTitle {
         font-size: 4.4rem;
     } */
-
+/* 
     .heroSubtitle {
         font-size: 3.2rem;
     }
@@ -583,7 +584,7 @@
 
     .heroDescription {
         font-size: 2.4rem;
-    }
+    } */
 
 
 }

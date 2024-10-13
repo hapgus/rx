@@ -14,7 +14,7 @@ const footerColumn = (title, data = []) => (
         <PageText type='footerTitle'>{title}</PageText>
         <ul className={styles.columnList}>
             {data.length > 0 ? data.map(link => (
-                <li key={link.href}>
+                <li className={styles.footerLinks} key={link.href}>
                     <LinkComponent
                         href={link.href}
                         linkText={link.text}
