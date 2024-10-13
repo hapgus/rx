@@ -4,17 +4,13 @@
 .heroTitle {
     display: inline-flex;
     font-family: var(--headline-semibold);
-
-    /* font-family: var(--headline-regular);
-    font-weight: 600; */
     font-size: 2.8rem;
-    /* letter-spacing: 1px; */
 }
 
 .heroSubtitle {
     display: inline-flex;
-    font-size: 1.6rem;
-    font-weight: 600;
+    font-size: 1.4rem;
+    font-family: var(--text-semibold);
 }
 
 .heroDescription {
@@ -24,14 +20,20 @@
 }
 
 
-/* OLD EXTRAS */
 .heroTertiaryTitle {
-    font-size: 1.8rem;
+    display: inline-flex;
+    font-size: 1.4rem;
+    font-family: var(--text-regular);
 }
 
-.heroSubtitle {
-    font-size: 2.4rem;
-}
+
+
+
+/* --------------------------------------------------------------------------------------- */
+/* COLLAR TEXT */
+/* --------------------------------------------------------------------------------------- */
+
+
 
 /* --------------------------------------------------------------------------------------- */
 /* PAGE BODY */
@@ -319,7 +321,7 @@
     /* --------------------------------------------------------------------------------------- */
     /* PAGE HERO */
     /* --------------------------------------------------------------------------------------- */
-  /* EXTRAS */
+    /* EXTRAS */
 
     .pageSubtitle {
         font-size: 2.4rem;
@@ -334,6 +336,7 @@
     }
 
 }
+
 @media (min-width: 768px) {
     /* --------------------------------------------------------------------------------------- */
     /* PRODUCT

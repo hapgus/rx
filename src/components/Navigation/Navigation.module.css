@@ -164,7 +164,7 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        padding: 0.55rem 2rem;
+        padding: 0.55rem 4rem;
         /* padding: 0.55rem 0; */
         /* justify-content: space-between; */
     }
@@ -185,29 +185,22 @@
     .desktopNavMenuWrapper {
         display: flex;
         flex-direction: row;
-        /* gap: 2.5rem; */
         /* gap: 1rem; */
-        /* background-color: aqua; */
+        /* gap: 2.5rem; */
         z-index: 10;
         
     }
 
     .desktopNavMenuHeader {
-        /* z-index: 0; */
         display: flex;
         flex-direction: row;
-        gap: 2.5rem;
-        /* background-color: rgb(13, 114, 114); */
-        /* padding: 2.5rem 2rem; */
-        /* padding: 2rem; */
-        padding: 3rem;
+        gap: 1rem;
+        padding: 1.5rem 2rem;
         color: var(--color-gray-01);
     }
-.desktopNavMenuText span{
-/* z-index: -10; */
-}
+
     .desktopNavSearchWrapper {
-        /* background-color: pink; */
+ 
         margin-left: auto;
         margin-right: 2.5rem;
         width: 40rem;

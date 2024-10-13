@@ -3,6 +3,7 @@ import { useProductsHook } from '../../../hooks/use-product-hooks';
 import { useSearchHook } from '../../../hooks/use-search-hooks';
 import { IconComponent } from '../../Icon/IconComponent';
 import { useResponsiveStateHook } from '../../../hooks/responsive-hook';
+import { PageText } from '../../Text/Text';
 
 export const HomepageSearchInput = () => {
 
@@ -101,7 +102,6 @@ export const HomepageSearchInput = () => {
                     <div className={styles.desktopSearchIconWrapper}>
                         <IconComponent iconType='searchInput' />
                     </div>
-
 
                     {/* <input
                         type="search"

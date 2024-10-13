@@ -14,8 +14,8 @@
 }
 @media (min-width: 834px) {
      .logo{
-        height: 4.4rem;
-     
+        /* height: 4.4rem; */
+        height: 4rem;
     }
 }
 @media (min-width:1920px) {

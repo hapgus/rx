@@ -114,13 +114,21 @@ const Homepage = () => {
                     <div className={styles.contentWrapper}>
                         <div className={styles.heroWrapper}>
                             <div className={styles.heroHeader}>
-
                                 <div className={styles.title}>
                                     <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.1}>
-                                        <PageText type='heroTitle'>Find Home Appliances</PageText>
+                                        <PageText type='heroSubtitle'>LG Product Guide</PageText>
                                     </AnimatedComponent>
                                 </div>
-
+                                <div className={styles.title}>
+                                    <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.1}>
+                                        <PageText type='heroTitle'>Explore home appliances</PageText>
+                                    </AnimatedComponent>
+                                </div>
+                                <div className={styles.subtitle}>
+                                    <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.3}>
+                                        <PageText type='heroDescription'>Discover best-in-class products and accessories at the LG Product Guide</PageText>
+                                    </AnimatedComponent>
+                                </div>
                                 {/* <div className={styles.subtitle}>
                                     <PageText type='pageSubtitle'>Find home appliances</PageText>
                                 </div> */}
@@ -141,9 +149,9 @@ const Homepage = () => {
                             <div>
                                 <div className={styles.footer}>
 
-                                    <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.3}>
+                                    {/* <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.3}>
                                         <PageText type='heroDescription'>Discover best-in-class products and accessories at the LG Product Guide</PageText>
-                                    </AnimatedComponent>
+                                    </AnimatedComponent> */}
                                 </div>
                             </div>
 
@@ -225,11 +233,11 @@ const Homepage = () => {
                                                 <motion.div
                                                     variants={itemVariants}
                                                     className={styles.iconWrapper}>
-                                                   
 
-                                                        <AnimatedCheckmark />
-                                                
-                                                  
+
+                                                    <AnimatedCheckmark />
+
+
                                                 </motion.div>
                                                 <div className={styles.benefitCardText}>
                                                     <PageText type='bodyCalloutTitle'>{e.title}</PageText>
