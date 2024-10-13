@@ -138,7 +138,6 @@ export const PageText = ({ children, eventHandlers = {}, type = 'default' }) => 
         searchSubtitle: styles.searchSubtitle,
         searchTertiaryTitle: styles.searchTertiaryTitle,
 
-
         // productSearchTitle: styles.productSearchTitle,
         // productSearchSubtitle: styles.productSearchSubtitle,
 
