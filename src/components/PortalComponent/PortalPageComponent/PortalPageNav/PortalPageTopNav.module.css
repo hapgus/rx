@@ -2,14 +2,20 @@
   display: flex;
   align-items: center;
   padding: 2rem;
-  background-color: var(--color-gray-05);
+  background-color: var(--color-gray-06);
   border-bottom: 1px solid var(--color-gray-04);
  }
  .logoWrapper{
     margin-right: auto;
  }
 .mobileMenuHeader{
- padding-bottom: 2.5rem;
+ padding-bottom: 4rem;
+}
+.portalBurgerWrapper{
+   background-color: var(--color-gray-07);
+   padding: 1rem;
+   border-radius: 10rem;
+  
 }
  .headerIconTextGroup{
     display: flex;
@@ -19,14 +25,16 @@
  .iconsWrapper{
     display: flex;
     flex-direction: row;
-    gap: 3rem;
+    gap: 2rem;
     align-items: center;
  }
+ /* NAV DIRECTIONAL ARROWS */
  .icon svg{
-    height: 3rem;
-    width: 3rem;
-    display: flex;
+    height: 2.4rem;
+    width: 2.4rem;
+    display: inline-flex;
  }
+
  .userAccountWrapper{
     display: flex;
     flex-direction: row;
@@ -38,7 +46,11 @@
     /* border-radius: 4rem; */
     color: var(--color-gray-01);
  }
-
+.userDetails{
+   display: flex;
+   flex-direction: row;
+   gap: .5rem;
+}
  .headerText {
     display: flex;
     flex-direction: row;
@@ -47,9 +59,21 @@
     /* gap: 2rem; */
     /* margin-bottom: 2rem; */
 }
+.portalMobileNavBackIconWrapper, .mobileMenuBackIconWrapper{
+   padding-top: 2rem;
+   display: inline-flex;
+}
+.logoutIcon svg{
+  height: 2.4rem;
+  width: 2.4rem;
+   display: inline-flex;
+}
+.logoutIcon svg:hover{
+   cursor: pointer;
+}
 #firstHeader {
     /* border-top: 1px solid var(--color-gray-04); */
-    padding-top: 2rem;
+    padding-top: 4rem;
 }
 .mobileNavOptionsList a {
     color: black;
@@ -59,7 +83,7 @@
 .mobileNavOptionsList {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 2rem;
     padding-bottom: 1rem;
 }
 
@@ -70,10 +94,38 @@
 .logoutWrapper{
    display: none;
 }
+.mobileDropdownContent{
+   padding-top: 2rem;
+ 
+}
 /* .portalMobileNavDropdownMenuWrapper{} */
 /* .logoutDivider{
    display: none;
 } */
+.topNavUserAccount{
+   display: none;
+
+ }
+@media (min-width: 768px) {
+   .icon:hover{
+     cursor: pointer;
+   }
+}
+@media (min-width: 1280px) {
+   .accountIcon svg{
+      height: 3.5rem;
+      width: 3.5rem;
+      display: inline-flex;
+      margin-right: 2rem;
+   }
+   .topNavUserAccount{
+      display: flex;
+      /* background-color: rgb(76, 0, 255); */
+    }
+   /* .topNavUserAccount{
+     display: none;
+   } */
+}
 @media (min-width: 1440px) {
     .portalBurgerWrapper{
         display: none;

@@ -22,7 +22,7 @@ export const PortalBanner = ({
             {
                 title &&
                 <div className={styles.title}>
-                    <PageText type='pageTitle'> {title}</PageText>
+                    <PageText type='bodyTitle'> {title}</PageText>
                 </div>
             }
             {toolTipText &&

@@ -12,14 +12,14 @@ import { GridSystem } from '../../../GridSystem/GridSystem';
 import { useLinkConfig } from '../../../../hooks/use-link-config-hooks';
 
 export const PortalPageTopNav = () => {
-    const {portalAdminUserLinks, portalDashLinks, portalProductLinks, portalSuperAdminUserLinks, portalWebsiteLinks} = useLinkConfig();
+    const { portalAdminUserLinks, portalDashLinks, portalProductLinks, portalSuperAdminUserLinks, portalWebsiteLinks, portalAdminProfileLinks } = useLinkConfig();
     const decodedToken = useAuthUser();
 
     const authorizedUser = {
         firstname: decodedToken.firstName,
         lastname: decodedToken.lastName
     }
-    
+
 
     const { isSuperAdmin } = useAuth();
 
@@ -43,7 +43,9 @@ export const PortalPageTopNav = () => {
     const handleToggleMobilePortalWebsitesMenu = () => {
         setIsRoutingState(prevState => ({ ...prevState, isMobilePortalNavWebsitesMenuOpen: !prevState.isMobilePortalNavWebsitesMenuOpen }))
     }
-
+    const handleToggleMobilePortalAccountMenu = () => {
+        setIsRoutingState(prevState => ({ ...prevState, isMobilePortalNavAccountMenuOpen: !prevState.isMobilePortalNavAccountMenuOpen }))
+    }
 
     return (
         <>
@@ -52,24 +54,22 @@ export const PortalPageTopNav = () => {
                     <LinkedLogo portalLogo={true} />
                 </div>
                 <div className={styles.iconsWrapper}>
+                <div className={styles.topNavUserAccount}>
+                        <LinkComponent href={`/profile`}>
+                            <div className={styles.userAccountWrapper}>
+                                <div className={styles.userDetails}>
+                                    <PageText type='footerMenuItem'>{authorizedUser.firstname}</PageText>
+                                    <PageText type='footerMenuItem'>{authorizedUser.lastname}</PageText>
 
-                    <LinkComponent href={`/profile`}>
-                        <div className={styles.userAccountWrapper}>
-                            <div className={styles.userDetails}>
-                                <PageText type='footerMenuItem'>{authorizedUser.firstname}</PageText>
-                                <PageText type='footerMenuItem'>{authorizedUser.lastname}</PageText>
+                                </div>
+                                <div className={styles.accountIcon}>
+                                    <IconComponent iconType='redUser' />
+                                    {/* <IconComponent iconType='portalUser' /> */}
+                                </div>
 
                             </div>
-                            <div className={styles.icon}>
-                            <IconComponent iconType='redUser' />
-                                {/* <IconComponent iconType='portalUser' /> */}
-                            </div>
-
-                        </div>
-                    </LinkComponent>
-                    {/* <div className={styles.logoutDivider}>
-                        <PageText type='footerMenuItem'>{" | "}</PageText>
-                    </div> */}
+                        </LinkComponent>
+                    </div>
                     <div className={styles.logoutWrapper} onClick={handleLogoutAdmin}>
                         <PageText type='footerMenuItem'>Logout</PageText>
                         <div className={styles.logoutIconWrapper}>
@@ -87,7 +87,7 @@ export const PortalPageTopNav = () => {
                 </div>
             </div>
             {isRoutingState.isMobilePortalNavOpen &&
-                <Overlay containerMarginTop='7rem'>
+                <Overlay containerMarginTop='8rem'>
                     <GridSystem>
                         <div className={styles.portalMobileNavDropdownMenuWrapper}>
                             <div className={styles.portalMobileNavBackIconWrapper}>
@@ -160,12 +160,28 @@ export const PortalPageTopNav = () => {
                                 </div>
 
                             </div>
+                            <div className={styles.mobileMenuHeader} >
+                                <div onClick={handleToggleMobilePortalAccountMenu} className={styles.headerText}>
+                                    <div className={styles.headerIconTextGroup}>
+                                        <div className={styles.icon}>
+                                            <IconComponent iconType='userAccount' />
+                                        </div>
+                                        <div>
+                                            <PageText type='mobileNavTitle'>My Profile</PageText>
+                                        </div>
+                                    </div>
 
+                                    <div className={styles.icon}>
+                                        <IconComponent iconType='rightChevron' />
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                         <div className={styles.mobileMenuHeader} >
                             <div onClick={handleLogoutAdmin} className={styles.headerText}>
                                 <div className={styles.headerIconTextGroup}>
-                                    <div className={styles.icon}>
+                                    <div className={styles.logoutIcon}>
                                         <IconComponent iconType='logout' />
                                     </div>
                                     <div>
@@ -179,7 +195,7 @@ export const PortalPageTopNav = () => {
             }
             {
                 isRoutingState.isMobilePortalNavOverviewMenuOpen &&
-                <Overlay containerMarginTop='7rem'>
+                <Overlay containerMarginTop='8rem'>
                     <GridSystem  >
                         <div className={styles.mobileNavDropdownMenuWrapper}>
                             <div className={styles.mobileMenuBackIconWrapper}>
@@ -197,7 +213,7 @@ export const PortalPageTopNav = () => {
             }
             {
                 isRoutingState.isMobilePortalNavProductsMenuOpen &&
-                <Overlay containerMarginTop='7rem'>
+                <Overlay containerMarginTop='8rem'>
                     <GridSystem >
                         <div className={styles.mobileNavDropdownMenuWrapper}>
                             <div className={styles.mobileMenuBackIconWrapper}>
@@ -215,7 +231,7 @@ export const PortalPageTopNav = () => {
             }
             {
                 isRoutingState.isMobilePortalNavUsersMenuOpen &&
-                <Overlay containerMarginTop='7rem'>
+                <Overlay containerMarginTop='8rem'>
                     <GridSystem  >
                         <div className={styles.mobileNavDropdownMenuWrapper}>
                             <div className={styles.mobileMenuBackIconWrapper}>
@@ -237,7 +253,7 @@ export const PortalPageTopNav = () => {
             }
             {
                 isRoutingState.isMobilePortalNavWebsitesMenuOpen &&
-                <Overlay containerMarginTop='7rem'>
+                <Overlay containerMarginTop='8rem'>
                     <GridSystem >
                         <div className={styles.mobileNavDropdownMenuWrapper}>
                             <div className={styles.mobileMenuBackIconWrapper}>
@@ -247,7 +263,29 @@ export const PortalPageTopNav = () => {
                             </div>
 
                             <div className={styles.mobileDropdownContent}>
-                                <ul className={styles.mobileNavOptionsList}>{RouteLinks(portalWebsiteLinks)}
+                                <ul className={styles.mobileNavOptionsList}>
+                                    {RouteLinks(portalWebsiteLinks)}
+                                </ul>
+
+                            </div>
+                        </div>
+                    </GridSystem>
+                </Overlay>
+            }
+            {
+                isRoutingState.isMobilePortalNavAccountMenuOpen &&
+                <Overlay containerMarginTop='8rem'>
+                    <GridSystem >
+                        <div className={styles.mobileNavDropdownMenuWrapper}>
+                            <div className={styles.mobileMenuBackIconWrapper}>
+                                <div className={styles.icon}>
+                                    <IconComponent onClick={handleToggleMobilePortalAccountMenu} iconType='leftChevron' />
+                                </div>
+                            </div>
+
+                            <div className={styles.mobileDropdownContent}>
+                                <ul className={styles.mobileNavOptionsList}>
+                                    {RouteLinks(portalAdminProfileLinks)}
                                 </ul>
 
                             </div>

@@ -8,13 +8,13 @@ import { TextInput } from "../../../FormComponent/TextInput/TextInput";
 import { useNotificationHook } from "../../../../hooks/use-notification-hooks";
 import { validateAdminForm } from "../../../../utils/form-validation";
 import { useHttpClient } from "../../../../hooks/http-hook";
-import { useRoutingHook } from "../../../../hooks/use-routing-hooks";
+
 import { useNavigate } from "react-router";
 import { VALIDATOR_REQUIRE } from "../../../../utils/validators";
 import { useState } from "react";
 import { Select } from "../../../FormComponent/Select/Select";
 import { capitalizeFirstLetterEachWord } from "../../../../utils/helper-functions";
-import { AnimatedComponent } from "../../../../hooks/use-framer-motion";
+
 import { FormSection } from "../../../FormComponent/FormSection/FormSection";
 import { useDataContext } from "../../../../hooks/data-hook";
 import { useAuth, useLogout } from '../../../../hooks/use-auth-hooks';
@@ -22,8 +22,8 @@ import { useAuth, useLogout } from '../../../../hooks/use-auth-hooks';
 export const AdminAccountForm = () => {
 
     const { isManagedDataState, setIsManagedDataState } = useDataContext();
-    const { setIsModal, isModal } = useNotificationHook();
-    const { setIsRoutingState } = useRoutingHook();
+    const { setIsModal } = useNotificationHook();
+    // const { setIsRoutingState } = useRoutingHook();
     const { sendRequest } = useHttpClient();
     const { authUserId, isSuperAdmin } = useAuth();
     const redirect = useNavigate();
@@ -31,7 +31,7 @@ export const AdminAccountForm = () => {
 
 
 
-    const [formState, inputHandler, setFormData, resetForm] = useForm({
+    const [formState, inputHandler] = useForm({
         password: { value: '', isValid: false },
         confirmPassword: { value: '', isValid: false },
         email: { value: '', isValid: false },
@@ -56,10 +56,10 @@ export const AdminAccountForm = () => {
             prevState === "password" ? "text" : "password"
         );
     };
-    const handleHomeModalClick = () => {
-        setIsModal(prevState => ({ ...prevState, show: false }))
-        redirect('/portal/overview')
-    }
+    // const handleHomeModalClick = () => {
+    //     setIsModal(prevState => ({ ...prevState, show: false }))
+    //     redirect('/portal/overview')
+    // }
     const handleCloseModalClick = () => {
         // resetForm();
         redirect('/portal/admin-directory')
@@ -71,7 +71,6 @@ export const AdminAccountForm = () => {
     /* HANDLE NO AUTH REDIRECTS*/
     /* --------------------------------------------------------------------------------------- */
     const handleUnAuthorizedAccess = () => {
-
         logout();
         setIsModal({ show: false })
     }
@@ -93,6 +92,17 @@ export const AdminAccountForm = () => {
             return
         }
 
+        if (formState.inputs.role.value === '' ) {
+            setIsModal({
+                show: true,
+                modalType: 'errorModal',
+                title: "Role selection required",
+                message: "Please select a role to create a new user.",
+                onCancel: () => setIsModal({ show: false }),
+                cancelText: "Try again",
+            })
+            return
+        }
 
         setIsModal({
             show: true,
@@ -187,6 +197,7 @@ export const AdminAccountForm = () => {
                 }
             } catch (error) {
                 // const revisedErrorMessage = error.toString().replace(/^Error:\s*/, '');
+             
                 setIsManagedDataState(prevState => ({ ...prevState, loading: false }));
                 setIsModal({
 

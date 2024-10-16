@@ -91,6 +91,8 @@ export const RoutingProvider = ({ children }) => {
         isMobilePortalNavProductsMenuOpen: false,
         isMobilePortalNavUsersMenuOpen: false,
         isMobilePortalNavWebsitesMenuOpen: false,
+        isMobilePortalNavWebsitesMenuOpen: false,
+    isMobilePortalNavAccountMenuOpen:false,
       }));
 
       // Reset isNavLinkClicked to allow subsequent clicks

@@ -41,7 +41,7 @@ export const PortalPage = ({
                         {pageTitle &&
                            <AnimatedComponent type="wipeEffect" directionStart='left' delay={0.1}>
                                 <div className={styles.pageTitle}>
-                                    <PageText type='pageTitle'>
+                                    <PageText type='heroTitle'>
                                         {pageTitle}
                                     </PageText>
                                 </div>

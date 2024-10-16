@@ -122,6 +122,9 @@ export const useLinkConfig = () => {
         { href: `/portal/product-directory`, text: 'See All Products' },
         { href: `/portal/add-product`, text: 'Create Products' },
     ]
+    const portalAdminProfileLinks = [
+        {href:`/profile`, text:"My Profile"}
+    ]
 
     return {
         categoryLinks,
@@ -142,6 +145,8 @@ export const useLinkConfig = () => {
         portalAdminUserLinks, 
         portalSuperAdminUserLinks, 
         portalProductLinks,
-        portalDashLinks
+        portalDashLinks,
+
+        portalAdminProfileLinks
     };
 };

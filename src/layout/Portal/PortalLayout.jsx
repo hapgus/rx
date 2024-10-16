@@ -111,9 +111,9 @@ export default function PortalLayout() {
                         <PortalPageSideNav />
                     </div>
                     <main className={styles.portalLayoutChildrenWrapper}>
-                        <div>
+                        {/* <div> */}
                              <Outlet />
-                        </div>           
+                        {/* </div>            */}
                     </main>
                     <div className={styles.portalFooterWrapper}>
                         <PortalFooter />
